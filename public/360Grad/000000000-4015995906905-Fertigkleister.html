@@ -1,0 +1,52 @@
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>360&deg; Animation</title>
+        <meta http-equiv="expires" content="0">
+		<meta http-equiv="pragma" content="no-cache">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <link rel="stylesheet" type="text/css" href="template/js/lb/jquery.fancybox-1.3.4.css" media="screen" />
+		<script type="text/javascript" src="template/js/jquery-1.11.3.min.js"></script>		
+		<link rel="stylesheet" href="template/js/fb/source/jquery.fancybox.css" type="text/css" media="screen" />
+		<script src="template/js/fb/source/jquery.fancybox.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="template/css/euroviewer.css" media="screen" />
+    </head>
+	
+    <body>
+		<div id="preloader" /><div id="status">&nbsp;</div></div>
+		<div id="fsHelper"><b>Anklicken <br />&amp; Maus ziehen</b><br /><img src="./template/img/mouse.png" /></div>
+        <div id="fsWrapper" style="background-color:#0;">
+		<img src="./template/img/custLogo.png" id="custLogo" />	
+			<script type="text/javascript">
+				var objID = "000000000 - 4015995906905 - Fertigkleister";
+				var a = 0;
+				var i = 0;
+				var objStr = "3d_artikel/000000000 - 4015995906905 - Fertigkleister/desktop/000000000 - 4015995906905 - Fertigkleister_00.jpg";	
+				$('#animationIMG').attr({src: objStr});
+				$('#fsWrapper').prepend("<img id='animationIMG' src="+objStr+"  style='display:inline;' />");
+				$('#animationIMG, #detailZoom_a, #detailZoom_b, #detailZoom_c').css({'display': 'inline'});
+			</script>	
+            <ul id="fsRemote" style="text-align:center;">
+                <li id="fsAutoplay"><img src="template/img/ui/btnAutoplay_inactive.png" id="fsPlayIMG" /></li>
+                <li id="fsRotate"><img src="template/img/ui/btnBrowse_inactive.png" id="fsBrowseIMG" /></li>
+                <li id="fsShift"><img src="template/img/ui/btnShift_notactive.png" id="fsShiftIMG" /></li>
+                <li id="fsIn"><img src="template/img/ui/btnZoomIn_inactive.png" id="fsInIMG" /></li>
+                <li id="fsOut"><img src="template/img/ui/btnZoomOut_notactive.png" id="fsOutIMG" /></li>
+                <li id="fsReset"><img src="template/img/ui/btnReset_inactive.png" id="fsResetIMG" /></li>
+            </ul>
+			<ul id="fsTooltips" style="text-align:center;">
+				<li><img src="template/img/ui/ttFullScreen.png" id="ttFullScreen"/></li>
+				<li><img src="template/img/ui/ttAutoPlay.png" id="ttAutoPlay"/></li>
+				<li><img src="template/img/ui/ttRotate.png" id="ttRotate"/></li>
+				<li><img src="template/img/ui/ttShift.png" id="ttShift" /></li>
+				<li><img src="template/img/ui/ttZoomIn.png" id="ttZoomIn" /></li>
+				<li><img src="template/img/ui/ttZoomOut.png" id="ttZoomOut" /></li>
+				<li><img src="template/img/ui/ttReset.png" id="ttReset" /></li>
+			</ul>			
+        </div>
+		
+        <script src="3d_artikel/000000000 - 4015995906905 - Fertigkleister/viewerconf.js" type="text/javascript"></script>
+        <script src="template/js/euroviewer_core.1721.production.js" type="text/javascript"></script>
+    </body>
+</htmL>

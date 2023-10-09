@@ -1,0 +1,21 @@
+# robots.txt zu https://hornung-baushop.de/
+
+User-Agent: *
+
+Disallow: /dev
+Disallow: /account
+Disallow: /checkout
+Disallow: /maintenance
+Disallow: /maintenance.html
+Disallow: /widgets
+Disallow: /wishlist
+Disallow: /search*
+Disallow: /bestellungen
+Disallow: /informationen
+Disallow: /Bestellungen
+Disallow: /Informationen
+Disallow: /naturbaudirekt
+Disallow: /europalette-120-x-80-x-14-cm-nur-in-kombination-mit-waren-auf-paletten-zu-verkaufen
+Disallow: /*selbstabholung$
+
+Sitemap: https://hornung-baushop.de/sitemap.xml
