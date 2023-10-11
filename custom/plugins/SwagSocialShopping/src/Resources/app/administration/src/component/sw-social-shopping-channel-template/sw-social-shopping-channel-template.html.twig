@@ -1,0 +1,129 @@
+{% block sw_social_shopping_channel_template %}
+    <div class="sw-social-shopping-template-detail">
+        <sw-card
+            key="edit"
+            position-identifier="sw-social-shopping-template-detail-product-comparison"
+            :is-loading="isLoading"
+            :title="$tc('swag-social-shopping.networks.base.template.tabTemplate')"
+            class="sw-social-shopping-template-detail-card"
+        >
+            {% block sw_social_shopping_channel_template_header %}
+                <sw-container>
+                    {% block sw_social_shopping_channel_template_input_header %}
+                        <sw-code-editor
+                            v-model="productExport.headerTemplate"
+                            :label="$tc('swag-social-shopping.networks.base.template.inputHeaderLabel')"
+                            :completer-function="outerCompleterFunctionHeader"
+                            :editor-config="editorConfig"
+                            completion-mode="entity"
+                            mode="twig"
+                            :soft-wraps="true"
+                            :set-focus="false"
+                            :disabled="!acl.can('sales_channel.editor')"
+                            @input="resetValid"
+                            @blur="resetValid"
+                        />
+                    {% endblock %}
+                </sw-container>
+            {% endblock %}
+
+            {% block sw_social_shopping_channel_template_body %}
+                <sw-container>
+                    {% block sw_social_shopping_channel_template_input_body %}
+                        <sw-code-editor
+                            v-model="productExport.bodyTemplate"
+                            :label="$tc('swag-social-shopping.networks.base.template.inputBodyLabel')"
+                            :completer-function="outerCompleterFunctionBody"
+                            :editor-config="editorConfig"
+                            completion-mode="entity"
+                            mode="twig"
+                            :soft-wraps="true"
+                            :set-focus="false"
+                            :disabled="false"
+                            @input="resetValid"
+                            @blur="resetValid"
+                        />
+                    {% endblock %}
+                </sw-container>
+            {% endblock %}
+
+            {% block sw_social_shopping_channel_template_footer %}
+                <sw-container>
+                    {% block sw_social_shopping_channel_template_input_footer %}
+                        <sw-code-editor
+                            v-model="productExport.footerTemplate"
+                            :label="$tc('swag-social-shopping.networks.base.template.inputFooterLabel')"
+                            :completer-function="outerCompleterFunctionFooter"
+                            :editor-config="editorConfig"
+                            completion-mode="entity"
+                            mode="twig"
+                            :soft-wraps="true"
+                            :set-focus="false"
+                            :disabled="false"
+                            @input="resetValid"
+                            @blur="resetValid"
+                        />
+                    {% endblock %}
+                </sw-container>
+            {% endblock %}
+
+            {% block sw_social_shopping_channel_template_actions %}
+                <div class="sw-social-shopping-template-detail__button-group">
+                    <div class="sw-social-shopping-template-detail__button">
+                        {% block sw_social_shopping_channel_template_actions_test_button %}
+                            <sw-button-process
+                                size="small"
+                                variant="ghost"
+                                class="sw-social-shopping-template-detail__button"
+                                :is-loading="isLoadingValidate"
+                                :disabled="isLoadingValidate || (!productExport.headerTemplate && !productExport.bodyTemplate && !productExport.footerTemplate)"
+                                :process-success="isValidateSuccessful"
+                                @click="validateTemplate"
+                                @process-finish="resetValid"
+                            >
+                                {{ $tc('swag-social-shopping.networks.base.template.buttonTestLabel') }}
+                            </sw-button-process>
+                        {% endblock %}
+
+                        {% block sw_social_shopping_channel_template_actions_preview_button %}
+                            <sw-button-process
+                                size="small"
+                                variant="ghost"
+                                class="sw-social-shopping-template-detail__button-preview"
+                                :is-loading="isLoadingPreview"
+                                :disabled="isLoadingPreview || (!productExport.headerTemplate && !productExport.bodyTemplate && !productExport.footerTemplate)"
+                                :process-success="isPreviewSuccessful"
+                                @click="preview"
+                            >
+                                {{ $tc('swag-social-shopping.networks.base.template.buttonPreviewLabel') }}
+                            </sw-button-process>
+                        {% endblock %}
+                    </div>
+
+                    {% block sw_sales_channel_detail_product_comparison_actions_reset_template_button %}
+                        <sw-button-process
+                            size="small"
+                            variant="ghost"
+                            class="sw-social-shopping-template-detail__button-reset"
+                            :is-loading="isLoadingReset"
+                            :disabled="isLoadingReset || (!productExport.headerTemplate && !productExport.bodyTemplate && !productExport.footerTemplate)"
+                            :process-success="isResetSuccessful"
+                            @click="resetTemplate"
+                            @process-finish="resetReset"
+                        >
+                            {{ $tc('swag-social-shopping.networks.base.template.buttonResetLabel') }}
+                        </sw-button-process>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block  sw_social_shopping_channel_template_actions_preview_modal %}
+                <sw-social-shopping-channel-template-preview
+                    :content="previewContent"
+                    :errors="previewErrors"
+                    @close="onPreviewClose"
+                />
+            {% endblock %}
+        </sw-card>
+    </div>
+{% endblock %}

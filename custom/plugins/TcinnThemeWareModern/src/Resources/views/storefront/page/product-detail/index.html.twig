@@ -1,0 +1,48 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+{# ThemeWare® HC-Architecture® via configuration #}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailCrossSellingShow = theme_config('twt-product-detail-cross-selling-show') %}
+{% set twtProductDetailThumbnailsPosition = theme_config('twt-product-detail-thumbnails-position') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# HC-Architecture @Doku #}
+{% block page_product_detail_media %}
+	{# ThemeWare: Gallery-slider-thumbnails #}
+	{# TODO: Add variables and configs... #}
+	{% if twtProductDetailThumbnailsPosition == 2 %}
+		<div class="col-lg-7 product-detail-media">
+			 {% if page.product.media %}
+				  {% sw_include '@Storefront/storefront/element/cms-element-image-gallery.html.twig' with {
+					  'mediaItems': mediaItems,
+					  'zoom': true,
+					  'zoomModal': true,
+					  'displayMode': 'contain',
+					  'gutter': 5,
+					  'minHeight': '430px',
+					  'navigationArrows': 'inside',
+					  'navigationDots': 'inside',
+					  'galleryPosition': 'underneath',
+					  'isProduct': true,
+					  'fallbackImageTitle': page.product.translated.name,
+					  'startIndexThumbnails': 1,
+					  'startIndexSlider': 1,
+					  'keepAspectRatioOnZoom': false
+				  } %}
+			 {% endif %}
+		</div>
+	{% else %}
+
+		{# Default block #}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}
+
+{# ThemeWare: Delete div if no cross selling products available #}
+{# TODO: Ab Shopware 6.4.7 entfernt Shopware leere Cross-Selling Blöcke endlich selber. #}
+{# block page_product_detail_cross_selling #}

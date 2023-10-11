@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/layout/header/search-suggest.html.twig' %}
+{% block layout_search_suggest %}
+
+    {% if page.sisi_col_search.ColsAjax %}
+        {% set cols = page.sisi_col_search.ColsAjax %}
+    {% else %}
+        {% set cols = 0 %}
+    {% endif %}
+
+    <div class="search-suggest js-search-result">
+        {% if page.sisi_elasticsearchAktive %}
+            {% if page.sisi_col_search.themeES %}
+                {% sw_include page.sisi_col_search.themeES %}
+            {% else %}
+                {% sw_include '@Storefront/storefront/layout/header/search-suggest-es.html.twig' %}
+            {% endif %}
+        {% else %}
+            {% sw_include '@Storefront/storefront/layout/header/search-suggest-noes.html.twig' %}
+        {% endif %}
+    </div>
+{% endblock %}

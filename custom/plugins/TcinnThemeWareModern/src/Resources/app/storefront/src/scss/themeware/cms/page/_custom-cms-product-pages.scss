@@ -1,0 +1,188 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS product pages
+    ==================================================
+    Theme specific stylings for cms pages.
+
+*/
+
+/* ---------------- START: SET SCSS VARS ---------------- */
+
+$twtCmsLayoutAdjustmentsActiveAll: 0;
+
+// ThemeWare: Check if all adjustments are requested and set theme variables
+@if ($twt-cms-layout-adjustments-product-pages + $twt-cms-layout-adjustments-shop-pages + $twt-cms-layout-adjustments-category-pages + $twt-cms-layout-adjustments-landing-pages) == 8 {
+  $twtCmsLayoutAdjustmentsActiveAll: 2; // Set var: 2 => all active
+} @else {
+  $twtCmsLayoutAdjustmentsActiveAll: 1; // Set var: 1 => not all active
+}
+
+/* ---------------- END: SET SCSS VARS ---------------- */
+
+// ThemeWare: Adjustments CMS product pages
+
+// Das individuelle styling für CMS-Produktseiten wird genutzt, falls ein CMS-Seitentyp per Konfiguration davon ausgenommen wird (siehe $twtCmsLayoutAdjustmentsActiveAll = 1)
+// und die CMS-Produktseiten überhaupt gestylt werden sollen.
+
+.twt-is-cms-product-detail {
+
+  @if $twt-cms-layout-adjustments-product-pages == 2 and $twtCmsLayoutAdjustmentsActiveAll == 1 {
+    // ThemeWare: Containered layout ------------------------------
+
+    .cms-section-default.boxed {
+      .cms-block:not(.twt-cms-block-reset) {
+        border: 1px solid $twt-cms-section-boxed-border-color;
+        border-radius: null-pixel-unit($twt-border-radius);
+        margin-bottom: $twt-cms-block-margin-bottom;
+
+        &:not(.bg-color) {
+          background-color: $twt-cms-section-boxed-background-color;
+        }
+      }
+      
+      // ThemeWare: Product detail cms block set min padding
+      .cms-block:not(.twt-cms-block-reset) {
+
+        // product heading
+        &.cms-block-product-heading {
+          .cms-block-container {
+            &[style*="padding: 0 0 20px 0"] {
+              padding-top: 20px !important;
+              padding-left: 20px !important;
+              padding-right: 20px !important;
+            }
+          }
+        }
+        // product gallery
+        &.cms-block-gallery-buybox {
+          .cms-block-container {
+            &[style*="padding: 20px 0 0 0"] {
+              padding-bottom: 20px !important;
+              padding-left: 20px !important;
+              padding-right: 20px !important;
+            }
+          }
+        }
+        // product description, reviews, ... 
+        &.cms-block-product-description-reviews {
+          .cms-block-container {
+            &[style*="padding: 20px 0 0 0"],
+            &[style*="padding: 20px 0 20px"],
+            &[style*="padding: 0 0 20px 0"] {
+              padding-left: 20px !important;
+              padding-right: 20px !important;
+            }
+          }
+        }
+        // product cross selling
+        &.cms-block-cross-selling {
+          .cms-block-container {
+            &:has(:not([style])) {
+              padding-left: 20px !important;
+              padding-right: 20px !important;
+            }
+          }
+        }
+
+      }
+    }
+
+    // ThemeWare: Containered layout with sidebar > block-styling ------------------------------
+
+    .cms-section-sidebar {
+      // A) Set block-styling for content only
+
+      @if $twt-cms-section-boxed-sidebar-combined == 1 {
+        .cms-section-sidebar-main-content {
+          // Ignore block-styling with reset class
+          .cms-block:not(.twt-cms-block-reset) {
+            border: 1px solid $twt-cms-section-boxed-border-color;
+            border-radius: null-pixel-unit($twt-border-radius);
+            margin-bottom: $twt-cms-block-margin-bottom;
+
+            &:not(.bg-color) {
+              background-color: $twt-cms-section-boxed-background-color;
+            }
+          }
+        }
+      }
+
+      // B) Set block-styling for container
+
+      @if $twt-cms-section-boxed-sidebar-combined == 2 {
+        .cms-section-sidebar-sidebar-content {
+          background-color: $twt-cms-section-boxed-background-color;
+          border: 1px solid $twt-cms-section-boxed-border-color;
+          border-radius: null-pixel-unit($twt-border-radius);
+          margin-bottom: $twt-cms-block-margin-bottom;
+
+          @include media-breakpoint-up(lg) { // min 992px
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none;
+          }
+        }
+
+        .cms-section-sidebar-main-content {
+          background-color: $twt-cms-section-boxed-background-color;
+          border: 1px solid $twt-cms-section-boxed-border-color;
+          border-radius: null-pixel-unit($twt-border-radius);
+          margin-bottom: $twt-cms-block-margin-bottom;
+
+          @include media-breakpoint-up(lg) { // min 992px
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+          }
+        }
+      }
+    }
+  }
+
+  /*
+    _           _____ ___   ___                        _   _
+   | |__ _  _  |_   _/ __|_|_ _|_ _  _ _  _____ ____ _| |_(_)___ _ _  ___
+   | '_ \ || |   | || (_|___| || ' \| ' \/ _ \ V / _` |  _| / _ \ ' \(_-<
+   |_.__/\_, |   |_| \___| |___|_||_|_||_\___/\_/\__,_|\__|_\___/_||_/__/
+         |__/
+  */
+
+  @if $twt-cms-layout-adjustments-product-pages == 2 {
+    /* Containered layout */
+    .cms-section-default {
+
+      // Reset margin and border for block-gallery-buybox
+      .cms-block:not(.twt-cms-block-reset) {
+        &.cms-block-product-heading {
+          margin-bottom: 0;
+          border-bottom: none;
+        }
+        &.cms-block-gallery-buybox {
+          border-top: none;
+        }
+      }
+    }
+    
+    /* Containered layout (with sidebar) > block-styling */
+    .cms-section-sidebar {
+      .cms-section-sidebar-main-content {
+        .cms-block:not(.twt-cms-block-reset) {
+          &.cms-block-product-heading {
+            margin-bottom: 0;
+            border-bottom: none;
+          }
+          &.cms-block-gallery-buybox {
+            border-top: none;
+          }
+        }
+      }
+    }
+  }
+
+}

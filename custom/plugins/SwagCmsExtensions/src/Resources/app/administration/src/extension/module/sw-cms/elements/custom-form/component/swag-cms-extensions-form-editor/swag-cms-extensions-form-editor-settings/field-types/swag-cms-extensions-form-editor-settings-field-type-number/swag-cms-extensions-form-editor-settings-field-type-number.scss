@@ -1,0 +1,10 @@
+.swag-cms-extensions-form-editor-settings-field-type-number {
+    &__min-max {
+        display: flex;
+        justify-content: space-between;
+
+        .sw-field--medium {
+            width: 45%;
+        }
+    }
+}

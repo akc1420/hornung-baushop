@@ -1,0 +1,66 @@
+{% sw_extends '@Storefront/storefront/component/delivery-information.html.twig' %}
+{# ThemeWare® HC-Architecture® via configuration #}
+
+{# TODO: prüfen... #}
+
+{# TODO: Labels in separate Datei auslagern... #}
+{# TODO: Konfiguration um Shopware "delivery informations" ausblenden zu können ergänzen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtCustomAnnouncementShow = theme_config('twt-custom-announcement-show') %}
+{% set twtProductDetailSoldLabelShow = theme_config('twt-product-detail-sold-label-show') %}
+{% set twtProductDetailShippingFreeLabelShow = theme_config('twt-product-detail-shipping-free-label-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Add our stock/sold-labels above the delivery information #}
+{% block component_delivery_information %}
+    {% if page is defined and page.product is defined %}
+        {% set product = page.product %}
+    {% endif %}
+
+    {# Default delivery information #}
+    {{ parent() }}
+
+    {# ThemeWare: "Individuelle Ankündigung" hinzufügen #}
+    {% if twtCustomAnnouncementShow == 2 or twtCustomAnnouncementShow == 3 %}
+        {% sw_include '@Storefront/storefront/themeware/extensions/twt-custom-announcement.html.twig' ignore missing with {
+            type: 'detail'
+        } %}
+    {% endif %}
+{% endblock %}
+
+
+{# ThemeWare: Adjustments on "Delivery information: Shipping free" info #}
+{# TODO: konfigurierbar machen... #}
+{# HC-Architecture @Doku #}
+{% block component_delivery_information_shipping_free %}
+    {# ThemeWare: Hinweis "Versandkostenfrei" entfernen falls das "Ausverkauft-Label" angzeigt wird. #}
+    {% if twtProductDetailShippingFreeLabelShow == 1 %}
+        {# Default block #}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+
+{# TODO: component_delivery_information_not_available "Diese Auswahl steht nicht zur Verfügung" konfigurierbar machen... #}
+{# TODO: component_delivery_information_pre_order "Dieses Produkt erscheint am" konfigurierbar machen... #}
+{# TODO: component_delivery_information_available "Sofort verfügbar, Lieferzeit %name%" konfigurierbar machen... #}
+
+
+{# ThemeWare: Adjustments on "Delivery information: soldout" info #}
+{# TODO: konfigurierbar machen... #}
+{# HC-Architecture @Doku #}
+{% block component_delivery_information_soldout %}
+    {# ThemeWare: Hinweis "Nicht mehr verfügbar" entfernen falls das "Ausverkauft-Label" angzeigt wird. #}
+    {% if twtProductDetailSoldLabelShow == 1 %}
+        {# Default block #}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+
+{# TODO: component_delivery_information_restock "{1} Versandfertig in 1 Tag, Lieferzeit %name% |]1,Inf[ Versandfertig in %restockTime% Tagen, Lieferzeit %name% " konfigurierbar machen... #}
+{# component_delivery_information_default #}

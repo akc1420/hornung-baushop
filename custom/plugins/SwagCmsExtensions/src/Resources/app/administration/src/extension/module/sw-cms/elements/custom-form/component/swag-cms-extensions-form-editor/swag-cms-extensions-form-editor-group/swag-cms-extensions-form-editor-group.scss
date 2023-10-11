@@ -1,0 +1,105 @@
+@import "~scss/variables";
+
+.swag-cms-extensions-form-editor-group {
+    &__header {
+        display: flex;
+        margin-bottom: 12px;
+    }
+
+    &__title {
+        display: flex;
+        flex: 1;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        > p {
+            height: 22px;
+            color: $color-darkgray-200;
+            font-size: $font-size-small;
+            font-weight: $font-weight-semi-bold;
+            letter-spacing: 0.1px;
+            line-height: 22px;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+
+            &.active {
+                color: $color-shopware-brand-500;
+                text-decoration: underline;
+            }
+
+            > span {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+
+                &:first-child {
+                    padding-right: 3px;
+                }
+            }
+        }
+    }
+
+    &__context-button {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__card {
+        background: #fff;
+        margin-bottom: 12px;
+
+        &.is--drag-element {
+            box-shadow: unset;
+            > .sw-card__content {
+                border-color: $color-shopware-brand-500;
+            }
+        }
+
+        &.is--valid-drag {
+            box-shadow: unset;
+            > .sw-card__content {
+                border-color: $color-emerald-500;
+            }
+        }
+
+        &.is--invalid-drag {
+            box-shadow: unset;
+            > .sw-card__content {
+                border-color: $color-crimson-500;
+            }
+        }
+
+        &.has--error > .sw-card__content {
+            border: 1px solid $color-crimson-500;
+        }
+
+        .sw-card__content {
+            padding: 12px 16px 16px 16px;
+        }
+    }
+
+    &__add-field-button {
+        width: 100%;
+        border: unset;
+        background-color: $color-gray-100;
+
+        &:hover:not([disabled]) {
+            color: $color-shopware-brand-500;
+            background-color: $color-shopware-brand-50;
+        }
+    }
+
+    &__context-button-container {
+        overflow:hidden;
+    }
+
+    &__drag-icon {
+        margin-right: 12px;
+    }
+
+    .is--dragging {
+        border-radius: $border-radius-default;
+    }
+}

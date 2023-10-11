@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <parameter key="pickware_debug_bundle.relativ_path_to_public_key">/../Resources/jwt/public-key.spki</parameter>
+    </parameters>
+    <services>
+        <service id="Pickware\DebugBundle\ResponseExceptionListener\JwtValidator">
+            <argument>%pickware_debug_bundle.relativ_path_to_public_key%</argument>
+        </service>
+        <service id="pickware.debug_bundle.http_sanitizing" class="Pickware\HttpUtils\Sanitizer\HttpSanitizing">
+            <argument type="service" id="Pickware\HttpUtils\Sanitizer\AuthHttpSanitizer" />
+            <argument type="service" id="Pickware\DebugBundle\ResponseExceptionListener\RequestBodySizeSanitizer" />
+        </service>
+        <service id="Pickware\HttpUtils\Sanitizer\AuthHttpSanitizer" shared="false" />
+        <service id="Pickware\DebugBundle\ResponseExceptionListener\RequestBodySizeSanitizer" shared="false" />
+    </services>
+</container>

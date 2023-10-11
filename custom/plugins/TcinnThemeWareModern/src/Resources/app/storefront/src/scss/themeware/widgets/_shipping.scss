@@ -1,0 +1,131 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Widget > Shipping
+	==================================================
+
+*/
+
+// TODO: sh. layout/_footer.scss
+
+// ThemeWare: General widget styling ------------------------------
+
+.twt-widget-shipping {
+  .is-shipping-logo {
+    margin: 0 10px 10px 0;
+  }
+}
+
+.twt-widget-shipping,
+.twt-widget-paymentshipping {
+  .is-shipping-logo {
+    transition: 0.2s ease-out 0s;
+
+    // Inline logos
+    display: block;
+    float: left;
+
+    img.footer-logo-image {
+      //display: inline-block;
+      display: block;
+      max-width: inherit;
+      height: auto-pixel-unit($twt-widget-payment-logo-max-height); // ThemeWare: SVG fix
+      max-height: auto-pixel-unit($twt-widget-shipping-logo-max-height);
+      border: 1px solid $twt-widget-shipping-logo-border-color;
+      width: auto;
+
+      @if $twt-widget-shipping-logo-corner-type == 2 {
+        border-radius: $twt-border-radius-light;
+      } @else if $twt-widget-shipping-logo-corner-type == 3 {
+        border-radius: $twt-border-radius-bold;
+      }
+
+      @if $twt-widget-shipping-logo-coloration == 2 {
+        @include twt-grayscale(100%);
+      }
+    }
+
+    // ThemeWare: Shipping logo #linked
+    // TODO: Add configuration
+    a:hover {
+      img {
+        opacity: .75;
+
+        @if $twt-widget-shipping-logo-coloration == 2 {
+          @include twt-grayscale(0%); // ThemeWare: Grayscale
+        }
+      }
+    }
+
+    // ThemeWare: Fallback badge
+    &.is-fallback-badge {
+      display: inline-flex;
+      align-content: center;
+      align-items: center;
+      justify-content: center;
+
+      height: auto-pixel-unit($twt-widget-shipping-logo-max-height); // ThemeWare: SVG fix
+      max-height: auto-pixel-unit($twt-widget-shipping-logo-max-height);
+
+      @if $twt-widget-shipping-logo-corner-type == 2 {
+        border-radius: $twt-border-radius-light;
+      } @else if $twt-widget-shipping-logo-corner-type == 3 {
+        border-radius: $twt-border-radius-bold;
+      }
+
+      span {
+        @include twt-font-size($twt-widget-shipping-logo-fallback-badge-font-size);
+        font-weight: fontWeight($twt-widget-shipping-logo-fallback-badge-font-weight);
+        line-height: auto-pixel-unit($twt-widget-shipping-logo-max-height / 2);
+        display: inline-block;
+        padding: 10px;
+        text-transform: $twt-widget-shipping-logo-fallback-badge-text-transform;
+
+        color: $twt-widget-shipping-logo-fallback-badge-color;
+        border: 1px solid $twt-widget-shipping-logo-fallback-badge-border-color;
+        background-color: $twt-widget-shipping-logo-fallback-badge-background-color;
+
+        // ThemeWare: Grayscale
+        @if $twt-widget-shipping-logo-coloration == 2 {
+          @include twt-grayscale(100%);
+        }
+      }
+
+      // ThemeWare: Fallback badge #linked
+      a {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: none;
+
+          span {
+            color: $twt-widget-shipping-logo-fallback-badge-color;
+            opacity: .75;
+          }
+        }
+      }
+
+    }
+
+  }
+
+  // Clearfix
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+}
+
+// ThemeWare: Sidebar specific styling ------------------------------
+
+//.cms-section-sidebar-sidebar-content {
+//  .twt-widget-shipping {
+//  }
+//}

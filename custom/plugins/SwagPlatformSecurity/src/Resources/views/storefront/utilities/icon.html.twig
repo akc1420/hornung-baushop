@@ -1,0 +1,30 @@
+{% sw_extends '@Storefront/storefront/utilities/icon.html.twig'%}
+
+{%- block utilities_icon -%}
+
+    {% if swagSecurity.isActive('NEXT-23562') %}
+        {% set styles = [ size, color, rotation, flip, class ] %}
+
+        {%- if pack is not defined -%}
+            {% set pack = 'default' %}
+        {%- endif -%}
+
+        {%- if namespace is not defined -%}
+            {% set namespace = 'Storefront' %}
+        {%- endif -%}
+
+        {%- if themeIconConfig[pack] is defined -%}
+            <span class="icon icon-{{ pack }} icon-{{ pack }}-{{ name }}{% for entry in styles %}{% if entry != "" %} icon-{{ entry }}{% endif %}{% endfor %}">
+            {% set icon =  source('@' ~ themeIconConfig[pack].namespace ~ '/' ~ themeIconConfig[pack].path ~'/'~ name ~ '.svg', ignore_missing = true) %}
+                {{ icon|raw }}
+        </span>
+        {%- else -%}
+            <span class="icon icon-{{ name }}{% for entry in styles %}{% if entry != "" %} icon-{{ entry }}{% endif %}{% endfor %}">
+            {% set icon = source('@' ~ namespace ~ '/app/storefront/dist/assets/icon/'~ pack ~'/'~ name ~'.svg', ignore_missing = true) %}
+                {{ icon|raw }}
+        </span>
+        {%- endif -%}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{%- endblock -%}

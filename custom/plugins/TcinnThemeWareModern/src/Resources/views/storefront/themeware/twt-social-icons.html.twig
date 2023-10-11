@@ -1,0 +1,14 @@
+{# ThemeWare "Social icons" @Platform #}
+{#
+    @Storefront/storefront/themeware/twt-social-icons.html.twig
+#}
+
+{# TODO: prüfen... #}
+
+{% block twt_social_icons %}
+    {% apply spaceless %}
+        <span class="twt-social-icon icon icon-themeware icon-{{ icon }} icon-{{ style }}">
+            {{ source('@TcinnThemeWareModern/assets/social-icons/'~ style ~'/twt-icon-'~ icon ~'-'~ style ~'.svg', ignore_missing = true) }}
+        </span>
+    {% endapply %}
+{% endblock %}

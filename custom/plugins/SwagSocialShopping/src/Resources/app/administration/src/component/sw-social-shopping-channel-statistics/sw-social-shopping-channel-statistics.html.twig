@@ -1,0 +1,196 @@
+{% block swag_social_shopping_channel_statistics %}
+<!-- TODO: SOC-161 - Remove component check for statistics -->
+<sw-container>
+    {% block swag_social_shopping_channel_statistics_orders_card %}
+    <template v-if="this.acl.can('order.viewer')">
+        <span v-if="includesChartCard">
+            <sw-chart-card
+                class="sw-social-shopping-statistics__orders"
+                :card-subtitle="getChartRangeSubtitle(statisticDateRangesOrderCount)"
+                :series="orderCountSeries"
+                :options="chartOptionsOrderCount"
+                :fill-empty-values="getTimeUnitInterval(statisticDateRangesOrderCount)"
+                type="line"
+                sort
+                @sw-chart-card-range-update="onOrderCountRangeUpdate">
+
+                {% block swag_social_shopping_channel_statistics_orders_card_title %}
+                <template #header-title>
+                    {{ $tc('swag-social-shopping.networks.base.statistics.orderCardHeadline') }}
+                </template>
+                {% endblock %}
+
+                {% block swag_social_shopping_channel_statistics_orders_card_header %}
+                <template #range-option="{ range }">
+                    {{ $tc(`swag-social-shopping.networks.base.statistics.dateRanges.${range}`) }}
+                </template>
+                {% endblock %}
+            </sw-chart-card>
+        </span>
+        <span v-else>
+            <sw-card
+                class="sw-social-shopping-statistics__orders"
+                :isLoading="isLoading"
+                :subtitle="getChartRangeSubtitle(statisticDateRangesOrderCount)">
+
+                <template #title>
+                    {{ $tc('swag-social-shopping.networks.base.statistics.orderCardHeadline') }}
+                </template>
+
+                <template #header-right>
+                    <sw-select-field
+                        v-model="statisticDateRangesOrderCount.value"
+                        size="small"
+                        @change="getHistoryOrderCountData"
+                    >
+                        <option
+                            v-for="(value, option) in statisticDateRangesOrderCount.options"
+                            :key="option"
+                            :value="option"
+                        >
+                            {{ $tc(`swag-social-shopping.networks.base.statistics.dateRanges.${option}`) }}
+                        </option>
+                    </sw-select-field>
+                </template>
+
+                <sw-chart
+                    type="line"
+                    :series="orderCountSeries"
+                    :options="chartOptionsOrderCount"
+                    :fill-empty-values="getTimeUnitInterval(statisticDateRangesOrderCount)"
+                    sort
+                />
+            </sw-card>
+        </span>
+    </template>
+    {% endblock %}
+
+    {% block swag_social_shopping_channel_statistics_customers_card %}
+    <template v-if="this.acl.can('customer.viewer')">
+        <span v-if="includesChartCard">
+            <sw-chart-card
+                class="sw-social-shopping-statistics__customers"
+                :card-subtitle="getChartRangeSubtitle(statisticDateRangesCustomerCount)"
+                :series="customerCountSeries"
+                :options="chartOptionsCustomerCount"
+                :fill-empty-values="getTimeUnitInterval(statisticDateRangesCustomerCount)"
+                type="line"
+                sort
+                @sw-chart-card-range-update="onCustomerCountRangeUpdate">
+
+                {% block swag_social_shopping_channel_statistics_customers_card_title %}
+                <template #header-title>
+                    {{ $tc('swag-social-shopping.networks.base.statistics.customerCardHeadline') }}
+                </template>
+                {% endblock %}
+
+                {% block swag_social_shopping_channel_statistics_customers_card_header %}
+                <template #range-option="{ range }">
+                    {{ $tc(`swag-social-shopping.networks.base.statistics.dateRanges.${range}`) }}
+                </template>
+                {% endblock %}
+            </sw-chart-card>
+        </span>
+        <span v-else>
+            <sw-card
+                class="sw-social-shopping-statistics__customers"
+                :isLoading="isLoading"
+                :subtitle="getChartRangeSubtitle(statisticDateRangesCustomerCount)">
+
+                <template #title>
+                    {{ $tc('swag-social-shopping.networks.base.statistics.customerCardHeadline') }}
+                </template>
+
+                <template #header-right>
+                    <sw-select-field
+                        v-model="statisticDateRangesCustomerCount.value"
+                        size="small"
+                        @change="getHistoryCustomerCountData"
+                    >
+                        <option
+                            v-for="(value, option) in statisticDateRangesCustomerCount.options"
+                            :key="option"
+                            :value="option"
+                        >
+                            {{ $tc(`swag-social-shopping.networks.base.statistics.dateRanges.${option}`) }}
+                        </option>
+                    </sw-select-field>
+                </template>
+
+                <sw-chart
+                    type="line"
+                    :series="customerCountSeries"
+                    :options="chartOptionsCustomerCount"
+                    :fill-empty-values="getTimeUnitInterval(statisticDateRangesCustomerCount)"
+                    sort
+                />
+            </sw-card>
+        </span>
+    </template>
+    {% endblock %}
+
+    {% block swag_social_shopping_channel_statistics_turnover_card %}
+    <template v-if="this.acl.can('order.viewer')">
+        <span v-if="includesChartCard">
+            <sw-chart-card
+                class="sw-social-shopping-statistics__turnover"
+                :card-subtitle="getChartRangeSubtitle(statisticDateRangesOrderSum)"
+                :series="orderSumSeries"
+                :options="chartOptionsOrderSum"
+                :fill-empty-values="getTimeUnitInterval(statisticDateRangesOrderSum)"
+                type="line"
+                sort
+                @sw-chart-card-range-update="onOrderSumRangeUpdate">
+
+                {% block swag_social_shopping_channel_statistics_turnover_card_title %}
+                <template #header-title>
+                    {{ $tc('swag-social-shopping.networks.base.statistics.turnoverCardHeadline') }}
+                </template>
+                {% endblock %}
+
+                {% block swag_social_shopping_channel_statistics_turnover_card_header %}
+                <template #range-option="{ range }">
+                    {{ $tc(`swag-social-shopping.networks.base.statistics.dateRanges.${range}`) }}
+                </template>
+                {% endblock %}
+            </sw-chart-card>
+        </span>
+        <span v-else>
+            <sw-card
+                class="sw-social-shopping-statistics__turnover"
+                :isLoading="isLoading"
+                :subtitle="getChartRangeSubtitle(statisticDateRangesOrderSum)">
+
+                <template #title>
+                    {{ $tc('swag-social-shopping.networks.base.statistics.turnoverCardHeadline') }}
+                </template>
+
+                <template #header-right>
+                    <sw-select-field
+                        v-model="statisticDateRangesOrderSum.value"
+                        size="small"
+                        @change="getHistoryOrderSumData"
+                    >
+                        <option
+                            v-for="(value, option) in statisticDateRangesOrderSum.options"
+                            :key="option"
+                            :value="option"
+                        >
+                            {{ $tc(`swag-social-shopping.networks.base.statistics.dateRanges.${option}`) }}
+                        </option>
+                    </sw-select-field>
+                </template>
+
+                <sw-chart
+                    type="line"
+                    :series="orderSumSeries"
+                    :options="chartOptionsOrderSum"
+                    :fill-empty-values="getTimeUnitInterval(statisticDateRangesOrderSum)"
+                    sort
+                />
+            </sw-card>
+        </span>
+    </template>
+    {% endblock %}
+</sw-container>
+{% endblock %}

@@ -1,0 +1,348 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Product detail/Tabs
+	==================================================
+
+	Origin: Shopware base & skin
+*/
+
+// TODO: Prüfen...
+
+/*
+	Standard/classic product detail pages
+	- Fallback product detail pages (not cms pages!)
+*/
+// ThemeWare: General tab styling
+body:not(.twt-is-cms-product-detail) {
+    .product-detail-tabs {
+        .product-detail-tab-navigation {
+            // ThemeWare: Style 2 "Tabs"
+            @if($twt-product-detail-tabs-layout-type == 2) {
+                // ThemeWare: Clean style #TODO
+                @if($twt-container-main-background-color != $sw-background-color) {
+                    margin: -20px -20px 0px -20px;
+                }
+                background-color: $twt-product-detail-tabs-container-background-color;
+                border-top-left-radius: $twt-border-radius+2 + px;
+                position: relative;
+            }
+        }
+
+        // ThemeWare: Tabs "Beschreibung" und "Bewertungen"
+        &:not(.product-detail-cross-selling) {
+            margin-bottom: $twt-basegrid-spacing;
+            border-radius: null-pixel-unit($twt-border-radius);
+            background-color: $twt-container-main-background-color;
+
+            // ThemeWare: Clean style
+            // TODO
+            @if($twt-container-main-background-color != $sw-background-color) {
+                padding: $twt-basegrid-spacing;
+
+                @if ($twt-container-main-background-color != $twt-container-main-border-color) {
+                    border: 1px solid $twt-container-main-border-color;
+                    border-top-left-radius: $twt-border-radius+2 + px;
+
+                    .card.card-tabs {
+                        margin: -1px;
+                    }
+
+                    // ThemeWare: Style != 0 "Default"
+                    @if($twt-product-detail-tabs-layout-type > 0) {
+                        .product-detail-tab-navigation-list {
+                            border-bottom: 1px solid $twt-container-main-border-color;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ThemeWare: Mobile tab styling
+@include media-breakpoint-down(xs) { // max 575.98px
+    body:not(.twt-is-cms-product-detail) {
+        .product-detail-tabs {
+            .product-detail-tab-navigation {
+                border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+                border-bottom-left-radius: null-pixel-unit($twt-border-radius);
+
+                .product-detail-tab-navigation-list {
+                    padding-bottom: 0;
+                    border: 0;
+
+                    .nav-item {
+                        &:last-of-type {
+                            a {
+                                border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+                                border-bottom-left-radius: null-pixel-unit($twt-border-radius);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // ThemeWare: Tabs "Beschreibung" und "Bewertungen" (phone)
+            &:not(.product-detail-cross-selling) {
+                // ThemeWare: Style 2 "Tabs"
+                @if($twt-product-detail-tabs-layout-type == 2) {
+                    padding-bottom: 0;
+                }
+            }
+        }
+    }
+}
+
+// ThemeWare: Cross selling tab styling
+body:not(.twt-is-cms-product-detail) {
+    .product-detail-tabs {
+        &.product-detail-cross-selling {
+            border-radius: null-pixel-unit($twt-border-radius);
+            background-color: $twt-container-main-background-color;
+
+            // ThemeWare: Clean style
+            // TODO
+            @if($twt-container-main-background-color != $sw-background-color) {
+                @if($twt-container-main-background-color != $twt-container-main-border-color) {
+                    border-top-left-radius: $twt-border-radius+2 + px;
+                    border: 1px solid $twt-container-main-border-color;
+
+                    .card.card-tabs {
+                        margin: -1px;
+                    }
+
+                    // ThemeWare: Style != 0 "Default"
+                    @if($twt-product-detail-tabs-layout-type > 0) {
+                        .product-detail-tab-navigation-list {
+                            border-bottom: 1px solid $twt-container-main-border-color;
+                        }
+                    }
+                }
+            }
+
+            .card {
+                margin-top: 0;
+                // ThemeWare: Clean style
+                // TODO
+                @if($twt-container-main-background-color != $sw-background-color) {
+                    padding: $twt-basegrid-spacing;
+                } @else {
+                    padding: 0;
+                }
+
+                @if $twt-product-box-image-object-fit == "cover" {
+                    .product-box {
+                        .product-image-wrapper {
+                            margin-top: -20px;
+                        }
+                    }
+                }
+            }
+
+            .product-slider.has-nav {
+                padding-right: 0;
+                padding-left: 0;
+            }
+        }
+    }
+}
+
+
+/*
+    __             ____________     ____                             __  _
+   / /_  __  __   /_  __/ ____/    /  _/___  ____  ____ _   ______ _/ /_( )___  ____  _____
+  / __ \/ / / /    / / / /  ______ / // __ \/ __ \/ __ \ | / / __ `/ __/ / __ \/ __ \/ ___/
+ / /_/ / /_/ /    / / / /__/_____// /  / / / / / / /_/ / |/ / /_/ / /_/ / /_/ / / / (_   )
+/_.___/\__, /    /_/  \____/    /___/_/ /_/_/ /_/\____/|___/\__,_/\__/_/\____/_/ /_/____/
+      /____/
+*/
+
+// TODO: Prüfen...
+/*
+	Shopware 6.4 cms product pages
+	- Tabs on product pages as CMS element
+*/
+.twt-is-cms-product-detail {
+    // ThemeWare: Fix unnecessary margin-top
+    .product-detail-cross-selling {
+        .card {
+            margin-top: inherit;
+        }
+    }
+
+    // ThemeWare: Reset the adjustments on product pages | ThemeWare: Style 2 "Tabs"
+    // TODO: Move to the file cms-sections.scss
+    @if($twt-product-detail-tabs-layout-type == 2) {
+        .cms-sections {
+            .cms-section {
+                .boxed {
+                    &>div {
+                        &.cms-block-product-description-reviews {
+                            .product-detail-tabs-content {
+                                border: 1px solid $twt-cms-section-boxed-border-color;
+                                margin-left: -$twt-basegrid-spacing;
+                                margin-right: -$twt-basegrid-spacing;
+                                padding: $twt-basegrid-spacing;
+                                background-color: $twt-cms-section-boxed-background-color;
+                            }
+                        }
+
+                        &.cms-block-product-description-reviews:not(.bg-color) {
+                            border: none;
+                            background-color: transparent;
+                        }
+
+                        &.cms-block-cross-selling {
+                            .product-detail-tabs-content {
+                                border: 1px solid $twt-cms-section-boxed-border-color;
+                                margin-left: -$twt-basegrid-spacing;
+                                margin-right: -$twt-basegrid-spacing;
+                                padding: $twt-basegrid-spacing;
+                                background-color: $twt-cms-section-boxed-background-color;
+                            }
+                        }
+
+                        &.cms-block-cross-selling:not(.bg-color) {
+                            border: none;
+                            background-color: transparent;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Adjustments on cms product pages
+    @if($twt-cms-layout-adjustments-product-pages == 2) {
+
+        // ThemeWare: Without sidebar styling
+        .cms-section:not(.cms-section-sidebar) {
+            // Reset default value from shopware cms
+            .cms-block-container[style="padding: 20px 0 20px 0;"] {
+
+                // ThemeWare: Style 0 "Default"
+                @if($twt-product-detail-tabs-layout-type == 0) {
+                    padding: #{$twt-basegrid-spacing - 10} $twt-basegrid-spacing $twt-basegrid-spacing $twt-basegrid-spacing !important;
+                }
+
+                // ThemeWare: Style 1 "Buttons/Tabs (integrated)"
+                @if($twt-product-detail-tabs-layout-type == 1) {
+                    padding: $twt-basegrid-spacing !important;
+                }
+
+                // ThemeWare: Style 2 "Tabs"
+                @if($twt-product-detail-tabs-layout-type == 2) {
+                    padding: 0 $twt-basegrid-spacing $twt-basegrid-spacing $twt-basegrid-spacing !important;
+                }
+
+                // ThemeWare: Properties position tab
+                @if($twt-product-detail-properties-position == 2) {
+                    // Padding is set via cms-block-container
+                    .product-detail-description-text {
+                        margin-bottom: 0;
+                    }
+                } @else {
+                    .product-detail-properties-table {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+
+        // ThemeWare: With sidebar styling
+        .cms-section.cms-section-sidebar {
+            // Reset default value from shopware cms
+            .cms-block-container[style="padding: 20px 0 20px 0;"] { // reset default value from shopware cms
+
+                // ThemeWare: Style 0 "Default"
+                @if($twt-product-detail-tabs-layout-type == 0) {
+                    padding: #{$twt-basegrid-spacing - 10} 0 $twt-basegrid-spacing 0 !important;
+                }
+
+                // ThemeWare: Style 1 "Buttons/Tabs (integrated)"
+                @if($twt-product-detail-tabs-layout-type == 1) {
+                    padding: $twt-basegrid-spacing !important;
+                }
+
+                // ThemeWare: Style 2 "Tabs"
+                @if($twt-product-detail-tabs-layout-type == 2) {
+                    padding: 0 $twt-basegrid-spacing $twt-basegrid-spacing $twt-basegrid-spacing !important;
+                }
+
+                // ThemeWare: Properties position tab
+                @if($twt-product-detail-properties-position == 2) {
+                    // Padding is set via cms-block-container
+                    .product-detail-description-text {
+                        margin-bottom: 0;
+                    }
+                } @else {
+                    .product-detail-properties-table {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Tab styling
+    .card-header {
+        padding: 0;
+
+        // ThemeWare: Adjustments on product pages
+        @if($twt-cms-layout-adjustments-product-pages == 2) {
+
+            // ThemeWare: Style 0 "Default"
+            // no changes
+
+            // ThemeWare: Style 1 "Buttons/Tabs (integrated)"
+            @if($twt-product-detail-tabs-layout-type == 1) {
+                .nav-item {
+                    .nav-link {
+                        border-radius: $twt-border-radius + px;
+                    }
+                }
+            }
+
+            // ThemeWare: Style 2 "Tabs"
+            @if($twt-product-detail-tabs-layout-type == 2) {
+                position: relative;
+                background-color: $twt-product-detail-tabs-container-background-color;
+                margin-left: -$twt-basegrid-spacing;
+                margin-right: -$twt-basegrid-spacing;
+                border-top-left-radius: $twt-border-radius+2 + px;
+            }
+        }
+    }
+}
+
+// ThemeWare: Tabs (phone)
+@include media-breakpoint-down(xs) { // max 575.98px
+    .twt-tab-navigation-link {
+        font-weight: $font-weight-bold;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        border: 0;
+        background: none;
+
+        // ThemeWare: Tab "Eigenschaften" (phone)
+        //&.product-properties-tab-navigation-link {}
+
+        // ThemeWare: Tab "Videos" (phone)
+        //&.product-videos-tab-navigation-link {}
+
+        // ThemeWare: Tab "Custom" (phone)
+        //&.product-custom-tab-navigation-link {}
+
+        // ThemeWare: Tab "Hersteller" (phone)
+        //&.product-manufacturer-tab-navigation-link {}
+    }
+}

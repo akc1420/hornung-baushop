@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="HornungAdministration\DocumentGenerator\DeliveryBillDocumentGenerator">
+            <argument type="service" id="Shopware\Core\Checkout\Document\Twig\DocumentTemplateRenderer" />
+            <argument type="string">%kernel.project_dir%</argument>
+            <tag name="document.generator" />
+        </service>
+        <service id="HornungAdministration\DocumentGenerator\DeliveryNotePaypalDocumentGenerator">
+            <argument type="service" id="Shopware\Core\Checkout\Document\Twig\DocumentTemplateRenderer" />
+            <argument type="string">%kernel.project_dir%</argument>
+            <tag name="document.generator" />
+        </service>
+    </services>
+</container>

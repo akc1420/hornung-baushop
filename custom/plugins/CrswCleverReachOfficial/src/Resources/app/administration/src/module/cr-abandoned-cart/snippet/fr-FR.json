@@ -1,0 +1,43 @@
+{
+  "cr-abandoned-cart": {
+    "abandonedCart": {
+      "title": "Abandoned Cart",
+      "scheduledTime": "Scheduled time",
+      "emptyTitle": "Abandoned cart list is empty",
+      "emptyDescription": "There are not stored abandoned cart records",
+      "sentTime": "Sent time",
+      "amount": "Amount",
+      "customerEmail": "Customer email",
+      "salesChannel": "Sales Channel",
+      "recoveryEmailStatus": "Recovery email status",
+      "recoveryStatus": "Recovery status",
+      "message": "Message",
+      "modal": {
+        "deleteMessage": "Do you really want to delete abandoned cart record?"
+      },
+      "notification": {
+        "deleteSuccess": "Abandoned cart record successfully removed",
+        "deleteError": "Fail to remove abandoned cart record",
+        "triggerSuccess": "Automation successfully queued for sending",
+        "triggerError": "Fail to start automation"
+      },
+      "searchBar": {
+        "placeholder": "Search all abandoned carts..."
+      },
+      "filter": {
+        "emailStatusPlaceholder": "Please select recovery email status",
+        "statusPlaceholder": "Please select recovery status",
+        "salesChannelPlaceholder": "Please select sales channel"
+      },
+      "sendNow" : "Send recovery email now",
+      "status": {
+        "sent": "Sent",
+        "pending": "Pending",
+        "not_sent": "Not sent",
+        "sending": "Sending",
+        "recovered": "Recovered",
+        "not_recovered": "Not recovered"
+      }
+    }
+  }
+}

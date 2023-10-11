@@ -1,0 +1,59 @@
+{# ThemeWare "Benefits" widget #}
+{#
+    Create "Benefits" widget and add content
+
+	@Storefront/storefront/themeware/widgets/twt-benefits-include.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtIconBenefits = theme_config('twt-icon-benefits') %}
+{% set twtWidgetBenefitsContentMaxItems = theme_config('twt-widget-benefits-content-max-items') %}
+{% set twtWidgetBenefitsContentType = theme_config('twt-widget-benefits-content-type') %}
+{% set twtWidgetBenefitsIconsShow = theme_config('twt-widget-benefits-icons-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_widget_benefits %}
+    <div class="twt-widget-benefits twt-benefits">
+
+        {# Textbaustein in array umwandeln #}
+        {% if 'twt.widget.benefits.content'|trans is not empty %}
+            {% set list = 'twt.widget.benefits.content'|trans|split(';') %}
+        {% endif %}
+
+        {% block twt_widget_benefits_content %}
+            {% if twtWidgetBenefitsContentType == 1 %}
+                <div class="benefits-list">
+                    <ul>
+                        {% for item in list %}
+                            <li>
+                                {# Icon #}
+                                {% if twtWidgetBenefitsIconsShow == 2 %}
+                                    {# @deprecated
+                                    {% sw_include '@Storefront/storefront/themeware/twt-custom-icons.html.twig' ignore missing with {
+                                        icon: 'checkmark'
+                                    } %}
+                                    #}
+                                    {% sw_include '@Storefront/storefront/themeware/twt-icons.html.twig' ignore missing with { icon: twtIconBenefits } %} {# Uses Shopware's icon library #}
+                                {% endif %}
+                                {# Text #}
+                                {{ item|raw }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% else %}
+                <div class="usp-bar-content items-{{ twtWidgetBenefitsContentMaxItems }}">
+                    {% sw_include '@Storefront/storefront/themeware/includes/twt-usp-bar-include.html.twig' ignore missing with {
+                        maxitems: twtWidgetBenefitsContentMaxItems
+                    } %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+@import "~scss/variables";
+
+.swag-cms-extensions-form-editor-group-field {
+    &__card {
+        margin-bottom: 12px;
+
+        .sw-card__content {
+            padding: 9px;
+        }
+
+        &.is--drag-element {
+            box-shadow: unset;
+            > .sw-card__content {
+                border-color: $color-shopware-brand-500;
+            }
+        }
+
+        &.is--valid-drag {
+            box-shadow: unset;
+            > .sw-card__content {
+                border-color: $color-emerald-500;
+            }
+        }
+
+        &.is--invalid-drag {
+            box-shadow: unset;
+            > .sw-card__content {
+                border-color: $color-crimson-500;
+            }
+        }
+
+        &.has--error > .sw-card__content {
+            border: 1px solid $color-crimson-500;
+        }
+    }
+
+    &__content  {
+        display: flex;
+    }
+
+    &__title {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        flex: 1;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    &__title-text {
+        color: $color-darkgray-200;
+        font-size: $font-size-small;
+        font-weight: $font-weight-regular;
+        letter-spacing: 0.1px;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+
+        &.active {
+            color: $color-shopware-brand-500;
+            text-decoration: underline;
+        }
+
+        > span {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+
+            &:first-child {
+                padding-right: 3px;
+            }
+        }
+    }
+
+    &__context-button {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__context-button-container {
+        overflow: hidden;
+    }
+
+    &__drag-icon {
+        margin-right:12px;
+    }
+
+    .is--dragging {
+        border-radius: $border-radius-default;
+    }
+}

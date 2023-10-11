@@ -1,0 +1,42 @@
+.cr-ac-thea {
+  line-height: 56px;
+}
+
+.cr-ac-thea-desc {
+  background: transparent !important;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 0;
+  height: 25px !important;
+  margin: 0 !important;
+}
+
+.cr-ac-thea-desc .sw-label__caption {
+  display: block;
+  white-space: initial;
+  line-height: 18px;
+}
+
+.cr-ac-settings-activate-thea {
+  line-height: 25px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.cr-ac-thea-btn {
+  width: 100%;
+  max-width: max-content;
+  word-break: break-all;
+  white-space: normal;
+  margin-top: 20px;
+}
+
+.cr-disable-switch {
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+.cr-ac-thea-btn:disabled {
+  border-color: #e0e6eb !important;
+  color: #b3bfcc !important;
+}

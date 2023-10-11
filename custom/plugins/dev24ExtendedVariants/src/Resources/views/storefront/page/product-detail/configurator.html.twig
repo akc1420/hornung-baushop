@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/configurator.html.twig' %}
+
+{% block page_product_detail_configurator_group %}
+    <div class="product-detail-configurator-group">
+        {% if group.translated.customFields.dev24_variants_property_group_display_type == 'select' %}
+            {% sw_include '@Storefront/storefront/page/product-detail/configurator/select.html.twig' %}
+        {% else %}
+            {% block page_product_detail_configurator_group_title %}{{ parent() }}{% endblock %}
+
+            {% block page_product_detail_configurator_options %}{{ parent() }}{% endblock %}
+        {% endif %}
+    </div>
+{% endblock %}

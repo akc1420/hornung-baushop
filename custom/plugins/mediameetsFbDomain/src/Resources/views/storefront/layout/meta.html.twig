@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{% block layout_head_meta_tags_opengraph %}
+    {{ parent() }}
+
+    {% if config('mediameetsFbDomain') and config('mediameetsFbDomain.config.code') is not same as(null) %}
+        <meta name="facebook-domain-verification"
+              content="{{ config('mediameetsFbDomain.config.code') }}" />
+    {% endif %}
+
+{% endblock %}

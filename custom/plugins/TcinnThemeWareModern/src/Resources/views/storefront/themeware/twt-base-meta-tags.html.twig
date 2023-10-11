@@ -1,0 +1,33 @@
+{# ThemeWare meta tags #}
+{#
+    @Storefront/storefront/themeware/twt-base-meta-tags.html.twig
+
+    see also...
+    - layout\meta.html.twig
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtCustomHtmlCode = theme_config('twt-custom-html-code') %}
+{% set twtExpertMode = theme_config('twt-expert-mode') %}
+
+{# Debug mode: Overwrite expert mode #}
+{% if config('TcinnThemeWareModern.config.debugMode') is not empty and config('TcinnThemeWareModern.config.debugMode') == 'true' %}
+    {% set twtExpertMode = 1 %}
+{% endif %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Meta tags <head> #}
+{% block twt_layout_head_meta_tags %}
+    {# TODO: Check if verification keys make sense... #}
+
+    {# ThemeWare: Add custom HTML code to <head> #}
+    {% apply spaceless %}
+        {% if twtCustomHtmlCode and twtCustomHtmlCode is not empty and twtExpertMode == 2 %}
+            <!-- Custom html code -->
+            {{ twtCustomHtmlCode|raw }}
+        {% endif %}
+    {% endapply %}
+{% endblock %}

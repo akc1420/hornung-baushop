@@ -1,0 +1,8 @@
+{% block sw_integration_list_detail_modal_inner_acl_is_admin %}
+    <sw-switch-field
+        class="sw-settings-user-detail__grid-is-admin"
+        :label="$tc('sw-users-permissions.users.user-detail.labelAdministrator')"
+        :disabled="!acl.can('admin')"
+        v-model="currentIntegration.admin">
+    </sw-switch-field>
+{% endblock %}

@@ -1,0 +1,99 @@
+{
+    "name": "pickware/shipping-bundle",
+    "description": "A bundle that contains functionality that is shared by our shipping plugins.",
+    "license": "proprietary",
+    "type": "library",
+    "version": "1.13.0",
+    "authors": [
+        {
+            "name": "Pickware GmbH",
+            "email": "info@pickware.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-soap": "*",
+        "ext-xml": "*",
+        "doctrine/dbal": "^2.10.0",
+        "guzzlehttp/psr7": "^1.7.0",
+        "league/flysystem": "^1.0.57",
+        "monolog/monolog": "^1.25.1 || ^2.0",
+        "pickware/bundle-installer": "^1.0.2",
+        "pickware/dal-bundle": "^3.23.1",
+        "pickware/document-bundle": "^2.4.16",
+        "pickware/http-utils": "^2.17.1",
+        "pickware/money-bundle": "^2.0.27",
+        "pickware/shopware-extensions-bundle": "^1.14.0",
+        "pickware/units-of-measurement": "^2.1.0",
+        "pickware/validation-bundle": "^1.3.2",
+        "psr/http-message": "^1.0.1",
+        "psr/log": "^1.1.2",
+        "shopware/core": "6.4.*,>=6.4.5",
+        "symfony/config": "^5.2.3",
+        "symfony/console": "^5.2.3",
+        "symfony/dependency-injection": "^5.2.3",
+        "symfony/dom-crawler": "^5.2.3",
+        "symfony/event-dispatcher": "^5.2.3",
+        "symfony/http-foundation": "^5.2.3",
+        "symfony/polyfill-php80": "^1.20.0",
+        "symfony/yaml": "^5.2.3",
+        "viison/address-splitter": "^0.3.2"
+    },
+    "require-dev": {
+        "league/flysystem-memory": "^1.0.2",
+        "mikey179/vfsstream": "^1.6",
+        "phpunit/phpunit": "^9.5.0",
+        "pickware/unit-testing-tools": "*@dev",
+        "swiftmailer/swiftmailer": "^6.2.2"
+    },
+    "conflict": {
+        "shopware/administration": "< 6.4.0"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../libraries/composer-packages/*"
+        },
+        {
+            "type": "path",
+            "url": "../../libraries-dev/composer-packages/*"
+        },
+        {
+            "type": "path",
+            "url": "../../bundles/*"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Pickware\\ShippingBundle\\": "src",
+            "Pickware\\ShippingBundle\\Test\\TestEntityCreation\\": "test/TestEntityCreation/"
+        },
+        "exclude-from-classmap": [
+            "**.unit.php",
+            "**.integration.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pickware\\ShippingBundle\\Test\\Migration\\": "test/migration"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "ergebnis/composer-normalize": true,
+            "viison/composer-git-hooks-installer-plugin": true
+        },
+        "lock": false
+    },
+    "extra": {
+        "ci-min-supported-shopware-version": "6.4.8.0"
+    },
+    "scripts": {
+        "test:integration": "${SHOPWARE_DIR}/vendor/bin/phpunit --config phpunit.integration.xml --testdox",
+        "test:unit": "./vendor/bin/phpunit --config phpunit.unit.xml --testdox"
+    }
+}

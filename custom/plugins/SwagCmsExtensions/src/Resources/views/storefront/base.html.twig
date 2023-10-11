@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_script_router %}
+    {{ parent() }}
+
+    {% set quickviewRoute = constant('Swag\\CmsExtensions\\Storefront\\Controller\\QuickviewController::QUICKVIEW_ROUTE') %}
+    {% set quickviewVariantRoute = constant('Swag\\CmsExtensions\\Storefront\\Controller\\QuickviewController::QUICKVIEW_VARIANT_ROUTE') %}
+
+    <script>
+        window.router['{{ quickviewRoute }}'] = '{{ path(quickviewRoute) }}';
+        window.router['{{ quickviewVariantRoute }}'] = '{{ path(quickviewVariantRoute) }}';
+    </script>
+{% endblock %}

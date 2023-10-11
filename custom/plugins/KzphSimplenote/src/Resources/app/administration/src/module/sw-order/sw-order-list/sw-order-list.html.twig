@@ -1,0 +1,13 @@
+{% block sw_order_list_grid_columns %}
+    {% parent %}
+
+    {% block sw_order_list_grid_columns_kzphsimplenote %}
+        <template #column-kzphsimplenote="{ item }">
+          <sw-label appearance="pill"
+            v-tooltip="item.extensions.kzphSimplenote.first().note"
+            v-if="item.extensions.kzphSimplenote.length > 0">
+            {{item.extensions.kzphSimplenote.length}} {{$tc('kzph-simplenote-note.general.title')}}
+          </sw-label>
+        </template>
+    {% endblock %}
+{% endblock %}

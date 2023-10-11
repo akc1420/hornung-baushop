@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareDhl\Adapter\DhlAdapter">
+            <tag name="pickware_shipping.carrier_adapter" technicalName="dhl" />
+            <argument type="service" id="Pickware\PickwareDhl\Adapter\DhlShipmentOrderFactory" />
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\PickwareDhl\ApiClient\DhlApiClientFactory" />
+            <argument type="service" id="Pickware\PickwareDhl\Adapter\DhlResponseProcessor" />
+            <argument type="service" id="Pickware\PickwareDhl\ReturnLabel\ParcelDeReturnsApiClientFactory" />
+        </service>
+        <service id="Pickware\PickwareDhl\Adapter\DhlShipmentOrderFactory">
+            <argument type="service" id="Pickware\MoneyBundle\ShopwareCurrencyConverter" />
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+        </service>
+        <service id="Pickware\PickwareDhl\Adapter\DhlResponseProcessor">
+            <argument type="service" id="Pickware\DalBundle\EntityManager" />
+            <argument type="service" id="Pickware\DocumentBundle\DocumentContentsService" />
+        </service>
+    </services>
+</container>

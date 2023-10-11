@@ -1,0 +1,94 @@
+{% set form = element.extensions.swagCmsExtensionsForm %}
+{% set formViolations = app.request.get('errors') %}
+
+{% block swag_cms_extensions_form %}
+    <div class="cms-element-{{ element.type }} cms-element-form">
+        <div class="row justify-content-center">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body">
+
+                        {% block swag_cms_extensions_form_wrapper %}
+                            {% if form is not null and form.groups is not null and form.groups.fields is not empty %}
+
+                            {% set action = 'frontend.swag.cms-extensions.form.send' %}
+
+                                {% block swag_cms_extensions_form_title %}
+                                    <div class="card-title mb-4">
+                                        {{ form.translated.title }}
+                                    </div>
+                                {% endblock %}
+
+                                {% block swag_cms_extensions_form_content %}
+                                    <form action="{{ path(action) }}"
+                                          method="post"
+                                          data-form-csrf-handler="true"
+                                          data-swag-cms-extensions-form-validation="true">
+
+                                        <div class="form-content">
+
+                                            {% for group in form.groups %}
+                                                {% block swag_cms_extensions_form_content_group %}
+                                                    <div class="form-row">
+
+                                                        {% block swag_cms_extensions_form_content_group_title %}
+                                                            {% if group.translated.title %}
+                                                                <h6 class="col-12">{{ group.translated.title }}</h6>
+                                                            {% endif %}
+                                                        {% endblock %}
+
+                                                        {% for field in group.fields %}
+                                                            {% block swag_cms_extensions_form_content_group_field %}
+                                                                {% sw_include '@Storefront/storefront/element/custom-form/form-components/form-component-' ~ field.type ~ '.html.twig' %}
+                                                            {% endblock %}
+                                                        {% endfor %}
+
+                                                    </div>
+                                                {% endblock %}
+                                            {% endfor %}
+
+                                            {% block swag_cms_extensions_form_content_required_fields_info %}
+                                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-info-required.html.twig' %}
+                                            {% endblock %}
+
+                                            {% block swag_cms_extensions_form_content_captcha %}
+                                                {% sw_include '@Storefront/storefront/component/captcha/base.html.twig' with {
+                                                    'additionalClass' : 'col-md-12',
+                                                    'formId': form.id
+                                                } %}
+                                            {% endblock %}
+
+                                            {% block swag_cms_extensions_form_content_privacy %}
+                                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-privacy.html.twig' %}
+                                            {% endblock %}
+
+                                            {% block swag_cms_extensions_form_content_submit %}
+                                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-submit.html.twig' %}
+                                            {% endblock %}
+                                        </div>
+
+                                        {% block swag_cms_extensions_form_content_hidden_fields %}
+                                            <div class="form-hidden-fields">
+
+                                                {% block swag_cms_extensions_form_content_csrf %}
+                                                    {{ sw_csrf(action) }}
+                                                {% endblock %}
+
+                                                <input type="hidden" name="formId" value="form-{{ form.id }}"/>
+
+                                                <input type="submit" class="submit--hidden d-none"/>
+                                            </div>
+                                        {% endblock %}
+
+                                    </form>
+                                {% endblock %}
+
+                            {% endif %}
+                        {% endblock %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

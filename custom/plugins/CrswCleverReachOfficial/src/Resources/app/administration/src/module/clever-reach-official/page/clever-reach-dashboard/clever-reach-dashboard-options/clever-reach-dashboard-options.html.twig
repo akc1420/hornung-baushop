@@ -1,0 +1,111 @@
+{% block clever_reach_dashboard_options %}
+    <sw-card class="cr-options">
+        <sw-container class="cr-card-content">
+            <sw-card-section class="cr-sw-card-section">
+                <div class="cr-card-section" v-on:click="openUrl('/admin/mailing_create_new.php')">
+                    <div class="cr-icon-div">
+                        <sw-icon name="default-communication-envelope"></sw-icon>
+                    </div>
+                    <div class="cr-option-div">
+                        <sw-label variant="neutral" class="cr-option-title"
+                                  v-on:click.native="openUrl('/admin/mailing_create_new.php')">
+                            {{ $tc('clever-reach.dashboard.createNewsletter') }}
+                        </sw-label>
+                        <sw-label variant="neutral" class="cr-description"
+                                  v-on:click.native="openUrl('/admin/mailing_create_new.php')">
+                            {{ $tc('clever-reach.dashboard.createNew') }}
+                        </sw-label>
+                    </div>
+                </div>
+            </sw-card-section>
+
+            <sw-card-section class="cr-sw-card-section">
+                <div class="cr-card-section" v-on:click="openUrl('/admin/report_list.php')">
+                    <div class="cr-icon-div">
+                        <sw-icon name="default-chart-bar"></sw-icon>
+                    </div>
+                    <div class="cr-option-div">
+                        <sw-label variant="neutral" class="cr-option-title"
+                                  v-on:click.native="openUrl('/admin/report_list.php')">
+                            {{ $tc('clever-reach.dashboard.reports') }}
+                        </sw-label>
+                        <sw-label variant="neutral" class="cr-description"
+                                  v-on:click.native="openUrl('/admin/report_list.php')">
+                            {{ $tc('clever-reach.dashboard.analyze') }}
+                        </sw-label>
+                    </div>
+                </div>
+            </sw-card-section>
+
+            <sw-card-section class="cr-sw-card-section">
+                <div class="cr-card-section" v-on:click="openUrl('/admin/forms_list.php')">
+                    <div class="cr-icon-div">
+                        <sw-icon name="default-documentation-paper-pencil-signed"></sw-icon>
+                    </div>
+                    <div class="cr-option-div">
+                        <sw-label variant="neutral" class="cr-option-title"
+                                  v-on:click.native="openUrl('/admin/forms_list.php')">
+                            {{ $tc('clever-reach.dashboard.forms') }}
+                        </sw-label>
+                        <sw-label variant="neutral" class="cr-description"
+                                  v-on:click.native="openUrl('/admin/forms_list.php')">
+                            {{ $tc('clever-reach.dashboard.createForms') }}
+                        </sw-label>
+                    </div>
+                </div>
+            </sw-card-section>
+
+            <sw-card-section class="cr-sw-card-section">
+                <div class="cr-card-section" v-on:click="openUrl('/admin/automation_list.php')">
+                    <div class="cr-icon-div">
+                        <sw-icon name="default-communication-forward"></sw-icon>
+                    </div>
+                    <div class="cr-option-div">
+                        <sw-label variant="neutral" class="cr-option-title"
+                                  v-on:click.native="openUrl('/admin/automation_list.php')">
+                            {{ $tc('clever-reach.dashboard.thea') }}
+                        </sw-label>
+                        <sw-label variant="neutral" class="cr-description"
+                                  v-on:click.native="openUrl('/admin/automation_list.php')">
+                            {{ $tc('clever-reach.dashboard.theaCreate') }}
+                        </sw-label>
+                    </div>
+                </div>
+            </sw-card-section>
+
+            <sw-card-section class="cr-sw-card-section">
+                <div class="cr-card-section" v-on:click="openUrl('/admin/mailing_list.php')">
+                    <div class="cr-icon-div">
+                        <sw-icon name="default-text-list"></sw-icon>
+                    </div>
+                    <div class="cr-option-div">
+                        <sw-label variant="neutral" class="cr-option-title"
+                                  v-on:click.native="openUrl('/admin/mailing_list.php')">
+                            {{ $tc('clever-reach.dashboard.emails') }}
+                        </sw-label>
+                        <sw-label variant="neutral" class="cr-description"
+                                  v-on:click.native="openUrl('/admin/mailing_list.php')">
+                            {{ $tc('clever-reach.dashboard.emailsOverview') }}
+                        </sw-label>
+                    </div>
+                </div>
+            </sw-card-section>
+
+            <sw-card-section class="cr-sw-card-section">
+                <div class="cr-card-section" v-on:click="openBlog">
+                    <div class="cr-icon-div">
+                        <sw-icon name="default-object-lightbulb"></sw-icon>
+                    </div>
+                    <div class="cr-option-div">
+                        <sw-label variant="neutral" class="cr-option-title" v-on:click.native="openBlog">
+                            {{ $tc('clever-reach.dashboard.push') }}
+                        </sw-label>
+                        <sw-label variant="neutral" class="cr-description" v-on:click.native="openBlog">
+                            {{ $tc('clever-reach.dashboard.tipsTricks') }}
+                        </sw-label>
+                    </div>
+                </div>
+            </sw-card-section>
+        </sw-container>
+    </sw-card>
+{% endblock %}

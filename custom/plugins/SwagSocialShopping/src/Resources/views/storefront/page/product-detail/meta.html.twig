@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/meta.html.twig' %}
+
+{% block layout_head_meta_tags_opengraph %}
+    {{ parent() }}
+
+    {% if page.metaInformation.extensions.pinterest and page.metaInformation.extensions.pinterest.isPinterestSalesChannel %}
+
+        <meta property="product:price:amount"
+              content="{%- if page.product.calculatedPrices is not empty -%}
+                           {{ page.product.calculatedPrices.first.unitPrice|number_format(2, '.', '') }}
+                       {%- else -%}
+                           {{ page.product.calculatedPrice.unitPrice|number_format(2, '.', '') }}
+                       {%- endif -%}"/>
+
+        <meta property="product:price:currency"
+              content="{{ context.currency.isoCode }}"/>
+
+        <meta property="og:brand"
+              content="{{ page.product.manufacturer.translated.name }}"/>
+
+        <meta property="og:availability"
+              content="{{ page.metaInformation.extensions.pinterest.availability }}"/>
+
+    {% endif %}
+
+{% endblock %}
+

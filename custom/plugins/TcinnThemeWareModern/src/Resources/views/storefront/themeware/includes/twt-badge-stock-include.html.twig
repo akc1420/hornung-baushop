@@ -1,0 +1,67 @@
+{# ThemeWare "Stock badge" content #}
+
+{# TODO: Blöcke prüfen... #}
+
+{# TODO:
+    > availableStock via configuration... waiting for sw-multi-select fix
+    - stock-badge as include
+    - Check availability: if product.availableStock >= product.minPurchase and product.deliveryTime
+    - Check if adjusments for variants are neccessary
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductBadgesStockBadgeColoration = theme_config('twt-product-badges-stock-badge-coloration') %}
+{% set twtProductBadgesStockBadgeIconShow = theme_config('twt-product-badges-stock-badge-icon-show') %}
+{% set twtProductBadgesStockBadgeThresholdHighstock = theme_config('twt-product-badges-stock-badge-threshold-highstock') %}
+{% set twtProductBadgesStockBadgeThresholdLowstock = theme_config('twt-product-badges-stock-badge-threshold-lowstock') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_product_badges_stock_badge %}
+    {% if product.availableStock > 0 and product.availableStock <= twtProductBadgesStockBadgeThresholdLowstock %}
+        {# ThemeWare: "Nur ... auf Lager!" #}
+        <div>
+            <span class="badge badge-warning{% if twtProductBadgesStockBadgeColoration == 3 %}-lighten{% endif %} badge-stock twt-badge-stock">
+                {% if twtProductBadgesStockBadgeIconShow == 2 %}
+                    {# warning #}
+                    {% sw_include '@Storefront/storefront/themeware/twt-icons.html.twig' ignore missing with {
+                        icon: "twt.extension.stockBadge.lowStock.icon"|trans
+                    } %}
+                {% endif %}
+                {{ "twt.extension.stockBadge.lowStock.label"|trans({'%stock%': product.availableStock })|sw_sanitize }}
+            </span>
+        </div>
+
+    {% elseif product.availableStock > twtProductBadgesStockBadgeThresholdLowstock and product.availableStock <= twtProductBadgesStockBadgeThresholdHighstock %}
+        {# ThemeWare: "Auf Lager." bzw. ".. auf Lager." #}
+        {# checkmark, checkmark-wide oder checkmark-circle #}
+        {#
+        {% if "instock" in theme_config('twt-product-detail-stock-label-options')  %}
+        <div>
+            <span class="badge badge-secondary badge-stock">
+                {% if twtProductBadgesStockBadgeIconShow %}
+                    {% sw_icon 'checkmark' style { 'size': 'xs' } %}
+                {% endif %}
+                {{ "twt.listing.stockBadge.inStock"|trans }}
+            </span>
+        </div>
+        {% endif %}
+        #}
+
+    {% elseif product.availableStock > twtProductBadgesStockBadgeThresholdHighstock %}
+        {# ThemeWare: "> ... lagernd" #}
+        <div>
+            <span class="badge badge-success{% if twtProductBadgesStockBadgeColoration == 3 %}-lighten{% endif %} badge-stock twt-badge-stock">
+                {% if twtProductBadgesStockBadgeIconShow == 2 %}
+                    {# layers #}
+                    {% sw_include '@Storefront/storefront/themeware/twt-icons.html.twig' ignore missing with {
+                        icon: "twt.extension.stockBadge.highStock.icon"|trans
+                    } %}
+                {% endif %}
+                {{ "twt.extension.stockBadge.highStock.label"|trans({'%stock%': twtProductBadgesStockBadgeThresholdHighstock })|sw_sanitize }}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}

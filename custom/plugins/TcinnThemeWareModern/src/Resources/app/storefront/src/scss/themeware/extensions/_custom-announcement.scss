@@ -1,0 +1,40 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Extension > Custom announcement
+    ==================================================
+
+*/
+
+@if $twt-custom-announcement-show > 1 {
+  .twt-custom-announcement {
+    @include font-size($twt-custom-announcement-font-size);
+    padding: 10px 15px;
+    color: color-yiq($twt-custom-announcement-background-color);
+    border: 1px solid $twt-custom-announcement-border-color;
+    border-radius: null-pixel-unit($twt-border-radius);
+    background-color: $twt-custom-announcement-background-color;
+
+    .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .is-ctl-product {
+    .twt-custom-announcement {
+      margin: 1.5rem 0 1.5rem;
+    }
+  }
+
+  .is-ctl-checkout {
+    .twt-custom-announcement {
+      margin: 0 0 20px 0;
+    }
+  }
+}

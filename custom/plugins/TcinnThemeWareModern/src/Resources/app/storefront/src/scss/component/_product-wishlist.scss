@@ -1,0 +1,40 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Product wishlist
+    ==============================================
+    Styling for productbox component.
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Adjust wishlist button
+.product-wishlist {
+  margin-bottom: 10px;
+
+  // ThemeWare: Adjust wishlist button icon-color if != default value ($icon-base-color)
+  .icon-wishlist {
+    @if $twt-product-box-wishlist-button-color != '#878787' {
+      color: $twt-product-box-wishlist-button-color;
+    }
+  }
+
+  &-action-circle {
+    // ThemeWare: Adjust wishlist button background-color if != default value
+    @if $twt-product-box-wishlist-button-background-color != '#f9f9f9' {
+      background: $twt-product-box-wishlist-button-background-color;
+    }
+
+    // ThemeWare: Adjust wishlist button position if != default value
+    @if $twt-product-box-wishlist-button-position == 'top' {
+      bottom: inherit;
+      top: 1rem;
+    }
+  }
+}
+

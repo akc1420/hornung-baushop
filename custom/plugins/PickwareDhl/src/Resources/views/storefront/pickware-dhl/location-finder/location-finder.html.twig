@@ -1,0 +1,123 @@
+{% set pickwareDhlAllowDhlSpecificAddress = (changeShipping and not changeBilling) or (prefix in ['shippingAddress', 'address']) %}
+{% set pickwareDhlConfigurationExtension = page.extensions.pickwareDhlConfiguration ?? null %}
+{% set pickwareDhlCurrentShippingMethod = context.shippingMethod ?? null %}
+
+{% if pickwareDhlCurrentShippingMethod is not null
+    and pickwareDhlConfigurationExtension is not null
+    and pickwareDhlConfigurationExtension.shippingMethodConfigurations[pickwareDhlCurrentShippingMethod.id]
+    and pickwareDhlConfigurationExtension.shippingMethodConfigurations[pickwareDhlCurrentShippingMethod.id].storefrontConfig is not null
+%}
+    {% set pickwareDhlConfiguration = pickwareDhlConfigurationExtension.dhlConfig.config.rawConfig %}
+    {% set pickwareDhlShippingMethodConfig = pickwareDhlConfigurationExtension
+    .shippingMethodConfigurations[pickwareDhlCurrentShippingMethod.id].storefrontConfig
+    %}
+    {% set pickwareDhlEnablePackstation = pickwareDhlShippingMethodConfig.showPackstation ?? false %}
+    {% set pickwareDhlEnablePostOffice = pickwareDhlShippingMethodConfig.showPostOffice ?? false %}
+    {% set pickwareDhlEnablePaketshop = pickwareDhlShippingMethodConfig.showPaketshop ?? false %}
+    {% set pickwareDhlEnableSpecialAddressSelection =
+        pickwareDhlEnablePackstation or pickwareDhlEnablePostOffice or pickwareDhlEnablePaketshop
+    %}
+{% endif %}
+
+{% if pickwareDhlConfiguration and pickwareDhlEnableSpecialAddressSelection and pickwareDhlAllowDhlSpecificAddress %}
+    <div
+        class="pickware-dhl-location-finder"
+        data-csrf-token="{{ sw_csrf("pickware-dhl.frontend.location-finder.locations", {"mode": "token"}) }}"
+        data-google-maps-api-key="{{ pickwareDhlConfiguration['googleMapsApiKey'] }}"
+        data-google-maps-zoom-threshold="15"
+    >
+        <div class="card">
+            {% if showTitle ?? true %}
+                <div class="card-title">
+                    {{ "pickware-dhl.location-finder.storefront.title"|trans|sw_sanitize }}
+                </div>
+            {% endif %}
+
+            <div class="card-body">
+                <div
+                    data-action="{{ path('pickware-dhl.frontend.location-finder.locations') }}"
+                    class="pickware-dhl-location-finder-form"
+                >
+                    <div class="pickware-dhl-location-finder-form__actions d-flex flex-row align-items-end">
+                        <div>
+                            <label
+                                class="form-label"
+                                for="pickware-dhl-location-finder-form__zipcode-input"
+                            >
+                                {{ "address.zipcodeLabel"|trans|sw_sanitize }}{{ "general.required"|trans|sw_sanitize }}
+                            </label>
+
+                            <input type="text"
+                                   id="pickware-dhl-location-finder-form__zipcode-input"
+                                   class="form-control pickware-dhl-location-finder-form__zipcode-input"
+                                   placeholder="{{ "address.zipcodePlaceholder"|trans|striptags }}"
+                            >
+                        </div>
+
+                        <div>
+                            <button type="button"
+                                    class="d-flex pickware-dhl-location-finder-form__submit-button btn btn-primary col"
+                                    title="{{ "pickware-dhl.location-finder.storefront.search"|trans|sw_sanitize }}">
+                                <span class="align-self-center spinner-border pickware-dhl-location-finder-form__loading-spinner d-none"></span>
+                                {{ "pickware-dhl.location-finder.storefront.search"|trans|sw_sanitize }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pickware-dhl-location-finder__map"></div>
+
+                <button type="button" class="pickware-dhl-location-finder__pan-to-location-button">
+                    {{ "pickware-dhl.location-finder.storefront.map.pan-to-location"|trans|sw_sanitize }}
+                </button>
+
+                <div class="pickware-dhl-location-finder-map-icons d-none"
+                     data-packstation="{{ asset('bundles/pickwaredhl/img/location-finder/icon-packstation.png') }}"
+                     data-post-office="{{ asset('bundles/pickwaredhl/img/location-finder/icon-post-office.png') }}"
+                     data-paketshop="{{ asset('bundles/pickwaredhl/img/location-finder/icon-paketshop.png') }}"
+                     data-packstation-selected="{{ asset('bundles/pickwaredhl/img/location-finder/icon-packstation-red.png') }}"
+                     data-post-office-selected="{{ asset('bundles/pickwaredhl/img/location-finder/icon-post-office-red.png') }}"
+                     data-paketshop-selected="{{ asset('bundles/pickwaredhl/img/location-finder/icon-paketshop-red.png') }}"
+                >
+                </div>
+
+                <div class="pickware-dhl-location-finder-map-errors d-none">
+                    <span class="pickware-dhl-location-finder-map-errors__geolocation-failed">{{ "pickware-dhl.location-finder.storefront.map.errors.geolocation-failed"|trans|sw_sanitize }}</span>
+                    <span class="pickware-dhl-location-finder-map-errors__no-browser-geolocation">{{ "pickware-dhl.location-finder.storefront.map.errors.no-browser-geolocation"|trans|sw_sanitize }}</span>
+                </div>
+
+                <script class="pickware-dhl-location-finder-info-popup-template" type="text/template">
+                    <div class="pickware-dhl-location-finder-info-popup">
+                        <h4 class="pickware-dhl-location-finder-info-popup__title">${title}</h4>
+
+                        <address class="pickware-dhl-location-finder-info-popup__address">${address}</address>
+
+                        <div class="pickware-dhl-location-finder-info-popup-icons">
+                            <img class="icon pickware-dhl-location-finder-info-popup-icons__packstation" src="{{ asset('bundles/pickwaredhl/img/location-finder/icon-packstation-red.png') }}" title="" alt=""/>
+                            <img class="icon pickware-dhl-location-finder-info-popup-icons__post-office" src="{{ asset('bundles/pickwaredhl/img/location-finder/icon-post-office-red.png') }}" title="" alt=""/>
+                            <img class="icon pickware-dhl-location-finder-info-popup-icons__paketshop" src="{{ asset('bundles/pickwaredhl/img/location-finder/icon-paketshop-red.png') }}" title="" alt=""/>
+                            <img class="icon pickware-dhl-location-finder-info-popup-icons__wheelchair" src="{{ asset('bundles/pickwaredhl/img/location-finder/icon-wheelchair.png') }}" title="" alt=""/>
+                            <img class="icon pickware-dhl-location-finder-info-popup-icons__parking" src="{{ asset('bundles/pickwaredhl/img/location-finder/icon-parking.png') }}" title="" alt=""/>
+                        </div>
+
+                        <h5 class="pickware-dhl-location-finder-info-popup-opening-hours__title">{{ "pickware-dhl.location-finder.storefront.opening-hours.title"|trans|sw_sanitize }}</h5>
+                        <ul class="pickware-dhl-location-finder-info-popup-opening-hours__content">
+                            <li>{{ "pickware-dhl.location-finder.storefront.opening-hours.monday"|trans|sw_sanitize }}: <span class="pickware-dhl-location-finder-info-popup-opening-hours__day" data-value="monday">{{ "pickware-dhl.location-finder.storefront.opening-hours.closed"|trans|sw_sanitize }}</span></li>
+                            <li>{{ "pickware-dhl.location-finder.storefront.opening-hours.tuesday"|trans|sw_sanitize }}: <span class="pickware-dhl-location-finder-info-popup-opening-hours__day" data-value="tuesday">{{ "pickware-dhl.location-finder.storefront.opening-hours.closed"|trans|sw_sanitize }}</span></li>
+                            <li>{{ "pickware-dhl.location-finder.storefront.opening-hours.wednesday"|trans|sw_sanitize }}: <span class="pickware-dhl-location-finder-info-popup-opening-hours__day" data-value="wednesday">{{ "pickware-dhl.location-finder.storefront.opening-hours.closed"|trans|sw_sanitize }}</span></li>
+                            <li>{{ "pickware-dhl.location-finder.storefront.opening-hours.thursday"|trans|sw_sanitize }}: <span class="pickware-dhl-location-finder-info-popup-opening-hours__day" data-value="thursday">{{ "pickware-dhl.location-finder.storefront.opening-hours.closed"|trans|sw_sanitize }}</span></li>
+                            <li>{{ "pickware-dhl.location-finder.storefront.opening-hours.friday"|trans|sw_sanitize }}: <span class="pickware-dhl-location-finder-info-popup-opening-hours__day" data-value="friday">{{ "pickware-dhl.location-finder.storefront.opening-hours.closed"|trans|sw_sanitize }}</span></li>
+                            <li>{{ "pickware-dhl.location-finder.storefront.opening-hours.saturday"|trans|sw_sanitize }}: <span class="pickware-dhl-location-finder-info-popup-opening-hours__day" data-value="saturday">{{ "pickware-dhl.location-finder.storefront.opening-hours.closed"|trans|sw_sanitize }}</span></li>
+                            <li>{{ "pickware-dhl.location-finder.storefront.opening-hours.sunday"|trans|sw_sanitize }}: <span class="pickware-dhl-location-finder-info-popup-opening-hours__day" data-value="sunday">{{ "pickware-dhl.location-finder.storefront.opening-hours.closed"|trans|sw_sanitize }}</span></li>
+                        </ul>
+
+                        <button type="button" class="pickware-dhl-location-finder-info-popup-submit-button btn btn-secondary">
+                            <span class="pickware-dhl-location-finder-info-popup-submit-button__select-message">{{ "pickware-dhl.location-finder.storefront.select"|trans|sw_sanitize }}</span>
+                            <span class="pickware-dhl-location-finder-info-popup-submit-button__selected-message">{{ "pickware-dhl.location-finder.storefront.selected"|trans|sw_sanitize }}</span>
+                        </button>
+                    </div>
+                </script>
+            </div>
+        </div>
+    </div>
+{% endif %}

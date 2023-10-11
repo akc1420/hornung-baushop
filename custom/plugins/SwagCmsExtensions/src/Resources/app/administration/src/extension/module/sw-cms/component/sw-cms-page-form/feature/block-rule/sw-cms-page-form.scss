@@ -1,0 +1,8 @@
+@import "~scss/variables";
+
+.sw-cms-page-form {
+    &__block-rules-icon,
+    &__block-rules-label {
+        color: $color-shopware-brand-500;
+    }
+}

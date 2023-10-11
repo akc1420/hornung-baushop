@@ -1,0 +1,41 @@
+{% block swag_cms_extensions_form_editor_empty_state %}
+    <div class="swag-cms-extensions-form-editor-empty-state">
+        <sw-container class="swag-cms-extensions-form-editor-empty-state__container"
+                      columns="1fr">
+
+            {% block swag_cms_extensions_form_editor_empty_state_container %}
+                <div class="swag-cms-extensions-form-editor-empty-state__splash-screen">
+
+                    {% block swag_cms_extensions_form_editor_empty_state_container_content %}
+                        <img class="swag-cms-extensions-form-editor-empty-state__icon"
+                             :src="'/swagcmsextensions/static/img/shopping-experiences-empty-state.svg' | asset">
+
+                        {% block swag_cms_extensions_form_editor_empty_state_container_content_text %}
+                            <p class="swag-cms-extensions-form-editor-empty-state__text">
+
+                                {% block swag_cms_extensions_form_editor_empty_state_container_content_text %}
+                                    {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.emptyState.text') }}
+                                {% endblock %}
+
+                            </p>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_form_editor_empty_state_container_content_button %}
+                            <sw-button variant="ghost"
+                                       size="small"
+                                       @click="onStartEditor">
+
+                                {% block swag_cms_extensions_form_editor_empty_state_container_content_button_text %}
+                                    {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.emptyState.buttonText') }}
+                                {% endblock %}
+
+                            </sw-button>
+                        {% endblock %}
+                    {% endblock %}
+
+                </div>
+            {% endblock %}
+
+        </sw-container>
+    </div>
+{% endblock %}

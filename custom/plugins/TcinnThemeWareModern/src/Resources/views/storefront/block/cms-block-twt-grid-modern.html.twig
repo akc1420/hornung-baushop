@@ -1,0 +1,59 @@
+{# ThemeWare: CMS block "Grid 'Modern'" #}
+
+{% block block_grid_modern %}
+    {% set columns = 2 %}
+    {# @deprecated tag:v6.5.0 - Use "element.id" directly instead. #}
+    {% set id = element.id %}
+
+    {% block block_grid_modern_left %}
+        <div class="col-md-6">
+            {% block block_grid_modern_left_top %}
+                <div class="left-top row">
+                    {% block block_grid_modern_left_top_left %}
+                        {% set element = block.slots.getSlot('left-top_left') %}
+
+                        <div class="left-top left column col-sm-6" data-cms-element-id="{{ element.id }}">
+                            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                        </div>
+                    {% endblock %}
+
+                    {% block block_grid_modern_left_top_right %}
+                        {% set element = block.slots.getSlot('left-top_right') %}
+
+                        <div class="left-top right column col-sm-6" data-cms-element-id="{{ element.id }}">
+                            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                        </div>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block block_grid_modern_left_bottom %}
+                {% set element = block.slots.getSlot('left-bottom') %}
+
+                <div class="left-bottom" data-cms-element-id="{{ element.id }}">
+                    {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block block_grid_modern_right %}
+        <div class="col-md-6">
+            {% block block_grid_modern_right_top %}
+                {% set element = block.slots.getSlot('right-top') %}
+
+                <div class="right-top" data-cms-element-id="{{ element.id }}">
+                    {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                </div>
+            {% endblock %}
+
+            {% block block_grid_modern_right_bottom %}
+                {% set element = block.slots.getSlot('right-bottom') %}
+
+                <div class="right-bottom" data-cms-element-id="{{ element.id }}">
+                    {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

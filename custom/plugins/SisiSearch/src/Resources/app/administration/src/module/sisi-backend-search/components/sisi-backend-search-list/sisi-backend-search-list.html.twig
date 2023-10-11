@@ -1,0 +1,96 @@
+{% block sisi_backend_search_list %}
+    <sw-page class="sisi-backend-search">
+        {% block sisi_fields_list_smart_bar_actions %}{% endblock %}
+        <template slot="content">
+            {% block sisi_backend_search_list_content %}
+               <div class="sisi-backend-search-form sw-block-field">
+                   <div class="sw-block-field__block sisisearchform">
+                         <input type="text" :placeholder= "$t('sisi-backend-search.placeholder')"  v-model="term"  @input="changeForm()">
+                          <div class="icon-wrapper" v-on:click="sisisearch">
+                                <sw-icon name="default-action-search"></sw-icon>
+                          </div>
+                   </div>
+               </div>
+                <sw-card  large>
+                    <label> {{ $t('sisi-backend-search.channel') }} </label>
+                    <select v-model="shopValue"   v-bind:class="{ sisired:error}" v-on:change="changeChannel()">
+                        <option v-for="(option,index) in options" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </select>
+
+                    <sw-alert variant="info" appearance="false" :showIcon="true" :closable="false" class="sisi-alert sisinone"
+                              v-bind:class="{ sisired: error}">
+                        {{ $t('sisi-backend-search.alert') }}
+                    </sw-alert>
+
+                </sw-card>
+                <div class="sisi-backend-result-wrapper">
+                 <sw-card  large v-if="result.data">
+                     <h2 v-if="result.data">{{ $t('sisi-backend-search.hits') }}: {{ result.data.hits.total.value }}</h2>
+                 </sw-card>
+                <sw-card :title="$t('sisi-backend-search.result')" large>
+                    <div class="inner-wrapper"  v-on:scroll="scrollFunction">
+                        <div class="sw-loader" v-bind:style="{display:icon}">
+                            <div class="sw-loader__container" style="width: 32px; height: 32px;">
+                                <svg width="32px" height="32px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg" class="sw-loader__element"><circle fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30" class="sw-loader__path"></circle></svg>
+                            </div>
+                        </div>
+                    <div v-if="!result.data"> {{ $t('sisi-backend-search.noitem') }}</div>
+                    <div v-else>
+                        <div v-if="result.data.hits.hits">
+                           <sw-container columns="1fr 1fr" v-for="(item,index) in result.data.hits.hits" >
+                            <div v-if="index == result.data.hits.hits.length - 1" class="sisinone sisi-last-row"></div>
+                            <sw-card-section divider="right">
+                            <router-link :to="{ name: 'sw.product.detail', params: { id: item._id } }">
+                                <div>{{ $t('sisi-backend-search.productname') }} <strong>{{ item._source.product_name }}</strong></div>
+                                <div>{{ $t('sisi-backend-search.productid') }} <strong>{{ item._id }}</strong></div>
+                                <div> Score: <strong>{{ item._score }}</strong> </div>
+                             </router-link>
+                            </sw-card-section>
+                            <sw-card-section>
+                                <div>
+                                  <router-link :to="{ name: 'sw.product.detail', params: { id: item._id } }">
+                                      <div v-for="(highlight,index) in item.highlight">
+                                          <div v-if="
+                                                   index !='product_name'
+                                                && index !='product_description'
+                                                && index !='product_ean'
+                                                && index !='product_meta_title'
+                                                && index !='product_productNumber'">
+                                          <span   v-for="(highlightItem,indexItem) in highlight"
+                                                  v-if="indexItem == 0 " v-html="highlightItem">
+                                          </span>
+                                          </div>
+                                          <div v-if ="index == 'product_productNumber'">
+                                              {{ $t('sisi-backend-search.productnumber') }}
+                                              :  <span  v-for="(highlightItem,indexItem) in highlight" v-html="highlightItem" v-if = "indexItem == 0"></span>
+                                          </div>
+                                          <div v-if ="index == 'product_ean'">
+                                              {{ $t('sisi-backend-search.productean') }} :
+                                              :  <span  v-for="(highlightItem,indexItem) in highlight" v-html="highlightItem" v-if = "indexItem == 0"></span>
+
+                                          </div>
+                                          <div v-if = "index == 'product_name'">
+                                              {{ $t('sisi-backend-search.productname') }}
+                                              : <span  v-for="(highlightItem,indexItem) in highlight" v-html="highlightItem" v-if = "indexItem == 0"></span>
+                                          </div>
+                                          <div v-if = "index == 'product_description'">
+                                              {{ $t('sisi-backend-search.productdescription') }}
+                                              :  <span  v-for="(highlightItem,indexItem) in highlight" v-html="highlightItem" v-if = "indexItem == 0"></span>
+
+                                          </div>
+                                       </div>
+                                    </router-link>
+                                </div>
+                            </sw-card-section>
+                        </sw-container>
+                        </div>
+                    </div>
+                    </div>
+                </sw-card>
+                </div>
+            {% endblock %}
+        </template>
+    </sw-page>
+{% endblock %}

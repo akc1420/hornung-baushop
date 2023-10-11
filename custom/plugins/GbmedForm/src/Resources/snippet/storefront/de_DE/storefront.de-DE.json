@@ -1,0 +1,14 @@
+{
+    "gbmed-form": {
+        "contact": {
+            "recaptcha": "<h1>Kontaktformular</h1><p>Leider konnte das Formular nicht verifiziert werden, bitte versuchen Sie es erneut.</p>",
+            "exception": "Leider konnte das Formular nicht verifiziert werden, bitte versuchen Sie es erneut."
+        },
+        "cookie": {
+            "groupRequiredRecaptch": "Google reCAPTCHA"
+        },
+        "badge": {
+            "hiddenText": "<small>Diese Formular ist durch Google reCAPTCHA geschützt und es gelten die <a href=\"https://policies.google.com/privacy\" target=\"_blank\" rel=\"noopener\">Datenschutzbestimmungen</a> und <a href=\"https://policies.google.com/terms\" target=\"_blank\" rel=\"noopener\">Nutzungsbedingungen</a> von Google.</small>"
+        }
+    }
+}

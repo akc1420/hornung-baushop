@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Basic Configuration</title>
+        <title lang="de-DE">Grundeinstellungen</title>
+
+        <input-field type="single-select">
+            <name>debugMode</name>
+            <label>Debug mode</label>
+            <label lang="de-DE">Debug-Modus</label>
+            <helpText>The debug or developer mode helps to locate errors and should not be used in production mode.</helpText>
+            <helpText lang="de-DE">Der Debug- bzw. Entwicklermodus hilft bei der Fehlereingrenzung und sollte nicht im Produktivmodus genutzt werden.</helpText>
+            <defaultValue>false</defaultValue>
+            <options>
+                <option>
+                    <id>false</id>
+                    <name>false</name>
+                    <name lang="de-DE">false</name>
+                </option>
+                <option>
+                    <id>true</id>
+                    <name>true</name>
+                    <name lang="de-DE">true</name>
+                </option>
+            </options>
+        </input-field>
+
+    </card>
+
+</config>

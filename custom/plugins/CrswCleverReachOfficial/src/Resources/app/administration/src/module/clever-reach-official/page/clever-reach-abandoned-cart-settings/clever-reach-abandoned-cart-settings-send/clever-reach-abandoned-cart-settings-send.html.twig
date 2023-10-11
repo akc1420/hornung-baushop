@@ -1,0 +1,60 @@
+{% block clever_reach_abandoned_cart_settings_send %}
+    <sw-card class="cr-ac-send" :isLoading="isLoading">
+        <template v-slot:title>
+            {{ $tc('clever-reach.abandonedCart.sendSettings') }}
+        </template>
+
+        <sw-content>
+            <sw-label variant="neutral" class="cr-ac-send-desc">
+                {{ $tc('clever-reach.abandonedCart.sendEmailsTo') }}
+            </sw-label>
+
+            <div>
+                <div class="cr-single-checkbox">
+                    <sw-checkbox-field v-model="checkedReceivers.subscribers"
+                                       class="no-clicks cr-checkbox"
+                                       disabled="true">
+                    </sw-checkbox-field>
+                    <div class="cr-settings-checkbox-desc">
+                        <sw-label variant="neutral" class="cr-ac-checkbox-label">
+                            {{ $tc('clever-reach.syncSettings.subscriber') }}
+                        </sw-label>
+                        <sw-label variant="neutral" class="cr-ac-checkbox-desc">
+                            {{ $tc('clever-reach.syncSettings.subscriberDescription') }}
+                        </sw-label>
+                    </div>
+                </div>
+
+                <div class="cr-single-checkbox">
+                    <sw-checkbox-field v-model="checkedReceivers.buyers" class="cr-checkbox" disabled="true">
+                    </sw-checkbox-field>
+                    <div class="cr-settings-checkbox-desc">
+                        <sw-label variant="neutral" class="cr-ac-checkbox-label">
+                            {{ $tc('clever-reach.syncSettings.buyer') }}
+                        </sw-label>
+                        <sw-label variant="neutral" class="cr-ac-checkbox-desc">
+                            {{ $tc('clever-reach.syncSettings.buyerDescription') }}
+                        </sw-label>
+                    </div>
+                </div>
+
+                <div class="cr-single-checkbox">
+                    <sw-checkbox-field v-model="checkedReceivers.contacts" class="cr-checkbox" disabled="true">
+                    </sw-checkbox-field>
+                    <div class="cr-settings-checkbox-desc">
+                        <sw-label variant="neutral" class="cr-ac-checkbox-label">
+                            {{ $tc('clever-reach.syncSettings.contact') }}
+                        </sw-label>
+                        <sw-label variant="neutral" class="cr-ac-checkbox-desc">
+                            {{ $tc('clever-reach.syncSettings.contactDescription') }}
+                        </sw-label>
+                    </div>
+                </div>
+            </div>
+
+            <sw-button class="cr-ac-settings-btn" variant="ghost" v-on:click="openSyncSettings()">
+                {{ $tc('clever-reach.abandonedCart.editSettings') }}
+            </sw-button>
+        </sw-content>
+    </sw-card>
+{% endblock %}

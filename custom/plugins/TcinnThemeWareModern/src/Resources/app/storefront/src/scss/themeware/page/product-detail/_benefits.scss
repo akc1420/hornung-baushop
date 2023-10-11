@@ -1,0 +1,69 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Product detail benefits (on product detail page)
+    ==================================================
+
+*/
+
+// TODO:
+// (x) icon colour
+// ( ) icon
+// ( ) headline ??
+//   ( ) text colour
+//   ( ) font-weight
+//   ( ) font size
+//   ( ) text-transform
+// ( ) text
+//   ( ) text colour
+//   ( ) font-weight
+// ( ) layout: box oder plain
+//   ( ) background colour
+
+@if $twt-product-detail-benefits-show == 2 {
+  .twt-product-detail-benefits {
+    margin: 2rem 0;
+
+    @if $twt-product-detail-benefits-layout-type == 2 {
+      padding: 20px 25px 5px;
+      border: 1px solid $twt-product-detail-benefits-border-color;
+      border-radius: $twt-border-radius;
+      background: $twt-product-detail-benefits-background-color;
+    }
+
+    .twt-product-detail-benefits-list {
+      ul {
+        margin-left: 25px; // margin-left: 2.5em;
+        padding-left: 0;
+        list-style-type: none;
+      }
+
+      li {
+        position: relative;
+        margin-bottom: 4px;
+
+        .icon {
+          line-height: inherit;
+          position: absolute;
+          top: 1px;
+          left: -25px; // left: -2em;
+          width: 18px; // width: 2em;
+          text-align: left;
+          color: $twt-product-detail-benefits-icon-color;
+
+          svg {
+            top: 0;
+            width: auto;
+          }
+        }
+      }
+
+    }
+
+  }
+}

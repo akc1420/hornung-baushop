@@ -1,0 +1,22 @@
+{% block buy_widget_configurator %}
+    <div class="product-detail-configurator">
+        {% block buy_widget_configurator_form %}
+            <form data-recommendy-ajax-variants-container="true"
+                  action="{{ path('frontend.Recommendy.switch', { 'productId': product.parentId }) }}">
+
+                {% block buy_widget_configurator_groups %}
+                    {% for group in configuratorSettings %}
+                        {% block buy_widget_configurator_group %}
+                            <div class="product-detail-configurator-group">
+
+                                {% sw_include '@Storefront/storefront/recommendy/bundle/recommendy_select.html.twig' %}
+
+                            </div>
+                        {% endblock %}
+                    {% endfor %}
+                {% endblock %}
+            </form>
+        {% endblock %}
+    </div>
+{% endblock %}
+

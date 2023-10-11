@@ -1,0 +1,61 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{# ThemeWare: "Custom tab" on prodcut pages #}
+{#
+    Create container and add custom informations
+
+    @Storefront/storefront/themeware/product-detail/twt-product-detail-tab-custom.html.twig
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailTabCustomContentHeadlineShow = theme_config('twt-product-detail-tab-custom-content-headline-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on offcanvas tab-content #}
+{% block utilities_offcanvas_content %}
+
+    {# ThemeWare: Show custom tab content #}
+    {% block twt_product_detail_tab_custom %}
+
+        {% block twt_product_detail_tab_custom_container %}
+            <div class="twt-product-detail-custom-content tab-pane-container">
+                <div class="row">
+
+                    {# ThemeWare: Custom tab content #}
+                    {% block twt_product_detail_tab_custom_content %}
+                        <div class="col twt-product-detail-custom-content-container">
+
+                            {# ThemeWare: Custom headline #}
+                            {% block twt_product_detail_tab_custom_title %}
+                                {% if twtProductDetailTabCustomContentHeadlineShow == 2 %}
+                                    <div class="h3 product-detail-description-title">
+                                        {# Use custom field or snippet as fallback #}
+                                        {% if twtCustomFields.product.twt_modern_pro_custom_field__product__custom_tab_title is not empty %}
+                                            {{ twtCustomFields.product.twt_modern_pro_custom_field__product__custom_tab_title }}
+                                        {% else %}
+                                            {{ "twt.detail.tabCustom.title"|trans }}
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+
+                            {# ThemeWare: Custom text #}
+                            {% block twt_product_detail_tab_custom_text %}
+                                <div class="twt-product-detail-custom-content-text">
+                                    {{ twtCustomFields.product.twt_modern_pro_custom_field__product__custom_tab_text|raw }}
+                                </div>
+                            {% endblock %}
+
+                        </div>
+                    {% endblock %}
+
+                </div>
+            </div>
+        {% endblock %}
+
+    {% endblock %}
+
+{% endblock %}

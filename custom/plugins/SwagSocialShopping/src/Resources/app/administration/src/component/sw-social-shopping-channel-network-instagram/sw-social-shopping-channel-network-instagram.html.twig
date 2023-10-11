@@ -1,0 +1,59 @@
+{% block swag_social_shopping_channel_network_base_after %}
+    <div class="sw-sales-channel-detail-instagram">
+        <sw-card :isLoading="isLoading" :title="$tc('swag-social-shopping.networks.instagram.titleInstagramSettings')">
+
+            {% block swag_social_shopping_channel_network_instagram_include_variants %}
+                <sw-switch-field
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.configuration.includeVariants"
+                    bordered
+                    :disabled="!acl.can('sales_channel.editor')"
+                    :label="$tc('swag-social-shopping.networks.instagram.includeVariants')">
+                </sw-switch-field>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_instagram_interval %}
+                <sw-select-number-field
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.configuration.interval"
+                    :label="$tc('swag-social-shopping.networks.instagram.interval')"
+                    :helpText="$tc('swag-social-shopping.networks.base.intervalHelpText')"
+                    :options="intervalOptions"
+                    :disabled="!acl.can('sales_channel.editor')"
+                    @change="changeInterval">
+                </sw-select-number-field>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_instagram_generate_by_cronjob %}
+                <sw-switch-field
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.configuration.generateByCronjob"
+                    bordered
+                    :disabled="disableGenerateByCronjob || !acl.can('sales_channel.editor')"
+                    :label="$tc('swag-social-shopping.networks.instagram.generateByCronjob')">
+                </sw-switch-field>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_instagram_google_product_cagetory %}
+                <sw-text-field
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.configuration.defaultGoogleProductCategory"
+                    :label="$tc('swag-social-shopping.networks.instagram.googleProductDefaultCategory')"
+                    :helpText="$tc('swag-social-shopping.networks.instagram.helpTextGoogleProductDefaultCategory')"
+                    :disabled="!acl.can('sales_channel.editor')"
+                    @change="onGoogleProductCategoryChanged">
+                </sw-text-field>
+                <sw-container columns="1fr" justify="end" class="sw-sales-channel-detail-instagram__links">
+                    <a href="https://support.google.com/merchants/answer/6324436" target="_blank" class="sw-card__quick-link">
+                        {{ $tc('swag-social-shopping.networks.instagram.googleProductCategoryLinkLabel') }} <sw-icon name="default-arrow-simple-right" small></sw-icon>
+                    </a>
+                </sw-container>
+                <div v-if="socialShoppingSalesChannelExport">
+                    <div v-if="socialShoppingSalesChannelExport.generatedAt" class="sw-sales-channel-detail-base_general__last-generation-text">
+                        {{ $tc('sw-sales-channel.detail.productComparison.lastGenerationLabel') }}{{ socialShoppingSalesChannelExport.generatedAt | date({ hour: '2-digit', minute: '2-digit' })  }}
+                    </div>
+                    <div v-else class="sw-sales-channel-detail-base_general__last-generation-text">
+                        {{ $tc('sw-sales-channel.detail.productComparison.lastGenerationLabel') }}{{ $tc('sw-sales-channel.detail.productComparison.notYetGenerated') }}
+                    </div>
+                </div>
+            {% endblock %}
+        </sw-card>
+
+    </div>
+{% endblock %}

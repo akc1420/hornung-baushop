@@ -1,0 +1,21 @@
+{% block swag_cms_extensions_form_editor_settings %}
+    <div class="swag-cms-extensions-form-editor-settings">
+
+        {% block swag_cms_extensions_form_editor_settings_content %}
+            <div class="swag-cms-extensions-form-editor-settings__content">
+
+                {% block swag_cms_extensions_form_editor_settings_content_group_settings %}
+                    <swag-cms-extensions-form-editor-settings-group v-if="showGroupSettings">
+                    </swag-cms-extensions-form-editor-settings-group>
+                {% endblock %}
+
+                {% block swag_cms_extensions_form_editor_settings_content_field_settings %}
+                    <swag-cms-extensions-form-editor-settings-group-field v-else>>
+                    </swag-cms-extensions-form-editor-settings-group-field>
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

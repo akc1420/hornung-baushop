@@ -1,0 +1,139 @@
+{% block swag_cms_extensions_form_editor_group %}
+    <div class="swag-cms-extensions-form-editor-group">
+
+        {% block swag_cms_extensions_form_editor_group_card %}
+            <sw-card class="swag-cms-extensions-form-editor-group__card"
+                     :class="{ 'is--dragging': group.isDragging, 'has--error': groupHasError }"
+                     v-draggable="groupDragData"
+                     v-droppable="groupDropData">
+
+                {% block swag_cms_extensions_form_editor_group_card_header %}
+                    <div class="swag-cms-extensions-form-editor-group__header">
+
+                        {% block swag_cms_extensions_form_editor_group_card_header_drag_icon %}
+                            <div class="swag-cms-extensions-form-editor-group__drag-icon">
+                                <sw-icon name="small-default-x-drag-horizontal" small></sw-icon>
+                            </div>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_form_editor_group_card_header_title %}
+                            <div class="swag-cms-extensions-form-editor-group__title"
+                                 @click="onTitleClick">
+
+                                {% block swag_cms_extensions_form_editor_group_card_header_title_text %}
+                                    <p :class="{ active: isActive }">
+                                        <template v-if="group.title">
+                                            <span>{{ group.technicalName }}</span> <span>(</span><span>{{ group.title }}</span><span>)</span>
+                                        </template>
+
+                                        <template v-else>
+                                            <span>{{ group.technicalName }}</span>
+                                        </template>
+                                    </p>
+                                {% endblock %}
+
+                            </div>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_form_editor_group_card_header_context_button %}
+                            <div class="swag-cms-extensions-form-editor-group__context-button">
+                                <sw-context-button>
+
+                                    {% block swag_cms_extensions_form_editor_group_card_header_context_button_items %}
+                                        <div class="swag-cms-extensions-form-editor-group__context-button-container">
+
+                                            {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_move_up %}
+                                                <sw-context-menu-item @click="onMoveUp">
+
+                                                    {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_move_up_text %}
+                                                        {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.group.actions.moveUp') }}
+                                                    {% endblock %}
+
+                                                </sw-context-menu-item>
+                                            {% endblock %}
+
+                                            {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_move_down %}
+                                                <sw-context-menu-item @click="onMoveDown">
+
+                                                    {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_move_down_text %}
+                                                        {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.group.actions.moveDown') }}
+                                                    {% endblock %}
+
+                                                </sw-context-menu-item>
+                                            {% endblock %}
+
+                                            {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_divider %}
+                                                <sw-context-menu-divider>
+                                                </sw-context-menu-divider>
+                                            {% endblock %}
+
+                                            {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_edit %}
+                                                <sw-context-menu-item @click="onTitleClick">
+
+                                                    {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_edit_text %}
+                                                        {{ $tc('global.default.edit') }}
+                                                    {% endblock %}
+
+                                                </sw-context-menu-item>
+                                            {% endblock %}
+
+                                            {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_duplicate %}
+                                                <sw-context-menu-item :disabled="!isSystemDefaultLanguage"
+                                                                      @click="onDuplicate">
+
+                                                    {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_duplicate_text %}
+                                                        {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.group.actions.duplicate') }}
+                                                    {% endblock %}
+
+                                                </sw-context-menu-item>
+                                            {% endblock %}
+
+                                            {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_delete %}
+                                                <sw-context-menu-item variant="danger"
+                                                                      :disabled="!isSystemDefaultLanguage"
+                                                                      @click="onDelete">
+
+                                                    {% block swag_cms_extensions_form_editor_group_card_header_context_button_items_delete_text %}
+                                                        {{ $tc('global.default.delete') }}
+                                                    {% endblock %}
+
+                                                </sw-context-menu-item>
+                                            {% endblock %}
+
+                                        </div>
+                                    {% endblock %}
+
+                                </sw-context-button>
+                            </div>
+                        {% endblock %}
+
+                    </div>
+                {% endblock %}
+
+                {% block swag_cms_extensions_form_editor_group_card_fields %}
+                    <swag-cms-extensions-form-editor-group-field v-for="field in group.fields"
+                                                                 :field="field"
+                                                                 :groupCount="groupCount"
+                                                                 :groupId="group.id"
+                                                                 :key="field.id">
+                    </swag-cms-extensions-form-editor-group-field>
+                {% endblock %}
+
+                {% block swag_cms_extensions_form_editor_group_card_add_field_button %}
+                    <sw-button class="swag-cms-extensions-form-editor-group__add-field-button"
+                               size="small"
+                               :disabled="!isSystemDefaultLanguage"
+                               @click="onAddField">
+
+                        {% block swag_cms_extensions_form_editor_group_card_add_field_button_text %}
+                            {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.group.field.addFieldButton') }}
+                        {% endblock %}
+
+                    </sw-button>
+                {% endblock %}
+
+            </sw-card>
+        {% endblock %}
+
+    </div>
+{% endblock %}

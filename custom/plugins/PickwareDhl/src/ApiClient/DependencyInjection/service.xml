@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <parameters>
+        <parameter key="productionUserFallback">pickware_dhl_2</parameter>
+        <parameter key="productionPasswordFallback">V23u4QIWYNIFVe2hHecVYw7mdZFAE9</parameter>
+    </parameters>
+    <services>
+        <service id="Pickware\PickwareDhl\ApiClient\DhlApiClientFactory">
+            <argument type="service" id="pickware_dhl.logger" />
+            <argument key="$productionUser">%env(default:productionUserFallback:PICKWARE_DHL_APP_ID)%</argument>
+            <argument key="$productionPassword">%env(default:productionPasswordFallback:PICKWARE_DHL_TOKEN)%</argument>
+        </service>
+        <service id="pickware_dhl.logger" class="Psr\Log\LoggerInterface">
+            <factory service="Pickware\ShippingBundle\Logging\PickwareShippingLoggerFactory" method="createRotating" />
+            <argument type="string">pickware.dhl</argument>
+        </service>
+    </services>
+</container>

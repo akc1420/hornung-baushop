@@ -1,0 +1,84 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS element "Breadcrumb"
+	==================================================
+
+*/
+
+// ThemeWare: Adjustments on ThemeWare® breadcrumbs
+.cms-element-twt-breadcrumb {
+    display: flex;
+
+    nav[aria-label="breadcrumb"] {
+        display: flex;
+        overflow: hidden;
+        align-items: center;
+
+        //justify-content: $twt-breadcrumb-justify-content;
+        //width: 100%;
+
+        //padding: null-pixel-unit($twt-breadcrumb-padding-top-bottom) null-pixel-unit($twt-breadcrumb-padding-left-right);
+
+        // ThemeWare: No container styling
+        //@if $twt-breadcrumb-container-styling == 1 {}
+
+        // ThemeWare: ThemeWare container styling
+        //@if $twt-breadcrumb-container-styling == 2 {
+        //    background-color: $twt-cms-section-boxed-background-color;
+        //    border: 1px solid $twt-cms-section-boxed-border-color;
+        //}
+
+        // ThemeWare: Custom container styling
+        //@if $twt-breadcrumb-container-styling == 3 {
+        //    background-color: $twt-breadcrumb-background-color;
+        //    border: 1px solid $twt-breadcrumb-border-color;
+        //
+        //    @if $twt-breadcrumb-border-top-color != $twt-breadcrumb-border-color {
+        //        border-top: 1px solid $twt-breadcrumb-border-top-color;
+        //    }
+        //    @if $twt-breadcrumb-border-bottom-color != $twt-breadcrumb-border-color {
+        //        border-bottom: 1px solid $twt-breadcrumb-border-bottom-color;
+        //    }
+        //
+        //    // 1 = not rounded (default)
+        //    @if $twt-breadcrumb-container-corner-type == 2 { // 2 = rounded corners
+        //        border-radius: null-pixel-unit($twt-border-radius);
+        //    }
+        //    @if $twt-breadcrumb-container-corner-type == 3 { // 3 = round corners
+        //        @include border-radius(50px);
+        //    }
+        //
+        //    // TODO: 4 = individual radius
+        //}
+
+        ol.breadcrumb {
+            align-items: center;
+            margin: 0;
+            padding: 0;
+
+            // ThemeWare: Links with background colour
+            @if $twt-breadcrumb-style == 2 {
+                background-color: $twt-breadcrumb-background-color-list;
+                border: 1px solid $twt-breadcrumb-border-color-list;
+                padding: 10px 20px;
+            }
+            @if $twt-breadcrumb-style == 2 and $twt-breadcrumb-list-corner-type == 1 { // 1 = not rounded
+                @include border-radius(0);
+            }
+            @if $twt-breadcrumb-style == 2 and $twt-breadcrumb-list-corner-type == 2 { // 2 = rounded corners
+                border-radius: null-pixel-unit($twt-border-radius);
+            }
+            @if $twt-breadcrumb-style == 2 and $twt-breadcrumb-list-corner-type == 3 { // 3 = round corners
+                @include border-radius(50px);
+            }
+
+            // TODO: 4 = individual radius
+        }
+    }
+}

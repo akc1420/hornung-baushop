@@ -1,0 +1,47 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Alert
+	==============================================
+	Custom styling for bootstrap alert component.
+	https://getbootstrap.com/docs/4.3/components/alerts/
+
+	Origin: Shopware base & skin
+*/
+
+/* ThemeWare/Note:
+ * Shopware removes the padding and borders of alerts.
+ * Bootstrap uses:
+	position: relative;
+	padding: .75rem 1.25rem;
+	margin-bottom: 1rem;
+	border: 1px solid transparent;
+	border-radius: .25rem;
+ */
+
+.alert {
+	border-radius: null-pixel-unit($twt-border-radius);
+	//padding: .75rem 1.25rem; << Bootstrap
+	//border: 1px solid transparent; << Bootstrap
+	font-size: $twt-alert-font-size;
+
+	.alert-content-container {
+		border-top-right-radius: null-pixel-unit($twt-border-radius);
+		border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+	}
+}
+
+// ThemeWare: Fix for main margin top
+// TODO: #custom
+.content-main {
+	>.flashbags {
+		>.alert {
+			margin-top: null-pixel-unit($twt-container-main-margin-top);
+		}
+	}
+}

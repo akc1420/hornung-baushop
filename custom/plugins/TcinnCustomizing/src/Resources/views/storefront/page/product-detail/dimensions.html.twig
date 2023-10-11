@@ -1,0 +1,30 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block page_product_detail_dimensions_container %}
+        <div class="product-detail-dimensions tab-pane-container">
+
+            {% if page.product.height > 0 and page.product.width > 0 and page.product.length > 0 and page.product.weight > 0 %}
+                <div class="product-attributes">
+                    <div class="product-height">
+                    <b>Höhe: </b>{{ page.product.height }} mm
+                    </div>
+                <div class="product-width">
+                    <b>Breite: </b>{{ page.product.width }} mm
+                </div>
+                <div class="product-length">
+                    <b>Länge: </b>{{ page.product.length }} mm
+                </div>
+                <div class="product-weight">
+                    {% if page.product.weight < 1 %}
+                    <b>Gewicht: </b>{{ page.product.weight * 1000 }} g
+                    {% else %}
+                    <b>Gewicht: </b>{{ page.product.weight }} kg
+                    {% endif %}
+                </div>
+                </div>
+        {% endif %}
+
+        </div>
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+		<!-- Definitions -->
+        <service id="Cbax\ModulAnalytics\Core\Content\Analytics\ConfigDefinition">
+            <tag name="shopware.entity.definition" entity="cbax_analytics_config" />
+        </service>
+
+        <service id="Cbax\ModulAnalytics\Core\Content\Analytics\GroupDefinition">
+            <tag name="shopware.entity.definition" entity="cbax_analytics_groups_config" />
+        </service>
+
+        <service id="Cbax\ModulAnalytics\Core\Content\Analytics\SearchResultDefinition">
+            <tag name="shopware.entity.definition" entity="cbax_analytics_search" />
+        </service>
+
+        <service id="Cbax\ModulAnalytics\Core\Content\Analytics\ProductImpressionsDefinition">
+            <tag name="shopware.entity.definition" entity="cbax_analytics_product_impressions" />
+        </service>
+
+        <service id="Cbax\ModulAnalytics\Core\Content\Analytics\CategoryImpressionsDefinition">
+            <tag name="shopware.entity.definition" entity="cbax_analytics_category_impressions" />
+        </service>
+
+        <service id="Cbax\ModulAnalytics\Core\Content\Analytics\ManufacturerImpressionsDefinition">
+            <tag name="shopware.entity.definition" entity="cbax_analytics_manufacturer_impressions" />
+        </service>
+
+        <service id="Cbax\ModulAnalytics\Core\Content\Analytics\VisitorsDefinition">
+            <tag name="shopware.entity.definition" entity="cbax_analytics_visitors" />
+        </service>
+
+        <service id="Cbax\ModulAnalytics\Core\Content\Analytics\PoolDefinition">
+            <tag name="shopware.entity.definition" entity="cbax_analytics_pool" />
+        </service>
+
+        <service id="Cbax\ModulAnalytics\Core\Content\Analytics\RefererDefinition">
+            <tag name="shopware.entity.definition" entity="cbax_analytics_referer" />
+        </service>
+
+        <!-- Components -->
+		<service id="Cbax\ModulAnalytics\Components\Base">
+			<argument type="service" id="state_machine.repository"/>
+			<argument type="service" id="state_machine_state.repository"/>
+			<argument type="service" id="locale.repository"/>
+			<argument type="service" id="language.repository"/>
+            <argument type="service" id="product.repository"/>
+			<argument type="service" id="property_group_option.repository"/>
+			<argument type="service" id="Cbax\ModulAnalytics\Components\ConfigReaderHelper"/>
+            <argument type="service" id="shopware.filesystem.private"/>
+		</service>
+
+		<service id="Cbax\ModulAnalytics\Components\ConfigReaderHelper" public="true">
+			<argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+			<argument type="service" id="request_stack"/>
+		</service>
+
+		<service id="Cbax\ModulAnalytics\Components\ExtensionHelper" public="true">
+			<argument type="service" id="cbax_analytics_config.repository"/>
+			<argument type="service" id="cbax_analytics_groups_config.repository"/>
+		</service>
+
+		<service id="Cbax\ModulAnalytics\Components\Statistics\Connector">
+			<argument type="service" id="Cbax\ModulAnalytics\Components\Base"/>
+			<argument type="service" id="order.repository"/>
+			<argument type="service" id="language.repository"/>
+			<argument type="service" id="product.repository"/>
+			<argument type="service" id="customer.repository"/>
+			<argument type="service" id="property_group_option.repository"/>
+            <argument type="service" id="cbax_analytics_search.repository"/>
+			<argument type="service" id="product_stream.repository"/>
+            <argument type="service" id="product_manufacturer.repository"/>
+            <argument type="service" id="cbax_analytics_product_impressions.repository"/>
+            <argument type="service" id="cbax_analytics_visitors.repository"/>
+            <argument type="service" id="cbax_analytics_referer.repository"/>
+            <argument type="service" id="cbax_analytics_category_impressions.repository"/>
+            <argument type="service" id="category.repository"/>
+            <argument type="service" id="cbax_analytics_manufacturer_impressions.repository"/>
+            <argument type="service" id="product_cross_selling.repository"/>
+            <argument type="service" id="cbax_analytics_pool.repository"/>
+			<argument type="service" id="Shopware\Core\Content\ProductStream\Service\ProductStreamBuilder"/>
+			<argument type="service" id="Doctrine\DBAL\Connection"/>
+		</service>
+
+		<!-- Controller -->
+		<service id="Cbax\ModulAnalytics\Controller\BackendController" public="true">
+			<argument type="service" id="Cbax\ModulAnalytics\Components\Statistics\Connector"/>
+            <argument type="service" id="Cbax\ModulAnalytics\Components\Base"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+		<!-- Scheduled -->
+        <service id="Cbax\ModulAnalytics\ScheduledTask\Analytics">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <service id="Cbax\ModulAnalytics\ScheduledTask\AnalyticsHandler">
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Cbax\ModulAnalytics\Components\ConfigReaderHelper"/>
+            <tag name="messenger.message_handler" />
+        </service>
+
+		<!-- Subscriber -->
+        <service id="Cbax\ModulAnalytics\Subscriber\BackendSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="cbax_analytics_search.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+		<!-- Snippet File -->
+
+    </services>
+</container>

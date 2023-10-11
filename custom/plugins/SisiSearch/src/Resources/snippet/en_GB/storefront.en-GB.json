@@ -1,0 +1,33 @@
+{
+    "sisi": {
+        "categorie": "<h3>Categories</h3>",
+        "categorieFilter": "<h3>Categories</h3>",
+        "manufacture": "<h3>Manufacturers</h3>",
+        "content": "<h3>Content</h3>",
+        "Filter": " <b>Reset filter</b>",
+        "properties": "<h3>Properties</h3>",
+        "produktname": "Product",
+        "categoriename": "Kategorie Name",
+        "propertiesname": "Properties",
+        "product_ean": "Product ean",
+        "productmetatitle": "Meta Title",
+        "product_description": "Hit in the product description",
+        "product_productNumber": "Product number",
+        "manufacturerNumber": "Manufacturer number",
+        "manufacturer_name": "Brand",
+        "product_snippet": "snippet",
+        "reset": "Reset all",
+        "search_keyword": "Keyword",
+        "suggest": "<h3>Suggest</h3>",
+        "produktnumber": "ProductNr:",
+        "ratingMin":"min",
+        "ratingEnd":"star",
+        "pricefrom": "Price from",
+        "priceto": "Price to",
+        "sendPrice": "Send",
+        "history": "<h3>History </h3>",
+        "description": "Description",
+        "filterBtnDropdown": "Selected"
+
+    }
+}

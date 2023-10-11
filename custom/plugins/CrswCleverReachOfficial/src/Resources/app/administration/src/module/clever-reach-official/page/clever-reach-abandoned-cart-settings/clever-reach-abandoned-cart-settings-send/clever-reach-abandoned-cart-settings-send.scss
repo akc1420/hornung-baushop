@@ -1,0 +1,54 @@
+.cr-ac-send {
+  line-height: 56px;
+}
+
+.cr-ac-send-desc {
+  background: transparent !important;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 0;
+  height: 25px !important;
+  margin: 0 !important;
+  font-weight: 600;
+}
+
+.cr-ac-send-desc .sw-label__caption {
+  display: block;
+  white-space: initial;
+  line-height: 18px;
+}
+
+.cr-ac-settings-btn:disabled {
+  border-color: #e0e6eb !important;
+  color: #b3bfcc !important;
+}
+
+.cr-ac-checkbox-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin: -5px 0 0 0 !important;
+  padding: 0 0 5px 0;
+  background: transparent !important;
+  height: auto;
+}
+
+.cr-ac-checkbox-label .sw-label__caption {
+  display: inline !important;
+}
+
+.cr-ac-checkbox-desc {
+  font-size: 14px;
+  background: transparent !important;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.cr-ac-checkbox-desc .sw-label__caption {
+  display: inline !important;
+  white-space: initial;
+  line-height: 20px;
+}

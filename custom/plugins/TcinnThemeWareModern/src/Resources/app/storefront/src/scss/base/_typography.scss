@@ -1,0 +1,54 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Typography
+    ==============================================
+    Custom styling for bootstrap typography.
+    https://getbootstrap.com/docs/4.3/content/typography/
+*/
+
+//@include media-breakpoint-up(xl) { // min 1200px
+//  font-size: $twt-html-font-size-xl;
+//}
+
+//@include media-breakpoint-down(lg) { // max 1199.98px
+//  font-size: $twt-html-font-size-lg;
+//}
+
+// ThemeWare: Adjust line-height for headlines referring to our HTML base font size changes in base/_base.scss
+@include media-breakpoint-down(xs) { // max 575.98px
+  h1,
+  .h1 {
+    line-height: 1.2; // default: 40px
+  }
+
+  h2,
+  .h2 {
+    line-height: 1.2; // default: 34px
+  }
+
+  h3,
+  .h3 {
+    line-height: 1.2; // default: 33px
+  }
+
+  h4,
+  .h4 {
+    line-height: 1.2; // default: 24px
+  }
+
+  h5,
+  .h5 {
+    line-height: 1.2; // default: 21px
+  }
+
+  h6,
+  .h6 {
+    line-height: 1.2; // default: 20px
+  }
+}

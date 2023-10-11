@@ -1,0 +1,39 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Custom Select
+    ==============================================
+    Custom skin styling for bootstrap custom select menu.
+    https://getbootstrap.com/docs/4.3/components/forms/#select-menu
+
+    Origin: Shopware skin
+*/
+
+.custom-select {
+   // ThemeWare: Set form layout-type
+   @if $twt-forms-layout-type == 2 {
+      border-top-width: 0;
+      border-right-width: 0;
+      border-bottom-width: 2px;
+      border-left-width: 0;
+   }
+
+   // ThemeWare: Set font-family
+   @if($twt-forms-input-font-family == 1) {
+      font-family: $sw-font-family-base;
+   } @else {
+      font-family: $sw-font-family-headline;
+   }
+   
+   //&:invalid {}
+
+   &:hover {
+      color: $twt-forms-input-color-hover;
+      border-color: $twt-forms-input-border-color-hover;
+   }
+}

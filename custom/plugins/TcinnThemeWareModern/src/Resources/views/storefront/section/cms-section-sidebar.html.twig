@@ -1,0 +1,127 @@
+{% sw_extends '@Storefront/storefront/section/cms-section-sidebar.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtSidebarContentSticky = theme_config('twt-sidebar-content-sticky') %}
+{% set twtSidebarElement1 = theme_config('twt-sidebar-element-1') %}
+{% set twtSidebarElement1Toggle = theme_config('twt-sidebar-element-1-toggle') %}
+{% set twtSidebarElement1Position = theme_config('twt-sidebar-element-1-position') %}
+{% set twtSidebarElement2 = theme_config('twt-sidebar-element-2') %}
+{% set twtSidebarElement2Toggle = theme_config('twt-sidebar-element-2-toggle') %}
+{% set twtSidebarElement2Position = theme_config('twt-sidebar-element-2-position') %}
+{% set twtSidebarElement3 = theme_config('twt-sidebar-element-3') %}
+{% set twtSidebarElement3Toggle = theme_config('twt-sidebar-element-3-toggle') %}
+{% set twtSidebarElement3Position = theme_config('twt-sidebar-element-3-position') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# TODO: Change display with class instaed with CSS #}
+{# TODO: Move twt content to seperate twig file... #}
+
+{# TODO: HC-Architecture..! #}
+{% block section_sidebar_content %}
+    {# ThemeWare: Create Sidebar-Elements #}
+    {% set twtSidebarElements = {} %}
+
+    {# ThemeWare: Sidebar-Element 1 #}
+    {% if twtSidebarElement1 != 'none' %}
+        {% set twtSidebarElements = twtSidebarElements|merge({
+            1: {
+                elementid: 1,
+                element: twtSidebarElement1,
+                toggle: twtSidebarElement1Toggle,
+                position: twtSidebarElement1Position
+            }
+        }) %}
+    {% endif %}
+
+    {# ThemeWare: Sidebar-Element 2 #}
+    {% if twtSidebarElement2 != 'none' %}
+        {% set twtSidebarElements = twtSidebarElements|merge({
+            2: {
+                elementid: 2,
+                element: twtSidebarElement2,
+                toggle: twtSidebarElement2Toggle,
+                position: twtSidebarElement2Position
+            }
+        }) %}
+    {% endif %}
+
+    {# ThemeWare: Sidebar-Element 3 #}
+    {% if twtSidebarElement3 != 'none' %}
+        {% set twtSidebarElements = twtSidebarElements|merge({
+            3: {
+                elementid: 3,
+                element: twtSidebarElement3,
+                toggle: twtSidebarElement3Toggle,
+                position: twtSidebarElement3Position
+            }
+        }) %}
+    {% endif %}
+
+    <div class="cms-section-sidebar-sidebar-content col-lg-4 col-xl-3">
+        {% if twtSidebarContentSticky == "2" %}<div class="twt-sidebar-content-container">{% endif %}
+
+        {# ThemeWare: Add ThemeWare upper section #}
+        {% block twt_section_sidebar_block_top %}
+            {% set counterTop = 0 %}
+            {% for resultTop in twtSidebarElements %}
+                {% if resultTop.position == "2" %}
+                    {% set counterTop = ( counterTop | default(0) ) + 1 %}
+                {% endif %}
+            {% endfor %}
+
+            {% if counterTop >= 1 %}
+                <div class="twt-block twt-block-sidebar-top">
+                    {% for sidebarValueTop in twtSidebarElements %}
+                        {% if sidebarValueTop.position == "2" %}
+                            {# sw_include '@Storefront/storefront/themeware/sidebar-elements/twt-' ~ sidebarValueTop.element ~ '.html.twig' ignore missing #}
+                            {% sw_include '@Storefront/storefront/themeware/twt-sidebar-widgets.html.twig' ignore missing with {
+                                element:sidebarValueTop.element,
+                                toggle:sidebarValueTop.toggle,
+                                elementid:sidebarValueTop.elementid
+                            } %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {# Default sidebar #}
+        {% for block in sidebarBlocks %}
+            {% block section_sidebar_content_block %}
+                {% sw_include "@Storefront/storefront/section/cms-section-block-container.html.twig" %}
+            {% endblock %}
+        {% endfor %}
+
+        {# ThemeWare: Add ThemeWare lower section #}
+        {% block twt_section_sidebar_block_bottom %}
+            {% set counterBottom = 0 %}
+            {% for resultBottom in twtSidebarElements %}
+                {% if resultBottom.position == "3" %}
+                    {% set counterBottom = ( counterBottom | default(0) ) + 1 %}
+                {% endif %}
+            {% endfor %}
+
+            {% if counterBottom >= 1 %}
+                <div class="twt-block twt-block-sidebar-bottom">
+                    {% for sidebarValueBottom in twtSidebarElements %}
+                        {% if sidebarValueBottom.position == "3" %}
+                            {# sw_include '@Storefront/storefront/themeware/sidebar-elements/twt-' ~ sidebarValueBottom.element ~ '.html.twig' ignore missing #}
+                            {% sw_include '@Storefront/storefront/themeware/twt-sidebar-widgets.html.twig' ignore missing with {
+                                element:sidebarValueBottom.element,
+                                toggle:sidebarValueBottom.toggle,
+                                elementid:sidebarValueBottom.elementid
+                            } %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+    {% if twtSidebarContentSticky == "2" %}</div>{% endif %}
+    </div>
+{% endblock %}

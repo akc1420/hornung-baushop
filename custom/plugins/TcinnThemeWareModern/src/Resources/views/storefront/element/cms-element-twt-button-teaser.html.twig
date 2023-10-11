@@ -1,0 +1,132 @@
+{# ThemeWare: CMS element "Button teaser" #}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET VARS ---------------- #}
+
+{# ThemeWare: Set variables #}
+{#% set twtButtonTeaser = element.translated.config %#}
+{% set twtButtonTeaser = element.fieldConfig.elements %}
+
+{# Tab: Layout #}
+{% set twtButtonTeaserHoverEffect = twtButtonTeaser.hoverEffect.value %}
+{# TODO... #}
+
+{# Tab: Advanced #}
+{% set twtButtonTeaserCssClass = twtButtonTeaser.cssClass.value %}
+
+{# ---------------- END: SET VARS ---------------- #}
+
+{# ---------------- START: SET CLASSES ---------------- #}
+
+{% set overlayClasses = ['overlay'] %}
+
+{% if twtButtonTeaserHoverEffect != 'none' %}
+    {% if twtButtonTeaserHoverEffect != "fadeOut" %}
+        {% set overlayClasses = ['fade-in']|merge(overlayClasses) %}
+    {% else %}
+        {% set overlayClasses = ['fade-out']|merge(overlayClasses) %}
+    {% endif %}
+{% endif %}
+
+
+{% set contentClasses = ['content'] %}
+
+{% if twtButtonTeaserHoverEffect != 'none' %}
+    {% if twtButtonTeaserHoverEffect == "slideIn" %}
+        {% set contentClasses = ['fade-in']|merge(contentClasses) %}
+    {% elseif twtButtonTeaserHoverEffect == "slideInUp" %}
+        {% set contentClasses = ['fade-in-up']|merge(contentClasses) %}
+    {% elseif twtButtonTeaserHoverEffect == "slideInRight" %}
+        {% set contentClasses = ['fade-in-right']|merge(contentClasses) %}
+    {% elseif twtButtonTeaserHoverEffect == "slideInDown" %}
+        {% set contentClasses = ['fade-in-down']|merge(contentClasses) %}
+    {% elseif twtButtonTeaserHoverEffect == "slideInLeft" %}
+        {% set contentClasses = ['fade-in-left']|merge(contentClasses) %}
+    {% elseif twtButtonTeaserHoverEffect == "zoomIn" %}
+        {% set contentClasses = ['zoom-in']|merge(contentClasses) %}
+    {% elseif twtButtonTeaserHoverEffect == "fadeOut" %}
+        {% set contentClasses = ['fade-out']|merge(contentClasses) %}
+    {#% elseif twtButtonTeaserHoverEffect == null %}
+        {% set contentClasses = ['fade-in-right']|merge(contentClasses) %#}
+    {% endif %}
+{% endif %}
+
+{# ---------------- END: SET CLASSES ---------------- #}
+
+{% block element_twt_button_teaser %}
+    {% set config = element.fieldConfig.elements %}
+
+    {# TODO: finalize #}
+
+    <div class="cms-element-{{ element.type }}{% if config.verticalAlign.value %} has-vertical-alignment{% endif %}{% if twtButtonTeaserHoverEffect != 'none' %} is-hover{% endif %}{% if twtButtonTeaserCssClass is not empty %} {{ twtButtonTeaserCssClass }}{% endif %}">
+
+        {% block element_twt_button_teaser_content %}
+            {% if config.verticalAlign.value %}
+                <div class="cms-element-alignment{% if config.verticalAlign.value == "center" %} align-self-center{% elseif config.verticalAlign.value == "flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+            {% endif %}
+
+            {% block element_twt_button_teaser_image_inner %}
+                {# ThemeWare: Set 'Button teaser' element #}
+                {% set buttonTeaser %}
+                    <div class="twt-button-teaser-container cms-content-container justify-content-{{ config.horizontalAlignment.value }} align-items-{{ config.verticalAlignment.value }}">
+                        {# Colored overlay (if configured) #}
+                        {% if config.colorOverlay.value %}
+                            <div class="twt-button-teaser-overlay color-overlay {{ overlayClasses|sort|join(' ') }}" style="background-color: {{ config.colorOverlayBgColor.value }};"></div>
+                        {% endif %}
+
+                        {# Button (mandatory) #}
+                        <div class="twt-button-teaser-content {{ contentClasses|sort|join(' ') }}">
+                            {# Info: Title tag = Button text (as the text is mandatory) #}
+                            <a href="{{ element.translated.config.url.value }}"
+                               title="{{ element.translated.config.buttonText.value }}"
+                               class="twt-button-teaser-button btn btn-{% if config.buttonOutline.value %}outline-{% endif %}{{ config.buttonStyle.value }}"
+                               {% if element.translated.config.newTab.value %}target="_blank" rel="noopener"{% endif %}>
+                                {{ element.translated.config.buttonText.value }}
+                            </a>
+                        </div>
+                    </div>
+                {% endset %}
+
+                {# ThemeWare: Set image element #}
+                {% set imageElement %}
+
+                    {% block element_twt_button_teaser_image_container %}
+                        {% if element.data.media.url %}
+                            <div class="twt-button-teaser-image-container cms-image-container is-{{ element.translated.config.displayMode.value }}" {% if element.translated.config.minHeight.value and element.translated.config.displayMode.value == "cover" %} style="min-height: {{ element.translated.config.minHeight.value }};"{% endif %}>
+
+                                {% block element_twt_button_teaser_image_media %}
+                                    {% set attributes = {
+                                        'class': 'cms-image',
+                                        'alt': (element.data.media.translated.alt ?: ''),
+                                        'title': (element.data.media.translated.title ?: '')
+                                    } %}
+
+                                    {% if element.translated.config.displayMode.value == 'cover' or element.translated.config.displayMode.value == 'contain' %}
+                                        {% set attributes = attributes|merge({ 'data-object-fit': element.translated.config.displayMode.value }) %}
+                                    {% endif %}
+
+                                    {% sw_thumbnails 'cms-image-thumbnails' with {
+                                        media: element.data.media
+                                    } %}
+                                {% endblock %}
+
+                                {# ThemeWare: Load 'Button teaser' element #}
+                                {{ buttonTeaser }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                {% endset %}
+
+                {# ThemeWare: Load image element #}
+                {{ imageElement }}
+            {% endblock %}
+
+            {% if config.verticalAlign.value %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

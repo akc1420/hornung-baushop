@@ -1,0 +1,52 @@
+{% sw_extends '@Storefront/storefront/layout/header/search.html.twig' %}
+{# ThemeWare® HC-Architecture® ready #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtHeaderSearchType = theme_config('twt-header-search-type') %}
+{% set twtIconSet = theme_config('twt-iconset') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the header search #}
+{% block layout_header_search_input_group %}
+	{# Default search #}
+	{{ parent() }}
+
+	{# ThemeWare: Button für 'Vollbildsuche' ergänzen #}
+	{% block twt_layout_header_search_toggle %}
+		{% if twtHeaderSearchType == 4 %}
+			<button class="btn header-actions-btn search-toggle-btn js-search-toggle-btn collapsed d-none"
+					type="button"
+					data-toggle="collapse"
+					data-target="#searchCollapse"
+					aria-expanded="false"
+					aria-controls="searchCollapse"
+					aria-label="{{ "header.searchButton"|trans|striptags }}">
+				{% if twtIconSet is not same as ('default') %}
+					{% sw_icon 'x' style {'pack':'themeware'} %}
+				{% else %}
+					{% sw_icon 'x' %}
+				{% endif %}
+			</button>
+		{% endif %}
+	{% endblock %}
+{% endblock %}
+
+{% block layout_header_search_button %}
+	<div class="input-group-append">
+		<button type="submit"
+				class="btn header-search-btn"
+				aria-label="{{ "header.searchButton"|trans|striptags }}">
+            <span class="header-search-icon">
+		  		{# ThemeWare: Icon austauschen #}
+				{% if twtIconSet is not same as ('default') %}
+					{% sw_icon 'search' style {'pack':'themeware'} %}
+				{% else %}
+					{% sw_icon 'search' %}
+				{% endif %}
+            </span>
+		</button>
+	</div>
+{% endblock %}

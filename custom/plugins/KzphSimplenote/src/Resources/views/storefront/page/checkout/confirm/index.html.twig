@@ -1,0 +1,28 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% block page_checkout_main_content %}
+{{ parent() }}
+
+    {% if(config('KzphSimplenote.config.showNotefieldInCheckout') == true) %}
+    <section id="KzphSimpleNoteFrontendField">
+
+        <div class="card checkout-card">
+            <div class="card-body">
+
+                {% if (config('KzphSimplenote.config.headlineForNotefield')) %}
+                <div class="card-title">
+                    {{config('KzphSimplenote.config.headlineForNotefield')}}
+                </div>
+                {% endif %}
+
+                <div class="form-group">
+                    <textarea name="kzphSimpleNote" form="confirmOrderForm" class="form-control" id="KzphSimpleNoteFrontendFieldTextarea"></textarea>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    {% endif %}
+
+{% endblock %}

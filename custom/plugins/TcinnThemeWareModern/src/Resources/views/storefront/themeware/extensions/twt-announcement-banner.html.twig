@@ -1,0 +1,45 @@
+{# ThemeWare "Announcement banner" (Extension container) #}
+{#
+    Create container and include banner
+
+    @Storefront/storefront/themeware/extensions/twt-announcement-banner.html.twig
+
+    Info:
+    - Announcement banner is closable if the default cookie notification of Shopware is used and the banner is configured "closable"
+      - Add css class "is-closable" to manage css attribute "display"
+      - Add data attribute "data-announcement-banne" to register the js plugin to manage the close button via a cookie
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set useDefaultCookieConsent = config('core.basicInformation.useDefaultCookieConsent') %}
+
+{% set twtAnnouncementBannerClosable = theme_config('twt-announcement-banner-closable') %}
+{% set twtAnnouncementBannerEndDate = theme_config('twt-announcement-banner-end-date') %}
+{% set twtAnnouncementBannerStartDate = theme_config('twt-announcement-banner-start-date') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_announcement_banner %}
+    {# ThemeWare: Announcement banner in Header #}
+    {% if (twtAnnouncementBannerStartDate is null and twtAnnouncementBannerEndDate is null) or
+        ((twtAnnouncementBannerStartDate is null or twtAnnouncementBannerStartDate|date("Y-m-d H:i:s", false) <= "now"|date("Y-m-d H:i:s", false)) and
+        (twtAnnouncementBannerEndDate is null or twtAnnouncementBannerEndDate|date("Y-m-d H:i:s", false) >= "now"|date("Y-m-d H:i:s", false)))
+    %}
+        <section class="twt-announcement-banner is-{% if type %}{{ type }}{% endif %}{% if alignment %} {{ alignment }}{% endif %}{% if useDefaultCookieConsent and twtAnnouncementBannerClosable == 2 %} is-closable{% endif %}"
+                 id="twt-announcement-banner"
+                 {% if useDefaultCookieConsent and twtAnnouncementBannerClosable == 2 %}data-announcement-banner{% endif %}
+        >
+
+            {% block twt_announcement_banner_container %}
+                <div class="twt-announcement-banner-container container">
+                    {% sw_include '@Storefront/storefront/themeware/includes/twt-announcement-banner-include.html.twig' ignore missing %}
+                </div>
+            {% endblock %}
+
+        </section>
+    {% endif %}
+{% endblock %}

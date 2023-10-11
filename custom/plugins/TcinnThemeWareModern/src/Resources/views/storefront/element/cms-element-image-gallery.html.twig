@@ -1,0 +1,44 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-image-gallery.html.twig' %}
+{# ThemeWare® HC-Architecture® ready #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailBadges = theme_config('twt-product-detail-badges') %}
+{% set twtProductDetailSliderImageSimilarNoteShow = theme_config('twt-product-detail-slider-image-similar-note-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the image gallery #}
+{% block element_image_gallery_inner_wrapper %}
+    {# ThemeWare: "Produkt-Badges" ergänzen. #}
+    {% if isProduct and twtProductDetailBadges != 1 %}
+        {% sw_include '@Storefront/storefront/themeware/extensions/twt-product-detail-badges.html.twig' ignore missing with {
+            product: page.product,
+            type: 'media'
+        } %}
+    {% endif %}
+
+    {# Default block #}
+    {{ parent() }}
+
+    {# ThemeWare: Infotext "Abbildung ähnlich" ergänzen. #}
+    {% if isProduct and twtProductDetailSliderImageSimilarNoteShow != 1 %}
+        <div class="twt-image-similar-infotext">
+            {{ "twt.detail.imageSimilarNote"|trans|sw_sanitize }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block element_image_gallery %}
+    {# Default block #}
+    {{ parent() }}
+
+    {# ThemeWare: "Vorteile" ergänzen. #}
+    {#{% if twtProductDetailBenefitsShow == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-benefits.html.twig' ignore missing with {
+            type: 'buy-box',
+            position: 'bottom'
+        } %}
+    {% endif %}#}
+{% endblock %}

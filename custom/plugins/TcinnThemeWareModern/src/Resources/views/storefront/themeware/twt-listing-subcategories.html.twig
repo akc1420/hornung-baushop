@@ -1,0 +1,30 @@
+{# ThemeWare: "Listing subcategories" container #}
+{#
+    Create container and include listing subcategories
+
+    @Storefront/storefront/themeware/twt-listing-subcategories.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ThemeWare: Listing subcategories #}
+{% block twt_listing_subcategories %}
+    {% set navigationTree = page.header.navigation.tree %}
+    {% set activeResult = page.header.navigation.active %}
+
+    <div class="twt-listing-subcategories" id="twt-listing-subcategories">
+        <div class="twt-listing-subcategories-section">
+            {# TODO: Headline? #}
+
+            <div class="twt-listing-subcategories-container">
+                <ul class="twt-listing-subcategories-row row">
+                    {% sw_include '@Storefront/storefront/themeware/includes/twt-listing-subcategories-include.html.twig' ignore missing with {
+                        navigationTree: page.header.navigation.tree,
+                        activeResult: page.header.navigation.active
+                    } only %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

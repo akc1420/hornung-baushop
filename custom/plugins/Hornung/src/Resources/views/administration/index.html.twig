@@ -1,0 +1,13 @@
+{% sw_extends 'administration/index.html.twig' %}
+
+{% block administration_stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/dev24extendedvariants/administration/css/dev24-extended-variants.css') }}?{{ 'now'|date('U') }}" />
+{% endblock %}
+
+{% block administration_scripts %}
+    {{ parent() }}
+    
+    <script type="text/javascript" src="{{ asset('bundles/hornung/administration/js/hornung.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/dev24extendedvariants/administration/js/dev24-extended-variants.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,37 @@
+
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd"
+         bootstrap="tests/_bootstrap.php"
+         executionOrder="random"
+>
+    <php>
+        <ini name="error_reporting" value="-1"/>
+        <env name="APP_ENV" value="test"/>
+        <env name="APP_DEBUG" value="1"/>
+        <env name="APP_SECRET" value="s$cretf0rt3st"/>
+        <env name="SYMFONY_DEPRECATIONS_HELPER" value="weak"/>
+    </php>
+
+    <testsuites>
+        <testsuite name="SwagSocialShopping Testsuite">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <coverage>
+        <include>
+            <directory suffix=".php">./src/</directory>
+        </include>
+
+        <exclude>
+            <directory suffix=".php">./src/Migration</directory>
+            <directory suffix=".php">./bin</directory>
+            <directory suffix=".php">./tests</directory>
+            <directory suffix=".php">./vendor</directory>
+            <directory suffix="Exception.php">./src</directory>
+            <directory suffix=".php">./src/DataAbstractionLayer/Entity</directory>
+
+            <file>src/SwagSocialShopping.php</file>
+        </exclude>
+    </coverage>
+</phpunit>

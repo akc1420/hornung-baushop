@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../../platform/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Google reCAPTCHA V3</title>
+        <title lang="de-DE">Google reCAPTCHA V3</title>
+
+        <input-field>
+            <name>sitekey</name>
+            <required>false</required>
+            <label>Site key</label>
+            <label lang="de-DE">Websiteschlüssel</label>
+        </input-field>
+
+        <input-field>
+            <name>secret</name>
+            <required>false</required>
+            <label>Secret key</label>
+            <label lang="de-DE">Geheimer Schlüssel</label>
+        </input-field>
+
+        <input-field type="bool">
+            <name>isEnterprise</name>
+            <required>false</required>
+            <label>Is it a reCAPTCHA Enterprise key?</label>
+            <label lang="de-DE">Handelt es sich um reCAPTCHA Enterprise Schlüssel?</label>
+            <helpText>If you use reCAPTCHA Enterprise, then activate this setting.</helpText>
+            <helpText lang="de-DE">Wenn Sie reCAPTCHA Enterprise verwenden, dann aktivieren Sie dies Einstellung.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Forms</title>
+        <title lang="de-DE">Formulare</title>
+
+        <input-field type="multi-select">
+            <name>forms</name>
+            <label>Forms that are to be protected</label>
+            <label lang="de-DE">Formulare die geschützt werden sollen</label>
+            <options>
+                <option>
+                    <id>contact</id>
+                    <name>Contact</name>
+                    <name lang="de-DE">Kontakt</name>
+                </option>
+                <option>
+                    <id>register</id>
+                    <name>Sign up</name>
+                    <name lang="de-DE">Registrieren</name>
+                </option>
+                <option>
+                    <id>login</id>
+                    <name>Login</name>
+                    <name lang="de-DE">Anmelden</name>
+                </option>
+                <option>
+                    <id>recover</id>
+                    <name>Password recovery</name>
+                    <name lang="de-DE">Passwort-Wiederherstellung</name>
+                </option>
+            </options>
+            <defaultValue>["contact","register","login","recover"]</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>cmsExtensions</name>
+            <required>false</required>
+            <label>Consider CMS-Extensions plugin</label>
+            <label lang="de-DE">CMS-Extensions Plugin berücksichtigen</label>
+            <helpText>This setting is ignored if the CMS extensions plugin is not installed!</helpText>
+            <helpText lang="de-DE">Diese Einstellung wird ignoriert, wenn das Plugin CMS-Extensions nicht installiert ist!</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Others</title>
+        <title lang="de-DE">Sonstiges</title>
+
+
+        <input-field type="bool">
+            <name>hideBadge</name>
+            <required>false</required>
+            <label>Hide reCAPTCHA badge</label>
+            <label lang="de-DE">reCAPTCHA Badge ausblenden</label>
+            <helpText>If you hide the reCAPTCHA badge, then no Google Fonts will be loaded. However, you must include a corresponding note.</helpText>
+            <helpText lang="de-DE">Wenn Sie den reCAPTCHA Badge verstecken, dann werden keine Google Fonts geladen. Allerdings muss man eine entsprechende Anmerkung unterbringen.</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>badge</name>
+            <label>Position of the reCAPTCHA badge</label>
+            <label lang="de-DE">Position des reCAPTCHA Badge</label>
+            <helpText>Recommended only for English</helpText>
+            <helpText lang="de-DE">Nur bei englischer Sprache zu empfehlen</helpText>
+            <defaultValue>bottomright</defaultValue>
+            <options>
+                <option>
+                    <id>bottomright</id>
+                    <name>bottom right</name>
+                    <name lang="de-DE">Unten rechts</name>
+                </option>
+                <option>
+                    <id>bottomleft</id>
+                    <name>bottom left</name>
+                    <name lang="de-DE">Unten links</name>
+                </option>
+                <option>
+                    <id>inline</id>
+                    <name>Inline (customized positioning with CSS)</name>
+                    <name lang="de-DE">Inline (Eigene Positionierung per CSS)</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="float">
+            <name>score</name>
+            <required>false</required>
+            <label>Interpreting the score (0 - 1)</label>
+            <label lang="de-DE">Interpretation des Ergebnisses (0 - 1)</label>
+            <helpText>Based on the score distribution (0 - 1), you can take variable action on the interpretation of the result. The higher the threshold, the stricter the score. This means that 0.9 indicates human interaction and 0 indicates a bot. The value 1 is not recommended as it is very likely to block human interactions!</helpText>
+            <helpText lang="de-DE">Auf der Grundlage der Punkteverteilung (0 - 1) können Sie variable Maßnahmen auf die Interpretation des Ergebnisses ergreifen. Je höher der Schwellenwert ist, um so strenger wird bewertet. Das bedeutet, dass 0.9 auf eine menschliche Interaktion hinweist und 0 auf einen Bot. Der Wert 1 ist nicht zu empfehlen, da es sehr wahrscheinlich menschliche Interaktionen blockiert!</helpText>
+            <defaultValue>0.9</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>changeFrom</name>
+            <required>false</required>
+            <label>Change address recipient</label>
+            <label lang="de-DE">Adressempfänger ändern</label>
+            <helpText>Use Address recipient from the contact form.</helpText>
+            <helpText lang="de-DE">Adressempfänger aus dem Kontaktformular verwenden.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+    </card>
+</config>

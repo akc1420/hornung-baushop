@@ -1,0 +1,112 @@
+<div class="recommendy-item">
+
+    {% sw_include '@Storefront/storefront/recommendy/recommendy_tracking.html.twig' with{
+        product: product,
+        actionId: product.extensions.Recommendy.actionId
+    } %}
+
+
+    <div class="recommendy-item__thumbnail">
+
+        {% set name = product.translated.name %}
+        {% set id = product.id %}
+        {% set cover = product.cover.media %}
+        {% set variation = product.variation %}
+
+
+        {# fallback if display mode is not set #}
+        {% set displayMode = displayMode ?: 'standard' %}
+
+
+        {# set display mode 'cover' for box-image with standard display mode #}
+        {% if layout == 'image' and displayMode == 'standard' %}
+            {% set displayMode = 'cover' %}
+        {% endif %}
+
+
+        <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+           title="{{ name }}"
+           class="product-image-link is-{{ displayMode }}">
+            {% if cover.url %}
+                {% set attributes = {
+                    'class': 'product-image is-'~displayMode,
+                    'alt': (cover.translated.alt ?: name),
+                    'title': (cover.translated.title ?: name)
+                } %}
+
+                {% if displayMode == 'cover' or displayMode == 'contain' %}
+                    {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
+                {% endif %}
+
+                {% sw_thumbnails 'product-image-thumbnails' with {
+                    media: cover,
+                    sizes: sizes
+                } %}
+            {% else %}
+                <div class="product-image-placeholder">
+                    {% sw_icon 'placeholder' style {
+                        'size': 'fluid'
+                    } %}
+                </div>
+            {% endif %}
+        </a>
+
+    </div>
+    <div class="recommendy-item__content">
+        <div class="recommendy-item__wrapper-left">
+            <div class="recommendy-item__title">
+
+                <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                   class="product-name"
+                   title="{{ name }}">
+                    {{ name }}
+                </a>
+
+            </div>
+            <div class="recommendy-item__price">
+
+                <div class="product--price-info">
+                    <div class="product-detail-price-container">
+                        {% sw_include '@Storefront/storefront/recommendy/bundle/buy-widget-price.html.twig' %}
+                    </div>
+                </div>
+
+            </div>
+
+            {% set  configuratorSettings = product.extensions.rConfiguratorSettings.configuratorSettings %}
+            {% block buy_widget_configurator_include %}
+                {% if product.parentId and configuratorSettings|length > 0 %}
+
+                    {% if config('Recommendy.config.bundleLayout') != 2 %}
+                        <div class="recommendy-item__controls">
+                    {% endif %}
+
+                    <div class="product-detail-configurator-container">
+                        {% sw_include '@Storefront/storefront/recommendy/bundle/configurator.html.twig' %}
+                    </div>
+
+                    {% if config('Recommendy.config.bundleLayout') != 2 %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endblock %}
+
+            <div class="recommendy-item__button">
+                {% if product.active %}
+                    <div class="product-detail-form-container">
+                        {% sw_include '@Storefront/storefront/recommendy/bundle/buy-widget-form.html.twig' %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        {% if product.parentId and configuratorSettings|length > 0 and  config('Recommendy.config.bundleLayout') != 2 %}
+
+            <div class="recommendy-item__wrapper-right">
+                <div class="product-detail-configurator-container">
+                    {% sw_include '@Storefront/storefront/recommendy/bundle/configurator.html.twig' %}
+                </div>
+            </div>
+        {% endif %}
+
+    </div>
+</div>

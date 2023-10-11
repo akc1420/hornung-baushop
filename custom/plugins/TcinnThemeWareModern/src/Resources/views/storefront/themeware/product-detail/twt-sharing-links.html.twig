@@ -1,0 +1,18 @@
+{# ThemeWare "Sharing links" on product pages (Container) #}
+{#
+    Create container and include sharing links
+    type: buy-box
+
+    @Storefront/storefront/themeware/product-detail/twt-sharing-links.html.twig
+#}
+
+{# ThemeWare: Add sharing links to buy-box #}
+{% block twt_product_detail_sharing_links %}
+    <div class="twt-product-detail-sharing-links twt-sharing-links bottom" id="twt-detail-sharing-links">
+
+        {% block twt_product_detail_sharing_links_inner %}
+            {% sw_include '@Storefront/storefront/themeware/includes/twt-sharing-links-include.html.twig' ignore missing %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

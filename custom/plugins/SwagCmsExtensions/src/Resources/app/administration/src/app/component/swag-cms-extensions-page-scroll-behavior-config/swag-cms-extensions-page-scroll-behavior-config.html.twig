@@ -1,0 +1,98 @@
+{% block swag_cms_extensions_sidebar_page_scroll_behavior_config %}
+    <div class="swag-cms-page-config__scroll-navigation-page-settings">
+
+        {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling %}
+            {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_description %}
+                <div class="info-text">
+                    {{ $tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.description') }}
+                </div>
+            {% endblock %}
+
+            {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_active %}
+                <sw-switch-field
+                    v-model="scrollNavigationPageSettings.active"
+                    class="scroll-navigation__smooth-scrolling-active"
+                    :label="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.activeLabel')"
+                    :helpText="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.activeHelpText')"
+                    :disabled="!pageHasNavigationPoints  || !acl.can('cms.editor')"
+                    @change="pageSettingsActiveChanged">
+                </sw-switch-field>
+            {% endblock %}
+
+            {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_easing %}
+                <sw-single-select
+                    v-model="scrollNavigationPageSettings.easing"
+                    :label="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.easingLabel')"
+                    :options="easingTypes"
+                    :disabled="!smoothScrollingActive  || !acl.can('cms.editor')"
+                    @change="pageSettingsActiveChanged">
+                </sw-single-select>
+            {% endblock %}
+
+            {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_duration %}
+                <sw-number-field
+                    v-model="scrollNavigationPageSettings.duration"
+                    class="scroll-navigation__smooth-scrolling-duration"
+                    :label="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.durationLabel')"
+                    :disabled="!smoothScrollingActive || !acl.can('cms.editor')"
+                    :digits="0"
+                    @change="pageSettingsActiveChanged">
+
+                    {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_duration_suffix %}
+                        <template #suffix>
+                            <span class="scroll-navigation__smooth-scrolling-duration-suffix">
+                                {{ $tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.durationSuffix') }}
+                            </span>
+                        </template>
+                    {% endblock %}
+                </sw-number-field>
+            {% endblock %}
+
+            {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_advanced %}
+                <sw-sidebar-collapse
+                    class="scroll-navigation__smooth-scrolling-advanced-settings"
+                    :expandOnLoading="false">
+
+                    {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_advanced_header %}
+                        <template #header>
+                            {{ $tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.advancedSettingsLabel') }}
+                        </template>
+                    {% endblock %}
+
+                    {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_advanced_content %}
+                        <template #content>
+
+                            {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_bouncy %}
+                                <sw-switch-field
+                                    v-model="scrollNavigationPageSettings.bouncy"
+                                    class="scroll-navigation__smooth-scrolling-bouncy"
+                                    :label="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.bouncyLabel')"
+                                    :disabled="!smoothScrollingActive || scrollNavigationPageSettings.easing === 'linear' || !acl.can('cms.editor')"
+                                    @change="pageSettingsActiveChanged">
+                                </sw-switch-field>
+                            {% endblock %}
+
+                            {% block swag_cms_extensions_sidebar_page_scroll_behavior_config_smooth_scrolling_easing_degree %}
+                                {# ToDo CMS-11 - Re-enable helptext and remove tooltip #}
+                                <sw-number-field
+                                    v-model="scrollNavigationPageSettings.easingDegree"
+                                    class="scroll-navigation__smooth-scrolling-easing-degree"
+                                    :label="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.easingDegreeLabel')"
+                                    :disabled="easingDegreeDisabled  || !acl.can('cms.editor')"
+{#                                    :helpText="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.easingDegreeHelpText')"#}
+                                    v-tooltip="{
+                                        message: $tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.easingDegreeHelpText')
+                                    }"
+                                    :digits="0"
+                                    :min="2"
+                                    :max="32"
+                                    @change="pageSettingsActiveChanged">
+                                </sw-number-field>
+                            {% endblock %}
+                        </template>
+                    {% endblock %}
+                </sw-sidebar-collapse>
+            {% endblock %}
+        {% endblock %}
+    </div>
+{% endblock %}

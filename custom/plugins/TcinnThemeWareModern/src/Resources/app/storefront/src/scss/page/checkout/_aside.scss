@@ -1,0 +1,59 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Checkout/Aside
+	==================================================
+
+	Origin: Shopware base & skin
+*/
+
+// ThemeWare: Checkout adjustments
+// TODO: Shopware Vererbung prüfen...
+.checkout-aside { // TODO: _cart.scss / _finish.scss / _confirm.scss / _register.scss ?! #custom
+	.checkout-aside-summary {
+		margin-top: $twt-basegrid-spacing;
+		border-radius: null-pixel-unit($twt-border-radius);
+	}
+
+	// ThemeWare: As we modify the $font-size-default we have to overwrite some items to work properly
+	.checkout-aside-summary-label:not(.checkout-aside-summary-total) {
+		font-size: .875rem; // ThemeWare: Overwrite body $font-size-default
+	}
+	.checkout-aside-summary-label {
+		 &.checkout-aside-summary-total {
+			font-size: 1rem; // ThemeWare: Overwrite $font-size-lg
+		}
+	}
+
+	// ThemeWare: As we modify the $font-size-default we have to overwrite some items to work properly
+	.checkout-aside-summary-value:not(.checkout-aside-summary-total) {
+		font-size: .875rem; // ThemeWare: Overwrite body $font-size-default
+	}
+	.checkout-aside-summary-value {
+		&.checkout-aside-summary-total {
+			font-size: 1rem; // ThemeWare: Overwrite $font-size-lg
+		}
+	}
+
+	.checkout-aside-add-code {
+		input[name="code"] {
+			border-top-left-radius: null-pixel-unit($twt-border-radius);
+			border-bottom-left-radius: null-pixel-unit($twt-border-radius);
+		}
+	}
+
+	// ThemeWare: As we modify the $font-size-default we have to overwrite some items to work properly
+	.checkout-aside-item-data {
+		font-size: .875rem; // ThemeWare: Overwrite body $font-size-default
+	}
+}
+
+// ThemeWare: As we modify the $font-size-default we have to overwrite some items to work properly
+.product-feature-feature {
+	font-size: .75rem;
+}

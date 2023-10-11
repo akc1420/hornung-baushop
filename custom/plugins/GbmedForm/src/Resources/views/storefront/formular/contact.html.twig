@@ -1,0 +1,10 @@
+{% sw_extends "@Storefront/storefront/formular/index.html.twig" %}
+
+{% block gbmed_form_formular_section_form_form %}
+    {% sw_include '@Storefront/storefront/element/cms-element-form/form-types/gbmed-form-contact.html.twig'
+        with {
+            action: 'frontend.form.contact.send',
+            submitText: 'contact.formSubmit'
+        }
+    %}
+{% endblock %}

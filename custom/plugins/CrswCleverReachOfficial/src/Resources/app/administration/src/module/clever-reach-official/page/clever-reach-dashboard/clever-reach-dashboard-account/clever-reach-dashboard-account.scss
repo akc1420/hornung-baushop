@@ -1,0 +1,127 @@
+.cr-account-label {
+  background: transparent !important;
+  font-size: 14px;
+  margin: 0;
+  padding: 0 !important;
+  height: 22px;
+  line-height: 17px;
+}
+
+.cr-account-content {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.cr-account-card {
+  display: flex;
+  flex-direction: column;
+  padding: 0 !important;
+}
+
+.cr-card {
+  width: 100%;
+  max-width: 100%;
+  font-size: 20px;
+  line-height: 54px;
+}
+
+.cr-card .sw-card__content {
+  height: max-content;
+}
+
+.cr-disconnect-btn {
+  width: auto;
+  max-width: 100%;
+  word-break: break-all;
+  white-space: normal;
+  margin-right: 13px;
+}
+
+.cr-help-support-btn {
+  width: auto;
+  max-width: 100%;
+  word-break: break-all;
+  white-space: normal;
+}
+
+.cr-account-buttons {
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  line-height: 25px;
+}
+
+@media (max-width: 1612px) {
+  .cr-account-btns-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .cr-disconnect-btn {
+    margin-bottom: 15px;
+    margin-right: 0 !important;
+  }
+}
+
+@media (max-width: 1140px) {
+  .cr-account-btns-div {
+    justify-content: flex-start !important;
+  }
+
+  .cr-account-buttons {
+    justify-content: flex-start;
+  }
+}
+
+.cr-modal {
+  height: 100%;
+}
+
+.cr-modal .sw-modal__body {
+  padding: 0 !important;
+}
+
+.cr-modal .sw-modal__dialog {
+  max-width: 645px !important;
+}
+
+@media (max-width: 500px) {
+  .cr-modal .sw-modal__dialog {
+    max-width: 90% !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: max-content;
+  }
+
+  .cr-modal .sw-modal__title {
+    white-space: initial !important;
+  }
+}
+
+.cr-modal-description {
+  background: transparent !important;
+  font-size: 16px;
+  padding: 30px;
+}
+
+.cr-modal-description .sw-label__caption {
+  display: block !important;
+  white-space: initial;
+  line-height: 20px;
+}
+
+.cr-modal-btns {
+  margin-top: 39px;
+  width: 100%;
+  height: 65px;
+  background: #f0f2f5;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 30px;
+  border-radius: 4%;
+}
+
+.cr-modal-cancel {
+  margin-right: 10px;
+}

@@ -1,0 +1,36 @@
+{% sw_extends '@Storefront/storefront/component/account/register.html.twig' %}
+
+{% block component_account_register_address_shipping %}
+    <div class="pickware-dhl-location-finder-wrapper" data-behavior="modal">
+        {{ parent() }}
+
+        <button type="button"
+                class="pickware-dhl-location-finder__select-on-map-button btn btn-outline-secondary d-none"
+                data-toggle="modal"
+                data-target=".pickware-dhl-location-finder-modal"
+                title="{{ "pickware-dhl.location-finder.storefront.select-on-map"|trans|striptags }}">
+            {{ "pickware-dhl.location-finder.storefront.select-on-map"|trans|sw_sanitize }}
+        </button>
+
+        <div class="modal fade pickware-dhl-location-finder-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title pickware-dhl-location-finder-modal__title">
+                            {{ "pickware-dhl.location-finder.storefront.title"|trans|sw_sanitize }}
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% sw_include 'storefront/pickware-dhl/location-finder/location-finder.html.twig' with {
+                            'showTitle': false,
+                            'prefix': 'shippingAddress',
+                        } %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

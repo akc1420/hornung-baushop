@@ -1,0 +1,33 @@
+{% block clever_reach_dashboard_initialSync %}
+    <div>
+        <div v-if="initialSync" class="cr-initial-sync">
+            <div class="cr-initial-sync-title">
+                <sw-label variant="neutral" class="cr-initial-sync-title-label">
+                    {{ $tc('clever-reach.initialSync.accountSetup') }}
+                </sw-label>
+                <sw-label variant="neutral" class="cr-initial-sync-title-label cr-right">
+                    {{ progressValue }} / 100 %
+                </sw-label>
+            </div>
+            <sw-progress-bar :value="progressValue" :maxValue="100" class="cr-progress-bar">
+            </sw-progress-bar>
+            <sw-alert variant="info" class="cr-initial-sync-alert">
+                <sw-label id="cr-recipient-list" variant="neutral" class="cr-initial-sync-label">
+                    {{ $tc('clever-reach.initialSync.creatingList') }}
+                </sw-label>
+                <sw-label id="cr-data-fields" variant="neutral" class="cr-initial-sync-label">
+                    {{ $tc('clever-reach.initialSync.addingFields') }}
+                </sw-label>
+                <sw-label id="cr-recipient-import" variant="neutral" class="cr-initial-sync-label">
+                    {{ $tc('clever-reach.initialSync.importingRecipients') }}
+                </sw-label>
+            </sw-alert>
+        </div>
+        <clever-reach-error :error-title="errorTitle"
+                            :error-message="errorMessage"
+                            :error-description="errorDescription"
+                            :button-text="buttonText"
+                            v-if="showError">
+        </clever-reach-error>
+    </div>
+{% endblock %}

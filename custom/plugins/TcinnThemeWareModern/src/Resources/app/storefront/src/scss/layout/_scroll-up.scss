@@ -1,0 +1,45 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Scroll up
+    ==============================================
+    Shows a scroll up button at the bottom right of the page.
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Scroll up button adjustments
+.scroll-up-button {
+  .btn {
+    @include button-variant($twt-scroll-up-background-color, $twt-scroll-up-border-color, $twt-scroll-up-background-color-hover, $twt-scroll-up-border-color-hover);
+    width: 45px;
+    height: 45px;
+    text-overflow: unset;
+
+    @if $twt-scroll-up-corner-type == 1 { // 1 = not rounded
+      @include border-radius(0);
+    }
+
+    // 2 = rounded
+    // no adjustments
+
+    @if $twt-scroll-up-corner-type == 3 {  // 1 = round
+      @include border-radius(50px);
+    }
+
+    box-shadow: $twt-scroll-up-box-shadow $twt-scroll-up-box-shadow-color;
+
+    .icon {
+      color: $twt-scroll-up-color;
+
+      &:hover {
+        color: $twt-scroll-up-color-hover;
+      }
+    }
+  }
+}

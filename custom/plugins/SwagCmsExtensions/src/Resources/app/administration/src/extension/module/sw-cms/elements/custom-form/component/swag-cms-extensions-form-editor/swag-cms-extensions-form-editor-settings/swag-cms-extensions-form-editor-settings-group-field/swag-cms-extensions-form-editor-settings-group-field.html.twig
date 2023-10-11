@@ -1,0 +1,20 @@
+{% block swag_cms_extensions_form_editor_settings_group_field %}
+    <div class="swag-cms-extensions-form-editor-settings-group-field">
+
+        {% block swag_cms_extensions_form_editor_settings_group_field_header %}
+            <swag-cms-extensions-form-editor-settings-field-type-header v-if="displayHeader">
+            </swag-cms-extensions-form-editor-settings-field-type-header>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_group_field_content %}
+            <component :is="fieldComponentName">
+            </component>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_group_field_footer %}
+            <swag-cms-extensions-form-editor-settings-field-type-footer>
+            </swag-cms-extensions-form-editor-settings-field-type-footer>
+        {% endblock %}
+
+    </div>
+{% endblock %}

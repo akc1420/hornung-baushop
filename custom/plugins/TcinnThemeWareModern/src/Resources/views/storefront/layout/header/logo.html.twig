@@ -1,0 +1,38 @@
+{% sw_extends '@Storefront/storefront/layout/header/logo.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtHeaderType = theme_config('twt-header-type') %}
+{% set twtHeaderLogoType = theme_config('twt-header-logo-type') %}
+{% set twtShoppingExperiencesHeaderLogoImage = theme_config('twt-shopping-experiences-header-logo-image') %}
+{% set twtShoppingExperiencesHeaderPosition = theme_config('twt-shopping-experiences-header-position') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# TODO: HC-Architecture... #}
+{# ThemeWare: Adjustments on the header logo #}
+{% block layout_header_logo_image %}
+	{# Default logo #}
+	{% if twtHeaderLogoType != 2 %}
+		{{ parent() }}
+	{% endif %}
+
+	{# ThemeWare Text-Logo #}
+	{% block twt_layout_header_textlogo %}
+		{% if twtHeaderLogoType == 2 %}
+			{% sw_include '@Storefront/storefront/themeware/includes/twt-textlogo-include.html.twig' ignore missing %}
+		{% endif %}
+	{% endblock %}
+
+	{# ThemeWare: Add shopping-experiences logo 'header-logo-shopping-experiences-link' (not with "Header 10"   #customHeader) #}
+	{% if twtShoppingExperiencesHeaderPosition == 2 and twtHeaderType != 10 %}
+		{% if twtShoppingExperiencesHeaderLogoImage %}
+			<a class="header-logo-shopping-experiences-link" href="{{ path('frontend.home.page') }}" title="{{ "header.logoLink"|trans|striptags }}">
+				<img src="{{ twtShoppingExperiencesHeaderLogoImage|sw_encode_url }}" alt="{{ "header.logoLink"|trans|striptags }}" class="img-fluid header-logo-shopping-experiences-img"/>
+			</a>
+		{% endif %}
+	{% endif %}
+{% endblock %}

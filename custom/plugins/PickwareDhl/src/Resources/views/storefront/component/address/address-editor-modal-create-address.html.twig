@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/component/address/address-editor-modal-create-address.html.twig' %}
+
+{% block component_address_address_editor_modal_create_address_form %}
+    <div class="pickware-dhl-location-finder-wrapper" data-behavior="inline">
+        {{ parent() }}
+
+        <div class="mt-5">
+            {% sw_include 'storefront/pickware-dhl/location-finder/location-finder.html.twig' %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block component_address_address_editor_modal_create_address_form_actions_submit %}
+    {{ parent() }}
+
+    <button type="button"
+            class="pickware-dhl-location-finder__select-on-map-button btn btn-outline-secondary d-none"
+            title="{{ "pickware-dhl.location-finder.storefront.select-on-map"|trans|striptags }}">
+        {{ "pickware-dhl.location-finder.storefront.select-on-map"|trans|sw_sanitize }}
+    </button>
+{% endblock %}

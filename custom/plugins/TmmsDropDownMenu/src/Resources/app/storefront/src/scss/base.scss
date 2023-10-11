@@ -1,0 +1,15 @@
+@import 'dropdown-menu';
+@import 'dropdown-sticky-effect';
+
+.icon-home-container {
+    .icon {
+        &.icon-home {
+            width: 18px;
+            height: 18px;
+
+            & > svg {
+                top: 2px;
+            }
+        }
+    }
+}

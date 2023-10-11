@@ -1,0 +1,12 @@
+{% block block_custom_form %}
+    {% set element = block.slots.getSlot('content') %}
+    {% set columns = 1 %}
+
+    <div class="col-12" data-cms-element-id="{{ element.id }}">
+
+        {% block block_custom_form_inner %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig"  %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

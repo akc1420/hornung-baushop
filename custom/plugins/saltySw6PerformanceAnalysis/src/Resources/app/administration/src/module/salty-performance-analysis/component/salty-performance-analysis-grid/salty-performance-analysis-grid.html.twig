@@ -1,0 +1,23 @@
+<sw-data-grid
+    :dataSource="values"
+    :isLoading="isLoading"
+    :columns="gridColumns"
+    :showSettings="false"
+    :showSelection="false"
+    :showActions="false">
+    <template slot="column-status" slot-scope="{ item }">
+        <sw-icon name="default-badge-warning" v-if="item.status.type === 'warning'" small color="#FFB75D"></sw-icon>
+        <sw-icon name="small-default-x-line-medium" v-if="item.status.type === 'error'" small color="#DE294C"></sw-icon>
+        <sw-icon name="default-badge-info" v-if="item.status.type === 'info'" small color="#189EFF"></sw-icon>
+        <sw-icon name="small-default-checkmark-line-medium" v-if="item.status.type === 'success'" small color="#37D046"></sw-icon>
+    </template>
+    <template slot="column-name" slot-scope="{ item }">
+        <span v-html="$tc(getSnippetName(item.name, 'name'))"></span>
+    </template>
+    <template slot="column-information" slot-scope="{ item }">
+        <a v-bind:href="$tc(getSnippetName(item.name, 'information'))" rel="noopener" target="_blank">
+            {{ $tc('saltyPerformanceAnalysis.info') }}
+        </a>
+    </template>
+</sw-data-grid>
+

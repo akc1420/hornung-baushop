@@ -1,0 +1,24 @@
+{
+  "sisi-elasticsearch": {
+    "cluster": {
+      "info": "Server status",
+      "nodes": "Number of nodes",
+      "status": "State",
+      "version": "Elasticsearch version"
+    },
+    "title": "Elasticsearch Index management",
+    "index": {
+      "delete": "Delete",
+      "docs": "Documents",
+      "entity": "Object",
+      "id": "ID",
+      "index": "Index",
+      "isFinish": "Finished",
+      "language": "Language",
+      "shop": "Sales Channel",
+      "size": "Size",
+      "time": "Time",
+      "token": "Token"
+    }
+  }
+}

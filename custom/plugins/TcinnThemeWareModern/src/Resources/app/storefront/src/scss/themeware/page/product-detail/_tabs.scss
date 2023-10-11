@@ -1,0 +1,55 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Product detail tabs
+    ==================================================
+
+*/
+
+// ThemeWare: Properties as tab ------------------------------
+
+//.twt-product-detail-properties {}
+//.twt-product-properties-description-title {}
+//.twt-product-detail-properties-info {}
+
+// ThemeWare: Manufacturer tab ------------------------------
+
+@if $twt-product-detail-tab-manufacturer-show == 2 {
+  //.twt-product-detail-manufacturer {}
+  //.twt-product-detail-manufacturer-title {}
+  //.twt-product-detail-manufacturer-text {}
+
+  .twt-product-detail-manufacturer-logo {
+    max-width: 200px;
+    max-height: 70px;
+  }
+
+  @include media-breakpoint-down(sm) { // max 767.98px
+    .twt-product-detail-manufacturer-logo {
+      margin-top: 15px;
+    }
+  }
+
+  .twt-product-manufacturer-more-information-title {
+    margin-top: 1.5rem;
+    margin-bottom: .3125rem;
+  }
+
+  ul.twt-product-detail-manufacturer-more-information {
+    margin: 1.5rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .twt-product-manufacturer-more-information-title + ul.twt-product-detail-manufacturer-more-information {
+    margin-top: 0;
+  }
+
+  //li.twt-product-detail-manufacturer-more-information-item {}
+  //a.twt-product-detail-manufacturer-more-information-link {}
+}

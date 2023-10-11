@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_footer_inner %}
+    {{ parent() }}
+
+    {% sw_include '@Hornung/storefront/layout/footer/footer-logos.html.twig' %}
+{% endblock %}

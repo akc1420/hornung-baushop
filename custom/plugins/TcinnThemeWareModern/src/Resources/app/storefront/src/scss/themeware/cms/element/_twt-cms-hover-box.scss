@@ -1,0 +1,577 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS element "Hover box"
+	==================================================
+
+*/
+
+// TODO: Add performance configuration to disable styling
+// TODO: Add font styling and sizing
+
+.cms-element-twt-hover-box {
+    // Image link
+    .cms-image-link {
+        width: 100%;
+    }
+
+    // Image container
+    .cms-image-container {
+        img {
+            transition: all .4s ease-in-out;
+        }
+    }
+
+    // Content container
+    .cms-content-container {
+        transition: all .4s ease-in-out;
+    }
+
+    // Content styling
+    .twt-hover-box-content {
+        .headline {
+            margin: 0 !important;
+            padding: 0 !important;
+
+            span, p {
+                display: block;
+                margin-bottom: $paragraph-margin-bottom;
+            }
+        }
+
+        width: 100%;
+        padding: 15px;
+    }
+
+    // Animations ------------------------------
+
+    // Add hover effects (except on phones)
+    // - Hover effects are always applied because this element has an explicit hover configuration. (alternatively use a:hover instead of .cms-image-container:hover)
+    
+    @include media-breakpoint-up(sm) { // min 576px
+
+        // Fade ------------------------------
+
+        &.twt-fade-in {
+            //.cms-image-container img {}
+
+            .cms-content-container {
+                opacity: 0;
+            }
+
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    opacity: 1;
+                }
+            }
+        }
+        &.twt-fade-out {
+            //.cms-image-container img {}
+
+            .cms-content-container {
+                opacity: 1;
+            }
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    opacity: 0;
+                }
+            }
+        }
+
+        // Slide ------------------------------
+
+        &.twt-slide-up {
+            //.cms-image-container img {}
+
+            .cms-content-container {
+                transform: translateY(100.05%);
+            }
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    transform: translateY(0);
+                }
+            }
+        }
+        &.twt-slide-up-out {
+            //.cms-image-container img {}
+
+            .cms-content-container {
+                transform: translateY(0);
+            }
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    transform: translateY(-100.05%);
+                }
+            }
+        }
+
+        &.twt-slide-right {
+            //.cms-image-container img {}
+
+            .cms-content-container {
+                transform: translateX(-100.05%);
+            }
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    transform: translateX(0);
+                }
+            }
+        }
+        &.twt-slide-right-out {
+            //.cms-image-container img {}
+
+            .cms-content-container {
+                transform: translateX(0);
+            }
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    transform: translateX(100.05%);
+                }
+            }
+        }
+
+        &.twt-slide-down {
+            //.cms-image-container img {}
+
+            .cms-content-container {
+                transform: translateY(-100.05%);
+            }
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    transform: translateY(0);
+                }
+            }
+        }
+        &.twt-slide-down-out {
+            //.cms-image-container img {}
+
+            .cms-content-container {
+                transform: translateY(0);
+            }
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    transform: translateY(100.05%);
+                }
+            }
+        }
+
+        &.twt-slide-left {
+            .cms-image-container img {}
+
+            .cms-content-container {
+                transform: translateX(100.05%);
+            }
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    transform: translateX(0);
+                }
+            }
+        }
+        &.twt-slide-left-out {
+            //.cms-image-container img {}
+
+            .cms-content-container {
+                transform: translateX(0);
+            }
+
+            .cms-image-container:hover {
+                //img {}
+
+                .cms-content-container {
+                    transform: translateX(-100.05%);
+                }
+            }
+        }
+
+        // Push ------------------------------
+
+        &.twt-push-up {
+            .cms-image-container .cms-image {
+                transform: translateY(0);
+            }
+
+            .cms-content-container {
+                transform: translateY(100.05%);
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: translateY(-100.05%);
+                }
+
+                .cms-content-container {
+                    transform: translateY(0);
+                }
+            }
+        }
+        &.twt-push-up-out {
+            .cms-image-container .cms-image {
+                transform: translateY(100.05%);
+            }
+
+            .cms-content-container {
+                transform: translateY(0);
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: translateY(0);
+                }
+
+                .cms-content-container {
+                    transform: translateY(-100.05%);
+                }
+            }
+        }
+
+        &.twt-push-right {
+            .cms-image-container .cms-image {
+                transform: translateX(0);
+            }
+
+            .cms-content-container {
+                transform: translateX(-100.05%);
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: translateX(100.05%);
+                }
+
+                .cms-content-container {
+                    transform: translateX(0);
+                }
+            }
+        }
+        &.twt-push-right-out {
+            .cms-image-container .cms-image {
+                transform: translateX(-100.05%);
+            }
+
+            .cms-content-container {
+                transform: translateX(0);
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: translateX(0);
+                }
+
+                .cms-content-container {
+                    transform: translateX(100.05%);
+                }
+            }
+        }
+
+        &.twt-push-down {
+            .cms-image-container .cms-image {
+                transform: translateY(0);
+            }
+
+            .cms-content-container {
+                transform: translateY(-100.05%);
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: translateY(100.05%);
+                }
+
+                .cms-content-container {
+                    transform: translateY(0);
+                }
+            }
+        }
+        &.twt-push-down-out {
+            .cms-image-container .cms-image {
+                transform: translateY(-100.05%);
+            }
+
+            .cms-content-container {
+                transform: translateY(0);
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: translateY(0);
+                }
+
+                .cms-content-container {
+                    transform: translateY(100.05%);
+                }
+            }
+        }
+
+        &.twt-push-left {
+            .cms-image-container .cms-image {
+                transform: translateX(0);
+            }
+
+            .cms-content-container {
+                transform: translateX(100.05%);
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: translateX(-100.05%);
+                }
+
+                .cms-content-container {
+                    transform: translateX(0);
+                }
+            }
+        }
+        &.twt-push-left-out {
+            .cms-image-container .cms-image {
+                transform: translateX(100.05%);
+            }
+
+            .cms-content-container {
+                transform: translateX(0);
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: translateX(0);
+                }
+
+                .cms-content-container {
+                    transform: translateX(-100.05%);
+                }
+            }
+        }
+
+        // Hinge ------------------------------
+
+        &.twt-hinge-up {
+            .cms-image-container .cms-image {
+                transform-origin: 50% 0;
+            }
+
+            .cms-content-container {
+                transform: rotateX(90deg);
+                transform-origin: 50% 100%;
+                opacity: 0;
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: rotateX(-90deg);
+                    opacity: 0;
+                }
+
+                .cms-content-container {
+                    transform: rotateX(0);
+                    opacity: 1;
+                }
+            }
+        }
+        &.twt-hinge-up-out {
+            .cms-image-container .cms-image {
+                transform: rotateX(90deg);
+                transform-origin: 50% 100%;
+                opacity: 0;
+            }
+
+            .cms-content-container {
+                transform-origin: 50% 0;
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: rotateX(0);
+                    opacity: 1;
+                }
+
+                .cms-content-container {
+                    transform: rotateX(-90deg);
+                    opacity: 0;
+                }
+            }
+        }
+
+        &.twt-hinge-right {
+            .cms-image-container .cms-image {
+                transform-origin: 100% 50%;
+            }
+
+            .cms-content-container {
+                transform: rotateY(90deg);
+                transform-origin: 0 50%;
+                opacity: 0;
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: rotateY(-90deg);
+                    opacity: 0;
+                }
+
+                .cms-content-container {
+                    transform: rotateY(0);
+                    opacity: 1;
+                }
+            }
+        }
+        &.twt-hinge-right-out {
+            .cms-image-container .cms-image {
+                transform: rotateY(90deg);
+                transform-origin: 0 50%;
+                opacity: 0;
+            }
+
+            .cms-content-container {
+                transform-origin: 100% 50%;
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: rotateY(0);
+                    opacity: 1;
+                }
+
+                .cms-content-container {
+                    transform: rotateY(-90deg);
+                    opacity: 0;
+                }
+            }
+        }
+
+        &.twt-hinge-down {
+            .cms-image-container .cms-image {
+                transform-origin: 50% 100%;
+            }
+
+            .cms-content-container {
+                transform: rotateX(-90deg);
+                transform-origin: 50% -50%;
+                opacity: 0;
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: rotateX(90deg);
+                    opacity: 0;
+                }
+
+                .cms-content-container {
+                    transform: rotateX(0);
+                    opacity: 1;
+                }
+            }
+        }
+        &.twt-hinge-down-out {
+            .cms-image-container .cms-image {
+                transform: rotateX(-90deg);
+                transform-origin: 50% -50%;
+                opacity: 0;
+            }
+
+            .cms-content-container {
+                transform-origin: 50% 100%;
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: rotateX(0);
+                    opacity: 1;
+                }
+
+                .cms-content-container {
+                    transform: rotateX(90deg);
+                    opacity: 0;
+                }
+            }
+        }
+
+        &.twt-hinge-left {
+            .cms-image-container .cms-image {
+                transform-origin: 0 50%;
+            }
+
+            .cms-content-container {
+                transform: rotateY(-90deg);
+                transform-origin: 100% 50%;
+                opacity: 0;
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: rotateY(90deg);
+                    opacity: 0;
+                }
+
+                .cms-content-container {
+                    transform: rotateY(0);
+                    opacity: 1;
+                }
+            }
+        }
+        &.twt-hinge-left-out {
+            .cms-image-container .cms-image {
+                transform: rotateY(-90deg);
+                transform-origin: 100% 50%;
+                opacity: 0;
+            }
+
+            .cms-content-container {
+                transform-origin: 0 50%;
+            }
+
+            .cms-image-container:hover {
+                img {
+                    transform: rotateY(0);
+                    opacity: 1;
+                }
+
+                .cms-content-container {
+                    transform: rotateY(90deg);
+                    opacity: 0;
+                }
+            }
+        }
+
+        &[class*='twt-hinge-'] {
+            .cms-image-container {
+                perspective: 900px;
+            }
+        }
+    }
+
+    .content {
+        position: relative;
+    }
+
+}

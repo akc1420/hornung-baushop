@@ -1,0 +1,163 @@
+{% block swag_cms_extensions_form_editor_group_field %}
+    <div class="swag-cms-extensions-form-editor-group-field">
+
+        {% block swag_cms_extensions_form_editor_group_field_card %}
+            <sw-card v-draggable="fieldDragData"
+                     v-droppable="fieldDropData"
+                     class="swag-cms-extensions-form-editor-group-field__card"
+                     :class="{ 'is--dragging': field.isDragging, 'has--error': fieldHasError }">
+
+                {% block swag_cms_extensions_form_editor_group_field_card_content %}
+                    <div class="swag-cms-extensions-form-editor-group-field__content">
+
+                        {% block swag_cms_extensions_form_editor_group_field_card_content_drag_icon %}
+                            <div class="swag-cms-extensions-form-editor-group-field__drag-icon">
+                                <sw-icon name="small-default-x-drag-horizontal" small></sw-icon>
+                            </div>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_form_editor_group_field_card_content_title %}
+                            <div class="swag-cms-extensions-form-editor-group-field__title"
+                                 @click="onTitleClick">
+                                <p class="swag-cms-extensions-form-editor-group-field__title-text"
+                                   :class="{ active: isActive }">
+                                    <template v-if="field.label">
+                                        <span>{{ field.technicalName }}</span> <span>(</span><span>{{ field.label }}</span><span>)</span>
+                                    </template>
+
+                                    <template v-else>
+                                        <span>{{ field.technicalName }}</span>
+                                    </template>
+                                </p>
+                            </div>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_wrapper %}
+                            <div class="swag-cms-extensions-form-editor-group-field__context-button">
+
+                                {% block swag_cms_extensions_form_editor_group_field_card_content_context_button %}
+                                    <sw-context-button>
+
+                                        {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items %}
+                                            <div
+                                                class="swag-cms-extensions-form-editor-group-field__context-button-container">
+
+                                                {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_move_up %}
+                                                    <sw-context-menu-item @click="onMoveUp">
+
+                                                        {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_move_up_text %}
+                                                            {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.group.actions.moveUp') }}
+                                                        {% endblock %}
+
+                                                    </sw-context-menu-item>
+                                                {% endblock %}
+
+                                                {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_move_down %}
+                                                    <sw-context-menu-item @click="onMoveDown">
+
+                                                        {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_move_down_text %}
+                                                            {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.group.actions.moveDown') }}
+                                                        {% endblock %}
+
+                                                    </sw-context-menu-item>
+                                                {% endblock %}
+
+                                                {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_move_to_group %}
+                                                    <sw-context-menu-item :disabled="groupCount <= 1"
+                                                                          @click="onMoveToGroupModalOpen">
+
+                                                        {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_move_to_group_text %}
+                                                            {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.group.actions.moveToGroup') }}
+                                                        {% endblock %}
+
+                                                    </sw-context-menu-item>
+                                                {% endblock %}
+
+                                                {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_divider %}
+                                                    <sw-context-menu-divider>
+                                                    </sw-context-menu-divider>
+                                                {% endblock %}
+
+                                                {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_edit %}
+                                                    <sw-context-menu-item @click="onEdit">
+
+                                                        {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_edit_text %}
+                                                            {{ $tc('global.default.edit') }}
+                                                        {% endblock %}
+
+                                                    </sw-context-menu-item>
+                                                {% endblock %}
+
+                                                {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_duplicate %}
+                                                    <sw-context-menu-item :disabled="!isSystemDefaultLanguage"
+                                                                          @click="onDuplicate">
+
+                                                        {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_duplicate_text %}
+                                                            {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.group.actions.duplicate') }}
+                                                        {% endblock %}
+
+                                                    </sw-context-menu-item>
+                                                {% endblock %}
+
+                                                {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_delete %}
+                                                    <sw-context-menu-item variant="danger"
+                                                                          :disabled="!isSystemDefaultLanguage"
+                                                                          @click="onDelete">
+
+                                                        {% block swag_cms_extensions_form_editor_group_field_card_content_context_button_items_delete_text %}
+                                                            {{ $tc('global.default.delete') }}
+                                                        {% endblock %}
+
+                                                    </sw-context-menu-item>
+                                                {% endblock %}
+
+                                            </div>
+                                        {% endblock %}
+
+                                    </sw-context-button>
+                                {% endblock %}
+
+                            </div>
+                        {% endblock %}
+
+                    </div>
+                {% endblock %}
+
+                {% block swag_cms_extensions_form_editor_group_field_move_to_group_modal %}
+                    <sw-modal v-if="showMoveFieldToGroupModal"
+                              variant="small"
+                              :title="$tc('swag-cms-extensions.sw-cms.components.form-editor.moveToGroupModal.title')"
+                              @modal-close="onMoveToGroupModalClose">
+
+                        {% block swag_cms_extensions_form_editor_group_field_move_to_group_modal_content %}
+                            <sw-single-select v-model="moveToGroupId"
+                                              :options="moveToGroups"
+                                              :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.moveToGroupModal.groupSelectLabel')"
+                                              valueProperty="id"
+                                              labelProperty="technicalName">
+                            </sw-single-select>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_form_editor_group_field_move_to_group_modal_footer %}
+                            <template #modal-footer>
+                                <sw-button size="small"
+                                           @click="onMoveToGroupModalClose">
+                                    {{ $tc('global.default.cancel') }}
+                                </sw-button>
+
+                                <sw-button variant="primary"
+                                           size="small"
+                                           @click="moveFieldToGroup">
+                                    {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.moveToGroupModal.primaryButtonText') }}
+                                </sw-button>
+                            </template>
+                        {% endblock %}
+
+                    </sw-modal>
+                {% endblock %}
+
+            </sw-card>
+        {% endblock %}
+
+    </div>
+{% endblock %}

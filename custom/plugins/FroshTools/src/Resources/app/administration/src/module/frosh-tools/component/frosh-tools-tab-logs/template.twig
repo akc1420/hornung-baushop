@@ -1,0 +1,67 @@
+<sw-card-view>
+    <sw-card class="frosh-tools-tab-logs__logs-card" :title="$tc('frosh-tools.tabs.logs.title')" :isLoading="isLoading" :large="true">
+        <template #toolbar>
+            <!-- @todo: Make the refresh button fancy -->
+            <sw-button variant="ghost" @click="refresh"><sw-icon :small="true" name="default-arrow-360-left"></sw-icon></sw-button>
+            <sw-single-select
+                :options="logFiles"
+                :isLoading="isLoading"
+                :placeholder="$tc('frosh-tools.tabs.logs.logFileSelect.placeholder')"
+                labelProperty="name"
+                valueProperty="name"
+                v-model="selectedLogFile"
+                @change="onFileSelected"
+            ></sw-single-select>
+        </template>
+
+        <sw-data-grid
+            :showSelection="false"
+            :showActions="false"
+            :dataSource="logEntries"
+            :columns="columns">
+            <template slot="column-date" slot-scope="{ item }">
+                {{ item.date | date({hour: '2-digit', minute: '2-digit', second: '2-digit'}) }}
+            </template>
+            <template slot="column-message" slot-scope="{ item }">
+                <a @click="showInfoModal(item)">{{ item.message | raw }}</a>
+            </template>
+        </sw-data-grid>
+
+        <sw-pagination
+            :total="totalLogEntries"
+            :limit="limit"
+            :page="page"
+            @page-change="onPageChange"
+        ></sw-pagination>
+    </sw-card>
+
+    <sw-modal v-if="displayedLog"
+              variant="large">
+
+        <template slot="modal-header">
+            <div class="sw-modal__titles">
+                <h4 class="sw-modal__title">
+                    {{ displayedLog.channel }} - {{ displayedLog.level }}
+                </h4>
+
+                <h5 class="sw-modal__subtitle">
+                    {{ displayedLog.date | date({hour: '2-digit', minute: '2-digit', second: '2-digit'}) }}
+                </h5>
+            </div>
+
+            <button
+                class="sw-modal__close"
+                :title="$tc('global.sw-modal.labelClose')"
+                :aria-label="$tc('global.sw-modal.labelClose')"
+                @click="closeInfoModal"
+            >
+                <sw-icon
+                    name="regular-times-s"
+                    small
+                />
+            </button>
+        </template>
+
+        <div v-html="displayedLog.message"></div>
+    </sw-modal>
+</sw-card-view>

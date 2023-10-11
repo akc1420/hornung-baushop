@@ -1,0 +1,28 @@
+{% block sisi_scheduled_list %}
+    <sw-page class="sisi-scheduled-list">
+
+        {% block sisi_scheduled_list_smart_bar_actions %}
+            <template slot="smart-bar-actions">
+                <sw-button variant="primary" :routerLink="{ name: 'sisi.scheduled.create' }">
+                    {{ $t('sisi-scheduled.list.new') }}
+                </sw-button>
+            </template>
+        {% endblock %}
+
+
+        <template slot="content">
+            {% block sisi_scheduled_list_content %}
+                <sw-entity-listing
+                    v-if="fields"
+                    :items="fields"
+                    :repository="repository"
+                    :showSelection="false"
+                    :columns="teaserColumns"
+                    detailRoute="sisi.scheduled.detail"
+                >
+                </sw-entity-listing>
+            {% endblock %}
+        </template>
+
+    </sw-page>
+{% endblock %}

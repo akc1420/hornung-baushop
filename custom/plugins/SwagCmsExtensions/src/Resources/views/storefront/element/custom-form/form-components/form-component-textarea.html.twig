@@ -1,0 +1,31 @@
+{% block swag_cms_extensions_form_component_textarea %}
+    <div class="form-group {% if not field.translated.config.scalable %}not-resizable{% endif %} col-md-{{ field.width }}">
+
+        {% block swag_cms_extensions_form_component_textarea_label %}
+            <label class="form-label" for="form-{{ form.technicalName }}-{{ field.technicalName }}">
+                {{ field.translated.label }}{% if field.required %} {{ "general.required"|trans }}{% endif %}
+            </label>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_component_textarea_input %}
+            {% apply spaceless %}
+                <textarea name="{{ field.technicalName }}"
+                          id="form-{{ form.technicalName }}-{{ field.technicalName }}"
+                          class="form-control{% if formViolations.getViolations( '/' ~ field.technicalName ) %} is-invalid{% endif %}"
+                          placeholder="{{ field.translated.placeholder }}"
+                          {% if field.translated.config.rows %}rows="{{ field.translated.config.rows }}"{% endif %}
+                          {% if field.required %}required="required"{% endif %}
+                          {% if field.translated.errorMessage %}data-form-validation-error-message="{{ field.translated.errorMessage }}"{% endif %}>
+                    {{ data.get(field.technicalName) }}
+                </textarea>
+            {% endapply %}
+
+            {% if formViolations.getViolations( '/' ~ field.technicalName ) is not empty %}
+                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+                    violationPath: ('/' ~ field.technicalName)
+                } %}
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% block swag_cms_extensions_form_editor %}
+    <div class="swag-cms-extensions-form-editor">
+
+        {% block swag_cms_extensions_form_editor_container %}
+            <sw-container class="swag-cms-extensions-form-editor__container"
+                          columns="50% 50%">
+
+                {% block swag_cms_extensions_form_editor_container_content %}
+                    {% block swag_cms_extensions_form_editor_container_content_groups_container %}
+                        <div class="swag-cms-extensions-form-editor__group-container">
+
+                            {% block swag_cms_extensions_form_editor_container_content_groups_container_content %}
+                                {% block swag_cms_extensions_form_editor_container_content_groups_container_content_groups %}
+                                    <swag-cms-extensions-form-editor-group v-for="group in groups"
+                                                                           :group="group"
+                                                                           :groupCount="groups.length"
+                                                                           :key="group.id">
+                                    </swag-cms-extensions-form-editor-group>
+                                {% endblock %}
+
+                                {% block swag_cms_extensions_form_editor_container_content_groups_container_content_add_group_button %}
+                                    <sw-button class="swag-cms-extensions-form-editor__add-group-button"
+                                               size="small"
+                                               :disabled="!isSystemDefaultLanguage"
+                                               @click="onGroupAdd">
+
+                                        {% block swag_cms_extensions_form_editor_container_content_groups_container_content_add_group_button_text %}
+                                            {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.addGroupButton') }}
+                                        {% endblock %}
+
+                                    </sw-button>
+                                {% endblock %}
+                            {% endblock %}
+
+                        </div>
+                    {% endblock %}
+
+                    {% block swag_cms_extensions_form_editor_container_content_settings %}
+                        <swag-cms-extensions-form-editor-settings>
+                        </swag-cms-extensions-form-editor-settings>
+                    {% endblock %}
+                {% endblock %}
+
+            </sw-container>
+        {% endblock %}
+
+    </div>
+{% endblock %}

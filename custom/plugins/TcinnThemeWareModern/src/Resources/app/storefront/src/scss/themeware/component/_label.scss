@@ -1,0 +1,104 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Bootstrap style '.label' added (currently missing in Shopware)
+	==================================================
+
+*/
+
+// Example: default
+// <div class="label label-primary">
+//   Sofort lieferbar!
+// </div>
+
+// Example: lightened label
+// <div class="label label-secondary-lighten">
+//   Sofort lieferbar!
+// </div>
+
+// Example: large label
+// <div class="label label-success label-lg">
+//   Sofort lieferbar!
+// </div>
+
+// Eample: small label
+// <div class="label label-dark label-sm">
+//   Sofort lieferbar!
+// </div>
+
+// TODO: Add 'twt-' prefix... (see _badge.scss)
+
+.label {
+  font-family: $label-font-family;
+  font-weight: $label-font-weight;
+  display: inline-block;
+  text-align: center;
+  vertical-align: middle;
+  //white-space: $btn-white-space; // TODO: add label white-space to configuration
+  color: $body-color;
+  background-color: transparent;
+  //border: $label-border-width solid transparent; // TODO: add label border-width to configuration
+  @include label-size($label-padding-y, $label-padding-x, $label-font-size, $label-line-height, $label-border-radius);
+}
+
+// ThemeWare: Label colors ------------------------------
+// TODO: -level erzeugt helle Backgrounds (sh. "theme-color-level"-function unten) => standard Backgrounds ebenfalls ermöglichen ...
+
+@each $color, $value in $theme-colors {
+  .label-#{$color} {
+    @include label-variant($value, $value, $value);
+  }
+
+  .label-#{$color}-lighten {
+    @include label-variant-lighten(theme-color-level($color, $label-bg-level), theme-color-level($color, $label-border-level), theme-color-level($color, $label-color-level));
+  }
+}
+
+// ThemeWare: Alternate labels (Adds more colors e.g. teal)
+// - Weitere Farben hinzufügen (default: $theme-colors)
+
+@each $color, $value in $colors {
+  .label-#{$color} {
+    @include label-variant($value, $value, $value);
+  }
+
+  //.label-#{$color}-lighten {
+  //  @include label-variant-lighten(theme-color-level($color, $label-bg-level), theme-color-level($color, $label-border-level), theme-color-level($color, $label-color-level));
+  //}
+}
+
+// Bootstrap: theme-color-level
+//@function theme-color-level($color-name: "primary", $level: 0) {
+//  $color: theme-color($color-name);
+//  $color-base: if($level > 0, #000, #fff);
+//  $level: abs($level);
+//
+//  @return mix($color-base, $color, $level * $theme-color-interval);
+//}
+
+// ThemeWare: Label sizes ------------------------------
+
+.label-lg {
+  @include label-size($label-padding-y-lg, $label-padding-x-lg, $label-font-size-lg, $label-line-height-lg, $label-border-radius-lg);
+}
+
+.label-sm {
+  @include label-size($label-padding-y-sm, $label-padding-x-sm, $label-font-size-sm, $label-line-height-sm, $label-border-radius-sm);
+}
+
+// ThemeWare: Block label ------------------------------
+
+.label-block {
+  display: block;
+  width: 100%;
+
+  // ThemeWare: Vertically space out multiple block buttons
+  //+ .label-block {
+  //  margin-top: $btn-block-spacing-y;
+  //}
+}

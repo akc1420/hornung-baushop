@@ -1,0 +1,36 @@
+{% sw_extends '@Storefront/storefront/page/checkout/address/index.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ThemeWare: Checkout > Adress adjustments #}
+{% block page_checkout_address_login_toggle %}
+    {# ThemeWare: Add headline above login toggle  #}
+    {# Todo: Add configuration #}
+    <h2 class="twt-checkout-header twt-checkout-header-login">{{ "account.loginHeader"|trans|sw_sanitize }}</h2>
+
+    {# Default block #}
+    {{ parent() }}
+{% endblock %}
+
+
+{# TODO: HC-Architecture..! #}
+{# ThemeWare: Checkout > Login adjustments #}
+{% block page_checkout_address_login_card %}
+    {# ThemeWare: Remove div.collapse #}
+    {# Todo: Add configuration #}
+    {% sw_include '@Storefront/storefront/component/account/login.html.twig' with {
+        'cardTitle': "account.loginFormDescription"|trans|sw_sanitize
+    } %}
+{% endblock %}
+
+
+{# ThemeWare: Checkout > Register adjustments #}
+{% block page_checkout_address_register_card %}
+    {# ThemeWare: Add headline above register form #}
+    {# Todo: Add configuration #}
+    <h2 class="twt-checkout-header twt-checkout-header-register">{{ "account.registerPersonalHeader"|trans|sw_sanitize }}</h2>
+
+    {# Default block #}
+    {{ parent() }}
+{% endblock %}
+ 

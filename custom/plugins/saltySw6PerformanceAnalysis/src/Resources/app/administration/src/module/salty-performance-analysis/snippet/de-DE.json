@@ -1,0 +1,48 @@
+{
+    "saltyPerformanceAnalysis": {
+        "title": "Performance Analyse",
+        "info": "Info",
+        "columns": {
+            "status": "Status",
+            "name": "Name",
+            "recommended": "Empfohlen",
+            "value": "Wert",
+            "information": "Informationen"
+        },
+        "remarks": {
+            "serverProtocol": "*Aufgrund technischer Beschränkungen ist eine genaue Bestimmung der Protokollversion - insbesondere in Cluster-Setups - leider nicht möglich"
+        },
+        "name": {
+            "phpVersion": "PHP-Version",
+            "serverProtocol": "HTTP-Protokollversion*",
+            "phpMemoryLimit": "PHP-Speicherlimit in Mb",
+            "phpMaxExecutionTime": "PHP - Max execution time",
+            "apcu": "APCu Objekt-Cache",
+            "apcuMemory": "APCu - verfügbarer Speicher",
+            "opcache": "Zend OpCache",
+            "opcacheMemory": "OpCache - verfügbarer Speicher",
+            "kernelEnvironment": "Kernel-Modus",
+            "externalStorage": "External Storage/CDN",
+            "elasticSearch": "ElasticSearch",
+            "httpCache": "Http-Cache",
+            "scheduledTasks": "Länger nicht ausgeführte Scheduled Tasks",
+            "pluginsInstalled": "Plugins installiert (Max)"
+        },
+        "information": {
+            "phpVersion": "https://www.php.net/supported-versions.php",
+            "serverProtocol": "https://de.wikipedia.org/wiki/Hypertext_Transfer_Protocol#HTTP/2",
+            "phpMemoryLimit": "https://www.php.net/manual/de/ini.core.php#ini.memory-limit",
+            "phpMaxExecutionTime": "https://www.php.net/manual/de/info.configuration.php#ini.max-execution-time",
+            "apcu": "https://developers.shopware.com/sysadmins-guide/shopware-5-performance-for-sysadmins/#user-data-cache-apcu",
+            "apcuMemory": "https://www.php.net/manual/de/apcu.configuration.php",
+            "opcache": "https://developers.shopware.com/sysadmins-guide/shopware-5-performance-for-sysadmins/#opcode-cache",
+            "opcacheMemory": "https://www.php.net/manual/de/opcache.configuration.php",
+            "kernelEnvironment": "https://docs.shopware.com/de/shopware-6-de/tutorials-und-faq/fehlermeldungen-debuggen",
+            "externalStorage": "https://docs.shopware.com/en/shopware-platform-dev-en/how-to/use-s3-datastorage",
+            "elasticSearch": "https://docs.shopware.com/en/shopware-platform-dev-en/how-to/using-elasticsearch",
+            "httpCache": "https://docs.shopware.com/de/shopware-6-de/einstellungen/caches-indizes",
+            "scheduledTasks": "https://docs.shopware.com/en/shopware-platform-dev-en/references-internals/core/module/tasks",
+            "pluginsInstalled": "https://docs.shopware.com/de/shopware-6-de/einstellungen/plugins"
+        }
+    }
+}

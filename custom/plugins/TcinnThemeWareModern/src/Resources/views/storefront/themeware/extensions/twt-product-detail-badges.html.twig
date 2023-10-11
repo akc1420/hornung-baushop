@@ -1,0 +1,103 @@
+{# ThemeWare "Product badges" (Extension container) #}
+{#
+    Create container and include badges
+    type: media/buy-box
+
+    @Storefront/storefront/themeware/extensions/twt-product-detail-badges.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# INFO: Inheritance changed in SW6.4 so this file must to have the full code and can't be extended. #}
+{# {% sw_extends '@Storefront/storefront/component/product/card/badges.html.twig' %} #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductBadgesDiscountBadgeType = theme_config('twt-product-badges-discount-badge-type') %}
+{% set twtProductDetailBadgesDiscountBadgeShow = theme_config('twt-product-detail-badges-discount-badge-show') %}
+{% set twtProductDetailBadgesNewBadgeShow = theme_config('twt-product-detail-badges-new-badge-show') %}
+{% set twtProductDetailBadgesShippingFreeBadgeShow = theme_config('twt-product-detail-badges-shipping-free-badge-show') %}
+{% set twtProductDetailBadgesSoldBadgeShow = theme_config('twt-product-detail-badges-sold-badge-show') %}
+{% set twtProductDetailBadgesStockBadgeShow = theme_config('twt-product-detail-badges-stock-badge-show') %}
+{% set twtProductDetailBadgesTopsellerBadgeShow = theme_config('twt-product-detail-badges-topseller-badge-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# Info: Apply "spaceless" to hide an empty element via css ":empty" and avoid unwanted spacings #}
+
+{% block twt_detail_product_badges %}{% apply spaceless %}
+    <div class="twt-product-detail-badges product-badges is-{{ type }}">
+        {# ThemeWare: "Lagerbestand-Badge" hinzufügen #}
+        {% if twtProductDetailBadgesStockBadgeShow == 2 and type == "media" or twtProductDetailBadgesStockBadgeShow == 3 and type == "buy-box" %}
+
+            {% block twt_detail_product_badges_stock %}
+                {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-stock-include.html.twig' ignore missing with {
+                    product: product,
+                    type: type
+                } %}
+            {% endblock %}
+
+        {% endif %}
+
+        {# ThemeWare: "Ausverkauft-Badge" hinzufügen #}
+        {% if twtProductDetailBadgesSoldBadgeShow == 2 and type == "media" or twtProductDetailBadgesSoldBadgeShow == 3 and type == "buy-box" %}
+
+            {% block twt_detail_product_badges_sold %}
+                {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-sold-include.html.twig' ignore missing with {
+                    product: product,
+                    type: type
+                } %}
+            {% endblock %}
+
+        {% endif %}
+
+        {# ThemeWare: "Versandkostenfrei-Badge" hinzufügen. #}
+        {% if twtProductDetailBadgesShippingFreeBadgeShow == 2 and type == "media" or twtProductDetailBadgesShippingFreeBadgeShow == 3 and type == "buy-box" %}
+
+            {% block twt_detail_product_badges_shipping_free %}
+                {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-shipping-free-include.html.twig' ignore missing with {
+                    product: product,
+                    type: type
+                } %}
+            {% endblock %}
+
+        {% endif %}
+
+        {# ThemeWare: "Discount-Badge" hinzufügen (nicht in der Buy-Box nötig) #}
+        {% if twtProductDetailBadgesDiscountBadgeShow == 2 and type == "media" or twtProductDetailBadgesDiscountBadgeShow == 3 and type == "buy-box" %}
+
+            {% block twt_detail_product_badges_discount %}
+                {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-discount-include.html.twig' ignore missing with {
+                    product: product,
+                    type: type
+                } %}
+            {% endblock %}
+
+        {% endif %}
+
+        {# ThemeWare: "Topseller-Badge" hinzufügen (default) #}
+        {% if twtProductDetailBadgesTopsellerBadgeShow == 2 and type == "media" or twtProductDetailBadgesTopsellerBadgeShow == 3 and type == "buy-box" %}
+
+            {% block twt_detail_product_badges_topseller %}
+                {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-topseller-include.html.twig' ignore missing with {
+                    product: product,
+                    type: type
+                } %}
+            {% endblock %}
+
+        {% endif %}
+
+        {# ThemeWare: "Neu-Badge" hinzufügen (default) #}
+        {% if twtProductDetailBadgesNewBadgeShow == 2 and type == "media" or twtProductDetailBadgesNewBadgeShow == 3 and type == "buy-box" %}
+
+            {% block twt_detail_product_badges_new %}
+                {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-new-include.html.twig' ignore missing with {
+                    product: product,
+                    type: type
+                } %}
+            {% endblock %}
+
+        {% endif %}
+    </div>
+{% endapply %}{% endblock %}

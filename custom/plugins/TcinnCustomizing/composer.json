@@ -1,0 +1,34 @@
+{
+	"name": "tcinn/customizing",
+	"description": "ThemeWare® Customizing Plugin for Shopware 6",
+	"version": "v2.0.0",
+	"type": "shopware-platform-plugin",
+	"license": "proprietary",
+	"authors": [
+		{
+		  "name": "TC-Innovations GmbH",
+		  "homepage": "https://www.tc-innovations.de"
+		}
+	],
+	"require": {
+		"shopware/core": "6.4.*"
+	},
+	"autoload": {
+		"psr-4": {
+			"Tcinn\\Customizing\\": "src/"
+		}
+	},
+	"extra": {
+		"shopware-plugin-class": "Tcinn\\Customizing\\TcinnCustomizing",
+		"plugin-icon": "src/Resources/config/customizing-plugin-icon.png",
+		"copyright": "(c) by TC-Innovations GmbH",
+		"label": {
+			"en-GB": "ThemeWare® Customizing Plugin | Individual customisations",
+			"de-DE": "ThemeWare® Customizing-Plugin | Individuelle Anpassungen"
+		},
+		"description": {
+			"en-GB": "With this plugin you can integrate individual customizations.",
+			"de-DE": "Mit diesem Plugin kannst du individuelle Anpassungen integrieren."
+		}
+	}
+}

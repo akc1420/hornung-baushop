@@ -1,0 +1,47 @@
+{
+  "name": "ott/idealo-connector",
+  "description": "Idealo Connector",
+  "version": "1.1.16",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ottscho-IT, Daniel Naumann",
+      "homepage": "https://ottscho-it-service.de"
+    }
+  ],
+  "require": {
+    "shopware/core": "~6.4"
+  },
+  "extra": {
+    "shopware-plugin-class": "Ott\\IdealoConnector\\OttIdealoConnector",
+    "plugin-icon": "src/plugin.png",
+    "copyright": "(c) by ottschoIT",
+    "label": {
+      "de-DE": "Idealo Connector für Shopware",
+      "en-GB": "Idealo Connector for Shopware"
+    },
+    "description": {
+      "de-DE": "Das Plugin bietet die Shopware Schnittstelle zu Idealo. Bestellübertragung/-abgleich und Übertragungs des Produktsortiments",
+      "en-GB": "This plugin offers an interface between shopware and Idealo, order- & productsyncronisation"
+    },
+    "manufacturerLink": {
+      "de-DE": "https://store.shopware.com/ottscho-it.html",
+      "en-GB": "https://store.shopware.com/en/ottscho-it.html"
+    },
+    "supportLink": {
+      "de-DE": "https://ottscho-it.atlassian.net/wiki/spaces/HEL/pages/1043070992/SW6+Plugin+Idealo+Direktkauf",
+      "en-GB": "https://www.ottscho-it-service.de/en/shopware-plug-ins/idealo-direktkauf-anbindung?c=7"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Ott\\IdealoConnector\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Ott\\IdealoConnector\\Test\\": "tests/"
+    }
+  }
+}

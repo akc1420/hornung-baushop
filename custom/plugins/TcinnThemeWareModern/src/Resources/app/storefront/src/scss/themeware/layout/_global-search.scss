@@ -1,0 +1,43 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare "Global search"
+    ==================================================
+
+*/
+
+// ThemeWare: "Global search" (Highlight search background) ------------------------------
+// - Info: Available with search type "Global search" (twt-header-search-type 3) in "Header 1.1" (twt-header-type 1)
+
+@if $twt-header-search-type == 3 and $twt-header-type == 1 {
+    @include media-breakpoint(min, strip-unit($twt-container-max-width)) { // min container width
+        .header-search {
+            margin-right: 0;
+            z-index: 2;
+            position: relative;
+        }
+
+        .header-actions-col.col-sm-auto.order-1 {
+            padding-top: 4px;
+            padding-bottom: 4px;
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                display: block;
+                height: 100%;
+                width: auto-pixel-unit($twt-header-search-max-width + 30); // 26 for 2x20px = col padding
+                left: -$twt-header-search-max-width - 30 + px;
+                background-color: $twt-header-actions-background-color;
+                top: 0;
+                z-index: 1;
+            }
+        }
+    }
+}

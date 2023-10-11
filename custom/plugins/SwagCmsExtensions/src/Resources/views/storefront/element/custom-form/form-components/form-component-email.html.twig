@@ -1,0 +1,28 @@
+{% block swag_cms_extensions_form_component_email %}
+    <div class="form-group col-md-{{ field.width }}">
+
+        {% block swag_cms_extensions_form_component_email_label %}
+            <label class="form-label" for="form-{{ form.technicalName }}-{{ field.technicalName }}">
+                {{- field.translated.label -}}{% if field.required %} {{- "general.required"|trans -}}{% endif %}
+            </label>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_component_email_input %}
+            <input name="{{ field.technicalName }}"
+                   type="email"
+                   id="form-{{ form.technicalName }}-{{ field.technicalName }}"
+                   class="form-control{% if formViolations.getViolations( '/' ~ field.technicalName ) %} is-invalid{% endif %}"
+                   value="{{ data.get( field.technicalName ) }}"
+                   placeholder="{{ field.translated.placeholder }}"
+                   {% if field.required %}required="required"{% endif %}
+                   {% if field.translated.errorMessage %}data-form-validation-error-message="{{ field.translated.errorMessage }}"{% endif %}/>
+
+            {% if formViolations.getViolations( '/' ~ field.technicalName ) is not empty %}
+                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+                    violationPath: ('/' ~ field.technicalName)
+                } %}
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

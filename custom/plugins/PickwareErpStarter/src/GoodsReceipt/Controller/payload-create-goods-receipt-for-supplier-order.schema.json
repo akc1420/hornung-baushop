@@ -1,0 +1,37 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "title": "Goods receipt create-goods-receipt-for-supplier-order payload",
+    "description": "POST request payload for api route _action/pickware-erp/goods-receipt/create-goods-receipt-for-supplier-order",
+    "type": "object",
+    "required": ["goodsReceiptId", "supplierOrderId", "lineItemQuantities"],
+    "additionalProperties": false,
+    "properties": {
+        "goodsReceiptId": {
+            "$ref": "#/definitions/uuid",
+            "description": "The future id of the goods receipt to be created. Used as an idempotency key."
+        },
+        "supplierOrderId": {
+            "$ref": "#/definitions/uuid"
+        },
+        "lineItemQuantities": {
+            "type": "object",
+            "description": "A mapping of supplier order line item ids to the quantities that should be written in the goods receipt. Must contain a value for every supplier order line item.",
+            "additionalProperties": false,
+            "patternProperties": {
+                "^[0-9a-f]{32}$": {
+                    "type": "integer",
+                    "minimum": 0
+                }
+            }
+        }
+    },
+    "definitions": {
+        "uuid": {
+            "description": "A UUID in HEX format",
+            "type": "string",
+            "minLength": 32,
+            "maxLength": 32,
+            "pattern": "^[0-9a-f]{32}$"
+        }
+    }
+}

@@ -1,0 +1,27 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Loader
+    ==============================================
+    Defines the loader icon
+
+	Origin: Shopware base
+*/
+
+// TODO: Fix alignment center + right
+
+.has-element-loader .cms-element-product-listing {
+    .twt-product-ordernumber,
+    .twt-product-manufacturer {
+        border-radius: $border-radius;
+        color: transparent;
+        animation: skeletonShimmer 1.5s linear 0s infinite normal forwards running;
+        background: linear-gradient(to right, $gray-300 8%, $gray-100 18%, $gray-300 28%);
+        background-size: 800px 100px;
+    }
+}

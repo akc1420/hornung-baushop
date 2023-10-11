@@ -1,0 +1,43 @@
+{
+  "name": "sensus/check24connect",
+  "description": "CHECK24 Connect für Shopware 6",
+  "type": "shopware-platform-plugin",
+  "license": "AGPL-3.0-or-later",
+  "version": "v1.0.3",
+  "autoload": {
+    "psr-4": {
+      "Sensus\\Check24Connect\\": "src/"
+    }
+  },
+  "require": {
+    "shopware/core": "^v6.2.0"
+  },
+  "authors": [
+    {
+      "name": "SENSUS MEDIA // Ihr Shopware Partner",
+      "homepage": "https://www.sensus-media.de",
+      "role": "Manufacturer"
+    }
+  ],
+  "extra": {
+    "shopware-plugin-class": "Sensus\\Check24Connect\\SensusCheck24Connect",
+    "plugin-icon": "src/Resources/config/plugin.png",
+    "label": {
+      "de-DE": "CHECK24 Connect für Shopware 6",
+      "en-GB": "CHECK24 Connect für Shopware 6"
+    },
+    "description": {
+      "de-DE": "Mit dem Plugin CHECK24 Connect für Shopware von \nSensus Media werden Sie die Funktionalität Ihres Shopware Online Shops weiter optimieren und Ihr angebotenes Sortiment sowie explizite Kundenanfragen bzw. -bestellungen stets zeitnah und zuverlässig bearbeiten.",
+      "en-GB": "With the plugin CHECK24 Connect for Shopware\nyou Sensus Media will further optimise the functionality of your Shopware online shop and always process your offered assortment as well as explicit customer enquiries and orders promptly and reliably."
+    },
+    "manufacturerLink": {
+      "de-DE": "https://www.sensus-media.de/",
+      "en-GB": "https://www.sensus-media.de/en/"
+    },
+    "supportLink": {
+      "de-DE": "https://www.sensus-media.de/support/",
+      "en-GB": "https://www.sensus-media.de/en/support/"
+    },
+    "copyright": "&copy SENSUS MEDIA"
+  }
+}

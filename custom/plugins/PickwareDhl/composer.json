@@ -1,0 +1,118 @@
+{
+    "name": "pickware/pickware-dhl",
+    "description": "DHL shipping integration for Shopware",
+    "license": "proprietary",
+    "type": "shopware-platform-plugin",
+    "version": "1.24.1",
+    "authors": [
+        {
+            "name": "Pickware GmbH",
+            "email": "info@pickware.de"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-dom": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*",
+        "ext-soap": "*",
+        "ext-xml": "*",
+        "doctrine/dbal": "^2.10.0",
+        "league/flysystem": "^1.0.57",
+        "pickware/api-error-handling-bundle": "^1.0.3",
+        "pickware/bundle-installer": "^1.0.2",
+        "pickware/dal-bundle": "^3.23.1",
+        "pickware/debug-bundle": "^2.3.0",
+        "pickware/dependency-loader": "^3.3.0",
+        "pickware/document-bundle": "^2.4.16",
+        "pickware/http-utils": "^2.17.1",
+        "pickware/installation-library": "^2.14.0",
+        "pickware/shipping-bundle": "^1.13.0",
+        "pickware/units-of-measurement": "^2.1.0",
+        "psr/log": "^1.1.2",
+        "shopware/core": "6.4.* >= 6.4.5",
+        "symfony/config": "^5.2.3",
+        "symfony/console": "^5.2.3",
+        "symfony/dependency-injection": "^5.2.3",
+        "symfony/dom-crawler": "^5.2.3",
+        "symfony/event-dispatcher": "^5.2.3",
+        "symfony/http-foundation": "^5.2.3",
+        "symfony/polyfill-php80": "^1.18.1",
+        "symfony/yaml": "^5.2.3",
+        "viison/address-splitter": "^0.3.2"
+    },
+    "require-dev": {
+        "league/flysystem-memory": "^1.0.2",
+        "mikey179/vfsstream": "^1.6",
+        "phpunit/phpunit": "^9.5.0",
+        "shopware/storefront": "6.4.*,>=6.4.3"
+    },
+    "conflict": {
+        "shopware/administration": "< 6.4.0",
+        "shopware/storefront": "< 6.4.3"
+    },
+    "suggest": {
+        "shopware/administration": "Enables DHL shipping to be operated via Shopware 6 administration frontend.",
+        "shopware/storefront": "Enables DHL shipping to be operated via Shopware 6 Storefront."
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../../libraries/composer-packages/*"
+        },
+        {
+            "type": "path",
+            "url": "../../bundles/*"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Pickware\\PickwareDhl\\": "src/"
+        },
+        "exclude-from-classmap": [
+            "**.unit.php",
+            "**.integration.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pickware\\PickwareDhl\\Test\\Migration\\": "test/migration/"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "ergebnis/composer-normalize": true,
+            "pickware/dependency-loader": true,
+            "viison/composer-git-hooks-installer-plugin": true
+        },
+        "platform": {
+            "php": "7.4.3"
+        }
+    },
+    "extra": {
+        "ci-min-supported-shopware-version": "6.4.8.0",
+        "description": {
+            "de-DE": "Mit dem Plugin DHL Versand erstellst du DHL-Versandetiketten für deine Kundenbestellungen einfach und bequem in deiner Shopware-Administration.",
+            "en-GB": "With the DHL Shipping plugin, you can create DHL shipping labels for your customer orders easily and conveniently from your Shopware administration."
+        },
+        "label": {
+            "de-DE": "DHL Versand",
+            "en-GB": "DHL Shipping"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.pickware.de",
+            "en-GB": "https://www.pickware.com"
+        },
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "shopware-plugin-class": "Pickware\\PickwareDhl\\PickwareDhl",
+        "supportLink": {
+            "de-DE": "https://www.pickware.de/support",
+            "en-GB": "https://www.pickware.com/support"
+        }
+    },
+    "scripts": {
+        "test:integration": "APP_ENV=test ${SHOPWARE_DIR}/vendor/bin/phpunit --config phpunit.integration.xml --testdox",
+        "test:unit": "./vendor/bin/phpunit --config phpunit.unit.xml --testdox"
+    }
+}

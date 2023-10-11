@@ -1,0 +1,82 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: theme.scss
+    ======================================
+    Non public ThemeWare variables
+*/
+
+// TODO: "px" prüfen...
+
+// ThemeWare: Social icons color definition ----------------------------------------------------------------
+$twt-color-blog: #0073aa;
+$twt-color-blogger: #f38936;
+$twt-color-facebook: #1877f2;
+$twt-color-flickr: #0063dc;
+$twt-color-flickr3: #ff0084;
+$twt-color-instagram: #dd2a7b;
+$twt-color-linkedin: #0a66c2;
+$twt-color-pinterest: #e60023;
+$twt-color-tiktok: #000000;
+$twt-color-tiktok3: #25f4ee;
+$twt-color-tiktok4: #fe2c55;
+$twt-color-twitter: #1da1f2;
+$twt-color-twitch: #9146ff;
+$twt-color-vimeo: #1ab7ea;
+$twt-color-whatsapp: #25d366;
+$twt-color-xing: #005a5f;
+$twt-color-xing3: #cfdc00;
+$twt-color-youtube: #ff0000;
+$twt-color-website: #32373c;
+$twt-color-email: #758ca3;
+
+// ThemeWare: Basegrid ----------------------------------------------------------------
+$twt-basegrid-spacing-sm: 10px !default;
+$twt-basegrid-spacing: 20px !default;
+$twt-cms-block-margin-bottom: $twt-basegrid-spacing; // replaces: margin-bottom: $twt-basegrid-spacing;
+
+// ThemeWare: Border radius ----------------------------------------------------------------
+$twt-border-radius-light: 2px !default;
+$twt-border-radius-bold: 100px !default;
+
+// ThemeWare: Breadcrumb ----------------------------------------------------------------
+$twt-breadcrumb-margin-bottom: 20px !default;
+
+// ThemeWare: Container ----------------------------------------------------------------
+$twt-container-main-min-height-mobile: 80px !default;
+$twt-container-main-min-height-desktop: 80px !default;
+
+// ThemeWare: Header ----------------------------------------------------------------
+$twt-fixed-overlay-z-index: 100 !default;
+
+// ThemeWare: TopBar ----------------------------------------------------------------
+$twt-header-top-bar-height: $twt-header-top-bar-line-height !default;
+
+// ThemeWare: Header minimal ----------------------------------------------------------------
+$twt-header-minimal-logo-width: 140px !default;
+$twt-header-minimal-logo-height: auto !default;
+
+// ThemeWare: Main navigation ----------------------------------------------------------------
+$twt-nav-main-margin-left: -#{$twt-nav-main-padding + px} !default; // negative value of $twt-nav-main-padding
+$twt-nav-main-icon-size: 18px !default;
+
+// ThemeWare: Modal ----------------------------------------------------------------
+$twt-modal-dialog-max-width: 800px !default;
+
+// ThemeWare: Sticky main navigation ----------------------------------------------------------------
+$twt-sticky-nav-main-z-index: $zindex-sticky !default; //100 !default;
+
+// ThemeWare: CSS animations ----------------------------------------------------------------
+$twt-cms-animations-duration: 1.5;
+$twt-cms-animations-delay: 0.1;
+$twt-cms-animations-duration-headlines: 1;
+$twt-cms-animations-delay-headlines: 0.5;
+$twt-cms-animations-duration-more: 1;
+$twt-cms-animations-delay-more: 0.1;
+//$twt-cms-animations-repeat: 1;
+$twt-cms-animations-timing-function: ease-in-out;

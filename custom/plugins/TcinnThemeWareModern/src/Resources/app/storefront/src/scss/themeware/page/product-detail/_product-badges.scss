@@ -1,0 +1,53 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Extension > Product detail badges (Badges on product pages)
+    ==================================================
+    Gerneral badge styling can be found in "scss/component/_product-box.scss"
+
+*/
+
+@if $twt-product-detail-badges == 2 {
+  .twt-product-detail-badges {
+    &.is-media,
+    &.is-buy-box {
+      margin-bottom: calc(1rem - 8px); // Subtract 'margin-bottom' of the div-elements inside
+    }
+
+    &.is-media {
+      position: absolute;
+      top: 10px; // TODO: Konfigurierbar machen (sh. product-box.scss)
+      @if $twt-product-badges-corner-type == 1 {
+        // ThemeWare: Standard
+        left: 0; // TODO: Konfigurierbar machen (sh. product-box.scss)
+      } @else {
+        // ThemeWare: Abgerundete oder runde Ecken
+        left: 5px; // TODO: Konfigurierbar machen (sh. product-box.scss)
+      }
+    }
+
+    &.is-buy-box {
+      position: relative;
+      top: 0;
+      left: 0;
+      margin-right: -3px;
+      margin-left: -3px;
+
+      div {
+        display: inline-block;
+        margin-right: 3px;
+        // margin-bottom: 8px;
+        margin-left: 3px;
+      }
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,1796 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Elasticsearch configuration</title>
+        <title lang="de-DE">Elasticsearch-Konfiguration</title>
+        <input-field type="single-select">
+            <name>elasticsearchAktive</name>
+            <label>Elasticsearch available</label>
+            <label lang="de-DE">Elasticsearch-Server verfügbar</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="textarea">
+            <name>host</name>
+            <label>Elasticsearch hosts (example:http://localhost:9200) (every row a host)</label>
+            <label lang="de-DE">Elasticsearch-Hosts (Beispiel: http://localhost:9200) (pro Zeile einen Host)</label>
+        </input-field>
+        <input-field>
+            <name>themeES</name>
+            <label>Path for your own Ajax result list template (example
+                @Storefront/storefront/layout/header/search-suggest-test.html.twig)
+            </label>
+            <label lang="de-DE">Pfad für ein eigenes Ajax-Ergebnisliste-Template (Beispiel
+                @Storefront/storefront/layout/header/search-suggest-test.html.twig)
+            </label>
+        </input-field>
+        <input-field type="text">
+            <name>prefix</name>
+            <label>Prefix for the index name</label>
+            <label lang="de-DE">Prefix für den Index Namen</label>
+        </input-field>
+    </card>
+    <card>
+        <title>Search-configuration</title>
+        <title lang="de-DE">Such-Konfiguration</title>
+        <input-field type="textarea">
+            <name>synom</name>
+            <label>Synonyms (example
+                https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-tokenfilter.html)
+            </label>
+            <label lang="de-DE">Synonyme (Beispiel
+                https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-synonym-tokenfilter.html)
+            </label>
+        </input-field>
+        <input-field type="single-select">
+            <name>searchkeywort</name>
+            <label>Uses the Shopware Searchkey words as synonyms
+            </label>
+            <label lang="de-DE">Verwendung der  Shopware Schlagwörter als Synomyme.</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>Yes adds the keywords to the product name</name>
+                    <name lang="de-DE">Ja fügt die Schlagwörter zum Produktnamen hinzu</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field>
+        <name>prefixsearchkeywort</name>
+        <label>Prefix for the Shopware keyword search field. Prefix for the Shopware keyword search field. can only be used if the product name was created again with the prefix</label>
+        <label lang="de-DE">Prefix für das Shopware Schlagwort Suchfeld. Kann nur verwendet werden wenn der Produktname mit den prefix nochmal angelegt wurde</label>
+        </input-field>
+        <input-field type="textarea">
+            <name>strip</name>
+            <label>strip (removing any special characters)</label>
+            <label lang="de-DE">Sonderzeichen zu entfernen</label>
+        </input-field>
+        <input-field type="single-select">
+            <name>onlymain</name>
+            <label>Includes only the main products in the index (without variants)</label>
+            <label lang="de-DE">Nur die Hauptartikel in den Index aufnehmen (Ohne Varianten)</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>stock</id>
+                    <name>Yes but check the stock from every variant</name>
+                    <name lang="de-DE">Ja aber überprüft den Bestand von allen Varianten (Wichtig bei Abverkauf
+                        Produkten)
+                    </name>
+                </option>
+                <option>
+                    <id>nodouple</id>
+                    <name>Do not index duplicate product names</name>
+                    <name lang="de-DE">Keine doppelten Produktnamen Indexieren</name>
+                </option>
+                <option>
+                    <id>nostock</id>
+                    <name>If stock is 0 don't index the products</name>
+                    <name lang="de-DE">Artikel ohne Lagerbestand nicht indexieren</name>
+                </option>
+                <option>
+                    <id>nostockandmain</id>
+                    <name>Only main products with Stock</name>
+                    <name lang="de-DE">Nur Hauptartikel aber mit Lagerbestand</name>
+                </option>
+                <option>
+                    <id>variants</id>
+                    <name>Only index variants without the virtual main article</name>
+                    <name lang="de-DE">Nur Varianten indexiern ohne den Virtuellen Hauptartikel</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>no</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>stockwithoutmain</name>
+            <label>If you selected the (Check the stock) above. Can you remove the main product from the calculation here?</label>
+            <label lang="de-DE">Falls Sie oben den (Bestand überprüfen) ausgewählt haben. Können Sie hier den Hauptartikel aus der Berechnung entfernen</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>no</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>addProductNumber</name>
+            <label>Add the product numbers of the variants to the search keywords</label>
+            <label lang="de-DE">(beta) Falls Sie nur Hauptartikel indexieren können die die Produktnummern der Varianten bei den Schlagwörtern mit aufgenommen werden. </label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>no</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="int">
+            <name>childstepsize</name>
+            <label>The step size when indexing variants. (Default 100)</label>
+            <label lang="de-DE">Die Schritt größe bei der Varianten Indexierung. (Standard 100)</label>
+            <defaultValue>100</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>addVariants</name>
+            <label>If you only index main items, the variants can be indexed and searched as sub-products</label>
+            <label lang="de-DE">Falls Sie nur Hauptartikel indexieren können Sie die Varianten als Sub Produkte indexieren und durchsuchen </label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>individual</id>
+                    <name>Variants as a sub-product but try to take the individual product setting from listing by the index process</name>
+                    <name lang="de-DE">Varianten als Subprodukt aber versucht die individuelle Produkt Einstellung Auffächern oder nicht beim indexiern zu beachten</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>no</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+              <input-field type="single-select">
+            <name>checkvariantsName</name>
+            <label>Please check if the product name is different. If so, display the product in the listing.</label>
+            <label lang="de-DE">Prüft ob der Produktnamen unterschiedlich ist wenn ja wird das Produkt im listing ausgeben </label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+
+                <option>
+                    <id>no</id>
+                    <name>no</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>boxAjax</name>
+            <label>AJAX presentation - layout</label>
+            <label lang="de-DE">AJAX-Präsentation - Layout</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Default</name>
+                    <name lang="de-DE">Standard</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>Boxes</name>
+                    <name lang="de-DE">Boxen</name>
+                </option>
+            </options>
+            <defaultValue>2</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>sidebarAjax</name>
+            <label>AJAX presentation - filter and product boxes</label>
+            <label lang="de-DE">AJAX-Präsentation - Filter- und Produktboxen</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Filter left, products right</name>
+                    <name lang="de-DE">Filter links, Produkte rechts</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>Products left, filter right</name>
+                    <name lang="de-DE">Produkte links, Filter rechts</name>
+                </option>
+            </options>
+            <defaultValue>2</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>ColsAjax</name>
+            <label>Product presentation - Number of columns in the Ajax result list</label>
+            <label lang="de-DE">Produktdarstellung - Spaltenanzahl in der Ajax-Ergebnisliste</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>1 column</name>
+                    <name lang="de-DE">1 Spalte</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>2 columns</name>
+                    <name lang="de-DE">2 Spalten</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>3 columns</name>
+                    <name lang="de-DE">3 Spalten</name>
+                </option>
+                <option>
+                    <id>4</id>
+                    <name>4 columns</name>
+                    <name lang="de-DE">4 Spalten</name>
+                </option>
+                <option>
+                    <id>6</id>
+                    <name>6 column</name>
+                    <name lang="de-DE">6 Spalten</name>
+                </option>
+            </options>
+            <defaultValue>2</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>ImageSize</name>
+            <label>Image size in the Ajax result list</label>
+            <label lang="de-DE">Bildgröße in der Ajax-Ergebnisliste</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>large</name>
+                    <name lang="de-DE">Groß</name>
+                </option>
+                <option>
+                    <id>0</id>
+                    <name>small</name>
+                    <name lang="de-DE">Klein</name>
+                </option>
+            </options>
+            <defaultValue>0</defaultValue>
+        </input-field>
+        <input-field type="textarea">
+            <name>removeBreadcrumb</name>
+            <label>Here, you remove unwanted text from the "Breadcrumb" category.</label>
+            <label lang="de-DE">Hier entfernen Sie unerwünschten Text aus der Kategorie "Breadcrumb".</label>
+            <helpText>To configure this setting, you need to enable one of the following options under the "Category" section:
+            Categorie with Own Index,
+            Categorie with Own Index and Filte or Categorie with Own Index and in the Products
+            </helpText>
+            <helpText lang="de-DE">Um diese Einstellung zu konfigurieren, müssen Sie eine der folgenden Optionen unter der "Kategorien anzeigen"-Sektion aktivieren:
+            Kategorien im eigenen Index,
+            Kategorien im eigenen Index und Filter oder
+            Kategorien im eigenen Index und in den Produkten
+            </helpText>
+        </input-field>
+        <input-field type="single-select">
+            <name>categorien</name>
+            <label>Show categories</label>
+            <label lang="de-DE">Kategorien anzeigen</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>Categories not as filters but as search results</name>
+                    <name lang="de-DE">Kategorien nicht als Filter sondern als Suchergebnis</name>
+                </option>
+                <option>
+                    <id>4</id>
+                    <name>Categories by the products</name>
+                    <name lang="de-DE">Kategorien bei den Produkten</name>
+                </option>
+                <option>
+                    <id>5</id>
+                    <name>Display categorie only as filter</name>
+                    <name lang="de-DE">Kategorie nur als Filter anzeigen</name>
+                </option>
+                <option>
+                    <id>6</id>
+                    <name>Categorie with own index</name>
+                    <name lang="de-DE">Kategorien im eigenen Index</name>
+                </option>
+                <option>
+                    <id>7</id>
+                    <name>Categorie with own index and filter</name>
+                    <name lang="de-DE">Kategorien im eigenen Index und Filter</name>
+                </option>
+                <option>
+                    <id>8</id>
+                    <name>Categorie with own index and in the products</name>
+                    <name lang="de-DE">Kategorien im eigenen Index und im Produkt</name>
+                </option>
+            </options>
+            <defaultValue>6</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>useprefixforcategorie</name>
+            <label>Use Prefix for Categorie Index</label>
+            <label lang="de-DE">Präfix für den Kategorie-Index.</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+            <defaultValue>6</defaultValue>
+        </input-field>
+        <input-field type="textarea">
+            <name>categorynoinindex</name>
+            <label>If you have selected the categories in own index, you can exclude categories here.</label>
+            <label lang="de-DE">Falls Sie die Option gewählt haben Kategorien im eigenen Index können Sie hier Kategorien ausschließen</label>
+        </input-field>
+        <input-field type="textarea">
+            <name>categorynoinindexbyId</name>
+            <label>If you have selected the categories in own index, you can exclude categories with one Id every row</label>
+            <label lang="de-DE">Falls Sie die Option gewählt haben Kategorien im eigenen Index können Sie hier Kategorien ausschließen in den Sie eine Hash Id pro Zeile eingeben</label>
+        </input-field>
+        <input-field type="textarea">
+            <name>selectCategorie</name>
+            <label>If you have chosen the option to use categories in your own index, you can specify here the categories ids that should be used</label>
+            <label lang="de-DE">Falls Sie die Option gewählt haben Kategorien im eigenen Index können Sie hier Kategorien ids angeben die verwendet werden sollen</label>
+        </input-field>
+        <input-field type="single-select">
+            <name>properties</name>
+            <label>Show Properties</label>
+            <label lang="de-DE">Eigenschaften im Popup anzeigen</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>Display by the products</name>
+                    <name lang="de-DE">Bei den Produkten anzeigen</name>
+                </option>
+            </options>
+            <defaultValue>1</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>ownFilterquery</name>
+            <label>A separate query for the Ajaxpopup filter if you set a value greater than 0 and if you have selected the Sorted properties setting above</label>
+            <label lang="de-DE">Eine eigene Abfrage für die Filter des Ajaxpopup wenn Sie hier einen Wert größer als 0
+                eintragen und wenn Sie die Einstellung Sortierte Eigenschaften oberhalb ausgewählt haben</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>manufacturer</name>
+            <label>Show manufacturer</label>
+            <label lang="de-DE">Hersteller anzeigen</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>Display by the products</name>
+                    <name lang="de-DE">Bei den Produkten anzeigen</name>
+                </option>
+            </options>
+            <defaultValue>1</defaultValue>
+        </input-field>
+
+        <input-field type="int">
+            <name>producthits</name>
+            <label>Number of hits to display in the Ajax result list (If you want infinite scrolling you have to
+                increase the number of hits)
+            </label>
+            <label lang="de-DE">Gewünschte Trefferanzahl im Ajax Popup (Wenn Sie Infinite Scrolling wünschen
+                muss die Trefferanzahl erhöht werden)
+            </label>
+            <defaultValue>30</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>producthitsSearch</name>
+            <label>Number of hits to display in the product result list page</label>
+            <label lang="de-DE">Gewünschte Produktanzahl in der Produktliste der Suchergebnisseite</label>
+            <defaultValue>10</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>minedge</name>
+            <label>(Only by Autocomplete Filter) min edge Value</label>
+            <label lang="de-DE">Nur bei Autocomplete Filter min Edge</label>
+            <defaultValue>3</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>edge</name>
+            <label>(Only by Autocomplete Filter) max edge Value</label>
+            <label lang="de-DE">Nur bei Autocomplete Filter max Edge</label>
+            <defaultValue>10</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>maxngramdiff</name>
+            <label>max_ngram_diff (Max diff for the edge Tokenizer)</label>
+            <label lang="de-DE">max_ngram_diff (Max Differenz bei den Edge Tokenizer)</label>
+            <defaultValue>10</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>querykind</name>
+            <label>Types of multi_match for products query (example
+                https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html)
+            </label>
+            <label lang="de-DE">Abfragearten für Produkte (Beispiel
+                https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-multi-match-query.html)
+            </label>
+            <options>
+                <option>
+                    <id>best_fields</id>
+                    <name>best_fields</name>
+                </option>
+                <option>
+                    <id>most_fields</id>
+                    <name>most_fields</name>
+                </option>
+                <option>
+                    <id>phrase</id>
+                    <name>phrase</name>
+                </option>
+                <option>
+                    <id>phrase_prefix</id>
+                    <name>phrase_prefix</name>
+                </option>
+                <option>
+                    <id>and_bool_query</id>
+                    <name>bool_query (The term must appear in the product name while all related fields are linked using
+                        OR)
+                    </name>
+                    <name lang="de-DE">and_bool_query (Der Term muss im Produktnamen vorkommen und alle anderen Felder
+                        werden ODER verknüpft)
+                    </name>
+                </option>
+            </options>
+            <defaultValue>best_fields</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>minishouldmatch</name>
+            <label>Mini should match (Only works with the mostfield query)</label>
+            <label lang="de-DE">mini should match (Funktioniert nur mit der most fieldquery)</label>
+        </input-field>
+        <input-field type="float">
+            <name>tiebreaker</name>
+            <label>Products tie_breaker values range (0...1) (example 0.7)</label>
+            <label lang="de-DE">Produkt tie_breaker Werte zwischen (0...1) (Beispiel 0.7)</label>
+        </input-field>
+        <input-field type="float">
+            <name>minScore</name>
+            <label>minScore for the products</label>
+            <label lang="de-DE">minScore für die Produkte</label>
+        </input-field>
+        <input-field type="float">
+            <name>minScoreFilter</name>
+            <label>minScore for the filters</label>
+            <label lang="de-DE">minScore für die Filter</label>
+        </input-field>
+
+        <input-field type="int">
+            <name>fragmentsize</name>
+            <label>Fragment size for the hightlighting</label>
+            <label lang="de-DE">Abschnittsgröße  für die Treffer-Hervorhebung (Anzahl der Terms)</label>
+        </input-field>
+        <input-field type="float">
+            <name>fragmentsizecategorie</name>
+            <label>Fragment size for the hightlighting when you use the the own categorie query</label>
+            <label lang="de-DE">Abschnittsgröße  für die Treffer-Hervorhebung falls die die Kategorie Abfrage verwenden</label>
+        </input-field>
+    </card>
+    <card>
+        <title>Filter result page</title>
+        <title lang="de-DE">Filter Suchergebnisseite</title>
+        <input-field type="single-select">
+            <name>filterToSearch</name>
+            <label>Filter in relation to search query</label>
+            <label lang="de-DE">Filter in Relation zur Suchabfrage</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field>
+            <name>resultpage</name>
+            <label>Realtion field for filter on the search result page.</label>
+            <label lang="de-DE">Relations Feld für Filter wenn es nicht der Produktname sein soll</label>
+        </input-field>
+        <input-field type="single-select">
+            <name>filterFuzzy</name>
+            <label>Fuzzy for the filter.</label>
+            <label lang="de-DE">Fuzzy für den Filter</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>filtertype</name>
+            <label>Get all filter</label>
+            <label lang="de-DE">Alle Filter auf der Suchergebnisseite</label>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>filteronpageresult</name>
+            <label>Disable the filter on the result page</label>
+            <label lang="de-DE">Filter abstellen bei der Suchergebnisseite</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>filterscrolling</name>
+            <label>Filter scrolling enable (disable paging)</label>
+            <label lang="de-DE">Filter scrolling aktivieren (Paging abstellen)</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes (scrolling)</name>
+                    <name lang="de-DE">Ja (Scrolling)</name>
+                </option>
+                <option>
+                    <id>ajax</id>
+                    <name>Change paging to Ajax</name>
+                    <name lang="de-DE">Paging auf Ajax umstellen</name>
+                </option>
+                <option>
+                    <id>noget</id>
+                    <name>Change paging to Ajax without browser history</name>
+                    <name lang="de-DE">Ajax paging ohne Browser History</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+            <defaultValue>ajax</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>ratingFilteron</name>
+            <label>Enable filters for ratings on the search results page</label>
+            <label lang="de-DE"> Filter für Bewertungen bei der Suchergebnisseite aktivieren</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>filterOpen</name>
+            <label>Show filter open after query</label>
+            <label lang="de-DE">Filter nach der Abfrage offen anzeigen</label>
+            <options>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>searchlayout</name>
+            <label>Which Shopware layout on the search results page</label>
+            <label lang="de-DE">Welches Shopware Layout auf der Suchergebnisseite</label>
+            <options>
+                <option>
+                    <id>standard</id>
+                    <name>standard</name>
+                    <name lang="de-DE">standard</name>
+                </option>
+                <option>
+                    <id>minimal</id>
+                    <name>minimal</name>
+                    <name lang="de-DE">minimal</name>
+                </option>
+                <option>
+                    <id>image</id>
+                    <name>box-image</name>
+                    <name lang="de-DE">box-image</name>
+                </option>
+                <option>
+                    <id>wishlist</id>
+                    <name>box-wishlist</name>
+                    <name lang="de-DE">box-wishlist</name>
+                </option>
+            </options>
+            <defaultValue>standard</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>priceFilteron</name>
+            <label>Enable filters for prices on the search result page</label>
+            <label lang="de-DE"> Filter für Preise auf der Suchergebnisseite</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>extraqueryforfilters</name>
+            <label>Extra query for filters</label>
+            <label lang="de-DE">Eine extra Abfrage für die Filter</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field>
+            <name>extraquerySizeforfilter</name>
+            <label>If you have selected the extra query for filters, you can enter the query size here</label>
+            <label lang="de-DE">Falls Sie die extra Abfrage für Filter ausgewählt haben können Sie hier die Abfragegröße angeben</label>
+            <defaultValue>30</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>extraquerxmenory</name>
+            <label>The extra query for the filter memory optimizes but may be slower</label>
+            <label lang="de-DE">Die Extra Abfrage für die Filter Speicher Optimiert ausführen ist aber eventuell langsamer</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="int">
+            <name>fragmentsizeRecursive</name>
+            <label>If you have set the filter query to memory optimized, you can set the step size of the recursive calls here</label>
+            <label lang="de-DE">Falls Sie die Filterabfrage auf Memory optimiert eingestellt haben können Sie hier die Schritt Größe der rekursiven Aufrufe einstellen</label>
+            <defaultValue>30</defaultValue>
+        </input-field>
+        <input-field type="textarea">
+            <name>filterfilter</name>
+            <label>But filter groups name what you whant to use</label>
+            <label lang="de-DE">
+                Wenn hier die Filtergruppen eingegeben werden, werden auch nur diese Filtergruppen ausgeben
+            </label>
+        </input-field>
+        <input-field type="single-select">
+            <name>elasticsearchMobileView</name>
+            <label>Search page mobile columns</label>
+            <label lang="de-DE">Mobile Spalten der Suchseite</label>
+            <options>
+                <option>
+                    <id>12</id>
+                    <name>1</name>
+                    <name lang="de-DE">1</name>
+                </option>
+                <option>
+                    <id>6</id>
+                    <name>2</name>
+                    <name lang="de-DE">2</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>elasticsearchTabletView</name>
+            <label>Search page tablet columns</label>
+            <label lang="de-DE">Tablet Spalten der Suchseite</label>
+            <options>
+                <option>
+                    <id>12</id>
+                    <name>1</name>
+                    <name lang="de-DE">1</name>
+                </option>
+                <option>
+                    <id>6</id>
+                    <name>2</name>
+                    <name lang="de-DE">2</name>
+                </option>
+                <option>
+                    <id>4</id>
+                    <name>3</name>
+                    <name lang="de-DE">3</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>4</name>
+                    <name lang="de-DE">4</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>elasticsearchDesktopView</name>
+            <label>Search page desktop columns</label>
+            <label lang="de-DE">Desktop Spalten der Suchseite</label>
+            <options>
+                <option>
+                    <id>12</id>
+                    <name>1</name>
+                    <name lang="de-DE">1</name>
+                </option>
+                <option>
+                    <id>6</id>
+                    <name>2</name>
+                    <name lang="de-DE">2</name>
+                </option>
+                <option>
+                    <id>4</id>
+                    <name>3</name>
+                    <name lang="de-DE">3</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>4</name>
+                    <name lang="de-DE">4</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>6</name>
+                    <name lang="de-DE">6</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+    <card>
+        <title>Ajaxpopup-configuration</title>
+        <title lang="de-DE">Ajaxpopup-Konfiguration</title>
+        <input-field type="single-select">
+            <name>disabableAjax</name>
+            <label>Disable the the Ajax Popup</label>
+            <label lang="de-DE">Ajax Popup abstellen</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>optik</name>
+            <label>Popup optik 1 to 2</label>
+            <label lang="de-DE">Aufteilung 1 zu 2</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>displaybreadcrumb</name>
+            <label>Show breadcrumb (Only works with the category in own index setting)</label>
+            <label lang="de-DE">Zeige die Kategorie als Breadcrumb (Funktioniert nur mit der Einstellung Kategorie im eigenen Index)</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+            <defaultValue>1</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>filterscrollingPopup</name>
+            <label>Disable filter scrolling on ajax popup</label>
+            <label lang="de-DE">Filter Scrolling beim Ajaxpopup Deaktivieren</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes (scrolling)</name>
+                    <name lang="de-DE">Ja (Scrolling)</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+            <defaultValue>ajax</defaultValue>
+        </input-field>
+        <input-field>
+            <name>breadcrumbseparator</name>
+            <label>If you use breadcrumb you can add der separator symbol</label>
+            <label lang="de-DE">Falls Sie Breadcrumb verwenden kann hier das Trennzeichen eingegeben werden</label>
+            <defaultValue>/</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>breadcrumbDepth</name>
+            <label>Config for the breadcrumb deep</label>
+            <label lang="de-DE">Einstellung der Tiefe für den Kategorie Breadcrumb</label>
+            <defaultValue>/</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>disableFilterlink</name>
+            <label>Remove filterlink from the Ajax Popup</label>
+            <label lang="de-DE">Den Filterlink nicht im Ajax Popup ausgeben</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disableCount</name>
+            <label>Disable count result</label>
+            <label lang="de-DE">Anzahl der Treffer ausblenden</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disableproduktlabel</name>
+            <label>Don't use the word product as a label in Ajaxpop</label>
+            <label lang="de-DE">Das Wort Produkt als Label nicht im Ajaxpop ausgeben</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disableNumber</name>
+            <label>Display product number</label>
+            <label lang="de-DE">Artikelnummer immer mit ausgeben</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disablemanufacturerNumber</name>
+            <label>Disable manufacturer number </label>
+            <label lang="de-DE">Herstellernummer ausblenden</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>displayhighlight</name>
+            <label>Hits highlighting</label>
+            <label lang="de-DE">Treffer-Hervorhebung</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>Hits highlighting with more fields in the product name</name>
+                    <name lang="de-DE">Treffer Hervorheben wenn Sie mehrere Felder in den Produktnamen indexieren</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>displayproducthighlight</name>
+            <label>Display the highlighting for the product name</label>
+            <label lang="de-DE">Das highlighting bei dem Produktnamen mit ausgeben </label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disableLinkresult</name>
+            <label>Hide the link Show search results</label>
+            <label lang="de-DE">Den Link Sucherergebisse anzeigen ausblenden</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disableDescription</name>
+            <label>Do not show produkt description </label>
+            <label lang="de-DE">Produkt Beschreibung Treffer nicht anzeigen</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disablecategorybytheproducts</name>
+            <label>Don't show the category hit for the products</label>
+            <label lang="de-DE">Kategorie Teffer bei den Produkten nicht anzeigen</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disablekeywordsfrontend</name>
+            <label>Shopware keywords are not displayed in the template</label>
+            <label lang="de-DE">Schopware Schlagwörter im Template nicht ausgeben</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disablebrandsfrontend</name>
+            <label>Hide the manufacturer in the template</label>
+            <label lang="de-DE">Hersteller nicht im Template ausgeben. (Bei dem Produktnamen)</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>disableSnippet</name>
+            <label>Do not show snippets hist</label>
+            <label lang="de-DE">Textbausteine Treffer nicht anzeigen</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>defaultprice</name>
+            <label>Display the default price</label>
+            <label lang="de-DE">Standard Preis anzeigen. (Kundengruppen Preis werden nicht berücksichtigt)</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="float">
+            <name>popupheight</name>
+            <label>Height of Ajax result in rem. It should not be set too large so that scrolling is possible</label>
+            <label lang="de-DE">Höhe des Ajax Popup in rem (Einheit). Es sollte nicht zu groß eingestellt werden, damit
+                ein Scrolling noch möglich ist
+            </label>
+            <defaultValue>20</defaultValue>
+        </input-field>
+        <input-field>
+            <name>boxwith</name>
+            <label>Width of Ajax result list in % relative to screen width</label>
+            <label lang="de-DE">Breite des Ajax Popup in % bezogen auf die Shopbreite</label>
+            <defaultValue>80</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>form</name>
+            <label>Number of letters/characters are allowed in the search field.</label>
+            <label lang="de-DE">Anzahl der zulässigen Buchstaben/characters im Suchfeld</label>
+            <defaultValue>30</defaultValue>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>backgroundMain</name>
+            <label>Background color - Ajax result list</label>
+            <label lang="de-DE">Hintergrundfarbe - im Ajax Popup</label>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>fontColor</name>
+            <label>Font color in the Ajax result list</label>
+            <label lang="de-DE">Schriftfarbe im Ajax Popup</label>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>fontColorhight</name>
+            <label>Font color of the search words in the Ajax result list - highlighting</label>
+            <label lang="de-DE">Schriftfarbe - Hervorhebung der Suchbegriffe im Ajax Popup</label>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>backgroundColorCol1</name>
+            <label>Background color of the category list in the Ajax box</label>
+            <label lang="de-DE">Hintergrundfarbe der Kategorieliste im Ajax Popup (linke Seite)</label>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>fontColorCol1</name>
+            <label>Font color the category list (left side)</label>
+            <label lang="de-DE">Schriftfarbe der Kategorieliste im Ajax Popup (linke Seite)</label>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>fontColorhightCol1</name>
+            <label>Font color of the search words in the Ajax result list - highlighting (left side)</label>
+            <label lang="de-DE">Schriftfarbe - Hervorhebung der Suchbegriffe in der Kategorieliste (linke Seite)</label>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>fontColorheader</name>
+            <label>Font color of the Ajax result list header</label>
+            <label lang="de-DE">Überschriftenfarbe im Ajax Popup</label>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>backgroundColorbottom</name>
+            <label>Footer background color of the Ajax result list</label>
+            <label lang="de-DE">Hintergrundfarbe des Footer im Ajax Popup</label>
+        </input-field>
+        <input-field type="colorpicker">
+            <name>fontColorbottom</name>
+            <label>Footer font color of the Ajax result list</label>
+            <label lang="de-DE">Schriftfarbe des Footer im Ajax Popup</label>
+        </input-field>
+        <input-field type="int">
+            <name>position</name>
+            <label>Distance from top (in pixel) for desktop. Afterwards please check all viewports.</label>
+            <label lang="de-DE">Abstand von oben (in Pixel) für Desktop. Bitte überprüfen Sie anschließend alle anderen
+                Auflösungen.
+            </label>
+        </input-field>
+        <input-field type="int">
+            <name>positionTablet</name>
+            <label>Distance from top (in pixel) for tablet. Afterwards please check all viewports.</label>
+            <label lang="de-DE">Abstand von oben (in Pixel) für Tablet. Bitte überprüfen Sie anschließend alle anderen
+                Auflösungen.
+            </label>
+        </input-field>
+        <input-field type="int">
+            <name>positionMobile</name>
+            <label>Distance from top (in pixel) for smartphone. Afterwards please check all viewports.</label>
+            <label lang="de-DE">Abstand von oben (in Pixel) für Smartphone. Bitte überprüfen Sie anschließend alle
+                anderen Auflösungen.
+            </label>
+        </input-field>
+        <input-field type="int">
+            <name>positionXSMobile</name>
+            <label>Distance from top (in pixel) for smartphone (very small). Afterwards please check all viewports.
+            </label>
+            <label lang="de-DE">Abstand von oben (in Pixel) für Smartphone (sehr klein). Bitte überprüfen Sie
+                anschließend alle anderen Auflösungen.
+            </label>
+        </input-field>
+        <input-field>
+            <name>thumbnailsID</name>
+            <label>Individual thumbnail size (example: 400x400)</label>
+            <label lang="de-DE">Individuelle Thumbnail-Größe (Beispiel: 400x400)</label>
+        </input-field>
+        <input-field type="text">
+            <name>urlImage</name>
+            <label>Url for the images</label>
+            <label lang="de-DE">Url für die Bilder angeben</label>
+        </input-field>
+    </card>
+    <card>
+        <title>Others</title>
+        <title lang="de-DE">Sonstiges</title>
+        <input-field type="single-select">
+            <name>strchannel</name>
+            <label>Add only the images in the ESindex (improves the performance if not all data are required)</label>
+            <label lang="de-DE">
+                Nur die Bilder in den Elasticsearch Index aufnehmen (Verbessert die Performance wenn nicht alle Daten benötigt werden)
+            </label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>strindexfinish</name>
+            <label>Uses the index only after full re-indexing</label>
+            <label lang="de-DE">
+                Verwendet den neuen Index erst nach er vollen Indexierung
+            </label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>addInaktive</name>
+            <label>Include inactive products in the index (Only works with a extend Plugin)</label>
+            <label lang="de-DE">
+                Inaktive Produkte in den Index aufnehmen (Funktioniert nur mit ein Erweiterungsplugin)
+            </label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field>
+            <name>phpPad</name>
+            <label>Pad to your php cli (for your backend indexing)</label>
+            <label lang="de-DE">Pfad zur php cli (für die Backend Indexierung)</label>
+        </input-field>
+        <input-field type="single-select">
+            <name>strdeleteproduct</name>
+            <label>Turn off the automatic product delete event</label>
+            <label lang="de-DE">
+                Falls ein Produkt aus den Shop gelöscht wird kann das automatische entfernen aus dem Index hier abgestellt werden
+            </label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+             <input-field type="single-select">
+            <name>strync</name>
+            <label>Turn on the automatic index update event (Please use this setting with great caution and test the function for saving the products in the backend)</label>
+            <label lang="de-DE"> Automatischer Index update (Bitte diese Einstellung mit grosser vorsicht verwenden und die Funktion für das Speichern der Produkte im backend testen)</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+         <input-field type="textarea">
+            <name>stryncexclude</name>
+            <label>The channel IDs or language IDs can be excluded here, e.g. the headless channel</label>
+            <label lang="de-DE">Die Channel IDs oder Sprach Ids können hier ausgeschlossen werden z.b den Headless-channel</label>
+        </input-field>
+        <input-field type="single-select">
+            <name>showinsert</name>
+            <label>Show the insert</label>
+            <label lang="de-DE">Zeigt an wenn beim indexieren ein Datensatz eingefügt wird</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>ajaxcontroller</name>
+            <label>Use the own app ajax search controller</label>
+            <label lang="de-DE">Den App-eigenen Ajax Search Controller verwenden</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>searchcontroller</name>
+            <label>Use the own app search controller</label>
+            <label lang="de-DE">Den App-eigenen Search Controller verwenden</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>usedynamicaccess</name>
+            <label>We only need it when using the Dynamic Access plugin (Only works with a extend Plugin)</label>
+            <label lang="de-DE">Wir nur benötigt in der Verwendung des Plugins Dynamic Access (Funktioniert nur mit ein Erweiterungsplugin)</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>strchildren</name>
+            <label>If you set this to yes, the variants will be included in the Es server, which will certainly lead to an error message.
+                The setting is intended for developers who want to work with the data in an external plugin</label>
+            <label lang="de-DE">
+                Falls Sie das auf ja stellen werden die Varianten in den Es Server mit aufgenommen das führt sicher zu einer Fehlermeldung
+                Die Einstellung ist für Entwickler gedacht die im einen externen Plugin mit den Daten arbeiten wollen
+            </label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="int">
+            <name>totalfields</name>
+            <label>Limit of total fields</label>
+            <label lang="de-DE">Limit für die Felder (Default ist 1000)</label>
+        </input-field>
+        <input-field type="int">
+            <name>totalnested</name>
+            <label>Limit of total child</label>
+            <label lang="de-DE">Limit für Varianten (Default ist 1000)</label>
+        </input-field>
+    </card>
+    <card>
+        <title>If the sales channel has a different default language than the products,
+            there is a possibility to enter the IDs.
+            If you enter values here, you can only use one language.</title>
+        <title lang="de-DE">Wenn der Vertriebskanal eine andere Standardsprache als die Produkte hat,
+            gibt es eine möglich keit die IDs einzutragen.  Wenn Sie hier Werte einragen können Sie nur ein sprache verwenden</title>
+        <input-field type="text">
+            <name>configLanguage</name>
+            <label>The Language Id  from the Products</label>
+            <label lang="de-DE">Die Sprach Id der Produkte.</label>
+        </input-field>
+        <input-field type="text">
+            <name>configLanguageIndex</name>
+            <label>The Language Id from Index</label>
+            <label lang="de-DE">Die Sprach Id des Index</label>
+        </input-field>
+    </card>
+    <card>
+        <title>Phrase Suggesters filter https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters.html</title>
+        <title lang="de-DE">Phrase Suggesters bzw Vorschlagsfilter https://www.elastic.co/guide/en/elasticsearch/reference/current/search-suggesters.html</title>
+        <input-field type="single-select">
+            <name>suggest</name>
+            <label>Display suggest</label>
+            <label lang="de-DE">Vorschläge anzeigen</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>suggestplace</name>
+            <label>Suggestions not as a filter but under the search form</label>
+            <label lang="de-DE">Vorschlagschläge nicht als Filter sondern unter den Suchformular</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="int">
+            <name>minshinglesize</name>
+            <label>min shingle size (Default 2)</label>
+            <label lang="de-DE">Nur bei Suggest Filter min_shingle_size (default size 2)</label>
+            <defaultValue>2</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>maxshinglesize</name>
+            <label>max shingle size</label>
+            <label lang="de-DE">Nur bei Suggest Filter max_shingle_size</label>
+            <defaultValue>10</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>gramsize</name>
+            <label>Gram size (default 20)</label>
+            <label lang="de-DE">Gram Grösse (default 20)</label>
+            <defaultValue>20</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>suggestsize</name>
+            <label>Suggest size (default 1)</label>
+            <label lang="de-DE">Anzahl der Vorschläge (Default 1)</label>
+            <defaultValue>1</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>suggestmode</name>
+            <label>Suggest mode (default always)</label>
+            <label lang="de-DE">Suggest/Vorschlag Modus</label>
+            <options>
+                <option>
+                    <id>missing</id>
+                    <name>Missing</name>
+                    <name lang="de-DE">Missing</name>
+                </option>
+                <option>
+                    <id>popular</id>
+                    <name>Popular</name>
+                    <name lang="de-DE">Popular</name>
+                </option>
+                <option>
+                    <id>always</id>
+                    <name>Always</name>
+                    <name lang="de-DE">Always</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="int">
+            <name>maxshinglediff</name>
+            <label>max shingle size (Max diff for the Suggest Filter)</label>
+            <label lang="de-DE">max_ngram_diff (Max Differenz bei den Suggest Filter)</label>
+            <defaultValue>10</defaultValue>
+        </input-field>
+    </card>
+    <card>
+        <title>Price</title>
+        <title lang="de-DE">Preise</title>
+        <input-field type="single-select">
+            <name>outputkind</name>
+            <label>(beta) Direct output from the ES result on thesearch results page</label>
+            <label lang="de-DE">(beta) Direkte Ausgabe der ES Such Ergebnisse in der Suchergebnisseite</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>Yes with shopware price</name>
+                    <name lang="de-DE">Ja mit Shopware orginal Preis</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>calculatedprices</name>
+            <label>(beta) Show calculated prices in the ajaxpopup</label>
+            <label  lang="de-DE">(beta) Berechnet die Preise im Ajaxpopup</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>Orginal price</name>
+                    <name lang="de-DE">Orginal Preis</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>calculatedold</name>
+            <label>(beta) Prices for older shop versions</label>
+            <label  lang="de-DE">(beta) Preise für ältere Shopversionen. Kann ausprobiert werden wenn Standartbrechung zu einen Fehler führt</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>cheapestPrice</name>
+            <label>Use the cheapest price</label>
+            <label  lang="de-DE">Billigsten Preis ausgeben</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+        <input-field type="single-select">
+            <name>withoutlogin</name>
+            <label>Hide the prices in the popup using the B2BSeller</label>
+            <label  lang="de-DE">Ausblenden der Preise im Popup mit hilfe der B2BSeller </label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+    <card>
+        <title>Query log</title>
+        <title lang="de-DE">Abfragen loggen</title>
+        <input-field type="single-select">
+            <name>querylog</name>
+            <label>(beta) Query log on (The mapping must first be created using the command php bin/console sisi-log-index:mapping shop="Channel Name")</label>
+            <label lang="de-DE">(beta) Abfragen loggen  (Das Mapping muss vorher über den Command  php bin/console sisi-log-index:mapping shop="Channel Name" erstellt werden)</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+            <defaultValue>best_fields</defaultValue>
+        </input-field>
+        <input-field type="int">
+            <name>querylogsize</name>
+            <label>Number of suggestions</label>
+            <label lang="de-DE">Anzahl der Vorschläge</label>
+            <defaultValue>5</defaultValue>
+        </input-field>
+        <input-field type="single-select">
+            <name>querylogDisableinFrontend</name>
+            <label>Turn off query log result in frontend</label>
+            <label lang="de-DE">Query log im Frontend abstellen</label>
+            <options>
+                <option>
+                    <id>yes</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>no</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+            <defaultValue>best_fields</defaultValue>
+        </input-field>
+    </card>
+    <card>
+        <title>Elasticloud configuration</title>
+        <title lang="de-DE">Elasticloud-Konfiguration</title>
+        <input-field type="single-select">
+            <name>Elasticcloud</name>
+            <label>You use Elasticcloud</label>
+            <label lang="de-DE">Elasticcloud in Verwendung</label>
+            <options>
+                <option>
+                    <id>1</id>
+                    <name>Yes</name>
+                    <name lang="de-DE">Ja</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>No</name>
+                    <name lang="de-DE">Nein</name>
+                </option>
+            </options>
+            <defaultValue>best_fields</defaultValue>
+        </input-field>
+        <input-field>
+            <name>user</name>
+            <label>Elasticloud user name</label>
+            <label lang="de-DE">Elasticloud Benutzername</label>
+        </input-field>
+        <input-field>
+            <name>password</name>
+            <label>Elasticcloud password</label>
+            <label lang="de-DE">Elasticcloud Password</label>
+        </input-field>
+        <input-field>
+            <name>cloudid</name>
+            <label>Elasticcloud id</label>
+            <label lang="de-DE">Elasticcloud Id</label>
+        </input-field>
+    </card>
+</config>

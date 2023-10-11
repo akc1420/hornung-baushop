@@ -1,0 +1,24 @@
+{% block recommendy_bundle_slider %}
+    <div class="recommendy-slider is-bundle">
+        {% if config('Recommendy.config.sliderLayout')  == false %}
+            {% block recommendy_bundle_slider_title %}
+                <div class="content-title">
+                    {{ "recommendy.bundleSliderTitle"|trans|sw_sanitize }}
+                </div>
+            {% endblock %}
+        {% endif %}
+
+        {% block recommendy_bundle_slider_container %}
+            <div class="recommendy-slider-container">
+                {% set bundleProduct = true %}
+
+                {% sw_include "@Storefront/storefront/recommendy/recommendy-slider-configs.html.twig" with {
+                    'sliderElements': recommendySlider.bundleArticles,
+                    'bundleProduct': bundleProduct,
+                    'title': "recommendy.bundleSliderTitle"|trans|sw_sanitize
+                } %}
+
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

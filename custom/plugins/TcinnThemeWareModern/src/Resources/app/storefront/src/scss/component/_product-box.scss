@@ -1,0 +1,697 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Product box
+	==============================================
+	Styling for productbox component.
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Product box adjustments
+
+.product-box {
+	transition: border-color .20s ease, background-color .20s ease;
+
+	@if ($twt-product-box-layout-type == 1) {
+		border-color: $twt-product-box-border-color;
+	} @else {
+		border: none;
+	}
+
+	background-color: $twt-product-box-background-color;
+
+	&:hover {
+		@if ($twt-product-box-layout-type == 1) {
+			border-color: $twt-product-box-border-color-hover;
+		} @else {
+			border: none;
+		}
+
+		background-color: $twt-product-box-background-color-hover;
+	}
+
+	//&.box-standard {}
+	//&.box-minimal {}
+	//&.box-image {}
+}
+
+// TODO: Shopware Vererbung prüfen...
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+.product-box {
+	// ThemeWare: Product image adjustments
+	.product-image-wrapper {
+		overflow: hidden;
+
+		// ThemeWare: Add background color if configured
+		@if($twt-product-box-image-background-color != 'transparent' and $twt-product-box-image-background-color != 'rgba(0, 0, 0, 0)') {
+			background-color: $twt-product-box-image-background-color;
+		}
+
+		// ThemeWare: Full-width product image
+		@if $twt-product-box-image-layout-type == 2 {
+			margin: -1rem -1rem 1rem -1rem;
+		}
+
+		// TODO: Add image size "none"...
+
+		// ThemeWare: Add border-radius for image size "standard"
+		@if $twt-product-box-image-object-fit == "standard" {
+			border-radius: null-pixel-unit($twt-border-radius);
+		}
+
+		// ThemeWare: Add border-radius for image size "cover"
+		@if $twt-product-box-image-object-fit == "cover" {
+			border-top-left-radius: null-pixel-unit($twt-border-radius);
+			border-top-right-radius: null-pixel-unit($twt-border-radius);
+		}
+
+		// TODO: Layout only necessary for listings as cms block-elements has a configuration
+		// Note: the cms configuration is currently not working!
+
+		// ThemeWare: Prepare hover-effect off product-images
+		.product-image-link {
+			// TODO: Check if 'align-items' can be made functional again or remove it.
+			// The 'max-height' of '.product-image' interferes with the function atm.
+			align-items: $twt-product-box-image-align-items;
+
+			// TODO: justify-content (flex-start, center, flex-end)
+
+			img {
+				//height: 100%; // TODO: not working with Crossselling slider
+
+				@if($twt-product-box-image-hover-type == 2) {
+					transition: opacity .20s ease;
+				}
+
+				@if($twt-product-box-image-hover-type == 3) {
+					transition: transform .5s ease;
+					transform: scale(1);
+				}
+			}
+		}
+
+	}
+
+	/* TODO: Add separate configuration for the three box-layouts... */
+	// Layout type "Standard content"
+	&.box-standard {
+		.product-image-wrapper {
+			// ThemeWare: Adjust image height
+			@if($twt-product-box-image-height != 200) {
+				height: auto-pixel-unit($twt-product-box-image-height);
+			}
+
+			img.is-standard {
+				// ThemeWare: Change object-fit to "standard" (scale-down)
+				@if $twt-product-box-image-object-fit == "standard" {
+					// default
+				}
+
+				// ThemeWare: Change object-fit to "cover"
+				@if $twt-product-box-image-object-fit == "cover" {
+					object-fit: cover;
+					// @deprecated tag:v6.5.0 - Bootstrap v5 will discontinue IE11 support. font-family polyfill will be removed.
+					font-family: "object-fit: cover;"; // IE polyfill
+				}
+
+				// ThemeWare: Change object-fit to "contain"
+				@if $twt-product-box-image-object-fit == "contain" {
+					object-fit: contain;
+					// @deprecated tag:v6.5.0 - Bootstrap v5 will discontinue IE11 support. font-family polyfill will be removed.
+					font-family: "object-fit: contain;"; // IE polyfill
+				}
+			}
+		}
+
+		// ThemeWare: Adjust image height
+		@if($twt-product-box-image-height != 200) {
+			.product-image {
+				max-height: auto-pixel-unit($twt-product-box-image-height);
+			}
+		}
+	}
+
+	// Layout type "Minimal content"
+	&.box-minimal {
+		.product-image-wrapper {
+			// ThemeWare: Adjust image height
+			@if($twt-product-box-image-height != 200) {
+				height: auto-pixel-unit($twt-product-box-image-height);
+			}
+
+			img.is-standard {
+				// ThemeWare: Change object-fit to "standard" (scale-down)
+				@if $twt-product-box-image-object-fit == "standard" {
+					// default
+				}
+
+				// ThemeWare: Change object-fit to "cover"
+				@if $twt-product-box-image-object-fit == "cover" {
+					//-o-object-fit: cover;
+					object-fit: cover;
+					// @deprecated tag:v6.5.0 - Bootstrap v5 will discontinue IE11 support. font-family polyfill will be removed.
+					font-family: "object-fit: cover;"; // IE polyfill
+				}
+
+				// ThemeWare: Change object-fit to "contain"
+				@if $twt-product-box-image-object-fit == "contain" {
+					//-o-object-fit: contain;
+					object-fit: contain;
+					// @deprecated tag:v6.5.0 - Bootstrap v5 will discontinue IE11 support. font-family polyfill will be removed.
+					font-family: "object-fit: contain;"; // IE polyfill
+				}
+			}
+		}
+
+		// ThemeWare: Adjust image height
+		@if($twt-product-box-image-height != 200) {
+			.product-image {
+				max-height: auto-pixel-unit($twt-product-box-image-height);
+			}
+		}
+	}
+
+	// Layout type "Big image"
+	&.box-image {
+		.product-image-wrapper {
+			// ThemeWare: Adjust image height
+			// Set to 332px by Shopware
+			img.is-cover {
+				// ThemeWare: Change object-fit to "standard" (scale-down)
+				@if $twt-product-box-image-object-fit == "standard" {
+					-o-object-fit: scale-down;
+					object-fit: scale-down;
+					// @deprecated tag:v6.5.0 - Bootstrap v5 will discontinue IE11 support. font-family polyfill will be removed.
+					font-family: "object-fit: scale-down;"; // IE polyfill
+				}
+
+				// ThemeWare: Change object-fit to "cover"
+				@if $twt-product-box-image-object-fit == "cover" {
+					// default
+				}
+
+				// ThemeWare: Change object-fit to "contain"
+				@if $twt-product-box-image-object-fit == "contain" {
+					-o-object-fit: contain;
+					object-fit: contain;
+					// @deprecated tag:v6.5.0 - Bootstrap v5 will discontinue IE11 support. font-family polyfill will be removed.
+					font-family: "object-fit: contain;"; // IE polyfill
+				}
+			}
+		}
+	}
+
+	.product-info {
+		transition: all .25s ease;
+
+		// ThemeWare: Product box action button
+		@if($twt-product-box-action-buy-btn-show == 1) {
+			.product-action {
+				display: none;
+			}
+		}
+
+		// ThemeWare: Prepare hover effects of action buttons
+		@if($twt-product-box-action-buy-btn-show == 2) { // ThemeWare: Show buy button
+			@if($twt-product-box-action-buy-btn-hover != 1) { // ThemeWare: Buy button hover effects
+				.product-action {
+					position: absolute;
+					@if($twt-product-box-action-buy-btn-hover == 2) { // 2 = slide up
+						bottom: -50px;
+					} @else if ($twt-product-box-action-buy-btn-hover == 3) { // 3 = slide down
+						bottom: 22px;
+					} @else if ($twt-product-box-action-buy-btn-hover == 4) { // 4 = fade in
+						bottom: 0;
+					} @else if ($twt-product-box-action-buy-btn-hover == 5) { // 5 = slide up (NEW)
+						bottom: -54px;
+					}
+					left: 0;
+					right: 0;
+
+					opacity: 0;
+
+					transition: all .25s ease;
+				}
+			}
+		}
+	}
+
+	// ThemeWare: Hover effects of product images
+	&:hover {
+		.product-image-wrapper {
+			.product-image-link {
+				img {
+					@if ($twt-product-box-image-hover-type == 2) {
+						opacity: .75;
+					}
+
+					@if ($twt-product-box-image-hover-type == 3) {
+						transform: scale(1.1);
+					}
+				}
+			}
+		}
+	}
+
+	// ThemeWare: Hover effects of action buttons
+	@if($twt-product-box-action-buy-btn-show == 2) { // ThemeWare: Show buy button
+		@if($twt-product-box-action-buy-btn-hover != 1) { // ThemeWare: Buy button 'all' hover effects
+			&:hover {
+				.product-action {
+					bottom: 0;
+					opacity: 1;
+				}
+			}
+		}
+
+		@if($twt-product-box-action-buy-btn-hover == 5) {
+			&:hover {
+				.product-info {
+					margin-top: -54px;
+					padding-bottom: 54px;
+				}
+			}
+		}
+	}
+
+}
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+// ThemeWare: Action button hover effect = slide up
+// TODO: Doesn't work with 'twt-product-box-product-review-rating-position == 2') {
+@if (($twt-product-box-action-buy-btn-hover == 2 or $twt-product-box-action-buy-btn-hover == 5)
+and $twt-product-box-product-review-rating-position != 2) {
+	.product-info {
+		overflow: hidden;
+	}
+}
+
+// ThemeWare: Adjust text-alignment in product boxes
+.product-info {
+	position: relative;
+
+	@if $twt-product-box-text-align != "left" {
+		// ThemeWare HC-Architecture: Only apply if "left" (= default value) has not been selected
+		text-align: $twt-product-box-text-align;
+	}
+}
+
+// TODO: Add separate alignment for all three layouts...
+//.product-box {
+//	&.box-standard {
+//		.product-info {
+//			text-align: $twt-product-box-text-align-box-standard;
+//		}
+//	}
+//
+//	&.box-minimal {
+//		.product-info {
+//			text-align: $twt-product-box-text-align-box-minimal;
+//		}
+//	}
+//
+//	&.box-image {
+//		.product-info {
+//			text-align: $twt-product-box-text-align-box-image;
+//		}
+//	}
+//}
+
+// ThemeWare: Fix truncate-multiline background-color
+.product-variant-characteristics {
+	.product-variant-characteristics-text {
+
+		@if $twt-product-box-text-align != "left" {
+			margin-right: 0;
+			padding-right: 0;
+			max-width: 100%;
+			text-align: $twt-product-box-text-align;
+		}
+
+		// This :after element hides the :before element ("...") [see truncate-multiline mixin]
+		&::after {
+			// Default: $sw-background-color
+			background: $twt-product-box-background-color; // TODO: Check transparency !!!
+		}
+	}
+}
+
+// ThemeWare: Hide product variant characteristics if configured
+@if($twt-product-box-variant-characteristics-show == 1) {
+	.product-variant-characteristics {
+		display: none;
+	}
+}
+
+/*
+  _           _____ ___   ___                        _   _
+ | |__ _  _  |_   _/ __|_|_ _|_ _  _ _  _____ ____ _| |_(_)___ _    ___
+ | '_ \ || |   | || (_|___| ||   \| ' \/ _ \ V / _` |  _| / _ \ ' \(_-<
+ |_.__/\_, |   |_| \___| |___|_||_|_||_\___/\_/\__,_|\__|_\___/_||_/__/
+	   |__/
+*/
+
+// ThemeWare: Product review adjustments
+@if($twt-product-box-product-review-rating-position == 2) {
+	// TODO: oberste Ebene...
+	.product-rating {
+		position: absolute;
+		top: -45px;
+		right: 0;
+		text-align: right;
+		margin: 0;
+
+		.product-review-rating {
+			margin-right: 0;
+			display: inline-block;
+			background-color: $twt-product-box-background-color;
+			padding: 7px 7px 4px 7px;
+
+			@include twt-box-shadow(1); // TODO: Konfigurierbar machen
+
+			border-top-right-radius: null-pixel-unit($twt-border-radius);
+			border-bottom-left-radius: null-pixel-unit($twt-border-radius);
+			transition: background-color .20s ease;
+
+			.product-review-point {
+				display: inline-block;
+				width: 14px;
+			}
+		}
+	}
+}
+
+// ThemeWare: Product name adjustments
+
+// TODO: line-height
+// TODO: automate height with "line-height x number of lines"
+// TODO: font-size
+// TODO: color (hover?)
+
+@if $twt-product-box-product-name-line-clamp != 0 and $twt-product-box-product-name-line-clamp != 2 {
+	.product-name {
+		@if $twt-product-box-product-name-line-clamp == 1 {
+			// ThemeWare: Adjust number of lines
+			-webkit-line-clamp: 1; // scheint nötig
+			line-clamp: 1;
+			height: 22px;
+		} @else if $twt-product-box-product-name-line-clamp == 2 {
+			// default
+		} @else if $twt-product-box-product-name-line-clamp == 3 {
+			// ThemeWare: Adjust number of lines
+			-webkit-line-clamp: 3; // scheint nötig
+			line-clamp: 3;
+			height: 66px;
+		} @else if $twt-product-box-product-name-line-clamp == 4 {
+			// ThemeWare: Adjust number of lines
+			-webkit-line-clamp: 4; // scheint nötig
+			line-clamp: 4;
+			height: 88px;
+		}
+	}
+}
+
+@if $twt-product-box-product-name-line-clamp == 0 and $twt-product-box-product-name-line-clamp-box-standard != 2 {
+	// ThemeWare HC-Architecture: Only apply if "2" (= default value) has not been selected
+	.product-box {
+		&.box-standard {
+			.product-name {
+				@if $twt-product-box-product-name-line-clamp-box-standard == 1 {
+					// ThemeWare: Adjust number of lines
+					-webkit-line-clamp: 1; // scheint nötig
+					line-clamp: 1;
+					height: 22px;
+				} @else if $twt-product-box-product-name-line-clamp-box-standard == 2 {
+					// default
+				} @else if $twt-product-box-product-name-line-clamp-box-standard == 3 {
+					// ThemeWare: Adjust number of lines
+					-webkit-line-clamp: 3; // scheint nötig
+					line-clamp: 3;
+					height: 66px;
+				} @else if $twt-product-box-product-name-line-clamp-box-standard == 4 {
+					// ThemeWare: Adjust number of lines
+					-webkit-line-clamp: 4; // scheint nötig
+					line-clamp: 4;
+					height: 88px;
+				}
+			}
+		}
+	}
+}
+
+@if $twt-product-box-product-name-line-clamp == 0 and $twt-product-box-product-name-line-clamp-box-minimal != 2 {
+	// ThemeWare HC-Architecture: Only apply if "2" (= default value) has not been selected
+	.product-box {
+		&.box-minimal {
+			.product-name {
+				@if $twt-product-box-product-name-line-clamp-box-minimal == 1 {
+					// ThemeWare: Adjust number of lines
+					-webkit-line-clamp: 1; // scheint nötig
+					line-clamp: 1;
+					height: 22px;
+				} @else if $twt-product-box-product-name-line-clamp-box-minimal == 2 {
+					// default
+				} @else if $twt-product-box-product-name-line-clamp-box-minimal == 3 {
+					// ThemeWare: Adjust number of lines
+					-webkit-line-clamp: 3; // scheint nötig
+					line-clamp: 3;
+					height: 66px;
+				} @else if $twt-product-box-product-name-line-clamp-box-minimal == 4 {
+					// ThemeWare: Adjust number of lines
+					-webkit-line-clamp: 4; // scheint nötig
+					line-clamp: 4;
+					height: 88px;
+				}
+			}
+		}
+	}
+}
+
+@if $twt-product-box-product-name-line-clamp == 0 and $twt-product-box-product-name-line-clamp-box-image != 2 {
+	// ThemeWare HC-Architecture: Only apply if "2" (= default value) has not been selected
+	.product-box {
+		&.box-image {
+			.product-name {
+				@if $twt-product-box-product-name-line-clamp-box-image == 1 {
+					// ThemeWare: Adjust number of lines
+					-webkit-line-clamp: 1; // scheint nötig
+					line-clamp: 1;
+					height: 22px;
+				} @else if $twt-product-box-product-name-line-clamp-box-image == 2 {
+					// default
+				} @else if $twt-product-box-product-name-line-clamp-box-image == 3 {
+					// ThemeWare: Adjust number of lines
+					-webkit-line-clamp: 3; // scheint nötig
+					line-clamp: 3;
+					height: 66px;
+				} @else if $twt-product-box-product-name-line-clamp-box-image == 4 {
+					// ThemeWare: Adjust number of lines
+					-webkit-line-clamp: 4; // scheint nötig
+					line-clamp: 4;
+					height: 88px;
+				}
+			}
+		}
+	}
+}
+
+// ThemeWare: Price unit adjustments
+.product-price-unit {
+	margin-bottom: 0;
+}
+
+// ThemeWare: Hide price unit if configured
+@if($twt-product-box-price-unit-show == 1) {
+	.product-price-unit {
+		display: none;
+	}
+}
+
+// ThemeWare: Hide cheapest price if configured
+@if($twt-product-box-cheapest-price-show == 1) {
+	.product-cheapest-price {
+		display: none;
+	}
+}
+
+// ThemeWare: Hide list price if configured
+@if($twt-product-box-list-price-price-show == 1) {
+	.product-price {
+		.list-price-price {
+			display: none;
+		}
+	}
+}
+
+// ThemeWare: Hide list price percentage if configured
+@if($twt-product-box-list-price-percentage-show == 1) {
+	.product-price {
+		.list-price-percentage {
+			display: none;
+		}
+	}
+}
+
+// ThemeWare: Badge adjustments
+// TODO: Add separate configuration for all threes layouts
+// TODO: Add configuration for box-shadow...
+.product-badges {
+	top: 10px; // TODO: Konfigurierbar machen
+
+	@if ($twt-product-badges-corner-type == 1) {
+		// ThemeWare: Layout 1 (Standard)
+		// left: 0;
+	} @else {
+		left: 5px; // TODO: Konfigurierbar machen
+	}
+
+	pointer-events: none; // ThemeWare: Click-through fix
+
+	.badge {
+		font-size: null-pixel-unit($twt-product-badges-font-size);
+		@if ($twt-product-badges-font-size != 16) {
+			height: null-pixel-unit(2 * $twt-product-badges-font-size);
+			line-height: null-pixel-unit(2 * $twt-product-badges-font-size);
+		}
+		pointer-events: all; // Click-through fix
+
+		@include twt-box-shadow(1); // TODO: Konfigurierbar machen
+
+		@if ($twt-product-badges-corner-type == 1) {
+			// ThemeWare: Layout 1 (Standard)
+		} @else if $twt-product-badges-corner-type == 2 {
+			// Layout 2 "rounded corners" (ThemeWare)
+			border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+			border-top-right-radius: null-pixel-unit($twt-border-radius);
+		} @else {
+			// ThemeWare: Layout 3 "round corners" (ThemeWare)
+			border-radius: 10rem;
+			padding: 0 10px;
+		}
+
+		.icon {
+			width: $twt-product-badges-font-size+px;
+			height: $twt-product-badges-font-size+px;
+			opacity: .8;
+			color: inherit;
+
+			// Hide icon on phones
+			@include media-breakpoint-down(xs) { // max 575.98px
+				display: none;
+			}
+
+			svg {
+				top: 2px;
+			}
+		}
+	}
+
+	// ThemeWare: Stock badge
+	@if ($twt-product-badges-stock-badge-show == 2) {
+		.twt-badge-stock {
+			@if ($twt-product-badges-stock-badge-coloration != 2) {
+				// Default
+			} @else {
+				color: color-yiq($twt-product-badges-stock-badge-background-color);
+				background-color: $twt-product-badges-stock-badge-background-color;
+			}
+		}
+	}
+
+	// ThemeWare: Sold badge
+	@if ($twt-product-badges-sold-badge-show == 2) {
+		.twt-badge-sold {
+			@if ($twt-product-badges-sold-badge-coloration != 2) {
+				// Default
+			} @else {
+				background-color: $twt-product-badges-sold-badge-background-color;
+			}
+		}
+	}
+
+	// ThemeWare: Free shipping badge
+	@if ($twt-product-badges-shipping-free-badge-show == 2) {
+		.twt-badge-shipping-free {
+			@if ($twt-product-badges-shipping-free-badge-coloration != 2) {
+				// Default
+			} @else {
+				background-color: $twt-product-badges-shipping-free-badge-background-color;
+			}
+		}
+	}
+
+	// ThemeWare: Discount badge (modified badge)
+	.badge-discount {
+		@if ($twt-product-badges-discount-badge-coloration != 2) {
+			// Default
+		} @else {
+			color: color-yiq($twt-product-badges-discount-badge-background-color);
+			background-color: $twt-product-badges-discount-badge-background-color;
+		}
+	}
+
+	// ThemeWare: Topseller badge (SW badge)
+	@if ($twt-product-badges-topseller-badge-show == 2) {
+		.badge-topseller {
+			@if ($twt-product-badges-topseller-badge-coloration != 2) {
+				// Default
+			} @else {
+				color: color-yiq($twt-product-badges-topseller-badge-background-color);
+				background-color: $twt-product-badges-topseller-badge-background-color;
+			}
+		}
+	}
+
+	// ThemeWare: New badge (SW badge)
+	@if ($twt-product-badges-new-badge-show == 2) {
+		.badge-new {
+			@if ($twt-product-badges-new-badge-coloration != 2) {
+				// Default
+			} @else {
+				color: color-yiq($twt-product-badges-new-badge-background-color);
+				background-color: $twt-product-badges-new-badge-background-color;
+			}
+		}
+	}
+}
+
+// TODO: Check which file this belongs in...
+
+// ThemeWare: Product-box in slider adjustments
+.product-slider-item > .product-box {
+	@if($twt-product-box-hover-apply == 1) {
+		border: none;
+	}
+}
+
+// ThemeWare: Rating color adjustments (see _icon.scss)
+.point-rating {
+	&.point-blank {
+		.icon {
+			color: $twt-product-review-point-blank-color; //$gray-300
+		}
+	}
+
+	.icon-light {
+		color: $twt-product-review-point-blank-color; //$gray-300
+	}
+
+	.icon-review {
+		color: $twt-product-review-point-color; //$icon-review-color
+	}
+}
+
+// review form
+.product-detail-review-form-star {
+	&.is-active {
+		.icon {
+			color: $twt-product-review-point-color; //$icon-review-color
+		}
+	}
+}

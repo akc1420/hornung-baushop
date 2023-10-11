@@ -1,0 +1,221 @@
+{# ThemeWare "Product videos" on product pages via custom fileds #}
+{#
+    Create container and add product videos
+
+    @Storefront/storefront/themeware/product-detail/twt-product-videos.html.twig
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailProductVideosAdvancedPrivacy = theme_config('twt-product-detail-product-videos-advanced-privacy') %}
+{% set twtProductDetailProductVideosNeedConfirmation = theme_config('twt-product-detail-product-videos-need-confirmation') %}
+{% set twtProductDetailProductVideosPlaceholderLayoutType = theme_config('twt-product-detail-product-videos-placeholder-layout-type') %}
+{% set twtProductDetailProductVideosPlaceholderPreviewImage = theme_config('twt-product-detail-product-videos-placeholder-preview-image') %}
+{% set twtProductDetailProductVideosShowControls = theme_config('twt-product-detail-product-videos-show-controls') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# @TODO
+    Konfiguration:
+    - Button (Color, Outline)
+    - Backdrop (Color, ..)
+    - Placeholder (Color, ..)
+    - Apply styling to Shopware video CMS elements
+    - ..
+#}
+
+{# ThemeWare: Add product videos #}
+{% block twt_product_detail_videos %}
+    <div class="twt-product-detail-videos twt-videos">
+
+        {% block twt_product_detail_videos_inner %}
+
+            {# ThemeWare: Add title (only in tab "Description") #}
+            {% block twt_product_detail_videos_title %}
+                {% if position == "description" %}
+                    {% if twtCustomFields.product.twt_modern_pro_custom_field__product__youtube_video is not empty or twtCustomFields.product.twt_modern_pro_custom_field__product__vimeo_video is not empty %}
+                        <div class="h5 twt-product-detail-product-videos-title">
+                            {{ 'twt.detail.customFields.productVideos.title'|trans }}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            {% endblock %}
+
+
+            {# ThemeWare: YouTube-Video(s) #}
+            {# TODO: Add configuration (Steuerelemente, Erweiterter Datenschutz, ...) #}
+            {# <iframe width="560" height="315" src="https://www.youtube.com/embed/aVw60mnS21o?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> #}
+            {# https://github.com/shopware/platform/blob/d6c853ca3b6b167d61d70e6329f4fcface5c5245/src/Storefront/Resources/views/storefront/element/cms-element-youtube-video.html.twig #}
+
+            {% block twt_product_detail_videos_youtube %}
+                {% if twtCustomFields.product.twt_modern_pro_custom_field__product__youtube_video is not empty %}
+                    {% set youtubeIDs = twtCustomFields.product.twt_modern_pro_custom_field__product__youtube_video|split(',') %}
+
+                    <div class="twt-product-detail-product-videos-container">
+                        {% for youtubeID in youtubeIDs %}
+                            {% set videoId = youtubeID|trim %}
+
+                            {# Advanced privacy mode #}
+                            {% if twtProductDetailProductVideosAdvancedPrivacy == 2 %}
+                                {% set videoUrl = 'https://www.youtube-nocookie.com/embed/' %}
+                            {% else %}
+                                {% set videoUrl = 'https://www.youtube.com/embed/' %}
+                            {% endif %}
+
+                            {% set videoUrl = videoUrl ~ videoId ~ '?' ~ 'rel=0' ~ '&'  %}
+
+                            {# Show video controls #}
+                            {% if twtProductDetailProductVideosShowControls == 1 %}
+                                {% set videoUrl = videoUrl ~ 'controls=0' ~ '&' %}
+                            {% endif %}
+
+                            {% set videoUrl = videoUrl ~ 'disablekb=1' %}
+
+                            {% set iframeClass = 'embed-responsive-item' %}
+
+                            {% block twt_product_detail_videos_youtube_embed %}
+                                <div class="twt-product-video is-youtube embed-responsive embed-responsive-16by9" itemprop="video"> {# 16:9 aspect ratio #}
+                                    <div class="responsive-video">
+
+                                        {% block twt_product_detail_videos_youtube_embed_inner %}
+                                            {% if twtProductDetailProductVideosNeedConfirmation == 1 %}
+                                                <iframe class="{{ iframeClass }}"
+                                                        src="{{ videoUrl }}"
+                                                        frameborder="0"
+                                                        allowfullscreen>
+                                                </iframe>
+                                            {% else %}
+                                                {% set pluginConfiguration = {
+                                                    videoUrl: videoUrl,
+                                                    iframeClasses: [ iframeClass ],
+                                                    btnClasses: [ 'btn', 'btn-outline-secondary' ],
+                                                    backdropClasses: [ 'twt-product-video__backdrop' ],
+                                                    confirmButtonText: 'component.cms.vimeo.acceptButtonLabel'|trans,
+                                                    overlayText: 'component.cms.vimeo.privacyNotice'|trans({
+                                                        '%url%': path('frontend.cms.page',{ id: config('core.basicInformation.privacyPage') }),
+                                                        '%platform%': 'YouTube'
+                                                    })|raw
+                                                } %}
+
+                                                {% block twt_product_detail_videos_youtube_embed_placeholder %}
+                                                    <div class="twt-product-video__placeholder"
+                                                         data-cms-gdpr-video-element="true"
+                                                         data-cms-gdpr-video-element-options="{{ pluginConfiguration|json_encode }}">
+                                                        {# Preview layouts #}
+                                                        {% if twtProductDetailProductVideosPlaceholderLayoutType == 3 %}
+                                                            {# Custom image #}
+                                                            <img class="product-detail-youtube-video-placeholder-img" src="{{ twtProductDetailProductVideosPlaceholderPreviewImage|sw_encode_url }}">
+                                                        {% elseif twtProductDetailProductVideosPlaceholderLayoutType == 2 %}
+                                                            {# Icon #}
+                                                            {% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+                                                                icon: 'youtube',
+                                                                style: 'isolated'
+                                                            } %} {# Uses ThemeWare's social icons #}
+                                                        {% endif %}
+
+                                                        {# Youtube thumbnail #}
+                                                        {#
+                                                        <img class="product-detail-youtube-video-placeholder-img" src="http://img.youtube.com/vi/{{ videoId }}/maxresdefault.jpg">
+                                                        #}
+                                                    </div>
+                                                {% endblock %}
+
+                                            {% endif %}
+                                        {% endblock %}
+
+                                    </div>
+                                </div>
+                            {% endblock %}
+
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+
+            {# ThemeWare: Vimeo-Video(s) #}
+            {# <div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/213807531?color=ffffff&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script> #}
+            {# https://github.com/shopware/platform/blob/d6c853ca3b6b167d61d70e6329f4fcface5c5245/src/Storefront/Resources/views/storefront/element/cms-element-vimeo-video.html.twig #}
+
+            {% block twt_product_detail_videos_vimeo %}
+                {% if twtCustomFields.product.twt_modern_pro_custom_field__product__vimeo_video is not empty %}
+                    {% set vimeoIDs = twtCustomFields.product.twt_modern_pro_custom_field__product__vimeo_video|split(',') %}
+
+                    <div class="twt-product-detail-product-videos-container">
+                        {% for vimeoID in vimeoIDs %}
+                            {% set videoId = vimeoID|trim %}
+
+                            {% set videoUrl = 'https://player.vimeo.com/video/' %}
+                            {% set videoUrl = videoUrl ~ videoId ~ '?'  %}
+
+                            {# Show video controls #}
+                            {% if twtProductDetailProductVideosShowControls == 1 %}
+                                {% set videoUrl = videoUrl ~ 'controls=false' ~ '&' %}
+                            {% endif %}
+
+                            {% set iframeClass = 'embed-responsive-item' %}
+
+                            {% block twt_product_detail_videos_vimeo_embed %}
+                                <div class="twt-product-video is-vimeo embed-responsive embed-responsive-16by9" itemprop="video"> {# 16:9 aspect ratio #}
+                                    <div class="responsive-video">
+
+                                        {% block twt_product_detail_videos_vimeo_embed_inner %}
+                                            {% if twtProductDetailProductVideosNeedConfirmation == 1 %}
+                                                <iframe class="{{ iframeClass }}"
+                                                        src="{{ videoUrl }}"
+                                                        style="position:absolute;top:0;left:0;width:100%;height:100%;"
+                                                        frameborder="0"
+                                                        allow="autoplay; fullscreen; picture-in-picture"
+                                                        allowfullscreen>
+                                                </iframe>
+                                                {#<script src="https://player.vimeo.com/api/player.js"></script>#}
+                                            {% else %}
+                                                {% set pluginConfiguration = {
+                                                    videoUrl: videoUrl,
+                                                    iframeClasses: [ iframeClass ],
+                                                    btnClasses: [ 'btn', 'btn-outline-secondary' ],
+                                                    backdropClasses: [ 'twt-product-video__backdrop' ],
+                                                    confirmButtonText: 'component.cms.vimeo.acceptButtonLabel'|trans,
+                                                    overlayText: 'component.cms.vimeo.privacyNotice'|trans({
+                                                        '%url%': path('frontend.cms.page',{ id: config('core.basicInformation.privacyPage') }),
+                                                        '%platform%': 'Vimeo'
+                                                    })|raw
+                                                } %}
+
+                                                {% block twt_product_detail_videos_vimeo_embed_placeholder %}
+                                                    <div class="twt-product-video__placeholder"
+                                                         data-cms-gdpr-video-element="true"
+                                                         data-cms-gdpr-video-element-options="{{ pluginConfiguration|json_encode }}">
+                                                        {# Preview layouts #}
+                                                        {% if twtProductDetailProductVideosPlaceholderLayoutType == 3 %}
+                                                            {# Custom image #}
+                                                            <img class="product-detail-youtube-video-placeholder-img" src="{{ twtProductDetailProductVideosPlaceholderPreviewImage|sw_encode_url }}">
+                                                        {% elseif twtProductDetailProductVideosPlaceholderLayoutType == 2 %}
+                                                            {# Icon #}
+                                                            {% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+                                                                icon: 'vimeo',
+                                                                style: 'isolated'
+                                                            } %} {# Uses ThemeWare's social icons #}
+                                                        {% endif %}
+
+                                                        {# Vimeo thumbnail #}
+                                                        {# Under construction... #}
+                                                    </div>
+                                                {% endblock %}
+
+                                            {% endif %}
+                                        {% endblock %}
+
+                                    </div>
+                                </div>
+                            {% endblock %}
+
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endblock %}
+
+        {% endblock %}
+    </div>
+{% endblock %}

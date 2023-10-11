@@ -1,0 +1,47 @@
+{% block swag_cms_extensions_block_config_rule %}
+    <div class="swag-cms-extensions-block-config-rule">
+        <sw-sidebar-collapse :expandOnLoading="false">
+
+            {% block swag_cms_extensions_block_config_rule_header %}
+                <template #header>
+                    <div
+                        v-html="$tc('swag-cms-extensions.sw-cms.detail.blockRule.sidebarHeaderBlockBehaviorSettings')"
+                        class="swag-cms-extensions-block-config-rule__header"></div>
+                </template>
+            {% endblock %}
+
+            {% block swag_cms_extensions_block_config_rule_content %}
+                <template #content>
+                    <div class="sw-cms-block-config swag-cms-extensions-block-config-rule__content">
+
+                        {% block swag_cms_extensions_block_config_rule_content_visibility_rule %}
+                            <swag-cms-extensions-block-rule-select
+                                    class="swag-cms-extensions-block-config-rule__field-visibility-rule"
+                                    :ruleId="blockRule.visibilityRuleId"
+                                    :placeholder="$tc('swag-cms-extensions.sw-cms.detail.blockRule.alwaysVisiblePlaceholder')"
+                                    rule-aware-group-key="swagCmsExtensionsBlockRules"
+                                    :disabled="!acl.can('cms.editor')"
+                                    :label="$tc('global.entities.rule')"
+                                    :helpText="$tc('swag-cms-extensions.sw-cms.detail.blockRule.ruleHelpText')"
+                                    @save-rule="onSaveRule"
+                                    @dismiss-rule="onDismissRule">
+                            </swag-cms-extensions-block-rule-select>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_block_config_rule_content_inverted %}
+                            <sw-switch-field
+                                    v-model="blockRule.inverted"
+                                    class="swag-cms-extensions-block-config-rule__field-inverted"
+                                    :label="$tc('swag-cms-extensions.sw-cms.detail.blockRule.invertedSwitchLabel')"
+                                    :disabled="!acl.can('cms.editor')"
+                                    @change="onInvertedChange">
+                            </sw-switch-field>
+                        {% endblock %}
+
+                    </div>
+                </template>
+            {% endblock %}
+
+        </sw-sidebar-collapse>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% sw_extends '@Storefront/storefront/component/account/register.html.twig' %}
+
+{% block component_account_register_address %}
+    {{ parent() }}
+
+    {% if page.extensions.cleverreach.automationData.showCheckbox %}
+        <div style="margin-bottom: 3rem">
+            <div class="card-title">
+                {{ "account.newsletterTitle"|trans|sw_sanitize }}
+            </div>
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox"
+                       class="custom-control-input"
+                       id="newsletterRegister"
+                       name="option"
+                       value="direct">
+
+                <label class="form-check-label custom-control-label"
+                       for="newsletterRegister">
+                    {{ "account.newsletterSettings"|trans({'%shopname%': shopware.config.core.basicInformation.shopName})|sw_sanitize }}
+                </label>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Gbmed\Form\Framework\Captcha\FormRoutes\Collection">
+            <argument type="tagged" tag="gbmed.form.routes"/>
+        </service>
+        <service id="Gbmed\Form\Framework\Captcha\FormRoutes\Contact" autowire="true">
+            <tag name="gbmed.form.routes"/>
+        </service>
+        <service id="Gbmed\Form\Framework\Captcha\FormRoutes\Register" autowire="true">
+            <tag name="gbmed.form.routes"/>
+        </service>
+        <service id="Gbmed\Form\Framework\Captcha\FormRoutes\Login" autowire="true">
+            <tag name="gbmed.form.routes"/>
+        </service>
+        <service id="Gbmed\Form\Framework\Captcha\FormRoutes\Recover" autowire="true">
+            <tag name="gbmed.form.routes"/>
+        </service>
+        <service id="Gbmed\Form\Framework\Captcha\FormRoutes\CmsExtensions" autowire="true">
+            <tag name="gbmed.form.routes"/>
+        </service>
+    </services>
+</container>

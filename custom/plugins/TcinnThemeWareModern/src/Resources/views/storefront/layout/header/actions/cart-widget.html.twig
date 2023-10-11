@@ -1,0 +1,48 @@
+﻿{% sw_extends '@Storefront/storefront/layout/header/actions/cart-widget.html.twig' %}
+{# ThemeWare® HC-Architecture® via configuration #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtHeaderCartBtnCompatibility = theme_config('twt-header-cart-btn-compatibility') %}
+{% set twtIconCart = theme_config('twt-icon-cart') %}
+{% set twtIconSet = theme_config('twt-iconset') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the cart button #}
+{# HC-Architecture @Doku #}
+{% block layout_header_actions_cart_widget %}
+	{% if twtHeaderCartBtnCompatibility == 2 %}
+		{# ThemeWare: Icon austauschen #}
+		<span class="header-cart-icon">
+			{% if twtIconSet is not same as ('default') %}
+				{% if twtIconCart == 'bag' %}
+					{% sw_icon 'bag' style {'pack':'themeware'} %}
+				{% elseif twtIconCart == 'basket' %}
+					{% sw_icon 'basket' style {'pack':'themeware'} %}
+				{% else %}
+					{% sw_icon 'cart' style {'pack':'themeware'} %}
+				{% endif %}
+			{% else %}
+				{% sw_icon 'bag' %}
+			{% endif %}
+		</span>
+
+		{# ThemeWare: Label "Warenkorb" ergänzen. #}
+		<span class="header-cart-name">
+			{{ "twt.header.cartText"|trans }}
+		</span>
+
+		{% if page.cart.lineItems|length > 0 %}
+			<span class="badge badge-primary header-cart-badge">{{ page.cart.lineItems|length }}</span>
+		{% endif %}
+		<span class="header-cart-total">
+			{{ page.cart.price.positionPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+		</span>
+	{% else %}
+
+		{# Default block #}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}

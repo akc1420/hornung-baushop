@@ -1,0 +1,230 @@
+
+{% block cr_abandoned_cart_list %}
+    <sw-page class="cr-abandoned-cart-list">
+        {% block cr_abandoned_cart_list_search_bar %}
+            <template #search-bar>
+                <sw-search-bar :initialSearchType="$tc('cr-abandoned-cart.abandonedCart.title')"
+                               :placeholder="$tc('cr-abandoned-cart.abandonedCart.searchBar.placeholder')"
+                               :initialSearch="term"
+                               @search="onSearch"
+                >
+                </sw-search-bar>
+            </template>
+        {% endblock %}
+
+        {% block cr_abandoned_cart_list_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block cr_abandoned_cart_list_smart_bar_header_title %}
+                    <h2>
+                        {% block cr_abandoned_cart_list_smart_bar_header_title_text %}
+                            {{ $tc('cr-abandoned-cart.abandonedCart.title') }}
+                        {% endblock %}
+
+                        {% block cr_abandoned_cart_list_smart_bar_header_amount %}
+                            <span v-if="!isLoading" class="cr_abandoned_cart_list__smart-bar-amount">
+                                ({{ total }})
+                            </span>
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block cr_abandoned_cart_language_switch %}
+            <template #language-switch>
+                <sw-language-switch
+                        :value="lang"
+                        @on-change="onChangeLanguage"
+                >
+                </sw-language-switch>
+            </template>
+        {% endblock %}
+
+        {% block cr_abandoned_cart_list_content %}
+            <template #content>
+
+                {% block cr_abandoned_cart_list_content_slot %}
+                    <div class="cr-abandoned-cart-list__content">
+
+                        {% block cr_abandoned_cart_list_grid %}
+                            <sw-data-grid :dataSource="abandonedCarts"
+                                          :columns="abandonedCartColumns"
+                                          :sortBy="sortBy"
+                                          :sortDirection="sortDirection"
+                                          :showSettings="true"
+                                          :isLoading="isLoading"
+                                          :allowColumnEdit="true"
+                                          :showSelection="false"
+                                          v-if="total > 0"
+                                          @column-sort="onSortColumn"
+                            >
+
+                                {% block cr_abandoned_cart_grid_columns_sent_time %}
+                                    <template #column-sentTime="{ item }">
+                                        <span v-if="item.sentTime">{{ item.sentTime }}</span>
+                                        <span v-if="!item.sentTime">-</span>
+                                    </template>
+                                {% endblock %}
+
+                                {% block cr_abandoned_cart_grid_columns_status %}
+                                    <template #column-status="{ item }">
+                                        <sw-label :variant="getRecoveryEmailStatusVariant(item.status.value)" appearance="pill">
+                                            {{ getStatusLabel(item.status.translations) }}
+                                        </sw-label>
+                                    </template>
+                                {% endblock %}
+
+                                {% block cr_abandoned_cart_grid_columns_recoveryStatus %}
+                                    <template #column-isRecovered="{ item }">
+                                        <sw-label :variant="getRecoveryStatusVariant(item.isRecovered.value)" appearance="pill">
+                                            {{ getStatusLabel(item.isRecovered.translations) }}
+                                        </sw-label>
+                                    </template>
+                                {% endblock %}
+
+                                {% block cr_abandoned_cart_grid_columns_actions %}
+                                    <template #actions="{ item }">
+
+                                        {% block cr_abandoned_cart_grid_columns_actions_trigger %}
+                                            {% block cr_abandoned_cart_grid_columns_actions_send %}
+                                                <sw-context-menu-item v-if="(item.status.value == 'pending') || (item.status.value == 'not_sent')"
+                                                                      @click="triggerEmail(item.id)">
+                                                    {{ $tc('cr-abandoned-cart.abandonedCart.sendNow') }}
+                                                </sw-context-menu-item>
+                                            {% endblock %}
+
+                                            {% block cr_abandoned_cart_grid_columns_actions_delete %}
+                                                <sw-context-menu-item variant="danger"
+                                                                      @click="onDelete(item.id)"
+                                                                      v-if="item.status.value != 'sending'"
+                                                >
+                                                    {{ $tc('sw-order.list.contextMenuDelete') }}
+                                                </sw-context-menu-item>
+                                            {% endblock %}
+                                        {% endblock %}
+                                    </template>
+                                {% endblock %}
+
+                                {% block cr_abandoned_cart_grid_action_modals %}
+                                <template #action-modals="{ item }">
+                                    {% block cr_abandoned_cart_delete_modal %}
+                                    <sw-modal v-if="showDeleteModal === item.id"
+                                              @modal-close="onCloseDeleteModal"
+                                              :title="$tc('global.default.warning')"
+                                              variant="small">
+                                        {% block cr_abandoned_cart_delete_modal_confirm_delete_text %}
+                                        <p class="sw-order-list__confirm-delete-text">
+                                            {{ $tc('cr-abandoned-cart.abandonedCart.modal.deleteMessage') }}
+                                        </p>
+                                        {% endblock %}
+
+                                        {% block cr_abandoned_cart_delete_modal_footer %}
+                                        <template #modal-footer>
+                                            {% block cr_abandoned_cart_delete_modal_cancel %}
+                                            <sw-button @click="onCloseDeleteModal" size="small">
+                                                {{ $tc('sw-order.list.buttonCancel') }}
+                                            </sw-button>
+                                            {% endblock %}
+
+                                            {% block cr_abandoned_cart_delete_modal_confirm %}
+                                            <sw-button @click="onConfirmDelete(item.id)" variant="danger" size="small">
+                                                {{ $tc('sw-order.list.buttonDelete') }}
+                                            </sw-button>
+                                            {% endblock %}
+                                        </template>
+                                        {% endblock %}
+                                    </sw-modal>
+                                    {% endblock %}
+                                </template>
+                                {% endblock %}
+                                {% block cr_abandoned_cart_list_grid_pagination %}
+                                    <template #pagination>
+                                        <sw-pagination :page="page"
+                                                       :limit="limit"
+                                                       :total="total"
+                                                       :autoHide="false"
+                                                       :total-visible="7"
+                                                       @page-change="onPageChange"
+                                                       :steps="[10, 25, 50]"
+                                        >
+                                        </sw-pagination>
+                                    </template>
+                                {% endblock %}
+                            </sw-data-grid>
+                        {% endblock %}
+
+                        {% block cr_abandoned_cart_list_empty_state %}
+                            <sw-empty-state
+                                    v-if="!isLoading && !total"
+                                    icon="default-shopping-paper-bag"
+                                    :title="$tc('cr-abandoned-cart.abandonedCart.emptyTitle')"
+                                    :subline="$tc('cr-abandoned-cart.abandonedCart.emptyDescription')"
+                            >
+                            </sw-empty-state>
+                        {% endblock %}
+
+                    </div>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block cr_abandoned_cart_sidebar %}
+            <template #sidebar>
+                <sw-sidebar class="cr-abandoned-cart-list__sidebar">
+                    {% block cr_abandoned_cart_sidebar_refresh %}
+                        <sw-sidebar-item
+                                icon="default-arrow-360-left"
+                                :title="$tc('sw-customer.list.titleSidebarItemRefresh')"
+                                @click="onRefresh">
+                        </sw-sidebar-item>
+                    {% endblock %}
+
+                    {% block cr_abandoned_cart_sidebar_filter %}
+                        <sw-sidebar-item icon="default-action-filter"
+                                         :title="$tc('sw-order.list.titleSidebarItemFilter')">
+
+                            {% block cr_abandoned_cart_sidebar_filter_items %}
+                                {% block cr_abandoned_cart_sidebar_filter_recovery_email_status %}
+                                    <sw-select-field
+                                            :label="$tc('cr-abandoned-cart.abandonedCart.recoveryEmailStatus')"
+                                            :value="recoveryEmailStatusFilter"
+                                            :placeholder="$tc('cr-abandoned-cart.abandonedCart.filter.emailStatusPlaceholder')"
+                                            @change="onChangeRecoveryEmailStatusFilter">
+                                        <option value="sent">{{ $tc('cr-abandoned-cart.abandonedCart.status.sent') }}</option>
+                                        <option value="not_sent">{{ $tc('cr-abandoned-cart.abandonedCart.status.not_sent') }}</option>
+                                        <option value="sending">{{ $tc('cr-abandoned-cart.abandonedCart.status.sending') }}</option>
+                                        <option value="pending">{{ $tc('cr-abandoned-cart.abandonedCart.status.pending') }}</option>
+                                    </sw-select-field>
+                                {% endblock %}
+
+                                {% block cr_abandoned_cart_sidebar_filter_recovery_status %}
+                                    <sw-select-field
+                                            :label="$tc('cr-abandoned-cart.abandonedCart.recoveryStatus')"
+                                            :value="recoveryStatusFilter"
+                                            :placeholder="$tc('cr-abandoned-cart.abandonedCart.filter.statusPlaceholder')"
+                                            @change="onChangeRecoveryStatusFilter">
+                                        <option value="true">{{ $tc('cr-abandoned-cart.abandonedCart.status.recovered') }}</option>
+                                        <option value="false">{{ $tc('cr-abandoned-cart.abandonedCart.status.not_recovered') }}</option>
+                                    </sw-select-field>
+                                {% endblock %}
+
+
+                                {% block cr_abandoned_cart_sidebar_filter_sales_channel %}
+                                    <sw-select-field
+                                            :label="$tc('cr-abandoned-cart.abandonedCart.salesChannel')"
+                                            :value="salesChannelFilter"
+                                            :options="salesChannels"
+                                            :placeholder="$tc('cr-abandoned-cart.abandonedCart.filter.salesChannelPlaceholder')"
+                                            @change="onChangeSalesChannelFilter">
+                                    </sw-select-field>
+                                {% endblock %}
+                            {% endblock %}
+
+                        </sw-sidebar-item>
+                    {% endblock %}
+                </sw-sidebar>
+            </template>
+        {% endblock %}
+    </sw-page>
+
+{% endblock %}

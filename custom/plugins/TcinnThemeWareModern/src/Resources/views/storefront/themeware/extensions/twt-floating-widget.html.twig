@@ -1,0 +1,17 @@
+{# ThemeWare "Floating/slideout widget" (Extension container) #}
+{#
+	Create container and include content
+
+	@Storefront/storefront/themeware/extensions/twt-floating-widget.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{% block twt_floating_widget %}
+	{# ThemeWare: Floating/slideout widget left or right #}
+	<div class="twt-floating-widget{% if animation|trim != "no" %} {{ animation }}{% endif %}" id="twt-floating-widget"
+		 data-twt-floating-widget-open="{% if open == "1" %}false{% else %}true{% endif %}"
+		 data-twt-floating-widget-backdrop="{% if backdrop == "1" %}false{% else %}true{% endif %}">
+		{% sw_include '@Storefront/storefront/themeware/includes/twt-floating-widget-include.html.twig' ignore missing %}
+	</div>
+{% endblock %}

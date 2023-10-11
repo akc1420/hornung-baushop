@@ -1,0 +1,546 @@
+{
+    "twt": {
+        "theme-manager": {
+            "welcome": {
+                "headline": "Congratulations!",
+                "introduction": "By choosing ThemeWare® Modern, you’ve not only decided on a great theme, you’ve also embarked on a journey to a successful and lucrative online shop. Our design and sales experts will accompany you on this journey, sharing their expertise with you in the form of instructions, video tutorials and online courses. With ThemeWare®, all of this is already included in the price. Even during the trial period!"
+            },
+            "firstSteps": {
+                "headline": "First steps",
+                "text": "Follow these first steps now to avoid missing out on anything, and you can then start configuring ThemeWare® and systematically optimising your shop.",
+                "step1": {
+                    "headline": "Download the ThemeWare® Utilities",
+                    "text": "ThemeWare® Utilities includes the complete graphics package, a professional shopping experience with instructions, extremely important online courses (theme SEO/page speed, sales promotion and graphics editing/design) and a surprise gift for you.",
+                    "buttonText": "Request the ThemeWare® Utilities for free",
+                    "link": "https://service.themeware.design/en/themeware-utilities?theme=modern&utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=utilities"
+                },
+                "step2": {
+                    "headline": "Watch the ThemeWare® Video Tutorial",
+                    "text": "Now start watching the first video tutorials. Depending on your level of knowledge, you will find the tutorials and instructions that suit you.",
+                    "buttonText": "Open the Video Tutorial",
+                    "link": "https://service.themeware.design/en/themeware-tutorial?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=video-tutorial"
+                },
+                "step3": {
+                    "headline": "Bookmark the ThemeWare® Service Portal",
+                    "text": "The ThemeWare® Service Portal is always your first place to go for anything you need to know about ThemeWare®. It is more or less your personal dashboard for ThemeWare®. There you will always find all the relevant links and information about ThemeWare®, the ThemeWare® Knowledge Base, the ThemeWare® Manual, forms and many useful tools.",
+                    "buttonText": "Visit the Service Portal",
+                    "link": "https://service.themeware.design/en?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=service-portal"
+                }
+            },
+            "highlights": {
+                "search": {
+                    "title": "Config Finder",
+                    "text": "Find any configuration field quickly with the popular ThemeWare® Config Finder.",
+                    "buttonText": "Open",
+                    "link": "https://config.themeware.design/en?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_fieldsearch"
+                },
+                "videoTutorial": {
+                    "title": "Video Tutorial",
+                    "text": "This is how you get to a professional shop quickly and step by step.",
+                    "buttonText": "Open",
+                    "link": "https://service.themeware.design/en/themeware-tutorial?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_video-tutorial"
+                },
+                "support": {
+                    "title": "Support",
+                    "text": "Our Service Portal is the best place to go when you need support.",
+                    "buttonText": "Open",
+                    "link": "https://service.themeware.design/en?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_support"
+                },
+                "utilities": {
+                    "title": "ThemeWare® Utilities",
+                    "text": "Useful tools, extras, and online courses to help boost the success of your shop.",
+                    "buttonText": "Open",
+                    "link": "https://service.themeware.design/en/themeware-utilities?theme=modern&utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_utilities"
+                }
+            },
+            "tools": {
+                "text": "Do you need any help? Here you’ll find an overview of all",
+                "underlined": "ThemeWare® Support Tools",
+                "link": "https://service.themeware.design/en?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=tool-overview"
+            }
+        },
+        "cms": {
+            "sidebar": {
+                "general": "General",
+                "sliders": "Sliders",
+                "teasers": "Teasers",
+                "banners": "Banners",
+                "columns": "Columns",
+                "grids": "Grids",
+                "commerce": "Commerce",
+                "sidebar": "Sidebar",
+                "other": "Other"
+            },
+            "elements": {
+                "general": {
+                    "config": {
+                        "tab": {
+                            "general": "General",
+                            "content": "Content",
+                            "text": "Text",
+                            "image": "Images",
+                            "textImage": "Text & images",
+                            "settings": "Settings",
+                            "options": "Options",
+                            "layout": "Layout",
+                            "grid": "Grid",
+                            "advanced": "Advanced"
+                        },
+                        "title": {
+                            "general": "General",
+                            "content": "Content",
+                            "text": "Text",
+                            "image": "Image",
+                            "layout": "Layout",
+                            "link": "Link",
+                            "button": "Button",
+                            "hover": "Hover",
+                            "overlay": "Overlay",
+                            "colorOverlay": "Coloured overlay",
+                            "cssClasses": "CSS classes"
+                        },
+                        "label": {
+                            "alignment": "Horizontal alignment",
+                            "attachment": "Attachment",
+                            "backgroundColor": "Background colour",
+                            "backgroundColor1": "Background colour (1)",
+                            "backgroundColor2": "Background colour (2)",
+                            "backgroundColorHover": "Background colour @hover",
+                            "backgroundGradient": "Use colour gradient",
+                            "backgroundGradientAngle": "Gradient direction (in degrees)",
+                            "borderColor": "Border colour",
+                            "breakpoint": "Breakpoint",
+                            "buttonOutline": "Outline button",
+                            "buttonStyle": "Button style",
+                            "buttonText": "Button text",
+                            "cssClass": "CSS class (Element)",
+                            "cssClassTeaser": "CSS class (Teaser)",
+                            "cssClassTitle": "CSS class (Headline)",
+                            "cssClassText": "CSS class (Text)",
+                            "fontFamily": "Font family",
+                            "fontFamilyHeadline": "Font family (Headline)",
+                            "fontFamilyTeaser": "Font family (Teaser)",
+                            "headline": "Headline",
+                            "horizontalAlign": "Horizontal alignment",
+                            "hoverEffect": "Hover effect",
+                            "htmlTag": "HTML tag (Headline)",
+                            "layoutType": "Layout type",
+                            "linkTo": "Link to",
+                            "maxWidth": "Maximum width (e.g. 740px or 90% or none)",
+                            "overlay": "Apply overlay styling",
+                            "overlayAnimation": "Animation",
+                            "overlaySizing": "Sizing mode",
+                            "colorOverlay": "Show coloured overlay",
+                            "overlayBgGradient": "Use colour gradient",
+                            "overlayBgGradientAngle": "Gradient direction (in degrees)",
+                            "overlayBgColor": "Background colour",
+                            "overlayBgColor1": "Background colour (1)",
+                            "overlayBgColor2": "Background colour (2)",
+                            "rounded": "Rounded corners",
+                            "shadow": "Box shadow",
+                            "text": "Text",
+                            "textAlignment": "Text alignment",
+                            "textColor": "Text colour",
+                            "textColorTeaser": "Text colour (Teaser)",
+                            "textColorTitle": "Text colour (Headline)",
+                            "textShadow": "Text shadow",
+                            "title": "Title",
+                            "verticalAlign": "Vertical alignment",
+                            "width": "Width (e.g. 740px or 900% or auto)"
+                        },
+                        "placeholder": {
+                            "buttonText": "Enter a button text...",
+                            "cssClass": "Ente a CSS class...",
+                            "headline": "Enter a text...",
+                            "height": "Enter a height...",
+                            "maxWidth": "Enter a maximum width...",
+                            "text": "Enter a text...",
+                            "title": "Enter a text...",
+                            "width": "Enter a width..."
+                        },
+                        "option": {
+                            "alignLeft": "Left",
+                            "alignCenter": "Center",
+                            "alignRight": "Right",
+                            "animation": {
+                                "none": "No animation",
+                                "fadeIn": "Fade in",
+                                "fadeInDown": "Fade in down",
+                                "fadeInLeft": "Fade in left",
+                                "fadeInRight": "Fade in right",
+                                "fadeInUp": "Fade in up"
+                            },
+                            "attachment": {
+                                "scroll": "scroll",
+                                "fixed": "fixed"
+                            },
+                            "breakpoint": {
+                                "none": "none",
+                                "xs": "Extra small <576px",
+                                "sm": "Small ≥576px",
+                                "md": "Medium ≥768px",
+                                "lg": "Large ≥992px",
+                                "xl": "Extra large ≥1200px",
+                                "all": "all"
+                            },
+                            "button":{
+                                "btnPrimary": "Primary",
+                                "btnSecondary": "Secondary",
+                                "btnSuccess": "Success",
+                                "btnDanger": "Danger",
+                                "btnWarning": "Warning",
+                                "btnInfo": "Info",
+                                "btnLight": "Light",
+                                "btnLink": "Link",
+                                "btnBlue": "Blue",
+                                "btnIndigo": "Indigo",
+                                "btnPurple": "Purple",
+                                "btnPink": "Pink",
+                                "btnRed": "Red",
+                                "btnOrange": "Orange",
+                                "btnYellow": "Yellow",
+                                "btnGreen": "Green",
+                                "btnTeal": "Teal",
+                                "btnCyan": "Cyan",
+                                "btnWhite": "White",
+                                "btnBlack": "Black",
+                                "btnGold": "Gold"
+                            },
+                            "fontFamily": {
+                                "base": "Text",
+                                "headline": "Headlines",
+                                "decoration": "Decoration"
+                            },
+                            "horizontalAlign": {
+                                "start": "Left",
+                                "center": "Center",
+                                "end": "Right"
+                            },
+                            "hoverEffect": {
+                                "none": "No effect",
+                                "fadeIn": "Fade in",
+                                "slideInUp": "Slide in up",
+                                "slideInRight": "Slide in right",
+                                "slideInDown": "Slide in down",
+                                "slideInLeft": "Slide in left",
+                                "zoomIn": "Zoom in",
+                                "fadeOut": "Fade out"
+                            },
+                            "htmlTag": {
+                                "p": "Paragraph <p> tag (default)",
+                                "h1": "Heading 1 <h1> tag",
+                                "h2": "Heading 2 <h2> tag",
+                                "h3": "Heading 3 <h3> tag",
+                                "h4": "Heading 4 <h4> tag",
+                                "h5": "Heading 5 <h5> tag",
+                                "h6": "Heading 6 <h6> tag"
+                            },
+                            "notRounded": "Not rounded",
+                            "rounded": "Rounded corners",
+                            "shadow": {
+                                "none": "No shadow",
+                                "small": "Small shadow",
+                                "regular": "Regular shadow",
+                                "large": "Larger shadow",
+                                "smallBs": "Small shadow (Bootstrap)",
+                                "regularBs": "Regular shadow (Bootstrap)",
+                                "largeBs": "Larger shadow (Bootstrap)"
+                            },
+                            "sizing": {
+                                "boxed": "Boxed content",
+                                "fullWidth": "Full width"
+                            },
+                            "verticalAlignTop": "Top",
+                            "verticalAlignCenter": "Middle",
+                            "verticalAlignBottom": "Bottom"
+                        },
+                        "helpText": {
+                            "alignment": "Select the desired horizontal alignment.",
+                            "attachment": "Select whether a background image is fixed or scrolls.",
+                            "backgroundColor": "Select the desired background colour.",
+                            "backgroundColor1": "Select the desired background colour (color-step1).",
+                            "backgroundColor2": "Select the desired background colour (color-step2).",
+                            "backgroundColorHover": "Select the desired background colour when hovering.",
+                            "backgroundGradient": "Activate to use a colour gradient.",
+                            "backgroundGradientAngle": "Enter the desired direction of the gradient.",
+                            "borderColor": "Select the desired border colour.",
+                            "breakpoint": "Select the desired breakpoint.",
+                            "buttonOutline": "Activate to outline the button.",
+                            "buttonStyle": "Select the desired button style.",
+                            "buttonText": "Enter your desired button text.",
+                            "cssClass": "You can add one or more CSS classes separated by spaces.",
+                            "displayMode": "Select the desired display mode.",
+                            "fontFamily": "Select the desired font family.",
+                            "headline": "Enter your desired text.",
+                            "hoverEffect": "Select the desired hover effect.",
+                            "htmlTag": "Select the desired HTML tag.",
+                            "layoutType": "Select the desired layout type.",
+                            "linkTo": "Enter the desired link.",
+                            "linkNewTab": "Activate to open the link in a new tab.",
+                            "maxWidth": "Enter the desired maximum width (e.g. 740px or 90% or none).",
+                            "media": "Select the desired image.",
+                            "minHeight": "Select the desired minimum height.",
+                            "overlay": "Activate to apply overlay styling.",
+                            "overlayAnimation": "Select the desired animation.",
+                            "overlaySizing": "Select the desired sizing mode.",
+                            "colorOverlay": "Activate to use a coloured overlay.",
+                            "overlayBgGradient": "Activate to use a colour gradient.",
+                            "overlayBgGradientAngle": "Enter the desired direction of the gradient.",
+                            "overlayBgColor": "Select the desired background colour.",
+                            "overlayBgColor1": "Select the desired background colour (color-step1).",
+                            "overlayBgColor2": "Select the desired background colour (color-step2).",
+                            "rounded": "Select whether corners should be rounded.",
+                            "shadow": "Select the desired drop shadow.",
+                            "text": "Enter your desired text.",
+                            "textAlignment": "Select the desired text alignment.",
+                            "textColor": "Select the desired text colour.",
+                            "textShadow": "Select the desired text shadow.",
+                            "title": "Enter your desired text.",
+                            "verticalAlign": "Select the desired vertical alignment.",
+                            "width": "Enter your desired width (e.g. 740px or 900% or auto)."
+                        },
+                        "infotext": {
+                            "advanced": {
+                                "cssClass": "With the following configuration you can add one or more CSS classes to different elements. Separate multiple classes with spaces."
+                            },
+                            "intro": {
+                                "themeWare": "ThemeWare®",
+                                "cmsElement": "CMS element"
+                            },
+                            "listingElement": "This element's data is automatically loaded by the category associated with this layout. The content just shows a sample preview.",
+                            "mandatory": "required"
+                        }
+                    }
+                },
+                "textTeaser": {
+                    "label": "Text teaser"
+                },
+                "textTeaserDecorated": {
+                    "label": "Text teaser (Decorated)"
+                },
+                "buttonTeaser": {
+                    "label": "Button teaser"
+                },
+                "callToAction": {
+                    "label": "Call-to-Action"
+                },
+                "hoverBox": {
+                    "label": "Hover box",
+                    "config": {
+                        "label": {
+                            "invertHover": "Invert hover effect"
+                        },
+                        "option": {
+                            "slideUp": "Slide up",
+                            "slideRight": "Slide right",
+                            "slideDown": "Slide down",
+                            "slideLeft": "Slide left",
+                            "pushUp": "Push up",
+                            "pushRight": "Push right",
+                            "pushDown": "Push down",
+                            "pushLeft": "Push left",
+                            "hingeUp": "Hinge up",
+                            "hingeRight": "Hinge right",
+                            "hingeDown": "Hinge down",
+                            "hingeLeft": "Hinge left"
+                        }
+                    }
+                },
+                "classicTeaser": {
+                    "label": "Classic teaser",
+                    "config": {
+                        "label": {
+                            "custom": "Use custom styling"
+                        },
+                        "option": {
+                            "default": "Default",
+                            "effect1": "Effect 1",
+                            "effect2": "Effect 2",
+                            "effect3": "Effect 3 (e.g. ThemeWare® Clean)",
+                            "effect4": "Effect 4 (e.g. ThemeWare® Bike)",
+                            "effect5": "Effect 5 (e.g. ThemeWare® Strong)",
+                            "effect6": "Effect 6 (e.g. ThemeWare® Ladieswear)",
+                            "effect7": "Effect 7 (e.g. ThemeWare® Global)"
+                        },
+                        "helpText": {
+                            "custom": "Activate to use a custom styling."
+                        }
+                    }
+                },
+                "modernTeaser": {
+                    "label": "Modern teaser"
+                },
+                "imageBanner": {
+                    "label": "Image banner"
+                },
+                "textImageSlide": {
+                    "label": "Text (Hero slider)",
+                    "config": {
+                        "label": {
+                            "teaser": "Teaser",
+                            "overlayAlignment": "Overlay alignment",
+                            "overlayColor": "Overlay colour"
+                        },
+                        "placeholder": {
+                            "teaser": "Enter a text..."
+                        }
+                    }
+                },
+                "callToActionSlide": {
+                    "label": "Call-to-Action (Hero slider)",
+                    "config": {
+                        "label": {
+                            "teaser": "Teaser",
+                            "overlayAlignment": "Overlay alignment",
+                            "overlayColor": "Overlay colour"
+                        },
+                        "placeholder": {
+                            "teaser": "Enter a text..."
+                        }
+                    }
+                },
+                "sidebarSubcategoryNavigation": {
+                    "label": "Subcategory navigation",
+                    "infotext": {
+                        "navigationElement": "This element's navigation data is automatically loaded by the category associated with this layout. The content just shows a sample preview."
+                    },
+                    "component": {
+                        "label": {
+                            "navigation": "Navigation"
+                        }
+                    },
+                    "preview": {
+                        "label": {
+                            "navigation": "Navigation"
+                        }
+                    }
+                },
+                "placeholder": {
+                    "label": "Placeholder",
+                    "component": {
+                        "label": "Click to select an element"
+                    },
+                    "preview": {
+                        "label": "Select element"
+                    }
+                },
+                "breadcrumb": {
+                    "label": "Breadcrumb navigation",
+                    "config": {
+                        "infotext": "You can find a detailed configuration in the theme configuration."
+                    },
+                    "preview": {
+                        "label": "Breadcrumb navigation"
+                    }
+                }
+            },
+            "blocks": {
+                "heroSliderThreeSlides": {
+                    "label": "Hero slider (3x)"
+                },
+                "textTeaser": {
+                    "label": "Text teaser"
+                },
+                "textTeaserDecorated": {
+                    "label": "Text teaser (decorated)"
+                },
+                "buttonTeaser": {
+                    "label": "Button teaser"
+                },
+                "hoverBox": {
+                    "label": "Hover box"
+                },
+                "callToAction": {
+                    "label": "Call-to-Action"
+                },
+                "classicTeaser": {
+                    "label": "Classic teaser"
+                },
+                "modernTeaser": {
+                    "label": "Modern teaser"
+                },
+                "imageBanner": {
+                    "label": "Image banner"
+                },
+                "gridTwoColumn": {
+                    "label": "Two columns"
+                },
+                "gridTwoColumnSwapped": {
+                    "label": "Two columns (swapped on phones)"
+                },
+                "gridTwoColumn39": {
+                    "label": "Two columns, 3-9"
+                },
+                "gridTwoColumn48": {
+                    "label": "Two columns, 4-8"
+                },
+                "gridTwoColumn57": {
+                    "label": "Two columns, 5-7"
+                },
+                "gridTwoColumn75": {
+                    "label": "Two columns, 7-5"
+                },
+                "gridTwoColumn84": {
+                    "label": "Two columns, 8-4"
+                },
+                "gridTwoColumn93": {
+                    "label": "Two columns, 9-3"
+                },
+                "gridThreeColumn": {
+                    "label": "Three columns"
+                },
+                "gridThreeColumn282": {
+                    "label": "Three columns, 2-8-2"
+                },
+                "gridThreeColumn363": {
+                    "label": "Three columns, 3-6-3"
+                },
+                "gridFourColumn": {
+                    "label": "Four columns"
+                },
+                "gridFiveColumn": {
+                    "label": "Five columns"
+                },
+                "gridSixColumn": {
+                    "label": "Six columns"
+                },
+                "gridOne": {
+                    "label": "Grid 'One'"
+                },
+                "gridOneSwapped": {
+                    "label": "Grid 'One' (swapped)"
+                },
+                "gridModern": {
+                    "label": "Grid 'Modern'"
+                },
+                "sidebarSubcategoryNavigation": {
+                    "label": "Subcategory navigation (Sidebar)",
+                    "preview": {
+                        "label": {
+                            "navigation": "Navigation"
+                        }
+                    }
+                },
+                "productName": {
+                    "label": "Product name (without manufacturer logo)"
+                },
+                "galleryBuyBoxProductName": {
+                    "label": "Image gallery and buy box (with product name)"
+                },
+                "galleryBuyBoxProductHeading": {
+                    "label": "Image gallery and buy box (with product name & manufacturer logo)"
+                },
+                "breadcrumb": {
+                    "label": "Breadcrumb navigation",
+                    "preview": {
+                        "label": "Navigation"
+                    }
+                }
+            },
+            "tabs": {
+                "settings": "Settings",
+                "image": "Image"
+            }
+        }
+    }
+}

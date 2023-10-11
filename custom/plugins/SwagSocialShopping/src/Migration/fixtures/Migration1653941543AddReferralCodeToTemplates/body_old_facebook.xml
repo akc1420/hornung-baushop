@@ -1,0 +1,60 @@
+<item>
+    <g:gtin>{{ product.ean }}</g:gtin>
+    {%- if product.categories.first.translated.customFields.swag_social_shopping_google_category is defined and product.categories.first.translated.customFields.swag_social_shopping_google_category is not empty -%}
+        <g:google_product_category>
+            {{- product.categories.first.translated.customFields.swag_social_shopping_google_category -}}
+        </g:google_product_category>
+    {%- elseif socialShoppingSalesChannel.configuration.defaultGoogleProductCategory is defined and socialShoppingSalesChannel.configuration.defaultGoogleProductCategory is not empty -%}
+        <g:google_product_category>
+            {{- socialShoppingSalesChannel.configuration.defaultGoogleProductCategory -}}
+        </g:google_product_category>
+    {%- endif -%}
+    <g:id>{{ product.productNumber }}</g:id>
+    <g:title>{{ product.translated.name|escape }}</g:title>
+    <g:description>{{ product.translated.description|striptags }}</g:description>
+    <g:link>{{ seoUrl('frontend.detail.page', {'productId': product.id}) }}</g:link>
+    {%- if product.cover is not empty -%}
+        <g:image_link>{{ product.cover.media.url }}</g:image_link>
+    {%- endif -%}
+
+    <g:brand>
+        {%- if product.manufacturer is not empty -%}
+            {{ product.manufacturer.translated.name }}
+        {%- endif -%}
+    </g:brand>
+    <g:condition>New</g:condition>
+
+    <g:availability>in stock</g:availability>
+
+    {%- if product.calculatedPrice.listPrice -%}
+        <g:sale_price>
+            {%- if product.calculatedPrices is not empty -%}
+                {{ product.calculatedPrices.first.unitPrice|number_format(2, '.', '') }}
+            {%- else -%}
+                {{ product.calculatedPrice.unitPrice|number_format(2, '.', '') }}
+            {%- endif -%}
+            {{- context.currency.isoCode -}}
+        </g:sale_price>
+        <g:price>
+            {{- product.calculatedPrice.listPrice.price|number_format(2, '.', '') -}}
+            {{- context.currency.isoCode -}}
+        </g:price>
+    {%- else -%}
+        <g:price>
+            {%- if product.calculatedPrices is not empty -%}
+                {{ product.calculatedPrices.first.unitPrice|number_format(2, '.', '') }}
+            {%- else -%}
+                {{ product.calculatedPrice.unitPrice|number_format(2, '.', '') }}
+            {%- endif -%}
+            {{- context.currency.isoCode -}}
+        </g:price>
+    {%- endif -%}
+
+    {%- if product.media|length > 1 -%}
+        {%- for media in product.media -%}
+            <additional_image_link>
+                {{- media.media.url -}}
+            </additional_image_link>
+        {%- endfor -%}
+    {%- endif -%}
+</item>

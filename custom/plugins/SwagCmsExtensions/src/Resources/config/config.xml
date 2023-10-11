@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Quickview</title>
+        <input-field type="bool">
+            <name>enableSearchQuickview</name>
+            <label>Enable Quickview in search results</label>
+            <label lang="de-DE">Aktiviere Quickview bei Suchergebnissen</label>
+        </input-field>
+    </card>
+</config>

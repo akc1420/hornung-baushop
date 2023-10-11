@@ -1,0 +1,227 @@
+{
+  "name": "twt_modern_pro_custom_field_set__product",
+  "config": {
+    "label": {
+      "en-GB": "Products (ThemeWare® Modern Pro)",
+      "de-DE": "Produkte (ThemeWare® Modern Pro)"
+    }
+  },
+  "relations": [
+    {
+      "entityName": "product"
+    }
+  ],
+  "customFields": [
+    {
+      "name": "twt_modern_pro_custom_field__product__short_description",
+      "type": "html",
+      "config": {
+        "componentName": "sw-text-editor",
+        "customFieldPosition": 40,
+        "customFieldType": "textEditor",
+        "label": {
+          "en-GB": "Short description",
+          "de-DE": "Kurzbeschreibung"
+        },
+        "helpText": {
+          "en-GB": "This custom field is displayed in product boxes on category pages and/or above the price in the buybox on the product page. <br><br>You can enable/disable the display in the theme configuration.",
+          "de-DE": "Dieses Zusatzfeld wird in der Produkt-Box auf Kategorieseiten und/oder in der Buybox auf der Produktseite über dem Preis ausgegeben. <br><br>Du kannst die Anzeige in der Theme-Konfiguration aktivieren/deaktivieren."
+        },
+        "placeholder": {
+          "en-GB": "Enter a text...",
+          "de-DE": "Gib einen Text ein ..."
+        }
+      }
+    },
+    {
+      "name": "twt_modern_pro_custom_field__product__custom_field_1",
+      "type": "text",
+      "config": {
+        "componentName": "sw-field",
+        "customFieldPosition": 70,
+        "customFieldType": "text",
+        "label": {
+          "en-GB": "Custom field 1",
+          "de-DE": "Zusatzfeld 1"
+        },
+        "helpText": {
+          "en-GB": "This custom field is displayed on the product page in the product specifications. <br><br>You can enable/disable the display in the theme configuration.",
+          "de-DE": "Dieses Zusatzfeld wird auf der Produktseite in den Produkt-Spezifikationen ausgegeben. <br><br>Du kannst die Anzeige in der Theme-Konfiguration aktivieren/deaktivieren."
+        },
+        "placeholder": {
+          "en-GB": "Enter a text...",
+          "de-DE": "Gib einen Text ein ..."
+        }
+      }
+    },
+    {
+      "name": "twt_modern_pro_custom_field__product__custom_field_2",
+      "type": "text",
+      "config": {
+        "componentName": "sw-field",
+        "customFieldPosition": 80,
+        "customFieldType": "text",
+        "label": {
+          "en-GB": "Custom field 2",
+          "de-DE": "Zusatzfeld 2"
+        },
+        "helpText": {
+          "en-GB": "This custom field is displayed on the product page in the product specifications. <br><br>You can enable/disable the display in the theme configuration.",
+          "de-DE": "Dieses Zusatzfeld wird auf der Produktseite in den Produkt-Spezifikationen ausgegeben. <br><br>Du kannst die Anzeige in der Theme-Konfiguration aktivieren/deaktivieren."
+        },
+        "placeholder": {
+          "en-GB": "Enter a text...",
+          "de-DE": "Gib einen Text ein ..."
+        }
+      }
+    },
+    {
+      "name": "twt_modern_pro_custom_field__product__custom_field_3",
+      "type": "text",
+      "config": {
+        "componentName": "sw-field",
+        "customFieldPosition": 90,
+        "customFieldType": "text",
+        "label": {
+          "en-GB": "Custom field 3",
+          "de-DE": "Zusatzfeld 3"
+        },
+        "helpText": {
+          "en-GB": "This custom field is displayed on the product page in the product specifications. <br><br>You can enable/disable the display in the theme configuration.",
+          "de-DE": "Dieses Zusatzfeld wird auf der Produktseite in den Produkt-Spezifikationen ausgegeben. <br><br>Du kannst die Anzeige in der Theme-Konfiguration aktivieren/deaktivieren."
+        },
+        "placeholder": {
+          "en-GB": "Enter a text...",
+          "de-DE": "Gib einen Text ein ..."
+        }
+      }
+    },
+
+    {
+      "name": "twt_modern_pro_custom_field__product__benefits",
+      "type": "text",
+      "config": {
+        "componentName": "sw-field",
+        "customFieldPosition": 100,
+        "customFieldType": "text",
+        "label": {
+          "en-GB": "Benefits",
+          "de-DE": "Vorteile"
+        },
+        "helpText": {
+          "en-GB": "This custom field is displayed on the product page after the product specifications. <br><br>You can enable/disable the display in the theme configuration. <br><br>Please separate multiple benefits with a semicolon.",
+          "de-DE": "Dieses Zusatzfeld wird auf der Produktseite unter den Produkt-Spezifikationen ausgegeben. <br><br>Du kannst die Anzeige in der Theme-Konfiguration aktivieren/deaktivieren. <br><br>Bitte trenne die einzelnen Vorteile mit einem Semikolon."
+        },
+        "placeholder": {
+          "en-GB": "Enter a text... (e.g. Benefit 1; Benefit 2; Benefit 3)",
+          "de-DE": "Gib einen Text ein ... (z.B. Vorteil 1; Vorteil 2; Vorteil 3)"
+        }
+      }
+    },
+
+    {
+      "name": "twt_modern_pro_custom_field__product__hover_image",
+      "type": "CustomFieldTypes::TEXT",
+      "config": {
+        "componentName": "sw-media-field",
+        "customFieldPosition": 110,
+        "customFieldType": "media",
+        "label": {
+          "en-GB": "Hover image",
+          "de-DE": "Hover-Bild"
+        },
+        "helpText": {
+          "en-GB": "This custom field adds a hover image in the product listing. This image appears when the mouse is hovered over the cover image. <br><br>You can enable/disable the hover effect in the theme configuration.",
+          "de-DE": "Mit diesem Zusatzfeld kannst du ein zusätzliches Hover-Bild im Produktlisting ergänzen. Dieses Hover-Bild wird eingeblendet, wenn mit der Maus über das Cover-Bild gefahren wird. <br><br>Du kannst den Hover-Effekt in der Theme-Konfiguration aktivieren/deaktivieren."
+        }
+      }
+    },
+
+    {
+      "name": "twt_modern_pro_custom_field__product__youtube_video",
+      "type": "text",
+      "config": {
+        "componentName": "sw-field",
+        "customFieldPosition": 130,
+        "customFieldType": "text",
+        "label": {
+          "en-GB": "YouTube video",
+          "de-DE": "YouTube-Video"
+        },
+        "helpText": {
+          "en-GB": "With this custom field you can display YouTube videos on the product page. To do so, enter one or more video IDs. <br><br>You can find the video ID as a code after the parameter \"?v=\" at the end of the YouTube link in the address bar. Multiple video IDs can be entered comma-separated.",
+          "de-DE": "Mit diesem Zusatzfeld kannst du YouTube-Videos auf der Produktseite anzeigen lassen. Gebe dazu eine oder mehrere Video-IDs ein. <br><br>Du findest die Video-ID als Code nach dem Parameter \"?v=\" am Ende des YouTube-Links in der Adresszeile. Mehrere Video-IDs können kommasepariert eingegeben werden."
+        },
+        "placeholder": {
+          "en-GB": "Enter video ID... (e.g. eVrQ0Lvn5ZI)",
+          "de-DE": "Gib eine Video-ID ein ... (z.B. aVw60mnS21o)"
+        }
+      }
+    },
+    {
+      "name": "twt_modern_pro_custom_field__product__vimeo_video",
+      "type": "text",
+      "config": {
+        "componentName": "sw-field",
+        "customFieldPosition": 140,
+        "customFieldType": "text",
+        "label": {
+          "en-GB": "Vimeo video",
+          "de-DE": "Vimeo-Video"
+        },
+        "helpText": {
+          "en-GB": "With this custom field you can display Vimeo videos on the product page. To do so, enter one or more video IDs. <br><br>You can find the video ID as a code after the slash (/) at the end of the Vimeo link in the address bar. Multiple video IDs can be entered comma-separated.",
+          "de-DE": "Mit diesem Zusatzfeld kannst du Vimeo-Videos auf der Produktseite anzeigen lassen. Gebe dazu eine oder mehrere Video-IDs ein. <br><br>Du findest die Video-ID als Code nach dem Schrägstrich (/) am Ende des Vimeo-Links in der Adresszeile. Mehrere Video-IDs können kommasepariert eingegeben werden."
+        },
+        "placeholder": {
+          "en-GB": "Enter video ID...",
+          "de-DE": "Gib eine Video-ID ein ..."
+        }
+      }
+    },
+
+    {
+      "name": "twt_modern_pro_custom_field__product__custom_tab_title",
+      "type": "text",
+      "config": {
+        "componentName": "sw-field",
+        "customFieldPosition": 180,
+        "customFieldType": "text",
+        "label": {
+          "en-GB": "Custom tab (Title)",
+          "de-DE": "Benuzerdefinierter-Tab (Titel)"
+        },
+        "helpText": {
+          "en-GB": "Enter a title for the \"Custom tab\" on the product page or leave the input empty so that the snippet \"twt.detail.tabCustom.title\" is used. <br><br>You can enable/disable the \"Custom tab\" in the theme configuration.",
+          "de-DE": "Gebe hier einen individuellen Titel für den \"Benutzerdefinierten Tab\" auf der Produktseite ein oder lasse das Feld leer damit der Textbaustein \"twt.detail.tabCustom.title\" genutzt wird. <br><br>Du kannst den \"Benutzerdefinierten Tab\" in der Theme-Konfiguration aktivieren/deaktivieren."
+        },
+        "placeholder": {
+          "en-GB": "Enter a title...",
+          "de-DE": "Gib einen Titel ein ..."
+        }
+      }
+    },
+    {
+      "name": "twt_modern_pro_custom_field__product__custom_tab_text",
+      "type": "html",
+      "config": {
+        "componentName": "sw-text-editor",
+        "customFieldPosition": 190,
+        "customFieldType": "textEditor",
+        "label": {
+          "en-GB": "Custom tab (Text)",
+          "de-DE": "Benuzerdefinierter-Tab (Text)"
+        },
+        "helpText": {
+          "en-GB": "Enter a text for the \"Custom tab\" on the product page. If you leave the input empty, the tab won't be displayed. <br><br>You can enable/disable the \"Custom tab\" in the theme configuration.",
+          "de-DE": "Gebe hier einen individuellen Text für den \"Benutzerdefinierten Tab\" auf der Produktseite ein. Lasse das Feld leer damit bei diesem Produkt kein Tab angzeigt wird. <br><br>Du kannst den \"Benutzerdefinierten Tab\" in der Theme-Konfiguration aktivieren/deaktivieren."
+        },
+        "placeholder": {
+          "en-GB": "Enter a text...",
+          "de-DE": "Gib einen Text ein ..."
+        }
+      }
+    }
+
+  ]
+}

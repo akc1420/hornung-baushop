@@ -1,0 +1,36 @@
+{% block gbmed_form_meta %}
+    {% set gbmedForm = page.extensions.gbmedForm %}
+
+    {% if gbmedForm.isRecaptcha %}
+        <script>
+            var gRecaptchaLoadCallback = function() {
+                {% if gbmedForm.config.isEnterprise %}grecaptcha.enterprise{% else %}grecaptcha{% endif %}.render('gRecaptcha', {
+                    sitekey : '{{ gbmedForm.config.sitekey }}',
+                    size: 'invisible',
+                    badge: '{{ gbmedForm.config.badge }}'
+                });
+            };
+            window.gbmedFormsOptions = {
+                {# google reCAPTCHA site key #}
+                sitekey: '{{ gbmedForm.config.sitekey }}',
+                {# reload interval in minutes #}
+                interval: 1,
+                {# form elements #}
+                forms: [],
+                {# badge language #}
+                hl: '{{ app.request.locale[:2] }}',
+                {# hide badge #}
+                hideBadge: {% if gbmedForm.config.hideBadge %}true{% else %}false{% endif %},
+                hideBadgeText: '{{ 'gbmed-form.badge.hiddenText'|trans|sw_sanitize }}',
+                isEnterprise: {% if gbmedForm.config.isEnterprise %}true{% else %}false{% endif %},
+            };
+        </script>
+    {% else %}
+        <script>
+            window.gbmedFormsOptions = {
+                sitekey: null,
+                forms: []
+            };
+        </script>
+    {% endif %}
+{% endblock %}

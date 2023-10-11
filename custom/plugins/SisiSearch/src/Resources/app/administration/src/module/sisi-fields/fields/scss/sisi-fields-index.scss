@@ -1,0 +1,54 @@
+
+.sisi-fields-index {
+    input {
+        width: 95%;
+    }
+
+    .status-box {
+        margin-top: 2rem;
+    }
+
+    .sisi-alert {
+        margin-top: 2rem;
+        display: none;
+    }
+
+    .sisi-alert.sisi-active {
+        display: block;
+    }
+
+    .sisi-alert-delete {
+        margin-top: 2rem;
+        display: none;
+    }
+
+    .sw-grid-column .sw-grid__cell-content .sw-field--checkbox {
+        display: none
+    }
+    .sw-page__back-btn-container{
+        display: none;
+    }
+    .sisisearchred {
+        border: solid thin red;
+    }
+
+}
+
+.sisi-fields-detail {
+    .sw-page__back-btn-container{
+        display: none;
+    }
+
+    .sisi-detail-info {
+        color:red;
+        padding-bottom: 1rem;
+        display: block;
+    }
+}
+
+.sisi-dashboard-wrapper {
+    h3 {
+        margin-top: 1rem;
+        padding-left: 5px;
+    }
+}

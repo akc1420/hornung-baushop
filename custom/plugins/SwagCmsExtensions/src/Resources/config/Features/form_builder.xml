@@ -1,0 +1,173 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <!-- Definitions -->
+        <service id="Swag\CmsExtensions\Form\FormDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_form"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormTranslation\FormTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_form_translation"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroup\FormGroupDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_form_group"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupTranslation\FormGroupTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_form_group_translation"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\FormGroupFieldDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_form_group_field"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupFieldTranslation\FormGroupFieldTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_form_group_field_translation"/>
+        </service>
+
+        <!-- Extensions -->
+        <service id="Swag\CmsExtensions\Extension\Feature\FormBuilder\LanguageExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+
+        <service id="Swag\CmsExtensions\Extension\Feature\FormBuilder\CmsSlotEntityExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+
+        <service id="Swag\CmsExtensions\Extension\Feature\FormBuilder\MailTemplateExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+
+        <!-- Form type handling -->
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\FormGroupFieldTypeRegistry">
+            <argument type="service" id="Swag\CmsExtensions\Form\Component\ComponentRegistry"/>
+            <argument type="tagged" tag="swag.cms_extensions.form.type"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\Type\Text">
+            <tag name="swag.cms_extensions.form.type"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\Type\Textarea">
+            <tag name="swag.cms_extensions.form.type"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\Type\Email">
+            <tag name="swag.cms_extensions.form.type"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\Type\Number">
+            <tag name="swag.cms_extensions.form.type"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\Type\Checkbox">
+            <tag name="swag.cms_extensions.form.type"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\Type\Select">
+            <tag name="swag.cms_extensions.form.type"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\Validation\ConfigValidator">
+            <argument type="service" id="validator"/>
+            <argument type="service" id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\FormGroupFieldTypeRegistry"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\Validation\TypeValidator">
+            <argument type="service" id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\FormGroupFieldTypeRegistry"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Aggregate\FormGroupField\Validation\TechnicalNameValidator">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="validator"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Validation\TechnicalNameValidator">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Form component handling -->
+        <service id="Swag\CmsExtensions\Form\Component\ComponentRegistry">
+            <argument type="tagged" tag="swag.cms_extensions.form.component.handler"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Component\Handler\TextComponentHandler">
+            <tag name="swag.cms_extensions.form.component.handler"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Component\Handler\TextareaComponentHandler">
+            <tag name="swag.cms_extensions.form.component.handler"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Component\Handler\EmailComponentHandler">
+            <tag name="swag.cms_extensions.form.component.handler"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Component\Handler\NumberComponentHandler">
+            <tag name="swag.cms_extensions.form.component.handler"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Component\Handler\CheckboxComponentHandler">
+            <argument type="service" id="translator"/>
+            <tag name="swag.cms_extensions.form.component.handler"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Component\Handler\SelectComponentHandler">
+            <argument type="service" id="country.repository"/>
+            <argument type="service" id="salutation.repository"/>
+            <tag name="swag.cms_extensions.form.component.handler"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Route\Validation\FormValidationFactory">
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="Swag\CmsExtensions\Form\Component\ComponentRegistry"/>
+        </service>
+
+        <!-- Controller -->
+        <service id="Swag\CmsExtensions\Storefront\Controller\CustomFormController" public="true">
+            <argument type="service" id="Swag\CmsExtensions\Form\Route\FormRoute"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Swag\CmsExtensions\Form\Route\FormRoute" public="true">
+            <argument type="service" id="Swag\CmsExtensions\Form\Route\Validation\FormValidationFactory"/>
+            <argument type="service" id="Shopware\Core\Framework\Validation\DataValidator"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="swag_cms_extensions_form.repository"/>
+            <argument type="service" id="Swag\CmsExtensions\Form\Component\ComponentRegistry"/>
+        </service>
+
+        <service id="Swag\CmsExtensions\Util\Administration\FormValidationController" public="true">
+            <argument type="service" id="swag_cms_extensions_form.repository"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <!-- Decorators -->
+        <service id="Swag\CmsExtensions\Service\Content\Cms\DataResolver\CustomFormCmsElementResolver">
+            <argument type="service" id="Swag\CmsExtensions\Form\Component\ComponentRegistry"/>
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <!-- Subscribers -->
+        <service id="Swag\CmsExtensions\Form\Action\FormMailSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>

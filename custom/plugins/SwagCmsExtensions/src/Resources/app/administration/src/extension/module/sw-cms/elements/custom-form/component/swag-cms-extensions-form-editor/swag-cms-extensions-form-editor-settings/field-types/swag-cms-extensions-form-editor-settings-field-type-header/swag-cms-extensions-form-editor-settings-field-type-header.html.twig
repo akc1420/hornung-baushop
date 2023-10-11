@@ -1,0 +1,55 @@
+{% block swag_cms_extensions_form_editor_settings_field_type_header %}
+    <div class="swag-cms-extensions-form-editor-settings-field-type-header">
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_header_technical_name %}
+        <sw-text-field
+            v-model="technicalName"
+            class="swag-cms-extensions-form-editor-settings-field-type-header__field-technical-name"
+            :label="$tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.options.internalNameLabel')"
+            :error="fieldTechnicalNameError"
+            size="medium"
+            required
+            :helpText="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.internalNameHelpText')"
+            @change="onTechnicalNameChange">
+        </sw-text-field>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_header_title %}
+        <sw-text-field
+            v-model="label"
+            class="swag-cms-extensions-form-editor-settings-field-type-header__field-label"
+            :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.titleFieldLabel')"
+            :error="fieldLabelError"
+            size="medium"
+            required>
+        </sw-text-field>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_header_type %}
+        <sw-single-select
+            v-model="type"
+            class="swag-cms-extensions-form-editor-settings-field-type-header__field-type"
+            :options="types"
+            :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.typeFieldLabel')"
+            :error="fieldTypeError"
+            size="medium"
+            :highlightSearchTerm="false"
+            required>
+        </sw-single-select>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_header_width %}
+        <sw-single-select
+            v-model="width"
+            class="swag-cms-extensions-form-editor-settings-field-type-header__field-width"
+            :options="widths"
+            :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.widthFieldLabel')"
+            :error="fieldWidthError"
+            size="medium"
+            :highlightSearchTerm="false"
+            required>
+        </sw-single-select>
+        {% endblock %}
+
+    </div>
+{% endblock %}

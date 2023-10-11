@@ -1,0 +1,546 @@
+{
+    "twt": {
+        "theme-manager": {
+            "welcome": {
+                "headline": "Herzlichen Glückwunsch!",
+                "introduction": "Mit ThemeWare® Modern hast du dich nicht nur für ein grandioses Theme entschieden, sondern für eine gemeinsame Reise mit uns zu deinem umsatzstarken und erfolgreichen Online-Shop. Deine Wegbegleiter sind dabei unsere Design- und Verkaufsexperten, die dir ihr Wissen in Form von Anleitungen, Video-Tutorials und Online-Kursen bereitstellen. Das alles ist bei ThemeWare® schon im Preis enthalten. Auch in der Testphase!"
+            },
+            "firstSteps": {
+                "headline": "Die ersten Schritte",
+                "text": "Befolge unbedingt die ersten Schritte, damit dir nichts fehlt und du dann zielgerichtet mit der Konfiguration von ThemeWare® und der Optimierung deines Shops beginnen kannst.",
+                "step1": {
+                    "headline": "ThemeWare® Utilities herunterladen",
+                    "text": "Die ThemeWare® Utilities beinhalten das komplette Grafik-Paket, eine professionelle Erlebniswelt mit Anleitung, extrem wichtige Online-Kurse (Themen SEO/Pagespeed, Verkaufsförderung und Grafik-Bearbeitung/Gestaltung) und noch ein Geschenk für dich.",
+                    "buttonText": "ThemeWare® Utilities jetzt kostenfrei anfordern",
+                    "link": "https://service.themeware.design/themeware-utilities?theme=modern&utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=utilities"
+                },
+                "step2": {
+                    "headline": "Erstes Video-Tutorial ansehen",
+                    "text": "Beginne nun dir, die ersten Video-Tutorials anzusehen. Je nach deinem Wissensstand wirst du die für dich passenden Tutorials und Anleitungen finden.",
+                    "buttonText": "ThemeWare® Video-Tutorial öffnen",
+                    "link": "https://service.themeware.design/themeware-tutorial?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=video-tutorial"
+                },
+                "step3": {
+                    "headline": "Lesezeichen für das Service Portal setzen",
+                    "text": "Das ThemeWare® Service Portal ist stets deine erste Anlaufstelle bei allen Anliegen rund um ThemeWare®. Es ist quasi dein persönliches Dashboard für ThemeWare®. Dort findest du stets alle relevanten Links und Informationen zu ThemeWare®, die ThemeWare® Wissensdatenbank, das ThemeWare® Handbuch, Formulare und viele nützliche Tools.",
+                    "buttonText": "ThemeWare® Service Portal besuchen",
+                    "link": "https://service.themeware.design/?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=service-portal"
+                }
+            },
+            "highlights": {
+                "search": {
+                    "title": "Config-Finder",
+                    "text": "Mit der beliebten Feldsuchmaschine findest du jedes Konfigurationsfeld sofort.",
+                    "buttonText": "Öffnen",
+                    "link": "https://config.themeware.design/?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_fieldsearch"
+                },
+                "videoTutorial": {
+                    "title": "Video-Tutorial",
+                    "text": "So gelangst du Schritt für Schritt und schnell zu einem professionellen Shop.",
+                    "buttonText": "Öffnen",
+                    "link": "https://service.themeware.design/themeware-tutorial?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_video-tutorial"
+                },
+                "support": {
+                    "title": "Support",
+                    "text": "Unser Service Portal ist der beste Ort, wenn du Unterstützung benötigst.",
+                    "buttonText": "Öffnen",
+                    "link": "https://service.themeware.design/?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_support"
+                },
+                "utilities": {
+                    "title": "ThemeWare® Utilities",
+                    "text": "Hilfreiche Tools, Extras und Online-Kurse die den Erfolg deines Shops steigern.",
+                    "buttonText": "Öffnen",
+                    "link": "https://service.themeware.design/themeware-utilities?theme=modern&utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_utilities"
+                }
+            },
+            "tools": {
+                "text": "Du brauchst Hilfe? Hier findest du einen Überblick über alle",
+                "underlined": "ThemeWare® Support-Tools",
+                "link": "https://service.themeware.design/?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=tool-overview"
+            }
+        },
+        "cms": {
+            "sidebar": {
+                "general": "Allgemein",
+                "sliders": "Slider",
+                "teasers": "Teaser",
+                "banners": "Banner",
+                "columns": "Spalten",
+                "grids": "Grids",
+                "commerce": "Commerce",
+                "sidebar": "Sidebar",
+                "other": "Verschiedenes"
+            },
+            "elements": {
+                "general": {
+                    "config": {
+                        "tab": {
+                            "general": "Allgemein",
+                            "content": "Inhalt",
+                            "text": "Text",
+                            "image": "Bild",
+                            "textImage": "Text & Bild",
+                            "settings": "Einstellungen",
+                            "options": "Optionen",
+                            "layout": "Layout",
+                            "grid": "Grid",
+                            "advanced": "Erweitert"
+                        },
+                        "title": {
+                            "general": "Allgemein",
+                            "content": "Inhalt",
+                            "text": "Text",
+                            "image": "Bild",
+                            "layout": "Layout",
+                            "link": "Link",
+                            "button": "Button",
+                            "hover": "Hover",
+                            "overlay": "Overlay",
+                            "colorOverlay": "Farb-Overlay",
+                            "cssClasses": "CSS-Klasses"
+                        },
+                        "label": {
+                            "alignment": "Horizontale Ausrichtung",
+                            "attachment": "Attachment",
+                            "backgroundColor": "Hintergrundfarbe",
+                            "backgroundColor1": "Hintergrundfarbe (1)",
+                            "backgroundColor2": "Hintergrundfarbe (2)",
+                            "backgroundColorHover": "Hintergrundfarbe @hover",
+                            "backgroundGradient": "Farbverlauf verwenden",
+                            "backgroundGradientAngle": "Richtung des Farbverlaufs (in Grad)",
+                            "borderColor": "Rahmenfarbe",
+                            "breakpoint": "Breakpoint",
+                            "buttonOutline": "Button mit Kontur",
+                            "buttonStyle": "Button-Stil",
+                            "buttonText": "Button-Text",
+                            "cssClass": "CSS-Klasse (Element)",
+                            "cssClassTeaser": "CSS-Klasse (Teaser)",
+                            "cssClassTitle": "CSS-Klasse (Überschrift)",
+                            "cssClassText": "CSS-Klasse (Text)",
+                            "fontFamily": "Schriftart",
+                            "fontFamilyHeadline": "Schriftart (Überschrift)",
+                            "fontFamilyTeaser": "Schriftart (Teaser)",
+                            "headline": "Überschrift",
+                            "horizontalAlign": "Horizontale Ausrichtung",
+                            "hoverEffect": "Hover-Effekt",
+                            "htmlTag": "HTML Tag (Überschrift)",
+                            "layoutType": "Darstellungsart",
+                            "linkTo": "Link zu",
+                            "maxWidth": "Maximale Breite (z.B. 740px oder 90% oder none)",
+                            "overlay": "Overlay-Styling anwenden",
+                            "overlayAnimation": "Animation",
+                            "overlaySizing": "Größenmodus",
+                            "colorOverlay": "Farb-Overlay anzeigen",
+                            "overlayBgGradient": "Farbverlauf verwenden",
+                            "overlayBgGradientAngle": "Richtung des Farbverlaufs (in Grad)",
+                            "overlayBgColor": "Hintergrundfarbe",
+                            "overlayBgColor1": "Hintergrundfarbe (1)",
+                            "overlayBgColor2": "Hintergrundfarbe (2)",
+                            "rounded": "Abgerundete Ecken",
+                            "shadow": "Schlagschatten",
+                            "text": "Text",
+                            "textAlignment": "Text-Ausrichtung",
+                            "textColor": "Textfarbe",
+                            "textColorTeaser": "Textfarbe (Teaser)",
+                            "textColorTitle": "Textfarbe (Überschrift)",
+                            "textShadow": "Schlagschatten",
+                            "title": "Titel",
+                            "verticalAlign": "Vertikale Ausrichtung",
+                            "width": "Breite (z.B. 740px oder 900% oder auto)"
+                        },
+                        "placeholder": {
+                            "buttonText": "Button-Text eingeben ...",
+                            "cssClass": "CSS-Klasse eingeben ...",
+                            "headline": "Text eingeben ...",
+                            "height": "Höhe eingeben ...",
+                            "maxWidth": "Maximale Breite eingeben ...",
+                            "text": "Text eingeben ...",
+                            "title": "Text eingeben ...",
+                            "width": "Breite eingeben ..."
+                        },
+                        "option": {
+                            "alignLeft": "Links",
+                            "alignCenter": "Mitte",
+                            "alignRight": "Rechts",
+                            "animation": {
+                                "none": "Keine Animation",
+                                "fadeIn": "Fade in",
+                                "fadeInDown": "Fade in down",
+                                "fadeInLeft": "Fade in left",
+                                "fadeInRight": "Fade in right",
+                                "fadeInUp": "Fade in up"
+                            },
+                            "attachment": {
+                                "scroll": "scroll",
+                                "fixed": "fixed"
+                            },
+                            "breakpoint": {
+                                "none": "none",
+                                "xs": "Extra small <576px",
+                                "sm": "Small ≥576px",
+                                "md": "Medium ≥768px",
+                                "lg": "Large ≥992px",
+                                "xl": "Extra large ≥1200px",
+                                "all": "all"
+                            },
+                            "button":{
+                                "btnPrimary": "Primär",
+                                "btnSecondary": "Sekundär",
+                                "btnSuccess": "Erfolg",
+                                "btnDanger": "Fehler",
+                                "btnWarning": "Hinweis",
+                                "btnInfo": "Information",
+                                "btnLight": "Hell",
+                                "btnLink": "Link",
+                                "btnBlue": "Blau",
+                                "btnIndigo": "Indigo",
+                                "btnPurple": "Lila",
+                                "btnPink": "Pink",
+                                "btnRed": "Rot",
+                                "btnOrange": "Orange",
+                                "btnYellow": "Gelb",
+                                "btnGreen": "Grün",
+                                "btnTeal": "Türkisblau",
+                                "btnCyan": "Cyan",
+                                "btnWhite": "Weiß",
+                                "btnBlack": "Schwarz",
+                                "btnGold": "Gold"
+                            },
+                            "fontFamily": {
+                                "base": "Text",
+                                "headline": "Überschriften",
+                                "decoration": "Dekoration"
+                            },
+                            "horizontalAlign": {
+                                "start": "Links",
+                                "center": "Mitte",
+                                "end": "Rechts"
+                            },
+                            "hoverEffect": {
+                                "none": "Kein Effekt",
+                                "fadeIn": "Fade in",
+                                "slideInUp": "Slide in up",
+                                "slideInRight": "Slide in right",
+                                "slideInDown": "Slide in down",
+                                "slideInLeft": "Slide in left",
+                                "zoomIn": "Zoom in",
+                                "fadeOut": "Fade out"
+                            },
+                            "htmlTag": {
+                                "p": "Paragraph <p> tag (Standard)",
+                                "h1": "Heading 1 <h1> tag",
+                                "h2": "Heading 2 <h2> tag",
+                                "h3": "Heading 3 <h3> tag",
+                                "h4": "Heading 4 <h4> tag",
+                                "h5": "Heading 5 <h5> tag",
+                                "h6": "Heading 6 <h6> tag"
+                            },
+                            "notRounded": "Nicht abgerundet",
+                            "rounded": "Abgerundete Ecken",
+                            "shadow": {
+                                "none": "Kein Schatten",
+                                "small": "Kleiner Schatten",
+                                "regular": "Normaler Schatten",
+                                "large": "Größerer Schatten",
+                                "smallBs": "Kleiner Schatten (Bootstrap)",
+                                "regularBs": "Normaler Schatten (Bootstrap)",
+                                "largeBs": "Größerer Schatten (Bootstrap)"
+                            },
+                            "sizing": {
+                                "boxed": "Zentrierter Inhalt",
+                                "fullWidth": "Volle Breite"
+                            },
+                            "verticalAlignTop": "Oben",
+                            "verticalAlignCenter": "Mitte",
+                            "verticalAlignBottom": "Unten"
+                        },
+                        "helpText": {
+                            "alignment": "Wähle die gewünschte horizontale Ausrichtung aus.",
+                            "attachment": "Wähle ob das Hintergrundbild fixiert ist oder mitscrollt.",
+                            "backgroundColor": "Wähle die gewünschte Hintergrundfarbe aus.",
+                            "backgroundColor1": "Wähle die gewünschte Hintergrundfarbe (color-step1) aus.",
+                            "backgroundColor2": "Wähle die gewünschte Hintergrundfarbe (color-step2) aus.",
+                            "backgroundColorHover": "Wähle die gewünschte Hintergrundfarbe beim \"hovern\" aus.",
+                            "backgroundGradient": "Aktivieren um ein Farbverlauf zu nutzen.",
+                            "backgroundGradientAngle": "Trage die gewüschte richtung des Farbverlaufs ein.",
+                            "borderColor": "Wähle die gewünschte Rahmenfarbe aus.",
+                            "breakpoint": "Wähle den gewünschten Breakpoint aus.",
+                            "buttonOutline": "Aktivieren um den Button mit einer Kontur zu versehen.",
+                            "buttonStyle": "Wähle den gewünschten Button-Stil aus.",
+                            "buttonText": "Trage den gewünschten Button-Text ein.",
+                            "cssClass": "Du kannst eine oder mehrere, mit Leerzeichen getrennte, CSS-Klassen hinzufügen.",
+                            "displayMode": "Wähle das gewünschten Anzeigemodus aus.",
+                            "fontFamily": "Wähle die gewünschte Schriftart aus.",
+                            "headline": "Trage den gewünschten Text ein.",
+                            "hoverEffect": "Wähle den gewünschten Hover-Effekt aus.",
+                            "htmlTag": "Wähle den gewünschten HTML Tag aus.",
+                            "layoutType": "Wähle die gewünschte Darstellungsart aus.",
+                            "linkTo": "Trage den gewünschten Link ein.",
+                            "linkNewTab": "Aktivieren um den Link in einem neuen Tab zu öffnen.",
+                            "maxWidth": "Trage die gewünschte maximale Breite (z.B. 740px oder 90% oder none) ein.",
+                            "media": "Wähle das gewünschte Bild aus.",
+                            "minHeight": "Wähle die gewünschte minimale Höhe aus.",
+                            "overlay": "Aktivieren um das Overlay-Styling anzuwenden.",
+                            "overlayAnimation": "Wähle die gewünschte Animation aus.",
+                            "overlaySizing": "Wähle den gewünschten Größenmodus aus.",
+                            "colorOverlay": "Aktivieren um ein Farb-Overlay zu nutzen.",
+                            "overlayBgGradient": "Aktivieren um ein Farbverlauf zu nutzen.",
+                            "overlayBgGradientAngle": "Trage die gewüschte Richtung des Farbverlaufs ein.",
+                            "overlayBgColor": "Wähle die gewünschte Hintergrundfarbe aus.",
+                            "overlayBgColor1": "Wähle die gewünschte Hintergrundfarbe (color-step1) aus.",
+                            "overlayBgColor2": "Wähle die gewünschte Hintergrundfarbe (color-step2) aus.",
+                            "rounded": "Wähle ob Ecken abgerundet werden sollen.",
+                            "shadow": "Wähle den gewünschten Schlagschatten aus",
+                            "text": "Trage den gewünschten Text ein.",
+                            "textAlignment": "Wähle die gewünschte Text-Ausrichtung aus.",
+                            "textColor": "Wähle die gewünschte Textfarbe aus.",
+                            "textShadow": "Wähle den gewünschten Schlagschatten aus.",
+                            "title": "Trage den gewünschten Text ein.",
+                            "verticalAlign": "Wähle die gewünschte vertikale Ausrichtung aus.",
+                            "width": "Trage die gewüschte Breite (z.B. 740px oder 900% oder auto) ein."
+                        },
+                        "infotext": {
+                            "advanced": {
+                                "cssClass": "Über die folgende Konfiguration kannst du verschiedenen Elementen eine oder mehrere CSS-Klassen hinzufügen. Trenne mehrere Klassen durch Leerzeichen."
+                            },
+                            "intro": {
+                                "themeware": "ThemeWare®",
+                                "cmsElement": "CMS-Element"
+                            },
+                            "listingElement": "Die Daten für dieses Element werden automatisiert über die mit diesem Layout verbundene Kategorie befüllt. Der Inhalt zeigt nur eine ungefähre Vorschau.",
+                            "mandatory": "erforderlich"
+                        }
+                    }
+                },
+                "textTeaser": {
+                    "label": "Text-Teaser"
+                },
+                "textTeaserDecorated": {
+                    "label": "Text-Teaser (Verziert)"
+                },
+                "buttonTeaser": {
+                    "label": "Button-Teaser"
+                },
+                "callToAction": {
+                    "label": "Call-to-Action"
+                },
+                "hoverBox": {
+                    "label": "Hover-Box",
+                    "config": {
+                        "label": {
+                            "invertHover": "Hover-Effekt invertieren"
+                        },
+                        "option": {
+                            "slideUp": "Slide up",
+                            "slideRight": "Slide right",
+                            "slideDown": "Slide down",
+                            "slideLeft": "Slide left",
+                            "pushUp": "Push up",
+                            "pushRight": "Push right",
+                            "pushDown": "Push down",
+                            "pushLeft": "Push left",
+                            "hingeUp": "Hinge up",
+                            "hingeRight": "Hinge right",
+                            "hingeDown": "Hinge down",
+                            "hingeLeft": "Hinge left"
+                        }
+                    }
+                },
+                "classicTeaser": {
+                    "label": "Classic-Teaser",
+                    "config": {
+                        "label": {
+                            "custom": "Benutzerdefiniertes Styling aktivieren"
+                        },
+                        "option": {
+                            "default": "Standard",
+                            "effect1": "Effekt 1",
+                            "effect2": "Effekt 2",
+                            "effect3": "Effekt 3 (z.B. ThemeWare® Clean)",
+                            "effect4": "Effekt 4 (z.B. ThemeWare® Bike)",
+                            "effect5": "Effekt 5 (z.B. ThemeWare® Strong)",
+                            "effect6": "Effekt 7 (z.B. ThemeWare® Global)",
+                            "effect7": "Effekt 6 (z.B. ThemeWare® Ladieswear)"
+                        },
+                        "helpText": {
+                            "custom": "Aktivieren um eine benutzerdefiniertes Styling zu verwenden."
+                        }
+                    }
+                },
+                "modernTeaser": {
+                    "label": "Modern-Teaser"
+                },
+                "imageBanner": {
+                    "label": "Image-Banner"
+                },
+                "textImageSlide": {
+                    "label": "Text (Hero-Slider)",
+                    "config": {
+                        "label": {
+                            "teaser": "Teaser",
+                            "overlayAlignment": "Overlay-Ausrichtung",
+                            "overlayColor": "Overlay-Farbe"
+                        },
+                        "placeholder": {
+                            "teaser": "Text eingeben ..."
+                        }
+                    }
+                },
+                "callToActionSlide": {
+                    "label": "Call-to-Action (Hero-Slider)",
+                    "config": {
+                        "label": {
+                            "teaser": "Teaser",
+                            "overlayAlignment": "Overlay-Ausrichtung",
+                            "overlayColor": "Overlay-Farbe"
+                        },
+                        "placeholder": {
+                            "teaser": "Text eingeben ..."
+                        }
+                    }
+                },
+                "sidebarSubcategoryNavigation": {
+                    "label": "Unterkategorie-Navigation",
+                    "infotext": {
+                        "navigationElement": "Die Produktdaten für dieses Element werden automatisch über die Kategoriezuweisungen befüllt. Der Inhalt zeigt nur eine ungefähre Vorschau."
+                    },
+                    "component": {
+                        "label": {
+                            "navigation": "Navigation"
+                        }
+                    },
+                    "preview": {
+                        "label": {
+                            "navigation": "Navigation"
+                        }
+                    }
+                },
+                "placeholder": {
+                    "label": "Platzhalter",
+                    "component": {
+                        "label": "Klicken, um ein Element auszuwählen"
+                    },
+                    "preview": {
+                        "label": "Element auszuwählen"
+                    }
+                },
+                "breadcrumb": {
+                    "label": "Breadcrumb-Navigation",
+                    "config": {
+                        "infotext": "Eine umfangreiche Konfiguration findest du in der Konfiguration deines Themes."
+                    },
+                    "preview": {
+                        "label": "Breadcrumb-Navigation"
+                    }
+                }
+            },
+            "blocks": {
+                "heroSliderThreeSlides": {
+                    "label": "Hero-Slider (3x)"
+                },
+                "textTeaser": {
+                    "label": "Text-Teaser"
+                },
+                "textTeaserDecorated": {
+                    "label": "Text-Teaser (verziert)"
+                },
+                "buttonTeaser": {
+                    "label": "Button-Teaser"
+                },
+                "hoverBox": {
+                    "label": "Hover-Box"
+                },
+                "callToAction": {
+                    "label": "Call-to-Action"
+                },
+                "classicTeaser": {
+                    "label": "Classic-Teaser"
+                },
+                "modernTeaser": {
+                    "label": "Modern-Teaser"
+                },
+                "imageBanner": {
+                    "label": "Image-Banner"
+                },
+                "gridTwoColumn": {
+                    "label": "Zwei Spalten"
+                },
+                "gridTwoColumnSwapped": {
+                    "label": "Zwei Spalten (auf Handys getauscht)"
+                },
+                "gridTwoColumn39": {
+                    "label": "Zwei Spalten, 3-9"
+                },
+                "gridTwoColumn48": {
+                    "label": "Zwei Spalten, 4-8"
+                },
+                "gridTwoColumn57": {
+                    "label": "Zwei Spalten, 5-7"
+                },
+                "gridTwoColumn75": {
+                    "label": "Zwei Spalten, 7-5"
+                },
+                "gridTwoColumn84": {
+                    "label": "Zwei Spalten, 8-4"
+                },
+                "gridTwoColumn93": {
+                    "label": "Zwei Spalten, 9-3"
+                },
+                "gridThreeColumn": {
+                    "label": "Drei Spalten"
+                },
+                "gridThreeColumn282": {
+                    "label": "Drei Spalten, 2-8-2"
+                },
+                "gridThreeColumn363": {
+                    "label": "Drei Spalten, 3-6-3"
+                },
+                "gridFourColumn": {
+                    "label": "Vier Spalten"
+                },
+                "gridFiveColumn": {
+                    "label": "Fünf Spalten"
+                },
+                "gridSixColumn": {
+                    "label": "Sechs Spalten"
+                },
+                "gridOne": {
+                    "label": "Grid 'One'"
+                },
+                "gridOneSwapped": {
+                    "label": "Grid 'One' (getauscht)"
+                },
+                "gridModern": {
+                    "label": "Grid 'Modern'"
+                },
+                "sidebarSubcategoryNavigation": {
+                    "label": "Unterkategorie-Navigation (Sidebar)",
+                    "preview": {
+                        "label": {
+                            "navigation": "Navigation"
+                        }
+                    }
+                },
+                "productName": {
+                    "label": "Produktname (ohne Hersteller-Logo)"
+                },
+                "galleryBuyBoxProductName": {
+                    "label": "Galerie und Buybox (mit Produktname)"
+                },
+                "galleryBuyBoxProductHeading": {
+                    "label": "Galerie und Buybox (mit Produktname & Hersteller-Logo)"
+                },
+                "breadcrumb": {
+                    "label": "Breadcrumb-Navigation",
+                    "preview": {
+                        "label": "Navigation"
+                    }
+                }
+            },
+            "tabs": {
+                "settings": "Einstellungen",
+                "image": "Bild"
+            }
+        }
+    }
+}

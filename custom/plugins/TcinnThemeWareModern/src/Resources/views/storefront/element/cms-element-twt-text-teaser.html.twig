@@ -1,0 +1,151 @@
+{# ThemeWare: CMS element "Text teaser" #}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET VARS ---------------- #}
+
+{# ThemeWare: Set variables #}
+{#% set twtTextTeaser = element.translated.config %#}
+{% set twtTextTeaser = element.fieldConfig.elements %}
+
+{# Tab: Layout #}
+{% set twtTextTeaserFontFamily = twtTextTeaser.fontFamily.value %}
+{% set twtTextTeaserHoverEffect = twtTextTeaser.hoverEffect.value %}
+{% set twtTextTeaserTextShadow = twtTextTeaser.textShadow.value %}
+{# TODO... #}
+
+{# Tab: Advanced #}
+{% set twtTextTeaserCssClass = twtTextTeaser.cssClass.value %}
+
+{# ---------------- END: SET VARS ---------------- #}
+
+{# ---------------- START: SET CLASSES ---------------- #}
+
+{% set overlayClasses = ['overlay'] %}
+
+{% if twtTextTeaserHoverEffect != 'none' %}
+    {% if twtTextTeaserHoverEffect != "fadeOut" %}
+        {% set overlayClasses = ['fade-in']|merge(overlayClasses) %}
+    {% else %}
+        {% set overlayClasses = ['fade-out']|merge(overlayClasses) %}
+    {% endif %}
+{% endif %}
+
+
+{% set contentClasses = ['content'] %}
+
+{% if twtTextTeaserHoverEffect != 'none' %}
+    {% if twtTextTeaserHoverEffect == "slideIn" %}
+        {% set contentClasses = ['fade-in']|merge(contentClasses) %}
+    {% elseif twtTextTeaserHoverEffect == "slideInUp" %}
+        {% set contentClasses = ['fade-in-up']|merge(contentClasses) %}
+    {% elseif twtTextTeaserHoverEffect == "slideInRight" %}
+        {% set contentClasses = ['fade-in-right']|merge(contentClasses) %}
+    {% elseif twtTextTeaserHoverEffect == "slideInDown" %}
+        {% set contentClasses = ['fade-in-down']|merge(contentClasses) %}
+    {% elseif twtTextTeaserHoverEffect == "slideInLeft" %}
+        {% set contentClasses = ['fade-in-left']|merge(contentClasses) %}
+    {% elseif twtTextTeaserHoverEffect == "zoomIn" %}
+        {% set contentClasses = ['zoom-in']|merge(contentClasses) %}
+    {% elseif twtTextTeaserHoverEffect == "fadeOut" %}
+        {% set contentClasses = ['fade-out']|merge(contentClasses) %}
+    {#% elseif twtTextTeaserHoverEffect == null %}
+        {% set contentClasses = ['fade-in-right']|merge(contentClasses) %#}
+    {% endif %}
+{% endif %}
+
+
+{% if twtTextTeaserTextShadow == "small" %}
+    {% set textClasses = 'twt-shadow-sm' %}
+{% elseif twtTextTeaserTextShadow == "regular" %}
+    {% set textClasses = 'twt-shadow' %}
+{% elseif twtTextTeaserTextShadow == "large" %}
+    {% set textClasses = 'twt-shadow-lg' %}
+{% endif %}
+
+{# ---------------- END: SET CLASSES ---------------- #}
+
+{% block element_twt_text_teaser %}
+    {% set config = element.fieldConfig.elements %}
+
+    {# TODO: finalize #}
+
+    <div class="cms-element-{{ element.type }}{% if config.verticalAlign.value %} has-vertical-alignment{% endif %}{% if twtTextTeaserHoverEffect != 'none' %} is-hover{% endif %}{% if twtTextTeaserCssClass is not empty %} {{ twtTextTeaserCssClass }}{% endif %}">
+
+        {% block element_twt_text_teaser_content %}
+            {% if config.verticalAlign.value %}
+                <div class="cms-element-alignment{% if config.verticalAlign.value == "center" %} align-self-center{% elseif config.verticalAlign.value == "flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+            {% endif %}
+
+            {% block element_twt_text_teaser_image_inner %}
+                {# ThemeWare: Set 'Text teaser' element #}
+                {% set textTeaser %}
+                    <div class="twt-text-teaser-container cms-content-container justify-content-{{ config.horizontalAlignment.value }} align-items-{{ config.verticalAlignment.value }}">
+                        {# Colored overlay (if configured) #}
+                        {% if config.colorOverlay.value %}
+                            <div class="twt-text-teaser-overlay color-overlay {{ overlayClasses|sort|join(' ') }}" style="background-color: {{ config.colorOverlayBgColor.value }};"></div>
+                        {% endif %}
+
+                        {# Text (mandatory) #}
+                        <div class="twt-text-teaser-content {{ contentClasses|sort|join(' ') }}{% if twtTextTeaserFontFamily !='base' %} twt-font-family-{{ twtTextTeaserFontFamily }}{% endif %}" style="text-align: {{ config.textAlignment.value }}; max-width: {{ config.maxWidth.value }};">
+                            <p class="twt-text-teaser-text text{% if textClasses %} {{ textClasses }}{% endif %}" style="color: {{ config.textColorTitle.value }};">
+                                {{ element.translated.config.title.value }}
+                            </p>
+                        </div>
+                    </div>
+                {% endset %}
+
+                {# ThemeWare: Set image element #}
+                {% set imageElement %}
+
+                    {% block element_twt_text_teaser_image_container %}
+                        {% if element.data.media.url %}
+                            <div class="twt-text-teaser-image-container cms-image-container is-{{ element.translated.config.displayMode.value }}" {% if element.translated.config.minHeight.value and element.translated.config.displayMode.value == "cover" %} style="min-height: {{ element.translated.config.minHeight.value }};"{% endif %}>
+
+                                {% block element_twt_text_teaser_image_media %}
+                                    {% set attributes = {
+                                        'class': 'cms-image',
+                                        'alt': (element.data.media.translated.alt ?: ''),
+                                        'title': (element.data.media.translated.title ?: '')
+                                    } %}
+
+                                    {% if element.translated.config.displayMode.value == 'cover' or element.translated.config.displayMode.value == 'contain' %}
+                                        {% set attributes = attributes|merge({ 'data-object-fit': element.translated.config.displayMode.value }) %}
+                                    {% endif %}
+
+                                    {% sw_thumbnails 'cms-image-thumbnails' with {
+                                        media: element.data.media
+                                    } %}
+                                {% endblock %}
+
+                                {# ThemeWare: Load 'Text teaser' element #}
+                                {{ textTeaser }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                {% endset %}
+
+                {# ThemeWare: Load elements #}
+                {% if element.translated.config.url.value %}
+                    {# Info: Title tag = Title text (as the text is mandatory) #}
+                    <a href="{{ element.translated.config.url.value }}"
+                       title="{{ element.translated.config.title.value }}"
+                       class="cms-image-link"
+                       {% if element.translated.config.newTab.value %}target="_blank" rel="noopener"{% endif %}>
+                        {# ThemeWare: Load image element #}
+                        {{ imageElement }}
+                    </a>
+                {% else %}
+                    {# ThemeWare: Load image element #}
+                    {{ imageElement }}
+                {% endif %}
+            {% endblock %}
+
+            {% if config.verticalAlign.value %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

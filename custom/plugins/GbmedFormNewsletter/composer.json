@@ -1,0 +1,45 @@
+{
+    "name": "gb-media/gbmed-form-newsletter",
+    "description": "Example plugin to extend Shopware 6 plugin GbmedForm",
+    "version": "1.0.3",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "gb media",
+            "homepage": "https://www.gb-media.biz",
+            "email": "shopware@gb-media.biz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Gbmed\\FormNewsletter\\": "src/"
+        }
+    },
+    "require": {
+        "shopware/core": "6.4.*",
+        "shopware/administration": "*",
+        "shopware/storefront": "6.4.*",
+        "gbmed/form": ">=1.1.21"
+    },
+    "extra": {
+        "shopware-plugin-class": "Gbmed\\FormNewsletter\\GbmedFormNewsletter",
+        "copyright": "(c) gb media",
+        "label": {
+            "de-DE": "Newsletter-Formular mit Google reCAPTCHA",
+            "en-GB": "Newsletter formular with Google reCAPTCHA"
+        },
+        "description": {
+            "de-DE": "Dieses Plugin erweitert das Plugin GbmedForm für die Google reCAPTCHA Prüfung des Newsletter Formulars.",
+            "en-GB": "This plugin extends the GbmedForm plugin for the Google reCAPTCHA check of the newsletter form."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.gb-media.biz",
+            "en-GB": "https://www.gb-media.biz"
+        },
+        "supportLink": {
+            "de-DE": "https://account.shopware.com/shops/support",
+            "en-GB": "https://account.shopware.com/shops/support"
+        }
+    }
+}

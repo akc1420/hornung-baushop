@@ -1,0 +1,80 @@
+{# ThemeWare: CMS element "Image banner" #}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET VARS ---------------- #}
+
+{# ThemeWare: Set variables #}
+{#% set twtImageBanner = element.translated.config %#}
+{% set twtImageBanner = element.fieldConfig.elements %}
+
+{# Tab: Layout #}
+{# TODO... #}
+
+{# Tab: Advanced #}
+{% set twtImageBannerCssClass = twtImageBanner.cssClass.value %}
+
+{# ---------------- END: SET VARS ---------------- #}
+
+{# ---------------- START: SET CLASSES ---------------- #}
+
+{% set overlayClasses = ['overlay'] %}
+
+{# ---------------- END: SET CLASSES ---------------- #}
+
+{% block element_twt_image_banner %}
+    {% set config = element.fieldConfig.elements %}
+
+    {# TODO: finalize #}
+
+    <div class="cms-element-{{ element.type }}{% if twtImageBannerCssClass is not empty %} {{ twtImageBannerCssClass }}{% endif %}">
+
+        {% block element_twt_image_banner_content %}
+
+            {% block element_twt_image_banner_image_inner %}
+                {# ThemeWare: Set 'Image banner' element #}
+                {% set twtImageBanner %}
+                    <div class="twt-image-banner-container cms-content-container">
+                        {# Colored overlay (if configured) #}
+                        {% if config.colorOverlay.value %}
+                            <div class="twt-image-banner-overlay color-overlay" style="background: {{ config.colorOverlayBgColor.value }};{% if config.colorOverlayBgGradient.value %} background: linear-gradient({{ config.colorOverlayBgGradientAngle.value }}deg, {{ config.colorOverlayBgColor.value }} 0%, {{ config.colorOverlayBgColor2.value }} 100%);{% endif %}"></div>
+                        {% endif %}
+
+                        {# no further content #}
+                    </div>
+                {% endset %}
+
+                {# ThemeWare: Set image element #}
+                {% set imageElement %}
+
+                    {% block element_twt_image_banner_image_container %}
+                        {% if element.data.media.url %}
+                            <div class="twt-image-banner-image-container cms-image-container is-cover is-{{ config.attachment.value }}" style="background-image: url({{ element.data.media.url }}); min-height: {{ element.translated.config.minHeight.value }}">
+                                {# ThemeWare: Load 'Call to action' element #}
+                                {{ twtImageBanner }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                {% endset %}
+
+                {# ThemeWare: Load elements #}
+                {% if element.translated.config.url.value %}
+                    {# Info: Title tag = Media title OR empty #}
+                    <a href="{{ element.translated.config.url.value }}"
+                       title="{{ element.data.media.translated.title ?: '' }}"
+                       class="cms-image-link"
+                       {% if element.translated.config.newTab.value %}target="_blank" rel="noopener"{% endif %}>
+                        {# ThemeWare: Load image element #}
+                        {{ imageElement }}
+                    </a>
+                {% else %}
+                    {# ThemeWare: Load image block #}
+                    {{ imageElement }}
+                {% endif %}
+            {% endblock %}
+
+        {% endblock %}
+
+    </div>
+{% endblock %}

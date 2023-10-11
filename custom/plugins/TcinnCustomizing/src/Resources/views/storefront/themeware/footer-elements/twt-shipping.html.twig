@@ -1,0 +1,67 @@
+{# ThemeWare: Footer-Element "Shipping" container #}
+{#
+	Create footer column and include shipping widget
+
+    @Storefront/storefront/themeware/widgets/twt-shipping.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+{# TODO: Kommentare prüfen, ergänzen... #}
+{# TODO: footer-elements zusammenfassen (sh. twt-sidebar-widgets) #}
+
+{% block twt_layout_footer_shipping %}
+	{# ThemeWare: Add column classes #}
+	{% if newcol == "2" %}
+		{% set blockClasses = ['col-md-12'] %}
+	{% elseif newcol == "3" %}
+		{% set blockClasses = ['col-md-6'] %}
+	{% else %}
+		{# ThemeWare: Add column classes for tablet viewports #}
+		{% if columns == columnsTablet %}
+			{% set blockClasses = ['col-md-' ~ columns] %}
+		{% else %}
+			{% set blockClasses = ['col-xl-' ~ columns, 'col-md-' ~ columnsTablet] %}
+		{% endif %}
+	{% endif %}
+
+	{# ThemeWare: Add default classes #}
+	{% set blockClasses = ['footer-column', 'footer-column-shipping']|merge(blockClasses) %}
+
+	{# ThemeWare: Add toggle class #}
+	{% if toggle != "4" %}
+		{% set blockClasses = ['js-footer-column']|merge(blockClasses) %}
+	{% endif %}
+
+	{# ThemeWare: Add element class and element number #}
+	{% set blockClasses = ['twt-element-' ~ elementid, 'twt-element-shipping']|merge(blockClasses) %}
+
+	{# ThemeWare: Permanently expanded #}
+	{% if toggle == "4" %}
+		{% set blockClasses = ['permanent']|merge(blockClasses) %}
+	{% endif %}
+
+	{# ThemeWare: Add class "last" to last element #}
+	{% if last == true %}
+		{% set blockClasses = ['last']|merge(blockClasses) %}
+	{% endif %}
+
+	{# TODO: add block "container" #}
+	<div class="{{ blockClasses|reverse|join(' ') }}">
+
+		{% block twt_layout_footer_shipping_headline %}
+		{% endblock %}
+
+		{% block twt_layout_footer_shipping_content %}
+			<div id="collapseFooterShipping"
+				 class="footer-column-content{% if toggle != "4" %} js-footer-column-content collapse{% endif %}{% if toggle == "2" %} show{% endif %} footer-logos-column"
+				 aria-labelledby="collapseFooterShippingTitle">
+				<div class="footer-column-content-inner">
+					{% sw_include '@Storefront/storefront/themeware/widgets/twt-shipping-include.html.twig' ignore missing with {
+						type: 'footer'
+					} %}
+				</div>
+			</div>
+		{% endblock %}
+
+	</div>
+{% endblock %}

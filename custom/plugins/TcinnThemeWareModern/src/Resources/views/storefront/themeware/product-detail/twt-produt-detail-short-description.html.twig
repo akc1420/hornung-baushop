@@ -1,0 +1,27 @@
+{# ThemeWare "Short description" on product pages via custom fileds #}
+{#
+    Create container and add product videos
+
+    @Storefront/storefront/themeware/product-detail/twt-produt-detail-short-description.html.twig
+#}
+
+{# ThemeWare: Add short description to buy-box #}
+{% block twt_product_detail_short_description %}
+    <div class="twt-product-detail-short-description twt-short-description">
+        {#% block twt_product_detail_short_description_inner %#}
+
+        {% block twt_product_detail_short_description_container %}
+            <div class="twt-product-detail-short-description-container">
+
+                {% block twt_product_detail_short_description_content %}
+                    <span class="twt-short-description">
+                        {{ twtCustomFields.product.twt_modern_pro_custom_field__product__short_description|raw }}
+                    </span>
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+
+        {#% endblock %#}
+    </div>
+{% endblock %}

@@ -1,0 +1,92 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS element "Modern teaser"
+	==================================================
+
+*/
+
+// TODO: Add performance configuration to disable styling
+
+$twt-modern-teaser-hover-spacing: 15px;
+
+.cms-element-twt-modern-teaser {
+    .twt-modern-teaser-container {
+        padding: 15px;
+    }
+
+    .twt-modern-teaser-content {
+        max-width: 100%;
+    }
+
+    .twt-modern-teaser-text {
+        font-size: 1rem;
+        font-weight: 600;
+        line-height: 1.25rem;
+        display: inline-block;
+        max-width: 100%;
+        padding: 10px 12px;
+        text-align: left;
+        vertical-align: middle;
+        border-radius: 2px;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    .text {
+        position: relative;
+        transition: all 0.25s;
+        margin-right: $twt-modern-teaser-hover-spacing;
+
+        span:not(.icon) {
+            position: relative;
+            display: inline-block;
+            max-width: 100%;
+            transition: all .25s ease;
+        }
+
+        .icon {
+            position: absolute;
+            top: 50%;
+            right: -20px;
+            transition: all .25s ease;
+            transform: translateY(-50%);
+            opacity: 0;
+            color: inherit;
+
+            svg {
+                top: 1px;
+            }
+        }
+    }
+
+    // Hover effects ------------------------------
+
+    // Add hover effects (except on phones)
+    // - Hover effect is only applied when element is linked. (alternatively use .cms-image-container:hover instead of a:hover)
+
+    @include media-breakpoint-up(sm) { // min 576px
+        a:hover {
+            .text {
+                margin-right: 0;
+                
+                span:not(.icon) {
+                    padding-right: $twt-modern-teaser-hover-spacing;
+                }
+
+                .icon {
+                    right: 3px;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,64 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box.html.twig' %}
+{# ThemeWare® HC-Architecture® ready #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductBoxImageHoverType = theme_config('twt-product-box-image-hover-type') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the product box #}
+{% block component_product_box_include %}
+    {# ThemeWare: Klasse 'twt-is-sold' hinzufügen falls "Produkte nach Abverkaufende abschwächen" aktiviert wurde. #}
+    {# TODO: Check if adding as class to product boxes will be made possible in further Shopware updates #}
+    {% if product.isCloseout and product.availableStock < product.minPurchase and not product.isGrouped %}
+        {% set twtBlockClasses = ['twt-is-sold'] %}
+    {% endif %}
+
+    {# ThemeWare: Klasse 'twt-is-topseller' hinzufügen falls das Produkt ein "Topseller" ist. #}
+    {# TODO: Check if adding as class to product boxes will be made possible in further Shopware updates #}
+    {% if product.markAsTopseller and twtBlockClasses is not empty %}
+        {% set twtBlockClasses = ['twt-is-topseller']|merge(twtBlockClasses) %}
+    {% elseif product.markAsTopseller and twtBlockClasses is empty %}
+        {% set twtBlockClasses = ['twt-is-topseller'] %}
+    {% endif %}
+
+    {% if twtBlockClasses is not empty %}
+        <div class="{{ twtBlockClasses|join(' ') }}"></div>
+    {% endif %}
+
+
+    {# ThemeWare: "Hover-Bild" für Überblendungen mit dem Cover-Bild ergänzen. #}
+    {% if twtProductBoxImageHoverType == 10 %}
+        {# initial ID array #}
+        {% set hoverMediaIds = [] %}
+
+        {% if searchResult.total > 0 %} {# Check if listing with searchResults #}
+            {% for product in searchResult %}
+                {% if product.translated.customFields.twt_modern_pro_custom_field__product__hover_image is not empty %}
+                    {# simplify ID access #}
+                    {% set hoverMediaId = product.translated.customFields.twt_modern_pro_custom_field__product__hover_image %}
+
+                    {# merge IDs to a single array #}
+                    {% set hoverMediaIds = hoverMediaIds|merge([hoverMediaId]) %}
+                {% endif %}
+            {% endfor %}
+        {% else %} {# Single product box #}
+            {% if product.translated.customFields.twt_modern_pro_custom_field__product__hover_image is not empty %}
+                {# simplify ID access #}
+                {% set hoverMediaId = product.translated.customFields.twt_modern_pro_custom_field__product__hover_image %}
+
+                {# merge IDs to a single array #}
+                {% set hoverMediaIds = hoverMediaIds|merge([hoverMediaId]) %}
+            {% endif %}
+        {% endif %}
+
+        {# do a single fetch from database #}
+        {% set mediaCollection = searchMedia(hoverMediaIds, context.context) %}
+    {% endif %}
+
+
+    {# Default block #}
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,6 @@
+{% block swag_cms_extensions_form_element_number %}
+    <sw-textarea-field :label="field.translated ? field.translated.label : field.label"
+                       :required="field.required"
+                       :value="field.translated ? field.translated.placeholder : field.placeholder">
+    </sw-textarea-field>
+{% endblock %}

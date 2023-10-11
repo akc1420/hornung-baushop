@@ -1,0 +1,364 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Cookie permission
+	==============================================
+	Shows a cookie permission alert at the bottom of the page.
+
+	Origin: Shopware base
+*/
+
+/* @Konfiguration:
+ * - animation
+ * - width/max-width
+ * - ..
+ */
+
+
+// ThemeWare: Cookie permission adjustments
+// @TODO: Shopware Vererbung prüfen...
+@if $twt-cookie-permission-show == 2 {
+	.cookie-permission-container {
+		@if $twt-cookie-permission-position > 4 {
+			// Overlay styles 5-9
+			position: fixed;
+			top: 0;
+			left: 0;
+			z-index: 1040; // default: 1050
+			width: 100vw; // default: 100%
+			height: 100vh; // default: 100%
+			//overflow-x: hidden;
+			//overflow-y: auto;
+			background-color: $twt-modal-background-color;
+			pointer-events: none;
+
+			// Animate
+			-webkit-animation-duration: .1s;
+			animation-duration: .1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+			-webkit-animation-name: fadeIn;
+			animation-name: fadeIn;
+		} @else {
+			// General styles 1-4
+			background-color: $twt-cookie-permission-background-color;
+			padding: null-pixel-unit($twt-cookie-permission-padding);
+			box-shadow: $twt-cookie-permission-box-shadow $twt-cookie-permission-box-shadow-color;
+		}
+
+		// Buttons
+		.btn {
+			outline: none;
+			transition: none;
+		}
+
+		.js-cookie-permission-button {
+			// ThemeWare: Fix missing Shopware spacing
+			// TODO: check if already necessary
+			display: inline-block;
+			padding: 3px 1px;
+
+			.btn {
+				// TODO: @include button-variant(..., ...);
+				color: color-yiq($twt-cookie-permission-deny-btn-background-color);
+				background-color: $twt-cookie-permission-deny-btn-background-color;
+				border-color: $twt-cookie-permission-deny-btn-background-color;
+
+				&:hover {
+					color: color-yiq($twt-cookie-permission-deny-btn-background-color);
+					background-color: darken($twt-cookie-permission-deny-btn-background-color, 7.5%);
+					border-color: darken($twt-cookie-permission-deny-btn-background-color, 10%);
+				}
+
+				/*&.btn-secondary {
+					color: color-yiq($twt-cookie-permission-deny-btn-background-color);
+					background-color: $twt-cookie-permission-deny-btn-background-color;
+					border-color: $twt-cookie-permission-deny-btn-background-color;
+
+					&:hover {
+						color: color-yiq($twt-cookie-permission-deny-btn-background-color);
+						background-color: darken($twt-cookie-permission-deny-btn-background-color, 7.5%);
+						border-color: darken($twt-cookie-permission-deny-btn-background-color, 10%);
+					}
+				}*/
+
+				/*&.btn-outline-danger {
+					color: $twt-cookie-permission-deny-btn-background-color;
+					background-color: transparent;
+					border-color: $twt-cookie-permission-deny-btn-background-color;
+
+					&:hover {
+						color: color-yiq($twt-cookie-permission-deny-btn-background-color);
+						background-color: $twt-cookie-permission-deny-btn-background-color;
+						border-color: $twt-cookie-permission-deny-btn-background-color;
+					}
+				}*/
+			}
+		}
+
+		.js-cookie-configuration-button {
+			// ThemeWare: Fix missing Shopware spacing
+			// TODO: check if already necessary
+			display: inline-block;
+			padding: 3px 1px;
+
+			.btn {
+				// TODO: @include button-variant(..., ...);
+				color: color-yiq($twt-cookie-permission-configuration-btn-background-color);
+				background-color: $twt-cookie-permission-configuration-btn-background-color;
+				border-color: $twt-cookie-permission-configuration-btn-background-color;
+
+				&:hover {
+					color: color-yiq($twt-cookie-permission-configuration-btn-background-color);
+					background-color: darken($twt-cookie-permission-configuration-btn-background-color, 7.5%);
+					border-color: darken($twt-cookie-permission-configuration-btn-background-color, 10%);
+				}
+			}
+		}
+
+		.js-cookie-accept-all-button {
+			// ThemeWare: Fix missing Shopware spacing
+			// TODO: check if already necessary
+			display: inline-block;
+			padding: 3px 1px;
+
+			.btn {
+				// TODO: @include button-variant(..., ...);
+				color: color-yiq($twt-cookie-permission-accept-all-btn-background-color);
+				background-color: $twt-cookie-permission-accept-all-btn-background-color;
+				border-color: $twt-cookie-permission-accept-all-btn-background-color;
+
+				&:hover {
+					color: color-yiq($twt-cookie-permission-accept-all-btn-background-color);
+					background-color: darken($twt-cookie-permission-accept-all-btn-background-color, 7.5%);
+					border-color: darken($twt-cookie-permission-accept-all-btn-background-color, 10%);
+				}
+			}
+		}
+
+		// Banner: bottom (default)
+		@if $twt-cookie-permission-position == 1 {
+			border-top: 1px solid $twt-cookie-permission-border-color;
+
+			@if $twt-cookie-permission-width == 2 {
+				.container {
+					max-width: inherit;
+				}
+			}
+		}
+
+		// Banner: top
+		@if $twt-cookie-permission-position == 2 {
+			top: 0;
+			border-bottom: 1px solid $twt-cookie-permission-border-color;
+			border-top: none;
+			bottom: inherit;
+
+			@if $twt-cookie-permission-width == 2 {
+				.container {
+					max-width: inherit;
+				}
+			}
+		}
+
+		// Card: bottom right
+		@if $twt-cookie-permission-position == 3 {
+			width: calc(#{100% - (2 * $twt-cookie-permission-right + px)});
+			left: auto;
+			max-width: auto-pixel-unit($twt-cookie-permission-max-width);
+			bottom: null-pixel-unit($twt-cookie-permission-bottom);
+			right: null-pixel-unit($twt-cookie-permission-right);
+			border: 1px solid $twt-cookie-permission-border-color;
+
+			.cookie-permission-content {
+				text-align: center;
+				margin: .5rem 0;
+				padding: 0 .5rem !important;
+			}
+
+			.col-12 {
+				width: 100%;
+				margin: .5rem 0;
+				padding: 0 .5rem !important;
+			}
+		}
+
+		// Overlay styles 5, 6, 7, 8 and 9
+		@if $twt-cookie-permission-position > 4 {
+			.row {
+				position: fixed;
+				border-radius: 3px;
+				pointer-events: all;
+				width: 90%;
+				max-width: 960px;
+				background-color: $twt-cookie-permission-background-color;
+				box-shadow: $twt-cookie-permission-box-shadow $twt-cookie-permission-box-shadow-color;
+				margin: auto;
+				padding: null-pixel-unit($twt-cookie-permission-padding);
+
+				// Animate
+				-webkit-animation-duration: .25s;
+				animation-duration: .25s;
+				-webkit-animation-fill-mode: both;
+				animation-fill-mode: both;
+				-webkit-animation-name: modalZoomIn;
+				animation-name: modalZoomIn;
+			}
+
+			.cookie-permission-content { padding: 0 .5rem !important; }
+
+			.col-12 { padding: 0 .5rem !important; }
+		}
+
+		// Modal: top (with overlay)
+		@if $twt-cookie-permission-position == 5 {
+			.row {
+				top: null-pixel-unit($twt-cookie-permission-top);
+				left: 0;
+				right: 0;
+				max-width: 960px;
+			}
+		}
+
+		// Modal: centered (with overlay)
+		@if $twt-cookie-permission-position == 6 {
+			.row {
+				top: 50%;
+				left: 0;
+				right: 0;
+				transform: translateY(-50%);
+				max-width: 280px;
+			}
+
+			.cookie-permission-content {
+				text-align: center;
+				margin: .5rem 0;
+			}
+
+			.col-12 {
+				width: 100%;
+				margin: .5rem 0;
+
+				span { display: block; }
+
+				button {
+					display: block;
+					width: 100%;
+				}
+			}
+
+			/* @TODO: wide
+			.row {
+				top: 50%;
+				left: 0;
+				right: 0;
+				transform: translateY(-50%);
+				max-width: 540px;
+			}
+
+			.cookie-permission-content {
+				text-align: center;
+				margin: .5rem 0;
+			}
+
+			.col-12 {
+				width: 100%;
+				margin: .5rem 0;
+			}
+			*/
+		}
+
+		// Modal: bottom (with overlay)
+		@if $twt-cookie-permission-position == 7 {
+			.row {
+				bottom: null-pixel-unit($twt-cookie-permission-bottom);
+				left: 0;
+				right: 0;
+				max-width: 960px;
+			}
+		}
+
+		// Modal: bottom right (with overlay)
+		@if $twt-cookie-permission-position == 8 {
+			.row {
+				//bottom: 40px;
+				//right: 40px;
+				//width: calc(100% - 80px);
+				max-width: 320px;
+
+				bottom: null-pixel-unit($twt-cookie-permission-bottom);
+				right: null-pixel-unit($twt-cookie-permission-right);
+				width: calc(#{100% - (2 * $twt-cookie-permission-right + px)});
+				//max-width: auto-pixel-unit($twt-cookie-permission-max-width);
+			}
+
+			.cookie-permission-content {
+				text-align: center;
+				margin: .5rem 0;
+			}
+
+			.col-12 {
+				width: 100%;
+				margin: .5rem 0;
+			}
+		}
+
+		// Modal: centered (portrait) (with overlay)
+		@if $twt-cookie-permission-position == 9 {
+			.row {
+				top: 50%;
+				left: 0;
+				right: 0;
+				transform: translateY(-50%);
+				max-width: 280px;
+			}
+
+			.cookie-permission-content {
+				text-align: center;
+				margin: .5rem 0;
+			}
+
+			.col-12 {
+				width: 100%;
+				margin: .5rem 0;
+
+				span { display: block; }
+
+				button {
+					display: block;
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	.cookie-permission-content {
+		color: $twt-cookie-permission-color;
+
+		// Card: bottom right
+		@if $twt-cookie-permission-position == 3 {
+			padding-bottom: 10px;
+		}
+
+		a {
+			color: $twt-cookie-permission-color;
+			text-decoration: underline;
+
+			&:hover {
+				text-decoration: none;
+				opacity: 0.9;
+			}
+		}
+
+		// @deprecated
+		/*.col, .col-md-auto {
+			padding-left: 0;
+			padding-right: 0;
+		}*/
+	}
+}

@@ -1,0 +1,26 @@
+{# ThemeWare "New badge" content #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductBadgesNewBadgeColoration = theme_config('twt-product-badges-new-badge-coloration') %}
+{% set twtProductBadgesNewBadgeIconShow = theme_config('twt-product-badges-new-badge-icon-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# TODO: Blöcke prüfen... #}
+
+{% block twt_product_badges_new_badge %}
+    {% if product.isNew %}
+        <div>
+            <span class="badge badge-success{% if twtProductBadgesNewBadgeColoration == 3 %}-lighten{% endif %} badge-new">
+                {% if twtProductBadgesNewBadgeIconShow == 2 %}
+                    {# star oder plus #}
+                    {% sw_include '@Storefront/storefront/themeware/twt-icons.html.twig' ignore missing with {
+                        icon: "twt.extension.newBadge.icon"|trans
+                    } %}
+                {% endif %}
+                {{ "listing.boxLabelNew"|trans|sw_sanitize }}</span>
+        </div>
+    {% endif %}
+{% endblock %}

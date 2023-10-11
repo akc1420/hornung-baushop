@@ -1,0 +1,19 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Shipping method
+    ==============================================
+    Custom styling for shipping form used e.g. on account and checkout pages.
+
+	Origin: Shopware base & skin
+*/
+
+// ThemeWare: Fix Shopware colour assignment
+.shipping-method-description > p {
+    color: $gray-500; //$border-color;
+}

@@ -1,0 +1,52 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS box shadow classes
+	==================================================
+	see https://service.tc-innovations.de/themeware/sw6/article/2129
+*/
+
+// Info:
+// - ThemeWare CSS-Klassen mit welchen Standard-CMS-Elemente verziert werden können.
+// - Hinweis: Es können zusätzlich die Klassen "shadow" und "rounded" von Bootstrap genutzt werden.
+
+// UNDER CONSTRUCTION
+// TODO: Add to documentation
+
+// ThemeWare: Adds CSS box shadow classes for manual use in Shopping Experiences. (apply to a cms block to modify the cms block)
+@if $twt-custom-cms-box-shadow-classes == 2 {
+
+    // ThemeWare: Box-shadow
+    // Add class to a CMS element to apply a box-shadow.
+    //.twt-cms-box-shadow-sm { // = box-shadow-sm
+    //        box-shadow: $box-shadow-sm;
+    //}
+    //.twt-cms-box-shadow { // = box-shadow
+    //        box-shadow: $box-shadow;
+    //}
+    //.twt-cms-box-shadow-lg { // = box-shadow-lg
+    //        box-shadow: $box-shadow-lg;
+    //}
+
+    .twt-cms-box-shadow-level-1 {
+        @include twt-box-shadow(1);
+    }
+    .twt-cms-box-shadow-level-2 {
+        @include twt-box-shadow(2);
+    }
+    .twt-cms-box-shadow-level-3 {
+        @include twt-box-shadow(3);
+    }
+    .twt-cms-box-shadow-level-4 {
+        @include twt-box-shadow(4);
+    }
+    .twt-cms-box-shadow-level-5 {
+        @include twt-box-shadow(5);
+    }
+
+}

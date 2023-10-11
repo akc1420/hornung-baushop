@@ -1,0 +1,233 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS custom classes for the landing page
+	==================================================
+	see https://service.tc-innovations.de/themeware/sw6/article/2129-themeware-css-klassen-bibliothek-fuer-cms-erlebniswelten
+*/
+
+// ThemeWare: CMS 2 column USP list ------------------------------
+
+.twt-custom-cms-text-two-column-usp-list {
+	.col-md-6:first-child {
+		//-ms-flex: 0 0 auto;
+		flex: 0 0 auto;
+		width: unquote("calc(100% - 420px)");
+		max-width: inherit;
+		margin-top: 30px;
+		padding-right: 50px;
+	}
+
+	.col-md-6:last-child {
+		//-ms-flex: 0 0 auto;
+		flex: 0 0 auto;
+		width: 400px;
+		max-width: inherit;
+		padding: 30px;
+		border-radius: null-pixel-unit($twt-border-radius);
+		background-color: rgba(0, 0, 0, 0.04);
+
+		ul {
+			margin: 0 0 0 22px;
+			padding: 0;
+			list-style: none;
+
+			li {
+				position: relative;
+				margin-bottom: 4px;
+
+				&::after {
+					position: absolute;
+					top: 5px;
+					left: -20px;
+					display: block;
+					width: 12px;
+					height: 12px;
+					content: '';
+					background-image: url("data:image/svg+xml,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 8 8\'%3e%3cpath fill=\'%23#{str-replace('' + $sw-color-success, '#', '')}\' d=\'M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z\'/%3e%3c/svg%3e");
+				}
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) { // max 991.98px
+		.col-md-6:last-child {
+			//-ms-flex: 0 0 100%;
+			flex: 0 0 100%;
+			width: 100%;
+			max-width: 100%;
+		}
+
+		.col-md-6:first-child {
+			//-ms-flex: 0 0 100%;
+			flex: 0 0 100%;
+			width: 100%;
+			max-width: 100%;
+			padding: 20px;
+		}
+	}
+}
+
+// ThemeWare: CMS full-image-text-teaser 1 ------------------------------
+
+.twt-custom-cms-imagetext-teaser-1,
+.twt-custom-cms-imagetext-teaser-1.cms-section:not(.pos-0) {
+	padding-top: 0;
+	padding-bottom: 0;
+
+	.cms-block-image-text {
+		.cms-block-container-row {
+			align-items: center;
+			//-ms-flex-align: center;
+
+			p {
+				margin-bottom: 0;
+				padding-bottom: 0;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) { // max 991.98px
+		.col-md-6 {
+			//-ms-flex: 0 0 100%;
+			flex: 0 0 100%;
+			width: 100%;
+			max-width: 100%;
+		}
+
+		.col-md-6:last-of-type {
+			padding: 60px 40px;
+		}
+	}
+}
+
+/*
+  _           _____ ___   ___                        _   _
+ | |__ _  _  |_   _/ __|_|_ _|_ _  _ _  _____ ____ _| |_(_)___ _ _  ___
+ | '_ \ || |   | || (_|___| || ' \| ' \/ _ \ V / _` |  _| / _ \ ' \(_-<
+ |_.__/\_, |   |_| \___| |___|_||_|_||_\___/\_/\__,_|\__|_\___/_||_/__/
+       |__/
+*/
+
+// ThemeWare: CMS "About" photo element ------------------------------
+
+.twt-custom-cms-about-photo {
+	.cms-block-container {
+		margin-bottom: 50px;
+		border-radius: null-pixel-unit($twt-border-radius);
+		background-color: rgba(0, 0, 0, 0.04);
+
+		.cms-block-container-row {
+			align-items: center;
+
+			.col-md-6:first-child,
+			.col-md-4 {
+				//-ms-flex: 0 0 auto;
+				flex: 0 0 auto;
+				width: 380px;
+				max-width: inherit;
+				padding: 30px 60px 0 60px;
+
+				.cms-element-text {
+					*:first-of-type {
+						margin-top: 0;
+						padding-top: 0;
+					}
+				}
+			}
+
+			.col-md-6:last-child,
+			.col-md-8 {
+				//-ms-flex: 0 0 auto;
+				flex: 0 0 auto;
+				width: unquote("calc(100% - 400px)");
+				max-width: inherit;
+				margin-top: 10px;
+				padding-right: 50px;
+			}
+		}
+
+		@include media-breakpoint-down(md) { // max 991.98px
+			.cms-block-container-row {
+				.col-md-6:first-child,
+				.col-md-4 {
+					//-ms-flex: 0 0 100%;
+					flex: 0 0 100%;
+					order: 2;
+					width: 100%;
+					max-width: 100%;
+					margin: 0;
+					padding: 40px 40px 0 40px;
+
+					img {
+						max-width: 240px;
+						height: auto;
+					}
+				}
+
+				.col-md-6:last-child,
+				.col-md-8 {
+					//-ms-flex: 0 0 100%;
+					flex: 0 0 100%;
+					width: 100%;
+					max-width: 100%;
+					padding: 0 40px;
+				}
+			}
+		}
+	}
+
+	&.dark {
+		.cms-block-container {
+			background-color: #ffffff;
+		}
+	}
+}
+
+// ThemeWare: Equal height ------------------------------
+
+// TODO: Check if necessary
+.twt-custom-cms-eq-height {
+	.col-md-6 > div {
+		height: 100%;
+	}
+}
+
+// ThemeWare: Full width sections ------------------------------
+// - Info: Add section-padding with px-4
+
+// ThemeWare: Boxed sections ------------------------------
+
+.twt-cms-boxed-content {
+	.cms-block {
+		max-width: calc(#{$twt-container-max-width - 40px});
+		margin: auto;
+	}
+
+	/*.cms-section-default {
+		max-width: $twt-container-max-width;
+		margin: auto;
+	}
+
+	.cms-block {
+		padding: 20px;
+	}*/
+}
+
+// ThemeWare: Boxed blocks ------------------------------
+
+.twt-cms-block-boxed {
+	max-width: calc(#{$twt-container-max-width - 40px});
+	margin: auto;
+}
+
+// ThemeWare: Manufacturer logo ------------------------------
+
+.twt-cms-hide-manufacturer-logo {
+	.product-heading-manufacturer-logo-container { display: none; }
+}

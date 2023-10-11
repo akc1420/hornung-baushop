@@ -1,0 +1,50 @@
+{
+    "name": "salty/sw6-performance-analysis",
+    "description": "Performance Analysis",
+    "version": "v0.10.0",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Die Shopwehr"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "salty\\Sw6PerformanceAnalysis\\": "src/"
+        }
+    },
+    "require": {
+        "shopware/core": "^6.4.0.0",
+        "shopware/administration": "^6.4.0.0",
+        "shopware/storefront": "^6.4.0.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-master",
+        "k10r/codestyle": "^1.0",
+        "phpstan/phpstan": "dev-master"
+    },
+    "extra": {
+        "shopware-plugin-class": "salty\\Sw6PerformanceAnalysis\\saltySw6PerformanceAnalysis",
+        "label": {
+            "de-DE": "Performance Analyse für Shopware",
+            "en-GB": "Performance Analysis for Shopware"
+        },
+        "description": {
+            "de-DE": "Diese Erweiterung analysiert Ihre Shopware- & Serverkonfiguration, um auf dieser Grundlage Empfehlungen und Informationen für die Optimierung der Shop-Performance bereitzustellen.",
+            "en-GB": "This extension is analysing your Shopware and server configuration for giving recommendations and information to optimize the general shop performance."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://shopwehr.de",
+            "en-GB": "https://shopwehr.de"
+        },
+        "supportLink": {
+            "de-DE": "https://shopwehr.de",
+            "en-GB": "https://shopwehr.de"
+        }
+    },
+    "scripts": {
+        "phpcs": "vendor/bin/php-cs-fixer fix",
+        "phpstan": "vendor/bin/phpstan analyse -c phpstan.neon src --autoload-file=../../../vendor/autoload.php"
+    }
+}

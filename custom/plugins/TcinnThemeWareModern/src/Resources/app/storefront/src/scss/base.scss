@@ -1,0 +1,297 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    base.scss
+    ======================================
+    Basic styles - Contains the imports to all ThemeWare styles.
+
+    Linking to assets: background-image: url("/bundles/swagbasicexampletheme/your-image.png");
+
+*/
+
+// Temp. fixes ----------------------------------------------------------------
+//@import 'fixes';
+
+// Abstract stuff ----------------------------------------------------------------
+@import 'abstract/variables';
+
+// ThemeWare mixins ----------------------------------------------------------------
+@import 'themeware/abstract/mixins/base';
+@import 'themeware/abstract/mixins/badge';
+@import 'themeware/abstract/mixins/label';
+@import 'themeware/abstract/mixins/icons';
+
+// ThemeWare variables ----------------------------------------------------------------
+//@import 'themeware/abstract/variables/..';
+
+// ThemeWare functions ----------------------------------------------------------------
+//@import 'themeware/functions/base'; // imported via the preload-variables.scss
+
+// Base stuff ----------------------------------------------------------------
+@import 'base/base';
+//@import 'base/reboot';
+    @import 'base/typography'; // ???
+    @import 'base/root'; // ???
+
+// Components ----------------------------------------------------------------
+@import 'component/alert';
+//@import 'component/card';
+@import 'component/category-navigation';
+@import 'component/backdrop';
+@import 'component/base-slider';
+@import 'component/image-slider';
+@import 'component/product-slider';
+@import 'component/gallery-slider';
+@import 'component/magnifier';
+//@import 'component/zoom-modal';
+//@import 'component/offcanvas';
+@import 'component/product-box';
+@import 'component/loader';
+@import 'component/modal';
+//@import 'component/flags';
+//@import 'component/icon';
+@import 'component/pagination';
+//@import 'component/cms-sections';
+@import 'component/cms-block';
+@import 'component/cms-element';
+//@import 'component/cms-form-confirmation';
+@import 'component/forms';
+//@import 'component/address-editor';
+//@import 'component/sorting';
+//@import 'component/delivery-status';
+//@import 'component/quickview-modal';
+@import 'component/payment-method';
+@import 'component/shipping-method';
+@import 'component/filter-panel';
+//@import 'component/filter-multi-select';
+//@import 'component/filter-property-select';
+@import 'component/filter-boolean';
+//@import 'component/filter-range';
+//@import 'component/filter-rating-select';
+//@import 'component/ellipsis';
+//@import 'component/product-feature';
+//@import 'component/notification-dot';
+@import 'component/product-wishlist';
+//@import 'component/fading-plugin';
+@import 'component/basic-captcha';
+@import 'component/line-item';
+
+// Shopware skin
+@import 'component/badge';
+@import 'component/breadcrumb';
+@import 'component/button';
+@import 'component/custom-select';
+@import 'component/form';
+@import 'component/tab-menu';
+
+// ThemeWare
+@import 'component/table';
+
+// Layout-related sections ----------------------------------------------------------------
+@import 'layout/container';
+@import 'layout/top-bar';
+@import 'layout/header';
+@import 'layout/header-minimal';
+@import 'layout/footer';
+@import 'layout/footer-phone'; // ???
+@import 'layout/main-navigation';
+@import 'layout/navigation-flyout';
+//@import 'layout/navigation-offcanvas';
+@import 'layout/offcanvas-cart';
+@import 'layout/account-menu';
+@import 'layout/search-suggest';
+@import 'layout/cookie-permission';
+//@import 'layout/cookie-configuration';
+@import 'layout/scroll-up';
+//@import 'layout/recaptcha';
+
+// ThemeWare
+@import 'layout/dropdown';
+@import 'layout/footer-minimal';
+
+// Page-specific styles ----------------------------------------------------------------
+@import 'page/product-detail/product-detail'; // TODO: refactor...
+//@import 'page/product-detail/configurator';
+@import 'page/product-detail/tabs'; // TODO: refactor...
+//@import 'page/product-detail/review';
+
+// Shopware skin
+//@import 'page/product-detail/cross-selling';
+
+@import 'page/account/account';
+//@import 'page/account/aside';
+//@import 'page/account/overview';
+//@import 'page/account/register';
+@import 'page/account/login';
+//@import 'page/account/address';
+//@import 'page/account/profile';
+//@import 'page/account/order';
+//@import 'page/account/edit-order';
+//@import 'page/account/order-detail';
+
+//@import 'page/checkout/checkout';
+@import 'page/checkout/aside';
+//@import 'page/checkout/aside-children';
+@import 'page/checkout/cart';
+@import 'page/checkout/register';
+@import 'page/checkout/confirm';
+//@import 'page/checkout/finish';
+
+//@import 'page/content/breadcrumb';
+
+//@import 'page/contact/contact';
+
+@import 'page/newsletter/newsletter';
+
+//@import 'page/search/search';
+
+//@import 'page/wishlist/wishlist';
+
+// ThemeWare ----------------------------------------------------------------
+@import 'themeware/themeware';
+
+// ThemeWare Iconset ----------------------------------------------------------------
+@import 'themeware/base/animations';
+@import 'themeware/base/font';          // Add webfonts
+@import 'themeware/base/iconset';
+
+// ThemeWare bootstrap adjustments ----------------------------------------------------------------
+@import 'themeware/bootstrap/custom-forms';
+
+// ThemeWare components ----------------------------------------------------------------
+@import 'themeware/component/badge';
+@import 'themeware/component/button';
+@import 'themeware/component/label';
+@import 'themeware/component/product-box';
+@import 'themeware/component/sidebar';
+@import 'themeware/component/table';
+
+// ThemeWare custom cms classes ----------------------------------------------------------------
+@import 'themeware/custom/custom-cms';
+@import 'themeware/custom/custom-cms-box-shadows';
+@import 'themeware/custom/custom-cms-col-padding';
+@import 'themeware/custom/custom-cms-font-family';
+@import 'themeware/custom/custom-cms-headlines';
+@import 'themeware/custom/custom-cms-image-decoration';
+@import 'themeware/custom/custom-cms-image-hover';
+@import 'themeware/custom/custom-cms-spacing-classes';
+
+// ThemeWare layout ----------------------------------------------------------------
+@import 'themeware/layout/container';
+@import 'themeware/layout/flyout-search';
+@import 'themeware/layout/footer';
+@import 'themeware/layout/fullscreen-search';
+@import 'themeware/layout/global-search';
+
+@import 'themeware/layout/header';
+@import 'themeware/layout/shopping-experiences-header';
+@import 'themeware/layout/custom-header';
+@import 'themeware/layout/header-phone';
+
+// ThemeWare page ----------------------------------------------------------------
+@import 'themeware/page/checkout/checkout';
+@import 'themeware/page/product-detail/benefits';
+@import 'themeware/page/product-detail/payment-logos';
+@import 'themeware/page/product-detail/product-badges';
+@import 'themeware/page/product-detail/product-detail';
+@import 'themeware/page/product-detail/product-labels';
+@import 'themeware/page/product-detail/sharing-links';
+@import 'themeware/page/product-detail/short-description';
+@import 'themeware/page/product-detail/tabs';
+@import 'themeware/page/other-pages';
+
+// ThemeWare extensions ----------------------------------------------------------------
+@import 'themeware/extensions/announcement-banner';
+@import 'themeware/extensions/custom-announcement';
+@import 'themeware/extensions/floating-widget';
+//@import 'themeware/extensions/listing-subcategories';
+//@import 'themeware/extensions/promotion-widget';
+@import 'themeware/extensions/slideout-communities';
+//@import 'themeware/extensions/subshop-navigation';
+@import 'themeware/extensions/usp-bar';
+
+@import 'themeware/extensions/scroll-animations'; // TODO: Extension ?
+@import 'themeware/extensions/sidebar-elements'; // TODO: Extension ?
+@import 'themeware/extensions/sidebar-widgets'; // TODO: Extension ?
+@import 'themeware/extensions/sticky-main-navigation'; // TODO: Extension ?
+
+// ThemeWare widgets ----------------------------------------------------------------
+@import 'themeware/widgets/about';
+@import 'themeware/widgets/awards';
+@import 'themeware/widgets/benefits';
+@import 'themeware/widgets/communities';
+@import 'themeware/widgets/hotline';
+@import 'themeware/widgets/location';
+@import 'themeware/widgets/newsletter';
+@import 'themeware/widgets/payment';
+@import 'themeware/widgets/paymentshipping';
+@import 'themeware/widgets/shipping';
+
+// ThemeWare cms ----------------------------------------------------------------
+@import 'themeware/cms/custom-cms-element-overlay';
+@import 'themeware/cms/custom-cms-icon-box';
+
+// ThemeWare cms pages ----------------------------------------------------------------
+@import 'themeware/cms/page/custom-cms-pages';
+@import 'themeware/cms/page/custom-cms-landing-pages';
+@import 'themeware/cms/page/custom-cms-category-pages';
+@import 'themeware/cms/page/custom-cms-product-pages';
+@import 'themeware/cms/page/custom-cms-shop-pages';
+
+// ThemeWare cms blocks ----------------------------------------------------------------
+@import 'themeware/cms/block/twt-cms-grid';
+@import 'themeware/cms/block/twt-cms-grid-columns';
+
+// ThemeWare cms elements ----------------------------------------------------------------
+@import 'themeware/cms/element/twt-cms-base';
+@import 'themeware/cms/element/twt-cms-button-teaser';
+@import 'themeware/cms/element/twt-cms-breadcrumb';
+@import 'themeware/cms/element/twt-cms-classic-teaser';
+@import 'themeware/cms/element/twt-cms-text-teaser';
+@import 'themeware/cms/element/twt-cms-text-teaser-decorated';
+@import 'themeware/cms/element/twt-cms-call-to-action';
+@import 'themeware/cms/element/twt-cms-hover-box';
+@import 'themeware/cms/element/twt-cms-modern-teaser';
+@import 'themeware/cms/element/twt-cms-hero-slider';
+@import 'themeware/cms/element/twt-cms-image-banner';
+
+// ThemeWare footer-elements (widgets) ----------------------------------------------------------------
+//@import 'themeware/footer-elements/about';
+//@import 'themeware/footer-elements/awards';
+//@import 'themeware/footer-elements/benefits';
+//@import 'themeware/footer-elements/communities';
+@import 'themeware/footer-elements/footernav';
+@import 'themeware/footer-elements/hotline';
+//@import 'themeware/footer-elements/location';
+@import 'themeware/footer-elements/newsletter';
+//@import 'themeware/footer-elements/payment';
+//@import 'themeware/footer-elements/paymentshipping';
+//@import 'themeware/footer-elements/shipping';
+
+// ThemeWare variants ----------------------------------------------------------------
+//@import 'themeware/variants/bio';
+//@import 'themeware/variants/clean';
+//@import 'themeware/variants/electric';
+//@import 'themeware/variants/exquisite';
+//@import 'themeware/variants/living';
+//@import 'themeware/variants/modern';
+//@import 'themeware/variants/outdoor';
+//@import 'themeware/variants/strong';
+//@import 'themeware/variants/bath';
+//@import 'themeware/variants/fit';
+//@import 'themeware/variants/lights';
+//@import 'themeware/variants/kids';
+//@import 'themeware/variants/global';
+//@import 'themeware/variants/bike';
+//@import 'themeware/variants/plants';
+
+// ThemeWare browser specific fixes ----------------------------------------------------------------
+//@import 'themeware/base/edge-fixes';
+@import 'themeware/base/ie11-fixes';
+@import 'themeware/base/ios-fixes';
+//@import 'themeware/base/touch-fixes';

@@ -1,0 +1,61 @@
+{% block swag_social_shopping_channel_network_base_after %}
+    <div class="sw-sales-channel-detail-google-shopping">
+        <sw-card :isLoading="isLoading" :title="$tc('swag-social-shopping.networks.google-shopping.titleGoogleShoppingSettings')">
+
+            {% block swag_social_shopping_channel_network_google_shopping_include_variants %}
+                <sw-switch-field
+                    bordered
+                    :disabled="!acl.can('sales_channel.editor')"
+                    :label="$tc('swag-social-shopping.networks.google-shopping.includeVariants')"
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.configuration.includeVariants"
+                    >
+                </sw-switch-field>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_google_shopping_interval %}
+                <sw-select-number-field
+                    :label="$tc('swag-social-shopping.networks.google-shopping.interval')"
+                    :helpText="$tc('swag-social-shopping.networks.base.intervalHelpText')"
+                    :options="intervalOptions"
+                    :disabled="!acl.can('sales_channel.editor')"
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.configuration.interval"
+                    @change="changeInterval">
+                </sw-select-number-field>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_google_shopping_generate_by_cronjob %}
+                <sw-switch-field
+                    bordered
+                    :disabled="disableGenerateByCronjob || !acl.can('sales_channel.editor')"
+                    :label="$tc('swag-social-shopping.networks.google-shopping.generateByCronjob')"
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.configuration.generateByCronjob">
+                </sw-switch-field>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_google_shopping_google_product_cagetory %}
+                <sw-text-field
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.configuration.defaultGoogleProductCategory"
+                    :disabled="!acl.can('sales_channel.editor')"
+                    :label="$tc('swag-social-shopping.networks.google-shopping.googleProductDefaultCategory')"
+                    :helpText="$tc('swag-social-shopping.networks.google-shopping.helpTextGoogleProductDefaultCategory')"
+                    @change="onGoogleProductCategoryChanged">
+                </sw-text-field>
+                <sw-container columns="1fr" justify="end" class="sw-sales-channel-detail-google-shopping__links">
+                    <a href="https://support.google.com/merchants/answer/6324436" target="_blank" class="sw-card__quick-link">
+                        {{ $tc('swag-social-shopping.networks.google-shopping.googleProductCategoryLinkLabel') }} <sw-icon name="default-arrow-simple-right" small></sw-icon>
+                    </a>
+                </sw-container>
+                <div v-if="socialShoppingSalesChannelExport">
+                    <div v-if="socialShoppingSalesChannelExport.generatedAt" class="sw-sales-channel-detail-base_general__last-generation-text">
+                        {{ $tc('sw-sales-channel.detail.productComparison.lastGenerationLabel') }}{{ socialShoppingSalesChannelExport.generatedAt | date({ hour: '2-digit', minute: '2-digit' })  }}
+                    </div>
+                    <div v-else class="sw-sales-channel-detail-base_general__last-generation-text">
+                        {{ $tc('sw-sales-channel.detail.productComparison.lastGenerationLabel') }}{{ $tc('sw-sales-channel.detail.productComparison.notYetGenerated') }}
+                    </div>
+                </div>
+            {% endblock %}
+        </sw-card>
+
+    </div>
+{% endblock %}
+

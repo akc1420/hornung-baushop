@@ -1,0 +1,24 @@
+{% include '/administration/iframe/cleverreach.ajax.html.script.twig' %}
+{% include '/administration/iframe/cleverreach.authorization.script.html.twig' %}
+{% include '/administration/iframe/cleverreach.spinner.style.html.twig' %}
+{% include '/administration/iframe/close.html.twig' %}
+
+<script>
+    let checkStatusUrl = '{{ checkStatusUrl }}';
+
+    let error = parent.document.querySelector('.cr-error-div');
+
+    if (error) {
+        error.style.display = 'none';
+    }
+
+    if (checkStatusUrl) {
+        let auth = new CleverReach.Authorization(checkStatusUrl, completeAuth);
+        auth.getStatus();
+    }
+
+    function completeAuth() {
+        window.parent.location.reload();
+    }
+</script>
+

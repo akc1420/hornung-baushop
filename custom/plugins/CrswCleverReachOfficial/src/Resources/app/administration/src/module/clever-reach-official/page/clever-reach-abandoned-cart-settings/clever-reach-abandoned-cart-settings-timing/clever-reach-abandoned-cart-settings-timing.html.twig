@@ -1,0 +1,24 @@
+{% block clever_reach_abandoned_cart_settings_timing %}
+    <sw-card class="cr-ac-timing" :isLoading="isLoading">
+        <template v-slot:title>
+            {{ $tc('clever-reach.abandonedCart.timing') }}
+        </template>
+
+        <sw-container>
+            <sw-label variant="neutral" class="cr-ac-timing-desc">
+                {{ $tc('clever-reach.abandonedCart.timingDesc') }}
+            </sw-label>
+
+            <sw-radio-field class="cr-ac-timing-values" :value="time"
+                            @change="timeChanged"
+                            :disabled="crRadioDisabled"
+                            :options="[
+                        {'value': '1', 'name': $tc('clever-reach.abandonedCart.1Hour')},
+                        {'value': '3', 'name': $tc('clever-reach.abandonedCart.3Hours')},
+                        {'value': '10', 'name': $tc('clever-reach.abandonedCart.10Hours')},
+                        {'value': '24', 'name': $tc('clever-reach.abandonedCart.24Hours')}
+            ]">
+            </sw-radio-field>
+        </sw-container>
+    </sw-card>
+{% endblock %}

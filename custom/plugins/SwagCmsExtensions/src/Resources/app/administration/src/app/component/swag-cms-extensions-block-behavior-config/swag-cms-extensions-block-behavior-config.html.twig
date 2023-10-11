@@ -1,0 +1,19 @@
+{% block swag_cms_extensions_block_behavior_config %}
+    <div class="swag-cms-extensions-block-behavior-config">
+
+        {% block swag_cms_extensions_block_behavior_config_rule %}
+            <swag-cms-extensions-block-config-rule
+                    v-if="blockRuleFeatureActive"
+                    v-model="block">
+            </swag-cms-extensions-block-config-rule>
+        {% endblock %}
+
+        {% block swag_cms_extensions_block_behavior_config_quickview %}
+            <swag-cms-extensions-block-config-quickview
+                    v-if="quickviewFeatureActive"
+                    v-model="block">
+            </swag-cms-extensions-block-config-quickview>
+        {% endblock %}
+
+    </div>
+{% endblock %}

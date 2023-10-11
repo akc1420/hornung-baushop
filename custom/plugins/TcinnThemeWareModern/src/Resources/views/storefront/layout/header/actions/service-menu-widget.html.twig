@@ -1,0 +1,60 @@
+{# @deprecated tag:v6.5.0 - file will be removed, menu has been moved to footer #}
+{% sw_extends '@Storefront/storefront/layout/header/actions/service-menu-widget.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtHeaderTopBarJustifyContent = theme_config('twt-header-top-bar-justify-content') %}
+{% set twtHeaderType = theme_config('twt-header-type') %}
+{% set twtIconSet = theme_config('twt-iconset') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# TODO: HC-Architecture... #}
+{# ThemeWare: Changes on the service-menu-dropdown #}
+{# TODO:
+	- Default-Konfiguration ergänzen...
+	- Check if this can be solved with scss...
+#}
+
+{% block layout_header_actions_service_menu_list %}
+    <div class="service-menu dropdown">
+        <button class="btn dropdown-toggle top-bar-nav-btn"
+                type="button"
+                id="serviceMenuDropdown-{{ position }}"
+                {{ dataBsToggleAttr }}="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+            {# ThemeWare: Icon austauschen #}
+            {% if twtIconSet is not same as ('default') %}
+                {% sw_icon 'help' style {'pack':'themeware'} %}
+            {% else %}
+                {% sw_icon 'help' %}
+            {% endif %}
+            <span class="top-bar-nav-text">{{ "header.indexLinkService"|trans|sw_sanitize }}</span>
+        </button>
+
+        {% block layout_header_actions_service_menu_items %}
+            {% if twtHeaderType == 4 or twtHeaderTopBarJustifyContent == 'flex-start' %}
+                <div class="dropdown-menu dropdown-menu-left"
+                     aria-labelledby="serviceMenuDropdown-{{ position }}">
+                    {% for category in page.header.serviceMenu %}
+
+                        {# @deprecated tag:v6.5.0 - Use "category.translated.externalLink" directly or category_url function instead. #}
+                        {% set externalLink = category.translated.externalLink %}
+
+                        <a class="top-bar-list-item dropdown-item"
+                           href="{% if externalLink %}{{ externalLink }}{% else %}{{ seoUrl('frontend.navigation.page', { navigationId: category.id }) }}{% endif %}"
+                           title="{{ category.translated.name }}">{{ category.translated.name }}</a>
+                    {% endfor %}
+                </div>
+            {% else %}
+
+                {# Default block #}
+                {{ parent() }}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}

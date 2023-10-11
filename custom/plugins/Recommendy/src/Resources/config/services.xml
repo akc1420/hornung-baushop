@@ -1,0 +1,137 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="Recommendy\Services\ConverterService" public="true"/>
+
+        <service id="Recommendy\Services\ConfigService" public="true">
+            <argument type="service" id="Recommendy\Services\ConverterService"/>
+            <argument type="string">%recommendy.plugin_name%</argument>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+
+        <service id="Recommendy\Services\SimilarityService" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Recommendy\Services\ConfigService"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="Recommendy\Util\Logger"/>
+        </service>
+        <service id="Recommendy\Services\BundleService" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Recommendy\Services\ConfigService"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="Recommendy\Util\Logger"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Detail\ProductConfiguratorLoader"/>
+        </service>
+        <service id="Recommendy\Services\TrackingService" public="true">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="recommendy_tracking.repository"/>
+            <argument type="service" id="Recommendy\Util\Logger"/>
+        </service>
+
+        <service id="Recommendy\Subscriber\Frontend">
+            <argument type="service" id="Recommendy\Services\SimilarityService"/>
+            <argument type="service" id="Recommendy\Services\BundleService"/>
+            <argument type="service" id="Recommendy\Services\TrackingService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Recommendy\Services\ConfigService"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="recommendy_tracking.repository"/>
+            <argument type="service" id="request_stack"/>
+            <argument type="service" id="Recommendy\Util\Logger"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- DEFINITIONS -->
+        <service id="Recommendy\Core\Content\Similarity\SimilarityDefinition">
+            <tag name="shopware.entity.definition" entity="recommendy_article_similarity"/>
+        </service>
+        <service id="Recommendy\Core\Content\BundleMatrix\BundleMatrixDefinition">
+            <tag name="shopware.entity.definition" entity="recommendy_bundle_matrix"/>
+        </service>
+        <service id="Recommendy\Core\Content\Identifier\IdentifierDefinition">
+            <tag name="shopware.entity.definition" entity="recommendy_identifier"/>
+        </service>
+        <service id="Recommendy\Core\Content\Tracking\TrackingDefinition">
+            <tag name="shopware.entity.definition" entity="recommendy_tracking"/>
+        </service>
+
+        <!-- API CONTROLLERS-->
+        <service id="Recommendy\Controller\Api\SimilarityController" public="true">
+            <argument type="service" id="recommendy_article_similarity.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Recommendy\Util\Logger"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        <service id="Recommendy\Controller\Api\BundleMatrixController" public="true">
+            <argument type="service" id="recommendy_bundle_matrix.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Recommendy\Util\Logger"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        <service id="Recommendy\Controller\Api\IdentifierController" public="true">
+            <argument type="service" id="recommendy_identifier.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Recommendy\Util\Logger"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+        <service id="Recommendy\Controller\Api\TrackingController" public="true">
+            <argument type="service" id="recommendy_tracking.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Recommendy\Util\Logger"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <!-- STOREFRONT CONTROLLERS-->
+        <service id="Recommendy\Controller\Storefront\RecommendyController" public="true">
+            <argument type="service" id="Recommendy\Services\SimilarityService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Recommendy\Services\ConfigService"/>
+            <argument type="service" id="Recommendy\Services\TrackingService"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="recommendy_identifier.repository"/>
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\DefinitionInstanceRegistry"/>
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\Search\RequestCriteriaBuilder"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="recommendy_tracking.repository"/>
+            <argument type="service" id="Recommendy\Util\Logger"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\FindVariant\FindProductVariantRoute"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Detail\ProductConfiguratorLoader"/>
+            <argument type="service" id="category.repository"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+        </service>
+
+        <!-- LOGGER -->
+        <service id="Recommendy\Util\Logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating"/>
+            <argument type="string">recommendy</argument>
+        </service>
+
+        <service id="Recommendy\Services\RecCookieProviderService" decorates="Shopware\Storefront\Framework\Cookie\CookieProviderInterface">
+            <argument type="service" id="Recommendy\Services\RecCookieProviderService.inner" />
+        </service>
+
+    </services>
+</container>

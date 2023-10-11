@@ -1,0 +1,134 @@
+{# ThemeWare "USP bar" (Extension container) #}
+{#
+	Create container and include the USPs
+    type: header/footer
+
+	@Storefront/storefront/themeware/extensions/twt-usp-bar.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtUspBarHeaderLayout = theme_config('twt-usp-bar-header-layout') %}
+{% set twtUspBarFooterLayout = theme_config('twt-usp-bar-footer-layout') %}
+{% set twtUspBarWidgetContent = theme_config('twt-usp-bar-widget-content') %}
+
+{% set twtUspBarBreakpointItem1 = theme_config('twt-usp-bar-breakpoint-item-1') %}
+{% set twtUspBarBreakpointItem2 = theme_config('twt-usp-bar-breakpoint-item-2') %}
+{% set twtUspBarBreakpointItem3 = theme_config('twt-usp-bar-breakpoint-item-3') %}
+{% set twtUspBarBreakpointItem4 = theme_config('twt-usp-bar-breakpoint-item-4') %}
+{% set twtUspBarBreakpointItem5 = theme_config('twt-usp-bar-breakpoint-item-5') %}
+{% set twtUspBarBreakpointItem6 = theme_config('twt-usp-bar-breakpoint-item-6') %}
+
+{# ThemeWare: Set layout and style for use in css classes #}
+{% set style = 0 %}
+{% set layout = 0 %}
+
+{# Header #}
+{% if type == "header" %}
+	{% if twtUspBarHeaderLayout == "1" %} {# Small icons #}
+		{% set style = "small" %}
+		{% set layout = "1" %}
+	{% endif %}
+
+	{% if twtUspBarHeaderLayout == "2" %} {# Small icons + Top bar #}
+		{% set style = "small" %}
+		{% set layout = "2" %}
+	{% endif %}
+
+	{% if twtUspBarHeaderLayout == "3" %} {# Small icons + Widget #}
+		{% set style = "small" %}
+		{% set layout = "3" %}
+	{% endif %}
+{% endif %}
+
+{# Footer #}
+{% if type == "footer" %}
+	{% if twtUspBarFooterLayout == "1" %} {# Small icons #}
+		{% set style = "small" %}
+		{% set layout = "1" %}
+	{% endif %}
+
+	{% if twtUspBarFooterLayout == "2" %} {# Large icons #}
+		{% set style = "large" %}
+		{% set layout = "2" %}
+	{% endif %}
+
+	{% if twtUspBarFooterLayout == "3" %} {# Large icons with subtitles #}
+		{% set style = "large" %}
+		{% set layout = "3" %}
+	{% endif %}
+{% endif %}
+
+{# ThemeWare: Count visible USPs #}
+{% set items = 0 %}
+
+{# USP bar item 1 #}
+{% if twtUspBarBreakpointItem1 > 1 %}
+	{% set items = items + 1 %}
+{% endif %}
+
+{# USP bar item 2 #}
+{% if twtUspBarBreakpointItem2 > 1 %}
+	{% set items = items + 1 %}
+{% endif %}
+
+{# USP bar item 3 #}
+{% if twtUspBarBreakpointItem3 > 1 %}
+	{% set items = items + 1 %}
+{% endif %}
+
+{# USP bar item 4 #}
+{% if twtUspBarBreakpointItem4 > 1 %}
+	{% set items = items + 1 %}
+{% endif %}
+
+{# USP bar item 5 #}
+{% if twtUspBarBreakpointItem5 > 1 %}
+	{% set items = items + 1 %}
+{% endif %}
+
+{# USP bar item 6 #}
+{% if twtUspBarBreakpointItem6 > 1 %}
+	{% set items = items + 1 %}
+{% endif %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_usp_bar %}
+	{# ThemeWare: USP in Header and Footer   #customHeader #}
+	<section class="twt-usp-bar is-{% if type %}{{ type }}{% endif %} is-{{ style }} layout-{{ layout }}{% if alignment %} {{ alignment }}{% endif %}{% if twtUspBarHeaderLayout != 1 and type == "header" %} has-widget{% endif %}" data-twt-usps="{{ items }}">
+
+		{% block twt_usp_bar_container %}
+			<div class="twt-usp-bar-container">
+				<div class="twt-usp-bar-items{% if twtUspBarHeaderLayout != 1 and type == "header" %} col{% endif %}">
+					{% sw_include '@Storefront/storefront/themeware/includes/twt-usp-bar-include.html.twig' ignore missing with {
+						type: type
+					} %}
+				</div>
+
+				{# ThemeWare: Add Top bar to usp bar when usp bar layout (twt-usp-bar-header-layout) is "USP bar + Top bar" (2) #}
+				{# TODO: Check if a parameter should be used in the top-bar.html.twig #}
+				{% if twtUspBarHeaderLayout == 2 and type == "header" %}
+					<div class="twt-widget is-top-bar col-auto d-none d-lg-flex">
+						{% sw_include '@Storefront/storefront/layout/header/top-bar.html.twig' %}
+					</div>
+				{% endif %}
+
+				{# ThemeWare: Add widget to USP bar when usp bar layout (twt-usp-bar-header-layout) is "USP bar + Widget" (3) #}
+				{% if twtUspBarHeaderLayout == 3 and type == "header" %}
+					<div class="twt-widget is-widget col-auto d-none d-lg-flex">
+						{% if twtUspBarWidgetContent == "communities" %}
+							{% sw_include '@Storefront/storefront/themeware/widgets/twt-communities-include.html.twig' ignore missing with {
+								type: 'usp-bar'
+							} %}
+						{% endif %}
+					</div>
+				{% endif %}
+			</div>
+		{% endblock %}
+
+	</section>
+{% endblock %}

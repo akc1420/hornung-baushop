@@ -1,0 +1,20 @@
+{% block swag_cms_extensions_form_editor_settings_field_type_footer %}
+    <div class="swag-cms-extensions-form-editor-settings-field-type-footer">
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_footer_required %}
+            <sw-switch-field v-model="required"
+                             :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.requiredFieldLabel')"
+                             size="medium">
+            </sw-switch-field>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_footer_error_message %}
+            <sw-text-field v-if="required"
+                           v-model="errorMessage"
+                           :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.errorMessageFieldLabel')"
+                           size="medium">
+            </sw-text-field>
+        {% endblock %}
+
+    </div>
+{% endblock %}

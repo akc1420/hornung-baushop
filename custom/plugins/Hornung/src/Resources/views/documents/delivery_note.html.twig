@@ -1,0 +1,74 @@
+{% sw_extends '@Framework/documents/delivery_note.html.twig' %}
+
+{% block document_title_tag %}
+    {% trans with {'%deliveryNoteNumber%': config.custom.deliveryNoteNumber} %}document.deliveryNoteNumber{% endtrans %}
+{% endblock %}
+
+{% block document_headline %}
+    <h1 class="headline">
+        {% trans with {'%deliveryNoteNumber%': config.custom.deliveryNoteNumber} %}document.deliveryNoteNumber{% endtrans %}
+    </h1>
+{% endblock %}
+
+{% block document_side_info_contents %}
+    {% block document_side_info_date %}
+        <tr>
+            <td>
+                {{ 'document.date'|trans({'%date%': config.documentDate|format_date('medium', locale=locale)})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    {% block document_side_info_customer_number %}
+        <tr>
+            <td>
+                {{ 'document.customerNumber'|trans({'%customerNumber%': customer.customerNumber})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    {% block document_side_info_order_number %}
+        <tr>
+            <td>
+                {{ 'document.orderNumber'|trans({'%orderNumber%': order.orderNumber | u.truncate(10)})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    {% block document_side_info_order_date %}
+        <tr>
+            <td>
+                {{ 'document.orderDate'|trans({'%orderDate%': order.orderDateTime|format_date('medium', locale=locale)})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    <tr><td>{% trans with {'%deliveryDate%': config.custom.deliveryDate|format_date('medium', locale=locale)} %}document.deliveryDate{% endtrans %}</td></tr>
+{% endblock %}
+
+{% block document_recipient %}
+    {% set deliveryAddressId = firstDelivery.shippingOrderAddressId %}
+    {% set deliveryAddress = order.addresses.get(deliveryAddressId) %}
+    <span class="sender-address-small" style="font-size: 7px">
+        {% block document_recipient_sender %}
+             {{ config.companyName }} - {{ config.companyAddress }}<br><br><br>
+        {% endblock %}
+    </span>
+    {% if deliveryAddress.company %}
+        {{ deliveryAddress.company }}<br>
+    {% endif %}
+    {{ deliveryAddress.firstName }} {{ deliveryAddress.lastName }}<br>
+    {{ deliveryAddress.street }}<br>
+    {% if deliveryAddress.additionalAddressLine1 %}
+        {{ deliveryAddress.additionalAddressLine1 }}<br>
+    {% endif %}
+    {% if deliveryAddress.additionalAddressLine2 %}
+        {{ deliveryAddress.additionalAddressLine2 }}<br>
+    {% endif %}
+    {{ deliveryAddress.zipcode }} {{ deliveryAddress.city }}<br>
+    {{ deliveryAddress.country.name }}<br>
+{% endblock %}
+
+{% block document_line_item_table_row_product_number %}
+    {% if lineItem.payload.productNumber %}
+        <td>{{ lineItem.payload.productNumber }}</td>
+    {% else %}
+        <td></td>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+.sisi-backend-search .sw-search-bar .sw-search-bar__field.sw-search-bar__field  {
+    display: none;
+
+}
+.sisi-backend-search {
+    .sisi-backend-search-form  .sw-search-bar  {
+        .sw-search-bar__field  {display: block};
+    }
+}
+
+.sisisearchform {
+    width: 80%;
+    margin: 1rem auto;
+    position: relative;
+    .icon-wrapper {
+        position: absolute;
+        right: 0;
+        top:0;
+        height: 100%;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+}

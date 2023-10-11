@@ -1,0 +1,38 @@
+{# ThemeWare: CMS block "Two columns 9-3" #}
+
+{% block block_twt_grid_two_column_9_3 %}
+    {% set columns = 2 %}
+
+    {% block block_twt_grid_two_column_9_3_left %}
+        {% set element = block.slots.getSlot('left') %}
+
+        {# Set image size for every viewport #}
+        {# @TODO #}
+
+        {# Set image size for largest viewport depending on the cms block sizing mode (boxed or full-width) #}
+        {# @TODO #}
+
+        <div class="column-1 col-12 col-md-9 twt-column left first" data-cms-element-id="{{ element.id }}">
+            {% block block_twt_grid_two_column_9_3_left_inner %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block block_twt_grid_two_column_9_3_right %}
+        {% set element = block.slots.getSlot('right') %}
+
+        {# Set image size for every viewport #}
+        {# @TODO #}
+
+        {# Set image size for largest viewport depending on the cms block sizing mode (boxed or full-width) #}
+        {# @TODO #}
+
+        <div class="column-2 col-12 col-md-3 twt-column right last" data-cms-element-id="{{ element.id }}">
+            {% block block_twt_grid_two_column_9_3_right_inner %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+{% endblock %}

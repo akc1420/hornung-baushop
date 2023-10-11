@@ -1,0 +1,38 @@
+{% sw_extends '@Framework/documents/invoice.html.twig' %}
+
+{% block document_side_info_contents %}
+    {% block document_side_info_date %}
+        <tr>
+            <td>
+                {{ 'document.date'|trans({'%date%': config.documentDate|format_date('medium', locale=locale)})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    {% block document_side_info_customer_number %}
+        <tr>
+            <td>
+                {{ 'document.customerNumber'|trans({'%customerNumber%': customer.customerNumber})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    {% block document_side_info_order_number %}
+        <tr>
+            <td>
+                {{ 'document.orderNumber'|trans({'%orderNumber%': order.orderNumber | u.truncate(10)})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    {% block document_side_info_order_date %}
+        <tr>
+            <td>
+                {{ 'document.orderDate'|trans({'%orderDate%': order.orderDateTime|format_date('medium', locale=locale)})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+{% endblock %}
+
+{% block document_footer_fourth_column %}
+    <ul>
+    </ul>
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{
+    "name": "phpschmied/customersalsobought",
+    "description": "Shows the Customers also bought area on PDS",
+    "version": "v1.2.95",
+    "license": "proprietary",
+    "type": "shopware-platform-plugin",
+    "authors": [
+        {
+            "name": "PHP-Schmiede",
+            "role": "Manufacturer",
+            "homepage": "https://www.php-schmiede.com"
+        }
+    ],
+    "require": {
+        "shopware/core": "*",
+        "shopware/storefront": "*"
+    },
+    "extra": {
+        "shopware-plugin-class": "phpschmied\\CustomersAlsoBought\\phpschmiedCustomersAlsoBought",
+        "label": {
+            "de-DE": "Kunden kauften auch",
+            "en-GB": "Customers also bought"
+        },
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "description": {
+            "de-DE": "Mit diesem Plugin können dem Kunden die Produkte gezeigt werden, die mit den aktuellen zusammen verkauft wurden.",
+            "en-GB": "With this plugin, the customer can be shown the products that were sold together with the current ones."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/php-schmiede.html",
+            "en-GB": "https://store.shopware.com/en/php-schmiede.html"
+        },
+        "supportLink": {
+            "de-DE": "https://www.php-schmide.com",
+            "en-GB": "https://www.php-schmide.com"
+        },
+        "copyright": "(c) PHP-Schmiede"
+    },
+    "autoload": {
+        "psr-4": {
+            "phpschmied\\CustomersAlsoBought\\": "src/"
+        }
+    }
+}

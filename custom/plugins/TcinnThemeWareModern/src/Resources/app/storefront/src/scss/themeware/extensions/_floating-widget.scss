@@ -1,0 +1,243 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Extension > Floating/slideout widget (formerly Sidebar-Widget)
+    ==================================================
+
+*/
+
+// TODO:
+// - add border-radius to title
+// - add open/close arrows to title
+
+$twt-floating-widget-offset: 50%;
+
+@if $twt-floating-widget-show == 2 {
+  .twt-floating-widget {
+    position: fixed;
+    z-index: $zoom-modal-action-zindex - 2; // 1051 - 2
+    color: $twt-floating-widget-color;
+    @if $twt-floating-widget-side-bottom-distance-unit == 1 {
+      bottom: $twt-floating-widget-side-bottom-distance * 1%;
+    } @else {
+      bottom: $twt-floating-widget-side-bottom-distance * 1px;
+    }
+    width: $twt-floating-widget-width + px;
+    height: $twt-floating-widget-height + px;
+    transition: left 0.3s ease;
+    background-color: $twt-floating-widget-background-color;
+    box-shadow: 5px 5px 40px rgba(0, 0, 0, 0.25);
+
+    @if $twt-floating-widget-side-bottom-distance == 50 and $twt-floating-widget-side-bottom-distance-unit == 1 {
+      transform: translateY(50%); // only with 50%
+    }
+
+    // ThemeWare: Floating widget tab
+    .twt-floating-widget-title {
+      font-size: $twt-floating-widget-title-font-size + px;
+      font-weight: $twt-font-weight-bold;
+      line-height: $twt-floating-widget-title-height + px;
+      position: absolute;
+      overflow: hidden;
+      top: $twt-floating-widget-title-width + px;
+      width: $twt-floating-widget-title-width + px;
+      height: $twt-floating-widget-title-height + px;
+      padding: 0 10px;
+      cursor: pointer;
+      text-align: center;
+      white-space: nowrap;
+      @if $twt-floating-widget-title-text-transform != "none" {
+        text-transform: $twt-floating-widget-title-text-transform;
+      }
+      text-overflow:ellipsis;
+      color: $twt-floating-widget-title-color;
+      background-color: $twt-floating-widget-title-background-color;
+      transform: rotate(-90deg);
+      transform-origin: left top;
+
+      // ThemeWare: Mouseover effect 3 => transparency
+      @if $twt-floating-widget-hover-type == 3 {
+        &:hover {
+          opacity: 0.85;
+        }
+      }
+    }
+
+    &.is-sticky {
+      transform: none;
+      
+      &.top {
+        top: 1px;
+        bottom: auto;
+      }
+
+      &.bottom {
+        top: auto;
+        bottom: 1px;
+      }
+    }
+
+    // ThemeWare: Floating widget position => left
+    @if $twt-floating-widget-position == 1 {
+      left: 0;
+
+      // ThemeWare: Floating widget tab
+      .twt-floating-widget-title {
+        right: -$twt-floating-widget-title-width + px;
+      }
+      
+      // ThemeWare: Show opened
+      &[data-twt-floating-widget-open="false"] {
+        left: -$twt-floating-widget-width + px;
+
+        // ThemeWare: Animation
+        &.wobble {
+          animation-name: floatingWidgetWobbleLeft;
+          animation-duration: 1s;
+          animation-iteration-count: 3;
+        }
+
+        // ThemeWare: Mouseover effect 2 => pull out
+        @if $twt-floating-widget-hover-type == 2 {
+          &:hover {
+            left: -$twt-floating-widget-width+10 + px;
+            transition: left 0.3s ease;
+          }
+        }
+      }
+    }
+
+    // ThemeWare: Floating widget position => right
+    @if $twt-floating-widget-position == 2 {
+      right: 0;
+
+      // ThemeWare: Floating widget tab
+      .twt-floating-widget-title {
+        left: -$twt-floating-widget-title-height + px;
+      }
+
+      // ThemeWare: Show opened
+      &[data-twt-floating-widget-open="false"] {
+        right: -$twt-floating-widget-width + px;
+
+        // ThemeWare: Animation
+        &.wobble {
+          animation-name: floatingWidgetWobbleRight;
+          animation-duration: 1s;
+          animation-iteration-count: 10;
+        }
+
+        // ThemeWare: Mouseover effect 2 => pull out
+        @if $twt-floating-widget-hover-type == 2 {
+          &:hover {
+            right: -$twt-floating-widget-width+10 + px;
+            transition: right 0.3s ease;
+          }
+        }
+      }
+    }
+
+    // ThemeWare: Floating widget content
+    .twt-floating-widget-body {
+      font-size: $twt-floating-widget-font-size + px;
+      width: 100%;
+      height: 100%;
+
+      a {
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        color: $twt-floating-widget-link-color;
+
+        &:hover {
+          text-decoration: none;
+          color: $twt-floating-widget-link-color-hover;
+        }
+      }
+
+      &.is-image {
+        position: relative;
+        overflow: hidden;
+
+        img {}
+        span {}
+      }
+    }
+
+    .twt-floating-widget-image-wrapper {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+
+      //margin: -$twt-floating-widget-padding + px;
+
+      img {
+        @if $twt-floating-widget-background-image-object-fit == "none" {
+          width: 100%;
+          height: auto;
+        } @else if $twt-floating-widget-background-image-object-fit == "contain" {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        } @else if $twt-floating-widget-background-image-object-fit == "cover" {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    .twt-floating-widget-content {
+      position: absolute;
+      z-index: 2;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      width: 100%; // TODO: Add configuration
+      height: 100%;
+      padding: $twt-floating-widget-padding + px;
+
+      // Text alignment
+      @if $twt-floating-widget-text-align == "left" {
+        text-align: left;
+      } @else if $twt-floating-widget-text-align == "center" {
+        text-align: center;
+      } @else if $twt-floating-widget-text-align == "right" {
+        text-align: right;
+      }
+
+      // Align/justify text
+      @if $twt-floating-widget-align-items == "flex-start" {
+        align-items: flex-start;
+      } @else if $twt-floating-widget-align-items == "center" {
+        align-items: center;
+      } @else if $twt-floating-widget-align-items == "flex-end" {
+        align-items: flex-end;
+      }
+
+      @if $twt-floating-widget-justify-content == "flex-start" {
+        justify-content: flex-start;
+      } @else if $twt-floating-widget-justify-content == "center" {
+        justify-content: center;
+      } @else if $twt-floating-widget-justify-content == "flex-end" {
+        justify-content: flex-end;
+      }
+    }
+
+    // ThemeWare: Show mobile (1 = no / 2 = yes)
+    @if $twt-floating-widget-mobile == 1 {
+      @include media-breakpoint-down(sm) { // max 767.98px
+        display: none;
+      }
+    }
+  }
+
+}

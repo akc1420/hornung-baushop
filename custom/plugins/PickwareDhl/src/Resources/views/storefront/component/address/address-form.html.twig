@@ -1,0 +1,81 @@
+{% sw_extends '@Storefront/storefront/component/address/address-form.html.twig' %}
+
+{% set pickwareDhlAllowDhlSpecificAddress = (changeShipping and not changeBilling) or (prefix in ['shippingAddress', 'address']) %}
+{% set pickwareDhlConfigurationExtension = page.extensions.pickwareDhlConfiguration ?? null %}
+{% set pickwareDhlCurrentShippingMethod = context.shippingMethod ?? null %}
+
+{% if pickwareDhlCurrentShippingMethod is not null
+    and pickwareDhlConfigurationExtension is not null
+    and pickwareDhlConfigurationExtension.shippingMethodConfigurations[pickwareDhlCurrentShippingMethod.id]
+    and pickwareDhlConfigurationExtension.shippingMethodConfigurations[pickwareDhlCurrentShippingMethod.id].storefrontConfig is not null
+%}
+    {% set pickwareDhlConfiguration = pickwareDhlConfigurationExtension.dhlConfig.config.rawConfig %}
+    {% set pickwareDhlShippingMethodConfig = pickwareDhlConfigurationExtension
+        .shippingMethodConfigurations[pickwareDhlCurrentShippingMethod.id].storefrontConfig
+    %}
+    {% set pickwareDhlEnablePackstation = pickwareDhlShippingMethodConfig.showPackstation ?? false %}
+    {% set pickwareDhlEnablePostOffice = pickwareDhlShippingMethodConfig.showPostOffice ?? false %}
+    {% set pickwareDhlEnablePaketshop = pickwareDhlShippingMethodConfig.showPaketshop ?? false %}
+    {% set pickwareDhlEnableSpecialAddressSelection =
+        pickwareDhlEnablePackstation or pickwareDhlEnablePostOffice or pickwareDhlEnablePaketshop
+    %}
+{% endif %}
+
+{% block component_address_form %}
+    <div class="pickware-dhl-component-address-form-container">
+        {% if pickwareDhlEnableSpecialAddressSelection and pickwareDhlAllowDhlSpecificAddress %}
+            {% sw_include 'storefront/pickware-dhl/address-form/address-radio-buttons.html.twig' with {
+                'pickwareDhlEnablePackstation': pickwareDhlEnablePackstation,
+                'pickwareDhlEnablePostOffice': pickwareDhlEnablePostOffice,
+                'pickwareDhlEnablePaketshop': pickwareDhlEnablePaketshop,
+            } %}
+        {% endif %}
+
+        {{ parent() }}
+    </div>
+{% endblock %}
+
+{% block component_address_form_address_fields %}
+    {% if pickwareDhlEnableSpecialAddressSelection and pickwareDhlAllowDhlSpecificAddress %}
+        <div class="pickware-dhl-regular-address-form-container">
+            <div class="pickware-dhl-regular-address-form">
+                {{ parent() }}
+            </div>
+        </div>
+
+        <div class="pickware-dhl-packstation-address-form-container">
+            <div class="pickware-dhl-packstation-address-form">
+                {% sw_include 'storefront/pickware-dhl/address-form/special-address-form.html.twig' with {
+                    'data': data,
+                    'addressTypeKey': 'packstation',
+                    'specialAddressNumberFieldLabel': 'pickware-dhl.special-addresses.storefront.packstation.number-field-label',
+                    'specialAddressNumberFieldPlaceholder': 'pickware-dhl.special-addresses.storefront.packstation.number-field-placeholder',
+                } %}
+            </div>
+        </div>
+
+        <div class="pickware-dhl-post-office-address-form-container">
+            <div class="pickware-dhl-post-office-address-form">
+                {% sw_include 'storefront/pickware-dhl/address-form/special-address-form.html.twig' with {
+                    'data': data,
+                    'addressTypeKey': 'post-office',
+                    'specialAddressNumberFieldLabel': 'pickware-dhl.special-addresses.storefront.post-office.number-field-label',
+                    'specialAddressNumberFieldPlaceholder': 'pickware-dhl.special-addresses.storefront.post-office.number-field-placeholder',
+                } %}
+            </div>
+        </div>
+
+        <div class="pickware-dhl-paketshop-address-form-container">
+            <div class="pickware-dhl-paketshop-address-form">
+                {% sw_include 'storefront/pickware-dhl/address-form/special-address-form.html.twig' with {
+                    'data': data,
+                    'addressTypeKey': 'paketshop',
+                    'specialAddressNumberFieldLabel': 'pickware-dhl.special-addresses.storefront.paketshop.number-field-label',
+                    'specialAddressNumberFieldPlaceholder': 'pickware-dhl.special-addresses.storefront.paketshop.number-field-placeholder',
+                } %}
+            </div>
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,46 @@
+{# ThemeWare "Sold badge" content #}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductBadgesSoldBadgeColoration = theme_config('twt-product-badges-sold-badge-coloration') %}
+{% set twtProductBadgesSoldBadgeIconShow = theme_config('twt-product-badges-sold-badge-icon-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_product_badges_sold_badge %}
+    {% if type == "detail" %}
+        {# ThemeWare: "Sold badge" on detail page #}
+        {% if product.isCloseout and product.availableStock < product.minPurchase %}
+            <div>
+                <span class="badge badge-danger{% if twtProductBadgesSoldBadgeColoration == 3 %}-lighten{% endif %} badge-sold twt-badge-sold">
+                    {% if twtProductBadgesSoldBadgeIconShow == 2 %}
+                        {# blocked oder x #}
+                        {% sw_include '@Storefront/storefront/themeware/twt-icons.html.twig' ignore missing with {
+                            icon: "twt.extension.soldBadge.icon"|trans
+                        } %}
+                    {% endif %}
+                    {{ "twt.extension.stockBadge.noStock"|trans }}
+                </span>
+            </div>
+        {% endif %}
+
+    {% else %}
+        {# ThemeWare: "Sold badge" on other pages #}
+        {% if product.isCloseout and product.availableStock < product.minPurchase and not product.isGrouped %}
+            <div>
+                <span class="badge badge-danger{% if twtProductBadgesSoldBadgeColoration == 3 %}-lighten{% endif %} badge-sold twt-badge-sold">
+                    {% if twtProductBadgesSoldBadgeIconShow == 2 %}
+                        {# blocked oder x #}
+                        {% sw_include '@Storefront/storefront/themeware/twt-icons.html.twig' ignore missing with {
+                            icon: "twt.extension.soldBadge.icon"|trans
+                        } %}
+                    {% endif %}
+                    {{ "twt.extension.stockBadge.noStock"|trans }}
+                </span>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

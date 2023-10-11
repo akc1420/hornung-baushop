@@ -1,0 +1,35 @@
+{
+    "sisi-scheduled": {
+        "initialSearchType": "Scheduled task for SisiSearch",
+        "list": {
+            "title": "title",
+            "modul": "SisiSearch Scheduled Task options",
+            "new" : "New",
+            "language": "Sprache",
+            "shop": "Shop/Channel",
+            "aktive": "Active"
+        },
+        "detail": {
+            "title": "Title",
+            "languageid": "Selected ID from the language",
+            "save": "Save",
+            "list": "List view",
+            "language": "Language",
+            "shop": "Shop/channel",
+            "limit": "Limit (Indexing step size)",
+            "time": "Time in seconds how often the task should be repeated",
+            "lastExecution":"last execution time",
+            "nextExecutionTime": "next execution time",
+            "indexkind": "Indexieren",
+            "kind": "Task for delete or index",
+            "aktive": "Activate task",
+            "deletekind": "Delete the inndex",
+            "update": "Update index",
+            "updateG": "Update index mit with modified products",
+            "all": "Number of indexes that should be kept when deleting",
+            "help": {
+                "limit": "Time in seconds how often the task should be executed"
+            }
+        }
+    }
+}

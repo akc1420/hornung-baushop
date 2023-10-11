@@ -1,0 +1,10 @@
+{# Input elements for data tracking #}
+
+{% block component_product_box_recommendy_action_meta %}
+
+    {% sw_include '@Storefront/storefront/recommendy/recommendy_tracking.html.twig' with{
+        product: product,
+        actionId: product.extensions.Recommendy.actionId
+    } %}
+
+{% endblock %}

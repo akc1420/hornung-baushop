@@ -1,0 +1,31 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-slider.html.twig' %}
+
+{% block element_product_slider_slider %}
+    {% set productSliderOptions = productSliderOptions|replace_recursive({
+        slider: {
+            loop: false
+        }
+    }) %}
+
+    {{ parent() }}
+{% endblock %}
+
+{% block element_product_slider_inner_item %}
+    <div class="product-slider-item recommendy-item">
+        {% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+            'layout': sliderConfig.boxLayout.value,
+            'displayMode': sliderConfig.displayMode.value
+        } %}
+        {% sw_include '@Storefront/storefront/recommendy/recommendy_tracking.html.twig' with{
+            product: product,
+            actionId: product.extensions.Recommendy.actionId
+        } %}
+    </div>
+{% endblock %}
+
+
+{% block element_product_slider_title %}
+    {% if  config('Recommendy.config.sliderLayout') %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

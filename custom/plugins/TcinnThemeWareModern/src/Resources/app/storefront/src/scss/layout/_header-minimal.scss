@@ -1,0 +1,146 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Header minimal
+	==================================================
+	Contains custom styles for the minimal header which is used on checkout pages.
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Header minimal adjustments
+.header-minimal {
+	height: auto-pixel-unit($twt-header-minimal-height);
+	color: $twt-header-minimal-color;
+	background-color: $twt-header-minimal-background-color;
+
+	// ThemeWare: Fixed
+	@if ($twt-header-minimal-fixed == 2) {
+		position: fixed !important; // TODO: !important can be used from SW version 6.4.0 (deprecated class 'fixed-top')
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 1030;
+		border-bottom: 1px solid $twt-header-minimal-border-bottom-color;
+		box-shadow: 0 0 30px rgba(0, 0, 0, .05);
+
+		& ~ main.content-main {
+			margin-top: strip-unit($twt-header-minimal-height) + strip-unit($twt-basegrid-spacing) + px;
+		}
+	}
+}
+
+.header-minimal-row {
+	height: auto-pixel-unit($twt-header-minimal-height);
+	padding: 5px 0;
+
+	// ThemeWare: links
+	a {
+		color: $twt-header-minimal-link-color;
+
+		&:hover {
+			color: $twt-header-minimal-link-color-hover;
+		}
+	}
+}
+
+.header-minimal-logo,
+.header-minimal-contact,
+.header-minimal-home {
+	flex: 0 0 auto;
+	width: auto;
+	max-width: 100%;
+}
+
+// ThemeWare: Logo
+.header-minimal-logo {
+	img {
+		width: $twt-header-minimal-logo-width;
+		max-width: none;
+		height: auto-pixel-unit($twt-header-minimal-logo-height);
+	}
+
+	// ThemeWare: Shopping Experiences Header
+	.header-logo-shopping-experiences-link {
+		display: none;
+	}
+}
+
+@include media-breakpoint-down(md) { // max 991.98px
+	.header-minimal-contact {
+		display: none;
+	}
+
+	.header-minimal-back-to-shop {
+		flex: 0 0 auto;
+		max-width: unset;
+		width: auto;
+	}
+
+	.header-minimal-back-to-shop {
+		flex: 0 0 auto;
+		max-width: unset;
+		width: auto;
+	}
+}
+
+@include media-breakpoint-down(sm) { // max 767.98px
+	.header-minimal-home {
+		display: none;
+	}
+}
+
+@include media-breakpoint-down(xxs) { // max 479.98px
+	.header-minimal-back-to-shop {
+		.header-minimal-back-to-shop-button {
+			width: 48px;
+			position: relative;
+
+			&::after {
+				content: '\2039';
+				display: block;
+				position: absolute;
+				font-size: 36px;
+				padding: 0 5px 0 0;
+				width: 48px;
+				height: 100%;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				text-align: center;
+				background-color: $twt-header-minimal-home-btn-background-color;
+			}
+		}
+	}
+}
+
+// ThemeWare: Back button
+a.header-minimal-home-btn,
+a.header-minimal-back-to-shop-button {
+	text-decoration: none;
+	color: $twt-header-minimal-home-btn-color;
+	border: 1px solid $twt-header-minimal-home-btn-border-color;
+	background-color: $twt-header-minimal-home-btn-background-color;
+
+	.icon {
+		transition: color 0.15s ease-in-out;
+		color: $twt-header-minimal-home-btn-color;
+	}
+
+	&:hover {
+		text-decoration: none;
+		color: $twt-header-minimal-home-btn-color-hover;
+		border-color: $twt-header-minimal-home-btn-border-color-hover;
+		background-color: $twt-header-minimal-home-btn-background-color-hover;
+
+		.icon {
+			color: $twt-header-minimal-home-btn-color-hover;
+		}
+	}
+}

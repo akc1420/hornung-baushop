@@ -1,0 +1,89 @@
+{# ThemeWare "Discount badge" content #}
+
+{# TODO: Blöcke prüfen... #}
+{# TODO: Add tooltip when values were rounded?  [data-toggle="tooltip" data-placement="right" title="Tooltip on right"] #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductBadgesDiscountBadgeColoration = theme_config('twt-product-badges-discount-badge-coloration') %}
+{% set twtProductBadgesDiscountBadgeRound = theme_config('twt-product-badges-discount-badge-round') %}
+{% set twtProductBadgesDiscountBadgeType = theme_config('twt-product-badges-discount-badge-type') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% set price = product.calculatedPrice %}
+{% if product.calculatedPrices.count > 0 %}
+    {% set price = product.calculatedPrices.last %}
+{% endif %}
+
+{% set listPrice = price.listPrice.percentage > 0 %}
+{% set hasRange = product.calculatedPrices.count > 1 %}
+
+{% if listPrice and not hasRange %}
+    {% block twt_product_badges_discount_badge %}
+        {% if twtProductBadgesDiscountBadgeType == 1 %}
+            {# % #}
+            <div>
+                <span class="badge badge-danger{% if twtProductBadgesDiscountBadgeColoration == 3 %}-lighten{% endif %} badge-discount twt-badge-discount">
+                    &#37;
+                </span>
+            </div>
+        {% elseif twtProductBadgesDiscountBadgeType == 2 %}
+            {# -20% #}
+            <div>
+                <span class="badge badge-danger{% if twtProductBadgesDiscountBadgeColoration == 3 %}-lighten{% endif %} badge-discount twt-badge-discount">
+                    {% if twtProductBadgesDiscountBadgeRound == 1 %}
+                        -{{ "twt.extension.discountBadge.percentageShort"|trans({'%discount%': product.calculatedPrice.listPrice.percentage })|sw_sanitize }}
+                    {% elseif twtProductBadgesDiscountBadgeRound == 2 %}
+                        -{{ "twt.extension.discountBadge.percentageShort"|trans({'%discount%': product.calculatedPrice.listPrice.percentage|round(1, 'floor') })|sw_sanitize }}
+                    {% elseif twtProductBadgesDiscountBadgeRound == 3 %}
+                        -{{ "twt.extension.discountBadge.percentageShort"|trans({'%discount%': product.calculatedPrice.listPrice.percentage|round })|sw_sanitize  }}
+                    {% endif %}
+                </span>
+            </div>
+
+        {% elseif twtProductBadgesDiscountBadgeType == 3 %}
+            {# 20% saved #}
+            <div>
+                <span class="badge badge-danger{% if twtProductBadgesDiscountBadgeColoration == 3 %}-lighten{% endif %} badge-discount twt-badge-discount">
+                    {% if twtProductBadgesDiscountBadgeRound == 1 %}
+                        {{ "twt.extension.discountBadge.percentage"|trans({'%discount%': product.calculatedPrice.listPrice.percentage })|sw_sanitize }}
+                    {% elseif twtProductBadgesDiscountBadgeRound == 2 %}
+                        {{ "twt.extension.discountBadge.percentage"|trans({'%discount%': product.calculatedPrice.listPrice.percentage|round(1, 'floor') })|sw_sanitize }}
+                    {% elseif twtProductBadgesDiscountBadgeRound == 3 %}
+                        {{ "twt.extension.discountBadge.percentage"|trans({'%discount%': product.calculatedPrice.listPrice.percentage|round })|sw_sanitize }}
+                    {% endif %}
+                </span>
+            </div>
+
+        {% elseif twtProductBadgesDiscountBadgeType == 4 %}
+            {# -35 € #}
+            <div>
+                <span class="badge badge-danger{% if twtProductBadgesDiscountBadgeColoration == 3 %}-lighten{% endif %} badge-discount twt-badge-discount">
+                    {% if twtProductBadgesDiscountBadgeRound == 1 %}
+                        {{ "twt.extension.discountBadge.discountShort"|trans({'%discount%': product.calculatedPrice.listPrice.discount, '%currency%': page.header.activeCurrency.symbol })|sw_sanitize }}
+                    {% elseif twtProductBadgesDiscountBadgeRound == 2 %}
+                        {{ "twt.extension.discountBadge.discountShort"|trans({'%discount%': product.calculatedPrice.listPrice.discount|round(1, 'floor'), '%currency%': page.header.activeCurrency.symbol })|sw_sanitize }}
+                    {% elseif twtProductBadgesDiscountBadgeRound == 3 %}
+                        {{ "twt.extension.discountBadge.discountShort"|trans({'%discount%': product.calculatedPrice.listPrice.discount|round, '%currency%': page.header.activeCurrency.symbol })|sw_sanitize }}
+                    {% endif %}
+                </span>
+            </div>
+
+        {% elseif twtProductBadgesDiscountBadgeType == 5 %}
+            {# 35 € saved #}
+            <div>
+                <span class="badge badge-danger{% if twtProductBadgesDiscountBadgeColoration == 3 %}-lighten{% endif %} badge-discount twt-badge-discount">
+                    {% if twtProductBadgesDiscountBadgeRound == 1 %}
+                        {{ "twt.extension.discountBadge.discount"|trans({'%discount%': product.calculatedPrice.listPrice.discount, '%currency%': page.header.activeCurrency.symbol })|sw_sanitize }}
+                    {% elseif twtProductBadgesDiscountBadgeRound == 2 %}
+                        {{ "twt.extension.discountBadge.discount"|trans({'%discount%': product.calculatedPrice.listPrice.discount|round(1, 'floor'), '%currency%': page.header.activeCurrency.symbol })|sw_sanitize }}
+                    {% elseif twtProductBadgesDiscountBadgeRound == 3 %}
+                        {{ "twt.extension.discountBadge.discount"|trans({'%discount%': product.calculatedPrice.listPrice.discount|round, '%currency%': page.header.activeCurrency.symbol })|sw_sanitize }}
+                    {% endif %}
+                </span>
+            </div>
+        {% endif %}
+    {% endblock %}
+{% endif %}

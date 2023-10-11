@@ -1,0 +1,110 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget.html.twig' %}
+{# ThemeWare® HC-Architecture® ready #}
+
+{# ThemeWare: 'Buy widget' on classic product page #}
+{# INFO: Please note this is also available as "component/buy-widget/buy-widget.html.twig" since SW6.4 #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailBadges = theme_config('twt-product-detail-badges') %}
+{% set twtProductDetailBenefitsShow = theme_config('twt-product-detail-benefits-show') %}
+{% set twtProductDetailPaymentLogosPosition = theme_config('twt-product-detail-payment-logos-position') %}
+{% set twtProductDetailPaymentLogosShow = theme_config('twt-product-detail-payment-logos-show') %}
+{% set twtProductDetailSharingLinksShow = theme_config('twt-product-detail-sharing-links-show') %}
+{% set twtProductDetailShortDescriptionShow = theme_config('twt-product-detail-short-description-show') %}
+
+{% set twtProductDetailLabelsPosition = theme_config('twt-product-detail-labels-position') %}
+{% set twtProductDetailShippingFreeLabelShow = theme_config('twt-product-detail-shipping-free-label-show') %}
+{% set twtProductDetailSoldLabelShow = theme_config('twt-product-detail-sold-label-show') %}
+{% set twtProductDetailStockLabelShow = theme_config('twt-product-detail-stock-label-show') %}
+
+{% set twtLabelsShow = false %}
+{% if twtProductDetailShippingFreeLabelShow == 2 or twtProductDetailStockLabelShow == 2 or twtProductDetailSoldLabelShow == 2 %}
+    {% set twtLabelsShow = true %}
+{% endif %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on ordernumber container #}
+{% block page_product_detail_ordernumber_container %}
+    {# ThemeWare: Zahlungsanbieter-Logos (oberhalb) ergänzen. #}
+    {% if twtProductDetailPaymentLogosShow == 2 and twtProductDetailPaymentLogosPosition == 1 %}
+        {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-payment-logos.html.twig' ignore missing with {
+            type: 'buy-box',
+            position: 'top'
+        } %}
+    {% endif %}
+
+    {# Default block #}
+    {{ parent() }}
+
+    {# ThemeWare: Produkt-Spezifikationen ergänzen. #}
+    {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-specifications.html.twig' ignore missing with {
+        type: 'buy-box'
+    } %}
+
+    {# ThemeWare: "Vorteile" ergänzen. #}
+    {% if twtProductDetailBenefitsShow == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-benefits.html.twig' ignore missing with {
+            type: 'buy-box',
+            position: 'bottom'
+        } %}
+    {% endif %}
+
+    {# ThemeWare: Zahlungsanbieter-Logos (unterhalb) ergänzen. #}
+    {% if twtProductDetailPaymentLogosShow == 2 and twtProductDetailPaymentLogosPosition == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-payment-logos.html.twig' ignore missing with {
+            type: 'buy-box',
+            position: 'bottom'
+        } %}
+    {% endif %}
+
+    {# ThemeWare: "Teilen-Links" ergänzen. #}
+    {% if twtProductDetailSharingLinksShow == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/product-detail/twt-sharing-links.html.twig' ignore missing with {
+            type: 'buy-box'
+        } %}
+    {% endif %}
+{% endblock %}
+
+{% block page_product_detail_buy_container %}
+    {# ThemeWare: Zusatzfeld "Kurzbeschreibung" #}
+    {% if twtCustomFields.product.twt_modern_pro_custom_field__product__short_description is not empty and twtProductDetailShortDescriptionShow == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/product-detail/twt-produt-detail-short-description.html.twig' ignore missing %}
+    {% endif %}
+
+    {# ThemeWare: "Produkt-Badges" hinzufügen #}
+    {# TODO: Produkt-Badges in der Buy-box #}
+    {% if twtProductDetailBadges == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/extensions/twt-product-detail-badges.html.twig' ignore missing with {
+            product: page.product,
+            type: 'buy-box'
+        } %}
+    {% endif %}
+
+    {# ThemeWare: Labels hinzufügen #}
+    {% if twtLabelsShow and twtProductDetailLabelsPosition == 1 %}
+        {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-labels.html.twig' ignore missing with {
+            position: 'top',
+            product: page.product
+        } %}
+    {% endif %}
+
+    {# Default block #}
+    {{ parent() }}
+{% endblock %}
+
+
+{% block page_product_detail_delivery_informations %}
+    {# ThemeWare: Labels hinzufügen #}
+    {% if twtLabelsShow and twtProductDetailLabelsPosition == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-labels.html.twig' ignore missing with {
+            position: 'bottom',
+            product: page.product
+        } %}
+    {% endif %}
+
+    {# Default block #}
+    {{ parent() }}
+{% endblock %}

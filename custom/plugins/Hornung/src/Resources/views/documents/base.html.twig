@@ -1,0 +1,90 @@
+{% sw_extends '@Framework/documents/base.html.twig' %}
+
+{% block document_payment_shipping_additional %}
+  Die Ware bleibt bis zur vollständigen Bezahlung der Rechnungs-Gesamtsumme Eigentum der hornung baushop GmbH &amp; Co. KG.
+{% endblock %}
+
+{% block document_recipient %}
+    <span class="sender-address-small" style="font-size: 7px">
+        {% block document_recipient_sender %}
+            {{ config.companyName }} - {{ config.companyAddress }}<br><br><br>
+        {% endblock %}
+    </span>
+    {% if billingAddress.company %}
+        {{ billingAddress.company }}<br>
+    {% endif %}
+    {{ customer.firstName }} {{ customer.lastName }}<br>
+    {{ billingAddress.street }}<br>
+    {% if billingAddress.additionalAddressLine1 %}
+        {{ billingAddress.additionalAddressLine1 }}<br>
+    {% endif %}
+    {% if billingAddress.additionalAddressLine2 %}
+        {{ billingAddress.additionalAddressLine2 }}<br>
+    {% endif %}
+    {{ billingAddress.zipcode }} {{ billingAddress.city }}<br>
+    {{ billingAddress.country.name }}<br>
+{% endblock %}
+
+{% block document_line_item_table_shipping_position %}
+    <td></td>
+{% endblock %}
+
+{% block document_side_info_contents %}
+    {% block document_side_info_date %}
+        <tr>
+            <td>
+                {{ 'document.date'|trans({'%date%': config.documentDate|format_date('medium', locale=locale)})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    {% block document_side_info_customer_number %}
+        <tr>
+            <td>
+                {{ 'document.customerNumber'|trans({'%customerNumber%': customer.customerNumber})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    {% block document_side_info_order_number %}
+        <tr>
+            <td>
+                {{ 'document.orderNumber'|trans({'%orderNumber%': order.orderNumber | u.truncate(10)})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+    {% block document_side_info_order_date %}
+        <tr>
+            <td>
+                {{ 'document.orderDate'|trans({'%orderDate%': order.orderDateTime|format_date('medium', locale=locale)})|sw_sanitize }}
+            </td>
+        </tr>
+    {% endblock %}
+{% endblock %}
+
+{% block document_footer_second_column %}
+    <ul>
+        {% block document_footer_place_of_jurisdiction %}
+            {% if config.placeOfJurisdiction %}<li>{{ 'document.placeOfJurisdiction'|trans({'%placeOfJurisdiction%': config.placeOfJurisdiction})|sw_sanitize }}</li>{% endif %}
+        {% endblock %}
+        {% block document_footer_place_of_fulfillment %}
+            {% if config.placeOfFulfillment %}<li>{{ 'document.placeOfFulfillment'|trans({'%placeOfFulfillment%': config.placeOfFulfillment})|sw_sanitize }}</li>{% endif %}
+        {% endblock %}
+    </ul>
+{% endblock %}
+
+{% block document_footer_third_column %}
+    <ul>
+        {% if config.executiveDirector %}
+            {% block document_footer_ceo %}
+                <li class="bold">{{ 'document.ceo'|trans|sw_sanitize }}</li>
+            {% endblock %}
+            {% block document_footer_ceo_name %}
+                <li>{{ config.executiveDirector }}</li>
+            {% endblock %}
+        {% endif %}
+    </ul>
+{% endblock %}
+
+{% block document_footer_fourth_column %}
+    <ul>
+    </ul>
+{% endblock %}

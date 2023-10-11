@@ -1,0 +1,110 @@
+{# ThemeWare "Newsletter" widget #}
+{#
+    Create "Newsletter" widget and add content
+
+    @Storefront/storefront/themeware/widgets/twt-newsletter-include.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtIconNewsletterSubmit = theme_config('twt-icon-newsletter-submit') %}
+{% set twtIconset = theme_config('twt-iconset') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_widget_newsletter %}
+    <div class="twt-widget-newsletter twt-newsletter">
+
+        {% block twt_widget_newsletter_content %}
+            <p class="newsletter-inner-text">
+                {{ "twt.widget.newsletter.content"|trans }}
+            </p>
+
+            <div class="cms-block cms-block-form">
+                <div class="cms-element-form">
+
+                    {% block element_form_newsletter_form_form %}
+                        <form action="{{ path(action) }}"
+                              method="post"
+                              data-form-csrf-handler="true"
+                              data-form-validation="true">
+
+                            <div class="form-content">
+                                <div class="row mb-2 ml-0 mr-0">
+
+                                    {% block cms_form_newsletter_input_email %}
+                                        <div class="twt-footer-column-newsletter-input-email">
+                                            {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+                                                with {
+                                                fieldName: 'email',
+                                                type: 'email',
+                                                required: true,
+                                                label: 'newsletter.labelMail',
+                                                placeholder: 'newsletter.placeholderMail'
+                                            }
+                                            %}
+                                        </div>
+                                    {% endblock %}
+
+                                    {# @Storefront/storefront/element/cms-element-form/form-components/cms-element-form-submit.html.twig #}
+                                    {% block cms_form_newsletter_submit %}
+                                        {% block cms_form_submit %}
+                                            <button type="submit" aria-label="Submit" class="btn btn-primary">
+                                                {% if twtIconset != 'default' %}
+                                                    {% if twtIconNewsletterSubmit == 'envelope' %}
+                                                        {% sw_icon 'envelope' style {'pack':'themeware'} %}
+                                                    {% elseif twtIconNewsletterSubmit == 'send' %}
+                                                        {% sw_icon 'send' style {'pack':'themeware'} %}
+                                                    {% else %}
+                                                        {% sw_icon 'arrow-head-right' style {'pack':'themeware'} %}
+                                                    {% endif %}
+                                                {% else %}
+                                                    {% sw_icon 'arrow-head-right' %}
+                                                {% endif %}
+                                            </button>
+                                        {% endblock %}
+                                    {% endblock %}
+
+                                </div>
+
+                                {% block cms_form_newsletter_additional_fields %}{% endblock %}
+
+                                {% block cms_form_newsletter_captcha %}
+                                    {% sw_include '@Storefront/storefront/component/captcha/base.html.twig' with { additionalClass : 'col-md-4' } %}
+                                {% endblock %}
+
+                                {% block cms_form_newsletter_privacy %}
+                                    <div class="twt-footer-column-newsletter-privacy">
+                                        {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-privacy.html.twig'
+                                            with { 'requiresTermsOfService': false }
+                                        %}
+                                    </div>
+                                {% endblock %}
+
+                                {#% block cms_form_newsletter_required_fields_info %}{% endblock %#}
+                            </div>
+
+                            {% block cms_form_newsletter_hidden_fields %}
+                                <div class="form-hidden-fields">
+
+                                    {% block cms_form_newsletter_csrf %}
+                                        {{ sw_csrf(action) }}
+                                    {% endblock %}
+
+                                    <input type="hidden" name="option" value="{{ constant('Shopware\\Storefront\\Controller\\FormController::SUBSCRIBE') }}">
+                                    <input type="submit" class="submit--hidden d-none" />
+                                </div>
+                            {% endblock %}
+
+                        </form>
+                    {% endblock %}
+
+                </div>
+            </div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

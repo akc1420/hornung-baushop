@@ -1,0 +1,148 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Product box adjustments
+	==================================================
+
+*/
+
+// ThemeWare: Add order number to product box ------------------------------
+
+@if $twt-product-box-ordernumber-show != 1 {
+  .twt-product-ordernumber {
+    font-size: .875rem;
+    display: -webkit-box;
+    overflow: hidden;
+    height: 1.5em;
+    min-height: 1.5em;
+    margin-top: 1em;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; // scheint nötig
+    line-clamp: 1;
+    word-break: break-all;
+
+    .product-ordernumber-label {
+      font-weight: 600;
+    }
+
+    //.product-ordernumber {}
+  }
+}
+
+// ThemeWare: Add manufacturer to product box ------------------------------
+
+@if $twt-product-box-manufacturer-show != 1 {
+  .twt-product-manufacturer {
+    font-size: .875rem;
+    display: -webkit-box;
+    overflow: hidden;
+    height: 3em;
+    min-height: 3em;
+    margin-top: 1em;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; // scheint nötig
+    line-clamp: 2;
+
+    .product-manufacturer-label {
+      font-weight: 600;
+    }
+
+    //.product-ordernumber {}
+  }
+}
+
+// ThemeWare: Weaken products after clearance ------------------------------
+
+// TODO:
+// - add configuration for the opacity
+// - check transitions
+
+@if $twt-product-box-sold != 1 {
+  .twt-is-sold {
+    display: none !important;
+    visibility: hidden !important;
+  }
+
+  .twt-is-sold {
+    + .product-box {
+      .card-body {
+        @if $twt-product-box-sold-style == 1 {
+          //-webkit-transition: opacity .2s ease;
+          transition: opacity .2s ease;
+          @include twt-opacity(.4);
+        } @else if $twt-product-box-sold-style == 2 {
+          //-webkit-transition: grayscale .2s ease;
+          transition: grayscale .2s ease;
+          @include twt-grayscale(100%);
+        } @else if $twt-product-box-sold-style == 3 {
+          //-webkit-transition: grayscale .2s ease, opacity .2s ease;
+          transition: grayscale .2s ease, opacity .2s ease;
+          @include twt-grayscale-opacity(100%, .4);
+        }
+
+        &:hover {
+          @if $twt-product-box-sold-style == 1 {
+            @include twt-opacity(1);
+          } @else if $twt-product-box-sold-style == 2 {
+            @include twt-grayscale(0%);
+          } @else if $twt-product-box-sold-style == 3 {
+            @include twt-grayscale-opacity(0%, 1);
+          }
+        }
+      }
+
+    }
+  }
+}
+
+// ThemeWare: Highlight product if topseller ------------------------------
+
+.twt-is-topseller {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+//.twt-is-topseller {
+//  + .product-box {
+//    border-width: 3px;
+//    border-color: $sw-color-warning;
+//  }
+//}
+
+// ThemeWare: Hover image for the cross-fade from the cover image ------------------------------
+
+@if $twt-product-box-image-hover-type == 10 or $twt-product-box-image-hover-type == 11 or $twt-product-box-image-hover-type == 12 {
+  .twt-is-crossfade {
+    .product-image-link {
+      position: relative;
+
+      img {
+        position: absolute;
+        left: 0;
+        //-webkit-transition: opacity .35s ease-in-out;
+        transition: opacity .35s ease-in-out;
+      }
+
+      img.twt-crossfade-image {
+        opacity: 0;
+      }
+
+      &:hover {
+        img:not(.twt-crossfade-image) {
+          opacity: 0;
+        }
+
+        img.twt-crossfade-image {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

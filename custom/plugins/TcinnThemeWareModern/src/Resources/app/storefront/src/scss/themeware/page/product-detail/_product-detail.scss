@@ -1,0 +1,256 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Product detail
+	==================================================
+
+*/
+
+// ThemeWare: Product specifications in buy-box ------------------------------
+
+.product-detail-ordernumber-container {
+  font-weight: fontWeight($twt-product-detail-specifications-text-font-weight);
+  margin-bottom: 0;
+
+  .product-detail-ordernumber-label {
+    font-weight: fontWeight($twt-product-detail-specifications-label-font-weight);
+    text-transform: $twt-product-detail-specifications-label-transform;
+  }
+
+  //.product-detail-ordernumber {}
+}
+
+//@if $twt-product-detail-ean-show != 1 {
+//  .twt-product-detail-ean-container {
+//    .twt-product-detail-ean-label {}
+//    .twt-product-detail-ean {}
+//  }
+//}
+
+//@if $twt-product-detail-manufacturernumber-show != 1 {
+//  .twt-product-detail-manufacturernumber-container {
+//    .twt-product-detail-manufacturernumber-label {}
+//    .twt-product-detail-manufacturernumber {}
+//  }
+//}
+
+//@if $twt-product-detail-manufacturer-show != 1 {
+//  .twt-product-detail-manufacturer-container {
+//    .twt-product-detail-manufacturer-label {}
+//    .twt-product-detail-manufacturer {}
+//  }
+//}
+
+//@if $twt-product-detail-weight-show != 1 {
+//  .twt-product-detail-weight-container {
+//    .twt-product-detail-weight-label {}
+//    .twt-product-detail-weight {}
+//  }
+//}
+
+//@if $twt-product-detail-length-show != 1 {
+//  .twt-product-detail-length-container {
+//    .twt-product-detail-length-label {}
+//    .twt-product-detail-length {}
+//  }
+//}
+
+//@if $twt-product-detail-width-show != 1 {
+//  .twt-product-detail-width-container {
+//    .twt-product-detail-width-label {}
+//    .twt-product-detail-width {}
+//  }
+//}
+
+//@if $twt-product-detail-height-show != 1 {
+//  .twt-product-detail-height-container {
+//    .twt-product-detail-height-label {}
+//    .twt-product-detail-height {}
+//  }
+//}
+
+//@if $twt-product-detail-availablestock-show != 1 {
+//  .twt-product-detail-availablestock-container {
+//    .twt-product-detail-availablestock-label {}
+//    .twt-product-detail-availablestock {}
+//  }
+//}
+
+//@if $twt-product-detail-minpurchase-show != 1 {
+//  .twt-product-detail-minpurchase-container {
+//    .twt-product-detail-minpurchase-label {}
+//    .twt-product-detail-minpurchase {}
+//  }
+//}
+
+//@if $twt-product-detail-maxpurchase-show != 1 {
+//  .twt-product-detail-maxpurchase-container {
+//    .twt-product-detail-maxpurchase-label {}
+//    .twt-product-detail-maxpurchase {}
+//  }
+//}
+
+// Freitextfeld 1
+//@if $twt-product-detail-custom-field-1-show != 1 {
+//  .twt-product-detail-custom-field-1-container {
+//    .twt-product-detail-custom-field-1-label {}
+//    .twt-product-detail-custom-field-1 {}
+//  }
+//}
+
+// Freitextfeld 2
+//@if $twt-product-detail-custom-field-2-show != 1 {
+//  .twt-product-detail-custom-field-2-container {
+//    .twt-product-detail-custom-field-2-label {}
+//    .twt-product-detail-custom-field-2 {}
+//  }
+//}
+
+// Freitextfeld 3
+//@if $twt-product-detail-custom-field-3-show != 1 {
+//  .twt-product-detail-custom-field-3-container {
+//    .twt-product-detail-custom-field-3-label {}
+//    .twt-product-detail-custom-field-3 {}
+//  }
+//}
+
+// TODO: Uses this general class instead of applying individual classes
+.twt-product-specifications-container {
+  font-weight: fontWeight($twt-product-detail-specifications-text-font-weight);
+  margin-bottom: 0;
+
+  .twt-product-specifications-label {
+    font-weight: fontWeight($twt-product-detail-specifications-label-font-weight);
+    text-transform: $twt-product-detail-specifications-label-transform;
+  }
+}
+
+
+// ThemeWare: Stock label ------------------------------
+
+.product-detail-reviews + .product-detail-delivery-information {
+  .twt-product-stock-label {
+    margin-top: 1.25rem;
+  }
+}
+
+// ThemeWare: Product properties table------------------------------
+
+@if $twt-product-detail-properties-info-show != 1 or $twt-product-detail-tab-properties-info-show != 1 {
+  .twt-product-detail-properties-info {
+    @include font-size(12);
+    font-style: italic;
+    line-height: 1.25rem;
+    margin-top: -10px;
+    margin-bottom: 1.5rem;
+  }
+}
+
+// ThemeWare: 'Similar to illustration' infotext ------------------------------
+
+@if $twt-product-detail-slider-image-similar-note-show != 1 {
+  .twt-image-similar-infotext {
+    @include font-size(10);
+    line-height: 0.875rem;
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding: 0.3125rem;
+    pointer-events: none;
+    color: #333333;
+    background: rgba(255, 255, 255, 0.8);
+  }
+}
+
+// ThemeWare: 'Product videos' custom fields ------------------------------
+
+@if $twt-product-detail-product-videos-show == 2 or $twt-product-detail-tab-product-videos-show == 2 {
+  @if $twt-product-detail-videos-max-width > 0 {
+    .twt-product-detail-product-videos-container {
+      max-width: $twt-product-detail-videos-max-width + px;
+    }
+  }
+
+  .twt-product-video {
+    margin-bottom: $spacer-lg;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__video,
+    &__placeholder {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border: 0 none;
+    }
+
+    @if $twt-product-detail-product-videos-need-confirmation == 2 {
+      &__placeholder {
+        background: $twt-product-detail-product-videos-placeholder-background-color;
+
+        img {
+          object-fit: cover;
+          font-family: 'object-fit: cover;'; // IE polyfill
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+        }
+
+        @if $twt-product-detail-product-videos-placeholder-layout-type == 2 {
+          .icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+
+            height: 80%;
+            width: auto;
+
+            &.icon-youtube {
+              color: $twt-color-youtube;
+            }
+
+            &.icon-vimeo {
+              color: $twt-color-vimeo;
+            }
+          }
+        }
+      }
+
+      &__backdrop {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        background-color: $twt-product-detail-product-videos-backdrop-background-color;
+
+        > div {
+          background: $twt-product-detail-product-videos-overlay-background-color;
+          padding: 1rem;
+        }
+      }
+    }
+
+    //&.is-youtube {}
+    //&.is-vimeo {}
+  }
+}

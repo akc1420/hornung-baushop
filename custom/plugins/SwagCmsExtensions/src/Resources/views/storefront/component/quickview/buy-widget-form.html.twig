@@ -1,0 +1,54 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-form.html.twig' %}
+
+{% set customizedProductsTemplate = page.product.extensions.swagCustomizedProductsTemplate %}
+{% set customizable = customizedProductsTemplate and customizedProductsTemplate.active and customizedProductsTemplate.options|length %}
+
+{% block page_product_detail_buy_form_inner %}
+    <div class="swag-cms-extensions-quickview-product-buy-form container-fluid">
+        {{ parent() }}
+
+        {% if customizable %}
+            {% set redirectButtonLabel = 'customizedProducts.stepByStep.navigation.btnConfigureProduct'|trans|striptags %}
+            {% set redirectButtonClasses = ' btn-primary' %}
+        {% else %}
+            {% set redirectButtonLabel = 'swagCmsExtensions.quickview.detailPageLinkText'|trans|striptags %}
+            {% set redirectButtonClasses = ' btn-outline-secondary' %}
+        {% endif %}
+
+        {% block swag_cms_extensions_detail_buy_form_detail_button %}
+            <a class="swag-cms-extensions-quickview-detail-page-button btn btn-block btn-lg{{ redirectButtonClasses }}"
+               href="{{ seoUrl('frontend.detail.page', {'productId': page.product.id}) }}"
+               title="{{ redirectButtonLabel }}"
+               aria-label="{{ redirectButtonLabel }}">
+                {{ redirectButtonLabel }}
+            </a>
+        {% endblock %}
+
+    </div>
+{% endblock %}
+
+{% block page_product_detail_buy_container %}
+    {% if not customizable %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block page_product_detail_buy_quantity_container %}
+    <div class="swag-cms-extensions-quickview-content--buy-quantity col-12 col-md-4">
+
+        {% block page_product_detail_buy_quantity %}
+            {{ parent() }}
+        {% endblock %}
+
+    </div>
+{% endblock %}
+
+{% block page_product_detail_buy_button_container %}
+    <div class="swag-cms-extensions-quickview-content--buy-button col-12 col-md-8">
+
+        {% block page_product_detail_buy_button %}
+            {{ parent() }}
+        {% endblock %}
+
+    </div>
+{% endblock %}

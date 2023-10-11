@@ -1,0 +1,289 @@
+ /*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Top bar
+	==================================================
+	Contains styles for the top bar located at the top of the page.
+	The top bar contains the language switcher, the currency switcher and the service menu.
+
+	Origin: Shopware base & skin
+*/
+
+// ThemeWare: Top bar adjustments
+// TODO: Shopware Vererbung prüfen...
+@include media-breakpoint-up(lg) { // min 992px
+	.top-bar {
+		background-color: $twt-header-top-bar-background-color;
+		
+		/* ThemeWare: Boxed-Layout */
+		@if $twt-container-layout == 3 {
+			padding-left: $twt-basegrid-spacing;
+			padding-right: $twt-basegrid-spacing;
+		}
+
+		@if $twt-header-top-bar-border-color != $twt-header-top-bar-background-color {
+			// ThemeWare: No border if header-margin-top = 0
+			@if($twt-header-margin-top >= 1) {
+				border-top: 1px solid $twt-header-top-bar-border-color;
+			}
+
+			border-bottom: 1px solid $twt-header-top-bar-border-color;
+		}
+		
+		// ThemeWare: Border-radius for boxed layout
+		@if $twt-header-type == 4 {
+			@if($twt-border-radius > 1) {
+					border-radius: null-pixel-unit($twt-border-radius);
+			}
+		}
+
+		.top-bar-nav {
+			line-height: null-pixel-unit($twt-header-top-bar-line-height);
+			height: null-pixel-unit($twt-header-top-bar-line-height);
+			align-items: center;
+
+			// ThemeWare: Set max-width in boxed layouts unless "Header 10" (twt-header-type 10) isn't used   #customHeader
+			@if $twt-header-width == 1 and $twt-header-type != 10 {
+				max-width: null-pixel-unit($twt-container-max-width);
+			}
+
+			@if($twt-container-layout == 2) {
+				padding-right: $twt-basegrid-spacing;
+				padding-left: $twt-basegrid-spacing;
+			} @else {
+				padding-right: 0;
+				padding-left: 0;
+			}
+
+			margin-right: auto; // ThemeWare: Service menu: list
+			margin-left: auto;
+
+			// ThemeWare: Justify-content
+			@if $twt-header-type != 4 and $twt-header-top-bar-hotline-show != 2 {
+				justify-content: $twt-header-top-bar-justify-content;
+			}
+
+			// ThemeWare: Justify-content for header type 4
+			@if $twt-header-type == 4 and $twt-header-top-bar-hotline-show != 2 {
+				justify-content: flex-start;
+			}
+
+			.top-bar-menu-list {
+				.top-bar-list-item {
+					@include twt-font-size($twt-header-top-bar-font-size);
+					line-height: 1.2;
+					margin-right: 10px;
+					padding-right: 10px;
+					color: $twt-header-top-bar-color;
+
+					border-right: 1px solid shade($twt-header-top-bar-background-color, 10%);
+
+					&:last-of-type {
+						margin-right: 0;
+						padding-right: 0;
+						border-right: none;
+					}
+
+					&:hover{
+						color: $twt-header-top-bar-color-hover;
+					}
+				}
+			}
+
+			.top-bar-nav-btn.btn {
+				@include twt-font-size($twt-header-top-bar-font-size);
+				color: $twt-header-top-bar-color;
+
+				.icon {
+					@if $twt-header-top-bar-icon-font-size == 1 {
+						display: none;
+					} @else {
+						display: inline-block;
+						color: $twt-header-top-bar-color;
+						width: $twt-header-top-bar-icon-font-size + px;
+						height: $twt-header-top-bar-icon-font-size + px;
+
+						& > svg {
+							top: 0;
+							margin-bottom: 2px;
+						}
+					}
+				}
+
+				&:hover {
+					color: $twt-header-top-bar-color-hover;
+
+					.icon {
+						color: $twt-header-top-bar-color-hover;
+					}
+				}
+			}
+		}
+
+		&-currency,
+		&-language,
+		&-service {
+			&:empty {
+				display: none;
+			}
+		}
+
+		&-hotline {
+			@include font-size(.875rem);
+			color: $twt-header-top-bar-color-hotline;
+
+			a {
+				color: $twt-header-top-bar-color;
+
+				&:hover {
+					color: $twt-header-top-bar-color-hover;
+				}
+			}
+		}
+
+		@if $twt-header-top-bar-hotline-show == 2 and $twt-usp-bar-header-layout != 2 {
+			.top-bar-nav {
+				display: block;
+			}
+
+			.row.twt-top-bar {
+				display: flex;
+				justify-content: $twt-header-top-bar-justify-content !important;
+			}
+
+			.currencies-menu,
+			.languages-menu,
+			.service-menu {
+				display: flex;
+			}
+		}
+
+		/*
+          _             _______ _____    _____                             _   _
+         | |           |__   __/ ____|  |_   _|                           | | (_)
+         | |__  _   _     | | | |   _____ | |  _ __  _ __   _____   ____ _| |_ _  ___    __  ___
+         | '_ \| | | |    | | | |  |______| | | '_ \| '_ \ / _ \ \ / / _` | __| |/ _ \| '_ \/ __|
+         | |_)   |_| |    | | | |____    _| |_| | | | | | | (_) \ V / (_| | |_| | (_) | | | \__ \
+         |_.__/ \__, |    |_|  \_____|  |_____|_| |_|_| |_|\___/ \_/ \__,_|\__|_|\___/|_| |_|___/
+                 __/ |
+                |___/
+        */
+
+		// ThemeWare: Hotline label show/hide
+		@if $twt-header-top-bar-hotline-label-show == 2 {
+			.top-bar-hotline { display: inline; }
+		} @else if $twt-header-top-bar-hotline-label-show == 6 {
+			@include media-breakpoint-up(lg) { // min 992px
+				.twt-top-bar-hotline-label { display: inline; }
+			}
+			@include media-breakpoint-down(md) { // max 991.98px
+				.twt-top-bar-hotline-label { display: none; }
+			}
+		} @else if $twt-header-top-bar-hotline-label-show == 7 {
+			@include media-breakpoint-up(xl) { // min 1200px
+				.twt-top-bar-hotline-label { display: inline; }
+			}
+			@include media-breakpoint-down(lg) { // max 1199.98px
+				.twt-top-bar-hotline-label { display: none; }
+			}
+		} @else if $twt-header-top-bar-hotline-label-show == 8 {
+			@include media-breakpoint(min,$twt-container-max-width) {
+				.twt-top-bar-hotline-label { display: inline; }
+			}
+			@include media-breakpoint(max,$twt-container-max-width -1) {
+				.twt-top-bar-hotline-label { display: none; }
+			}
+		} @else if $twt-header-top-bar-hotline-label-show == 1 {
+			.twt-top-bar-hotline-label { display: none; }
+		}
+
+		// ThemeWare: Languages menu text show/hide
+		@if $twt-header-top-bar-languages-menu-text-show == 2 {
+			.languages-menu .top-bar-nav-text { display: inline; }
+		} @else if $twt-header-top-bar-languages-menu-text-show == 6 {
+			@include media-breakpoint-up(lg) { // min 992px
+				.languages-menu .top-bar-nav-text { display: inline; }
+			}
+			@include media-breakpoint-down(md) { // max 991.98px
+				.languages-menu .top-bar-nav-text { display: none; }
+			}
+		} @else if $twt-header-top-bar-languages-menu-text-show == 7 {
+			@include media-breakpoint-up(xl) { // min 1200px
+				.languages-menu .top-bar-nav-text { display: inline; }
+			}
+			@include media-breakpoint-down(lg) { // max 1199.98px
+				.languages-menu .top-bar-nav-text { display: none; }
+			}
+		} @else if $twt-header-top-bar-languages-menu-text-show == 8 {
+			@include media-breakpoint(min,$twt-container-max-width) {
+				.languages-menu .top-bar-nav-text { display: inline; }
+			}
+			@include media-breakpoint(max,$twt-container-max-width -1) {
+				.languages-menu .top-bar-nav-text { display: none; }
+			}
+		} @else if $twt-header-top-bar-languages-menu-text-show == 1 {
+			.languages-menu .top-bar-nav-text { display: none; }
+		}
+		
+		// ThemeWare: Currencies menu text show/hide
+		@if $twt-header-top-bar-currencies-menu-text-show == 2 {
+			.currencies-menu .top-bar-nav-text { display: inline; }
+		} @else if $twt-header-top-bar-currencies-menu-text-show == 6 {
+			@include media-breakpoint-up(lg) { // min 992px
+				.currencies-menu .top-bar-nav-text { display: inline; }
+			}
+			@include media-breakpoint-down(md) { // max 991.98px
+				.currencies-menu .top-bar-nav-text { display: none; }
+			}
+		} @else if $twt-header-top-bar-currencies-menu-text-show == 7 {
+			@include media-breakpoint-up(xl) { // min 1200px
+				.currencies-menu .top-bar-nav-text { display: inline; }
+			}
+			@include media-breakpoint-down(lg) { // max 1199.98px
+				.currencies-menu .top-bar-nav-text { display: none; }
+			}
+		} @else if $twt-header-top-bar-currencies-menu-text-show == 8 {
+			@include media-breakpoint(min,$twt-container-max-width) {
+				.currencies-menu .top-bar-nav-text { display: inline; }
+			}
+			@include media-breakpoint(max,$twt-container-max-width -1) {
+				.currencies-menu .top-bar-nav-text { display: none; }
+			}
+		} @else if $twt-header-top-bar-currencies-menu-text-show == 7 {
+			.currencies-menu .top-bar-nav-text { display: none; }
+		}
+		
+		// ThemeWare: Service menu text show/hide
+		@if $twt-header-top-bar-service-menu-text-show == 2 {
+			.service-menu .top-bar-nav-text { display: inline; }
+		} @else if $twt-header-top-bar-service-menu-text-show == 6 {
+			@include media-breakpoint-up(lg) { // min 992px
+				.service-menu .top-bar-nav-text { display: inline; }
+			}
+			@include media-breakpoint-down(md) { // max 991.98px
+				.service-menu .top-bar-nav-text { display: none; }
+			}
+		} @else if $twt-header-top-bar-service-menu-text-show == 7 {
+			@include media-breakpoint-up(xl) { // min 1200px
+				.service-menu .top-bar-nav-text { display: inline; }
+			}
+			@include media-breakpoint-down(lg) { // max 1199.98px
+				.service-menu .top-bar-nav-text { display: none; }
+			}
+		} @else if $twt-header-top-bar-service-menu-text-show == 8 {
+			@include media-breakpoint(min,$twt-container-max-width) {
+				.service-menu .top-bar-nav-text { display: inline; }
+			}
+			@include media-breakpoint(max,$twt-container-max-width -1) {
+				.service-menu .top-bar-nav-text { display: none; }
+			}
+		} @else if $twt-header-top-bar-service-menu-text-show == 1 {
+			.service-menu .top-bar-nav-text { display: none; }
+		}
+	}
+}

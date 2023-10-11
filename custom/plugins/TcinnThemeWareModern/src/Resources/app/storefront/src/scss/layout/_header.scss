@@ -1,0 +1,993 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Header
+	==================================================
+	Contains custom styles for the header at the top of the page.
+	The header contains the shop logo, the search form and various actions like the offcanvas cart button.
+
+	Origin: Shopware base & skin
+*/
+
+/* ThemeWare refactoring:
+ * TODO: Add header-type "default" with minor scss-adjustments
+ * TODO: Add "$twt-header-type-compatibility"-if to exclude all twig-/scss-adjustments
+ */
+
+/* --- ThemeWare: Header adjustments ------------------------------ */
+
+header.header-main {
+    position: relative;
+    align-items: center; // TODO: Add configuration...
+    background-color: $twt-header-phone-background-color;
+
+    // ThemeWare: Check if background-image is set
+    @if $twt-header-background-image-show == 2 and $twt-header-background-image != "" and $twt-header-background-image != "none" {
+        //-webkit-background-size: $twt-header-background-image-size;
+        background-size: $twt-header-background-image-size;
+        background-position: $twt-header-background-image-position;
+        background-repeat: $twt-header-background-image-repeat;
+        background-attachment: $twt-header-background-image-attachment;
+    }
+
+	@include media-breakpoint-up(sm) { // min 576px
+		background-color: $twt-header-background-color-desktop;
+	}
+
+	@include media-breakpoint-up(lg) { // min 992px
+		margin-top: null-pixel-unit($twt-header-margin-top);
+	}
+}
+
+
+/* --- ThemeWare: Header actions adjustments ------------------------------ */
+
+// Header actions background
+@include media-breakpoint(min, strip-unit($twt-container-max-width)) { // min container width
+    .header-actions-col.col-sm-auto.order-1 {
+        background-color: $twt-header-actions-background-color;
+    }
+}
+
+
+/* --- ThemeWare: Header container adjustments ------------------------------ */
+
+header.header-main {
+    .container {
+        max-width: inherit;
+        margin-right: 0;
+        margin-left: 0;
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+
+/* --- ThemeWare: ... ------------------------------ */
+
+// TODO: header-main auflösen >>>>>
+
+header.header-main {
+    .header-row {
+        margin-right: auto;
+        margin-left: auto;
+
+        @include media-breakpoint-down(xs) { // max 575.98px
+            padding: 10px 0;
+        }
+
+        @include media-breakpoint-up(sm) { // min 576px
+            padding: null-pixel-unit($twt-header-padding-top) 0 null-pixel-unit($twt-header-padding-bottom) 0;
+        }
+
+        @include media-breakpoint-up(sm) { // min 576px
+            // ThemeWare: Search row
+            .header-search-col {
+                .row {
+                    align-items: center;
+                }
+            }
+        }
+
+        /* ThemeWare: Phone viewport adjustments */
+
+        @include media-breakpoint-down(xs) { // max 575.98px
+            padding: 0;
+
+            .header-actions-col {
+                .header-nav-main-toggle-label {
+                    @if ($twt-header-phone-nav-main-toggle-label-show == 1) {
+                        display: none;
+                    } @else {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            // ThemeWare: Search
+            .header-search-col {
+                background-color: $twt-header-phone-search-flyout-background-color;
+
+                .col {
+                    padding: 0;
+
+                    #searchCollapse {
+                        .header-search {
+                            margin: 0;
+                            padding: 15px;
+                        }
+                    }
+                }
+            }
+        }
+
+        /* ThemeWare: Tablet viewport adjustments */
+
+        @include media-breakpoint-down(md) { // min 768px
+            // ThemeWare: Logo
+            .header-logo-col {
+                @if ($twt-header-type == 10) {
+                    // header-10
+                    margin: 10px 0 10px 0;
+
+                } @else if ($twt-header-top-bar-show == 1 and $twt-header-type != 4) {
+                    // header-1
+                    // header-2
+
+                } @else if ($twt-header-actions-btn-icon-position == 2) {
+                    // ThemeWare: $twt-header-actions-btn-icon-position = "oberhalb" (2)
+                    // TODO...
+                    // not header-10
+                    margin: 10px 0 10px 0;
+
+                } @else {
+                    // TODO...
+                    // not header-10
+                    margin: 10px 0 10px 0;
+                }
+            }
+        }
+
+    }
+}
+
+/* ThemeWare: Logo adjustments */
+
+header.header-main {
+    .header-logo-col {
+        margin-top: 0;
+        padding-bottom: 0;
+
+        .header-logo-main {
+            .header-logo-main-link {
+                margin-top: null-pixel-unit($twt-header-logo-margin-top);
+
+                // ThemeWare: If not "Shopping Experiences Header"
+                @if ($twt-shopping-experiences-header-position == 1) {
+                    display: inline-block;
+                }
+
+                img {
+                    width: 100%;
+                    max-width: auto-pixel-unit($twt-header-logo-width);
+                    height: auto-pixel-unit($twt-header-logo-height);
+
+                    @if $twt-header-logo-hover-type > 1 {
+                        &:hover {
+                            opacity: 0.7;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* --- ThemeWare: Search adjustments ------------------------------ */
+
+header.header-main {
+    @if $twt-header-search-show == 1 {
+        // ThemeWare: Hide search
+        .header-search {
+            display: none;
+        }
+
+    } @else {
+        @if $twt-header-search-type == 1 or $twt-header-search-type == 3 { // TODO: not in Header 2 !!!
+            // ThemeWare: Default search
+            .header-search {
+                @include media-breakpoint-up(sm) { // min 576px
+                    max-width: auto-pixel-unit($twt-header-search-max-width);
+                }
+
+                @include media-breakpoint-up(xl) { // min 1200px
+                    width: auto-pixel-unit($twt-header-search-width-desktop);
+                }
+
+                .header-search-btn {
+                    // TODO: @include button-variant($twt-header-search-btn-background-color, $twt-header-search-btn-border-color);
+                    background-color: $twt-header-search-btn-background-color;
+                    border: 1px solid $twt-header-search-btn-border-color;
+
+                    @if $twt-header-search-btn-border-color == $twt-header-search-input-border-color {
+                        border-left: none;
+                    }
+
+                    // ThemeWare: Check border-radius style
+                    @if ($twt-header-search-input-corner-type == 1) {
+                        border-top-right-radius: null-pixel-unit($twt-border-radius);
+                        border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+                    } @else if ($twt-header-search-input-corner-type == 3) {
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                    } @else if ($twt-header-search-input-corner-type == 4) {
+                        border-top-right-radius: null-pixel-unit($twt-header-search-input-border-radius);
+                        border-bottom-right-radius: null-pixel-unit($twt-header-search-input-border-radius);
+                    }
+
+                    .icon {
+                        color: $twt-header-search-btn-icon-color;
+                    }
+
+                    .loader {
+                        color: $twt-header-search-btn-icon-color !important;
+                    }
+
+                    &:hover {
+                        opacity: .8;
+                    }
+                }
+
+                input.header-search-input {
+                    @include twt-font-size($twt-header-actions-btn-font-size);
+                    border: 1px solid $twt-header-search-input-border-color;
+
+                    color: $twt-header-search-input-color;
+                    background-color: $twt-header-search-input-background-color;
+                    text-align: $twt-header-search-text-align;
+
+                    // ThemeWare: Check border-radius style
+                    @if ($twt-header-search-input-corner-type == 1) {
+                        border-top-left-radius: null-pixel-unit($twt-border-radius);
+                        border-bottom-left-radius: null-pixel-unit($twt-border-radius);
+                    } @else if ($twt-header-search-input-corner-type == 3) {
+                        border-top-left-radius: 50px;
+                        border-bottom-left-radius: 50px;
+                    } @else if ($twt-header-search-input-corner-type == 4) {
+                        border-top-left-radius: null-pixel-unit($twt-header-search-input-border-radius);
+                        border-bottom-left-radius: null-pixel-unit($twt-header-search-input-border-radius);
+                    }
+
+                    &:focus {
+                        border-color: shade($twt-header-search-input-border-color, 5%);
+                        box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.075);
+                    }
+
+                    &:focus ~ .input-group-append .header-search-btn {
+                        border-color: $twt-header-search-btn-border-color;
+                    }
+                }
+            }
+
+        } @else if $twt-header-search-type == 2 or $twt-header-search-type == 4 { // TODO: must in Header 2/4 !!!
+            // ThemeWare: Flyout search (search)
+            @include media-breakpoint-down(md) { // max 991.98px
+                .header-actions-col {
+                    &.col-sm-auto {
+                        flex: 0 0 100%;
+                        width: 100%;
+                        max-width: 100%;
+                    }
+                }
+            }
+
+            .header-search {
+                @include media-breakpoint-up(sm) { // min 576px
+                    max-width: auto-pixel-unit($twt-header-search-max-width);
+                }
+
+                @include media-breakpoint-up(xl) { // min 1200px
+                    width: auto-pixel-unit($twt-header-search-width-desktop);
+                }
+
+                .header-search-btn {
+                    // TODO: @include button-variant($twt-header-search-btn-background-color, $twt-header-search-btn-border-color);
+                    background-color: $twt-header-search-btn-background-color;
+                    border: 1px solid $twt-header-search-btn-border-color;
+
+                    // ThemeWare: Check border-radius style
+                    @if ($twt-header-search-input-corner-type == 1) {
+                        border-top-right-radius: null-pixel-unit($twt-border-radius);
+                        border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+                    } @else if ($twt-header-search-input-corner-type == 3) {
+                        border-top-right-radius: 50px;
+                        border-bottom-right-radius: 50px;
+                    } @else if ($twt-header-search-input-corner-type == 4) {
+                        border-top-right-radius: null-pixel-unit($twt-header-search-input-border-radius);
+                        border-bottom-right-radius: null-pixel-unit($twt-header-search-input-border-radius);
+                    }
+
+                    .icon {
+                        color: $twt-header-search-btn-icon-color;
+                    }
+
+                    .loader {
+                        color: $twt-header-search-btn-icon-color !important;
+                    }
+
+                    &:hover {
+                        opacity: .8;
+                    }
+                }
+
+                input.header-search-input {
+                    border: 1px solid $twt-header-search-input-border-color;
+                    color: $twt-header-search-input-color;
+                    background-color: $twt-header-search-input-background-color;
+
+                    &:focus {
+                        border-color: $twt-header-search-input-border-color;
+                        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+                    }
+
+                    &:focus ~ .input-group-append .header-search-btn {
+                        border-color: $twt-header-search-btn-border-color;
+                    }
+                }
+            }
+
+            .search-row {
+                margin-right: auto;
+                margin-left: auto;
+
+                #searchCollapse {
+                    width: 100%;
+                    background-color: $twt-header-search-flyout-background-color;
+
+                    .header-search {
+                        padding: null-pixel-unit($twt-header-search-flyout-padding);
+                    }
+                }
+            }
+        }
+    }
+}
+
+/*
+  _             _____ ____     ___                             _   _
+ | |__  _   _  |_   _/ ___|   |_ _|_ __  _ __   _____   ____ _| |_(_) ___  _ __  ___
+ | '_ \| | | |   | || |   _____| || '_ \| '_ \ / _ \ \ / / _` | __| |/ _ \| '_ \/ __|
+ | |_) | |_| |   | || |__|_____| || | | | | | | (_) \ V / (_| | |_| | (_) | | | \__ \
+ |_.__/ \__, |   |_| \____|   |___|_| |_|_| |_|\___/ \_/ \__,_|\__|_|\___/|_| |_|___/
+        |___/
+*/
+
+/* --- ThemeWare: Header column adjustments ------------------------------ */
+
+header.header-main {
+    .header-actions-col,
+    .header-search-col {
+        // ThemeWare: Only adjust if no button layout
+        @if $twt-header-background-color-desktop == $twt-header-actions-btn-background-color and $twt-header-background-color-desktop == $twt-header-actions-btn-border-color and $twt-header-background-color-desktop == $twt-header-actions-cart-btn-background-color {
+            padding-right: 7px;
+        }
+
+        /* ThemeWare: Phone viewport adjustments */
+
+        @include media-breakpoint-down(xs) { // max 575.98px
+            // ThemeWare: Header action buttons
+            .header-actions-btn {
+                color: $twt-header-phone-btn-color;
+                border: 1px solid $twt-header-phone-btn-border-color;
+                background-color: $twt-header-phone-btn-background-color;
+
+                .icon {
+                    //-webkit-transition: color .20s ease;
+                    transition: color .20s ease;
+                    color: $twt-header-phone-btn-icon-color;
+                }
+
+                &:active,
+                &:hover {
+                    color: $twt-header-phone-btn-color-hover;
+                    border: 1px solid $twt-header-phone-btn-border-color-hover;
+                    background-color: $twt-header-phone-btn-background-color-hover;
+
+                    .icon {
+                        color: $twt-header-phone-btn-icon-color-hover;
+                    }
+
+                }
+
+                // ThemeWare: Cart button
+                &.header-cart-btn {
+                    color: $twt-header-phone-btn-color;
+                    border: 1px solid $twt-header-phone-btn-border-color;
+                    background-color: $twt-header-phone-btn-background-color;
+
+                    .icon {
+                        color: $twt-header-phone-btn-icon-color;
+                    }
+
+                    &:active,
+                    &:hover {
+                        color: $twt-header-phone-btn-color-hover;
+                        border: 1px solid $twt-header-phone-btn-border-color-hover;
+                        background-color: $twt-header-phone-btn-background-color-hover;
+
+                        .icon {
+                            color: $twt-header-phone-btn-icon-color-hover;
+                        }
+                    }
+
+                    .header-cart-total {
+                        @include twt-font-size($twt-header-actions-btn-font-size);
+                        line-height: 1;
+                        //-webkit-transition: color .20s ease;
+                        transition: color .20s ease;
+
+                        @if $twt-header-actions-cart-btn-color != $primary {
+                            color: $twt-header-actions-cart-btn-color;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        /* ThemeWare: Tablet viewport adjustments */
+
+        @include media-breakpoint-up(sm) { // min 576px
+            .no-gutters > [class*="col-"] {
+                margin-left: 10px;
+            }
+
+            // ThemeWare: Header actions
+            .header-actions-btn {
+                @include twt-font-size($twt-header-actions-btn-font-size);
+                font-weight: fontWeight($twt-header-actions-btn-font-weight);
+                line-height: null-pixel-unit($twt-header-actions-btn-line-height);
+                color: $twt-header-actions-btn-color;
+                border: 1px solid $twt-header-actions-btn-border-color;
+
+                @if $twt-header-actions-btn-corner-type == 2 {
+                    border-radius: null-pixel-unit($twt-border-radius);
+                } @else if $twt-header-actions-btn-corner-type == 3 {
+                    border-radius: null-pixel-unit($twt-header-actions-btn-line-height);
+                }
+
+                background-color: $twt-header-actions-btn-background-color;
+
+                > span[class$="icon"] {
+                    @if ($twt-header-account-btn-compatibility != 1 and twt-header-cart-btn-compatibility != 1) {
+                        @if ($twt-header-actions-btn-icon-position == 1) {
+                            display: inline-block;
+                        } @else {
+                            display: block;
+                        }
+                    }
+                }
+
+                .icon {
+                    display: inline-block;
+                    width: null-pixel-unit($twt-header-actions-btn-icon-font-size);
+                    height: null-pixel-unit($twt-header-actions-btn-icon-font-size);
+                    color: $twt-header-actions-btn-icon-color;
+
+                    & > svg {
+                        top: 0;
+                        margin-bottom: 2px;
+                    }
+                }
+
+                &:active,
+                &:hover {
+                    color: $twt-header-actions-btn-color-hover;
+                    border: 1px solid $twt-header-actions-btn-border-color-hover;
+                    background-color: $twt-header-actions-btn-background-color-hover;
+
+                    .icon {
+                        color: $twt-header-actions-btn-icon-color-hover;
+                    }
+                }
+
+                // ThemeWare: Cart button
+                &.header-cart-btn {
+                    font-weight: fontWeight($twt-header-actions-cart-btn-font-weight);
+                    color: $twt-header-actions-cart-btn-color;
+                    border: 1px solid $twt-header-actions-cart-btn-border-color;
+                    background-color: $twt-header-actions-cart-btn-background-color;
+
+                    // ThemeWare: Check Header background = cart-border-color & cart-background-color or transparent
+                    @if ($twt-header-actions-cart-btn-background-color == $twt-header-background-color-desktop and $twt-header-actions-cart-btn-border-color == $twt-header-background-color-desktop or $twt-header-actions-cart-btn-background-color == transparent and $twt-header-actions-cart-btn-border-color == transparent) {
+                        padding-right: 0;
+
+                        // ThemeWare: Badge right for padding-right 0
+                        .header-cart-badge {
+                            right: -12px;
+                        }
+                    }
+
+                    .icon {
+                        //-webkit-transition: color .20s ease;
+                        transition: color .20s ease;
+                        color: $twt-header-actions-cart-btn-icon-color;
+                    }
+
+                    &:active,
+                    &:hover {
+                        color: $twt-header-actions-cart-btn-color-hover;
+                        border: 1px solid $twt-header-actions-cart-btn-border-color-hover;
+                        background-color: $twt-header-actions-cart-btn-background-color-hover;
+
+                        .icon {
+                            color: $twt-header-actions-cart-btn-icon-color-hover;
+                        }
+
+                        @if $twt-header-actions-cart-btn-color != $primary {
+                            .header-cart-total {
+                                color: $twt-header-actions-cart-btn-color-hover;
+                            }
+                        }
+                    }
+
+                    .header-cart-total {
+                        @include twt-font-size($twt-header-actions-btn-font-size);
+                        line-height: 1;
+                        //-webkit-transition: color .20s ease;
+                        transition: color .20s ease;
+
+                        @if $twt-header-actions-cart-btn-color != $primary {
+                            color: $twt-header-actions-cart-btn-color;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        // ThemeWare: Search icon (search) change
+        .search-toggle-btn:not([aria-expanded="true"]) {
+            .icon-search {
+                display: inline-block;
+
+                @include media-breakpoint-down(xs) { // max 575.98px
+                    display: inline-flex;
+                }
+            }
+
+            .icon-x {
+                display: none;
+            }
+        }
+
+        .search-toggle-btn:not([aria-expanded="false"]) {
+            .icon-search {
+                display: none;
+            }
+
+            .icon-x {
+                display: inline-block;
+
+                @include media-breakpoint-down(xs) { // max 575.98px
+                    display: inline-flex;
+                }
+            }
+        }
+
+        // ThemeWare: Cart button > show/hide total
+        @if $twt-header-actions-cart-btn-total-show == 3 {
+            .header-cart-total {
+                display: inline-block;
+            }
+
+        } @else if $twt-header-actions-cart-btn-total-show == 4 {
+            @include media-breakpoint-up(sm) { // min 576px
+                .header-cart-total {
+                    display: inline-block;
+                }
+            }
+            @include media-breakpoint-down(xs) { // max 575.98px
+                .header-cart-total {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-total-show == 5 {
+            @include media-breakpoint-up(md) { // min 768px
+                .header-cart-total {
+                    display: inline-block;
+                }
+            }
+            @include media-breakpoint-down(sm) { // max 767.98px
+                .header-cart-total {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-total-show == 6 {
+            @include media-breakpoint-up(lg) { // min 992px
+                .header-cart-total {
+                    display: inline-block;
+                }
+            }
+            @include media-breakpoint-down(md) { // max 991.98px
+                .header-cart-total {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-total-show == 7 {
+            @include media-breakpoint-up(xl) { // min 1200px
+                .header-cart-total {
+                    display: inline-block;
+                }
+            }
+            @include media-breakpoint-down(lg) { // max 1199.98px
+                .header-cart-total {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-total-show == 8 {
+            @include media-breakpoint(min, $twt-container-max-width) {
+                .header-cart-total {
+                    display: inline-block;
+                }
+            }
+            @include media-breakpoint(max, $twt-container-max-width -1) {
+                .header-cart-total {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-total-show == 1 {
+            .header-cart-total {
+                display: none;
+            }
+        }
+
+        // ThemeWare: Cart badge, show/hide
+        @if $twt-header-actions-cart-btn-badge-show == 3 {
+            .header-cart-badge {
+                display: block;
+            }
+
+        } @else if $twt-header-actions-cart-btn-badge-show == 4 {
+            @include media-breakpoint-up(sm) { // min 576px
+                .header-cart-badge {
+                    display: block;
+                }
+            }
+            @include media-breakpoint-down(xs) { // max 575.98px
+                .header-cart-badge {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-badge-show == 5 {
+            @include media-breakpoint-up(md) { // min 768px
+                .header-cart-badge {
+                    display: block;
+                }
+            }
+            @include media-breakpoint-down(sm) { // max 767.98px
+                .header-cart-badge {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-badge-show == 6 {
+            @include media-breakpoint-up(lg) { // min 992px
+                .header-cart-badge {
+                    display: block;
+                }
+            }
+            @include media-breakpoint-down(md) { // max 991.98px
+                .header-cart-badge {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-badge-show == 7 {
+            @include media-breakpoint-up(xl) { // min 1200px
+                .header-cart-badge {
+                    display: block;
+                }
+            }
+            @include media-breakpoint-down(lg) { // max 1199.98px
+                .header-cart-badge {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-badge-show == 8 {
+            @include media-breakpoint(min, $twt-container-max-width) {
+                .header-cart-badge {
+                    display: block;
+                }
+            }
+            @include media-breakpoint(max, $twt-container-max-width -1) {
+                .header-cart-badge {
+                    display: none;
+                }
+            }
+
+        } @else if $twt-header-actions-cart-btn-badge-show == 1 {
+            .header-cart-badge {
+                display: none;
+            }
+        }
+    }
+}
+
+/* ThemeWare: Action buttons > show/hide labels */
+
+header.header-main {
+    @if $twt-header-actions-btn-text-show == 3 {
+        .header-nav-main-toggle-label,
+        .header-search-toggle-name,
+        .header-account-name,
+        .header-wishlist-name {
+            display: inline-block;
+        }
+
+        .wishlist-header-name {
+            display: inline-block; // Premsoft Wishlist
+        }
+    } @else if $twt-header-actions-btn-text-show == 4 {
+        @include media-breakpoint-up(sm) { // min 576px
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: inline-block;
+            }
+
+            .wishlist-header-name {
+                display: inline-block; // Premsoft Wishlist
+            }
+        }
+        @include media-breakpoint-down(xs) { // max 575.98px
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-btn-text-show == 5 {
+        @include media-breakpoint-up(md) { // min 768px
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: inline-block;
+            }
+
+            .wishlist-header-name {
+                display: inline-block; // Premsoft Wishlist
+            }
+        }
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-btn-text-show == 6 {
+        @include media-breakpoint-up(lg) { // min 992px
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: inline-block;
+            }
+
+            .wishlist-header-name {
+                display: inline-block; // Premsoft Wishlist
+            }
+        }
+        @include media-breakpoint-down(md) { // max 991.98px
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-btn-text-show == 7 {
+        @include media-breakpoint-up(xl) { // min 1200px
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: inline-block;
+            }
+
+            .wishlist-header-name {
+                display: inline-block; // Premsoft Wishlist
+            }
+        }
+        @include media-breakpoint-down(lg) { // max 1199.98px
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-btn-text-show == 8 {
+        @include media-breakpoint(min, $twt-container-max-width) {
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: inline-block;
+            }
+
+            .wishlist-header-namesw-color-brand-secondary {
+                display: inline-block; // Premsoft Wishlist
+            }
+        }
+        @include media-breakpoint(max, $twt-container-max-width -1) {
+            .header-nav-main-toggle-label,
+            .header-search-toggle-name,
+            .header-account-name,
+            .header-wishlist-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-btn-text-show == 1 {
+        .header-nav-main-toggle-label,
+        .header-search-toggle-name,
+        .header-account-name,
+        .header-wishlist-name {
+            display: none;
+        }
+    }
+
+    // ThemeWare: Cart button label, show/hide
+    @if $twt-header-actions-cart-btn-text-show == 3 {
+        .header-cart-name {
+            display: inline-block;
+        }
+    } @else if $twt-header-actions-cart-btn-text-show == 4 {
+        @include media-breakpoint-up(sm) { // min 576px
+            .header-cart-name {
+                display: inline-block;
+            }
+        }
+        @include media-breakpoint-down(xs) { // max 575.98px
+            .header-cart-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-cart-btn-text-show == 5 {
+        @include media-breakpoint-up(md) { // min 768px
+            .header-cart-name {
+                display: inline-block;
+            }
+        }
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .header-cart-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-cart-btn-text-show == 6 {
+        @include media-breakpoint-up(lg) { // min 992px
+            .header-cart-name {
+                display: inline-block;
+            }
+        }
+        @include media-breakpoint-down(md) { // max 991.98px
+            .header-cart-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-cart-btn-text-show == 7 {
+        @include media-breakpoint-up(xl) { // min 1200px
+            .header-cart-name {
+                display: inline-block;
+            }
+        }
+        @include media-breakpoint-down(lg) { // max 1199.98px
+            .header-cart-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-cart-btn-text-show == 8 {
+        @include media-breakpoint(min, $twt-container-max-width) {
+            .header-cart-name {
+                display: inline-block;
+            }
+        }
+        @include media-breakpoint(max, $twt-container-max-width -1) {
+            .header-cart-name {
+                display: none;
+            }
+        }
+    } @else if $twt-header-actions-cart-btn-text-show == 1 {
+        .header-cart-name {
+            display: none;
+        }
+    }
+}
+
+// TODO: <<<<<
+
+/*
+  _             _____ ____     ___                             _   _
+ | |__  _   _  |_   _/ ___|   |_ _|_ __  _ __   _____   ____ _| |_(_) ___  _ __  ___
+ | '_ \| | | |   | || |   _____| || '_ \| '_ \ / _ \ \ / / _  | __| |/ _ \| '_ \/ __|
+ | |_) | |_| |   | || |__|_____| || | | | | | | (_) \ V / (_| | |_| | (_) | | | \__ \
+ |_.__/ \__, |   |_| \____|   |___|_| |_|_| |_|\___/ \_/ \__,_|\__|_|\___/|_| |_|___/
+        |___/
+*/
+
+
+/* --- ThemeWare: Fixed mobile header ------------------------------ */
+@if $twt-header-phone-fixed == 2 {
+    @include media-breakpoint-down(xs) { // max 575.98px
+        header.header-main {
+            position: sticky;
+            z-index: $twt-sticky-nav-main-z-index;
+            top: 0;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+        }
+
+        // ThemeWare: Adjust search container when "Flyout search" is configured
+        // Info: Die Suche ist im "Flyout"-Modus nicht mehr Bestandteil des Headers, darum ist hier eine Ausnahme nötig:
+        @if $twt-header-search-show > 1 and ($twt-header-search-type == 2 or $twt-header-search-type == 4) {
+            .search-container {
+                position: sticky;
+                z-index: $twt-sticky-nav-main-z-index;
+                //top: auto-pixel-unit($twt-header-height-mobile) !important; // TODO: Adjust top via js
+                box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+            }
+        }
+
+        // ThemeWare: Adjust search container when header id 4 is configured
+        @if $twt-header-type == 4 and $twt-header-phone-type == 1 {
+            .search-container {
+                z-index: $twt-sticky-nav-main-z-index - 1;
+                top: 111px;
+
+                .collapse {
+                    &.show, 
+                    &.collapsing {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+            
+    }
+}
+
+
+
+/* Badges on header actions (Cart button + Wishlist button) */
+
+@if $twt-header-actions-cart-btn-badge-background-color != $sw-color-brand-primary {
+    // ThemeWare HC-Architecture: Colour is only assigned if it differs from the default value
+    .header-cart .header-cart-badge {
+        color: color-yiq($twt-header-actions-cart-btn-badge-background-color);
+        background-color: $twt-header-actions-cart-btn-badge-background-color;
+    }
+}
+
+@if $twt-header-actions-wishlist-btn-badge-background-color != $sw-color-brand-primary {
+    // ThemeWare HC-Architecture: Colour is only assigned if it differs from the default value
+    .header-wishlist .header-wishlist-badge {
+        color: color-yiq($twt-header-actions-wishlist-btn-badge-background-color);
+        background-color: $twt-header-actions-wishlist-btn-badge-background-color;
+    }
+}
+

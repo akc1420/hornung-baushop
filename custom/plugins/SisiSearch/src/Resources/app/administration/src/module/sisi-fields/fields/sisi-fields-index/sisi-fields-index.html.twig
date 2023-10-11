@@ -1,0 +1,174 @@
+{% block sisi_fields_index %}
+    <sw-page>
+        <template slot="smart-bar-actions">
+            <sw-button variant="primary" :routerLink="{ name: 'sisi.fields.list' }">
+                {{ $t('ssisi-fields.index.list') }}
+            </sw-button>
+        </template>
+        <template slot="content">
+            <div class="sisi-fields-index">
+
+                <div class="sw-loader" v-bind:style="{display:loader}">
+                    <div class="sw-loader__container" style="width: 50px; height: 50px;">
+                        <svg width="50px" height="50px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"
+                             class="sw-loader__element">
+                            <circle fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"
+                                    class="sw-loader__path"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <sw-card-view slot="content">
+                    <sw-grid :items="[ {main:'main',memory:'memory'}]">
+                        <template slot="columns" slot-scope="{ item }">
+                            <sw-grid-column flex="minmax(10px, 1fr)" label="Memory limit">
+                                <input type="number" id="memory" v-model="memory">
+                                <span style="padding: 10px">
+                                {{ $t('ssisi-fields.index.memoryInfo') }}
+                                 </span>
+                            </sw-grid-column>
+                            <sw-grid-column flex="minmax(10px, 1fr)" :label="$t('ssisi-fields.index.main')">
+                                <input type="checkbox" id="main" v-model="main">
+                                <span style="padding: 10px">
+                                {{ $t('ssisi-fields.index.mainInfo') }}
+                                 </span>
+                            </sw-grid-column>
+                        </template>
+                    </sw-grid>
+                    <sw-grid
+                        :items="[ {shop:'shop',language:'language', limit:'limit', offset:'offset', update:'update',button:'button'} ]">
+                        <template slot="columns" slot-scope="{ item }">
+                            <sw-grid-column flex="minmax(10px, 1fr)" label="shop">
+                                <select v-model="shop">
+                                    <option v-for="option in options" v-bind:value="option.value">
+                                        {{ option.text }}
+                                    </option>
+                                </select>
+                            </sw-grid-column>
+                            <sw-grid-column flex="minmax(10px, 1fr)" label="language">
+                                <select v-model="language">
+                                    <option v-for="option in optionsLanguage" v-bind:value="option.value">
+                                        {{ option.text }}
+                                    </option>
+                                </select>
+                            </sw-grid-column>
+                            <sw-grid-column flex="minmax(10px, 1fr)" label="limit">
+                                <input type="number" id="limit" v-model="limit">
+                            </sw-grid-column>
+                            <sw-grid-column flex="minmax(10px, 1fr)" :label="$t('ssisi-fields.index.kind')"
+                                            v-on:change="chanceTime()">
+                                <select v-model="kind">
+                                    <option value="0">
+                                        Index
+                                    </option>
+                                    <option value="1">
+                                        {{ $t('ssisi-fields.index.update') }}
+                                    </option>
+                                    <option value="2">
+                                        {{ $t('ssisi-fields.index.updateG') }}
+                                    </option>
+                                </select>
+                            </sw-grid-column>
+                            <sw-grid-column flex="minmax(10px, 1fr)" :label="$t('ssisi-fields.index.time')"
+                                            v-bind:class="{sisisearchred:strvalidateUpdate}">
+                                <input type="number" :min="0" id="time" v-model="time" v-bind:style="{display:timeStr}">
+                            </sw-grid-column>
+                            <sw-grid-column flex="minmax(10px, 1fr)" label="button">
+                                <sw-button variant="primary" v-on:click="startIndex()">
+                                    {{ $t('ssisi-fields.index.button') }}
+                                </sw-button>
+                            </sw-grid-column>
+                        </template>
+                    </sw-grid>
+
+                    <div class="status-box">
+                        <sw-grid :items="[ {status:'status'} ]">
+                            <template slot="columns" slot-scope="{ item }">
+                                <sw-grid-column flex="minmax(10px, 1fr)" :label="$t('ssisi-fields.index.info')">
+                                    <sw-button variant="primary" v-on:click="status()">
+                                        {{ $t('ssisi-fields.index.status') }}
+                                    </sw-button>
+                                </sw-grid-column>
+                            </template>
+                        </sw-grid>
+                    </div>
+                    <div class="status-box">
+                        <sw-grid :items="[ {all:'all',language:'language', delete:'delete'} ]">
+                            <template slot="columns" slot-scope="{ item }">
+
+                                <sw-grid-column flex="minmax(10px, 1fr)" :label="$tc('ssisi-fields.index.all')">
+                                    <input type="number" v-model="deleteValue">
+                                </sw-grid-column>
+
+                                <sw-grid-column flex="minmax(10px, 1fr)" label="shop">
+                                    <select v-model="shop">
+                                        <option v-for="option in options" v-bind:value="option.value">
+                                            {{ option.text }}
+                                        </option>
+                                    </select>
+                                </sw-grid-column>
+
+                                <sw-grid-column flex="minmax(10px, 1fr)" :label="$tc('ssisi-fields.index.language')">
+                                    <select v-model="languageValue">
+                                        <option v-for="option in optionsLanguage" v-bind:value="option.value">
+                                            {{ option.text }}
+                                        </option>
+                                    </select>
+                                </sw-grid-column>
+
+                                <sw-grid-column flex="minmax(10px, 1fr)" label="">
+                                    <sw-button variant="primary" v-on:click="deleteIndex()">
+                                        {{ $t('ssisi-fields.index.delete') }}
+                                    </sw-button>
+                                </sw-grid-column>
+
+                            </template>
+                        </sw-grid>
+
+
+                        <div class="status-box">
+
+                            <sw-grid :items="[ {language:'language', delete:'delete'} ]">
+                                <template slot="columns" slot-scope="{ item }">
+
+                                    <sw-grid-column flex="minmax(10px, 1fr)" :label="$tc('ssisi-fields.index.inaktive')">
+                                        <select v-model="shop">
+                                            <option v-for="option in options" v-bind:value="option.value">
+                                                {{ option.text }}
+                                            </option>
+                                        </select>
+                                    </sw-grid-column>
+
+                                    <sw-grid-column flex="minmax(10px, 1fr)"
+                                                    :label="$tc('ssisi-fields.index.language')">
+                                        <select v-model="languageValue">
+                                            <option v-for="option in optionsLanguage" v-bind:value="option.value">
+                                                {{ option.text }}
+                                            </option>
+                                        </select>
+                                    </sw-grid-column>
+
+                                    <sw-grid-column flex="minmax(10px, 1fr)" label="">
+                                        <sw-button variant="primary" v-on:click="deleteInaktiveIndex()">
+                                            {{ $t('ssisi-fields.index.delete') }}
+                                        </sw-button>
+                                    </sw-grid-column>
+
+                                </template>
+                            </sw-grid>
+                        </div>
+
+                        <sw-alert variant="info" appearance="false" :showIcon="true" :closable="false"
+                                  class="sisi-alert"
+                                  v-bind:style="{display:render}">
+                            <div v-html="unixPid"></div>
+                            <div v-html="statusText"></div>
+                            <div v-for="logitem in log">
+                                {{ logitem }}
+                            </div>
+                        </sw-alert>
+
+                </sw-card-view>
+            </div>
+        </template>
+    </sw-page>
+{% endblock %}

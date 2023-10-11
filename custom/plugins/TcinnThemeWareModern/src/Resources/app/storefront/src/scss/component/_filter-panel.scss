@@ -1,0 +1,147 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Filter panel
+	==============================================
+	Styling for filter panel component.
+	This file contains the generic styling for all filter items.
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Filter-panel adjustments
+// TODO: Shopware Vererbung prüfen...
+.filter-panel {
+	.filter-panel-item {
+		button {
+			/*&.disabled { ... }*/
+
+			&:not(.disabled) {
+				color: $twt-filter-panel-item-color;
+				border-color: $twt-filter-panel-item-border-color;
+				background-color: $twt-filter-panel-item-background-color;
+				box-shadow: none;
+
+				&:hover {
+					opacity: .9;
+				}
+			}
+
+			.icon {
+				&.icon-filter-panel-item-toggle {
+					svg {
+						top: 1px;
+						color: $twt-filter-panel-item-color;
+					}
+				}
+			}
+		}
+
+		&.show {
+			.filter-panel-item-toggle {
+				color: $twt-filter-panel-item-toggle-color;
+				border-color: $twt-filter-panel-item-toggle-border-color;
+
+				svg {
+					color: $twt-filter-panel-item-toggle-color;
+				}
+			}
+		}
+
+		.dropdown-menu {
+			margin-top: -8px;
+			background-color: $twt-filter-panel-item-toggle-background-color;
+		}
+	}
+}
+
+// ThemeWare: Filter adjustments
+// TODO: Shopware Vererbung prüfen...
+.cms-block-container-row { // TODO: >> _cms-block.scss ?!
+	// ThemeWare: Filter in sidebar
+	&.has--sidebar {
+		.filter-panel-wrapper {
+			padding-bottom: $twt-basegrid-spacing;
+
+			.filter-panel-item {
+				margin-bottom: -1px;
+				position: relative;
+
+			}
+
+			.filter-active {
+				margin-bottom: 3px;
+				border-radius: null-pixel-unit($twt-border-radius);
+			}
+
+			.filter-reset-all {
+				border-radius: null-pixel-unit($twt-border-radius);
+			}
+			
+			.filter-panel-item-toggle[aria-expanded="true"] {
+				border-color: $twt-filter-panel-content-border-color;
+			}
+			.filter-panel-item-dropdown {
+				border: $twt-filter-panel-content-border $twt-filter-panel-content-border-color;
+				background-color: $twt-filter-panel-item-toggle-background-color;
+			}
+		}
+	}
+
+	// ThemeWare: Filter in content:
+	&:not(.has--sidebar) {
+		.filter-panel-wrapper {
+			padding: null-pixel-unit($twt-filter-panel-content-padding-top) null-pixel-unit($twt-filter-panel-content-padding-right) null-pixel-unit($twt-filter-panel-content-padding-bottom) null-pixel-unit($twt-filter-panel-content-padding-left);
+			background-color: $twt-filter-panel-content-background-color;
+            
+			@if($twt-filter-panel-content-border != none) {
+				@include media-breakpoint-up(lg) { // min 992px
+					display: table;
+					width: 100%;
+					margin-top: -1px;
+					margin-bottom: -1px;
+					border-top: $twt-filter-panel-content-border $twt-filter-panel-content-border-color;
+					border-bottom: $twt-filter-panel-content-border $twt-filter-panel-content-border-color;
+				}
+			}
+
+			.filter-panel-items-container {
+				margin-bottom: 0;
+			}
+
+			.filter-active {
+				border-radius: null-pixel-unit($twt-border-radius);
+				background-color: $twt-filter-panel-content-filter-active-background-color;
+			}
+
+			.filter-reset-all {
+				border-radius: null-pixel-unit($twt-border-radius);
+			}
+		}
+	}
+}
+
+
+/*
+  _           _____ ___   ___                        _   _
+ | |__ _  _  |_   _/ __|_|_ _|_ _  _ _  _____ ____ _| |_(_)___ _ _  ___
+ |  _ \ || |   | || (_|___| || ' \| ' \/ _ \ V / _  |  _| / _ \ ' \(_-<
+ |_.__/\_, |   |_| \___| |___|_||_|_||_\___/\_/\__,_|\__|_\___/_||_/__/
+       |__/
+*/
+
+// ThemeWare: Offcanvas filter adjustments
+.offcanvas-filter {
+	.filter-active {
+		border-radius: null-pixel-unit($twt-border-radius);
+	}
+
+	.filter-reset-all {
+		border-radius: null-pixel-unit($twt-border-radius);
+	}
+}

@@ -1,0 +1,100 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/description.html.twig' %}
+{# ThemeWare® HC-Architecture® via configuration #}
+
+{# TODO: prüfen... #}
+
+{# ThemeWare: Description on classic product page #}
+{# INFO: Please note this is also available as "component/product/description.html.twig" since SW6.4 #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailDescriptionTitleShow = theme_config('twt-product-detail-description-title-show') %}
+{% set twtProductDetailProductVideosPosition = theme_config('twt-product-detail-product-videos-position') %}
+{% set twtProductDetailProductVideosShow = theme_config('twt-product-detail-product-videos-show') %}
+{% set twtProductDetailPropertiesHeadlineShow = theme_config('twt-product-detail-properties-headline-show') %}
+{% set twtProductDetailPropertiesInfoShow = theme_config('twt-product-detail-properties-info-show') %}
+{% set twtProductDetailPropertiesPosition = theme_config('twt-product-detail-properties-position') %}
+{% set twtProductDetailTabProductVideosShow = theme_config('twt-product-detail-tab-product-videos-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the description tab #}
+{# HC-Architecture @Doku #}
+{% block page_product_detail_description_title %}
+	{# ThemeWare: Adjustments on the product-detail-description-title #}
+	{% if twtProductDetailDescriptionTitleShow == 1 %}
+		{# ThemeWare: Block cleared #}
+	{% elseif twtProductDetailDescriptionTitleShow == 3 %}
+		{# ThemeWare: Show product name only #}
+		<div class="h3 product-detail-description-title">
+			{{ page.product.translated.name }}
+		</div>
+	{% elseif twtProductDetailDescriptionTitleShow == 4 %}
+		{# ThemeWare: Show descriptionTitle only #}
+		<div class="h3 product-detail-description-title">
+			{{ "detail.descriptionTitle"|trans|sw_sanitize }}
+		</div>
+	{% else %}
+
+		{# Default block #}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}
+
+
+{# ThemeWare: Adjustment of the description content #}
+{% block page_product_detail_description_content %}
+	{# Default block #}
+	{{ parent() }}
+
+	{# ThemeWare: Add product videos below properties (only if the videos tab is not displayed) #}
+	{% if twtProductDetailProductVideosShow == 2 and twtProductDetailProductVideosPosition == 2 and twtProductDetailTabProductVideosShow == 1 %}
+		{% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-videos.html.twig' ignore missing with {
+			type: 'product-detail',
+			position: 'description'
+		} %}
+	{% endif %}
+{% endblock %}
+
+
+{# ThemeWare: Adjustment of the properties in description tab #}
+{# HC-Architecture @Doku #}
+{% block page_product_detail_description_content_properties %}
+	{# ThemeWare: Add product videos above properties (only if the videos tab is not displayed) #}
+	{% if twtProductDetailProductVideosShow == 2 and twtProductDetailProductVideosPosition == 1 and twtProductDetailTabProductVideosShow == 1 %}
+		{% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-videos.html.twig' ignore missing with {
+			type: 'product-detail',
+			position: 'description'
+		} %}
+	{% endif %}
+
+	{# ThemeWare: Add properties headline #}
+	{# TODO: Add configuration #}
+	{% if twtProductDetailPropertiesPosition != 2 and twtProductDetailPropertiesHeadlineShow != 1 %}
+		{% block page_product_detail_properties_title %}
+			<div class="h4 twt-product-properties-description-title">
+				{{ "twt.detail.headlineProperties"|trans|sw_sanitize }}
+			</div>
+		{% endblock %}
+	{% endif %}
+
+	{# ThemeWare: Show properties in individuell tab if configured #}
+	{% if twtProductDetailPropertiesPosition == 2 %}
+		{# ThemeWare: Block cleared #}
+	{% else %}
+
+		{# Default block > load "page/product-detail/properties.html.twig" #}
+		{{ parent() }}
+	{% endif %}
+
+	{# ThemeWare: Add properties to offcanvas content #}
+	{# TODO: Add configuration #}
+	{% if twtProductDetailPropertiesPosition != 2 and twtProductDetailPropertiesInfoShow != 1 %}
+		{% block page_product_detail_properties_info %}
+			<div class="twt-product-detail-properties-info">
+				{{ "twt.detail.infoProperties"|trans|sw_sanitize }}
+			</div>
+		{% endblock %}
+	{% endif %}
+{% endblock %}

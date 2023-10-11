@@ -1,0 +1,96 @@
+﻿/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: SCSS-Functions
+    ==================================================
+
+*/
+
+// TODO: Add 'twt-' prefix?!
+
+// ThemeWare: Strip-unit Function
+// - Example: "min-width: strip-unit($twt-container-max-width)+60 + px"
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+// ThemeWare: Null-pixel-unit Function
+// - Temporarily fix until shopware fixes the 'null'-bug in theme-fields
+// - Example: "margin: null-pixel-unit($twt-container-max-width)"
+@function null-pixel-unit($string) {
+	@if $string == 1 {
+		@return 0 + px;
+	} @else {
+		@return $string + px;
+	}
+
+	@return $string;
+}
+
+// ThemeWare: Auto-pixel-unit Function
+// - Example: "margin: auto-pixel-unit($twt-container-max-width)"
+@function auto-pixel-unit($string) {
+	@if ($string != 'auto' and $string != '100%' and $string != 'none' and $string != 'inherit' and $string != 'initial' and $string != 'unset') {
+		@if type-of($string) == 'number' and not unitless($string) {
+			@return $string / ($string * 0 + 1) + px;
+		} @else {
+			@return $string + px;
+		}
+	}
+
+	@return $string;
+}
+
+// ThemeWare: Replace function `$search` with `$replace` in `$string`
+// - Example:
+// - $string: 'Das ist ein Test';
+// - content: str-replace($string, 'ein', 'kein');
+@function str-replace($string, $search, $replace: '') {
+  $index: str-index($string, $search);
+  
+  @if $index {
+    @return str-slice($string, 1, $index - 1) + $replace + str-replace(str-slice($string, $index + str-length($search)), $search, $replace);
+  }
+  
+  @return $string;
+}
+
+// ThemeWare: lighten a color
+// - Example: color: tint(#BADA55, 42%);
+@function tint($color, $percentage) {
+	@return mix(white, $color, $percentage);
+}
+
+// ThemeWare: darken a color
+// - Example: color: shade(#663399, 42%);
+@function shade($color, $percentage) {
+	@return mix(black, $color, $percentage);
+}
+
+// ThemeWare: Convert px to rem.
+// - add @mixin fontSize
+@function rem($size) {
+	$value: strip-unit($size) / 16 * 1rem;
+	@return $value;
+}
+
+// ThemeWare: fontWeight function
+// - Example: "font-weight: fontWeight($twt-footer-column-headline-font-weight)"
+@function fontWeight($weight) {	
+	@if $weight == "light" {
+		@return $twt-font-weight-light;
+	} @else if $weight == "normal" {
+		@return $twt-font-weight-normal;
+	} @else if $weight == "bold" {
+		@return $twt-font-weight-bold;
+	}
+}

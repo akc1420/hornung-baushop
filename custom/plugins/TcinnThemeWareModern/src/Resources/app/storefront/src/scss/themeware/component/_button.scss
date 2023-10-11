@@ -1,0 +1,28 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Alternate buttons
+	==================================================
+
+*/
+
+
+// ThemeWare: Button colors ------------------------------
+// - Weitere Farben hinzufügen (default: $theme-colors)
+
+@each $color, $value in $colors {
+    .btn-#{$color} {
+        @include button-variant($value, $value);
+    }
+}
+
+@each $color, $value in $colors {
+    .btn-outline-#{$color} {
+        @include button-outline-variant($value);
+    }
+}

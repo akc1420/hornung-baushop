@@ -1,0 +1,20 @@
+{% block clever_reach_abandoned_cart_settings_thea %}
+    <sw-card class="cr-ac-thea" :isLoading="isLoading">
+        <template v-slot:title>
+            {{ $tc('clever-reach.abandonedCart.thea') }}
+        </template>
+        <sw-container>
+            <sw-label variant="neutral" class="cr-ac-thea-desc">
+                {{ $tc('clever-reach.abandonedCart.sendEmails') }}
+            </sw-label>
+            <sw-switch-field v-model="theaStatus"
+                             :label="theaLabel"
+                             class="cr-ac-settings-activate-thea"
+                             @change="editTheaStatus">
+            </sw-switch-field>
+            <sw-button class="cr-ac-thea-btn" variant="ghost" @click="editEmail">
+                {{ $tc('clever-reach.abandonedCart.edit') }}
+            </sw-button>
+        </sw-container>
+    </sw-card>
+{% endblock %}

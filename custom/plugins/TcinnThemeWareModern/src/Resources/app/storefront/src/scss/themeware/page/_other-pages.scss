@@ -1,0 +1,56 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Other pages
+    ==================================================
+    Theme specific stylings for non-cms pages.
+
+*/
+
+// ThemeWare: Adjustments for non-cms pages------------------------------
+// TODO: Enable additional configuration to switch off
+
+// ThemeWare Set .twt-content-main for @extend
+.twt-container-main {
+  margin-top: null-pixel-unit($twt-container-main-margin-top);
+  margin-bottom: null-pixel-unit($twt-container-main-margin-bottom);
+  background-color: $twt-container-main-background-color;
+
+  @include media-breakpoint-down(xs) { // max 575.98px
+    padding: null-pixel-unit($twt-container-main-padding-phone-xs);
+  }
+  @include media-breakpoint-up(sm) { // min 576px
+    padding: null-pixel-unit($twt-container-main-padding-phone);
+  }
+  @include media-breakpoint-up(md) { // min 768px
+    padding: null-pixel-unit($twt-container-main-padding-tablet);
+  }
+  @include media-breakpoint-up(xl) { // min 1200px
+    padding: null-pixel-unit($twt-container-main-padding);
+  }
+  
+  // ThemeWare: TODO: Clean style 
+  @if ($twt-container-main-border-color != $twt-container-main-background-color) {
+    border: 1px solid $twt-container-main-border-color;
+  }
+}
+
+// Other pages class list
+.is-ctl-register,
+.is-ctl-auth,
+.is-ctl-accountprofile,
+.is-ctl-address,
+.is-ctl-accountpayment,
+.is-ctl-accountorder,
+.is-ctl-wishlist,
+.is-ctl-checkout,
+.is-ctl-search {
+  .content-main .container-main > div {
+    @extend .twt-container-main;
+  }
+}

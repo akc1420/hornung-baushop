@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<psalm
+    autoloader="../../../vendor/autoload.php"
+    findUnusedVariablesAndParams="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+>
+    <projectFiles>
+        <directory name="src"/>
+        <directory name="tests"/>
+        <ignoreFiles>
+            <directory name="../../../platform"/> <!-- would otherwise inspect Shopware -->
+            <directory name="../../../vendor"/> <!-- prevents to check vendors -->
+            <directory name="vendor"/> <!-- prevents to check vendors -->
+        </ignoreFiles>
+    </projectFiles>
+
+    <issueHandlers>
+        <MoreSpecificImplementedParamType>
+            <errorLevel type="info">
+                <file name="src/DataAbstractionLayer/Entity/SocialShoppingProductErrorCollection.php"/>
+                <file name="src/DataAbstractionLayer/Entity/SocialShoppingSalesChannelCollection.php"/>
+            </errorLevel>
+        </MoreSpecificImplementedParamType>
+
+        <InvalidReturnType>
+            <errorLevel type="info">
+                <directory name="tests/Mock"/>
+            </errorLevel>
+        </InvalidReturnType>
+
+        <!-- level 3 issues - slightly lazy code writing, but provably low false-negatives -->
+
+        <InternalMethod errorLevel="info"/>
+        <PropertyNotSetInConstructor errorLevel="info"/>
+        <MissingConstructor errorLevel="info"/>
+        <UnresolvableInclude errorLevel="info"/>
+
+    </issueHandlers>
+</psalm>

@@ -1,0 +1,16 @@
+{% block clever_reach_tab %}
+    <sw-tabs>
+        <sw-tab-item name="dashboard" :active="activeTab === 'dashboard'" @click="activeTab = 'dashboard'"
+                     :route="{ name:'clever.reach.official.index', params: { page:'dashboard' } }">
+            {{ $tc('clever-reach.dashboard.dashboard') }}
+        </sw-tab-item>
+        <sw-tab-item name="forms" :active="activeTab === 'forms'" @click="activeTab = 'forms"
+                     :route="{ name:'clever.reach.official.index', params: { page:'forms' } }">
+            {{ $tc('clever-reach.forms.tabName') }}
+        </sw-tab-item>
+        <sw-tab-item name="settings" :active="activeTab === 'settings'" @click="activeTab = 'settings'"
+                     :route="{ name:'clever.reach.official.index', params: { page:'settings' } }">
+            {{ $tc('clever-reach.syncSettings.tabName') }}
+        </sw-tab-item>
+    </sw-tabs>
+{% endblock %}

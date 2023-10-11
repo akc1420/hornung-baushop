@@ -1,0 +1,23 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+
+{% block layout_head_javascript_tracking %}
+
+{{parent()}}
+
+    <script>  
+       window.serkiz_housenumber_message = '{{ "plugin_housenumber.error"|trans }}';
+
+        {% if page.header.extensions.Serkiz6Housenumber and page.header.extensions.Serkiz6Housenumber.config.block %}
+        window.serkiz_housenumber = '{{ page.header.extensions.Serkiz6Housenumber.config.block|escape("js") }}';
+        {% else %}
+        window.serkiz_housenumber = '0';
+        {% endif %}
+        {% if page.header.extensions.Serkiz6Housenumber and page.header.extensions.Serkiz6Housenumber.config.blockajax %}
+        window.block_housenumber_ajax = '{{ page.header.extensions.Serkiz6Housenumber.config.blockajax|escape("js") }}';
+        {% else %}
+        window.block_housenumber_ajax = '0';
+        {% endif %}
+    </script>
+
+{% endblock %}

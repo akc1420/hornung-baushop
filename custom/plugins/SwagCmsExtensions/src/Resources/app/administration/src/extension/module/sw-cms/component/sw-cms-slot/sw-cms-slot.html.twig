@@ -1,0 +1,53 @@
+{% block sw_cms_slot_content %}
+    {% parent %}
+
+    {% block swag_cms_extensions_form_editor_modal %}
+        <swag-cms-extensions-form-editor-modal v-if="showFormCreationModal"
+                                               @modal-close="onCloseCreateFormModal">
+        </swag-cms-extensions-form-editor-modal>
+    {% endblock %}
+{% endblock %}
+
+{% block sw_cms_slot_content_settings_modal %}
+    <template v-if="showElementSettings">
+        <swag-cms-extensions-form-editor-modal v-if="slotHasFormExtension"
+                                               @modal-close="onCloseEditFormModal">
+        </swag-cms-extensions-form-editor-modal>
+
+        <sw-modal v-else
+                  class="sw-cms-slot__config-modal"
+                  :title="modalTitle"
+                  @modal-close="onSettingsModalClose">
+
+            {% block sw_cms_slot_content_settings_modal_component %}
+                <component v-model="element"
+                           :is="elementConfig.configComponent"
+                           @form-template-id-change="onFormTemplateIdChange">
+                </component>
+            {% endblock %}
+
+            {% block sw_cms_slot_content_settings_modal_footer %}
+                <template #modal-footer>
+
+                    {% block sw_cms_slot_content_settings_modal_action_confirm %}
+                        {% block swag_cms_extensions_modal_action_cancel %}
+                            <sw-button v-if="isElementTypeCustomForm"
+                                       @click="onSettingsModalClose">
+                                {{ $tc('sw-settings-customer-group.general.buttonCancel') }}
+                            </sw-button>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_modal_action_confirm %}
+                            <sw-button variant="primary"
+                                       @click="onPrimaryConfirm">
+                                {{ primaryActionText }}
+                            </sw-button>
+                        {% endblock %}
+                    {% endblock %}
+
+                </template>
+            {% endblock %}
+
+        </sw-modal>
+    </template>
+{% endblock %}

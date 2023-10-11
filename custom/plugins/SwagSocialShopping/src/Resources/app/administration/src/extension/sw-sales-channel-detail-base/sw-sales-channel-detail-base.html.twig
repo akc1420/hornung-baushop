@@ -1,0 +1,12 @@
+{% block sw_sales_channel_detail_base %}
+    <span v-if="isSocialShopping">
+        <component v-bind:is="socialShoppingType"
+                   :isLoading="isLoading"
+                   :salesChannel="salesChannel"
+                   :isNewEntity="isNewEntity"
+        ></component>
+    </span>
+    <span v-else>
+        {% parent %}
+    </span>
+{% endblock %}

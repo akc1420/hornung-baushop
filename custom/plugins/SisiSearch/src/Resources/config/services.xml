@@ -1,0 +1,282 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Sisi\Search\Service\SisiGetFieldsService" public="true">
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="s_plugin_sisi_search_es_fields.repository"/>
+        </service>
+
+        <service id="Sisi\Search\Controller\ElasticsearchIndexController" public="true">
+            <argument type="service" id="sisi.search.indexService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Sisi\Search\Controller\SisiBackendSearchController" public="true">
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Sisi\Search\Service\SisiGetFieldsService"/>
+            <argument type="service" id="Sisi\Search\Service\FrontendService"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Sisi\Search\Task\Task">
+            <tag name="shopware.scheduled.task"/>
+        </service>
+
+        <service id="Sisi\Search\Core\Content\Task\Bundle\DBSchedularDefinition">
+            <tag name="shopware.entity.definition" entity="sisi_search_es_scheduledtask"/>
+        </service>
+
+        <service id="Sisi\Search\Task\TaskHandler">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Elasticsearch\Framework\ElasticsearchHelper"/>
+            <argument type="service" id="Sisi\Search\ESindexing\ProduktDataIndexer"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="scheduled_task.repository"/>
+            <argument type="service" id="Sisi\Search\Service\SearchCategorieService"/>
+            <argument type="service" id="Shopware\Core\Content\Product\AbstractPropertyGroupSorter"/>
+            <tag name="messenger.message_handler"/>
+        </service>
+
+        <service id="Sisi\Search\Twig\FrontendHelper">
+            <tag name="twig.extension"/>
+        </service>
+
+
+        <service id="Sisi\Search\Storefront\Subscriber\CheckoutEvents">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="Sisi\Search\Service\FrontendService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+
+        <service id="Sisi\Search\Storefront\Subscriber\SearchEvents">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="Sisi\Search\ESindexing\CreateCriteria"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="Sisi\Search\Service\FrontendService"/>
+            <argument type="service" id="Sisi\Search\Service\SearchCategorieService"/>
+            <argument type="service" id="Sisi\Search\Decorater\SisiProductPriceCalculator"/>
+            <argument type="service" id="Sisi\Search\Decorater\QuerylogSearchService"/>
+            <argument type="service" id="Shopware\Core\Content\Product\AbstractPropertyGroupSorter"/>
+            <argument type="service" id="Sisi\Search\ESindexing\SearchAjaxService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Sisi\Search\Storefront\Subscriber\WrittenEvents">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="service_container"/>
+            <argument type="service" id="Sisi\Search\ESindexing\CreateCriteria"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <argument type="service" id="Shopware\Core\Content\Media\Pathname\UrlGeneratorInterface"/>
+            <argument type="service" id="Shopware\Core\Content\Product\AbstractPropertyGroupSorter"/>
+             <argument type="service" id="Sisi\Search\ESindexing\InserProduktDataIndex"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="Sisi\Search\Storefront\Subscriber\FrontendEvents">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+
+        <service id="Sisi\Search\Core\Content\Fields\Bundle\DBFieldsDefinition">
+            <tag name="shopware.entity.definition" entity="sisi_es_fields"/>
+        </service>
+
+        <service id="Sisi\Search\Resources\snippet\en_GB\SnippetFileGB" public="true">
+            <tag name="shopware.snippet.file"/>
+        </service>
+
+        <service id="Sisi\Search\Resources\snippet\de_DE\SnippetFileDE" public="true">
+            <tag name="shopware.snippet.file"/>
+        </service>
+
+        <service id="Sisi\Search\ESindexing\ProduktDataSettings">
+        </service>
+
+        <service id="Sisi\Search\ESindexing\ProduktDataMapping">
+        </service>
+
+        <service id="Sisi\Search\ESindexing\CreateIndex">
+        </service>
+
+        <service id="Sisi\Search\ESindexing\CreateCriteria">
+        </service>
+
+        <service id="Sisi\Search\ESindexing\InsertQuery">
+        </service>
+
+        <service id="Sisi\Search\Service\FrontendService">
+        </service>
+
+        <service id="Sisi\Search\Service\SearchCategorieService">
+        </service>
+
+        <service id="Sisi\Search\Decorater\QuerylogSearchService">
+        </service>
+
+        <service id="Sisi\Search\Decorater\QuerylogService">
+        </service>
+
+        <service id="Sisi\Search\Decorater\SisiProductPriceCalculator">
+            <argument type="service" id="unit.repository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator"/>
+        </service>
+
+        <service id="Sisi\Search\ESindexing\InserProduktDataIndex">
+            <argument type="service" id="Sisi\Search\ESindexing\InsertQuery"/>
+        </service>
+
+        <service id="Sisi\Search\ESindexing\SearchAjaxService">
+        </service>
+
+        <service id="Sisi\Search\Commands\ProductStepIndexerCommand">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Elasticsearch\Framework\ElasticsearchHelper"/>
+            <argument type="service" id="Sisi\Search\ESindexing\ProduktDataIndexer"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="Sisi\Search\Service\SearchCategorieService"/>
+            <argument type="service" id="Shopware\Core\Content\Product\AbstractPropertyGroupSorter"/>
+            <tag name="console.command"/>
+        </service>
+
+
+        <service id="Sisi\Search\Controller\IndexController" public="true">
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Sisi\Search\Controller\DashController" public="true">
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+
+        <service id="Sisi\Search\Storefront\Page\SearchPageLoader" class="Sisi\Search\Storefront\Page\SearchPageLoader"
+                 public="true" autowire="true">
+            <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader"/>
+            <argument type="service" id="Shopware\Core\Content\Product\SalesChannel\Search\ProductSearchRoute"/>
+        </service>
+
+        <service id="Sisi\Search\Controller\SearchController" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="Sisi\Search\ESindexing\CreateCriteria"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="Sisi\Search\Service\FrontendService"/>
+            <argument type="service" id="Sisi\Search\Storefront\Page\SearchPageLoader"/>
+            <argument type="service" id="Symfony\Component\EventDispatcher\EventDispatcherInterface"/>
+            <argument type="service" id="Sisi\Search\ESindexing\SearchAjaxService"/>
+            <argument type="service" id="Sisi\Search\Service\SearchCategorieService"/>
+            <argument type="service" id="Sisi\Search\Decorater\QuerylogSearchService"/>
+            <argument type="service" id="Sisi\Search\Decorater\SisiProductPriceCalculator"/>
+            <argument type="service" id="Shopware\Core\Content\Product\AbstractPropertyGroupSorter"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig"/>
+            </call>
+        </service>
+
+        <service id="Sisi\Search\Controller\TrackController" public="true">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Sisi\Search\Decorater\QuerylogSearchService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Sisi\Search\ESindexing\ProduktDataIndexer">
+            <argument type="service" id="Sisi\Search\ESindexing\ProduktDataSettings"/>
+            <argument type="service" id="Sisi\Search\ESindexing\ProduktDataMapping"/>
+            <argument type="service" id="Sisi\Search\ESindexing\CreateIndex"/>
+            <argument type="service" id="Sisi\Search\ESindexing\CreateCriteria"/>
+            <argument type="service" id="Sisi\Search\ESindexing\InserProduktDataIndex"/>
+            <argument type="service" id="Shopware\Core\Content\Media\Pathname\UrlGeneratorInterface"/>
+        </service>
+
+        <service id="Sisi\Search\Commands\DeleteContentCommand">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Sisi\Search\Commands\DeleteInaktiveCommand">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Sisi\Search\Commands\IndexlogCommand">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="Sisi\Search\Decorater\QuerylogService"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Sisi\Search\Commands\CategorieIndexCommand">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="Symfony\Component\DependencyInjection\ContainerInterface"/>
+            <argument type="service" id="Sisi\Search\Service\SearchCategorieService"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="sisi.search.clientService" class="Sisi\Search\Service\ClientService">
+        </service>
+
+        <service id="sisi.search.contextService" class="Sisi\Search\Service\ContextService">
+        </service>
+
+        <service id="sisi.search.indexService" class="Sisi\Search\Service\V2\IndexService">
+            <argument type="service" id="sisi.search.clientService"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="monolog.logger.console"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+        </service>
+    </services>
+</container>

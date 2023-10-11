@@ -1,0 +1,23 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: CMS blocks
+    ==============================================
+    General styling for cms blocks and
+    specific styling for elements dependent on their parent block
+
+    Origin: Shopware base & skin
+*/
+
+// ThemeWare: Product listing adjustments
+// Make overflow visible when product boxes have box-shadows
+@if $twt-product-box-layout-type == 2 {
+    .cms-block-product-listing {
+        overflow: visible;
+    }
+}

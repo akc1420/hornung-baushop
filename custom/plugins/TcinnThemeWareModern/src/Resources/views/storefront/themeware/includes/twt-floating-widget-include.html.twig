@@ -1,0 +1,36 @@
+{# ThemeWare "Floating/slideout widget" content #}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtFloatingWidgetBackgroundImage = theme_config('twt-floating-widget-background-image') %}
+{% set twtFloatingWidgetLink = theme_config('twt-floating-widget-link') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_floating_widget_container %}
+    <div class="twt-floating-widget-title">
+        {{ "twt.extension.floatingWidget.title"|trans|raw }}
+    </div>
+    <div class="twt-floating-widget-body{% if twtFloatingWidgetBackgroundImage != "" and twtFloatingWidgetBackgroundImage != "none" %} is-image{% endif %}">
+
+        {% block twt_floating_widget_content %}
+            {% if twtFloatingWidgetLink > 1 %}<a href="{{ "twt.extension.floatingWidget.link"|trans }}" title="{{ "twt.extension.floatingWidget.title"|trans }}"{% if twtFloatingWidgetLink == 3 %} target="_blank" rel="noopener"{% endif %}>{% endif %}
+
+            {% if twtFloatingWidgetBackgroundImage != "" and twtFloatingWidgetBackgroundImage != "none" %}
+                <div class="twt-floating-widget-image-wrapper">
+                    <img src="{{ twtFloatingWidgetBackgroundImage|sw_encode_url }}" alt="{{ "twt.extension.floatingWidget.title"|trans }}" />
+                </div>
+            {% endif %}
+
+            <div class="twt-floating-widget-content">
+                <span>{{ "twt.extension.floatingWidget.body"|trans|raw }}</span>
+            </div>
+
+            {% if twtFloatingWidgetLink > 1 %}</a>{% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

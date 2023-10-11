@@ -1,0 +1,39 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Bootstrap style '.label' mixins added (currently missing in Shopware)
+	==================================================
+
+*/
+
+// TODO: Add 'twt-' prefix... (see _badge.scss)
+
+// ThemeWare: Label variants ------------------------------
+
+@mixin label-variant($background, $border, $color) {
+  color: color-yiq($background);
+  @include gradient-bg($background);
+  border-color: $border;
+}
+
+@mixin label-variant-lighten($background, $border, $color) {
+  color: $color;
+  @include gradient-bg($background);
+  border-color: $border;
+}
+
+// ThemeWare: Label sizes ------------------------------
+
+@mixin label-size($padding-y, $padding-x, $font-size, $line-height, $border-radius) {
+  @include font-size($font-size);
+  padding: $padding-y $padding-x;
+  line-height: $line-height;
+
+  // ThemeWare: Manually declare to provide an override to the browser default
+  @include border-radius($border-radius, 0);
+}

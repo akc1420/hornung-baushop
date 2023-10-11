@@ -1,0 +1,351 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Breadcrumb
+	==============================================
+	Custom skin styling for bootstrap breadcrumb component.
+	https://getbootstrap.com/docs/4.3/components/breadcrumb/
+
+	Origin: Shopware skin
+*/
+
+// TODO: Add more styles
+// TODO: Add background-colors for links in some styles
+// TODO: Add background-color for list-element
+
+.cms-breadcrumb, .container-main {
+	> nav[aria-label="breadcrumb"] {
+		display: flex;
+		overflow: hidden;
+		align-items: center;
+
+		justify-content: $twt-breadcrumb-justify-content;
+		width: 100%;
+
+		padding: null-pixel-unit($twt-breadcrumb-padding-top-bottom) null-pixel-unit($twt-breadcrumb-padding-left-right);
+
+		// ThemeWare: No container styling
+		//@if $twt-breadcrumb-container-styling == 1 {}
+
+		// ThemeWare: ThemeWare container styling
+		@if $twt-breadcrumb-container-styling == 2 {
+			background-color: $twt-cms-section-boxed-background-color;
+			border: 1px solid $twt-cms-section-boxed-border-color;
+		}
+
+		// ThemeWare: Custom container styling
+		@if $twt-breadcrumb-container-styling == 3 {
+			background-color: $twt-breadcrumb-background-color;
+			border: 1px solid $twt-breadcrumb-border-color;
+
+			@if $twt-breadcrumb-border-top-color != $twt-breadcrumb-border-color {
+				border-top: 1px solid $twt-breadcrumb-border-top-color;
+			}
+			@if $twt-breadcrumb-border-bottom-color != $twt-breadcrumb-border-color {
+				border-bottom: 1px solid $twt-breadcrumb-border-bottom-color;
+			}
+
+			// 1 = not rounded (default)
+			@if $twt-breadcrumb-container-corner-type == 2 { // 2 = rounded corners
+				border-radius: null-pixel-unit($twt-border-radius);
+			}
+			@if $twt-breadcrumb-container-corner-type == 3 { // 3 = round corners
+				@include border-radius(50px);
+			}
+
+			// TODO: 4 = individual radius
+		}
+
+		ol.breadcrumb {
+			align-items: center;
+			margin: 0;
+			padding: 0;
+
+			// ThemeWare: Links with background colour
+			@if $twt-breadcrumb-style == 2 {
+				background-color: $twt-breadcrumb-background-color-list;
+				border: 1px solid $twt-breadcrumb-border-color-list;
+				padding: 10px 20px;
+			}
+			@if $twt-breadcrumb-style == 2 and $twt-breadcrumb-list-corner-type == 1 { // 1 = not rounded
+				@include border-radius(0);
+			}
+			@if $twt-breadcrumb-style == 2 and $twt-breadcrumb-list-corner-type == 2 { // 2 = rounded corners
+				border-radius: null-pixel-unit($twt-border-radius);
+			}
+			@if $twt-breadcrumb-style == 2 and $twt-breadcrumb-list-corner-type == 3 { // 3 = round corners
+				@include border-radius(50px);
+			}
+
+			// TODO: 4 = individual radius
+		}
+	}
+}s
+
+// ThemeWare: Adjustments on category pages, CMS product pages
+.cms-breadcrumb {
+	position: relative;
+	z-index: 1;
+
+	//> nav[aria-label="breadcrumb"] {}
+}
+
+// ThemeWare: Adjustments on default product pages
+//.container-main {
+//	> nav[aria-label="breadcrumb"] {}
+//}
+
+// ThemeWare: Adjustments on home page
+@if $twt-breadcrumb-show-home == 1 {
+	.is-ctl-navigation.is-act-home {
+		.breadcrumb {
+			display: none;
+		}
+	}
+}
+
+// ThemeWare: Adjustments on shop pages
+// .container-main > .breadcrumb.cms-breadcrumb.container > nav[aria-label="breadcrumb"]
+@if $twt-breadcrumb-show-cms-shop-pages == 1 {
+	.twt-is-cms-page {
+		.breadcrumb { display: none; }
+	}
+}
+
+// ThemeWare: Adjustments on landing pages
+// .container-main > .breadcrumb.cms-breadcrumb.container > nav[aria-label="breadcrumb"]
+@if $twt-breadcrumb-show-cms-landing-pages == 1 {
+	.twt-is-cms-landingpage {
+		.breadcrumb { display: none; }
+	}
+}
+
+// ThemeWare: Adjustments on category pages
+// .container-main > .breadcrumb.cms-breadcrumb.container > nav[aria-label="breadcrumb"]
+@if $twt-breadcrumb-show-cms-category-pages == 1 {
+	.twt-is-cms-product-list {
+		.breadcrumb { display: none; }
+	}
+}
+
+.is-ctl-navigation {
+	.cms-breadcrumb {
+		margin-top: null-pixel-unit($twt-breadcrumb-margin-top);
+		margin-bottom: null-pixel-unit($twt-breadcrumb-margin-bottom);
+
+		padding: 0 $twt-basegrid-spacing;
+
+		@if $twt-container-layout ==2 and $twt-breadcrumb-width == 2 {
+			max-width: inherit;
+		}
+
+		.breadcrumb-inner-container {
+			width: 100%;
+
+			@if $twt-container-layout ==2 and $twt-breadcrumb-width == 1 {
+				max-width: null-pixel-unit($twt-container-max-width);
+			}
+		}
+	}
+}
+
+// ThemeWare: Adjustments on product pages
+// .container-main > nav[aria-label="breadcrumb"]
+@if $twt-breadcrumb-show-cms-product-pages == 1 {
+	.twt-is-cms-product-detail {
+		.breadcrumb { display: none; }
+	}
+}
+
+.twt-is-cms-product-detail {
+	.cms-breadcrumb {
+		margin-top: null-pixel-unit($twt-breadcrumb-margin-top);
+		margin-bottom: null-pixel-unit($twt-breadcrumb-margin-bottom);
+
+		padding: 0 $twt-basegrid-spacing;
+
+		@if $twt-container-layout ==2 and $twt-breadcrumb-width == 2 {
+			max-width: inherit;
+		}
+
+		.breadcrumb-inner-container {
+			width: 100%;
+
+			@if $twt-container-layout ==2 and $twt-breadcrumb-width == 1 {
+				max-width: null-pixel-unit($twt-container-max-width);
+			}
+		}
+	}
+}
+
+// ThemeWare: Adjustments on classic product pages
+// .container-main > nav[aria-label="breadcrumb"]
+@if $twt-breadcrumb-show-product-detail == 1 {
+	.is-ctl-product:not(.twt-is-cms-product-detail) {
+		nav[aria-label="breadcrumb"] { display: none; }
+	}
+}
+
+.is-ctl-product:not(.twt-is-cms-product-detail) {
+	nav[aria-label="breadcrumb"] {
+		margin-top: null-pixel-unit($twt-breadcrumb-margin-top);
+		margin-bottom: null-pixel-unit($twt-breadcrumb-margin-bottom);
+	}
+}
+
+
+/* ThemeWare: Style ThemeWare elements */
+
+// ThemeWare: Style 'further information' element
+.twt-breadcrumb-further-information {
+	@include twt-font-size-rem($font-size-sm);
+	margin-right: .5rem;
+
+	span {
+		align-self: center;
+		color: $twt-breadcrumb-text-color;
+	}
+}
+
+// ThemeWare: Hide home icon SEO label
+.twt-breadcrumb-home-icon {
+	.breadcrumb-title {
+		display: none;
+	}
+}
+
+// ThemeWare: Style 'home icon' element
+.twt-breadcrumb-home-icon a {
+	.icon {
+		transition: opacity .25s ease-in-out;
+		color: $twt-breadcrumb-link-color;
+	}
+
+	&:hover {
+		.icon {
+			opacity: 0.7;
+			color: $twt-breadcrumb-link-color;
+		}
+	}
+}
+
+.twt-breadcrumb-home-icon a.is-active {
+	.icon {
+		color: $twt-breadcrumb-link-active-color;
+	}
+
+	&:hover {
+		.icon {
+			opacity: 0.7;
+			color: $twt-breadcrumb-link-active-color;
+		}
+	}
+}
+
+/* ThemeWare: Style standard elements */
+
+.breadcrumb-placeholder {
+	@if $twt-breadcrumb-style == 3 { // ThemeWare: Layout type 'Buttons'
+		display: none
+	}
+
+	.icon {
+		color: $twt-breadcrumb-divider-color;
+	}
+
+	span.text {
+		color: $twt-breadcrumb-divider-color;
+	}
+}
+
+.breadcrumb .icon {
+	width: 16px;
+	height: 16px;
+}
+
+// TODO: Check 'Structuring element / Entry point' = div
+
+.breadcrumb-item a,
+.breadcrumb-item div {
+	@include twt-font-size-rem($font-size-sm);
+	color: $twt-breadcrumb-link-color;
+	transition: opacity .25s ease-in-out;
+
+	// ThemeWare: Layout type 'Buttons'
+	@if $twt-breadcrumb-style == 3 {
+		display: block;
+		padding: .5rem .75rem;
+		border: 1px solid $twt-breadcrumb-buttons-border-color;
+		background-color: $twt-breadcrumb-buttons-background-color;
+
+		// 1 = not rounded (default)
+		@if $twt-breadcrumb-buttons-corner-type == 2 { // 2 = rounded corners
+			border-radius: null-pixel-unit($twt-border-radius);
+		}
+		@if $twt-breadcrumb-buttons-corner-type == 3 { // 3 = round Buttons
+			@include border-radius(50px);
+		}
+
+		// 4 = individual radius
+	}
+
+	&:hover {
+		opacity: 0.7;
+		color: $twt-breadcrumb-link-color;
+	}
+}
+
+.breadcrumb a.is-active {
+	font-weight: $twt-font-weight-bold;
+	color: $twt-breadcrumb-link-active-color;
+
+	// ThemeWare: Layout type 'Buttons'
+	@if $twt-breadcrumb-style == 3 {
+		background-color: $twt-breadcrumb-buttons-background-color-active;
+		border: 1px solid $twt-breadcrumb-buttons-border-color-active;
+	}
+
+	&:hover {
+		opacity: 0.7;
+		color: $twt-breadcrumb-link-active-color;
+	}
+}
+
+// ThemeWare: Layout type 'Buttons'
+@if $twt-breadcrumb-style == 3 {
+	.breadcrumb-item li div,
+	.breadcrumb-item li a {
+		margin-left: 7px;
+	}
+
+	.breadcrumb-item li:first-of-type div,
+	.breadcrumb-item li:first-of-type a {
+		margin-left: 0;
+	}
+}
+
+
+// TODO: Shrink
+//$twt-breadcrumb-shrink: 2;
+//@if $twt-breadcrumb-shrink == 2 {
+//	.breadcrumb li {
+//		max-width: 180px;
+//		transition: max-width .25s ease-in-out;
+//	}
+//
+//	.breadcrumb li a {
+//		text-overflow: ellipsis;
+//		white-space: nowrap;
+//		overflow: hidden;
+//		display: block;
+//	}
+//
+//	.breadcrumb li:hover {
+//		max-width: 100%;
+//	}
+//}

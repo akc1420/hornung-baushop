@@ -1,0 +1,187 @@
+{% block component_pagination_nav %}
+
+    {% set currentPage = page.pageindex +1 %}
+    {% if page.ESorginalResult.hits.total.value  is divisible by(page.sisi_search_hits) %}
+        {% set totalPages = (page.ESorginalResult.hits.total.value // page.sisi_search_hits) %}
+    {% else %}
+        {% set totalPages = (page.ESorginalResult.hits.total.value // page.sisi_search_hits)|round(0, 'ceil')+1 %}
+    {% endif %}
+
+    {% if  currentPage == 1 %}
+        {% set currentPage =  currentPage + 1 %}
+    {% endif %}
+
+    {%  if  page.sisi_sytemconfig.filterscrolling != 'yes'%}
+
+    <nav aria-label="pagination" class="pagination-nav" data-reset="{{ 'sisi.reset'|trans|raw }}">
+        {% block component_pagination %}
+
+            <ul class="pagination {%  if page.sisi_sytemconfig.filterscrolling == 'ajax'  %} sisi-ajax-modus{% endif %}  " data-sisiurl="{{ sisiurl }}">
+                {% block component_pagination_first %}
+                    <li class="page-item page-first{% if currentPage-1 == 1 %} disabled{% endif %}
+                        {% if totalPages == 1 %} disabled {% endif %} ">
+                        {% block component_pagination_first_input %}
+                            {%  if page.sisi_sytemconfig.filterscrolling != 'ajax' and  page.sisi_sytemconfig.filterscrolling != 'get' %}
+                                <input type="radio"
+                                       {% if currentPage-1 == 1 %}disabled="disabled"{% endif %}
+                                       name="p"
+                                       id="p-first"
+                                       value="1"
+                                       class="d-none sisi-page-input"
+                                       title="pagination">
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block component_pagination_first_label %}
+                            <label class="page-link" for="p-first" data-page="first">
+                                {% block component_pagination_first_link %}
+                                    {% sw_icon 'arrow-medium-double-left' style { 'size': 'fluid', 'pack': 'solid'} %}
+                                {% endblock %}
+                            </label>
+                        {% endblock %}
+                    </li>
+                {% endblock %}
+
+                {% block component_pagination_prev %}
+                    <li class="page-item page-prev{% if currentPage-1 == 1 %} disabled{% endif %}
+                     {% if totalPages == 1 %} disabled {% endif %}">
+                        {% block component_pagination_prev_input %}
+                            {%  if page.sisi_sytemconfig.filterscrolling != 'ajax' and filterscrolling != 'get' %}
+                                <input type="radio"
+                                       {% if currentPage-1 == 1 %}disabled="disabled"{% endif %}
+                                       name="p"
+                                       id="p-prev"
+                                       value="{{ currentPage - 2 }}"
+                                       class="d-none sisi-page-input"
+                                       title="pagination">
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block component_pagination_prev_label %}
+                            <label class="page-link" for="p-prev" data-page="prev">
+                                {% block component_pagination_prev_link %}
+                                    {% block component_pagination_prev_icon %}
+                                        {% sw_icon 'arrow-medium-left' style {'size': 'fluid', 'pack': 'solid'} %}
+                                    {% endblock %}
+                                {% endblock %}
+                            </label>
+                        {% endblock %}
+                    </li>
+                {% endblock %}
+
+                {% block component_pagination_loop %}
+                    {% set start = currentPage - 2 %}
+                    {% if start <= 1 %}
+                        {% set start =1 %}
+                    {% endif %}
+
+                    {% if currentPage + 2 < totalPages %}
+                        {% set end  = currentPage + 2 %}
+                    {% else %}
+                        {% if  totalPages == 0 %}
+                            {% set end  = 1 %}
+                        {% else %}
+                            {% set end  = totalPages %}
+                        {% endif %}
+                    {% endif %}
+
+                    {% set filterscrolling = page.sisi_sytemconfig.filterscrolling %}
+                    {% for page in start..end %}
+
+                        {% set isActive = (currentPage-1 == page) %}
+
+                        {% if (currentPage == 1) and (page == 1) %}
+                            {% set isActive = true %}
+                        {% endif %}
+
+                        {% block component_pagination_item %}
+                            <li class="page-item{% if isActive %} active{% endif %}">
+                                {% block component_pagination_item_input %}
+                                    {%  if filterscrolling != 'ajax' and  filterscrolling != 'get' %}
+                                        <input type="radio"
+                                               name="p"
+                                               id="p{{ page }}"
+                                               value="{{ page }}"
+                                               class="d-none sisi-page-input"
+                                               title="pagination"
+                                               {% if isActive %}checked="checked"{% endif %}>
+                                    {% endif %}
+                                {% endblock %}
+                                {% block component_pagination_item_label %}
+                                    {%  if page.sisi_sytemconfig.filterscrolling != 'ajax'  %}
+                                    <label class="page-link"
+                                           for="p{{ page }}" data-page="{{ page }}" data-url="{{ sisiurl }}">
+                                        {% block component_pagination_item_link %}
+                                            {% block component_pagination_item_text %}
+                                                {{ page }}
+                                            {% endblock %}
+                                        {% endblock %}
+                                    </label>
+                                    {% endif %}
+                                {% endblock %}
+                            </li>
+                        {% endblock %}
+
+                    {% endfor %}
+                {% endblock %}
+                {% block component_pagination_next %}
+                    <li class="page-item page-next{% if currentPage-1 >= totalPages %} disabled{% endif %}
+                    {% if totalPages == 1 %} disabled {% endif %}">
+                        {% block component_pagination_next_input %}
+                            {%  if page.sisi_sytemconfig.filterscrolling != 'ajax'  and  filterscrolling != 'get' %}
+                                <input type="radio"
+                                       {% if currentPage-1 == totalPages %}disabled="disabled"{% endif %}
+                                       name="p"
+                                       id="p-next"
+                                       value="{{ currentPage }}"
+                                       class="d-none sisi-page-input"
+                                       title="pagination">
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block component_pagination_next_label %}
+                            <label class="page-link" for="p-next" data-page="next" data-url="{{ sisiurl }}">
+                                {% block component_pagination_next_link %}
+                                    {% block component_pagination_next_icon %}
+                                        {% sw_icon 'arrow-medium-right' style { 'size': 'fluid', 'pack': 'solid'} %}
+                                    {% endblock %}
+                                {% endblock %}
+                            </label>
+                        {% endblock %}
+                    </li>
+                {% endblock %}
+
+                {% block component_pagination_last %}
+                    <li class="page-item page-last{% if currentPage-1 == totalPages %} disabled{% endif %}
+                                {% if totalPages == 1 %} disabled {% endif %}">
+                        {% block component_pagination_last_input %}
+                            {% if page.sisi_sytemconfig.filterscrolling != 'ajax' and filterscrolling != 'get'  %}
+                                <input type="radio"
+                                       {% if currentPage -1 == totalPages %}disabled="disabled"{% endif %}
+                                       name="p"
+                                       id="p-last"
+                                       value="{{ totalPages }}"
+                                       class="d-none sisi-page-input"
+                                       title="pagination">
+                            {% endif %}
+                        {% endblock %}
+
+                        {% block component_pagination_last_label %}
+                            <label class="page-link" for="p-last" data-page="last"  data-value="{{ totalPages }}">
+                                {% block component_pagination_last_link %}
+                                    {% block component_pagination_last_icon %}
+                                        {% sw_icon 'arrow-medium-double-right' style {
+                                            'size': 'fluid',
+                                            'pack': 'solid'
+                                        } %}
+                                    {% endblock %}
+                                {% endblock %}
+                            </label>
+                        {% endblock %}
+                    </li>
+                {% endblock %}
+            </ul>
+        {% endblock %}
+    </nav>
+    {% endif %}
+{% endblock %}

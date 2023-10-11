@@ -1,0 +1,143 @@
+{% block page_product_detail_tabs_recommendy %}
+    <div class="recommendy-detail--anker"></div>
+    {% block page_product_detail_recommendy %}
+        {% set recommendySlider = page.product.extensions.Recommendy %}
+        {% if config('Recommendy.config.sliderLayout')  %}
+
+            {# Recommendy Tabs #}
+            {% if (recommendySlider.similarArticles is defined and recommendySlider.similarArticles|length > 0) or (recommendySlider.bundleArticles is defined and recommendySlider.bundleArticles|length > 0 ) %}
+                <div class="product-detail-tabs product-detail-cross-selling recommendy recommendy-tabs"
+                     data-recomenndy-tab="true">
+                    <div class="card card-tabs" data-cross-selling="true">
+                        <div class="card-header product-detail-tab-navigation product-cross-selling-tab-navigation">
+                            <ul class="nav nav-tabs product-detail-tab-navigation-list"
+                                id="product-detail-tabs"
+                                role="tablist">
+
+                                {% if recommendySlider.bundleArticles is defined and recommendySlider.bundleArticles|length > 0 %}
+                                    <li class="nav-item">
+                                        <a class="nav-link active product-detail-tab-navigation-link recommendy-link"
+                                           id="cross-selling-tab"
+                                           data-toggle="tab"
+                                        data-offcanvas-tabs="true"
+                                        href="#cross-selling-tab-pane"
+                                        role="tab"
+                                        aria-controls="cross-selling-tab-pane"
+                                        aria-selected="true">
+                                        <span> {{ "recommendy.bundleSliderTitle"|trans|sw_sanitize }}</span>
+                                        <span class="product-detail-tab-navigation-icon">
+                                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                                    </span>
+                                        <span class="product-detail-tab-preview">
+                                             {{ "recommendy.bundleSliderTitle"|trans|sw_sanitize }}
+                                        </span>
+
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {% if recommendySlider.similarArticles is defined and recommendySlider.similarArticles|length > 0 %}
+                                    <li class="nav-item">
+                                        <a class="nav-link product-detail-tab-navigation-link recommendy-link {% if not (recommendySlider.bundleArticles is defined and recommendySlider.bundleArticles|length > 0 ) %}active{% endif %}"
+                                           id="similar-tab" data-recommendy-tab="true"
+                                           data-toggle="tab"
+                                        data-offcanvas-tabs="true"
+                                        href="#similar-tab-pane"
+                                        role="tab"
+                                        aria-controls="similar-tab-pane"
+                                        aria-selected="false">
+                                        <span>{{ "recommendy.similarArticles"|trans|sw_sanitize }}</span>
+                                        <span class="product-detail-tab-navigation-icon">
+                                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                                    </span>
+
+                                        <span class="product-detail-tab-preview">
+                                                   {{ "recommendy.similarArticles"|trans|sw_sanitize }}
+
+                                        </span>
+                                        </a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+
+
+                        <div class="product-detail-tabs-content card-body">
+                            <div class="tab-content">
+                                {% block page_product_detail_recommendy_tab %}
+
+                                    <div
+                                        class="tab-pane fade show active"
+                                        id="cross-selling-tab-pane"
+                                        role="tabpanel"
+                                        aria-labelledby="cross-selling-tab">
+
+
+                                        {# Recommendy bundle #}
+                                        {% block page_product_detail_recommendy_bundle_tab %}
+                                            {% if recommendySlider.bundleArticles is defined and recommendySlider.bundleArticles|length > 0 %}
+
+                                                {% if config('Recommendy.config.bundleLayout') != 3 %}
+                                                    {% sw_include '@Recommendy/storefront/recommendy/bundle/recommendy_bundle.html.twig' with {
+                                                        products: recommendySlider.bundleArticles,
+                                                        product: page.product
+                                                    } %}
+                                                {% else %}
+                                                    {% sw_include '@Recommendy/storefront/recommendy/recommendy_bundle.html.twig' %}
+                                                {% endif %}
+
+                                            {% endif %}
+                                        {% endblock %}
+
+                                    </div>
+
+                                    <div
+                                        class="tab-pane fade show {% if not (recommendySlider.bundleArticles is defined and recommendySlider.bundleArticles|length > 0 ) %}active{% endif %}"
+                                        id="similar-tab-pane"
+                                        role="tabpanel"
+                                        aria-labelledby="similar-tab">
+
+                                        {# Recommendy similar #}
+                                        {% block page_product_detail_recommendy_similar_tab %}
+                                            {% if recommendySlider.similarArticles is defined and recommendySlider.similarArticles|length > 0 %}
+                                                {% sw_include '@Recommendy/storefront/recommendy/recommendy_similar.html.twig' %}
+                                            {% endif %}
+                                        {% endblock %}
+
+
+                                    </div>
+                                {% endblock %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endif %}
+        {% else %}
+            {# Recommendy bundle #}
+            {% block page_product_detail_recommendy_bundle %}
+                {% if recommendySlider.bundleArticles is defined and recommendySlider.bundleArticles|length > 0 %}
+
+                    {% if config('Recommendy.config.bundleLayout') != 3 %}
+                        {% sw_include '@Recommendy/storefront/recommendy/bundle/recommendy_bundle.html.twig' with {
+                            products: recommendySlider.bundleArticles,
+                            product: page.product
+                        } %}
+                    {% else %}
+                        {% sw_include '@Recommendy/storefront/recommendy/recommendy_bundle.html.twig' %}
+                    {% endif %}
+
+                {% endif %}
+            {% endblock %}
+
+            {# Recommendy similar #}
+            {% block page_product_detail_recommendy_similar %}
+                {% if recommendySlider.similarArticles is defined and recommendySlider.similarArticles|length > 0 %}
+                    {% sw_include '@Recommendy/storefront/recommendy/recommendy_similar.html.twig' %}
+                {% endif %}
+            {% endblock %}
+
+        {% endif %}
+    {% endblock %}
+{% endblock %}

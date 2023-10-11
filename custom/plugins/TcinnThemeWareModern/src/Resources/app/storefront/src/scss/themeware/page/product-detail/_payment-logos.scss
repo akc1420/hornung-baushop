@@ -1,0 +1,41 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Product detail payment logos (on product detail page)
+    ==================================================
+    Note: The "Payment logos" are based on our payment logo widget (see widgets/_payment.scss)
+
+*/
+
+@if $twt-product-detail-sharing-links-show == 2 {
+    .twt-product-detail-payment-logos {
+        &.top {
+            margin-top: 1rem;
+            margin-bottom: calc(2rem - 10px); // Subtract Logo margin bottom of 10px
+        }
+
+        &.bottom {
+            margin-top: 2rem;
+            margin-bottom: calc(1rem - 10px); // Subtract Logo margin bottom of 10px
+        }
+
+        //.twt-widget-payment {}
+
+        .twt-product-detail-payment-logos-headline {
+            font-weight: fontWeight($twt-product-detail-payment-logos-headline-font-weight);
+            text-transform: $twt-product-detail-payment-logos-headline-transform;
+            margin-bottom: 0.5rem;
+        }
+
+        // ThemeWare: Adjust logos
+        .buy-box-logo { // Align with .footer-logo class (see footer.scss), as we use .buy-box-logo class on product pages
+            display: inline-block;
+            // ggf. float: left
+        }
+    }
+}

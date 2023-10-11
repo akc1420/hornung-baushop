@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../../vendor/shopware/core/System/SystemConfig/Schema/config.xsd">
+    
+    <card>
+        <title>Checkout Settings</title>
+        <title lang="de-DE">Kassen Einstellungen</title>
+
+        <component name="sw-switch-field">
+            <name>showNotefieldInCheckout</name>
+            <label>show notefield in checkout for orders</label>
+            <label lang="de-DE">Zeige Notizfeld im Kassenbereich - wird an die Bestelung angehangen.</label>
+        </component>
+
+        <component name="sw-text-field">
+            <name>headlineForNotefield</name>
+            <label>headline for notefield in checkout</label>
+            <label lang="de-DE">Überschrift für Notizfeld - siehe Punkt oben</label>
+        </component>
+    </card>
+
+</config>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Registration Settings</title>
+        <title lang="de-DE">Registrierungs-Optionen</title>
+
+
+        <input-field type="bool">
+            <name>block</name>
+            <label>Blocking registration if housenumber is not filled out.</label>
+            <label lang="de-DE">Verhindert die Registrierung, wenn die Hausnummer nicht ausgefüllt ist.</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>blockajax</name>
+            <label>Blocking invalid changes also in popup.</label>
+            <label lang="de-DE">Verhindert, bei fehlender Hausnummer, die Änderung im Popup.</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+
+    </card>
+
+      
+</config>

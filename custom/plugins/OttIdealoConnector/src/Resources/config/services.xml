@@ -1,0 +1,136 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="true" />
+
+        <service id="ott_idealo_connector.logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating"/>
+            <argument type="string">ott_idealo_connector</argument>
+        </service>
+
+        <!-- cronjob tasks & handler -->
+        <service id="Ott\IdealoConnector\Task\OrderImportTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <service id="Ott\IdealoConnector\Task\OrderImportTaskHandler">
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="Ott\IdealoConnector\Service\CronjobService" />
+            <tag name="messenger.message_handler" />
+        </service>
+
+        <service id="Ott\IdealoConnector\Task\OrderStatusExportTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <service id="Ott\IdealoConnector\Task\OrderStatusExportTaskHandler">
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="Ott\IdealoConnector\Service\CronjobService" />
+            <tag name="messenger.message_handler" />
+        </service>
+
+        <!-- Controller -->
+        <service id="Ott\IdealoConnector\Controller\Api\ApiTestController" public="true">
+            <argument type="service" id="Ott\IdealoConnector\Service\ClientService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <!-- Commands -->
+        <service id="Ott\IdealoConnector\Command\ImportOrdersCommand">
+            <argument type="service" id="Ott\IdealoConnector\Service\CronjobService" />
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Ott\IdealoConnector\Command\ExportOrdersCommand">
+            <argument type="service" id="Ott\IdealoConnector\Service\CronjobService" />
+            <tag name="console.command"/>
+        </service>
+
+        <!-- Entity -->
+        <service id="Ott\IdealoConnector\Dbal\Entity\Checkout\IdealoOrderDefinition">
+            <tag name="shopware.entity.definition" entity="idealo_order" />
+        </service>
+
+        <service id="Ott\IdealoConnector\Dbal\Entity\Status\IdealoOrderLineItemStatusDefinition">
+            <tag name="shopware.entity.definition" entity="idealo_order_line_item_status" />
+        </service>
+
+        <!-- Subscriber -->
+        <service id="Ott\IdealoConnector\Subscriber\OrderSearchSubscriber">
+            <argument type="service" id="Ott\IdealoConnector\Dbal\DataProvider"/>
+
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <!-- Services -->
+        <service id="Ott\IdealoConnector\Idealo\Client">
+            <argument type="service" id="Ott\IdealoConnector\Dbal\DataProvider"/>
+        </service>
+
+        <service id="Ott\IdealoConnector\Gateway\OrderStatusGateway">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+        <service id="Ott\IdealoConnector\Service\ConfigProvider">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+
+        <service id="Ott\IdealoConnector\Service\ClientService">
+            <argument type="service" id="Ott\IdealoConnector\Idealo\Client"/>
+            <argument type="service" id="Ott\IdealoConnector\Service\ConfigProvider"/>
+            <argument type="service" id="ott_idealo_connector.logger"/>
+        </service>
+
+        <service id="Ott\IdealoConnector\Dbal\DataProvider">
+            <argument type="service" id="country.repository"/>
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="salutation.repository"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="shipping_method.repository"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="idealo_order.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="plugin.repository"/>
+            <argument type="service" id="payment_method.repository"/>
+            <argument type="service" id="currency.repository"/>
+        </service>
+
+        <service id="Ott\IdealoConnector\Dbal\DataPersister">
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="idealo_order.repository"/>
+            <argument type="service" id="idealo_order_line_item_status.repository"/>
+        </service>
+
+        <service id="Ott\IdealoConnector\Service\CronjobService">
+            <argument type="service" id="Ott\IdealoConnector\Service\ConfigProvider"/>
+            <argument type="service" id="Ott\IdealoConnector\Service\ClientService"/>
+            <argument type="service" id="Ott\IdealoConnector\Service\OrderImportService"/>
+            <argument type="service" id="Ott\IdealoConnector\Service\OrderExportService"/>
+            <argument type="service" id="Ott\IdealoConnector\Dbal\DataProvider"/>
+            <argument type="service" id="Ott\IdealoConnector\Gateway\OrderStatusGateway"/>
+            <argument type="service" id="ott_idealo_connector.logger"/>
+        </service>
+
+        <service id="Ott\IdealoConnector\Service\OrderImportService">
+            <argument type="service" id="Ott\IdealoConnector\Dbal\DataProvider"/>
+            <argument type="service" id="Ott\IdealoConnector\Dbal\DataPersister"/>
+            <argument type="service" id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\CartRuleLoader"/>
+            <argument type="service" id="ott_idealo_connector.logger"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+        </service>
+
+        <service id="Ott\IdealoConnector\Service\OrderExportService">
+            <argument type="service" id="Ott\IdealoConnector\Dbal\DataPersister"/>
+        </service>
+    </services>
+</container>

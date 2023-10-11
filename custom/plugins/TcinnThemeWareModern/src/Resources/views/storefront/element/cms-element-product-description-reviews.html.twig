@@ -1,0 +1,131 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-description-reviews.html.twig' %}
+{# ThemeWare® HC-Architecture® ready #}
+
+{# TODO: prüfen... #}
+
+{# ThemeWare: Product detail tab component on cms product page #}
+{# INFO: Please note this is also available as "page/product-detail/tabs.html.twig" since SW6.4 #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailPropertiesPosition = theme_config('twt-product-detail-properties-position') %}
+{% set twtProductDetailTabCustomContentShow = theme_config('twt-product-detail-tab-custom-content-show') %}
+{% set twtProductDetailTabManufacturerShow = theme_config('twt-product-detail-tab-manufacturer-show') %}
+{% set twtProductDetailTabProductVideosShow = theme_config('twt-product-detail-tab-product-videos-show') %}
+
+{% set videosAvailable = false %}
+{% if twtCustomFields.product.twt_modern_pro_custom_field__product__youtube_video is not empty or twtCustomFields.product.twt_modern_pro_custom_field__product__vimeo_video is not empty %}
+    {% set videosAvailable = true %}
+{% endif %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on tab navigation #}
+{% block element_product_desciption_reviews_tabs_navigation_description %}
+    {# Default block #}
+    {{ parent() }}
+
+    {# ThemeWare: Show properties in individuell tab if configured #}
+    {# ThemeWare: Add properties tab to navigation #}
+    {% if twtProductDetailPropertiesPosition == 2 and page.product.sortedProperties|length > 0 %}
+        <li class="nav-item">
+            <a class="nav-link product-properties-tab-navigation-link twt-tab-navigation-link" id="properties-tab" data-toggle="tab" data-offcanvas-tabs="true" href="#properties-tab-pane" role="tab" aria-controls="properties-tab-pane" aria-selected="true">
+                {{ "twt.detail.tabProperties.title"|trans|sw_sanitize }}
+                <span class="product-detail-tab-navigation-icon">
+                    {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                </span>
+            </a>
+        </li>
+    {% endif %}
+
+    {# ThemeWare: Add product videos tab to navigation #}
+    {% if twtProductDetailTabProductVideosShow == 2 and videosAvailable %}
+        <li class="nav-item">
+            <a class="nav-link product-videos-tab-navigation-link twt-tab-navigation-link" id="product-videos-tab" data-toggle="tab" data-offcanvas-tabs="true" href="#product-videos-tab-pane" role="tab" aria-controls="product-videos-tab-pane" aria-selected="true">
+                {{ "twt.detail.tabVideos.title"|trans|sw_sanitize }}
+                <span class="product-detail-tab-navigation-icon">
+                    {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                </span>
+            </a>
+        </li>
+    {% endif %}
+
+    {# ThemeWare: Add custom tab to navigation #}
+    {% if twtProductDetailTabCustomContentShow == 2 and twtCustomFields.product.twt_modern_pro_custom_field__product__custom_tab_text is not empty %}
+        <li class="nav-item">
+            <a class="nav-link product-custom-tab-navigation-link twt-tab-navigation-link" id="custom-tab" data-toggle="tab" data-offcanvas-tabs="true" href="#custom-tab-pane" role="tab" aria-controls="custom-tab-pane" aria-selected="true">
+                {# Use custom field or snippet as fallback #}
+                {% if twtCustomFields.product.twt_modern_pro_custom_field__product__custom_tab_title is not empty %}
+                    {{ twtCustomFields.product.twt_modern_pro_custom_field__product__custom_tab_title }}
+                {% else %}
+                    {{ "twt.detail.tabCustom.title"|trans }}
+                {% endif %}
+                <span class="product-detail-tab-navigation-icon">
+					{% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+				</span>
+            </a>
+        </li>
+    {% endif %}
+
+    {# ThemeWare: Add manufacturer tab to navigation #}
+    {# TODO: Check availability #}
+    {% if twtProductDetailTabManufacturerShow == 2 %}
+        <li class="nav-item">
+            <a class="nav-link product-manufacturer-tab-navigation-link twt-tab-navigation-link" id="manufacturer-tab" data-toggle="tab" data-offcanvas-tabs="true" href="#manufacturer-tab-pane" role="tab" aria-controls="manufacturer-tab-pane" aria-selected="true">
+                {{ "twt.detail.tabManufacturer.title"|trans|sw_sanitize }}
+                <span class="product-detail-tab-navigation-icon">
+                    {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                </span>
+            </a>
+        </li>
+    {% endif %}
+{% endblock %}
+
+{# ThemeWare: Adjustments on tab content #}
+{% block element_product_desciption_reviews_tabs_content_description  %}
+    {# Default content > load "component/product/description.html.twig" #}
+    {{ parent() }}
+
+    {# ThemeWare: Show properties in individuell tab if configured #}
+    {# ThemeWare: Add properties content to tab #}
+    {% if twtProductDetailPropertiesPosition == 2 and page.product.sortedProperties|length > 0 %}
+        <div class="tab-pane fade show"
+             id="properties-tab-pane"
+             role="tabpanel"
+             aria-labelledby="properties-tab">
+            {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-tab-properties.html.twig' ignore missing %}
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add product videos content to tab #}
+    {% if twtProductDetailTabProductVideosShow == 2 and videosAvailable %}
+        <div class="tab-pane fade show"
+             id="product-videos-tab-pane"
+             role="tabpanel"
+             aria-labelledby="product-videos-tab">
+            {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-tab-product-videos.html.twig' ignore missing %}
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add custom content to tab #}
+    {% if twtProductDetailTabCustomContentShow == 2 and twtCustomFields.product.twt_modern_pro_custom_field__product__custom_tab_text is not empty %}
+        <div class="tab-pane fade show"
+             id="custom-tab-pane"
+             role="tabpanel"
+             aria-labelledby="custom-tab">
+            {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-tab-custom.html.twig' ignore missing %}
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add manufacturer content to tab #}
+    {# TODO: Check availability #}
+    {% if twtProductDetailTabManufacturerShow == 2 %}
+        <div class="tab-pane fade show"
+             id="manufacturer-tab-pane"
+             role="tabpanel"
+             aria-labelledby="manufacturer-tab">
+            {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-detail-tab-manufacturer.html.twig' ignore missing %}
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,27 @@
+.cr-ac-timing {
+  line-height: 56px;
+}
+
+.cr-ac-timing-desc {
+  background: transparent !important;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 0;
+  height: min-content;
+  margin-bottom: 20px;
+}
+
+.cr-ac-timing-desc .sw-label__caption {
+  display: block;
+  white-space: initial;
+  line-height: 18px;
+}
+
+.cr-ac-timing-values {
+  line-height: 17px;
+  margin-bottom: 0;
+}
+
+.cr-ac-timing-values .sw-field__radio-option label {
+  font-size: 14px !important;
+}

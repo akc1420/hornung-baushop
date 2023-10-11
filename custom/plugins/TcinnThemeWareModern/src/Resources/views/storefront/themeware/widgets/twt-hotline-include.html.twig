@@ -1,0 +1,30 @@
+{# ThemeWare "Hotline" widget #}
+{#
+    Create "Hotline" widget and add content
+
+	@Storefront/storefront/themeware/widgets/twt-hotline-include.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# TODO: Footer uses seperat content, here is the widget for further usage #}
+
+{% block twt_widget_hotline %}
+    <div class="twt-widget-hotline twt-hotline">
+
+        {% block twt_widget_hotline_content %}
+            <div class="twt-widget-hotline-content">
+                <p class="twt-widget-hotline-contact-hotline">
+                    {{ 'footer.serviceHotline'|trans|sw_sanitize }}
+                </p>
+            </div>
+
+            <div class="twt-widget-hotline-contact-form">
+                {{ 'footer.serviceContactLink'|trans({
+                    '%url%': path('frontend.cms.page', { id: config('core.basicInformation.contactPage') })
+                })|raw }}
+            </div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

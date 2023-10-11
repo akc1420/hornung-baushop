@@ -1,0 +1,31 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/configurator.html.twig' %}
+
+{% block page_product_detail_configurator %}
+    <div class="product-detail-configurator">
+        {% set config = {
+            url: url('frontend.detail.switch', { productId: page.product.parentId }),
+            parentId: page.product.parentId,
+            listingProductId: page.listingProductId
+        } %}
+
+        {% block page_product_detail_configurator_form %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block page_product_detail_configurator_option_radio %}
+
+    {% set optionIdentifier = [page.listingProductId, optionIdentifier]|join('-') %}
+    <input type="radio"
+           name="{{ page.listingProductId }}-{{ group.id }}"
+           value="{{ option.id }}"
+           class="product-detail-configurator-option-input{% if isCombinableCls %} {{ isCombinableCls }}{% endif %}"
+           title="{{ optionIdentifier }}"
+           id="{{ optionIdentifier }}"
+           {% if isActive %}checked="checked"{% endif %}>
+
+    {% block page_product_detail_configurator_option_radio_label %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

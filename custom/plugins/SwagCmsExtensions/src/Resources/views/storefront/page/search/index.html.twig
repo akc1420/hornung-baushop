@@ -1,0 +1,28 @@
+{% sw_extends '@Storefront/storefront/page/search/index.html.twig' %}
+
+{% block page_search %}
+    {% set arrowHeadLeft %}
+        {% sw_icon 'arrow-head-left' style { 'color': 'white' } %}
+    {% endset %}
+    {% set arrowHeadRight %}
+        {% sw_icon 'arrow-head-right' style { 'color': 'white' } %}
+    {% endset %}
+
+    {% set quickviewSearchMode = config('SwagCmsExtensions.config.enableSearchQuickview') %}
+    {% set quickviewOptions = {
+        isSearchPage: quickviewSearchMode,
+        arrowHeadLeft: arrowHeadLeft,
+        arrowHeadRight: arrowHeadRight
+    } %}
+
+    {% block page_search_quickview_modal %}
+        {% if quickviewSearchMode %}
+            <div class="d-none"
+                 data-swag-cms-extensions-quickview="true"
+                 data-swag-cms-extensions-quickview-options="{{ quickviewOptions|json_encode }}">
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,31 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS element "Text teaser (decorated)"
+	==================================================
+
+*/
+
+// TODO: Add performance configuration to disable styling
+// TODO: Add font styling and sizing
+
+.cms-element-twt-text-teaser-decorated {
+    .twt-text-teaser-decorated-content {
+        p {
+            @include twt-font-size(20);
+            margin-bottom: 0;
+            text-align: left;
+
+            span {
+                display: inline;
+                padding: .5rem;
+                box-decoration-break: clone;
+            }
+        }
+    }
+}

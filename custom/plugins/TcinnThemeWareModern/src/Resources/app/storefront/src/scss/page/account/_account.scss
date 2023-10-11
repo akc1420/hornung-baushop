@@ -1,0 +1,49 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Account
+	==================================================
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Account adjustments
+.account-content {
+	.account-content-aside {
+		padding-left: 0;
+		border-right: 1px solid $sw-border-color;
+	}
+
+	.account-content-main {
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
+
+// ThemeWare: Fix container
+// TODO: Shopware Vererbung prüfen...
+// TODO: #custom
+.content-main {
+	>.container {
+		>.container-main {
+			>div.account-content {
+				margin-right: 0;
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+// TODO: mobile padding
+/*
+// ThemeWare:  Account > Payment / Container mobile padding
+@include media-breakpoint-down(xs) { // max 575.98px
+  .is-ctl-accountpayment,
+  .is-act-paymentoverview {}
+}
+*/

@@ -1,0 +1,40 @@
+{
+    "name": "cbax/modul-analytics",
+    "description": "Umfangreiche Shop Statistik über viele Vorkommnisse im Shop.",
+    "version": "2.3.8",
+	"type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Coolbax"
+        }
+    ],
+	"require": {
+        "shopware/core": ">=6.4.12"
+    },
+	"extra": {
+		"shopware-plugin-class": "Cbax\\ModulAnalytics\\CbaxModulAnalytics",
+		"copyright": "(c) by Coolbax",
+        "label": {
+            "de-DE": "Statistik Professionell",
+            "en-GB": "Statistics Professional"
+        },
+        "description": {
+            "de-DE": "Umfangreiche Shop Statistik über viele Vorkommnisse im Shop.",
+            "en-GB": "Comprehensive shop statistics about many occurrences in the shop."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://coolbax.de",
+            "en-GB": "https://coolbax.de"
+        },
+        "supportLink": {
+            "de-DE": "https://www.coolbax.de/handbuecher/auswertung/plugin-statistik-professionell-sw6",
+            "en-GB": "https://www.coolbax.de/handbuecher/auswertung/plugin-statistik-professionell-sw6"
+        }
+    },
+	"autoload": {
+        "psr-4": {
+            "Cbax\\ModulAnalytics\\": "src/"
+        }
+    }
+}

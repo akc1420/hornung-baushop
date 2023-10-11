@@ -1,0 +1,16 @@
+{% block mediameets_config_example %}
+    <div class="mediameets-config-example">
+        {% block mediameets_config_example_label %}
+            <div v-if="label" class="mediameets-config-example--label">
+                <label>{{ label }}</label>
+            </div>
+        {% endblock %}
+
+        {% block mediameets_config_example_text %}
+            <div class="mediameets-config-example--text">
+                <sw-highlight-text v-if="highlight" :text="text" :searchTerm="highlight" />
+                <div v-else>{{ text }}</div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

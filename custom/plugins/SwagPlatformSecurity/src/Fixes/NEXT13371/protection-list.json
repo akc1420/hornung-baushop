@@ -1,0 +1,1546 @@
+{
+    "log_entry": [
+        "id",
+        "message",
+        "level",
+        "channel",
+        "context",
+        "extra"
+    ],
+    "acl_role": [
+        "id",
+        "name",
+        "description",
+        "privileges",
+        "users",
+        "app",
+        "integrations"
+    ],
+    "acl_user_role": [
+        "userId",
+        "aclRoleId",
+        "createdAt",
+        "updatedAt",
+        "user",
+        "aclRole"
+    ],
+    "app": [
+        "id",
+        "name",
+        "path",
+        "author",
+        "copyright",
+        "license",
+        "active",
+        "configurable",
+        "privacy",
+        "version",
+        "iconRaw",
+        "icon",
+        "appSecret",
+        "modules",
+        "cookies",
+        "translations",
+        "label",
+        "description",
+        "privacyPolicyExtensions",
+        "integrationId",
+        "integration",
+        "aclRoleId",
+        "aclRole",
+        "customFieldSets",
+        "actionButtons",
+        "templates",
+        "webhooks"
+    ],
+    "app_translation": [
+        "label",
+        "description",
+        "privacyPolicyExtensions",
+        "app",
+        "language"
+    ],
+    "app_action_button": [
+        "id",
+        "entity",
+        "view",
+        "url",
+        "action",
+        "openNewTab",
+        "label",
+        "translations",
+        "appId",
+        "app"
+    ],
+    "app_action_button_translation": [
+        "label",
+        "appActionButton",
+        "language"
+    ],
+    "app_template": [
+        "id",
+        "template",
+        "path",
+        "active",
+        "appId",
+        "app"
+    ],
+    "custom_field": [
+        "id",
+        "name",
+        "type",
+        "config",
+        "active",
+        "customFieldSetId",
+        "customFieldSet"
+    ],
+    "custom_field_set": [
+        "id",
+        "name",
+        "config",
+        "active",
+        "global",
+        "position",
+        "appId",
+        "customFields",
+        "relations",
+        "products",
+        "app"
+    ],
+    "custom_field_set_relation": [
+        "id",
+        "customFieldSetId",
+        "entityName",
+        "customFieldSet"
+    ],
+    "version": [
+        "id",
+        "name",
+        "commits"
+    ],
+    "version_commit": [
+        "id",
+        "versionId",
+        "userId",
+        "integrationId",
+        "autoIncrement",
+        "isMerge",
+        "message",
+        "data",
+        "version"
+    ],
+    "version_commit_data": [
+        "id",
+        "versionCommitId",
+        "commit",
+        "userId",
+        "integrationId",
+        "autoIncrement",
+        "entityName",
+        "entityId",
+        "action",
+        "payload"
+    ],
+    "event_action": [
+        "id",
+        "eventName",
+        "actionName",
+        "config",
+        "active",
+        "title",
+        "rules",
+        "salesChannels"
+    ],
+    "event_action_rule": [
+        "eventActionId",
+        "ruleId",
+        "eventAction",
+        "rule"
+    ],
+    "event_action_sales_channel": [
+        "eventActionId",
+        "salesChannelId",
+        "eventAction",
+        "salesChannel"
+    ],
+    "dead_message": [
+        "id",
+        "originalMessageClass",
+        "serializedOriginalMessage",
+        "handlerClass",
+        "encrypted",
+        "errorCount",
+        "nextExecutionTime",
+        "exception",
+        "exceptionMessage",
+        "exceptionFile",
+        "exceptionLine",
+        "scheduledTaskId",
+        "scheduledTask"
+    ],
+    "message_queue_stats": [
+        "id",
+        "name",
+        "size"
+    ],
+    "plugin": [
+        "id",
+        "baseClass",
+        "name",
+        "composerName",
+        "autoload",
+        "active",
+        "managedByComposer",
+        "path",
+        "author",
+        "copyright",
+        "license",
+        "version",
+        "upgradeVersion",
+        "installedAt",
+        "upgradedAt",
+        "iconRaw",
+        "icon",
+        "label",
+        "description",
+        "manufacturerLink",
+        "supportLink",
+        "changelog",
+        "customFields",
+        "translations",
+        "paymentMethods"
+    ],
+    "plugin_translation": [
+        "label",
+        "description",
+        "manufacturerLink",
+        "supportLink",
+        "changelog",
+        "customFields",
+        "plugin",
+        "language"
+    ],
+    "scheduled_task": [
+        "id",
+        "name",
+        "scheduledTaskClass",
+        "runInterval",
+        "status",
+        "lastExecutionTime",
+        "nextExecutionTime",
+        "deadMessages"
+    ],
+    "language": [
+        "salesChannels",
+        "salesChannelDefaultAssignments",
+        "salesChannelDomains",
+        "customers",
+        "newsletterRecipients",
+        "orders",
+        "categoryTranslations",
+        "countryStateTranslations",
+        "countryTranslations",
+        "currencyTranslations",
+        "customerGroupTranslations",
+        "localeTranslations",
+        "mediaTranslations",
+        "paymentMethodTranslations",
+        "productManufacturerTranslations",
+        "productTranslations",
+        "shippingMethodTranslations",
+        "unitTranslations",
+        "propertyGroupTranslations",
+        "propertyGroupOptionTranslations",
+        "salesChannelTranslations",
+        "salesChannelTypeTranslations",
+        "salutationTranslations",
+        "pluginTranslations",
+        "productStreamTranslations",
+        "stateMachineTranslations",
+        "stateMachineStateTranslations",
+        "cmsPageTranslations",
+        "cmsSlotTranslations",
+        "mailTemplateTranslations",
+        "mailHeaderFooterTranslations",
+        "documentTypeTranslations",
+        "numberRangeTypeTranslations",
+        "deliveryTimeTranslations",
+        "productSearchKeywords",
+        "productKeywordDictionaries",
+        "mailTemplateTypeTranslations",
+        "promotionTranslations",
+        "numberRangeTranslations",
+        "productReviews",
+        "seoUrlTranslations",
+        "taxRuleTypeTranslations",
+        "productCrossSellingTranslations",
+        "importExportProfileTranslations",
+        "productSortingTranslations",
+        "productFeatureSetTranslations",
+        "appTranslations",
+        "actionButtonTranslations"
+    ],
+    "seo_url": [
+        "language",
+        "salesChannel"
+    ],
+    "seo_url_template": [
+        "id",
+        "entityName",
+        "routeName",
+        "template",
+        "salesChannel"
+    ],
+    "main_category": [
+        "product",
+        "category",
+        "salesChannel"
+    ],
+    "webhook": [
+        "id",
+        "name",
+        "eventName",
+        "url",
+        "appId",
+        "app"
+    ],
+    "sales_channel": [
+        "typeId",
+        "analyticsId",
+        "accessKey",
+        "maintenanceIpWhitelist",
+        "translations",
+        "currencies",
+        "languages",
+        "countries",
+        "paymentMethods",
+        "paymentMethodIds",
+        "shippingMethods",
+        "type",
+        "customerGroup",
+        "orders",
+        "customers",
+        "systemConfigs",
+        "productVisibilities",
+        "mailHeaderFooter",
+        "newsletterRecipients",
+        "mailTemplates",
+        "numberRangeSalesChannels",
+        "promotionSalesChannels",
+        "documentBaseConfigSalesChannels",
+        "productReviews",
+        "seoUrls",
+        "seoUrlTemplates",
+        "mainCategories",
+        "productExports",
+        "analytics",
+        "customerGroupsRegistrations",
+        "eventActions",
+        "boundCustomers",
+        "wishlists"
+    ],
+    "sales_channel_translation": [
+        "salesChannel",
+        "language"
+    ],
+    "sales_channel_country": [
+        "salesChannelId",
+        "countryId",
+        "salesChannel",
+        "country"
+    ],
+    "sales_channel_currency": [
+        "salesChannelId",
+        "currencyId",
+        "salesChannel",
+        "currency"
+    ],
+    "sales_channel_domain": [
+        "salesChannel",
+        "snippetSet",
+        "productExports"
+    ],
+    "sales_channel_language": [
+        "salesChannelId",
+        "languageId",
+        "salesChannel",
+        "language"
+    ],
+    "sales_channel_payment_method": [
+        "salesChannelId",
+        "paymentMethodId",
+        "salesChannel",
+        "paymentMethod"
+    ],
+    "sales_channel_shipping_method": [
+        "salesChannelId",
+        "shippingMethodId",
+        "salesChannel",
+        "shippingMethod"
+    ],
+    "sales_channel_type": [
+        "id",
+        "coverUrl",
+        "iconName",
+        "screenshotUrls",
+        "name",
+        "manufacturer",
+        "description",
+        "descriptionLong",
+        "customFields",
+        "translations",
+        "salesChannels"
+    ],
+    "sales_channel_type_translation": [
+        "name",
+        "manufacturer",
+        "description",
+        "customFields",
+        "salesChannelType",
+        "language"
+    ],
+    "sales_channel_analytics": [
+        "id",
+        "trackingId",
+        "active",
+        "trackOrders",
+        "anonymizeIp",
+        "salesChannel"
+    ],
+    "country": [
+        "customerAddresses",
+        "orderAddresses",
+        "salesChannelDefaultAssignments",
+        "salesChannels",
+        "taxRules"
+    ],
+    "country_state": [
+        "country",
+        "translations",
+        "customerAddresses",
+        "orderAddresses"
+    ],
+    "country_state_translation": [
+        "countryState",
+        "language"
+    ],
+    "country_translation": [
+        "country",
+        "language"
+    ],
+    "currency": [
+        "translations",
+        "salesChannelDefaultAssignments",
+        "orders",
+        "salesChannels",
+        "salesChannelDomains",
+        "promotionDiscountPrices",
+        "productExports"
+    ],
+    "currency_translation": [
+        "currency",
+        "language"
+    ],
+    "locale": [
+        "languages",
+        "translations",
+        "users"
+    ],
+    "locale_translation": [
+        "locale",
+        "language"
+    ],
+    "snippet_set": [
+        "id",
+        "baseFile",
+        "salesChannelDomains"
+    ],
+    "snippet": [
+        "id",
+        "author",
+        "set"
+    ],
+    "salutation": [
+        "translations",
+        "customers",
+        "customerAddresses",
+        "orderCustomers",
+        "orderAddresses",
+        "newsletterRecipients"
+    ],
+    "salutation_translation": [
+        "salutation",
+        "language"
+    ],
+    "tax": [
+        "products",
+        "rules",
+        "shippingMethods"
+    ],
+    "tax_rule": [
+        "id",
+        "taxRuleTypeId",
+        "countryId",
+        "taxRate",
+        "data",
+        "taxId",
+        "type",
+        "country",
+        "tax"
+    ],
+    "tax_rule_type": [
+        "id",
+        "technicalName",
+        "position",
+        "typeName",
+        "rules",
+        "translations"
+    ],
+    "tax_rule_type_translation": [
+        "typeName",
+        "taxRuleType",
+        "language"
+    ],
+    "unit": [
+        "products",
+        "translations"
+    ],
+    "unit_translation": [
+        "unit",
+        "language"
+    ],
+    "user": [
+        "id",
+        "localeId",
+        "avatarId",
+        "username",
+        "password",
+        "firstName",
+        "lastName",
+        "title",
+        "email",
+        "active",
+        "admin",
+        "lastUpdatedPasswordAt",
+        "customFields",
+        "locale",
+        "avatarMedia",
+        "media",
+        "accessKeys",
+        "configs",
+        "stateMachineHistoryEntries",
+        "importExportLogEntries",
+        "aclRoles",
+        "recoveryUser",
+        "storeToken",
+        "createdOrders",
+        "updatedOrders"
+    ],
+    "user_config": [
+        "id",
+        "userId",
+        "key",
+        "value",
+        "user"
+    ],
+    "user_access_key": [
+        "id",
+        "userId",
+        "accessKey",
+        "secretAccessKey",
+        "writeAccess",
+        "lastUsageAt",
+        "customFields",
+        "user"
+    ],
+    "user_recovery": [
+        "id",
+        "hash",
+        "userId",
+        "user"
+    ],
+    "integration": [
+        "id",
+        "label",
+        "accessKey",
+        "secretAccessKey",
+        "writeAccess",
+        "lastUsageAt",
+        "admin",
+        "customFields",
+        "app",
+        "aclRoles"
+    ],
+    "integration_role": [
+        "integrationId",
+        "aclRoleId",
+        "integration",
+        "role"
+    ],
+    "state_machine": [
+        "id",
+        "technicalName",
+        "name",
+        "customFields",
+        "initialStateId",
+        "translations",
+        "historyEntries"
+    ],
+    "state_machine_translation": [
+        "name",
+        "stateMachine",
+        "language"
+    ],
+    "state_machine_state": [
+        "id",
+        "stateMachineId",
+        "stateMachine",
+        "fromStateMachineTransitions",
+        "toStateMachineTransitions",
+        "translations",
+        "orderTransactions",
+        "orderDeliveries",
+        "orders",
+        "toStateMachineHistoryEntries",
+        "fromStateMachineHistoryEntries"
+    ],
+    "state_machine_state_translation": [
+        "name",
+        "customFields",
+        "stateMachineState",
+        "language"
+    ],
+    "state_machine_transition": [
+        "id",
+        "actionName",
+        "stateMachineId",
+        "stateMachine",
+        "fromStateId",
+        "fromStateMachineState",
+        "toStateId",
+        "toStateMachineState",
+        "customFields"
+    ],
+    "state_machine_history": [
+        "id",
+        "stateMachineId",
+        "stateMachine",
+        "entityName",
+        "entityId",
+        "fromStateId",
+        "toStateId",
+        "transitionActionName",
+        "userId",
+        "user"
+    ],
+    "system_config": [],
+    "number_range": [
+        "id",
+        "typeId",
+        "global",
+        "name",
+        "description",
+        "pattern",
+        "start",
+        "customFields",
+        "type",
+        "numberRangeSalesChannels",
+        "state",
+        "translations"
+    ],
+    "number_range_sales_channel": [
+        "id",
+        "numberRangeId",
+        "salesChannelId",
+        "numberRangeTypeId",
+        "numberRange",
+        "salesChannel",
+        "numberRangeType"
+    ],
+    "number_range_state": [
+        "id",
+        "numberRangeId",
+        "lastValue",
+        "numberRange"
+    ],
+    "number_range_type": [
+        "id",
+        "technicalName",
+        "typeName",
+        "global",
+        "customFields",
+        "numberRanges",
+        "numberRangeSalesChannels",
+        "translations"
+    ],
+    "number_range_type_translation": [
+        "typeName",
+        "customFields",
+        "numberRangeType",
+        "language"
+    ],
+    "number_range_translation": [
+        "name",
+        "description",
+        "customFields",
+        "numberRange",
+        "language"
+    ],
+    "tag": [
+        "id",
+        "name",
+        "products",
+        "media",
+        "categories",
+        "customers",
+        "orders",
+        "shippingMethods",
+        "newsletterRecipients"
+    ],
+    "category": [
+        "autoIncrement",
+        "slotConfig",
+        "products",
+        "nestedProducts",
+        "tags",
+        "productStreamId",
+        "productStream",
+        "navigationSalesChannels",
+        "footerSalesChannels",
+        "serviceSalesChannels",
+        "mainCategories"
+    ],
+    "category_translation": [
+        "slotConfig",
+        "category",
+        "language",
+        "categoryVersionId"
+    ],
+    "category_tag": [
+        "categoryId",
+        "categoryVersionId",
+        "tagId",
+        "category",
+        "tag"
+    ],
+    "media": [
+        "userId",
+        "mediaFolderId",
+        "mediaTypeRaw",
+        "mediaType",
+        "thumbnailsRo",
+        "tags",
+        "user",
+        "categories",
+        "productManufacturers",
+        "productMedia",
+        "avatarUser",
+        "mediaFolder",
+        "propertyGroupOptions",
+        "mailTemplateMedia",
+        "documentBaseConfigs",
+        "shippingMethods",
+        "paymentMethods",
+        "productConfiguratorSettings",
+        "orderLineItems",
+        "cmsBlocks",
+        "cmsSections",
+        "cmsPages",
+        "documents"
+    ],
+    "media_default_folder": [
+        "id",
+        "associationFields",
+        "entity",
+        "folder",
+        "customFields"
+    ],
+    "media_thumbnail": [
+        "media"
+    ],
+    "media_translation": [
+        "media",
+        "language"
+    ],
+    "media_folder": [
+        "id",
+        "useParentConfiguration",
+        "configurationId",
+        "defaultFolderId",
+        "parentId",
+        "parent",
+        "children",
+        "childCount",
+        "media",
+        "defaultFolder",
+        "configuration",
+        "name",
+        "customFields"
+    ],
+    "media_thumbnail_size": [
+        "mediaFolderConfigurations"
+    ],
+    "media_folder_configuration": [
+        "id",
+        "createThumbnails",
+        "keepAspectRatio",
+        "thumbnailQuality",
+        "private",
+        "noAssociation",
+        "mediaFolders",
+        "mediaThumbnailSizes",
+        "mediaThumbnailSizesRo",
+        "customFields"
+    ],
+    "media_folder_configuration_media_thumbnail_size": [
+        "mediaFolderConfigurationId",
+        "mediaThumbnailSizeId",
+        "mediaFolderConfiguration",
+        "mediaThumbnailSize"
+    ],
+    "media_tag": [],
+    "product": [
+        "price",
+        "autoIncrement",
+        "configuratorGroupConfig",
+        "variantRestrictions",
+        "purchasePrice",
+        "categoryTree",
+        "tagIds",
+        "listingPrices",
+        "blacklistIds",
+        "whitelistIds",
+        "customFieldSetSelectionActive",
+        "prices",
+        "crossSellingAssignedProducts",
+        "visibilities",
+        "searchKeywords",
+        "orderLineItems",
+        "tags",
+        "customFieldSets",
+        "featureSetId",
+        "featureSet",
+        "purchasePrices",
+        "customSearchKeywords",
+        "wishlists"
+    ],
+    "product_category": [
+        "productId",
+        "productVersionId",
+        "categoryId",
+        "categoryVersionId",
+        "product",
+        "category"
+    ],
+    "product_custom_field_set": [
+        "productId",
+        "customFieldSetId",
+        "productVersionId",
+        "product",
+        "customFieldSet"
+    ],
+    "product_tag": [
+        "productId",
+        "productVersionId",
+        "tagId",
+        "product",
+        "tag"
+    ],
+    "product_configurator_setting": [
+        "price",
+        "product"
+    ],
+    "product_price": [
+        "id",
+        "versionId",
+        "productId",
+        "productVersionId",
+        "ruleId",
+        "price",
+        "quantityStart",
+        "quantityEnd",
+        "product",
+        "rule",
+        "customFields"
+    ],
+    "product_property": [
+        "productId",
+        "productVersionId",
+        "optionId",
+        "product",
+        "option"
+    ],
+    "product_search_keyword": [
+        "id",
+        "versionId",
+        "languageId",
+        "productId",
+        "productVersionId",
+        "keyword",
+        "ranking",
+        "product",
+        "language"
+    ],
+    "product_keyword_dictionary": [
+        "id",
+        "reversed",
+        "language"
+    ],
+    "product_review": [
+        "customerId",
+        "externalUser",
+        "externalEmail",
+        "product",
+        "customer",
+        "salesChannel",
+        "language"
+    ],
+    "product_manufacturer": [
+        "products"
+    ],
+    "product_manufacturer_translation": [
+        "productManufacturer",
+        "language",
+        "productManufacturerVersionId"
+    ],
+    "product_media": [
+        "product"
+    ],
+    "product_translation": [
+        "customSearchKeywords",
+        "product",
+        "language",
+        "productVersionId"
+    ],
+    "product_option": [
+        "productId",
+        "productVersionId",
+        "optionId",
+        "product",
+        "option"
+    ],
+    "product_category_tree": [
+        "productId",
+        "productVersionId",
+        "categoryId",
+        "categoryVersionId",
+        "product",
+        "category"
+    ],
+    "product_cross_selling": [
+        "productId",
+        "productVersionId",
+        "product",
+        "productStreamId",
+        "productStream",
+        "assignedProducts"
+    ],
+    "product_cross_selling_translation": [
+        "productCrossSelling",
+        "language"
+    ],
+    "product_cross_selling_assigned_products": [
+        "id",
+        "crossSellingId",
+        "productId",
+        "productVersionId",
+        "product",
+        "crossSelling",
+        "position"
+    ],
+    "product_feature_set": [
+        "id",
+        "name",
+        "description",
+        "features",
+        "products",
+        "translations"
+    ],
+    "product_feature_set_translation": [
+        "productFeatureSet",
+        "language"
+    ],
+    "product_sorting": [
+        "id",
+        "locked",
+        "active",
+        "fields",
+        "translations"
+    ],
+    "product_sorting_translation": [
+        "productSorting",
+        "language"
+    ],
+    "product_search_config": [
+        "id",
+        "languageId",
+        "andLogic",
+        "minSearchLength",
+        "excludedTerms",
+        "language",
+        "configFields"
+    ],
+    "product_search_config_field": [
+        "id",
+        "searchConfigId",
+        "customFieldId",
+        "field",
+        "tokenize",
+        "searchable",
+        "ranking",
+        "searchConfig",
+        "customField"
+    ],
+    "product_visibility": [
+        "id",
+        "productId",
+        "productVersionId",
+        "salesChannelId",
+        "visibility",
+        "salesChannel",
+        "product"
+    ],
+    "delivery_time": [
+        "shippingMethods",
+        "products",
+        "translations"
+    ],
+    "newsletter_recipient": [
+        "id",
+        "email",
+        "title",
+        "firstName",
+        "lastName",
+        "zipCode",
+        "city",
+        "street",
+        "status",
+        "hash",
+        "customFields",
+        "confirmedAt",
+        "tags",
+        "salutationId",
+        "salutation",
+        "languageId",
+        "language",
+        "salesChannelId",
+        "salesChannel"
+    ],
+    "newsletter_recipient_tag": [
+        "newsletterRecipientId",
+        "tagId",
+        "newsletterRecipient",
+        "tag"
+    ],
+    "rule": [
+        "id",
+        "priority",
+        "payload",
+        "invalid",
+        "moduleTypes",
+        "conditions",
+        "productPrices",
+        "shippingMethodPrices",
+        "shippingMethodPriceCalculations",
+        "shippingMethods",
+        "paymentMethods",
+        "personaPromotions",
+        "orderPromotions",
+        "cartPromotions",
+        "promotionDiscounts",
+        "promotionSetGroups",
+        "eventActions"
+    ],
+    "rule_condition": [
+        "id",
+        "type",
+        "ruleId",
+        "parentId",
+        "value",
+        "position",
+        "rule",
+        "parent",
+        "children",
+        "customFields"
+    ],
+    "product_stream": [
+        "id",
+        "apiFilter",
+        "invalid",
+        "translations",
+        "filters",
+        "productCrossSellings",
+        "productExports",
+        "categories"
+    ],
+    "product_stream_translation": [
+        "name",
+        "productStream",
+        "language"
+    ],
+    "product_stream_filter": [
+        "id",
+        "productStreamId",
+        "parentId",
+        "type",
+        "field",
+        "operator",
+        "value",
+        "parameters",
+        "position",
+        "productStream",
+        "parent",
+        "queries",
+        "customFields"
+    ],
+    "product_export": [
+        "id",
+        "productStreamId",
+        "storefrontSalesChannelId",
+        "salesChannelId",
+        "salesChannelDomainId",
+        "currencyId",
+        "fileName",
+        "accessKey",
+        "encoding",
+        "fileFormat",
+        "includeVariants",
+        "generateByCronjob",
+        "generatedAt",
+        "interval",
+        "headerTemplate",
+        "bodyTemplate",
+        "footerTemplate",
+        "pausedSchedule",
+        "productStream",
+        "storefrontSalesChannel",
+        "salesChannel",
+        "salesChannelDomain",
+        "currency"
+    ],
+    "property_group": [
+        "translations"
+    ],
+    "property_group_option": [
+        "translations",
+        "productConfiguratorSettings",
+        "productProperties",
+        "productOptions"
+    ],
+    "property_group_option_translation": [
+        "propertyGroupOption",
+        "language"
+    ],
+    "property_group_translation": [
+        "propertyGroup",
+        "language"
+    ],
+    "cms_page": [
+        "locked",
+        "categories"
+    ],
+    "cms_page_translation": [
+        "name",
+        "cmsPage",
+        "language"
+    ],
+    "cms_section": [
+        "id",
+        "locked"
+    ],
+    "cms_block": [
+        "id",
+        "locked",
+        "section"
+    ],
+    "cms_slot": [
+        "id"
+    ],
+    "cms_slot_translation": [
+        "cmsSlot",
+        "language",
+        "cmsSlotVersionId"
+    ],
+    "mail_template": [
+        "id",
+        "mailTemplateTypeId",
+        "description",
+        "subject",
+        "salesChannels"
+    ],
+    "mail_template_translation": [
+        "subject",
+        "contentHtml",
+        "contentPlain",
+        "mailTemplate",
+        "language"
+    ],
+    "mail_template_type": [
+        "availableEntities",
+        "mailTemplates",
+        "salesChannels"
+    ],
+    "mail_template_type_translation": [
+        "name",
+        "mailTemplateType",
+        "language"
+    ],
+    "mail_template_sales_channel": [
+        "mailTemplateType",
+        "mailTemplate",
+        "salesChannel"
+    ],
+    "mail_template_media": [
+        "mailTemplate"
+    ],
+    "mail_header_footer": [
+        "id",
+        "salesChannels"
+    ],
+    "mail_header_footer_translation": [
+        "name",
+        "mailHeaderFooter",
+        "language"
+    ],
+    "delivery_time_translation": [
+        "deliveryTime",
+        "language"
+    ],
+    "import_export_profile": [
+        "id",
+        "name",
+        "label",
+        "systemDefault",
+        "sourceEntity",
+        "fileType",
+        "delimiter",
+        "enclosure",
+        "mapping",
+        "config",
+        "importExportLogs",
+        "translations"
+    ],
+    "import_export_log": [
+        "id",
+        "activity",
+        "state",
+        "records",
+        "userId",
+        "profileId",
+        "fileId",
+        "invalidRecordsLogId",
+        "username",
+        "profileName",
+        "config",
+        "user",
+        "profile",
+        "file",
+        "invalidRecordsLog",
+        "failedImportLog"
+    ],
+    "import_export_file": [
+        "id",
+        "originalName",
+        "path",
+        "expireDate",
+        "size",
+        "log",
+        "accessToken"
+    ],
+    "import_export_profile_translation": [
+        "label",
+        "importExportProfile",
+        "language"
+    ],
+    "customer": [
+        "autoIncrement",
+        "password",
+        "legacyPassword",
+        "legacyEncoder",
+        "salesChannel",
+        "orderCustomers",
+        "tags",
+        "promotions",
+        "productReviews",
+        "recoveryCustomer",
+        "remoteAddress",
+        "requestedGroupId",
+        "requestedGroup",
+        "boundSalesChannelId",
+        "boundSalesChannel",
+        "wishlists"
+    ],
+    "customer_group_translation": [
+        "customerGroup",
+        "language"
+    ],
+    "customer_address": [
+        "customer"
+    ],
+    "customer_recovery": [
+        "customerId",
+        "customer"
+    ],
+    "customer_group": [
+        "customers",
+        "salesChannels",
+        "translations",
+        "registrationSalesChannels"
+    ],
+    "customer_group_registration_sales_channels": [
+        "customerGroupId",
+        "salesChannelId",
+        "customerGroup",
+        "salesChannel"
+    ],
+    "customer_tag": [
+        "customer"
+    ],
+    "customer_wishlist": [
+        "salesChannelId",
+        "products",
+        "customer",
+        "salesChannel"
+    ],
+    "customer_wishlist_product": [
+        "wishlistId",
+        "wishlist",
+        "product"
+    ],
+    "document": [],
+    "document_type": [
+        "documents",
+        "documentBaseConfigs",
+        "documentBaseConfigSalesChannels"
+    ],
+    "document_type_translation": [
+        "name",
+        "documentType",
+        "language"
+    ],
+    "document_base_config": [
+        "documentType",
+        "salesChannels"
+    ],
+    "document_base_config_sales_channel": [
+        "documentType",
+        "documentBaseConfig",
+        "salesChannel"
+    ],
+    "order": [
+        "autoIncrement",
+        "stateId",
+        "ruleIds",
+        "salesChannel",
+        "createdBy",
+        "updatedBy"
+    ],
+    "order_address": [
+        "orderId",
+        "orderVersionId",
+        "salutationId",
+        "order",
+        "orderDeliveries"
+    ],
+    "order_customer": [
+        "customerId",
+        "orderId",
+        "orderVersionId",
+        "order",
+        "customer",
+        "remoteAddress"
+    ],
+    "order_delivery": [
+        "order"
+    ],
+    "order_delivery_position": [
+        "orderDelivery",
+        "orderLineItem"
+    ],
+    "order_line_item": [
+        "price",
+        "order",
+        "product"
+    ],
+    "order_tag": [],
+    "order_transaction": [
+        "order"
+    ],
+    "payment_method": [
+        "pluginId",
+        "handlerIdentifier",
+        "availabilityRuleId",
+        "formattedHandlerIdentifier",
+        "availabilityRule",
+        "salesChannelDefaultAssignments",
+        "plugin",
+        "customers",
+        "orderTransactions",
+        "salesChannels"
+    ],
+    "payment_method_translation": [
+        "paymentMethod",
+        "language"
+    ],
+    "promotion": [
+        "id",
+        "name",
+        "active",
+        "validFrom",
+        "validUntil",
+        "maxRedemptionsGlobal",
+        "maxRedemptionsPerCustomer",
+        "exclusive",
+        "code",
+        "useCodes",
+        "useIndividualCodes",
+        "individualCodePattern",
+        "useSetGroups",
+        "customerRestriction",
+        "orderCount",
+        "ordersPerCustomerCount",
+        "setgroups",
+        "salesChannels",
+        "discounts",
+        "individualCodes",
+        "personaRules",
+        "personaCustomers",
+        "orderRules",
+        "cartRules",
+        "translations",
+        "exclusionIds"
+    ],
+    "promotion_sales_channel": [
+        "id",
+        "promotionId",
+        "salesChannelId",
+        "priority",
+        "promotion",
+        "salesChannel"
+    ],
+    "promotion_individual_code": [
+        "id",
+        "promotionId",
+        "code",
+        "payload",
+        "promotion"
+    ],
+    "promotion_discount": [
+        "id",
+        "promotionId",
+        "scope",
+        "type",
+        "value",
+        "considerAdvancedRules",
+        "maxValue",
+        "sorterKey",
+        "applierKey",
+        "usageKey",
+        "pickerKey",
+        "promotion",
+        "discountRules",
+        "promotionDiscountPrices"
+    ],
+    "promotion_discount_rule": [
+        "discountId",
+        "ruleId",
+        "discount",
+        "rule"
+    ],
+    "promotion_setgroup": [
+        "id",
+        "promotionId",
+        "packagerKey",
+        "sorterKey",
+        "value",
+        "promotion",
+        "setGroupRules"
+    ],
+    "promotion_setgroup_rule": [
+        "setgroupId",
+        "ruleId",
+        "setgroup",
+        "rule"
+    ],
+    "promotion_order_rule": [
+        "promotionId",
+        "ruleId",
+        "promotion",
+        "rule"
+    ],
+    "promotion_persona_customer": [
+        "promotionId",
+        "customerId",
+        "promotion",
+        "customer"
+    ],
+    "promotion_persona_rule": [
+        "promotionId",
+        "ruleId",
+        "promotion",
+        "rule"
+    ],
+    "promotion_cart_rule": [
+        "promotionId",
+        "ruleId",
+        "promotion",
+        "rule"
+    ],
+    "promotion_translation": [
+        "name",
+        "promotion",
+        "language"
+    ],
+    "promotion_discount_prices": [
+        "id",
+        "discountId",
+        "currencyId",
+        "price",
+        "promotionDiscount",
+        "currency"
+    ],
+    "shipping_method": [
+        "availabilityRuleId",
+        "taxId",
+        "orderDeliveries",
+        "salesChannels",
+        "salesChannelDefaultAssignments"
+    ],
+    "shipping_method_tag": [
+        "shippingMethodId",
+        "tagId",
+        "shippingMethod",
+        "tag"
+    ],
+    "shipping_method_price": [
+        "shippingMethod",
+        "rule",
+        "calculationRule"
+    ],
+    "shipping_method_translation": [
+        "shippingMethod",
+        "language"
+    ],
+    "theme": [
+        "translations",
+        "salesChannels",
+        "previewMedia",
+        "childThemes"
+    ],
+    "theme_translation": [
+        "theme",
+        "language"
+    ],
+    "theme_sales_channel": [
+        "salesChannelId",
+        "themeId",
+        "theme",
+        "salesChannel"
+    ],
+    "theme_media": [
+        "themeId",
+        "mediaId",
+        "theme",
+        "media"
+    ]
+}

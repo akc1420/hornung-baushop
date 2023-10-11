@@ -1,0 +1,40 @@
+{% block clever_reach_abandoned_cart %}
+    <sw-card class="cr-abandoned-cart" :isLoading="isLoading">
+        <template v-slot:title>
+            <div class="cr-ac-title">
+                {{ $tc('clever-reach.abandonedCart.shops') }}
+            </div>
+        </template>
+        <sw-grid slot="grid"
+                 :selectable="false"
+                 :items="items"
+                 table>
+            <template slot="header">
+                <sw-container columns="1fr 1fr" class="cr-ac-header">
+                    <sw-card-section class="cr-ac-header-left">
+                        <strong>
+                            {{ $tc('clever-reach.abandonedCart.shopName') }}
+                        </strong>
+                    </sw-card-section>
+                    <sw-card-section class="cr-ac-header-right">
+                        <strong class="cr-ac-header-right-label">
+                            {{ $tc('clever-reach.abandonedCart.function') }}
+                        </strong>
+                    </sw-card-section>
+                </sw-container>
+            </template>
+
+            <template slot="columns" slot-scope="{ item }">
+                <sw-grid-column flex="minmax(100px, 1fr)" class="cr-ac-left-column" v-on:click="openSettings(item.id, item.shopName)">
+                    {{ item.shopName }}
+                </sw-grid-column>
+
+                <sw-grid-column flex="minmax(100px, 1fr)" class="cr-ac-right-column">
+                    {{ $tc('clever-reach.abandonedCart.' + item.state) }}
+                    <sw-color-badge v-if="item.state === 'active'" variant="success" rounded></sw-color-badge>
+                    <sw-color-badge v-if="item.state === 'inactive'" variant="error" rounded></sw-color-badge>
+                </sw-grid-column>
+            </template>
+        </sw-grid>
+    </sw-card>
+{% endblock %}

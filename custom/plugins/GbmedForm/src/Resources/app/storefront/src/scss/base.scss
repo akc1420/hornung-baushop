@@ -1,0 +1,18 @@
+#gRecaptcha {
+    display: none !important;
+
+    &.show {
+        visibility: inherit !important;
+        display: block !important;
+
+        .grecaptcha-badge {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+}
+
+.reCaptchaBageHidden {
+    opacity: .4;
+    display: inline-block;
+}

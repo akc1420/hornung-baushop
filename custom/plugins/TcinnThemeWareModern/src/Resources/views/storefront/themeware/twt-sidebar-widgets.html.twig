@@ -1,0 +1,58 @@
+{# ThemeWare: Sidebar-Elements container #}
+{#
+    Create sidebar rows and include widgets/contents
+
+    @Storefront/storefront/themeware/twt-sidebar-widgets.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ThemeWare: Add element class and element number #}
+{% set blockClasses = ['twt-element-' ~ elementid, 'twt-element-' ~ element] %}
+
+{% block twt_section_block_container %}
+    <div class="twt-block-container {{ blockClasses|join(' ') }}">
+
+        {% block twt_section_content_block_row %}
+            <div class="twt-block-container-row row twt-row">
+                <div class="col-12">
+
+                    {% block twt_section_block_headline %}
+                        <div class="twt-cms-element-sidebar-headline">
+                            {# TODO: var doesn't work in snippet... #}
+                            {% if element == "about" %}
+                                {{ "twt.widget.about.headline"|trans|sw_sanitize }}
+                            {% elseif element == "awards" %}
+                                {{ "twt.widget.awards.headline"|trans|sw_sanitize }}
+                            {% elseif element == "benefits" %}
+                                {{ "twt.widget.benefits.headline"|trans|sw_sanitize }}
+                            {% elseif element == "communities" %}
+                                {{ "twt.widget.communities.headline"|trans|sw_sanitize }}
+                            {% elseif element == "hotline" %}
+                                {{ 'footer.serviceHotlineHeadline'|trans|sw_sanitize }}
+                            {% elseif element == "location" %}
+                                {{ "twt.widget.location.headline"|trans|sw_sanitize }}
+                            {% elseif element == "payment" %}
+                                {{ "twt.widget.payment.headline"|trans|sw_sanitize }}
+                            {% elseif element == "paymentshipping" %}
+                                {{ "twt.widget.paymentshipping.headline"|trans|sw_sanitize }}
+                            {% elseif element == "shipping" %}
+                                {{ "twt.widget.shipping.headline"|trans|sw_sanitize }}
+                            {% endif %}
+                        </div>
+                    {% endblock %}
+
+                    {% block twt_section_block_content %}
+                        <div class="twt-cms-element-sidebar-content">
+                            {% sw_include '@Storefront/storefront/themeware/widgets/twt-' ~ element ~ '-include.html.twig' ignore missing with {
+                                type: 'sidebar'
+                            } %}
+                        </div>
+                    {% endblock %}
+
+                </div>
+            </div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

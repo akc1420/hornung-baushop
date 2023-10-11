@@ -1,0 +1,284 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Base slider
+    ==============================================
+    Styling for base slider component.
+    Contains minimal styling for a slider with arrow and/or dot navigation.
+    based on: https://github.com/ganlanyuan/tiny-slider
+
+    Origin: Shopware base
+*/
+
+/* ---------------- START: SET SCSS VARS ---------------- */
+
+// ThemeWare: Set theme variables
+$twtBaseSliderNavigationDotsMargin: 0 5px;
+
+@if $twt-base-slider-navigation-dots-style == 1 { // Rectangle
+  $twtBaseSliderNavigationDotsMargin: 0 8px;
+}
+@if $twt-base-slider-navigation-dots-style == 2 { // Square/Circle (default)
+  $twtBaseSliderNavigationDotsMargin: 0 6px;
+}
+@if $twt-base-slider-navigation-dots-style == 2 and $twt-base-slider-navigation-dots-type == 3 { // Square/Circle (default) + round (default)
+  $twtBaseSliderNavigationDotsMargin: 0 8px;
+}
+
+/* ---------------- END: SET SCSS VARS ---------------- */
+
+// TODO: Add color configuration "Außen"
+
+// ThemeWare: Base slider adjustments
+.base-slider:not(.gallery-slider):not(.image-slider):not(.product-slider) { // Exclude some elements because they were separately configured
+  // ThemeWare: Arrow navigation
+  .base-slider-controls-prev,
+  .base-slider-controls-next {
+    opacity: 1;
+
+    @if $twt-base-slider-controls-style == 1 { // 1 rectangle [default], 2 square
+      //width: 30px;
+      //height: 65px;
+      //line-height: 65px;
+    } @else {
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+    }
+
+    // default: 3px 0 0 3px
+    @if $twt-base-slider-controls-corner-type == 1 { // 1 not rounded
+      border-radius: 0;
+    }
+    @if $twt-base-slider-controls-corner-type == 2 { // 2 rounded
+      border-radius: null-pixel-unit($twt-border-radius);
+    }
+    @if $twt-base-slider-controls-corner-type == 3 { // 3 round
+      border-radius: 100px;
+    }
+    @if $twt-base-slider-controls-corner-type == 4 { // 4 individual
+    }
+
+    @if $twt-base-slider-controls-border-color == transparent and $twt-base-slider-controls-border-color-hover == transparent {
+      border: none;
+    } @else {
+      border: 1px solid $twt-base-slider-controls-border-color;
+    }
+
+    background-color: $twt-base-slider-controls-background-color;
+
+    // TODO: Add configuration
+    //box-shadow: 1px 2px 6px rgb(0 0 0 / 30%);
+
+    .icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      //-ms-transform: translate(-50%, -50%);
+      //-webkit-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+
+      color: $twt-base-slider-controls-color;
+    }
+
+    &:hover {
+      border-color: $twt-base-slider-controls-border-color-hover;
+      background-color: $twt-base-slider-controls-background-color-hover;
+
+      .icon {
+        color: $twt-base-slider-controls-color-hover;
+      }
+    }
+  }
+}
+
+// ThemeWare: Arrow navigation
+.base-slider-controls-prev:not(.gallery-slider-controls-prev):not(.image-slider-controls-prev):not(.product-slider-controls-prev) { // Exclude some elements because they were separately configured
+  .icon {
+    > svg {
+      top: 0;
+      left: -2px;
+    }
+  }
+
+  //&.is-nav-prev-outside {}
+}
+
+.base-slider-controls-next:not(.gallery-slider-controls-next):not(.image-slider-controls-next):not(.product-slider-controls-next) { // Exclude some elements because they were separately configured
+  .icon {
+    > svg {
+      top: 0;
+      right: -1px;
+    }
+  }
+
+  //&.is-nav-next-outside {}
+}
+
+// ThemeWare: Arrow navigation hover effect
+@if $twt-base-slider-controls-hover-type == 2 {
+  .base-slider:not(.gallery-slider):not(.image-slider):not(.product-slider) { // Exclude some elements because they were separately configured
+    .base-slider-controls {
+      @include media-breakpoint-up(lg) { // min 992px
+        opacity: 0;
+        transition: opacity .2s ease-in;
+      }
+    }
+
+    @include media-breakpoint-up(lg) { // min 992px
+      &:hover {
+        .base-slider-controls {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+
+// ThemeWare: Dot navigation hover effect
+/*.base-slider:not(.gallery-slider):not(.image-slider):not(.product-slider) { // Exclude some elements because they were separately configured*/
+.base-slider {
+  // styling works both for auto generated markup by the tiny-slider and normal template markup
+  .tns-nav,
+  .base-slider-dots {
+    @if $twt-base-slider-navigation-dots-alignment == 1 { // left
+      //-webkit-transform: none;
+      transform: none;
+      left: 30px;
+    }
+    @if $twt-base-slider-navigation-dots-alignment == 2 { // right
+      //-webkit-transform: none;
+      transform: none;
+      left: inherit;
+      right: 30px;
+    }
+
+    .base-slider-dot,
+    button {
+      margin: $twtBaseSliderNavigationDotsMargin;
+
+      @if $twt-base-slider-navigation-dots-style == 1 { // Rectangle
+        padding: 0;
+        width: 32px;
+      }
+
+      @if $twt-base-slider-navigation-dots-type == 1 { // not rounded
+        border-radius: 0;
+      } @else if $twt-base-slider-navigation-dots-type == 2 { // rounded
+        border-radius: null-pixel-unit($twt-border-radius);
+      } @else if $twt-base-slider-navigation-dots-type == 3 { // round (default)
+        @if $twt-base-slider-navigation-dots-style == 1 { // Rectangle
+          border-radius: 50px;
+        }
+      }
+
+      background-color: $twt-base-slider-navigation-dots-background-color;
+
+      // Dots
+      @if $twt-base-slider-navigation-dots-hover-type == 2 {  // SCALE UP
+        //-webkit-transition: -webkit-transform 0.3s ease, background-color 0.3s ease;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+      } @else if $twt-base-slider-navigation-dots-hover-type == 3 { // STROKE
+        //-webkit-transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        box-shadow: 0 0 0 2px rgb(255 255 255 / 0%);
+      } @else if $twt-base-slider-navigation-dots-hover-type == 4 { // FILL IN
+        //-webkit-transition: box-shadow 0.3s ease;
+        transition: box-shadow 0.3s ease;
+        background-color: transparent;
+        box-shadow: inset 0 0 0 2px $twt-base-slider-navigation-dots-background-color;
+      } @else if $twt-base-slider-navigation-dots-hover-type == 5 { // CIRCLE GROW
+        // TODO...
+      } @else if $twt-base-slider-navigation-dots-hover-type == 6 { // DOT STROKE
+        //-webkit-transition: box-shadow 0.3s ease;
+        transition: box-shadow 0.3s ease;
+        background-color: transparent;
+        box-shadow: inset 0 0 0 8px transparentize($twt-base-slider-navigation-dots-background-color, .5);
+      } @else if $twt-base-slider-navigation-dots-hover-type == 7 { //...
+      }
+
+      &:hover,
+      &.tns-nav-active {
+        background-color: $twt-base-slider-navigation-dots-background-color-active;
+      }
+
+      &:hover{
+        // Dots
+        @if $twt-base-slider-navigation-dots-hover-type == 2 { // SCALE UP
+        } @else if $twt-base-slider-navigation-dots-hover-type == 3 { // STROKE
+        } @else if $twt-base-slider-navigation-dots-hover-type == 4 { // FILL IN
+          background-color: transparent;
+          box-shadow: inset 0 0 0 2px transparentize($twt-base-slider-navigation-dots-background-color-active, .6);
+        } @else if $twt-base-slider-navigation-dots-hover-type == 5 { // CIRCLE GROW
+          // TODO...
+        } @else if $twt-base-slider-navigation-dots-hover-type == 6 { // DOT STROKE
+          box-shadow: inset 0 0 0 8px $twt-base-slider-navigation-dots-background-color-active;
+        } @else if $twt-base-slider-navigation-dots-hover-type == 7 { //...
+        }
+      }
+
+      &.tns-nav-active {
+        // Dots
+        @if $twt-base-slider-navigation-dots-hover-type == 2 { // SCALE UP
+          -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+        } @else if $twt-base-slider-navigation-dots-hover-type == 3 { // STROKE
+          background-color: transparent;
+          box-shadow: 0 0 0 2px $twt-base-slider-navigation-dots-background-color-active;
+        } @else if $twt-base-slider-navigation-dots-hover-type == 4 { // FILL IN
+          box-shadow: inset 0 0 0 8px $twt-base-slider-navigation-dots-background-color-active;
+        } @else if $twt-base-slider-navigation-dots-hover-type == 5 { // CIRCLE GROW
+          // TODO...
+        } @else if $twt-base-slider-navigation-dots-hover-type == 6 { // DOT STROKE
+          background-color: transparentize($twt-base-slider-navigation-dots-background-color, .5);
+          box-shadow: inset 0 0 0 2px $twt-base-slider-navigation-dots-background-color-active;
+        } @else if $twt-base-slider-navigation-dots-hover-type == 7 { //...
+        }
+      }
+
+      //&:focus {}
+    }
+  }
+
+  // moves navigation dots outside the slider item
+  /*&.has-dots-outside {
+    .tns-nav,
+    .base-slider-dots {
+    }
+  }
+
+  &.has-nav-outside {
+  }*/
+}
+
+/*@include media-breakpoint-up(md) {
+  .base-slider {
+    .tns-nav,
+    .base-slider-dots {
+      .base-slider-dot,
+      button {
+      }
+
+      &.hide-dots {
+      }
+    }
+  }
+}*/
+
+/*@include media-breakpoint-down(sm) {
+  .base-slider {
+    .tns-nav,
+    .base-slider-dots {
+
+      &.hide-dots,
+      &.hide-dots-mobile {
+      }
+    }
+  }
+}*/

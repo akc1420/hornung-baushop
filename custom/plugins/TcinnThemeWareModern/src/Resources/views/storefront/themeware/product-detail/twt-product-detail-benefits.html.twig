@@ -1,0 +1,100 @@
+{# ThemeWare "Benefits" on prodcut pages (Container) #}
+{#
+    Create container and include the payment logos
+    type: buy-box - position: top/bottom
+
+    @Storefront/storefront/themeware/product-detail/twt-product-detail-benefits.html.twig
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtIconBenefits = theme_config('twt-icon-benefits') %}
+{% set twtProductDetailBenefitsContent = theme_config('twt-product-detail-benefits-content') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_product_detail_benefits %}
+    {# Prüfen ob das Element leer wöre
+        1: Textbaustein = Element ist immer befüllt, weil der Textbaustein immer befüllt sein sollte.
+        2: Zusatzfeld = Element ist NICHT immer befüllt! Das Zusatzfeld muss nicht immer befüllt sein.
+        3: Zusatzfeld oder Textbaustein = Element ist immer befüllt, weil bei leerem Zusatzfeld der Textbaustein genutzt wurd.
+    #}
+    {% set empty = false %}
+
+    {% if twtProductDetailBenefitsContent == 2 and twtCustomFields.product.twt_modern_pro_custom_field__product__benefits is empty %}
+        {% set empty = true %}
+    {% endif %}
+
+    {# Textbaustein in array umwandeln #}
+    {% if 'twt.detail.benefits.content'|trans is not empty %}
+        {% set listSnippet = 'twt.detail.benefits.content'|trans|split(';') %}
+    {% endif %}
+
+    {# Zusatzfeld in array umwandeln #}
+    {% if twtCustomFields.product.twt_modern_pro_custom_field__product__benefits|trans is not empty %}
+        {% set listCustomField = twtCustomFields.product.twt_modern_pro_custom_field__product__benefits|trans|split(';') %}
+    {% endif %}
+
+    {# Array für die Generierung der Vorteile-Liste definieren #}
+    {% if twtProductDetailBenefitsContent == 1 %}
+        {# Textbaustein #}
+        {% set list = listSnippet %}
+    {% elseif twtProductDetailBenefitsContent == 2 %}
+        {# Zusatzfeld #}
+        {% set list = listCustomField %}
+    {% elseif twtProductDetailBenefitsContent == 3 %}
+        {# Zusatzfeld oder Textbaustein #}
+        {% if listCustomField is not empty %}
+            {% set list = listCustomField %}
+        {% else %}
+            {% set list = listSnippet %}
+        {% endif %}
+    {% elseif twtProductDetailBenefitsContent == 4 %}
+        {# Textbaustein und Zusatzfeld #}
+        {% if listCustomField is not empty %}
+            {% set list = listSnippet|merge(listCustomField) %}
+        {% else %}
+            {% set list = listSnippet %}
+        {% endif %}
+    {% endif %}
+
+    {# ThemeWare: Benefits in buy-box #}
+    {% if empty == false %}
+        <div class="twt-product-detail-benefits twt-benefits {{ position }}" id="twt-detail-benefits">
+
+            {% block twt_product_detail_benefits_inner %}
+
+                {% block twt_product_detail_benefits_headline %}
+                    <div class="twt-product-detail-benefits-headline h4">
+                        {{ "twt.detail.benefits.headline"|trans|sw_sanitize }}
+                    </div>
+                {% endblock %}
+
+                {% block twt_product_detail_benefits_content %}
+                    <div class="twt-product-detail-benefits-content">
+                        <div class="twt-product-detail-benefits-list">
+                            <ul>
+                            {% for item in list %}
+                                <li>
+                                    {# Icon #}
+                                    {# @deprecated
+                                    {% sw_include '@Storefront/storefront/themeware/twt-custom-icons.html.twig' ignore missing with {
+                                        icon: 'checkmark'
+                                    } %}
+                                    #}
+                                    {% sw_include '@Storefront/storefront/themeware/twt-icons.html.twig' ignore missing with { icon: twtIconBenefits } %} {# Uses Shopware's icon library #}
+                                    {# Text #}
+                                    {{ item|raw }}
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% endblock %}
+
+            {% endblock %}
+
+        </div>
+    {% endif %}
+{% endblock %}

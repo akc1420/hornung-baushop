@@ -1,0 +1,167 @@
+{% block swag_cms_extensions_form_editor_modal %}
+<div class="swag-cms-extensions-form-editor-modal-wrapper">
+    <sw-modal
+        v-if="displayModal"
+        class="swag-cms-extensions-form-editor-modal"
+        :title="$tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.title')"
+        variant="large"
+        @modal-close="onModalClose(false)">
+
+        {% block swag_cms_extensions_form_editor_modal_content %}
+        {% block swag_cms_extensions_form_editor_modal_content_tabs %}
+        <sw-tabs defaultItem="options">
+            <template #default="{ active }">
+                {% block swag_cms_extensions_form_editor_modal_content_tabs_item_options %}
+                <sw-tabs-item
+                    :activeTab="active"
+                    :title="$tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.options.tabTitle')"
+                    :hasError="optionsTabHasError"
+                    name="options">
+                    {{ $tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.options.tabTitle') }}
+                </sw-tabs-item>
+                {% endblock %}
+
+                {% block swag_cms_extensions_form_editor_modal_content_tabs_item_fields %}
+                <sw-tabs-item
+                    :activeTab="active"
+                    :title="$tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.fields.tabTitle')"
+                    :hasError="fieldTabHasError"
+                    name="fields">
+                    {{ $tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.fields.tabTitle') }}
+                </sw-tabs-item>
+                {% endblock %}
+            </template>
+
+            <template #content="{ active }">
+                <template v-if="active === 'options'">
+
+                    {% block swag_cms_extensions_form_editor_modal_content_tabs_item_options_content %}
+                    {% block swag_cms_extensions_form_editor_modal_content_tabs_item_options_content_technical_name %}
+                    <sw-text-field
+                        v-model="technicalName"
+                        class="swag-cms-extensions-form-editor-modal__options-technical-name"
+                        :label="$tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.options.internalNameLabel')"
+                        :error="formTechnicalNameError"
+                        @change="onChangeTechnicalName"
+                        required>
+                    </sw-text-field>
+                    {% endblock %}
+
+                    {% block swag_cms_extensions_form_editor_modal_content_tabs_item_options_content_title %}
+                    <sw-text-field
+                        v-model="title"
+                        class="swag-cms-extensions-form-editor-modal__options-title"
+                        :label="$tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.options.headlineLabel')"
+                        :error="formTitleError">
+                    </sw-text-field>
+                    {% endblock %}
+
+                    {% block swag_cms_extensions_form_editor_modal_content_tabs_item_options_content_success_message %}
+                    <sw-textarea-field
+                        v-model="successMessage"
+                        class="swag-cms-extensions-form-editor-modal__options-success-message"
+                        :label="$tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.options.confirmationTextLabel')"
+                        :error="formConfirmationTextError">
+                    </sw-textarea-field>
+                    {% endblock %}
+
+                    {% block swag_cms_extensions_form_editor_modal_content_tabs_item_options_content_mail_receivers %}
+                    <swag-cms-extensions-multi-email-field
+                        v-model="receivers"
+                        class="swag-cms-extensions-form-editor-modal__options-receivers"
+                        :label="$tc('sw-cms.elements.form.config.label.receiverEmail')"
+                        :error="formReceiversError"
+                        name="mailReceiver"
+                        placeholder="john@doe.com">
+                    </swag-cms-extensions-multi-email-field>
+                    {% endblock %}
+
+                    {% block swag_cms_extensions_form_editor_modal_content_tabs_item_options_content_mail_template %}
+                    <sw-entity-single-select
+                        v-model="mailTemplateId"
+                        class="swag-cms-extensions-form-editor-modal__options-mail-template-id"
+                        entity="mail_template"
+                        :criteria="mailTemplateCriteria"
+                        :label="$tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.options.mailTemplateLabel')"
+                        :error="formMailTemplateIdError"
+                        valueProperty="title"
+                        labelProperty="description"
+                        required>
+
+                        {% block swag_cms_extensions_form_editor_modal_content_tabs_item_options_content_mail_template_selection %}
+                        <template #selection-label-property="{ item }">
+                            <strong>{{ item.translated.description }}</strong>
+                            <template v-if="item.translated.description">-</template>
+                            {{ item.mailTemplateType.translated.name }}
+                        </template>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_form_editor_modal_content_tabs_item_options_content_mail_template_result %}
+                        <template #result-label-property="{ item, highlightSearchTerm, labelProperty, searchTerm }">
+                            <strong>
+                                <sw-highlight-text
+                                    :text="item.translated.description"
+                                    :searchTerm="searchTerm">
+                                </sw-highlight-text>
+                            </strong>
+                            {{ item.mailTemplateType.translated.name }}
+                        </template>
+                        {% endblock %}
+                    </sw-entity-single-select>
+                    {% endblock %}
+                    {% endblock %}
+                </template>
+
+                <template v-else-if="active === 'fields'">
+                    {% block swag_cms_extensions_form_editor_modal_content_tabs_item_fields_content %}
+                    {% block swag_cms_extensions_form_editor_modal_content_tabs_item_fields_content_fields %}
+                    <swag-cms-extensions-form-fields></swag-cms-extensions-form-fields>
+                    {% endblock %}
+                    {% endblock %}
+                </template>
+            </template>
+        </sw-tabs>
+        {% endblock %}
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_modal_footer %}
+        <template #modal-footer>
+
+            {% block swag_cms_extensions_form_editor_modal_footer_template_button %}
+            <sw-button
+                variant="ghost"
+                size="small"
+                @click="onCreateTemplate">
+                {% block swag_cms_extensions_form_editor_modal_footer_template_button_text %}
+                {{ $tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.footer.createTemplateButton') }}
+                {% endblock %}
+            </sw-button>
+            {% endblock %}
+
+            {% block swag_cms_extensions_form_editor_modal_footer_close_button %}
+            <sw-button
+                variant="primary"
+                size="small"
+                @click="onModalClose(true)">
+
+                {% block swag_cms_extensions_form_editor_modal_footer_close_button_text %}
+                {{ $tc('sw-cms.detail.label.buttonElementSettingsConfirm') }}
+                {% endblock %}
+
+            </sw-button>
+            {% endblock %}
+
+        </template>
+        {% endblock %}
+
+    </sw-modal>
+
+    {% block swag_cms_extensions_form_template_create_modal %}
+    <swag-cms-extensions-form-template-create-modal
+        v-if="showCreateTemplateModal"
+        @modal-close="onCreateTemplateModalClose">
+    </swag-cms-extensions-form-template-create-modal>
+    {% endblock %}
+
+</div>
+{% endblock %}

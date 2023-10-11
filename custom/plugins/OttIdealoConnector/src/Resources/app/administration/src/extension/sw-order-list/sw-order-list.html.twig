@@ -1,0 +1,7 @@
+{% block sw_order_list_grid_columns_order_date %}
+    {% parent %}
+
+    <template slot="column-customFields.ott_idealo_id" slot-scope="{ item }">
+        {{ item.customFields.ott_idealo_id }}
+    </template>
+{% endblock %}

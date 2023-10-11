@@ -1,0 +1,35 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Sharing links (on detail page)
+    ==================================================
+    Note: The "Sharing links" are based on our community icons (see widgets/_communitites.scss)
+
+*/
+
+@if $twt-product-detail-sharing-links-show == 2 {
+  .twt-product-detail-sharing-links {
+    margin: 1rem 0;
+
+    .twt-communities-list-headline {
+      font-weight: fontWeight($twt-product-detail-sharing-links-headline-font-weight);
+      text-transform: $twt-product-detail-sharing-links-headline-transform;
+      margin-bottom: calc(0.5rem - 3px); // Info: Die Icons haben bereits einen eigenen Abstand.
+    }
+
+    .twt-widget-communities {
+      ul.twt-communities-list {
+        margin: 0 -2px;
+
+        li.twt-communities-item {
+          margin: -2px;
+        }
+      }
+    }
+  }
+}

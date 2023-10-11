@@ -1,0 +1,34 @@
+{% block swag_cms_extensions_block_config_quickview %}
+    <div class="swag-cms-extensions-block-config-quickview">
+        <sw-sidebar-collapse :expandOnLoading="false">
+
+            {% block swag_cms_extensions_block_config_quickview_header %}
+                <template #header>
+                    <div class="swag-cms-extensions-block-config-quickview__header">
+                        {{ $tc('swag-cms-extensions.sw-cms.detail.quickview.sidebarHeaderBlockBehaviorSettings') }}
+                    </div>
+                </template>
+            {% endblock %}
+
+            {% block swag_cms_extensions_block_config_quickview_content %}
+                <template #content>
+                    <div class="sw-cms-block-config swag-cms-extensions-block-config-quickview__content">
+
+                        {% block swag_cms_extensions_block_config_quickview_content_active %}
+                            <sw-switch-field
+                                    v-model="quickview.active"
+                                    class="swag-cms-extensions-block-config-quickview__active-switch"
+                                    :label="$tc('swag-cms-extensions.sw-cms.detail.quickview.showQuickviewLabel')"
+                                    :helpText="$tc('swag-cms-extensions.sw-cms.detail.quickview.showQuickviewHelpText')"
+                                    :disabled="!blockIsProductRelated || !acl.can('cms.editor')"
+                                    @change="quickviewActiveChanged">
+                            </sw-switch-field>
+                        {% endblock %}
+
+                    </div>
+                </template>
+            {% endblock %}
+
+        </sw-sidebar-collapse>
+    </div>
+{% endblock %}

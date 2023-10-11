@@ -1,0 +1,103 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Extension > Announcement banner
+    ==================================================
+
+*/
+
+@if $twt-announcement-banner-show > 1 {
+  .twt-announcement-banner {
+    @include font-size($twt-announcement-banner-font-size);
+    font-weight: $twt-announcement-banner-font-weight;
+    line-height: 1.5;
+    text-align: center;
+    text-transform: $twt-announcement-banner-text-transform;
+    color: $twt-announcement-banner-color;
+    background-color: $twt-announcement-banner-background-color;
+
+    @if $twt-announcement-banner-closable == 2 {
+      // Only required if the default cookie notification of Shopware is used and the "Announcement banner" is configured "closable"
+      &.is-closable {
+        display: none; // Display attribute is managed via the js plugin
+      }
+    }
+
+    .container {
+      position: relative;
+      width: 100%;
+      margin: 0 auto;
+
+      .row {
+        @if $twt-announcement-banner-closable == 2 {
+          display: grid;
+          grid-template-columns: 1fr 20px;
+        }
+        max-width: 100%;
+        margin: 0;
+
+        .content {
+          align-items: center;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 6px 0; // TODO: px > rem
+
+          > span.label {
+            @include font-size($twt-announcement-banner-font-size);
+            margin: 0 6px; // TODO: px > rem
+            padding: 4px 8px; // TODO: px > rem
+            font-weight: $twt-announcement-banner-font-weight;
+            line-height: 1.5;
+            text-transform: $twt-announcement-banner-text-transform;
+            vertical-align: baseline;
+          }
+        }
+
+        a {
+          color: $twt-announcement-banner-color;
+          text-decoration: none;
+        }
+
+        p {
+          margin-bottom: 0;
+        }
+
+        @if $twt-announcement-banner-closable == 2 {
+          .close {
+            position: relative;
+            cursor: pointer;
+            display: -ms-flexbox;
+            display: flex;
+            justify-content: center;
+
+            .icon {
+              color: #ffffff;
+
+              svg {
+                top: 0; // TODO: px > rem
+              }
+            }
+          }
+        }
+
+      }
+    }
+  }
+
+  @if $twt-announcement-banner-closable == 2 {
+    @media screen and (min-width: 48em) {
+      .twt-announcement-banner {
+        .container {
+          .row {
+            grid-template-columns: 1fr 20px;
+          }
+        }
+      }
+    }
+  }
+}

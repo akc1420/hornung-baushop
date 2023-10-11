@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="../../../../../../platform/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Basic Configuration</title>
+        <title lang="de-DE">Grundeinstellungen</title>
+
+        <input-field type="bool">
+            <name>newsletter</name>
+            <required>false</required>
+            <label>Protect newsletter form</label>
+            <label lang="de-DE">Newsletterformular schützen</label>
+            <defaultValue>true</defaultValue>
+        </input-field>
+    </card>
+</config>

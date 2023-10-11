@@ -1,0 +1,18 @@
+{
+  "name": "swag/theme-skeleton",
+  "description": "Theme skeleton plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Hornung\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Hornung\\Hornung",
+    "label": {
+      "de-DE": "Theme Hornung plugin",
+      "en-GB": "Theme Hornung plugin"
+    }
+  }
+}

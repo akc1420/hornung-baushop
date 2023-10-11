@@ -1,0 +1,59 @@
+{# ToDo CMS-184 - (Core MinVersion 6.4.2.0) Remove this file #}
+{% sw_extends '@Storefront/storefront/element/cms-element-cross-selling.html.twig' %}
+
+{# This is an exact copy of the core (6.4.1.0) content with just the `only` parameter removed on `sw_include` #}
+{% block cms_element_cross_selling_tabs_content_container %}
+    <div class="tab-content">
+        {% for item in element.data.crossSellings.elements %}
+            {% set crossSelling = item.crossSelling %}
+            {% set products = item.products %}
+            {% set id = crossSelling.id %}
+            {% if crossSelling.active and products %}
+                <div class="tab-pane fade show{% if loop.first %} active{% endif %}"
+                     id="cross-selling-tab-{{ id }}-pane"
+                     role="tabpanel"
+                     aria-labelledby="cross-selling-tab-{{ id }}">
+                    {% set config = {
+                        'title': {
+                            'value': null
+                        },
+                        'border': {
+                            'value': false
+                        },
+                        'rotate': {
+                            'value': false
+                        },
+                        'products': {
+                            'value': products
+                        },
+                        'boxLayout': {
+                            'value': sliderConfig.boxLayout.value
+                        },
+                        'elMinWidth': {
+                            'value': sliderConfig.elMinWidth.value
+                        },
+                        'navigation': {
+                            'value': true
+                        },
+                        'displayMode': {
+                            'value': sliderConfig.displayMode.value
+                        },
+                        'verticalAlign': {
+                            'value': center
+                        }
+                    } %}
+
+                    {% sw_include "@Storefront/storefront/element/cms-element-product-slider.html.twig" with {
+                        sliderConfig: config,
+                        element: {
+                            'data': {
+                                'products': products
+                            },
+                            type: 'product-slider'
+                        }
+                    } %}
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

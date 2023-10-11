@@ -1,0 +1,149 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+
+{% block component_product_box_action_buy %}
+    {% if recommendySlider %}
+        {% sw_include '@Storefront/storefront/recommendy/recommendy_tracking.html.twig' with{
+            product: product,
+            actionId: product.extensions.Recommendy.actionId
+        } %}
+
+    {% else %}
+        <div class="recommendy-listing--anker"></div>
+        {% if config('Recommendy.config.recommendyEnableLike') %}
+            {% if (cmsPage and cmsPage.type == ("product_list")) or
+                (controllerName == "Search") or
+                (activeRoute == "frontend.Recommendy.recommendyLike") %}
+
+                {% block component_product_box_action_recommendy %}
+                    <div class="mt-2">
+                        <form action="{{ path('frontend.Recommendy.recommendyLike', { 'productId': product.id }) }}"
+                              method="get"
+                              class="recommendy-form"
+                              data-get-recommendy-products="true">
+
+                            {% if searchResult.currentFilters is defined and searchResult.currentFilters.navigationId is defined %}
+                                <input type="hidden" name="recommendyCategoryId" value="{{ searchResult.currentFilters.navigationId }}">
+                            {% endif %}
+
+                            {% if product.extensions.RecommendyData  is defined and product.extensions.RecommendyData.navId is defined %}
+                                <input type="hidden" name="recommendyCategoryId" value="{{ product.extensions.RecommendyData.navId }}">
+                            {% endif %}
+
+                            <input type="hidden" name="layout" value="{{ layout }}">
+                            <input type="hidden" name="displayMode" value="{{ displayMode }}">
+                            <input type="hidden" name="listingColumns" value="{{ listingColumns }}">
+
+
+
+                            {% set real = product.calculatedPrice %}
+                            {% if product.calculatedPrices.count > 0 %}
+                                {% set real = product.calculatedPrices.last %}
+                            {% endif %}
+
+                            <input type="hidden" name="price" value="{{ real.unitPrice }}">
+
+
+                            {% sw_include '@Storefront/storefront/recommendy/recommendy_tracking.html.twig' with{
+                                product: product ,
+                                actionId: 1
+                            } %}
+
+                            <input type="hidden" name="recommendyTracking" value="{{ product.id }}"
+                                   data-recommendy-track-ajaxUrl="{{ path('frontend.Recommendy.recommendyTrack', { 'productId': product.id }) }}" />
+
+                            {% block component_product_box_action_recommendy_button %}
+                                <button class="btn btn-secondary btn-block recommendy-btn recommendy-btn-similar {{  product.extensions.RecommendyData.available ? '':'hidden'}}"
+                                        title="{{ "recommendy.similarArticles"|trans|striptags }}">
+                                    {{ "recommendy.similarArticles"|trans|sw_sanitize }}
+                                </button>
+
+                                <button class="btn btn-secondary btn-block recommendy-btn recommendy-btn-unique disabled no-display"
+                                        disabled
+                                        title="{{ "recommendy.similarArticlesUnique"|trans|striptags }}">
+                                    {{ "recommendy.similarArticlesUnique"|trans|sw_sanitize }}
+                                </button>
+                            {% endblock %}
+                        </form>
+                    </div>
+                {% endblock %}
+
+            {% endif %}
+        {% endif %}
+
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block component_product_box_action_detail %}
+    {% if recommendySlider %}
+        {% sw_include '@Storefront/storefront/recommendy/recommendy_tracking.html.twig' with{
+            product: product,
+            actionId: product.extensions.Recommendy.actionId
+        } %}
+    {% else %}
+        <div class="recommendy-listing--anker"></div>
+        {% if config('Recommendy.config.recommendyEnableLike') %}
+            {% if (cmsPage and cmsPage.type == ("product_list")) or
+                (controllerName == "Search") or
+                (activeRoute == "frontend.Recommendy.recommendyLike") %}
+
+                {% block component_product_box_action_recommendy_detail %}
+                    <div class="mt-2">
+                        <form action="{{ path('frontend.Recommendy.recommendyLike', { 'productId': product.id }) }}"
+                              method="get"
+                              class="recommendy-form"
+                              data-get-recommendy-products="true">
+
+                            {% if searchResult.currentFilters is defined and searchResult.currentFilters.navigationId is defined %}
+                                <input type="hidden" name="recommendyCategoryId" value="{{ searchResult.currentFilters.navigationId }}">
+                            {% endif %}
+
+                            {% if product.extensions.RecommendyData  is defined and product.extensions.RecommendyData.navId is defined %}
+                                <input type="hidden" name="recommendyCategoryId" value="{{ product.extensions.RecommendyData.navId }}">
+                            {% endif %}
+
+                            <input type="hidden" name="layout" value="{{ layout }}">
+                            <input type="hidden" name="displayMode" value="{{ displayMode }}">
+                            <input type="hidden" name="listingColumns" value="{{ listingColumns }}">
+
+
+
+                            {% set real = product.calculatedPrice %}
+                            {% if product.calculatedPrices.count > 0 %}
+                                {% set real = product.calculatedPrices.last %}
+                            {% endif %}
+
+                            <input type="hidden" name="price" value="{{ real.unitPrice }}">
+
+
+                            {% sw_include '@Storefront/storefront/recommendy/recommendy_tracking.html.twig' with{
+                                product: product ,
+                                actionId: 1
+                            } %}
+
+                            <input type="hidden" name="recommendyTracking" value="{{ product.id }}"
+                                   data-recommendy-track-ajaxUrl="{{ path('frontend.Recommendy.recommendyTrack', { 'productId': product.id }) }}" />
+
+                            {% block component_product_box_action_recommendy_button_detail %}
+                                <button class="btn btn-secondary btn-block recommendy-btn recommendy-btn-similar {{  product.extensions.RecommendyData.available ? '':'hidden'}}"
+                                        title="{{ "recommendy.similarArticles"|trans|striptags }}">
+                                    {{ "recommendy.similarArticles"|trans|sw_sanitize }}
+                                </button>
+
+                                <button class="btn btn-secondary btn-block recommendy-btn recommendy-btn-unique disabled no-display"
+                                        disabled
+                                        title="{{ "recommendy.similarArticlesUnique"|trans|striptags }}">
+                                    {{ "recommendy.similarArticlesUnique"|trans|sw_sanitize }}
+                                </button>
+                            {% endblock %}
+                        </form>
+                    </div>
+                {% endblock %}
+
+            {% endif %}
+        {% endif %}
+
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

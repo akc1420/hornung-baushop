@@ -1,0 +1,34 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+{# ThemeWare® HC-Architecture® ready #}
+
+{# @deprecated tag:v6.5.0 - "page/checkout/confirm/meta.html.twig" will be removed, use "layout/meta.html.twig" instead. #}
+
+{# ThemeWare:
+	- see also product-detail\meta.html.twig
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Add styles and stylesheets to <head> #}
+{# Styles können über ein Textarea über einen Textbaustein ergänzt werden. #}
+{% block layout_head_stylesheet %}
+	{# Default block #}
+	{{ parent() }}
+
+	{# ThemeWare: Styles ergänzen. #}
+	{% sw_include '@Storefront/storefront/themeware/twt-base-meta-styles.html.twig' ignore missing %}
+{% endblock %}
+
+
+{# ThemeWare: Add meta tags to <head> #}
+{% block layout_head_meta_tags %}
+	{# Default block #}
+	{{ parent() }}
+
+	{# ThemeWare: Include metag tags #}
+	{% sw_include '@Storefront/storefront/themeware/twt-base-meta-tags.html.twig' ignore missing %}
+{% endblock %}

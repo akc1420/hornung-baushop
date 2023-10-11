@@ -1,0 +1,19 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-payment.html.twig' %}
+
+{% block page_checkout_confirm_payment_modal_toggle %}
+    <button type="button"
+            class="btn btn-outline-primary btn-outline-color-dark"
+            data-toggle="modal"
+            data-backdrop="static"
+            {% if page.paymentChangeable is not null and page.paymentChangeable == false %}
+                disabled="disabled"
+            {% endif %}
+            data-target="#confirmPaymentModal">
+
+        {% if paymentMethodInvalid %}
+            {{ "checkout.confirmChoosePayment"|trans|sw_sanitize }}
+        {% else %}
+            {{ "checkout.confirmChangePayment"|trans|sw_sanitize }}
+        {% endif %}
+    </button>
+{% endblock %}

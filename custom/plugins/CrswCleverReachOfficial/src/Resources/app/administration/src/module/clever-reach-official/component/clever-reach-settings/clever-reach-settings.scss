@@ -1,0 +1,109 @@
+.cr-sync-settings {
+  width: 100%;
+  height: max-content;
+  padding: 10px 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px !important;
+  box-sizing: content-box;
+}
+
+.cr-sync-settings .sw-card__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cr-gdpr {
+  font-size: 14px;
+  padding: 10px 0 0 0;
+  background: transparent !important;
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+}
+
+.cr-gdpr .sw-label__caption {
+  display: block !important;
+  white-space: initial;
+  line-height: 20px;
+}
+
+.cr-learn-more {
+  font-size: 14px;
+  color: #11acff;
+}
+
+.cr-settings-checkbox-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 4%;
+}
+
+.cr-settings-checkbox-desc {
+  display: flex;
+  flex-direction: column;
+}
+
+.cr-checkbox-label {
+  font-size: 14px;
+  font-weight: 600;
+  margin: -5px 0 0 0 !important;
+  padding: 0;
+  background: transparent !important;
+  height: auto;
+}
+
+.cr-checkbox-label .sw-label__caption {
+  display: inline !important;
+}
+
+.cr-single-checkbox {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.no-clicks {
+  pointer-events: none;
+}
+
+.cr-checkbox {
+  margin-right: 15px;
+}
+
+.cr-checkbox-desc {
+  font-size: 14px;
+  background: transparent !important;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  display: block;
+}
+
+.cr-checkbox-desc .sw-label__caption {
+  display: inline !important;
+  white-space: initial;
+  line-height: 20px;
+}
+
+.cr-reforce-btn {
+  width: max-content;
+  margin-top: 3%;
+}
+
+.cr-send-emails {
+  font-size: 14px;
+  padding: 3% 0 0 0;
+  background: transparent !important;
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  font-weight: 600;
+}
+
+.cr-send-emails .sw-label__caption {
+  display: block !important;
+  white-space: initial;
+  line-height: 20px;
+}

@@ -1,0 +1,150 @@
+@import "~scss/variables";
+
+.swag-cms-extensions-custom-form-element {
+    width: 100%;
+    user-select: none;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        pointer-events: all;
+        cursor: not-allowed;
+    }
+
+    .sw-field {
+        margin-bottom: 20px;
+    }
+
+    .sw-field--checkbox .sw-field {
+        margin-bottom: 0;
+    }
+
+    &__group {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        grid-column-gap: 15px;
+    }
+
+    &__field-col-1 {
+        grid-column: span 1;
+    }
+
+    &__field-col-2 {
+        grid-column: span 2;
+    }
+
+    &__field-col-3 {
+        grid-column: span 3;
+    }
+
+    &__field-col-4 {
+        grid-column: span 4;
+    }
+
+    &__field-col-5 {
+        grid-column: span 5;
+    }
+
+    &__field-col-6 {
+        grid-column: span 6;
+    }
+
+    &__field-col-7 {
+        grid-column: span 7;
+    }
+
+    &__field-col-8 {
+        grid-column: span 8;
+    }
+
+    &__field-col-9 {
+        grid-column: span 9;
+    }
+
+    &__field-col-10 {
+        grid-column: span 10;
+    }
+
+    &__field-col-11 {
+        grid-column: span 11;
+    }
+
+    &__field-col-12 {
+        grid-column: span 12;
+    }
+
+    &__dummy {
+        .swag-cms-extensions-custom-form-element__group {
+            grid-column-gap: 28px;
+
+            & > * {
+                margin-top: 35px;
+            }
+
+            &:first-child {
+                margin-top: -35px;
+            }
+        }
+
+        &-label {
+            width: 100px;
+            height: 11px;
+            background-color: $color-gray-200;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        &-input {
+            width: 100%;
+            height: 48px;
+            background-color: $color-gray-100;
+            border-radius: 4px;
+        }
+
+        &-textarea {
+            width: 100%;
+            height: 128px;
+            background-color: $color-gray-100;
+            border-radius: 4px;
+        }
+
+        &-submit {
+            width: 150px;
+            height: 40px;
+            background-color: $color-gray-200;
+            border-radius: 4px;
+            float: right;
+        }
+    }
+
+    &__title {
+        border-bottom: 1px solid $color-gray-300;
+        padding-bottom: 10px;
+    }
+
+    &__subtitle {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    &__note {
+        font-size: 14px;
+        margin: 5px 0;
+    }
+
+    &__action {
+        float: right;
+        padding: 3px 15px;
+        background: $color-gray-300;
+        color: $color-darkgray-200;
+        text-align: center;
+        line-height: 26px;
+        border-radius: 3px;
+    }
+}

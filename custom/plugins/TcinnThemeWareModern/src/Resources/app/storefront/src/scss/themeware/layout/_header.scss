@@ -1,0 +1,235 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: _header.scss
+    ==================================================
+
+*/
+
+// ThemeWare: Header type 1 ("Header 1.1") ------------------------------
+
+@if $twt-header-type == 1 {
+    header.header-main {
+        .header-row {
+            justify-content: space-between;
+
+            // Check $twt-header-width = "Container-Max-Width (Full-width-boxed)"
+            // - no adjustments
+
+            // Check $twt-header-width = "Container-Max-Width (Full-width-boxed)"
+            @if $twt-header-width == 1 {
+                max-width: null-pixel-unit($twt-container-max-width);
+            }
+
+            @include media-breakpoint-up(sm) { // min 576px
+                @if $twt-header-top-bar-show == 1 {
+                    @include media-breakpoint-down(md) { // max 991.98px
+                        padding-top: 0;
+                    }
+                }
+            }
+
+            // Tablet viewport adjustments ------------------------------
+
+            // $header-top-bar-show = "nein"
+            @if $twt-header-top-bar-show == 1 {
+                @include media-breakpoint-down(md) { // min 768px
+                    // Logo
+                    .header-logo-col {
+                        margin: 10px 0 10px 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ThemeWare: Header type 2 ("Header 1.2") ------------------------------
+
+@if $twt-header-type == 2 {
+    header.header-main {
+        .header-row {
+            justify-content: space-between;
+
+            // Check $twt-header-width = "Container-Max-Width (Full-width-boxed)"
+            // - no adjustments
+
+            // Check $twt-header-width = "Container-Max-Width (Full-width-boxed)"
+            @if $twt-header-width == 1 {
+                max-width: null-pixel-unit($twt-container-max-width);
+            }
+
+            // $header-top-bar-show = "nein"
+            @if $twt-header-top-bar-show == 1 {
+                @include media-breakpoint-up(sm) { // min 576px
+                    @include media-breakpoint-down(md) { // max 991.98px
+                        padding-top: 0;
+                    }
+                }
+
+                // Tablet viewport adjustments ------------------------------
+
+                // Logo
+                @include media-breakpoint-down(md) { // min 768px
+                    .header-logo-col {
+                        margin: 10px 0 10px 0;
+                    }
+                }
+            }
+
+            @include media-breakpoint-up(lg) { // min 992px
+                .header-logo-col {
+                    flex: 1;
+                    order: 2;
+                }
+
+                .header-search-col {
+                    flex: 2;
+                    order: 1;
+                    width: auto;
+                    max-width: 100%;
+
+                    .header-search {
+                        margin-left: 0;
+                    }
+                }
+
+                .header-actions-col {
+                    flex: 2;
+                    order: 3;
+
+                    > div {
+                        justify-content: flex-end;
+                    }
+                }
+
+                // Adjust logo in layouts without search-input
+                @if $twt-header-search-type == 2 or $twt-header-search-type == 4 {
+                    .header-logo-picture {
+                        margin: inherit;
+                    }
+
+                    .header-logo-main {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ThemeWare: Header type 4 ("Header 2.1") ------------------------------
+
+@if $twt-header-type == 4 {
+    header.header-main {
+        .header-row {
+            // Check $twt-header-width = "Container-Max-Width (Full-width-boxed)"
+            // - no adjustments
+
+            // Check $twt-header-width = "Container-Max-Width (Full-width-boxed)"
+            @if $twt-header-width == 1 {
+                max-width: null-pixel-unit($twt-container-max-width);
+            }
+
+            @include media-breakpoint-up(sm) { // min 576px
+                @if $twt-header-top-bar-show == 1 {
+                    @include media-breakpoint-down(md) { // max 991.98px
+                        padding-top: 0;
+                    }
+                }
+            }
+
+
+            @include media-breakpoint-up(md) { // min 768px
+                flex-direction: column-reverse;
+                align-items: stretch !important;
+
+                // Header actions / Action buttons
+                .header-actions-btn {
+                    line-height: strip-unit($twt-header-top-bar-line-height) - 6 + px;
+                }
+
+                .header-actions-col > .row {
+                    justify-content: flex-end;
+
+                    @include media-breakpoint-up(lg) { // min 992px
+                        & > div {
+                            @if $twt-header-top-bar-show == 2 {
+                                @if $twt-header-top-bar-border-color != $twt-header-top-bar-background-color {
+                                    margin-top: strip-unit(-$twt-header-top-bar-line-height) + -$twt-header-padding-top - 1 + px;
+                                } @else {
+                                    margin-top: strip-unit(-$twt-header-top-bar-line-height) + -$twt-header-padding-top - 0 + px;
+                                }
+                            } @else {
+                                margin-top: strip-unit($twt-header-padding-top) + px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            @include media-breakpoint-down(md) { // max 991.98px
+                @include media-breakpoint-up(sm) { // min 576px
+                    .header-logo-col {
+                        margin-bottom: 10px;
+
+                        @if $twt-header-type != 4 {
+                            .header-logo-main .header-logo-main-link {
+                                margin-top: 10px;
+                            }
+                        }
+                    }
+                }
+
+                @include media-breakpoint-up(md) { // min 768px
+                    flex-direction: column;
+                }
+            }
+
+            @include media-breakpoint-up(lg) { // min 992px
+                .d-for-header-type {
+                    display: none;
+                }
+            }
+
+            @include media-breakpoint-between(sm, md) { // min 576px and max 991.98px
+                .d-for-header-type {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+
+
+// ThemeWare: Header additions ------------------------------
+
+// ThemeWare: "Logged-in badge"
+@if $twt-header-actions-account-menu-btn-badge-show != 1 {
+    .account-menu .twt-header-logged-in-badge {
+        position: absolute;
+        right: -0.25rem;
+
+        // HC-Architecture: Colour is only applied if it differs from the default value
+        @if $twt-header-actions-account-menu-btn-badge-background-color != $sw-color-brand-primary {
+            color: color-yiq($twt-header-actions-account-menu-btn-badge-background-color);
+            background-color: $twt-header-actions-account-menu-btn-badge-background-color;
+        }
+    }
+}
+
+// ThemeWare: Add separator left to the cart button
+@if $twt-header-actions-cart-btn-separator-show != 1 {
+    @include media-breakpoint-up(sm) { // min 576px
+        .header-cart:not(.sticky) {
+            border-left: 1px solid $twt-header-actions-cart-btn-separator-border-color;
+            padding-left: 16px;
+            margin-left: calc(16px - 10px); // -10px [class*="col-"]
+        }
+    }
+}

@@ -1,0 +1,121 @@
+{% sw_extends '@Storefront/storefront/page/content/detail.html.twig' %}
+
+{% block page_content_sections_inner %}
+    {{ parent() }}
+
+    {% set anchoredSections = [] %}
+    {% for section in page.cmsPage.sections %}
+        {% if section.extensions.swagCmsExtensionsScrollNavigation.active %}
+            {% set anchoredSections = anchoredSections|merge([section]) %}
+        {% endif %}
+    {% endfor %}
+
+
+    {% block swag_cms_extensions_scroll_navigation_sidebar %}
+        {% if anchoredSections|length > 0 %}
+            {% set pageSettingsExtension = constant('Swag\\CmsExtensions\\Extension\\Feature\\ScrollNavigation\\CmsPageEntityExtension::SCROLL_NAVIGATION_PAGE_SETTINGS_PROPERTY_NAME') %}
+            {% set options = { pageSettings: page.cmsPage.extensions[pageSettingsExtension] } %}
+
+            <div class="scroll-navigation-sidebar"
+                 data-swag-cms-extensions-scroll-navigation="true"
+                 data-swag-cms-extensions-scroll-navigation-options="{{ options|json_encode }}"
+                 data-swag-cms-extensions-scroll-navigation-toggle-menu="true">
+
+                {% block swag_cms_extensions_scroll_navigation_sidebar_mobile_menu %}
+                    <div class="scroll-navigation-sidebar-mobile-menu">
+                        {% apply spaceless %}
+
+                            {% block swag_cms_extensions_scroll_navigation_sidebar_mobile_menu_button_list %}
+                                <div class="scroll-navigation-sidebar-mobile-button">
+                                    <button id="scroll-navigation-mobile-button-list"
+                                            class="scroll-navigation-sidebar-mobile-button-icon scroll-navigation-menu-toggle">
+
+                                        {% block swag_cms_extensions_scroll_navigation_sidebar_mobile_menu_button_list_content %}
+                                            {% sw_icon 'stack' style { 'size': 'xl' } %}
+                                        {% endblock %}
+                                    </button>
+                                </div>
+                            {% endblock %}
+
+                            {% block swag_cms_extensions_scroll_navigation_sidebar_mobile_menu_button_up %}
+                                <div class="scroll-navigation-sidebar-mobile-button">
+                                    <button id="scroll-navigation-mobile-button-up"
+                                            class="scroll-navigation-sidebar-mobile-button-icon">
+
+                                        {% block swag_cms_extensions_scroll_navigation_sidebar_mobile_menu_button_up_content %}
+                                            {% sw_icon 'arrow-head-up' style { 'size': 'xl' } %}
+                                        {% endblock %}
+                                    </button>
+                                </div>
+                            {% endblock %}
+
+                            {% block swag_cms_extensions_scroll_navigation_sidebar_mobile_menu_button_down %}
+                                <div class="scroll-navigation-sidebar-mobile-button">
+                                    <button id="scroll-navigation-mobile-button-down"
+                                            class="scroll-navigation-sidebar-mobile-button-icon">
+
+                                        {% block swag_cms_extensions_scroll_navigation_sidebar_mobile_menu_button_down_content %}
+                                            {% sw_icon 'arrow-head-down' style { 'size': 'xl' } %}
+                                        {% endblock %}
+                                    </button>
+                                </div>
+                            {% endblock %}
+                        {% endapply %}
+                    </div>
+                {% endblock %}
+
+                {% block swag_cms_extensions_scroll_navigation_sidebar_toggle_close %}
+                    <div class="scroll-navigation-sidebar-close scroll-navigation-menu-toggle">
+                        {% sw_icon 'x' style { 'size': 'xl' }  %}
+                    </div>
+                {% endblock %}
+
+                {% block swag_cms_extensions_scroll_navigation_sidebar_list %}
+                    <div class="scroll-navigation-sidebar-list">
+                        {% for section in anchoredSections %}
+                            {% set scrollNavigation = section.extensions.swagCmsExtensionsScrollNavigation %}
+                            {% set anchor = scrollNavigation.translated.displayName %}
+
+                            {% block swag_cms_extensions_scroll_navigation_sidebar_list_entry %}
+                                <a class="scroll-navigation-sidebar-entry"
+                                   href="#nav-{{ anchor|lower|slugify|replace({'.': ''}) }}">
+
+                                    {% block swag_cms_extensions_scroll_navigation_sidebar_list_entry_line %}
+                                        <div class="scroll-navigation-sidebar-entry-line"></div>
+                                    {% endblock %}
+
+                                    {% block swag_cms_extensions_scroll_navigation_sidebar_list_entry_bullet %}
+                                        <span class="scroll-navigation-sidebar-entry-bullet"></span>
+                                    {% endblock %}
+
+                                    {% block swag_cms_extensions_scroll_navigation_sidebar_list_entry_label %}
+                                        <span class="scroll-navigation-sidebar-entry-label">
+
+                                            {% block swag_cms_extensions_scroll_navigation_sidebar_list_entry_label_content %}
+                                                {{ anchor }}
+                                            {% endblock %}
+                                        </span>
+                                    {% endblock %}
+                                </a>
+                            {% endblock %}
+                        {% endfor %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endif %}
+    {% endblock %}
+{% endblock %}
+
+{% block page_content_section %}
+    {% set scrollNavigation = section.extensions.swagCmsExtensionsScrollNavigation %}
+    {% set anchor = scrollNavigation.translated.displayName|lower|slugify|replace({'.': ''}) %}
+
+    {% if scrollNavigation.active %}
+        <div class="swag-cms-extensions-scroll-navigation-wrapper">
+            <div class="scroll-navigation-anchor" id="nav-{{ anchor }}"></div>
+            {{ parent() }}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,32 @@
+{
+  "name": "medialounge/shopware-shipping-zipcodes",
+  "description": "A Shopware 6 plugin for creating advanced shipping rules with zip codes",
+  "type": "shopware-platform-plugin",
+  "version": "v1.1.3",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Media Lounge",
+      "role": "eCommerce Agency"
+    }
+  ],
+  "require": {
+    "shopware/core": "^6.3"
+  },
+  "extra": {
+    "shopware-plugin-class": "MediaLounge\\ShippingZipcodes\\MediaLoungeShippingZipcodes",
+    "label": {
+      "de-DE": "Postleitzahl Wildcard",
+      "en-GB": "Postcode/Zipcode Wildcard"
+    },
+    "description": {
+      "de-DE": "Erweiterte Post- und Postleitzahlfilterung, um Einschränkungen im Builder für Versandregeln hinzuzufügen.",
+      "en-GB": "Advanced post and zip code filtering to add restrictions in the shipping rule builder."
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "MediaLounge\\ShippingZipcodes\\": "src/"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{% sw_extends '@Framework/documents/credit_note.html.twig' %}
+
+{% block document_payment_shipping_additional %}
+  Die Ware bleibt bis zur vollständigen Bezahlung der Rechnungs-Gesamtsumme Eigentum der hornung baushop GmbH &amp; Co. KG.
+{% endblock %}
+
+{% block document_recipient %}
+    <span class="sender-address-small" style="font-size: 8px">
+        {% block document_recipient_sender %}
+            {{ config.companyAddress }}<br><br>
+        {% endblock %}
+    </span>
+    {% if billingAddress.company %}
+        {{ billingAddress.company }}<br>
+    {% endif %}
+    {{ customer.salutation.letterName }} {{ customer.firstName }} {{ customer.lastName }}<br>
+    {{ billingAddress.street }}<br>
+    {{ billingAddress.zipcode }} {{ billingAddress.city }}<br>
+    {{ billingAddress.country.name }}<br>
+{% endblock %}

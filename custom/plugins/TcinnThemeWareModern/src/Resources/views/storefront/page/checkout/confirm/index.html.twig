@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+{# ThemeWare® HC-Architecture® ready #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtCustomAnnouncementShow = theme_config('twt-custom-announcement-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block page_checkout_confirm %}
+    {# ThemeWare: Add "Custom announcement" #}
+    {% if twtCustomAnnouncementShow == 2 or twtCustomAnnouncementShow == 4 %}
+        {% sw_include '@Storefront/storefront/themeware/extensions/twt-custom-announcement.html.twig' ignore missing with {
+            type: 'checkout'
+        } %}
+    {% endif %}
+
+    {# Default delivery information #}
+    {{ parent() }}
+{% endblock %}

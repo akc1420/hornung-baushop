@@ -1,0 +1,12 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-price.html.twig' %}
+
+{% block page_product_detail_price_block %}
+    {% if page.product.calculatedPrice.unitPrice %}
+        <p class="product-detail-price" style="margin-bottom: 1rem;">{{ "listing.listingTextFrom"|trans|sw_sanitize }} {{ page.product.calculatedPrices|last.unitPrice|currency }}{{ "general.star"|trans|sw_sanitize }}</div>
+    {% endif %}
+    <div class="product-block-prices">
+        {% block page_product_detail_price_block_table %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}

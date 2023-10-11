@@ -1,0 +1,119 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Dropdown menu
+	==================================================
+
+	Origin: Bootstrap
+*/
+
+// TODO: Filter dropdowns!!!
+
+//.dropdown {
+//	.dropdown-menu {
+//	}
+//}
+
+// ThemeWare: Dropdown adjustments (Header)
+header {
+	.dropdown {
+		.dropdown-menu {
+			@include twt-font-size($twt-header-dropdown-font-size);
+			margin-top: 2px;
+			color: $twt-header-dropdown-color;
+			border: 1px solid $twt-header-dropdown-border-color;
+			background-color: $twt-header-dropdown-background-color;
+
+			a:not(.btn) {
+				color: $twt-header-dropdown-color;
+
+				&:hover {
+					color: $twt-header-dropdown-color-hover;
+				}
+
+				&.active,
+				&:active {
+					background-color: inherit;
+				}
+			}
+
+			&::before {
+				position: absolute;
+				top: -5px;
+				right: 20px;
+				display: block;
+				width: 8px;
+				height: 8px;
+				content: '';
+				transform: rotate(135deg);
+				border-width: 0 0 1px 1px;
+				border-style: solid;
+				border-color: $twt-header-dropdown-border-color;
+				background:	$twt-header-dropdown-background-color;
+			}
+
+			&.dropdown-menu-right {
+				&::before {
+					right: 20px;
+
+				}
+			}
+
+			&.dropdown-menu-left {
+				&::before {
+					left: 20px;
+				}
+			}
+
+			.dropdown-item {
+				line-height: 1.5;
+				color: $twt-header-dropdown-color;
+
+				&:hover {
+					color: $twt-header-dropdown-color-hover;
+				}
+
+				&.active,
+				&:active {
+					background-color: inherit;
+				}
+			}
+		}
+
+		&.show .top-bar-nav-btn {
+			color: $twt-header-top-bar-color;
+
+			.icon {
+				color: $twt-header-top-bar-color;
+			}
+		}
+	}
+}
+
+// ThemeWare: Dropdown adjustments (Filter)
+//.filter-panel {
+//	.dropdown {
+//		.dropdown-menu {
+//		}
+//	}
+//}
+
+// ThemeWare: Offcanvas dropdown menus #custom
+// TODO: Shopware Vererbung prüfen...
+// TODO: #custom
+.offcanvas {
+	.dropdown-menu {
+		.dropdown-item {
+			&.active, 
+			&:active {
+				color: inherit;
+				background-color: inherit;
+			}
+		}
+	}
+}

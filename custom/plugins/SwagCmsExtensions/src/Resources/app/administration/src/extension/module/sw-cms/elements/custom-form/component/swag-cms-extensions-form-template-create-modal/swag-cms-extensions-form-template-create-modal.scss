@@ -1,0 +1,46 @@
+@import "~scss/variables";
+
+.swag-cms-extensions-form-template-create-modal {
+    &__link {
+        color: $color-shopware-brand-500;
+        font-size: $font-size-small;
+        font-weight: $font-weight-regular;
+        text-decoration: underline;
+        float: right;
+        cursor: pointer;
+    }
+
+    &__confrimation-text-container {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        margin: 32px 0;
+    }
+
+    &__confrimation-text {
+        color: $color-darkgray-200;
+        font-size: $font-size-small;
+        font-weight: $font-weight-regular;
+
+        span {
+            font-weight: $font-weight-bold;
+        }
+    }
+
+    &.is-success {
+        .sw-modal__body {
+            display: flex;
+            flex-flow: column nowrap;
+            align-items: center;
+        }
+    }
+
+    .sw-first-run-wizard-finish__bubble {
+        margin-top: 12px;
+    }
+
+    .message-success {
+        margin-bottom: 10px;
+    }
+}

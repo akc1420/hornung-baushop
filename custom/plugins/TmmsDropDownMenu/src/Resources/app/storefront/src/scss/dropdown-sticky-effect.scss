@@ -1,0 +1,81 @@
+$tmms-dropdown-menu-sticky-effect-transition-duration: 400 !default;
+$tmms-dropdown-menu-sticky-effect-z-index: 1000 !default;
+$tmms-dropdown-menu-sticky-effect-background-color: #ffffff !default;
+$tmms-dropdown-menu-sticky-effect-font-color: $sw-text-color !default;
+$tmms-dropdown-menu-sticky-effect-hover-font-color: $sw-color-brand-primary !default;
+$tmms-dropdown-menu-sticky-effect-border-bottom-width: 1 !default;
+$tmms-dropdown-menu-sticky-effect-border-bottom-color: #bcc1c7 !default;
+
+.main-navigation-dropdown-sticky {
+    background-color: $tmms-dropdown-menu-sticky-effect-background-color;
+    position: fixed;
+    z-index: $tmms-dropdown-menu-sticky-effect-z-index;
+    width: 100%;
+    top: 0;
+    transition-delay: 0s;
+    transition-property: transform;
+    transition-duration: $tmms-dropdown-menu-sticky-effect-transition-duration * 1ms;
+    transition-timing-function: ease-in-out;
+    transform: translateY(-100%);
+
+    &.is--active {
+        transform: translateY(0);
+        border-bottom-width: $tmms-dropdown-menu-sticky-effect-border-bottom-width * 1px;
+        border-bottom-style: solid;
+        border-bottom-color: $tmms-dropdown-menu-sticky-effect-border-bottom-color;
+    }
+}
+
+@media (min-width: 992px) {
+    .main-navigation-dropdown-sticky {
+        &.main-navigation-wrapper-dropdown {
+            .main-navigation {
+                .main-navigation-menu {
+                    > .main-navigation-link {
+                        > .main-navigation-link-text {
+                            color: $tmms-dropdown-menu-sticky-effect-font-color;
+
+                            .icon {
+                                color: $tmms-dropdown-menu-sticky-effect-font-color;
+
+                                svg {
+                                    color: $tmms-dropdown-menu-sticky-effect-font-color;
+                                }
+                            }
+                        }
+
+                        &.active {
+                            &:hover {
+                                > .main-navigation-link-text {
+                                    color: $tmms-dropdown-menu-sticky-effect-font-color;
+
+                                    .icon {
+                                        color: $tmms-dropdown-menu-sticky-effect-font-color;
+
+                                        svg {
+                                            color: $tmms-dropdown-menu-sticky-effect-font-color;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+
+                        &:hover {
+                            > .main-navigation-link-text {
+                                color: $tmms-dropdown-menu-sticky-effect-hover-font-color;
+
+                                .icon {
+                                    color: $tmms-dropdown-menu-sticky-effect-hover-font-color;
+
+                                    svg {
+                                        color: $tmms-dropdown-menu-sticky-effect-hover-font-color;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

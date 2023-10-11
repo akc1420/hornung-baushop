@@ -1,0 +1,795 @@
+{% if page.sisi_col_search.ColsAjax %}
+    {% set cols = page.sisi_col_search.ColsAjax %}
+{% else %}
+    {% set cols = 2 %}
+{% endif %}
+
+<div class="search-suggest js-search-result">
+    {% block layout_search_suggest_container %}
+        <style>
+            {% if page.sisi_col_search.boxwith %}
+            .sisi-search-suggest-container.search-suggest-container {
+                width: {{ page.sisi_col_search.boxwith }}
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.backgroundColorCol1 %}
+            .sisi-search-suggest-container-left {
+                background-color: {{page.sisi_col_search.backgroundColorCol1}}
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.fontColorhightCol1 %}
+            .sisi-search-suggest-container-left a em {
+                color: {{page.sisi_col_search.fontColorhightCol1}}
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.fontColorCol1 %}
+            .sisi-search-suggest-container-left a {
+                color: {{page.sisi_col_search.fontColorCol1}}
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.backgroundColorbottom %}
+            .sisi-bottom-total {
+                background-color: {{ page.sisi_col_search.backgroundColorbottom }} !important;
+            }
+
+            #containerLeftBtn {
+                background-color: {{ page.sisi_col_search.backgroundColorbottom }} !important;
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.fontColorheader %}
+            .sisi-search-suggest-container-left h3 {
+                color: {{page.sisi_col_search.fontColorheader}}
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.fontColorbottom %}
+            .sisi-bottom-total {
+                color: {{ page.sisi_col_search.fontColorbottom }} !important;
+            }
+
+            #containerLeftBtn {
+                color: {{ page.sisi_col_search.fontColorbottom }}
+            }
+
+            .sisi-bottom-total a {
+                color: {{ page.sisi_col_search.fontColorbottom }}!important;
+            }
+
+            .sisi-bottom-total .icon {
+                color: {{ page.sisi_col_search.fontColorbottom }}!important;
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.backgroundMain%}
+            .sisi-search-suggest-container-right {
+                background-color: {{ page.sisi_col_search.backgroundMain }}
+            }
+
+            {% endif %}
+
+            .sisi-search-suggest-container-right {
+                height: 20rem;
+                Overflow-y: scroll;
+            }
+
+
+            {% if page.sisi_col_search.popupheight %}
+            .sisi-search-suggest-container-right {
+                height: {{ page.sisi_col_search.popupheight}}rem
+
+            }
+
+            {% endif %}
+
+            .sisi-search-suggest-container-right a {
+                color: {{ page.sisi_col_search.fontColor }}
+            }
+
+
+            {% if page.sisi_col_search.fontColorhight %}
+            .sisi-search-suggest-container-right a em {
+                color: {{page.sisi_col_search.fontColorhight}}
+            }
+
+            {% endif %}
+
+
+            .sisi-search-suggest-container-left {
+                height: 20rem;
+                Overflow-y: scroll;
+            }
+
+            {% if page.sisi_col_search.popupheight %}
+            .sisi-search-suggest-container-left {
+                height: {{ page.sisi_col_search.popupheight}}rem
+
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.popupheight %}
+            .sisi-search-suggest-container-left {
+                height: {{ page.sisi_col_search.popupheight}};
+
+            }
+
+            {% endif %}
+
+            .sisi-search-suggest-container-left {
+                height: {{page.sisi_col_search.fontColorhight}}rem;
+                Overflow-y: scroll;
+            }
+
+
+            {% if page.sisi_col_search.position %}
+            .sisi-search-suggest-container {
+                top: {{page.sisi_col_search.position}}px
+            }
+
+            .sisi-suggest-underform{
+                top: {{page.sisi_col_search.position}}px
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.positionTablet %}
+            @media (max-width: 992px) {
+                .sisi-search-suggest-container {
+                    top: {{page.sisi_col_search.positionTablet}}px
+                }
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.positionMobile %}
+            @media (max-width: 576px) {
+                .sisi-search-suggest-container {
+                    top: {{page.sisi_col_search.positionMobile}}px
+                }
+            }
+
+            {% endif %}
+
+            {% if page.sisi_col_search.positionXSMobile %}
+            @media (max-width: 576px) {
+                .sisi-search-suggest-container {
+                    top: {{page.sisi_col_search.positionXSMobile}}px
+                }
+            }
+
+            {% endif %}
+
+
+            {% if (page.sisi_col_search.boxwith!=100) %}
+            {% if (page.sisi_col_search.boxwith ) %}
+            @media (max-width: 768px) {
+
+                .sisi-search-suggest-container.search-suggest-container {
+                    width: 100%;
+                }
+            }
+
+            {% endif %}
+            {% endif %}
+        </style>
+        <div class="search-suggest-container sisi-search-suggest-container {% if page.sisi_col_search.boxAjax and page.sisi_col_search.boxAjax == 2 %} sisi-search-boxes{% endif %} {% if cols == 1 %}sisi-one-column{% endif %}" id="sisi-search-suggest-container"
+             data-from="{{ page.sisi_from }}"
+             data-max="{{ page.sisi_elasticsearchResults.hits.total.value }}" data-size="{{ page.sisi_size }}"
+             data-ma="{{ page.sisi_ma }}" data-cat="{{ page.sisi_cat }}" data-pro="{{ page.sisi_pro }}">
+            <div class="container-fluid">
+                <div class="row sisi-search-suggest-container-close">
+                    <div class="sisi-search-suggest-container-close-inner">
+                        <span class="icon icon-x">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 class="sisi-search-suggest-container-close-inner">
+                                  <path fill="#000" fill-rule="evenodd"
+                                        d="M10.5857864,12 L3.29289322,4.70710678 C2.90236893,4.31658249 2.90236893,3.68341751 3.29289322,3.29289322 C3.68341751,2.90236893 4.31658249,2.90236893 4.70710678,3.29289322 L12,10.5857864 L19.2928932,3.29289322 C19.6834175,2.90236893 20.3165825,2.90236893 20.7071068,3.29289322 C21.0976311,3.68341751 21.0976311,4.31658249 20.7071068,4.70710678 L13.4142136,12 L20.7071068,19.2928932 C21.0976311,19.6834175 21.0976311,20.3165825 20.7071068,20.7071068 C20.3165825,21.0976311 19.6834175,21.0976311 19.2928932,20.7071068 L12,13.4142136 L4.70710678,20.7071068 C4.31658249,21.0976311 3.68341751,21.0976311 3.29289322,20.7071068 C2.90236893,20.3165825 2.90236893,19.6834175 3.29289322,19.2928932 L10.5857864,12 Z"></path>
+                            </svg>
+                         </span>
+                    </div>
+                </div>
+                {% if page.sisi_col_search.suggest == '1' and  page.sisi_col_search.suggestplace == '1'  %}
+                    <div class="sisi-suggest-underform">
+                        {% for product in page.sisi_elasticsearchResults.suggest.simple_phrase_product_name %}
+                            {% for options in product.options %}
+                                <div> <a href="#" class="sisi-suggest-text">  {{ options.text}}</a> </div>
+                            {% endfor %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                <div class="row dropdown">
+                    <a class="btn btn-primary dropdown-toggle {% if (page.sisi_col_search.categorien == '2' or page.sisi_col_search.categorien == '4')
+                        and (page.sisi_col_search.manufacturer == '2' or page.sisi_col_search.manufacturer == '3')
+                        and (page.sisi_col_search.properties =='2' or page.sisi_col_search.properties =='3')
+                        and  ((page.sisi_col_search.suggest == '1' and  page.sisi_col_search.suggestplace == '1') or page.sisi_col_search.suggest != '1') %}
+                            sisi-hidden
+                        {% endif %}" data-toggle="dropdown" id="containerLeftBtn" aria-haspopup="true" href="#" role="button" aria-expanded="false">
+                        {{ "sisi.filterBtnDropdown" |trans }}
+                    </a>
+                    <div class="
+                        {% if (page.sisi_col_search.categorien == '2' or page.sisi_col_search.categorien == '4')
+                        and (page.sisi_col_search.manufacturer == '2' or page.sisi_col_search.manufacturer == '3')
+                        and (page.sisi_col_search.properties =='2' or page.sisi_col_search.properties =='3')
+                        and  ((page.sisi_col_search.suggest == '1' and  page.sisi_col_search.suggestplace == '1') or page.sisi_col_search.suggest != '1') %}
+                            sisi-hidden
+                        {% else %}
+                            {%  if page.sisi_col_search.optik %} col-md-4 {% else %} col-md-3 {% endif %}
+                        {% endif %}
+                        {% if page.sisi_col_search.sidebarAjax and page.sisi_col_search.sidebarAjax == 2 %} order-md-2{% endif %}
+                         sisi-search-suggest-container-left dropdown-menu" aria-labelledby="containerLeftBtn">
+
+                        {% if page.sisi_col_search.disableFilterlink != 'yes' %}
+                            <ul>
+                                <li>
+                                    <a href="#" class="sisi-resetFilter">
+                                        {{ 'sisi.Filter'|trans|raw }}
+                                    </a>
+                                </li>
+                            </ul>
+                        {% endif %}
+                        {% for suggest in page.sisi_elasticsearchResults.suggest.simple_phrase_product_name %}
+                            {% if page.sisi_col_search.suggest == '1' and  page.sisi_col_search.suggestplace != '1'  and suggest.options|length > 0 > 0 %}
+                                {{ 'sisi.suggest'|trans|raw }}
+                                <ul>
+                                    {% for options in suggest.options %}
+                                        <li><a href="#" class="sisi-suggest-text">  {{ options.text }}</a></li>
+                                    {% endfor %}
+
+
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page.sisi_col_search.querylog== '1' and page.sisi_querylogs.aggregations.historyProductname.buckets|length > 0 %}
+                            <div class="history-block">
+                                {{ 'sisi.history'|trans|raw }}
+                                <ul>
+                                    {% for product in page.sisi_querylogs.aggregations.historyProductname.buckets %}
+                                        <li><a href="#" class="sisi-suggest-text">  {{ product.key }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+
+                        {% if (page.sisi_elasticsearchResults.hits.hits|length > 0)  or  (page.sisi_categorien.hits.hits|length > 0)  %}
+                            {% if page.sisi_col_search.categorien == '1' or page.sisi_col_search.categorien == '3'
+                                or page.sisi_col_search.categorien == '6'
+                                or page.sisi_col_search.categorien == '7'
+                                or page.sisi_col_search.categorien == '8' %}
+                                <div class="categories-block">
+                                    {% if page.sisi_categorien.hits.total.value > 0 %}
+                                        <ul class="row">
+                                            <li class="col-lg-12 search-suggest-product">
+                                                {{ 'sisi.categorie'|trans|raw }}
+                                            </li>
+                                        </ul>
+                                    {% endif %}
+                                    <ul class="sisi-categorien">
+                                        {% set merker = [] %}
+                                        {% for product in page.sisi_categorien.hits.hits %}
+                                            {% for innerHits  in product.inner_hits %}
+                                                {% for innerHit  in innerHits.hits.hits %}
+                                                    {% if page.sisi_col_search.displaybreadcrumb != '1' %}
+                                                        {% set categorieValue = innerHit._source.category_name %}
+                                                    {% else %}
+                                                        {% set categorieValue = innerHit._source.category_breadcrumb|trim %}
+                                                    {% endif %}
+                                                    {% if merker|sisiFrontendhelperMerker(categorieValue)  and innerHit._source.category_name %}
+                                                        {% set merker = merker|merge([categorieValue]) %}
+                                                        {% if (innerHit.highlight|length > 0) %}
+                                                            {% for name  in innerHit.highlight %}
+                                                                <li>
+                                                                    <a href="{{ seoUrl('frontend.navigation.page',{navigationId:innerHit._source.category_id|trim}) }}">
+                                                                        {% if page.sisi_col_search.displaybreadcrumb != '1' %}
+                                                                            {% for term  in name %}
+                                                                                {{ term |raw }}
+                                                                            {% endfor %}
+                                                                        {% else %}
+                                                                            {{  categorieValue|trim|raw }}
+                                                                        {% endif %}
+                                                                    </a>
+                                                                </li>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            <li>
+                                                                <a href="{{ seoUrl('frontend.navigation.page',{navigationId:innerHit._source.category_id|trim}) }}">
+                                                                    {% if page.sisi_col_search.displaybreadcrumb != '1' %}
+                                                                        {{ innerHit._source.category_name }}
+                                                                    {% else %}
+                                                                        {{  innerHit._source.category_breadcrumb|trim|raw }}
+                                                                    {% endif %}
+                                                                </a>
+                                                            </li>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                            {% if page.sisi_col_search.categorien == '6' or page.sisi_col_search.categorien == '7' or page.sisi_col_search.categorien == '8'%}
+                                                <li>
+                                                    <a href="{{ seoUrl('frontend.navigation.page',{navigationId:product._source.category_id|trim}) }}">
+                                                        {% if page.sisi_col_search.displaybreadcrumb != '1' %}
+                                                            {% for item  in product.highlight%}
+                                                                {% for term  in item   %}
+                                                                    {{ term|raw}}
+                                                                {% endfor %}
+                                                            {% endfor %}
+                                                        {% else %}
+                                                            {{  product._source.category_breadcrumb|trim|raw }}
+                                                        {% endif %}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            {% if (page.sisi_col_search.categorien =='1' or  page.sisi_col_search.categorien =='5' or page.sisi_col_search.categorien == '7') and  page.sisi_col_search.strchannel != 'yes'  %}
+                                <div class="categories-block">
+                                    {% if page.sisi_elasticsearchResults.hits.total.value > 0 %}
+                                        <ul class="row">
+                                            <li class="col-lg-12 search-suggest-product">
+                                                {{ 'sisi.categorieFilter'|trans|raw }}
+                                            </li>
+                                        </ul>
+                                    {% endif %}
+                                    <ul class="sisi-categorien">
+                                        {% set merker = [] %}
+                                        {% for product in page.sisi_elasticsearchResults.hits.hits %}
+                                            {% for category in product._source.categories %}
+                                                {% if merker|sisiFrontendhelperMerker(category.category_name) %}
+                                                    {% set merker = merker|merge([category.category_name]) %}
+                                                    <li>
+                                                        <a href="#" data-product="{{ product._source.product_name }}"
+                                                           data-categories="{{ category.category_id|trim }}"
+                                                           class="sisi-categories">
+                                                            {{  category.category_name|raw }}
+                                                        </a>
+                                                    </li>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+
+                            {% if page.sisi_col_search.manufacturer == '1' %}
+                                {{ 'sisi.manufacture'|trans|raw }}
+                                <ul class="sisi-manufacturer">
+                                    {% set merker = [] %}
+                                    {% for product in page.sisi_elasticsearchResults.hits.hits %}
+                                        {% if merker|sisiFrontendhelperMerker(product._source.manufacturer_name)
+                                            and product._source.manufacturer_name %}
+                                            {% set merker = merker|merge([product._source.manufacturer_name]) %}
+                                            <li>
+                                                <a href="#" data-product="{{ product._source.product_name }}"
+                                                   data-search-plugin
+                                                   data-manufacturer="{{ product._source.manufacturer_id|trim }}"
+                                                   class="sisi-manufacturer">
+                                                    {{ product._source.manufacturer_name|raw }}
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if page.sisi_col_search.properties =='1'%}
+                                {% if page.sisi_elasticsearchResults.hits.total.value > 0 %}
+                                    {{ 'sisi.properties'|trans|raw }}
+                                {% endif %}
+                                <ul class="sisi-properties">
+                                    {% set merker = [] %}
+                                    {% set showedOptions = [] %}
+                                    {% for product in page.sisi_elasticsearchResults.hits.hits %}
+                                        {% for prop in product._source.properties %}
+                                            {% if prop.option_id not in showedOptions %}
+                                                {% set showedOptions = showedOptions|merge([prop.option_id]) %}
+                                                <li>
+                                                    <a href="#" data-search-plugin
+                                                       data-product="{{ product._source.product_name }}"
+                                                       data-properties="{{ prop.option_id|raw }}"
+                                                       class="sisi-properties">
+                                                        {{ prop.property_group }} : {{ prop.option_name }}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                            {% if page.sisi_col_search.properties == '4' %}
+                                {{ 'sisi.properties'|trans|raw }}
+                                <ul class="sisi-properties">
+                                    {% set merker = [] %}
+                                    {% set showedOptions = [] %}
+                                    {% for product in page.sisi_pproperties.hits.hits %}
+                                        {% for highlight  in product.highlight %}
+                                            {% for highlightItem  in highlight %}
+                                                <li>
+                                                    <a href="#" data-search-plugin
+                                                       data-product="{{ product._source.product_name }}"
+                                                       data-properties="{{ prop.option_id|trim}}"
+                                                       class="sisi-properties">
+                                                        {{  highlightItem|raw }}
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
+                                        {% endfor %}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endif %}
+                        {% if page.sisi_contentResult.hits.hits  and (page.sisi_contentConfig.display != "under") %}
+                            {% if page.sisi_contentResult.hits.hits|length > 0 %}
+                                {{ 'sisi.content'|trans|raw }}
+                            {% endif %}
+                            <div class="sisi-content-result">
+                                <ul>
+                                    {% for content in page.sisi_contentResult.hits.hits %}
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <li>
+                                                  {% if content._source.contentType == 'landingpage' %}
+                                                                <a href="{{ seoUrl('frontend.landing.page', {'landingPageId':content._source.categorie_ids}) }}{% if page.sisi_contentConfig.highlight == '1' %}?search={{ page.searchTerm }} {% endif %}">
+                                                            {% else %}
+                                                                 <a href="{{ seoUrl('frontend.navigation.page', {'navigationId':content._source.categorie_ids}) }}{% if page.sisi_contentConfig.highlight == '1' %}?search={{ page.searchTerm }} {% endif %}">
+                                                            {% endif %}
+                                                        {{ content._source.CMS_Titel }}
+                                                    </a>
+                                                </li>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% block layout_search_suggest_results %}
+                        <div
+                            id="sisi-search-suggest-container-right"
+                            class="{% if  (page.sisi_col_search.categorien =='2' or page.sisi_col_search.categorien =='4')
+                                and (page.sisi_col_search.manufacturer =='2' or page.sisi_col_search.manufacturer =='3')
+                                and (page.sisi_col_search.properties =='2' or page.sisi_col_search.properties =='3' or page.sisi_col_search.properties =='5') %}
+                            col-md-12
+                        {% else %}
+                                 {%  if page.sisi_col_search.optik %} col-md-8 {% else %} col-md-9 {% endif %}
+                        {% endif %} sisi-search-suggest-container-right" id="sisi-search-suggest-container-right">
+                            {% if page.sisi_elasticsearchResults == 'noindex' %}
+                                No index found
+                            {% endif %}
+                            <ul class="row">
+                                {% for product in page.sisi_elasticsearchResults.hits.hits %}
+                                    <li class="search-suggest-product js-result sisi-view {% if cols != 1 %}col-6 col-sm-4{% endif %}
+                                        {% if cols=='6' %}   col-md-2    {% elseif cols=='4' %}  col-md-3
+                                        {% elseif cols=='3' %}  col-md-4   {% elseif cols=='2' %}  col-md-6
+                                        {% else %} col-md-12 {% endif %} {% if loop.last %} sisi-last-row {% endif %} ">
+                                        {% block layout_search_suggest_result_link %}
+                                            <a href="{{ seoUrl('frontend.detail.page', {'productId': product._source.id|trim}) }}"
+                                               title="{{ product._source.product_name }}"
+                                               class="search-suggest-product-link" data-number="{{ product._source.product_productNumber }}">
+                                                <div
+                                                    class="row align-items-center no-gutters   {% if page.sisi_col_search.ImageSize =='1' %} sisi-big-image {% endif %} ">
+                                                    {% set url = product._source.channel.cover.media.url %}
+                                                    {% if page.sisi_col_search.thumbnailsID %}
+                                                        {% set id =page.sisi_col_search.thumbnailsID %}
+                                                        {# set Thumbnail from config #}
+                                                        {% for key, thumbnail  in product._source.channel.cover.media.thumbnails %}
+                                                            {% if (page.thunbnail_with_height.0 == thumbnail.width)
+                                                                and (page.thunbnail_with_height.1== thumbnail.height) %}
+                                                                {% set url = thumbnail.url %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                    <div class="col-auto search-suggest-product-image-container">
+                                                        {% if url %}
+                                                            <img src="{{ url }}"
+                                                                {% if product._source.channel.cover.media.alt %}
+                                                                    alt="{{ product._source.channel.cover.media.alt }}"
+                                                                {% endif %}
+                                                                {% if product._source.channel.cover.media.title %}
+                                                                    title="{{ product._source.channel.cover.media.title }}"
+                                                                {% endif %}
+                                                            />
+                                                        {% else %}
+                                                            <div class="product-image-placeholder">
+                                                                <span class="icon icon-placeholder icon-fluid">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="552"
+                                                                         height="383" viewBox="0 0 552 383">
+                                                                      <g fill="none" fill-rule="evenodd" opacity=".65">
+                                                                        <rect width="333.061" height="499.591"
+                                                                              x="84.659" y="-82.663" fill="#E9EBF2"
+                                                                              fill-rule="nonzero"
+                                                                              transform="rotate(-89.862 251.19 167.132)"></rect>
+                                                                        <g transform="translate(51 49)">
+                                                                          <rect width="333.06" height="499.59"
+                                                                                x="83.983" y="-83.234" fill="#DADDE5"
+                                                                                fill-rule="nonzero"
+                                                                                transform="rotate(-90 250.513 166.561)"></rect>
+                                                                          <polygon fill="#E9EBF2"
+                                                                                   points="137.18 333.1 500.31 333.1 500.31 302.36 322.15 110.42"></polygon>
+                                                                          <circle cx="113.04" cy="65.68" r="35.9"
+                                                                                  fill="#F5F7FC"></circle>
+                                                                          <polygon fill="#F5F7FC"
+                                                                                   points="219.88 157.3 73.85 333.1 383.05 333.1"></polygon>
+                                                                        </g>
+                                                                      </g>
+                                                                    </svg>
+                                                                </span>
+                                                            </div>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div
+                                                        class="  {% if page.sisi_col_search.ImageSize != '1' %} col {% endif %} search-suggest-product-name">
+                                                        {% if page.sisi_col_search.displayhighlight == '2' or page.sisi_col_search.displayhighlight == '3' %}
+                                                            {% if product.highlight.product_name|length > 0 %}
+                                                                {% if  page.sisi_col_search.displayhighlight == '2' %}
+                                                                    {% for highlight  in product.highlight.product_name %}
+                                                                        <div>  {{ highlight| raw }} </div>
+                                                                    {% endfor %}
+                                                                {%  endif %}
+                                                                {% if  page.sisi_col_search.displayhighlight == '3' %}
+                                                                    {% for highlight  in product.highlight.product_name %}
+                                                                        <div>  {{ highlight|sisiRemoveAfterBR(page.sisi_col_search, product._source.product_name) | raw }} </div>
+                                                                    {% endfor %}
+                                                                {%  endif %}
+                                                            {% else %}
+                                                                <div>
+                                                                    {% if page.sisi_col_search.disableproduktlabel != 'yes' %}
+                                                                        {{ 'sisi.produktname'|trans|raw }}
+                                                                    {%  endif %}
+                                                                    {{ product._source.product_name|sisiRemoveAfterBR(page.sisi_col_search, product._source.product_name) | raw }}
+                                                                </div>
+                                                            {% endif %}
+                                                            {% if page.sisi_col_search.disableNumber == 'yes' %}
+                                                                <div class="sisi-popup-number">
+                                                                    {{ 'sisi.produktnumber'|trans|raw }} {{ product._source.product_productNumber }}
+                                                                </div>
+                                                            {%  endif %}
+                                                            {% if page.sisi_col_search.defaultprice == 'yes' %}
+                                                                <div class="sisi-popup-price">
+                                                                    {% set price = product._source.channel.calculatedPrice %}
+                                                                    {% if product._source.channel.calculatedPrice.count > 0 %}
+                                                                        {% set price = product._source.channel.calculatedPrice.last %}
+                                                                    {% endif %}
+                                                                    {{ price.unitPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+                                                                </div>
+                                                            {% endif %}
+
+                                                        {% else %}
+                                                            {% if product.highlight.product_name|length > 0 %}
+                                                                {% if page.sisi_col_search.disableproduktlabel != 'yes' %}
+                                                                    {{ 'sisi.produktname'|trans|raw }}
+                                                                {%  endif %}
+                                                            {% else %}
+                                                                {% if  product._source.product_name|length > 0 %}
+                                                                    {{  product._source.product_name }}
+                                                                    {%  set str= '2' %}
+                                                                {% else %}
+                                                                    {% if product._source.channel.name|length > 0 %}
+                                                                            {{ product._source.channel.name}}
+                                                                        {%  else  %}
+                                                                            {{ product._source.channel.metaTitle}}
+                                                                     {%  endif %}
+                                                                    {%  set str= '2' %}
+                                                                {%  endif %}
+                                                            {%  endif %}
+                                                        {% endif %}
+                                                        {% if product.highlight|length > 0  and page.sisi_col_search.displayhighlight != '2' %}
+                                                            {% if  str != '2'  and page.sisi_col_search.displayproducthighlight != '1'%}
+                                                                <div> {{ product._source.product_name }}</div>
+                                                            {% endif %}
+                                                            {% for key, highlight  in product.highlight %}
+                                                                {% for index,name  in highlight %}
+                                                                    {% if key =='product_name' and index == 0  and page.sisi_col_search.displayproducthighlight == '1'%}
+                                                                        <div>  {{ name  | raw }} </div>
+                                                                    {% endif %}
+                                                                    {% if key =='product_name' and index == 0  and page.sisi_col_search.displayhighlight != '3' %}
+                                                                        <div>
+                                                                            {% if page.sisi_col_search.disableNumber == 'yes' %}
+                                                                                <div class="sisi-popup-number">{{ 'sisi.produktnumber'|trans|raw }}{{ product._source.product_productNumber }}</div>
+                                                                            {%  endif %}
+                                                                        </div>
+                                                                    {% endif %}
+
+                                                                    {% if key =='category_name' and index == 0 and page.sisi_col_search.disablecategorybytheproducts != "yes" %}
+                                                                        <div>   {{ 'sisi.categoriename'|trans|raw }}
+                                                                            : {{ name  | raw }} </div>
+                                                                    {% endif %}
+
+                                                                    {% if key =='properties.option_name' and index == 0 %}
+                                                                        <div>   {{ 'sisi.propertiesname'|trans|raw }}
+                                                                            : {{ name  | raw }} </div>
+                                                                    {% endif %}
+
+                                                                    {% if key =='manufacturer_name' and index == 0 %}
+                                                                        <div>   {{ 'sisi.manufacturer_name'|trans|raw }}
+                                                                            : {{ name  | raw }} </div>
+                                                                    {% endif %}
+
+                                                                    {% if key =='product_description' and index == 0  and page.sisi_col_search.disableDescription != "1" %}
+                                                                        <div>   {{ 'sisi.product_description'|trans|raw }}  </div>
+                                                                    {% endif %}
+
+
+                                                                    {% if key =='product_ean' and index == 0 %}
+                                                                        <div>   {{ 'sisi.product_ean'|trans|raw }}
+                                                                            : {{ name  | raw }} </div>
+                                                                    {% endif %}
+
+                                                                    {% if key =='product_productNumber' and index == 0 and page.sisi_col_search.disableNumber != 'yes' %}
+                                                                        <div>   {{ 'sisi.product_productNumber'|trans|raw }}
+                                                                            : {{ name  | raw }} </div>
+                                                                    {% endif %}
+
+                                                                    {% if key =='product_manufacturerNumber' and index == 0 and page.sisi_col_search.disablemanufacturerNumber != 'yes' %}
+                                                                        <div>   {{ 'sisi.manufacturerNumber'|trans|raw }}
+                                                                            : {{ name  | raw }} </div>
+                                                                    {% endif %}
+
+                                                                    {% if key =='product_meta_title' and index == 0 %}
+                                                                        <div>  {{ 'sisi.product_meta_title'|trans|raw }}
+                                                                            : {{ name  | raw }} </div>
+                                                                    {% endif %}
+
+                                                                    {% if page.sisi_col_search.disableSnippet != "1" and index == 0  %}
+                                                                        {% if key !='product_meta_title' and  key !='product_productNumber'  and  key !='product_ean'
+                                                                            and  key !='product_description' and  key !='manufacturer_name' and  key !='properties.option_name'
+                                                                            and  key !='category_name' and  key !='product_name'  and key != 'search_keyword' and key != 'product_manufacturerNumber' %}
+                                                                            <div>{{ 'sisi.product_snippet'|trans|raw }}
+                                                                                : {{ name  | raw }}</div>
+                                                                        {% endif %}
+                                                                    {% endif %}
+
+                                                                    {% if key =='search_keyword' and index == 0  and page.sisi_col_search.disablekeywordsfrontend != '1' %}
+                                                                        <div>  {{ 'sisi.search_keyword'|trans|raw }}
+                                                                            : {{ name  | raw }} </div>
+                                                                    {% endif %}
+
+                                                                {% endfor %}
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                        {% for mainkey,inner in product.inner_hits.children.hits.hits %}
+                                                            {%  if mainkey == 0 %}
+                                                            {% for innerkey, hight in inner.highlight %}
+                                                                {% for inneritem, item in  hight  %}
+                                                                    {%  set str = true %}
+                                                                    {% if innerkey =='children.product_name'  and inneritem == 0 %}
+                                                                        <div>     {{ 'sisi.produktname'|trans|raw }}: {{ item| raw}} </div>
+                                                                        {%  set str = false %}
+                                                                    {% endif %}
+                                                                    {% if innerkey =='children.product_productNumber'  and inneritem == 0 %}
+                                                                        <div>   {{ 'sisi.product_productNumber'|trans|raw }}:  {{ item| raw}} </div>
+                                                                        {%  set str = false %}
+                                                                    {% endif %}
+                                                                    {% if innerkey =='children.product_description'  and inneritem == 0 %}
+                                                                        <div> {{ 'sisi.product_description'|trans|raw }}</div>
+                                                                        {%  set str = false %}
+                                                                    {% endif %}
+                                                                {% endfor %}
+                                                            {% endfor %}
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                        {% set strb2b = true %}
+                                                        {% if page.sisi_col_search.withoutlogin == 'yes' %}
+                                                            {% set strb2b = true %}
+                                                            {% if b2bPlatformConfig.disableAddToCartFunctionality and not context.customer %}
+                                                                {% set strb2b = false %}
+                                                            {% endif %}
+                                                        {% endif %}
+                                                        {% if page.sisi_col_search.calculatedprices == '1' or page.sisi_col_search.calculatedprices == '3'  %}
+                                                            {% if strb2b  %}
+                                                                <div class="col-auto search-suggest-product-price">
+                                                                    {% if page.sisi_col_search.cheapestPrice == 'yes' %}
+                                                                        {{ "listing.listingTextFrom"|trans|sw_sanitize }}
+                                                                    {% if product._source.channel.calculatedCheapestPrice.unitPrice%}
+                                                                        {{ product._source.channel.calculatedCheapestPrice.unitPrice|currency }}
+                                                                    {% else %}
+                                                                        {{ product._source.channel.calculatedPrice.unitPrice|currency }}
+                                                                    {% endif %}
+                                                                    {% else %}
+                                                                        {%  if product._source.channel.calculatedPrices.elements %}
+                                                                            {{ product._source.channel.calculatedPrices.first.unitPrice|currency }}
+                                                                        {% else %}
+                                                                            {{product._source.channel.calculatedPrice.unitPrice|currency }}
+                                                                        {% endif %}
+                                                                        {% if product._source.channel.calculatedPrice.referencePrice is not null %}
+                                                                            <br><small
+                                                                            class="search-suggest-product-reference-price">
+                                                                            ({{ product._source.channel.calculatedPrice.referencePrice.price|currency }}{{ "general.star"|trans|sw_sanitize }}
+                                                                            / {{ product._source.channel.calculatedPrice.referencePrice.referenceUnit }}
+                                                                            &nbsp;{{ product._source.channel.calculatedPrice.referencePrice.unitName }}
+                                                                            )</small>
+                                                                        {% endif %}
+                                                                    {% endif %}
+
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        {% endblock %}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endblock %}
+                    {% if page.sisi_contentResult.hits.hits and (page.sisi_contentConfig.display == "under") %}
+                        <div class="sisi-content-result">
+                            {% for content in page.sisi_contentResult.hits.hits %}
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        {% if content._source.contentType == 'landingpage' %}
+                                        <a href="{{ seoUrl('frontend.landing.page', {'landingPageId':content._source.categorie_ids}) }}{% if page.sisi_contentConfig.highlight == '1' %}?search={{ page.searchTerm }} {% endif %}">
+                                         {% else %}
+                                        <a href="{{ seoUrl('frontend.navigation.page', {'navigationId':content._source.categorie_ids}) }}{% if page.sisi_contentConfig.highlight == '1' %}?search={{ page.searchTerm }} {% endif %}">
+                                        {% endif %}
+                                        {% for highlight  in content.highlight %}
+                                            {% for CMS_Content  in highlight %}
+                                                <span> {{ CMS_Content  | raw }} </span>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        </a>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% block layout_search_suggest_result_total %}
+                {% if page.sisi_elasticsearchResults.hits.total.value  == 0 %}
+                    {% block layout_search_suggest_no_result %}
+                        <li class="search-suggest-no-result">
+                            {{ "header.searchNoResult"|trans|sw_sanitize }}
+                        </li>
+                    {% endblock %}
+                {% else %}
+                    {% block layout_search_suggest_result_total_result %}
+                        <ul class="container-fluid sisi-bottom-total">
+                            <li class="js-result search-suggest-total">
+                                <div class="row align-items-center no-gutters">
+                                    {% block layout_search_suggest_result_total_link %}
+                                        <div class="col">
+                                            {% if page.sisi_col_search.disableLinkresult != 'yes' %}
+                                                <a href="{% if searchcontroller == '1' %} {{ path('frontend.search.onsearch') }}{% else %}{{ path('frontend.search.page') }}{% endif %}?search={{ page.searchTerm }}"
+                                                   title="{{ "header.searchAllResults"|trans|striptags }}"
+                                                   class="search-suggest-total-link">
+                                                    {% sw_icon 'arrow-head-right' style { 'size': 'sm' } %}
+                                                    {{ "header.searchAllResults"|trans|sw_sanitize }}
+                                                </a>
+                                            {% endif %}
+                                        </div>
+                                    {% endblock %}
+                                    {% block layout_search_suggest_result_total_count %}
+                                        {% if page.sisi_col_search.disableCount != 'yes' %}
+                                            <div class="col-auto search-suggest-total-count">
+                                                <div class="col-auto search-suggest-total-count">
+                                                    {{ "header.searchResults"|trans ({
+                                                        '%count%':page.sisi_elasticsearchResults.hits.total.value})|sw_sanitize }}
+
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endblock %}
+                                </div>
+                            </li>
+                        </ul>
+                    {% endblock %}
+                {% endif %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+</div>
+

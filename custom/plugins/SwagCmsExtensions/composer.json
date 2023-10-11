@@ -1,0 +1,85 @@
+{
+    "name": "swag/cms-extensions",
+    "description": "CMS extensions for Shopware 6",
+    "version": "2.6.0",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Shopware"
+        }
+    ],
+    "require": {
+        "shopware/core": "~6.4.17@dev",
+        "shopware/storefront": "~6.4.17@dev"
+    },
+    "require-dev": {
+        "symplify/easy-coding-standard": "^10.2",
+        "kubawerlos/php-cs-fixer-custom-fixers": "2.5.0"
+    },
+    "conflict": {
+        "shopware/storefront": "<6,>=7",
+        "shopware/administration": "<6,>=7"
+    },
+    "scripts": {
+        "e2e:admin:cypress": [
+            "export APP_ENV=e2e; export CYPRESS_localUsage=1; export CYPRESS_shopwareRoot=\"$(realpath ../../..)\"; cd src/Resources/app/administration/test/e2e; export PATH=\"$PWD/node_modules/.bin/:$PATH\"; \"$CYPRESS_shopwareRoot\"/bin/exec-with-env cypress"
+        ],
+        "e2e:admin:open": [
+            "Composer\\Config::disableProcessTimeout",
+            "@e2e:admin:cypress open"
+        ],
+        "e2e:storefront:cypress": [
+            "export APP_ENV=e2e; export CYPRESS_localUsage=1; export CYPRESS_shopwareRoot=\"$(realpath ../../..)\"; cd src/Resources/app/storefront/test/e2e; export PATH=\"$PWD/node_modules/.bin/:$PATH\"; \"$CYPRESS_shopwareRoot\"/bin/exec-with-env cypress"
+        ],
+        "e2e:storefront:open": [
+            "Composer\\Config::disableProcessTimeout",
+            "@e2e:storefront:cypress open"
+        ],
+        "admin:unit:watch": [
+            "Composer\\Config::disableProcessTimeout",
+            "npm --prefix src/Resources/app/administration run unit-watch"
+        ]
+    },
+    "extra": {
+        "shopware-plugin-class": "Swag\\CmsExtensions\\SwagCmsExtensions",
+        "copyright": "(c) by shopware AG",
+        "label": {
+            "de-DE": "CMS-Erweiterungen für Shopware 6",
+            "en-GB": "CMS extensions for Shopware 6"
+        },
+        "description": {
+            "en-GB": "Shopware's CMS Extensions provide several features for the CMS of Shopware 6, such as the Quickview, Animated Scrolling, Block visibility by rules and Custom Forms",
+            "de-DE": "Shopwares CMS-Erweiterungen bereiten diverse Funktionen für das CMS von Shopware 6, wie die Quickview, Animiertes Scrollen, Block-Sichtbarkeit via Regeln und konfigurierbare Formulare"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/listing/manufacturer/sSupplier/25?p=1",
+            "en-GB": "https://store.shopware.com/en/listing/manufacturer/sSupplier/25?p=1"
+        },
+        "supportLink": {
+            "de-DE": "https://issues.shopware.com/",
+            "en-GB": "https://issues.shopware.com/"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Swag\\CmsExtensions\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Swag\\CmsExtensions\\Test\\": "tests/"
+        }
+    },
+    "suggest": {
+        "shopware/administration": "Require '*'. Allows you to to set up the plugin easily"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4.3"
+        },
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
+}

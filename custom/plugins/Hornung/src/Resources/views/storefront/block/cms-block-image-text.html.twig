@@ -1,0 +1,8 @@
+{% sw_extends '@Storefront/storefront/block/cms-block-image-text.html.twig' %}
+
+{% block block_image_text %}
+  {{parent()}}
+  {% if block.name == "Category info" %}
+    <img class="category-background-image" src="{{ theme_config("category-background-image") }}">
+  {% endif %}
+{% endblock %}

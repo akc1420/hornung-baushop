@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-sidebar-filter.html.twig' %}
+{# ThemeWare® HC-Architecture® ready #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtSidebarFilterHeadlineShow = theme_config('twt-sidebar-filter-headline-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the sidebar filter element #}
+{% block element_sidebar_filter %}
+    {# ThemeWare: Überschrift für Sidebar-Filter ergänzen. #}
+    {% if block.sectionPosition == 'sidebar' and twtSidebarFilterHeadlineShow == 2 %}
+        <div class="twt-cms-element-sidebar-headline d-none d-lg-block is--filter">
+            {{ "listing.filterTitleText"|trans }}
+        </div>
+    {% endif %}
+
+    {# Default block #}
+    {{ parent() }}
+{% endblock %}

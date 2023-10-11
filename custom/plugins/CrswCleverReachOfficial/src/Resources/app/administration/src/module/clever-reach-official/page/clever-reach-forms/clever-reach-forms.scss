@@ -1,0 +1,48 @@
+.cr-forms {
+  max-width: 800px !important;
+  width: 100%;
+  box-sizing: content-box;
+  font-size: 20px;
+  line-height: 54px;
+}
+
+.cr-overview {
+  background: transparent !important;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 6%;
+  margin-left: 4%;
+  padding: 0;
+}
+
+.cr-overview .sw-label__caption {
+  display: block !important;
+  white-space: initial;
+  line-height: 20px;
+}
+
+.cr-how-to {
+  font-size: 14px;
+  margin-left: 4%;
+  line-height: 16px;
+  color: #11acff;
+  margin-bottom: 5%;
+  margin-top: 15px;
+}
+
+.cr-forms-grid {
+  font-size: 16px;
+}
+
+.cr-forms-grid .sw-grid__body {
+  border-top: 1px solid #d1d9e0 !important;
+}
+
+.cr-forms-grid .sw-grid-column {
+  padding-left: 4%;
+}
+
+.cr-form-context-btn-column {
+  display: flex;
+  justify-content: center;
+}

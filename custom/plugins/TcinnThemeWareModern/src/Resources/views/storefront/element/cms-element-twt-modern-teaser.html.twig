@@ -1,0 +1,115 @@
+{# ThemeWare: CMS element "Modern teaser" #}
+
+{# ---------------- START: SET VARS ---------------- #}
+
+{# ThemeWare: Set variables #}
+{#% set twtModernTeaser = element.translated.config %#}
+{% set twtModernTeaser = element.fieldConfig.elements %}
+
+{# Tab: Layout #}
+{% set twtModernTeaserFontFamily = twtModernTeaser.fontFamily.value %}
+{# TODO... #}
+
+{# Tab: Advanced #}
+{% set twtModernTeaserCssClass = twtModernTeaser.cssClass.value %}
+
+{# ---------------- END: SET VARS ---------------- #}
+
+{# ---------------- START: SET CLASSES ---------------- #}
+
+{% set overlayClasses = ['overlay'] %}
+
+{% if twtModernTeaserHoverEffect != 'none' %}
+    {% if twtModernTeaserHoverEffect != "fadeOut" %}
+        {% set overlayClasses = ['fade-in']|merge(overlayClasses) %}
+    {% else %}
+        {% set overlayClasses = ['fade-out']|merge(overlayClasses) %}
+    {% endif %}
+{% endif %}
+
+
+{% set contentClasses = ['content'] %}
+
+{# ---------------- END: SET CLASSES ---------------- #}
+
+{% block element_twt_modern_teaser %}
+    {% set config = element.fieldConfig.elements %}
+
+    {# TODO: finalize #}
+
+    <div class="cms-element-{{ element.type }}{% if config.verticalAlign.value %} has-vertical-alignment{% endif %}{% if twtModernTeaserCssClass is not empty %} {{ twtModernTeaserCssClass }}{% endif %}">
+
+        {% block element_twt_modern_teaser_content %}
+            {% if config.verticalAlign.value %}
+                <div class="cms-element-alignment{% if config.verticalAlign.value == "center" %} align-self-center{% elseif config.verticalAlign.value == "flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+            {% endif %}
+
+            {% block element_twt_modern_teaser_image_inner %}
+                {# ThemeWare: Set 'Modern teaser' element #}
+                {% set modernTeaser %}
+                    <div class="twt-modern-teaser-container cms-content-container justify-content-{{ config.horizontalAlignment.value }} align-items-{{ config.verticalAlignment.value }}">
+                        <div class="twt-modern-teaser-content {{ contentClasses|sort|join(' ') }}{% if twtModernTeaserFontFamily !='base' %} twt-font-family-{{ twtModernTeaserFontFamily }}{% endif %}">
+                            {# Text (mandatory) #}
+                            <p class="twt-modern-teaser-text text{% if textClasses %} {{ textClasses }}{% endif %}" style="color: {{ config.textColor.value }}; background-color: {{ config.bgColor.value }};">
+                                <span>{{ element.translated.config.title.value }}</span>
+                                {% sw_icon 'arrow-medium-right' style { 'size': 'sm', 'pack': 'solid', 'color': 'dark'} %}
+                            </p>
+                        </div>
+                    </div>
+                {% endset %}
+
+                {# ThemeWare: Set image element #}
+                {% set imageElement %}
+
+                    {% block element_twt_modern_teaser_image_container %}
+                        {% if element.data.media.url %}
+                            <div class="twt-modern-teaser-image-container cms-image-container is-{{ element.translated.config.displayMode.value }}" {% if element.translated.config.minHeight.value and element.translated.config.displayMode.value == "cover" %} style="min-height: {{ element.translated.config.minHeight.value }};"{% endif %}>
+
+                                {% block element_twt_modern_teaser_image_media %}
+                                    {% set attributes = {
+                                        'class': 'cms-image',
+                                        'alt': (element.data.media.translated.alt ?: ''),
+                                        'title': (element.data.media.translated.title ?: '')
+                                    } %}
+
+                                    {% if element.translated.config.displayMode.value == 'cover' or element.translated.config.displayMode.value == 'contain' %}
+                                        {% set attributes = attributes|merge({ 'data-object-fit': element.translated.config.displayMode.value }) %}
+                                    {% endif %}
+
+                                    {% sw_thumbnails 'cms-image-thumbnails' with {
+                                        media: element.data.media
+                                    } %}
+                                {% endblock %}
+
+                                {# ThemeWare: Load 'Modern teaser' element #}
+                                {{ modernTeaser }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                {% endset %}
+
+                {# ThemeWare: Load elements #}
+                {% if element.translated.config.url.value %}
+                    {# Info: Title tag = Title text (as the text is mandatory) #}
+                    <a href="{{ element.translated.config.url.value }}"
+                       title="{{ element.translated.config.title.value }}"
+                       class="cms-image-link"
+                       {% if element.translated.config.newTab.value %}target="_blank" rel="noopener"{% endif %}>
+                        {# ThemeWare: Load image element #}
+                        {{ imageElement }}
+                    </a>
+                {% else %}
+                    {# ThemeWare: Load image element #}
+                    {{ imageElement }}
+                {% endif %}
+
+            {% endblock %}
+
+            {% if config.verticalAlign.value %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% block clever_reach_abandoned_cart_settings_doi %}
+    <sw-card class="cr-doi" :isLoading="isLoading">
+        <template v-slot:title>
+            {{ $tc('clever-reach.abandonedCart.doubleOptIn') }}
+        </template>
+
+        <sw-label variant="danger" class="cr-doi-error">
+            {{ doiError }}
+        </sw-label>
+
+        <sw-container class="cr-doi-content">
+            <sw-card-section class="cr-doi-card-section">
+                <sw-label variant="neutral" class="cr-ac-settings-desc">
+                    {{ doiActiveLabel }}
+                </sw-label>
+                <sw-switch-field v-model="doiStatus"
+                                 :label="doiActivate"
+                                 class="cr-ac-settings-activate-automation cr-doi-switch"
+                                 @change="doiStatusChange"
+                                 :disabled="doiSwitch">
+                </sw-switch-field>
+            </sw-card-section>
+            <sw-card-section class="cr-doi-right-card-section">
+                <sw-field type="select"
+                          :value="chosenForm"
+                          size="small"
+                          v-model="selectedForm"
+                          class="cr-doi-select-form"
+                          @change="doiFormChange"
+                          :disabled="formsDisabled">
+                    <option v-for="form in doiForms"
+                            :value="form.id"
+                            :selected="chosenForm === form.id">
+                        {{ $tc('clever-reach.abandonedCart.doiForm') + form.name }}
+                    </option>
+                </sw-field>
+            </sw-card-section>
+        </sw-container>
+    </sw-card>
+{% endblock %}

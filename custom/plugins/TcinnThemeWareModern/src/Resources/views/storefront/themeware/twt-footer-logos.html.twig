@@ -1,0 +1,34 @@
+{# ThemeWare "Footer logos" container #}
+{#
+    Create container and include payment/shipping widgets
+
+    @Storefront/storefront/themeware/twt-footer-logos.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{% block twt_layout_footer_logos %}
+    <div class="container">
+        {% if page.salesChannelPaymentMethods.elements %}
+            <div class="twt-footer-logos-payment-methods">
+                <div class="twt-footer-logos-headline is--payment-method">
+                    {{ "twt.widget.payment.headline"|trans|sw_sanitize }}
+                </div>
+                {% sw_include '@Storefront/storefront/themeware/widgets/twt-payment-include.html.twig' ignore missing with {
+                    type: 'footer'
+                } %}
+            </div>
+        {% endif %}
+
+        {% if page.salesChannelShippingMethods.elements %}
+            <div class="twt-footer-logos-shipping-methods">
+                <div class="twt-footer-logos-headline is--shipping-method">
+                    {{ "twt.widget.shipping.headline"|trans|sw_sanitize }}
+                </div>
+                {% sw_include '@Storefront/storefront/themeware/widgets/twt-shipping-include.html.twig' ignore missing with {
+                    type: 'footer'
+                } %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

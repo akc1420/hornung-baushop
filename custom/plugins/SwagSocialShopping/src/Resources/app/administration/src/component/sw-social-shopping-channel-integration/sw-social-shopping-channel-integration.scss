@@ -1,0 +1,27 @@
+.sw-sales-channel-integration-card {
+    .sw-sales-channel-integration-card-introduction {
+        .sw-sales-channel-integration-card-introduction-title {
+            font-weight: bold;
+        }
+
+        .sw-sales-channel-integration-card-introduction-description {
+            margin-bottom: 30px;
+        }
+    }
+
+    .sw-sales-channel-integration-card-step-by-step {
+        margin-bottom: 30px;
+
+        .sw-sales-channel-integration-card-step-by-step-title {
+            font-weight: bold;
+        }
+
+        &-list {
+            padding: 0 0 0 40px;
+
+            & > li {
+                padding-left: 20px;
+            }
+        }
+    }
+}

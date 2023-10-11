@@ -1,0 +1,58 @@
+{
+    "name": "mediameets/mediameets-fb-domain",
+    "description": "Extension (plugin) for verifying the shop domain of a Shopware 6 shop at Facebook.",
+    "version": "2.0.0",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "media:meets GmbH",
+            "role": "Manufacturer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "mediameets\\mediameetsFbDomain\\": "src/"
+        }
+    },
+    "require": {
+        "shopware/core": "^6.4",
+        "shopware/storefront": "^6.4",
+        "shopware/administration": "^6.4"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.18",
+        "kubawerlos/php-cs-fixer-custom-fixers": "^2.1",
+        "mediameets/psh-commands": "@dev",
+        "phpstan/phpstan": "^0.12.31",
+        "symplify/easy-coding-standard": "^9.2",
+        "vimeo/psalm": "^4.7"
+    },
+    "scripts": {
+        "ecs": "vendor/bin/ecs check --config=easy-coding-standard.php",
+        "ecs-fix": "vendor/bin/ecs check --fix --config=easy-coding-standard.php"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "shopware-plugin-class": "mediameets\\mediameetsFbDomain\\mediameetsFbDomain",
+        "label": {
+            "de-DE": "Domain Verifizierung für Facebook",
+            "en-GB": "Facebook Domain Verification"
+        },
+        "description": {
+            "de-DE": "Verifizieren Sie Ihre Shop-Domain im Business Manager und erhöhen Sie die Sicherheit Ihrer Inhalte. Kontrolliere Deine Links und andere Inhalte und verhindere, dass deine Domain missb..",
+            "en-GB": "Verify your shop domain in the Facebook Business Manager and increase the security of your content. Check your links and other content and prevent your domain from being misused.."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.mediameets.de",
+            "en-GB": "https://www.mediameets.de"
+        },
+        "supportLink": {
+            "de-DE": "https://www.mediameets.de/support/",
+            "en-GB": "https://www.mediameets.de/support/"
+        },
+        "copyright": "(c) by media:meets GmbH"
+    }
+}

@@ -1,0 +1,181 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Image slider
+    ==============================================
+    Styling for image slider component.
+    Displays images in a reusable slider component.
+    based on "base-slider" component and "tiny-slider" (https://github.com/ganlanyuan/tiny-slider)
+
+	Origin: Shopware base
+*/
+
+/* ---------------- START: SET SCSS VARS ---------------- */
+
+// ThemeWare: Set theme variables
+$twtImageSliderControlsStyle: $twt-base-slider-controls-style;
+$twtImageSliderControlsCornerType: $twt-base-slider-controls-corner-type;
+$twtImageSliderControlsHoverType: $twt-base-slider-controls-hover-type;
+
+$twtImageSliderControlsColor: $twt-base-slider-controls-color;
+$twtImageSliderControlsBorderColor: $twt-base-slider-controls-border-color;
+$twtImageSliderControlsBackgroundColor: $twt-base-slider-controls-background-color;
+
+$twtImageSliderControlsColorHover: $twt-base-slider-controls-color-hover;
+$twtImageSliderControlsBorderColorHover: $twt-base-slider-controls-border-color-hover;
+$twtImageSliderControlsBackgroundColorHover: $twt-base-slider-controls-background-color-hover;
+
+$twtImageSliderControlsBackgroundColorHover: $twt-base-slider-controls-background-color-hover;
+
+$twtImageSliderNavigationDotsAlignment: $twt-base-slider-navigation-dots-alignment;
+
+@if $twt-image-slider-controls-individual == 2 {
+	$twtImageSliderControlsStyle: $twt-image-slider-controls-style;
+	$twtImageSliderControlsCornerType: $twt-image-slider-controls-corner-type;
+	$twtImageSliderControlsHoverType: $twt-image-slider-controls-hover-type;
+
+	$twtImageSliderControlsColor: $twt-image-slider-controls-color;
+	$twtImageSliderControlsBorderColor: $twt-image-slider-controls-border-color;
+	$twtImageSliderControlsBackgroundColor: $twt-image-slider-controls-background-color;
+
+	$twtImageSliderControlsColorHover: $twt-image-slider-controls-color-hover;
+	$twtImageSliderControlsBorderColorHover: $twt-image-slider-controls-border-color-hover;
+	$twtImageSliderControlsBackgroundColorHover: $twt-image-slider-controls-background-color-hover;
+
+	$twtImageSliderNavigationDotsAlignment: $twt-image-slider-navigation-dots-alignment;
+}
+
+/* ---------------- END: SET SCSS VARS ---------------- */
+
+// TODO: Add color configuration "Außen"
+
+// ThemeWare: Image slider adjustments
+.image-slider {
+	// ThemeWare: Arrow navigation
+	.image-slider-controls-prev,
+	.image-slider-controls-next {
+		opacity: 1;
+
+		@if $twtImageSliderControlsStyle == 1 { // 1 rectangle [default], 2 square
+			//width: 30px;
+			//height: 65px;
+			//line-height: 65px;
+		} @else {
+			width: 45px;
+			height: 45px;
+			line-height: 45px;
+		}
+
+		// default: 3px 0 0 3px
+		@if $twtImageSliderControlsCornerType == 1 { // 1 not rounded
+			border-radius: 0;
+		} @else if $twtImageSliderControlsCornerType == 2 { // 2 rounded
+			border-radius: null-pixel-unit($twt-border-radius);
+		} @else if $twtImageSliderControlsCornerType == 3 { // 3 round
+			border-radius: 100px;
+		} @else if $twtImageSliderControlsCornerType == 4 { // 4 individual
+		}
+
+		@if $twtImageSliderControlsBorderColor == transparent and $twtImageSliderControlsBorderColorHover == transparent {
+			border: none;
+		} @else {
+			border: 1px solid $twtImageSliderControlsBorderColor;
+		}
+
+		background-color: $twtImageSliderControlsBackgroundColor;
+
+		// TODO: Add configuration
+		//box-shadow: 1px 2px 6px rgb(0 0 0 / 30%);
+
+		.icon {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			//-ms-transform: translate(-50%, -50%);
+			//-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+
+			color: $twtImageSliderControlsColor;
+		}
+
+		&:hover {
+			border-color: $twtImageSliderControlsBorderColorHover;
+			background-color: $twtImageSliderControlsBackgroundColorHover;
+
+			.icon {
+				color: $twtImageSliderControlsColorHover;
+			}
+		}
+	}
+}
+
+// ThemeWare: Arrow navigation
+.image-slider-controls-prev {
+	.icon {
+		> svg {
+			top: 0;
+			left: -2px;
+		}
+	}
+
+	//&.is-nav-prev-inside {}
+
+	//&.is-nav-prev-outside {}
+}
+
+.image-slider-controls-next {
+	.icon {
+		> svg {
+			top: 0;
+			right: -1px;
+		}
+	}
+
+	//&.is-nav-next-inside {}
+
+	//&.is-nav-next-outside {}
+}
+
+// ThemeWare: Arrow navigation hover effect
+@if $twtImageSliderControlsHoverType == 2 {
+	.image-slider {
+		.base-slider-controls {
+			@include media-breakpoint-up(lg) { // min 992px
+				opacity: 0;
+				transition: opacity .2s ease-in;
+			}
+		}
+
+		@include media-breakpoint-up(lg) { // min 992px
+			&:hover {
+				.base-slider-controls {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+// ThemeWare: Dot navigation hover effect
+.image-slider {
+	// styling works both for auto generated markup by the tiny-slider and normal template markup
+	.tns-nav,
+	.base-slider-dots {
+		@if $twtImageSliderNavigationDotsAlignment == 1 { // left
+			//-webkit-transform: none;
+			transform: none;
+			left: 30px;
+		}
+		@if $twtImageSliderNavigationDotsAlignment == 2 { // right
+			//-webkit-transform: none;
+			transform: none;
+			left: inherit;
+			right: 30px;
+		}
+	}
+}

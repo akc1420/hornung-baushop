@@ -1,0 +1,54 @@
+{% block clever_reach_dashboard_account %}
+    <sw-card class="cr-card" :isLoading="accountLoading">
+        <template v-slot:title>
+            {{ $tc('clever-reach.dashboard.crAccount') }}
+        </template>
+        <sw-container class="cr-account-content">
+            <sw-card-section class="cr-account-card">
+                <sw-label variant="neutral" class="cr-account-label">
+                    {{ $tc('clever-reach.dashboard.email') }} {{ email }}
+                </sw-label>
+                <sw-label variant="neutral" class="cr-account-label">
+                    {{ $tc('clever-reach.dashboard.accountId') }} {{ accountId }}
+                </sw-label>
+            </sw-card-section>
+
+            <sw-card-section class="cr-account-buttons">
+                <div class="cr-account-btns-div">
+                    <sw-button class="cr-disconnect-btn" v-on:click="openPopup">
+                        {{ $tc('clever-reach.dashboard.disconnect') }}
+                    </sw-button>
+                    <sw-button variant="ghost" class="cr-help-support-btn"
+                               :link="$tc('clever-reach.dashboard.helpAndSupportLink')">
+                        {{ $tc('clever-reach.dashboard.helpAndSupport') }}
+                    </sw-button>
+                </div>
+            </sw-card-section>
+        </sw-container>
+
+        {% block clever_reach_dashboard_modal %}
+            <div>
+                <sw-modal v-if="showPopup"
+                          :title="$tc('clever-reach.dashboard.disconnectTitle')"
+                          class="cr-modal"
+                          variant="small"
+                          @modal-close="closeModal">
+                    <div>
+                        <sw-label variant="neutral" class="cr-modal-description">
+                            {{ $tc('clever-reach.dashboard.disconnectDescription') }}
+                        </sw-label>
+
+                        <div class="cr-modal-btns">
+                            <sw-button variant="default" size="small" class="cr-modal-cancel" @click="closeModal">
+                                {{ $tc('clever-reach.syncSettings.cancel') }}
+                            </sw-button>
+                            <sw-button variant="danger" size="small" class="cr-modal-disconnect" @click="disconnect">
+                                {{ $tc('clever-reach.dashboard.disconnectAccount') }}
+                            </sw-button>
+                        </div>
+                    </div>
+                </sw-modal>
+            </div>
+        {% endblock %}
+    </sw-card>
+{% endblock %}

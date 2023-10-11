@@ -1,0 +1,28 @@
+.pickware-dhl-no-neighbour-delivery__checkbox, .pickware-dhl-no-neighbour-delivery__label {
+    cursor: pointer;
+}
+
+.pickware-dhl-preferred-delivery__no-services-configured {
+    font-style: italic;
+}
+
+.pickware-dhl-preferred-delivery-form__subtitle {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.pickware-dhl-preferred-delivery-form__actions {
+    margin-top: 20px;
+}
+
+.pickware-dhl-preferred-delivery-input {
+    margin-bottom: 10px;
+}
+
+.pickware-dhl-preferred-delivery__content, .pickware-dhl-preferred-day-selection__button {
+    margin-bottom: $spacer-sm;
+}
+
+.pickware-dhl-preferred-delivery {
+    margin-bottom: $spacer-lg;
+}

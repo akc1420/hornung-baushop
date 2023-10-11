@@ -1,0 +1,61 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Checkout/Cart
+	==================================================
+
+	Origin: Shopware base & skin
+*/
+
+// ThemeWare: Cart adjustments
+.cart-add-product-container {
+	input#addProductInput {
+		border-top-left-radius: null-pixel-unit($twt-border-radius);
+		border-bottom-left-radius: null-pixel-unit($twt-border-radius);
+	}
+}
+
+// TODO: Shopware Vererbung prüfen...
+.cart-item-details { // TODO: _offcanvas-cart.scss ?!
+	.cart-item-ordernumber { // TODO: _cart-item.scss ?!
+		@include twt-font-size-rem($font-size-xs);
+	}
+}
+
+
+// ThemeWare: Checkout > Cart / Container mobile padding
+@include media-breakpoint-down(xs) { // max 575.98px
+	.is-act-cartpage {
+		.content-main {
+			.container {
+				padding-left: null-pixel-unit($twt-container-main-padding-phone-xs);
+				padding-right: null-pixel-unit($twt-container-main-padding-phone-xs);
+	
+				.container-main > div:not(.search-page) {
+					margin-top: null-pixel-unit($twt-container-main-padding-phone-xs);
+					
+					.checkout-container {
+						margin-right: null-pixel-unit(-$twt-container-main-padding-phone-xs);
+						margin-left: null-pixel-unit(-$twt-container-main-padding-phone-xs);
+	
+						.checkout-main {
+							padding-right: null-pixel-unit($twt-container-main-padding-phone-xs);
+							padding-left: null-pixel-unit($twt-container-main-padding-phone-xs);
+							width: calc(100% - 3px);
+						}
+						.checkout-aside {
+							padding-right: null-pixel-unit($twt-container-main-padding-phone-xs);
+							padding-left: null-pixel-unit($twt-container-main-padding-phone-xs);
+							width: calc(100% - 3px);
+						}
+					}
+				}
+			}
+		}
+	}
+}

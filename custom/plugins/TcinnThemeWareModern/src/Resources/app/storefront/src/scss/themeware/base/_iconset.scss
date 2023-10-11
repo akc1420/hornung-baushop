@@ -1,0 +1,43 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare SCSS-Iconset
+	==================================================
+    Credit: https://github.com/FortAwesome/Font-Awesome
+    Credit: https://github.com/atisawd/boxicons
+*/
+
+/* ThemeWare: Fix some icon spacings */
+@if $twt-iconset != "default" {
+  .nav-main-toggle,
+  .header-search-icon,
+  .header-actions-col {
+    span.icon {
+      margin-bottom: 2px;
+    }
+  }
+
+  .footer-column-newsletter {
+    span.icon {
+      margin-bottom: 2px;
+    }
+  }
+
+  /* ThemeWare: Improve feather icon styling */
+  .icon-themeware {
+    &.no-fill {
+      > svg {
+        fill: none;
+
+        path, use {
+          fill: none;
+        }
+      }
+    }
+  }
+}

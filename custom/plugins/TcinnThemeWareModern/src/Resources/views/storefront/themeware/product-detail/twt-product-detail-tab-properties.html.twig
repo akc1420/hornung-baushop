@@ -1,0 +1,82 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{# ThemeWare: "Properties tab" on product pages #}
+{#
+    Create container and add properties
+
+    @Storefront/storefront/themeware/product-detail/twt-product-detail-tab-properties.html.twig
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailTabPropertiesInfoShow = theme_config('twt-product-detail-tab-properties-info-show') %}
+{% set twtProductDetailTabPropertiesTitleShow = theme_config('twt-product-detail-tab-properties-title-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on offcanvas tab-content #}
+{% block utilities_offcanvas_content %}
+
+    {# ThemeWare: Show properties in individuell tab if configured (see. tabs.html.twig) #}
+    {% block twt_product_detail_tab_properties %}
+
+        {% block twt_product_detail_tab_properties_container %}
+            <div class="twt-product-detail-properties tab-pane-container">
+
+                {% block twt_product_detail_tab_properties_content %}
+
+                    {# ThemeWare: Add properties headline #}
+                    {% block twt_product_detail_tab_properties_title %}
+                        {% if twtProductDetailTabPropertiesTitleShow != 1 %}
+                                <div class="h3 twt-product-properties-description-title">
+                                    {% if twtProductDetailTabPropertiesTitleShow == 2 %}
+                                        {# ThemeWare: Show snippet + product name #}
+                                        {{ "twt.detail.headlineProperties"|trans|sw_sanitize }} "{{ page.product.translated.name }}"
+
+                                    {% elseif twtProductDetailTabPropertiesTitleShow == 3 %}
+                                        {# ThemeWare: Show product name only #}
+                                        <div class="h3 product-detail-description-title">
+                                            {{ page.product.translated.name }}
+                                        </div>
+
+                                    {% elseif twtProductDetailTabPropertiesTitleShow == 4 %}
+                                        {# ThemeWare: Show snippet only #}
+                                        <div class="h3 product-detail-description-title">
+                                            {{ "twt.detail.headlineProperties"|trans|sw_sanitize }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                        {% endif %}
+                    {% endblock %}
+
+                    {# ThemeWare: Add properties content #}
+                    {% block twt_product_detail_tab_properties_text %}
+                        <div class="twt-product-detail-properties-text">
+
+                            {% block twt_product_detail_tab_properties_text_include %}
+                                {% if page.product.sortedProperties|length > 0 %}
+                                    {% sw_include '@Storefront/storefront/page/product-detail/properties.html.twig' %}
+                                {% endif %}
+                            {% endblock %}
+
+                        </div>
+                    {% endblock %}
+
+                    {# ThemeWare: Add properties to offcanvas content #}
+                    {% block twt_product_detail_tab_properties_info %}
+                        {% if twtProductDetailTabPropertiesInfoShow == 2 %}
+                            <div class="twt-product-detail-properties-info">
+                                {{ "twt.detail.infoProperties"|trans|sw_sanitize }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+
+    {% endblock %}
+
+{% endblock %}

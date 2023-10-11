@@ -1,0 +1,72 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Footer minimal
+	==================================================
+
+	Origin: ..
+*/
+
+// ThemeWare: Footer minimal
+// TODO: Shopware Vererbung prüfen...
+// TODO: #custom
+.footer-minimal {
+	@include twt-font-size($twt-footer-minimal-font-size);
+	padding: $twt-basegrid-spacing;
+	text-align: center;
+	color: $twt-footer-minimal-color;
+	background-color: $twt-footer-minimal-background-color;
+
+	// ThemeWare: Link
+	a {
+		color: $twt-footer-minimal-link-color;
+
+		&:hover {
+			color: $twt-footer-minimal-link-color;
+		}
+	}
+
+	// ThemeWare: Vat
+	.footer-vat {
+		p {
+			margin-bottom: 0;
+		}
+	}
+
+	// ThemeWare: Menu
+	.footer-service-menu {
+		display: inline-block;
+		margin: 0 auto;
+		padding: 0 $twt-basegrid-spacing;
+
+		a {
+			color: $twt-footer-minimal-service-menu-link-color;
+
+			&:hover {
+				color: $twt-footer-minimal-service-menu-link-color;
+			}
+		}
+
+		.footer-service-menu-item {
+			&::after {
+				border-color: $twt-footer-minimal-service-menu-link-color;
+			}
+		}
+	}
+
+	.footer-copyright {
+		padding-top: $twt-basegrid-spacing;
+		border-top: 1px solid $twt-footer-minimal-copyright-border-top-color;
+	}
+
+	// Reset Shopware Skin > background: $gray-100;
+	.footer-bottom {
+		background: none;
+	}
+
+}

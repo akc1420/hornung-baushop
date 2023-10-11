@@ -1,0 +1,19 @@
+{
+    "name": "netzreich/export",
+    "description": "Netzreich Export",
+    "type": "shopware-platform-plugin",
+    "license": "MIT",
+    "version": "1.0.1",
+    "autoload": {
+        "psr-4": {
+            "NetzreichExport\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "NetzreichExport\\NetzreichExport",
+        "label": {
+            "de-DE": "Netzreich Export",
+            "en-GB": "Netzreich Export"
+        }
+    }
+}

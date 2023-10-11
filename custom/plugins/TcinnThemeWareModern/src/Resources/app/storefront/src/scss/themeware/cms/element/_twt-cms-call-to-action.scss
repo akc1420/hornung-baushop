@@ -1,0 +1,48 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS element "Call-to-Action"
+	==================================================
+
+*/
+
+// TODO: Add performance configuration to disable styling
+// TODO: Add font styling and sizing
+
+.cms-element-twt-call-to-action {
+    .twt-call-to-action-content {
+        &.is-styled {
+            padding: 20px;
+        }
+
+        .headline {
+            margin: 0 !important;
+            padding: 0 !important;
+
+            span, p {
+                display: block;
+                margin-bottom: $paragraph-margin-bottom;
+            }
+        }
+
+        .text {
+            p:last-of-type {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        button,
+        .btn {
+            max-width: 100%;
+        }
+    }
+
+    .twt-call-to-action-btn {
+        margin-top: $paragraph-margin-bottom;
+    }
+}

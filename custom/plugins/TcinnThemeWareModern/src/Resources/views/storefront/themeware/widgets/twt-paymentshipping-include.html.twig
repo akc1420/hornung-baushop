@@ -1,0 +1,18 @@
+{# ThemeWare "Payment/Shipping" widget #}
+{#
+    Create "Payment/shipping" widget and include logos
+
+	@Storefront/storefront/themeware/widgets/twt-paymentshipping-include.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# TODO: "footer..." entfernen für andere Einsatzbereiche (vgl. communities-include) #}
+
+{# ThemeWare: Payment/Shipping logos #}
+{% block twt_widget_paymentshipping_logos %}
+    <div class="twt-widget-paymentshipping">
+        {% sw_include '@Storefront/storefront/themeware/includes/twt-payment-logos-include.html.twig' ignore missing %}
+        {% sw_include '@Storefront/storefront/themeware/includes/twt-shipping-logos-include.html.twig' ignore missing %}
+    </div>
+{% endblock %}

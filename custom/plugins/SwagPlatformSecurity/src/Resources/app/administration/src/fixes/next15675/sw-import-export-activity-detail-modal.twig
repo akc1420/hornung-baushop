@@ -1,0 +1,63 @@
+{% block sw_import_export_edit_profile_modal_invalid_records_context_button_download %}
+    <sw-button
+        variant="ghost"
+        class="sw-import-export-activity-detail-modal__download-failed"
+        size="small"
+        @click="openDownload(logEntity.invalidRecordsLog.file)"
+    >
+        {{ $tc('sw-import-export.activity.detail.labelDownloadInvalidFile') }}
+    </sw-button>
+{% endblock %}
+
+{% block sw_import_export_edit_profile_modal_invalid_records %}
+    <template v-if="logEntity.invalidRecordsLog">
+        <sw-button-group>
+            {% block sw_import_export_edit_profile_modal_invalid_records_context_button_download %}
+                <sw-button
+                    variant="ghost"
+                    class="sw-import-export-activity-detail-modal__download-failed"
+                    size="small"
+                    :link="getDownloadUrl(logEntity.invalidRecordsLog.file)"
+                >
+                    {{ $tc('sw-import-export.activity.detail.labelDownloadInvalidFile') }}
+                </sw-button>
+            {% endblock %}
+
+            {% block sw_import_export_edit_profile_modal_invalid_records_context_button %}
+                <sw-context-button>
+                    <template #button>
+                        <sw-button
+                            variant="ghost"
+                            size="small"
+                            square
+                        >
+                            <sw-icon
+                                name="small-arrow-small-down"
+                                small
+                                decorative
+                            />
+                        </sw-button>
+                    </template>
+                    {% block sw_import_export_edit_profile_modal_invalid_records_download %}
+                        <a
+                            @click="openDownload(logEntity.file)"
+                            class="sw-import-export-activity-detail-modal__download"
+                        >
+                            {{ $tc('sw-import-export.activity.detail.labelDownloadFile') }}
+                        </a>
+                    {% endblock %}
+                </sw-context-button>
+            {% endblock %}
+        </sw-button-group>
+    </template>
+    <template v-else>
+        <sw-button
+            variant="ghost"
+            class="sw-import-export-activity-detail-modal__download-button"
+            size="small"
+            @click="openDownload(logEntity.file)"
+        >
+            {{ $tc('sw-import-export.activity.detail.labelDownloadFile') }}
+        </sw-button>
+    </template>
+{% endblock %}

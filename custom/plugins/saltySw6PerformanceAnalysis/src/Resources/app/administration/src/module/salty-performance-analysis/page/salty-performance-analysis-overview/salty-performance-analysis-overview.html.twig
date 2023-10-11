@@ -1,0 +1,20 @@
+<sw-page>
+    <template slot="content">
+        <sw-card-view>
+            <sw-card title="Shopware Configuration" :large="true" class="test">
+                <salty-performance-analysis-grid
+                    :values="shopwareConfigurationInformation">
+                </salty-performance-analysis-grid>
+            </sw-card>
+
+            <sw-card title="Server Configuration" :large="true">
+                <salty-performance-analysis-grid
+                    :values="serverConfigurationInformation">
+                </salty-performance-analysis-grid>
+
+                {{ $tc('saltyPerformanceAnalysis.remarks.serverProtocol') }}
+            </sw-card>
+
+        </sw-card-view>
+    </template>
+</sw-page>

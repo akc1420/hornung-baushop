@@ -1,0 +1,411 @@
+{
+	"twt": {
+		"copyright": "© %date% %shopname% - All Rights Reserved.",
+		"tcinn": "<a href=\"%href%\" title=\"%title%\" rel=\"dofollow noopener\" target=\"_blank\">%name%</a>",
+		"header": {
+			"cartText": "Shopping cart",
+			"accountText": "My account",
+			"searchText": "Search",
+			"wishlistText": "Wishlist",
+			"offcanvasMenuText": "Navigation",
+			"serviceHotline": "Service hotline",
+			"serviceHotlineText": "<a href=\"tel:+49180000000\">0180 - 000000</a> Mon-Fri, 9 am - 5 pm"
+		},
+		"breadcrumb": {
+			"furtherInformation": "You are here:"
+		},
+		"custom": {
+			"css": ""
+		},
+		"listing": {
+			"ordernumberLabel": "Product number:",
+			"manufacturerLabel": "Manufacturer:"
+		},
+		"detail": {
+			"headlineProperties": "Properties",
+			"infoProperties": "Data according to manufacturer. Errors and changes reserved.",
+			"tabProperties": {
+				"title": "Properties"
+			},
+			"tabManufacturer": {
+				"title": "Manufacturer",
+				"headlineManufacturer": "Manufacturer",
+				"moreInformation": "Related links of the manufacturer",
+				"linkProducts": {
+					"label": "Further products by %manufacturer%"
+				},
+				"linkWebsite": {
+					"label": "Manufacturer website"
+				}
+			},
+			"tabVideos": {
+				"title": "Videos",
+				"headlineVideos": "Videos"
+			},
+			"tabCustom": {
+				"title": "Custom tab"
+			},
+			"eanLabel": "EAN:",
+			"manufacturernumberLabel": "Manufacturer product number:",
+			"manufacturerLabel": "Manufacturer:",
+			"weightLabel": "Weight:",
+			"lengthLabel": "Length:",
+			"widthLabel": "Width:",
+			"heightLabel": "Height:",
+			"availableStockLabel": "Available stock:",
+			"minpurchaseLabel": "Min. order quantity:",
+			"maxpurchaseLabel": "Max. order quantity:",
+			"stockLabel": {
+				"noStock": "Sold out",
+				"lowStock": {
+					"label": "Only %stock% available",
+					"prefix": "Only",
+					"suffix": "available"
+				},
+				"inStock": "Available",
+				"availableStock": "available",
+				"highStock": {
+					"label": "Over %stock% available",
+					"prefix": "Over",
+					"suffix": "available"
+				}
+			},
+			"shippingFreeLabel": "Free shipping",
+			"imageSimilarNote": "Picture similar to product",
+			"isCloseoutNote": "Clearance sale",
+			"backordersNote": {
+				"backordersPossible": "Backorders possible",
+				"backordersDenied": "Backorders denied"
+			},
+			"socialSharingLinks": {
+				"headline": "Share this product:",
+				"facebook": {
+					"label": "Facebook",
+					"title": "Share with Facebook"
+				},
+				"twitter": {
+					"label": "Twitter",
+					"title": "Share with Twitter"
+				},
+				"pinterest": {
+					"label": "Pinterest",
+					"title": "Share with Pinterest"
+				},
+				"whatsapp": {
+					"label": "WhatsApp",
+					"title": "Share with WhatsApp"
+				},
+				"email": {
+					"label": "E-Mail",
+					"title": "Share with E-Mail",
+					"salutation": "Hello,",
+					"body": "look what I have found!",
+					"closing": "Best regards"
+				}
+			},
+			"paymentLogos": {
+				"headline": "Our payment methods:"
+			},
+			"customFields": {
+				"customField1": {
+					"label": "Custom field 1:"
+				},
+				"customField2": {
+					"label": "Custom field 2:"
+				},
+				"customField3": {
+					"label": "Custom field 3:"
+				},
+				"productVideos": {
+					"title": "Videos"
+				}
+			},
+			"benefits": {
+				"headline": "Our benefits",
+				"content": "Free shipping; Shipping within 24h; 30 days money back guarantee; Purchase comfortable on account"
+			}
+		},
+		"extension": {
+			"announcementBanner": {
+				"content": "<span class=\"label label-info\">Info</span> <span class=\"text\">Please note our changed delivery times while we are on vacation.</span>",
+				"link": "/#"
+			},
+			"customAnnouncement": {
+				"content": "<span>Please note that we are XX.YY. to XX.YY. in the company vacation. The delivery times indicated with our products are therefore extended in each case by XX days. - We thank you for your understanding.</span>"
+			},
+			"uspBar": {
+				"usp1": {
+					"title": "Free shipping",
+					"icon": "rocket",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp2": {
+					"title": "Shipping within 24h",
+					"icon": "clock",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp3": {
+					"title": "30 days money back guarantee",
+					"icon": "thumb-up",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp4": {
+					"title": "Purchase comfortable on account",
+					"icon": "briefcase",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp5": {
+					"title": "Buy direct from the manufacturer",
+					"icon": "home",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp6": {
+					"title": "Hotline +49 800 123 454 321",
+					"icon": "headset",
+					"tooltip": "",
+					"subtitle": ""
+				}
+			},
+			"stockBadge": {
+				"noStock": "Sold out",
+				"lowStock": {
+					"label": "Only %stock% available",
+					"prefix": "Only",
+					"suffix": "available",
+					"icon": "warning"
+				},
+				"inStock": "Available",
+				"availableStock": "available",
+				"highStock": {
+					"label": "> %stock% available",
+					"prefix": "> ",
+					"suffix": "available",
+					"icon": "layers"
+				},
+				"icon": "checkmark"
+			},
+			"soldBadge": {
+				"icon": "blocked"
+			},
+			"shippingFreeBadge": {
+				"label": "Free shipping",
+				"icon": "package-open"
+			},
+			"discountBadge": {
+				"percentageShort": "%discount%%",
+				"percentage": "%discount%% saved",
+				"discountShort": "%discount% %currency%",
+				"discount": "%discount% %currency% saved",
+				"suffix": "saved"
+			},
+			"topsellerBadge": {
+				"label": "Tipp",
+				"icon": "heart"
+			},
+			"newBadge": {
+				"label": "New",
+				"icon": "star"
+			},
+			"floatingWidget": {
+				"title": "Floating widget",
+				"body": "This is the floating widget.",
+				"link": "#"
+			}
+		},
+		"widget": {
+			"about": {
+				"headline": "About us",
+				"content": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>Gadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>"
+			},
+			"payment": {
+				"headline": "Payment methods",
+				"link": "/#payment",
+				"customImages": {
+					"title1": "Custom image 1",
+					"title2": "Custom image 2",
+					"title3": "Custom image 3"
+				}
+			},
+			"shipping": {
+				"headline": "Shipping methods",
+				"link": "/#shipping",
+				"customImages": {
+					"title1": "Custom image 1",
+					"title2": "Custom image 2",
+					"title3": "Custom image 3"
+				}
+			},
+			"paymentshipping": {
+				"headline": "Payment and shipping methods"
+			},
+			"communities": {
+				"headline": "Our communities",
+				"additionalText": "You will no longer miss any news on our social media platforms.",
+				"facebook": {
+					"name": "Facebook",
+					"link": "/#facebook"
+				},
+				"instagram": {
+					"name": "Instagram",
+					"link": "/#instagram"
+				},
+				"twitter": {
+					"name": "Twitter",
+					"link": "/#twitter"
+				},
+				"youtube": {
+					"name": "YouTube",
+					"link": "/#youtube"
+				},
+				"vimeo": {
+					"name": "Vimeo",
+					"link": "/#vimeo"
+				},
+				"flickr": {
+					"name": "Flickr",
+					"link": "/#flickr"
+				},
+				"pinterest": {
+					"name": "Pinterest",
+					"link": "/#pinterest"
+				},
+				"tiktok": {
+					"name": "TikTok",
+					"link": "/#tiktok"
+				},
+				"blogger": {
+					"name": "Blogger",
+					"link": "/#blogger"
+				},
+				"blog": {
+					"name": "Blog",
+					"link": "/#blog"
+				},
+				"whatsapp": {
+					"name": "WhatsApp",
+					"link": "/#whatsapp"
+				},
+				"linkedin": {
+					"name": "LinkedIn",
+					"link": "/#linkedin"
+				},
+				"website": {
+					"name": "Website",
+					"link": "/#website"
+				},
+				"xing": {
+					"name": "Xing",
+					"link": "/#xing"
+				},
+				"twitch": {
+					"name": "Twitch",
+					"link": "/#twitch"
+				}
+			},
+			"hotline": "Service hotline",
+			"benefits": {
+				"headline": "Our benefits",
+				"content": "Free shipping; Shipping within 24h; 30 days money back guarantee; Purchase comfortable on account; Buy direct from the manufacturer"
+			},
+			"location": {
+				"headline": "Retail store",
+				"content": "<p>Demoshop Store im Gewerbepark<br>Muster Straße 10-12<br>12345 Musterhausen</p><p><strong>Opening hours:</strong><br>Mo - Fr: 09:00 - 20:00 Uhr<br>Sa: 09:00 - 18:00 Uhr</p>",
+				"route": {
+					"name": "Start route planner",
+					"link": "/#google-maps-link"
+				}
+			},
+			"awards": {
+				"headline": "Safe shopping",
+				"content": "Multiple awards and certified!",
+				"sslSeal": {
+					"url": "/bundles/tcinnthemewaremodern/assets/awards/twt-ssl-seal.png"
+				},
+				"customImages": {
+					"title1": "Custom image 1",
+					"title2": "Custom image 2",
+					"title3": "Custom image 3",
+					"title4": "Custom image 4",
+					"title5": "Custom image 5",
+					"title6": "Custom image 6"
+				}
+			},
+			"newsletter": {
+				"headline": "Newsletter",
+				"content": "Just subscribe to our newsletter and you will always be among the first to be informed about new products and offers.",
+				"formInput": "Your email address",
+				"formSubmit": "Subscribe to our Newsletter",
+				"formPrivacy": "I have read the <a data-toggle=\"modal\" data-url=\"%url%\" href=\"%url%\" title=\"Privacy policy\">data protection regulations</a>."
+			},
+			"text": {
+				"headline": "Custom text",
+				"content": "<p>Lorem ipsum dolor sit amet, <b>custom text</b> consetetur sadipscing elitr, sed diam nonumy eirmod <u>footer widget</u> tempor invidunt magna erat.</p><p>Gadipscing elitr, <i>snippet</i> sed diam nonumy eirmod tempor dolore aliquyam.</p>"
+			}
+		},
+		"cookie": {
+			"localStorage": {
+				"name": "Local Storage",
+				"description": "Stores a timestamp to hide elements for a certain time if desired."
+			}
+		}
+	},
+	"component": {
+		"cms": {
+			"defaultMedia": {
+				"preview_one_large": {
+					"title": "Banana",
+					"alt": "Banana on yellow background"
+				},
+				"preview_one_small": {
+					"title": "Banana",
+					"alt": "Banana on yellow background"
+				},
+				"preview_two_large": {
+					"title": "Apple",
+					"alt": "Apple on red background"
+				},
+				"preview_two_small": {
+					"title": "Apple",
+					"alt": "Apple on red background"
+				},
+				"preview_three_large": {
+					"title": "Cherry",
+					"alt": "Cherries on purple background"
+				},
+				"preview_three_small": {
+					"title": "Cherry",
+					"alt": "Cherries on purple background"
+				},
+				"preview_four_large": {
+					"title": "Kiwi",
+					"alt": "Kiwi on green background"
+				},
+				"preview_four_small": {
+					"title": "Kiwi",
+					"alt": "Kiwi on green background"
+				},
+				"preview_five_large": {
+					"title": "Orange",
+					"alt": "Orange on orange background"
+				},
+				"preview_five_small": {
+					"title": "Orange",
+					"alt": "Orange on orange background"
+				},
+				"preview_six_large": {
+					"title": "Blueberry",
+					"alt": "Blueberries on blue background"
+				},
+				"preview_six_small": {
+					"title": "Blueberry",
+					"alt": "Blueberries on blue background"
+				}
+			}
+		}
+	}
+}

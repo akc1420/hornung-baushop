@@ -1,0 +1,44 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+
+{% block layout_main_navigation_menu %}
+    <nav class="nav main-navigation-menu"
+        itemscope="itemscope"
+        itemtype="http://schema.org/SiteNavigationElement">
+        {% block layout_main_navigation_menu_items %}
+            {% for treeItem in page.header.navigation.tree %}
+                {% set category = treeItem.category %}
+                {% set name = category.translated.name %}
+                {% set categorId = category.id %}
+
+
+                {% block layout_main_navigation_menu_item %}
+                    {% if category.type == 'folder' %}
+                        <div class="nav-link main-navigation-link"
+                            {% if treeItem.children|length > 0 %}
+                                data-flyout-menu-trigger="{{ categorId }}"
+                            {% endif %}
+                            title="{{ name }}">
+                            <div class="main-navigation-link-text">
+                                <span itemprop="name">{{ name }}</span>
+                            </div>
+                        </div>
+                    {% else %}
+                        <a class="nav-link main-navigation-link{% if categorId is same as(page.header.navigation.active.id) %} active{% endif %}"
+                            {% if treeItem.children|length == 0 %} href="{% if category.externalLink %}{{ category.externalLink }}{% else %}{{ seoUrl('frontend.navigation.page', { navigationId: categorId }) }}{% endif %}"
+                            itemprop="url"{% endif %}
+                            {% if treeItem.children|length > 0 %}
+                                data-flyout-menu-trigger="{{ categorId }}"
+                            {% endif %}
+                            title="{{ name }}">
+                            <div class="main-navigation-link-text">
+                                <span itemprop="name">{{ name }}</span>
+                            </div>
+                        </a>
+                    {% endif %}
+                {% endblock %}
+
+
+            {% endfor %}
+        {% endblock %}
+    </nav>
+{% endblock %}

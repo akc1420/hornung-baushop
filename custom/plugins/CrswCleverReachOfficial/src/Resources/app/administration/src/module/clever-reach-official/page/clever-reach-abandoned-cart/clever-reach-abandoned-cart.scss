@@ -1,0 +1,44 @@
+.cr-abandoned-cart {
+  max-width: 800px !important;
+  width: 100%;
+  box-sizing: content-box;
+}
+
+.cr-abandoned-cart .sw-grid__body .sw-grid-row:hover {
+  background-color: #e3f3ff;
+}
+
+.cr-ac-title {
+  font-size: 20px;
+  line-height: 54px;
+}
+
+.cr-ac-header {
+  border-bottom: 1px solid #d1d9e0;
+}
+
+.cr-ac-header-right {
+  padding: 20px;
+}
+
+.cr-ac-left-column:hover {
+  text-decoration: underline;
+  color: #1a9fff;
+}
+
+.cr-ac-left-column .sw-grid__cell-content:hover {
+  text-decoration: underline;
+  color: #1a9fff;
+}
+
+.cr-ac-header-right-label {
+  float: right;
+}
+
+.cr-ac-header-left {
+  padding: 20px;
+}
+
+.cr-ac-right-column .sw-grid__cell-content {
+  justify-content: end !important;
+}

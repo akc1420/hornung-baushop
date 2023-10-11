@@ -1,0 +1,12 @@
+{# ThemeWare: CMS block "Call-to-Action" #}
+
+{% block block_twt_call_to_action %}
+    {% set element = block.slots.getSlot('image') %}
+    {% set columns = 1 %}
+
+    <div class="col-12" data-cms-element-id="{{ element.id }}">
+        {% block block_twt_call_to_action_inner %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+        {% endblock %}
+    </div>
+{% endblock %}

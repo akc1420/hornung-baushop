@@ -1,0 +1,25 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Backdrop
+    ==============================================
+    Custom styling for backdrop used by bootstrap modal und custom offcanvas component.
+    https://getbootstrap.com/docs/4.0/components/modal/#options
+
+    Origin: Shopware base
+*/
+
+// ThemeWare: Adjust modal backdrop
+.modal-backdrop {
+  background-color: $twt-modal-background-color;
+
+  // ThemeWare: Adjust 'js-pseudo-modal' backdrop
+  &.show {
+    opacity: 1; // js-pseudo-modal (default: .5)
+  }
+}

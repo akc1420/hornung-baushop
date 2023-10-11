@@ -1,0 +1,125 @@
+{# ThemeWare "Shipping logos" #}
+{# TW shipping logos/content #}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtWidgetShippingLogoLink = theme_config('twt-widget-shipping-logo-link') %}
+{% set twtCustomShippingImage1 = theme_config('twt-widget-shipping-logo-custom-image-1') %}
+{% set twtCustomShippingImage2 = theme_config('twt-widget-shipping-logo-custom-image-2') %}
+{% set twtCustomShippingImage3 = theme_config('twt-widget-shipping-logo-custom-image-3') %}
+{% set twtCustomShippingImagesOnly = theme_config('twt-widget-shipping-logo-custom-images-only') %}
+{% set twtWidgetShippingLogoFallbackBadge = theme_config('twt-widget-shipping-logo-fallback-badge') %}
+
+{% set twtWidgetShippingLogoMaxHeight = theme_config('twt-widget-shipping-logo-max-height') %}
+
+{% if twtCustomShippingImagesOnly is empty %}
+	{% set twtCustomShippingImagesOnly = 1 %}
+{% endif %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Add shipping logos #}
+{% block twt_shipping_logos_content %}
+	{% if twtCustomShippingImagesOnly == 1 %}
+		{% for shippingMethod in page.salesChannelShippingMethods %}
+			{% if shippingMethod.media %}
+				{# ThemeWare: Add logo #}
+				<div class="{{ type }}-logo is-shipping-logo">
+					{% if twtWidgetShippingLogoLink == 2 %}
+						<a href="{{ "twt.widget.shipping.link"|trans }}" title="{{ shippingMethod.name }}">
+					{% endif %}
+						{% if "twt" in shippingMethod.media.fileName %}
+							{% sw_thumbnails 'footer-shipping-image-thumbnails' with {
+								media: shippingMethod.media,
+								sizes: {
+									'default': twtWidgetShippingLogoMaxHeight|number_format ~ 'px'
+								},
+								attributes: {
+									'class': 'footer-logo-image',
+									'alt': (shippingMethod.media.translated.alt ?: shippingMethod.translated.name),
+									'title': (shippingMethod.media.translated.title ?: shippingMethod.translated.name),
+									'height': twtWidgetShippingLogoMaxHeight|number_format ~ 'px',
+									'width': (twtWidgetShippingLogoMaxHeight|number_format * 1.96)|round(0, 'floor') ~ 'px'
+								}
+							} %}
+						{% else %}
+							{% sw_thumbnails 'footer-shipping-image-thumbnails' with {
+								media: shippingMethod.media,
+								sizes: {
+									'default': twtWidgetShippingLogoMaxHeight|number_format ~ 'px'
+								},
+								attributes: {
+									'class': 'footer-logo-image',
+									'alt': (shippingMethod.media.translated.alt ?: shippingMethod.translated.name),
+									'title': (shippingMethod.media.translated.title ?: shippingMethod.translated.name)
+								}
+							} %}
+						{% endif %}
+					{% if twtWidgetShippingLogoLink == 2 %}
+						</a>
+					{% endif %}
+				</div>
+			{% else %}
+				{# ThemeWare: Add fallback badge #}
+				{% if twtWidgetShippingLogoFallbackBadge == 2 %}
+					<div  class="{{ type }}-logo is-shipping-logo is-fallback-badge">
+						{% if twtWidgetShippingLogoLink == 2 %}
+							<a href="{{ "twt.widget.shipping.link"|trans }}" title="{{ shippingMethod.name }}">
+								<span>{{ shippingMethod.name }}</span>
+							</a>
+						{% else %}
+							<div title="{{ shippingMethod.name }}">
+								<span>{{ shippingMethod.name }}</span>
+							</div>
+						{% endif %}
+					</div>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+{% endblock %}
+
+{# ThemeWare: Add custom shipping logos #}
+{% block twt_shipping_logos_custom %}
+	{# ThemeWare: Add custom image 1 #}
+	{% if twtCustomShippingImage1 %}
+		<div class="{{ type }}-logo is-shipping-logo is-custom-logo">
+			{% if twtWidgetShippingLogoLink == 2 %}
+				<a href="{{ "twt.widget.shipping.link"|trans }}" title="{{ "twt.widget.shipping.customImages.title1"|trans }}">
+			{% endif %}
+				<img src="{{ twtCustomShippingImage1 |sw_encode_url }}" class="footer-logo-image" alt="{{ "twt.widget.shipping.customImages.title1"|trans }}" title="{{ "twt.widget.shipping.customImages.title1"|trans }}"/>
+			{% if twtWidgetShippingLogoLink == 2 %}
+				</a>
+			{% endif %}
+		</div>
+	{% endif %}
+
+	{# ThemeWare: Add custom image 2 #}
+	{% if twtCustomShippingImage2 %}
+		<div class="{{ type }}-logo is-shipping-logo is-custom-logo">
+			{% if twtWidgetShippingLogoLink == 2 %}
+				<a href="{{ "twt.widget.shipping.link"|trans }}" title="{{ "twt.widget.shipping.customImages.title2"|trans }}">
+			{% endif %}
+				<img src="{{ twtCustomShippingImage2 |sw_encode_url }}" class="footer-logo-image" alt="{{ "twt.widget.shipping.customImages.title2"|trans }}" title="{{ "twt.widget.shipping.customImages.title2"|trans }}"/>
+			{% if twtWidgetShippingLogoLink == 2 %}
+				</a>
+			{% endif %}
+		</div>
+	{% endif %}
+
+	{# ThemeWare: Add custom image 3 #}
+	{% if twtCustomShippingImage3 %}
+		<div class="{{ type }}-logo is-shipping-logo is-custom-logo">
+			{% if twtWidgetShippingLogoLink == 2 %}
+				<a href="{{ "twt.widget.shipping.link"|trans }}" title="{{ "twt.widget.shipping.customImages.title3"|trans }}">
+			{% endif %}
+				<img src="{{ twtCustomShippingImage3 |sw_encode_url }}" class="footer-logo-image" alt="{{ "twt.widget.shipping.customImages.title3"|trans }}" title="{{ "twt.widget.shipping.customImages.title3"|trans }}"/>
+			{% if twtWidgetShippingLogoLink == 2 %}
+				</a>
+			{% endif %}
+		</div>
+	{% endif %}
+{% endblock %}

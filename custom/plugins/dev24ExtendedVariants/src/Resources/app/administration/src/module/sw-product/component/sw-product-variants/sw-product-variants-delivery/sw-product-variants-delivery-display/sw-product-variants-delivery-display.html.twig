@@ -1,0 +1,46 @@
+{% block sw_product_variants_delivery_display %}
+    <div class="sw-product-variants-delivery-display">
+        {% block sw_product_variants_delivery_display_groups %}
+            <div class="sw-product-variants-delivery-display__groups">
+                <ul>
+                    <li v-for="group in selectedGroupsSorted"
+                        :key="group.id"
+                        @click="activeGroup = group"
+                        class="sw-product-variants-delivery-display__groupElement"
+                        :class="{'is--selected': activeGroup.id == group.id}">
+                        <sw-icon name="multicolor-folder-breadcrumbs" size="16px" multicolor></sw-icon>
+                        {{ group.name }}
+                    </li>
+                </ul>
+            </div>
+        {% endblock %}
+
+        {% block sw_product_variants_delivery_display_variants %}
+            <div class="sw-product-variants-delivery-display__variants" v-if="activeOptions.length">
+
+                <sw-container columns="1fr" gap="0px 10px" class="sw-product-variants-delivery-display__type">
+                    {% block sw_product_variants_delivery_display_type %}
+                        <template v-for="customField in customFields" v-if="customFields.length">
+                            {% block sw_settings_document_detail_content_form_field_renderer %}
+                                <sw-select-field
+                                            :label="$tc('sw-product.variations.deliveryModal.dev24PropertyDisplayType.label')"
+                                            v-model="activeGroup.customFields[customField.name]"
+                                            :placeholder="$tc('sw-product.variations.deliveryModal.dev24PropertyDisplayType.placeholder')"
+                                            @change="onChange">
+                                        <option value="auto">{{ $tc('sw-product.variations.deliveryModal.dev24PropertyDisplayType.value.auto') }}</option>
+                                        <option value="select">{{ $tc('sw-product.variations.deliveryModal.dev24PropertyDisplayType.value.select') }}</option>
+                                </sw-select-field>
+                            {% endblock %}
+                        </template>
+                    {% endblock %}
+                </sw-container>
+
+            </div>
+        {% endblock %}
+
+        {% block sw_product_variants_delivery_display_loader %}
+            <sw-loader v-if="isLoading"></sw-loader>
+        {% endblock %}
+
+    </div>
+{% endblock %}

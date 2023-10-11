@@ -1,0 +1,10 @@
+{% block sw_cms_section_content_block_slot %}
+    <sw-cms-slot v-for="el in block.slots"
+                 :slot="el.slot"
+                 :key="el.id"
+                 :element="el"
+                 :disabled="disabled"
+                 :active="selectedBlock !== null && selectedBlock.id === block.id"
+                 @delete-block-id="onBlockDelete">
+    </sw-cms-slot>
+{% endblock %}

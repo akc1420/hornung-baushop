@@ -1,0 +1,42 @@
+.cr-error-div {
+  width: 90%;
+  height: max-content;
+  display: flex;
+  box-sizing: border-box;
+  max-width: 800px;
+  padding: 20px;
+  flex-direction: row;
+}
+
+.cr-error-div .sw-alert__icon {
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.cr-error-div .sw-alert__body {
+  padding: 7px 10px 10px 15px !important;
+}
+
+.cr-error {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cr-error-title {
+  background: transparent !important;
+  font-size: 16px;
+  padding: 0 !important;
+  height: max-content;
+}
+
+.cr-error-title .sw-label__caption {
+  display: block;
+  white-space: initial;
+  line-height: 18px;
+}
+
+.cr-error-btn {
+  margin-top: 20px;
+  width: max-content;
+}

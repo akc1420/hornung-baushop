@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Definitions -->
+        <service id="Swag\CmsExtensions\BlockRule\BlockRuleDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_block_rule" />
+        </service>
+
+        <!-- Extensions -->
+        <service id="Swag\CmsExtensions\Extension\Feature\BlockRule\CmsBlockEntityExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+
+        <service id="Swag\CmsExtensions\Extension\Feature\BlockRule\RuleExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+
+        <!-- Decorators -->
+        <service id="Swag\CmsExtensions\Service\Content\Cms\SalesChannel\SalesChannelCmsPageLoaderBlockRuleDecorator"
+                 decorates="Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader"
+                 decoration-priority="80">
+            <argument type="service"
+                      id="Swag\CmsExtensions\Service\Content\Cms\SalesChannel\SalesChannelCmsPageLoaderBlockRuleDecorator.inner" />
+        </service>
+    </services>
+</container>

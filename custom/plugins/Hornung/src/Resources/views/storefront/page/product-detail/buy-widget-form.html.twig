@@ -1,0 +1,16 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-form.html.twig' %}
+
+{% block page_product_detail_buy_container %}
+  {% if page.product.availablestock < 0 %}
+    {% set stock = 0 %}
+  {% else %}
+    {% set stock = page.product.availablestock %}
+  {% endif %}
+  {% if page.product.isCloseout == false %}
+    <div class="availablestock">
+      derzeit noch {{ stock }} sofort verfügbar,<br />jede größere Menge versandfertig in {{ page.product.restockTime }} Tagen.
+    </div>
+  {% endif %}
+  
+  {{ parent() }}
+{% endblock %}

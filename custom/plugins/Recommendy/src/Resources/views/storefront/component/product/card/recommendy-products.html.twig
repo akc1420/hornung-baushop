@@ -1,0 +1,10 @@
+{% for product in searchResult %}
+    <div class="cms-listing-col recommendy-listing-col {{ listingColumns }}" data-recommendyRecommendation="1" data-productid="{{ product.id }}">
+        {% block element_product_listing_box %}
+            {% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+                'layout': boxLayout,
+                'displayMode': displayMode
+            } %}
+        {% endblock %}
+    </div>
+{% endfor %}

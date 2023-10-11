@@ -1,0 +1,22 @@
+{% block recommendy_similar_slider %}
+    <div class="recommendy-slider is-similar">
+        {% if config('Recommendy.config.sliderLayout')  == false %}
+            {% block recommendy_similar_slider_title %}
+                <div class="content-title">
+                    {{ "recommendy.similarArticles"|trans|sw_sanitize }}
+                </div>
+            {% endblock %}
+        {% endif %}
+
+        {% block recommendy_similar_slider_container %}
+            <div class="recommendy-slider-container">
+
+                {% sw_include "@Storefront/storefront/recommendy/recommendy-slider-configs.html.twig" with {
+                    sliderElements: recommendySlider.similarArticles,
+                    title: "recommendy.similarArticles"|trans|sw_sanitize
+                } %}
+
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

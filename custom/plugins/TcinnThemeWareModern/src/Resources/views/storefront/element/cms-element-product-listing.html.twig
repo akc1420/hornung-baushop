@@ -1,0 +1,75 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-listing.html.twig' %}
+{# ThemeWare® HC-Architecture® ready #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtListingBoxLayout = element.fieldConfig.elements.boxLayout.value %}
+
+{% if twtListingBoxLayout == 'standard' %}
+    {# ThemeWare: Layout type "Standard" #}
+    {% set twtListingColumnCountLg = theme_config('twt-listing-column-count-lg') %}
+    {% set twtListingColumnCountMd = theme_config('twt-listing-column-count-md') %}
+    {% set twtListingColumnCountSidebarLg = theme_config('twt-listing-column-count-sidebar-lg') %}
+    {% set twtListingColumnCountSidebarMd = theme_config('twt-listing-column-count-sidebar-md') %}
+    {% set twtListingColumnCountSidebarSm = theme_config('twt-listing-column-count-sidebar-sm') %}
+    {% set twtListingColumnCountSidebarXl = theme_config('twt-listing-column-count-sidebar-xl') %}
+    {% set twtListingColumnCountSidebarXs = theme_config('twt-listing-column-count-sidebar-xs') %}
+    {% set twtListingColumnCountSm = theme_config('twt-listing-column-count-sm') %}
+    {% set twtListingColumnCountXl = theme_config('twt-listing-column-count-xl') %}
+    {% set twtListingColumnCountXs = theme_config('twt-listing-column-count-xs') %}
+{% elseif twtListingBoxLayout == 'image' %}
+    {# ThemeWare: Layout type "Big image" #}
+    {% set twtListingColumnCountLg = theme_config('twt-listing-column-count-lg-image') %}
+    {% set twtListingColumnCountMd = theme_config('twt-listing-column-count-md-image') %}
+    {% set twtListingColumnCountSidebarLg = theme_config('twt-listing-column-count-sidebar-lg-image') %}
+    {% set twtListingColumnCountSidebarMd = theme_config('twt-listing-column-count-sidebar-md-image') %}
+    {% set twtListingColumnCountSidebarSm = theme_config('twt-listing-column-count-sidebar-sm-image') %}
+    {% set twtListingColumnCountSidebarXl = theme_config('twt-listing-column-count-sidebar-xl-image') %}
+    {% set twtListingColumnCountSidebarXs = theme_config('twt-listing-column-count-sidebar-xs-image') %}
+    {% set twtListingColumnCountSm = theme_config('twt-listing-column-count-sm-image') %}
+    {% set twtListingColumnCountXl = theme_config('twt-listing-column-count-xl-image') %}
+    {% set twtListingColumnCountXs = theme_config('twt-listing-column-count-xs-image') %}
+{% elseif twtListingBoxLayout == 'minimal' %}
+    {# ThemeWare: Layout type "Minimal content" #}
+    {% set twtListingColumnCountLg = theme_config('twt-listing-column-count-lg-minimal') %}
+    {% set twtListingColumnCountMd = theme_config('twt-listing-column-count-md-minimal') %}
+    {% set twtListingColumnCountSidebarLg = theme_config('twt-listing-column-count-sidebar-lg-minimal') %}
+    {% set twtListingColumnCountSidebarMd = theme_config('twt-listing-column-count-sidebar-md-minimal') %}
+    {% set twtListingColumnCountSidebarSm = theme_config('twt-listing-column-count-sidebar-sm-minimal') %}
+    {% set twtListingColumnCountSidebarXl = theme_config('twt-listing-column-count-sidebar-xl-minimal') %}
+    {% set twtListingColumnCountSidebarXs = theme_config('twt-listing-column-count-sidebar-xs-minimal') %}
+    {% set twtListingColumnCountSm = theme_config('twt-listing-column-count-sm-minimal') %}
+    {% set twtListingColumnCountXl = theme_config('twt-listing-column-count-xl-minimal') %}
+    {% set twtListingColumnCountXs = theme_config('twt-listing-column-count-xs-minimal') %}
+{% else %}
+    {# Fallback: Shopware default values #}
+    {% set twtListingColumnCountLg = 4 %}
+    {% set twtListingColumnCountMd = 6 %}
+    {% set twtListingColumnCountSidebarLg = 6 %}
+    {% set twtListingColumnCountSidebarMd = 6 %}
+    {% set twtListingColumnCountSidebarSm = 6 %}
+    {% set twtListingColumnCountSidebarXl = 4 %}
+    {% set twtListingColumnCountSidebarXs = 12 %}
+    {% set twtListingColumnCountSm = 6 %}
+    {% set twtListingColumnCountXl = 3 %}
+    {% set twtListingColumnCountXs = 12 %}
+{% endif %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the listing wrapper #}
+{% block element_product_listing_wrapper %}
+    {# ThemeWare: Spaltenanzahl definieren. #}
+    {% set listingColumns = 'col-'~ twtListingColumnCountXs ~' col-sm-'~ twtListingColumnCountSm ~' col-md-'~ twtListingColumnCountMd ~' col-lg-'~ twtListingColumnCountLg ~' col-xl-'~ twtListingColumnCountXl %}
+
+    {# ThemeWare: Spaltenanzahl mit aktiver Sidebar definieren. #}
+    {% if section and section.type == 'sidebar' %}
+        {% set listingColumns = 'col-'~ twtListingColumnCountSidebarXs ~' col-sm-'~ twtListingColumnCountSidebarSm ~' col-md-'~ twtListingColumnCountSidebarMd ~' col-lg-'~ twtListingColumnCountSidebarLg ~' col-xl-'~ twtListingColumnCountSidebarXl %}
+    {% endif %}
+
+    {# TODO: Bildgrößen passend zu Spaltenanzahl anpassen... #}
+
+    {# Default block #}
+    {{ parent() }}
+{% endblock %}

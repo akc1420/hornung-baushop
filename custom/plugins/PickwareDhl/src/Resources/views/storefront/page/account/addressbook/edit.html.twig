@@ -1,0 +1,41 @@
+{% sw_extends '@Storefront/storefront/page/account/addressbook/edit.html.twig' %}
+
+{% block page_account_address_form_edit %}
+    <div class="pickware-dhl-location-finder-wrapper" data-behavior="modal">
+        {{ parent() }}
+
+        <div class="modal fade pickware-dhl-location-finder-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title pickware-dhl-location-finder-modal__title">
+                            {{ "pickware-dhl.location-finder.storefront.title"|trans|sw_sanitize }}
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {% sw_include 'storefront/pickware-dhl/location-finder/location-finder.html.twig' with {
+                            'showTitle': false,
+                            'prefix': 'address',
+                        } %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_account_address_form_edit_general %}
+    {{ parent() }}
+
+    <button type="button"
+            class="pickware-dhl-location-finder__select-on-map-button btn btn-outline-secondary mb-3 d-none"
+            data-toggle="modal"
+            data-target=".pickware-dhl-location-finder-modal"
+            title="{{ "pickware-dhl.location-finder.storefront.select-on-map"|trans|striptags }}">
+        {{ "pickware-dhl.location-finder.storefront.select-on-map"|trans|sw_sanitize }}
+    </button>
+{% endblock %}
+

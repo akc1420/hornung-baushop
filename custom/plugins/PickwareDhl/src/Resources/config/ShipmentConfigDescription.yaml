@@ -1,0 +1,432 @@
+elements:
+  - name: product
+    type: single-select
+    label:
+      de-DE: Produkt
+      en-GB: Product
+    options:
+      - value: V01PAK
+        label:
+          de-DE: DHL Paket
+          en-GB: DHL Paket
+      - value: V53WPAK
+        label:
+          de-DE: DHL Paket International
+          en-GB: DHL Paket International
+      - value: V54EPAK
+        label:
+          de-DE: DHL Europaket
+          en-GB: DHL Europaket
+      - value: V55PAK
+        label:
+          de-DE: DHL Paket Connect
+          en-GB: DHL Paket Connect
+      - value: V62WP
+        label:
+          de-DE: DHL Warenpost
+          en-GB: DHL Warenpost
+      - value: V66WPI
+        label:
+          de-DE: DHL Warenpost International
+          en-GB: DHL Warenpost International
+    default: V01PAK # DHL Paket
+
+  - name: enclosedReturnLabel
+    type: boolean
+    label:
+      en-GB: Attach return label
+      de-DE: Retourenlabel anfügen
+    default: false
+    showConditions:
+      product:
+        - V01PAK # DHL Paket
+        - V62WP # DHL Warenpost
+
+  - type: group
+    label:
+      en-GB: General
+      de-DE: Allgemein
+    showConditions:
+      product:
+        - V01PAK # DHL Paket
+        - V53WPAK # DHL Paket International
+        - V54EPAK # DHL Europaket
+        - V55PAK # DHL Paket Connect
+        - V62WP # DHL Warenpost
+        - V66WPI # DHL Warenpost International
+    elements:
+      - name: bulkyGoods
+        type: boolean
+        label:
+          en-GB: Bulky goods
+          de-DE: Sperrgut
+        default: false
+        showConditions:
+          product:
+            - V01PAK # DHL Paket
+            - V53WPAK # DHL Paket International
+            - V55PAK # DHL Paket Connect
+      - name: namedPersonOnly
+        type: boolean
+        label:
+          de-DE: Persönliche Übergabe
+          en-GB: Personal handover
+        default: false
+        showConditions:
+          product: V01PAK # DHL Paket
+      - name: visualCheckOfAge
+        type: single-select
+        label:
+          en-GB: Visual check of age
+          de-DE: Alterssichtprüfung
+        options:
+          - value: '0'
+            label:
+              en-GB: No visual age control
+              de-DE: Keine Alterssichtprüfung
+          - value: '16'
+            label:
+              en-GB: at least 16 years
+              de-DE: mind. 16 Jahre
+          - value: '18'
+            label:
+              en-GB: at least 18 years
+              de-DE: mind. 18 Jahre
+        default: '0'
+        showConditions:
+          product: V01PAK # DHL Paket
+      - name: additionalInsurance
+        type: single-select
+        label:
+          de-DE: Zusätzliche Versicherung
+          en-GB: Additional insurance
+        showConditions:
+          product:
+            - V01PAK # DHL Paket
+            - V53WPAK # DHL Paket International
+            - V54EPAK # DHL Europaket
+            - V55PAK # DHL Paket Connect
+        options:
+          - value: '0'
+            label:
+              en-GB: No additional insurance
+              de-DE: Keine zusätzliche Versicherung
+          - value: '2500'
+            label:
+              en-GB: up to EUR 2,500
+              de-DE: bis EUR 2.500
+          - value: '25000'
+            label:
+              en-GB: up to EUR 25,000
+              de-DE: bis EUR 25.000
+        default: '0'
+      - name: codEnabled
+        type: boolean
+        label:
+          en-GB: Cash on delivery
+          de-DE: Nachnahme
+        default: false
+        showConditions:
+          product:
+            - V01PAK # DHL Paket
+            - V53WPAK # DHL Paket International
+      - name: codAmount
+        type: number
+        suffix: EUR
+        precision: 2
+        min: 0
+        max: 3500
+        label:
+          en-GB: Cash on delivery amount
+          de-DE: Nachnahmebetrag
+        default: 0
+        showConditions:
+          $context.isLabelCreation: true
+          codEnabled: true
+      - name: parcelOutletRouting
+        type: boolean
+        showConditions:
+          product:
+            - V01PAK # DHL Paket
+            - V62WP # DHL Warenpost
+        helpText:
+          en-GB: 'Determines if the Retail outlet routing service is activated for labels for orders of this dispatch method. Submission of the customer e-mail address to DHL must be active.'
+          de-DE: 'Bestimmt, ob die Serviceoption Filial Routing bei den Versandetiketten von Bestellungen mit dieser Versandart aktiviert sein soll. Übermittelung der Kunden-E-Mail-Adresse an DHL muss für die Bestellung aktiv sein.'
+        label:
+          en-GB: Retail outlet routing
+          de-DE: Filial-Routing
+        default: false
+      - name: premium
+        type: boolean
+        showConditions:
+          product:
+            - V66WPI # DHL Warenpost International
+            - V53WPAK # DHL Paket International
+        label:
+          en-GB: Premium service
+          de-DE: Premium-Service
+        default: false
+      - name: postalDeliveryDutyPaid
+        type: boolean
+        showConditions:
+          product: V53WPAK # DHL Paket International
+        label:
+          en-GB: Postal delivery duty paid
+          de-DE: Übernahme der Einfuhrabgaben
+        default: false
+      - name: closestDroppointDelivery
+        type: boolean
+        showConditions:
+          product: V53WPAK # DHL Paket International
+        label:
+          en-GB: Closest droppoint delivery
+          de-DE: Zustellung zur nächsten Annahmestelle
+        default: false
+      - name: signedForByRecipient
+        type: boolean
+        showConditions:
+          product: V01PAK # DHL Paket
+        helpText:
+          en-GB: 'Delivery is signed for by the recipient instead of the DHL driver.'
+          de-DE: 'Lieferung wird durch Unterschrift des Empfängers anstatt des DHL Fahrers bestätigt.'
+        label:
+          en-GB: Signed for by recipient
+          de-DE: Unterschrift durch Empfänger
+        default: false
+
+  - type: group
+    label:
+      en-GB: Ident-Check
+      de-DE: Ident-Check
+    showConditions:
+      product: V01PAK # DHL Paket
+    elements:
+      - name: identCheckEnabled
+        type: boolean
+        groupHeader: true
+        label:
+          en-GB: Ident-Check
+          de-DE: Ident-Check
+        default: false
+      - name: identCheckGivenName
+        type: text
+        label:
+          en-GB: First name
+          de-DE: Vorname
+        default: ''
+        showConditions:
+          $context.isLabelCreation: true
+          identCheckEnabled: true
+      - name: identCheckSurname
+        type: text
+        label:
+          en-GB: Surname
+          de-DE: Nachname
+        default: ''
+        showConditions:
+          $context.isLabelCreation: true
+          identCheckEnabled: true
+      - name: identCheckDateOfBirth
+        type: date
+        label:
+          en-GB: Date of birth
+          de-DE: Geburtsdatum
+        default:
+        showConditions:
+          $context.isLabelCreation: true
+          identCheckEnabled: true
+      - name: identCheckMinimumAge
+        type: single-select
+        label:
+          en-GB: Minimum age of recipient
+          de-DE: Mindestalter des Empfängers
+        options:
+          - value: '16'
+            label:
+              en-GB: 16 years
+              de-DE: 16 Jahre
+          - value: '18'
+            label:
+              en-GB: 18 years
+              de-DE: 18 Jahre
+        default: '18'
+        showConditions:
+          identCheckEnabled: true
+
+  - type: group
+    label:
+      en-GB: Preferred services
+      de-DE: Wunschpaket
+    showConditions:
+      product:
+        - V01PAK # DHL Paket
+        - V55PAK # DHL Paket Connect
+        - V62WP # DHL Warenpost
+      $context.isLabelCreation: true
+    elements:
+      - name: preferredDay
+        type: date
+        minDate: today
+        label:
+          en-GB: Preferred day
+          de-DE: Wunschtag
+        showConditions:
+          product:
+            - V01PAK # DHL Paket
+            - V55PAK # DHL Paket Connect
+          $context.isLabelCreation: true
+      - name: preferredLocation
+        type: text
+        label:
+          en-GB: Preferred location
+          de-DE: Wunschort
+        default: ''
+        showConditions:
+          product:
+            - V01PAK # DHL Paket
+            - V55PAK # DHL Paket Connect
+            - V62WP # DHL Warenpost
+          $context.isLabelCreation: true
+      - name: preferredNeighbour
+        type: text
+        label:
+          en-GB: Preferred neighbour
+          de-DE: Wunschnachbar
+        default: ''
+        showConditions:
+          product:
+            - V01PAK # DHL Paket
+            - V55PAK # DHL Paket Connect
+            - V62WP # DHL Warenpost
+          $context.isLabelCreation: true
+      - name: noNeighbourDelivery
+        type: boolean
+        label:
+          en-GB: No neighbour delivery
+          de-DE: Keine Nachbarschaftszustellung
+        default: false
+        showConditions:
+          product:
+            - V01PAK # DHL Paket
+            - V55PAK # DHL Paket Connect
+          $context.isLabelCreation: true
+
+  - type: group
+    label:
+      en-GB: Delivery specifications
+      de-DE: Zustellvorgaben
+    showConditions:
+      product: V53WPAK # DHL Paket International
+    elements:
+      - name: endorsement
+        type: single-select
+        label:
+          en-GB: Endorsement (Sender's Instructions)
+          de-DE: Vorausverfügung
+        helpText:
+          en-GB: The service is mandatory for international shipments and defines the handling of parcels that cannot be delivered.
+          de-DE: Der Service ist für internationale Sendungen verpflichtend und definiert die Behandlung von Paketen, die nicht zugestellt werden können.
+        options:
+          - value: ''
+            label:
+              en-GB: Not specified
+              de-DE: Keine Angabe
+          - value: 'IMMEDIATE'
+            label:
+              en-GB: Immediate return to sender
+              de-DE: Sofortige Rücksendung an den Absender (entgeltlich)
+          - value: 'ABANDONMENT'
+            label:
+              en-GB: Abandonment of Parcel (free of charge)
+              de-DE: Preisgabe des Paketes durch den Absender (entgeltfrei)
+        default: ''
+        showConditions:
+          product: V53WPAK # DHL Paket International
+
+  - name: exportDocuments
+    type: group
+    label:
+      de-DE: Exportdokumente
+      en-GB: Export documents
+    showConditions:
+      product:
+        - V53WPAK # DHL Paket International
+        - V54EPAK # DHL Europaket
+        - V66WPI # DHL Warenpost International
+    elements:
+      - name: createExportDocuments
+        type: boolean
+        label:
+          en-GB: Create export documents
+          de-DE: Exportdokumente erstellen
+        default: false
+      - name: incotermEurope
+        type: single-select
+        label:
+          de-DE: Incoterm
+          en-GB: Incoterm
+        showConditions:
+          createExportDocuments: true
+          product: V54EPAK # Europaket
+        default: null
+        options:
+          - value: DDP
+            label:
+              de-DE: 'Frei Haus inkl. Zollabfertigung, Zölle und Steuern (DDP)'
+              en-GB: 'Delivered duty paid (DDP)'
+          - value: DXV
+            label:
+              de-DE: 'Frei Haus inkl. Zollabfertigung, Zölle exkl. Steuern (DXV)'
+              en-GB: 'Delivered duty paid excluding taxes (DXV)'
+          - value: DAP
+            label:
+              de-DE: 'geliefert benannter Ort (DAP)'
+              en-GB: 'Delivered at place (DAP)'
+          - value: DDX
+            label:
+              de-DE: 'Frei Haus inkl. Zollabfertigung, exkl. Zölle und Steuern (DDX)'
+              en-GB: 'Delivered duty paid excluding duties and taxes (DDX)'
+          - value: CPT
+            label:
+              de-DE: 'Fracht bezahlt bis (CPT)'
+              en-GB: 'Carriage paid to (CPT)'
+      - name: incotermInternational
+        type: single-select
+        label:
+          de-DE: Incoterm
+          en-GB: Incoterm
+        showConditions:
+          createExportDocuments: true
+          product:
+            - V53WPAK # Dhl Paket International
+            - V66WPI # DHL Warenpost International
+        default: null
+        options:
+          - value: DDP
+            label:
+              de-DE: 'Frei Haus inkl. Zollabfertigung, Zölle und Steuern (DDP)'
+              en-GB: 'Delivered duty paid (DDP)'
+          - value: DXV
+            label:
+              de-DE: 'Frei Haus inkl. Zollabfertigung, Zölle exkl. Steuern (DXV)'
+              en-GB: 'Delivered duty paid excluding taxes (DXV)'
+          - value: DAP
+            label:
+              de-DE: 'geliefert benannter Ort (DAP)'
+              en-GB: 'Delivered at place (DAP)'
+          - value: DDX
+            label:
+              de-DE: 'Frei Haus inkl. Zollabfertigung, exkl. Zölle und Steuern (DDX)'
+              en-GB: 'Delivered duty paid excluding duties and taxes (DDX)'
+  - name: advancedSettings
+    type: group
+    label:
+      en-GB: Advanced settings
+      de-DE: Erweiterte Einstellungen
+    elements:
+      - name: printOnlyIfCodeable
+        type: boolean
+        label:
+          en-GB: Create label only if address is codeable
+          de-DE: Label nur erzeugen, wenn Adresse leitcodierbar
+        default: true

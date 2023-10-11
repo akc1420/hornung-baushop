@@ -1,0 +1,9 @@
+{
+    "sw-privileges": {
+        "additional_permissions": {
+            "orders": {
+                "api_proxy_switch-customer": "Act on behalf of a customer"
+            }
+        }
+    }
+}

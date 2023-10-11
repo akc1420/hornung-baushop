@@ -1,0 +1,88 @@
+{% block sw_cms_sidebar_block_layout_settings_content %}
+    {% parent %}
+
+    {% block swag_cms_extensions_sidebar_block_behavior_settings_content %}
+        <swag-cms-extensions-block-behavior-config
+                v-model="selectedBlock">
+        </swag-cms-extensions-block-behavior-config>
+    {% endblock %}
+{% endblock %}
+
+{% block sw_cms_sidebar_section_settings_content %}
+    {% parent %}
+
+    {% block swag_cms_extensions_sidebar_section_settings_scroll_navigation %}
+        <sw-sidebar-collapse
+            v-if="scrollNavigationFeatureActive"
+            :expandOnLoading="true">
+
+            {% block swag_cms_extensions_sidebar_section_settings_scroll_navigation_header %}
+                <template #header>
+                    <span>
+                        {{ $tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.title') }}
+                    </span>
+                </template>
+            {% endblock %}
+
+            {% block swag_cms_extensions_sidebar_section_settings_scroll_navigation_content %}
+                <template #content>
+                    <swag-cms-extensions-section-scroll-behavior-config
+                        v-model="selectedSection">
+                    </swag-cms-extensions-section-scroll-behavior-config>
+                </template>
+            {% endblock %}
+        </sw-sidebar-collapse>
+    {% endblock %}
+{% endblock %}
+
+{% block sw_cms_sidebar_navigator_section_header %}
+    <div v-if="scrollNavigationFeatureActive"
+         :class="navigatorSectionHeaderWrapperClass(section)">
+        {% parent %}
+    </div>
+
+    <template v-else>
+        {% parent %}
+    </template>
+{% endblock %}
+
+{% block sw_cms_sidebar_navigator_section_menu %}
+    {% block sw_cms_sidebar_navigator_section_menu_scroll_navigation_anchor %}
+        <div v-if="scrollNavigationIsActive(section)">
+            <sw-icon v-tooltip="scrollNavigationAnchorTooltip(section)"
+                     class="navigator-section-header__scroll-navigation-anchor"
+                     name="default-action-tags"
+                     size="16">
+            </sw-icon>
+        </div>
+    {% endblock %}
+
+    {% parent %}
+{% endblock %}
+
+{% block sw_cms_sidebar_page_settings_content %}
+    {% parent %}
+
+    {% block sw_cms_sidebar_page_settings_content_scroll_navigation %}
+        <sw-sidebar-collapse
+            v-if="scrollNavigationFeatureActive"
+            :expandOnLoading="true">
+
+            {% block sw_cms_sidebar_page_settings_content_scroll_navigation_header %}
+                <template #header>
+                    <span>
+                        {{ $tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.pageSettings.title') }}
+                    </span>
+                </template>
+            {% endblock %}
+
+            {% block sw_cms_sidebar_page_settings_content_scroll_navigation_header_content %}
+                <template #content>
+                    <swag-cms-extensions-page-scroll-behavior-config
+                        v-model="page">
+                    </swag-cms-extensions-page-scroll-behavior-config>
+                </template>
+            {% endblock %}
+        </sw-sidebar-collapse>
+    {% endblock %}
+{% endblock %}

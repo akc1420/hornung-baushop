@@ -1,0 +1,83 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare "Flyout search"
+    ==================================================
+
+*/
+
+// ThemeWare: Flyout search ------------------------------
+// - Info: Header 2.1 (twt-header-type 4) only allows the "Flyout search" (twt-header-search-type 2)
+
+@if $twt-header-search-type == 2 {
+    .search-container {
+        #searchCollapse {
+            .header-search {
+                margin: 0 auto;
+                width: 100%;
+
+                .header-search-form {
+                    padding: null-pixel-unit($twt-header-search-flyout-padding);
+                }
+
+                @include media-breakpoint-up(sm) { // min 576px
+                    max-width: auto-pixel-unit($twt-header-search-max-width);
+                }
+
+                @include media-breakpoint-up(xl) { // min 1200px
+                    max-width: auto-pixel-unit($twt-header-search-width-desktop);
+                }
+
+                .header-search-btn {
+                    // TODO: @include button-variant(..., ...);
+                    background-color: $twt-header-search-btn-background-color;
+                    border: 1px solid $twt-header-search-btn-border-color;
+                    border-top-right-radius: null-pixel-unit($twt-border-radius);
+                    border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+
+                    &:hover {
+                        opacity: .8;
+                    }
+
+                    .icon {
+                        color: $twt-header-search-btn-icon-color;
+                    }
+
+                    .loader {
+                        color: $twt-header-search-btn-icon-color !important;
+                    }
+                }
+
+                input.header-search-input {
+                    border: 1px solid $twt-header-search-input-border-color;
+                    color: $twt-header-search-input-color;
+                    background-color: $twt-header-search-input-background-color;
+
+                    &:focus {
+                        border-color: $twt-header-search-input-border-color;
+                        box-shadow: inset 2px 2px 4px rgba(0, 0, 0, .1);
+                    }
+
+                    &:focus ~ .input-group-append {
+                        .header-search-btn {
+                            border-color: $twt-header-search-btn-border-color;
+                        }
+                    }
+                }
+            }
+
+            &.collapsing {
+                background-color: $twt-header-search-flyout-background-color;
+            }
+
+            &.show {
+                background-color: $twt-header-search-flyout-background-color;
+            }
+        }
+    }
+}

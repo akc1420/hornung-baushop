@@ -1,0 +1,14 @@
+{% block sw_settings_content_card_slot_plugins %}
+    {% parent %}
+
+    <sw-settings-item id="sisi-backend-search"
+                      :label="$t('sisi-backend-search.backendlabel')"
+                      :to="{ name: 'sisi.backend.search.list' }">
+        <template slot="icon">
+            <sw-icon name="default-action-search"></sw-icon>
+        </template>
+    </sw-settings-item>
+
+{% endblock %}
+
+{% block  sw_search_bar_types_container %} {% endblock %}

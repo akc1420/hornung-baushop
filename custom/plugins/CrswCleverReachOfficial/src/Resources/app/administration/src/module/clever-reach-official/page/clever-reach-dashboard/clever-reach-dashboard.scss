@@ -1,0 +1,19 @@
+.cr-tabs {
+  width: 53%;
+  box-sizing: content-box;
+  min-width: 320px;
+}
+
+.cr-tabs-left {
+  margin: 0 !important;
+  max-width: 100% !important;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 480px) {
+  .cr-dashboard .cr-banner-img {
+    width: 110px;
+    height: 20px;
+  }
+}

@@ -1,0 +1,42 @@
+{% block clever_reach_forms %}
+    <sw-card class="cr-forms" :isLoading="isLoading">
+        <template v-slot:title>
+            {{ $tc('clever-reach.forms.title') }}
+        </template>
+        <sw-grid slot="grid"
+                 :selectable="false"
+                 :items="items"
+                 table
+                 class="cr-forms-grid">
+            <template slot="header">
+                <sw-label variant="neutral" class="cr-overview">
+                    {{ $tc('clever-reach.forms.overview') }}
+                </sw-label>
+                <a :href="$tc('clever-reach.forms.howToLink')" class="cr-how-to" target="_blank">
+                    {{ $tc('clever-reach.forms.formsHowTo') }}
+                </a>
+            </template>
+
+            <template slot="columns" slot-scope="{ item }">
+                <sw-grid-column flex="minmax(100px, 5fr)">
+                    <strong>{{ item.formName }}</strong>
+                </sw-grid-column>
+
+                <sw-grid-column flex="minmax(100px, 5fr)">
+                    {{ item.listName }}
+                </sw-grid-column>
+
+                <sw-grid-column class="cr-form-context-btn-column" flex="minmax(50px, 1fr)">
+                    <sw-context-button menuHorizontalAlign="right" :menuWidth="180">
+                        <sw-context-menu-item @click="openShoppingExperiences">
+                            {{ $tc('clever-reach.forms.add') }}
+                        </sw-context-menu-item>
+                        <sw-context-menu-item @click="editInCleverReach(item.formId)">
+                            {{ $tc('clever-reach.forms.edit') }}
+                        </sw-context-menu-item>
+                    </sw-context-button>
+                </sw-grid-column>
+            </template>
+        </sw-grid>
+    </sw-card>
+{% endblock %}

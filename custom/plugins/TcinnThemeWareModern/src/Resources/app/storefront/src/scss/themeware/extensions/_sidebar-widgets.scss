@@ -1,0 +1,107 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Extension > Sidebar widgets
+    ==================================================
+    Container styling (see 'themeware/widgets/_*.scss' for widget styling)
+*/
+
+// TODO: Add configuration
+
+// ThemeWare: Sidebar elements ------------------------------
+
+@if $twt-sidebar-element-1 != 'none' or $twt-sidebar-element-2 != 'none' or $twt-sidebar-element-3 != 'none' {
+  .twt-block {
+    display: flex;
+    flex-direction: column;
+
+    .twt-block-container {
+      padding: null-pixel-unit($twt-sidebar-block-container-padding-top) null-pixel-unit($twt-sidebar-block-container-padding-right) null-pixel-unit($twt-sidebar-block-container-padding-bottom) null-pixel-unit($twt-sidebar-block-container-padding-left);
+
+    }
+  }
+}
+
+// ThemeWare: Sidebar element headline ------------------------------
+
+@if $twt-sidebar-element-1 != 'none' or $twt-sidebar-element-2 != 'none' or $twt-sidebar-element-3 != 'none' or $twt-sidebar-filter-headline-show != 1 {
+  .twt-cms-element-sidebar-headline {
+    @if ($twt-sidebar-block-headline-font-family == 1) {
+      font-family: $sw-font-family-base;
+    } @else {
+      font-family: $sw-font-family-headline;
+    }
+
+    @include twt-font-size($twt-sidebar-block-headline-font-size);
+    font-weight: $twt-sidebar-block-headline-font-weight;
+    text-transform: $twt-sidebar-block-headline-text-transform;
+    color: $twt-sidebar-block-headline-color;
+
+    @if $twt-sidebar-block-headline-layout-type == 1 {
+      // ThemeWare: Headline 'clean'
+      padding: null-pixel-unit($twt-sidebar-block-headline-padding-top) 13px null-pixel-unit($twt-sidebar-block-headline-padding-bottom) 13px;
+      border: 1px solid $twt-category-navigation-border-color;
+      border-bottom: 0;
+      background-color: $twt-sidebar-block-headline-background-color;
+    } @else {
+      // ThemeWare: Headline 'boxed'
+      padding: null-pixel-unit($twt-sidebar-block-headline-padding-top) 0 null-pixel-unit($twt-sidebar-block-headline-padding-bottom);
+    }
+
+    // ThemeWare: Navigation headline
+    //&.is--navigation {}
+
+    // ThemeWare: Filter headline
+    //&.is--filter {}
+  }
+}
+
+// ThemeWare: Sidebar element content ------------------------------
+
+@if $twt-sidebar-element-1 != 'none' or $twt-sidebar-element-2 != 'none' or $twt-sidebar-element-3 != 'none' {
+  .twt-cms-element-sidebar-content {
+    color: $twt-sidebar-block-content-color;
+
+    @if $twt-sidebar-block-content-layout-type == 1 {
+      // ThemeWare: Content 'clean'
+      padding: 7px 13px;
+      border: 1px solid $twt-category-navigation-border-color;
+      background-color: $twt-sidebar-block-content-background-color;
+    } @else {
+      // ThemeWare: Content 'boxed'
+      // ThemeWare: Set padding/border top if headline is 'boxed' and content 'clean'
+      @if $twt-sidebar-block-headline-layout-type == 1 {
+        padding-top: 7px;
+        border-top: 1px solid $twt-category-navigation-border-color;
+      }
+    }
+  }
+}
+
+@if $twt-sidebar-element-1 != 'none' or $twt-sidebar-element-2 != 'none' or $twt-sidebar-element-3 != 'none' {
+  // ThemeWare: Upper section
+  .twt-block-sidebar-top {
+    // TODO: Add margin-top/bottom
+    margin-top: null-pixel-unit($twt-sidebar-block-upper-section-margin-top);
+  }
+
+  // ThemeWare: Lower section
+  .twt-block-sidebar-bottom {
+    // TODO: Add margin-top/bottom
+    margin-top: null-pixel-unit($twt-sidebar-block-lower-section-margin-top);
+  }
+
+  // ThemeWare: Adjust logos
+  .twt-widget-paymentshipping,
+  .twt-widget-payment,
+  .twt-widget-shipping {
+    .sidebar-logo { // Align with .footer-logo class (see footer.scss), as we use .sidebar-logo class on product pages
+      display: inline-block;
+    }
+  }
+}

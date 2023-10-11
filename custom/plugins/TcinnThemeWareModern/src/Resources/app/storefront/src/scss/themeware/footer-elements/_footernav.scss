@@ -1,0 +1,96 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Widget "Footernav" (footer specific styling) (see 'themeware/widgets/_footernav.scss' for general styling)
+	==================================================
+
+*/
+
+// TODO: Add @if condition
+
+.footer-column-footernav {
+    @if $twt-footer-footernav-list-style == 1 {
+        ul {
+            li {
+                a {
+                    color: $twt-footer-footernav-link-color;
+                    text-transform: $twt-footer-footernav-text-transform;
+
+                    &:hover {
+                        color: $twt-footer-footernav-link-color-hover
+                    }
+                }
+            }
+        }
+    } @else if $twt-footer-footernav-list-style == 2 {
+        ul {
+            list-style: square;
+            padding-left: null-pixel-unit($twt-footer-footernav-padding-left);
+            color: $twt-footer-footernav-marker-color;
+
+            li {
+                a {
+                    text-transform: $twt-footer-footernav-text-transform;
+                    color: $twt-footer-footernav-link-color;
+
+                    &:hover {
+                        color: $twt-footer-footernav-link-color-hover
+                    }
+                }
+            }
+        }
+    } @else if $twt-footer-footernav-list-style == 3 {
+        ul {
+            color: $twt-footer-footernav-marker-color;
+
+            li {
+                a {
+                    color: $twt-footer-footernav-link-color;
+                    text-transform: $twt-footer-footernav-text-transform;
+                    border-bottom: 1px solid $twt-footer-footernav-border-bottom-color;
+                    display: block;
+
+                    &:hover {
+                        color: $twt-footer-footernav-link-color-hover
+                    }
+                }
+
+                &:last-of-type {
+                    a {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    } @else if $twt-footer-footernav-list-style == 4 {
+        ul {
+            list-style: square;
+            padding-left: null-pixel-unit($twt-footer-footernav-padding-left);
+            color: $twt-footer-footernav-marker-color;
+
+            li {
+                a {
+                    text-transform: $twt-footer-footernav-text-transform;
+                    color: $twt-footer-footernav-link-color;
+                    border-bottom: 1px solid $twt-footer-footernav-border-bottom-color;
+                    display: block;
+
+                    &:hover {
+                        color: $twt-footer-footernav-link-color-hover
+                    }
+                }
+
+                &:last-of-type {
+                    a {
+                        border-bottom: none;
+                    }
+                }
+            }
+        }
+    }
+}

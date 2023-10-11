@@ -1,0 +1,256 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Extension > Listing subcategories
+    ==================================================
+
+*/
+
+// TODO: Konfiguration ergänzen
+//$twt-listing-subcategories-show: 1; // 1 = don't show | 2 = show // TODO: Add config to deactivate scss
+
+//$twt-listing-subcategories-layout: 2; // 1 = Bild/Text untereinander | 2 = Bild/Text nebeneinander | 3 = nur Bild
+
+//$twt-listing-subcategories-image-size: 100px; // height/width abhängig vom Layout
+//$twt-listing-subcategories-image-object-fit: contain; // contain | cover
+
+//$twt-listing-subcategories-color: $body-color;
+//$twt-listing-subcategories-color-hover: $sw-color-brand-primary;
+//$twt-listing-subcategories-background-color: #fff;
+//$twt-listing-subcategories-background-color-hover: #fff;
+//$twt-listing-subcategories-border-color: $sw-border-color;
+//$twt-listing-subcategories-border-color-hover: $sw-color-brand-primary;
+//$twt-listing-subcategories-image-background-color: #eef2f5;
+
+//$twt-listing-subcategories-font-family: $sw-font-family-base;
+//$twt-listing-subcategories-font-size: $twt-font-size-base;
+//$twt-listing-subcategories-font-weight: $font-weight-normal;
+//$twt-listing-subcategories-text-transform: none;
+
+// TODO:
+// - Border-radius...
+// - Konfiguration: Padding der Kacheln...
+// - Abstand außen/innen siehe Kommentare unten...
+// - Container-Layout...
+// - Ausrichtung in den Kacheln > links, zentriert ??
+// - Ausrichtung der Kacheln im Container (z.B. wenn zu wenig Kacheln verfügbar sind) > links, zentriert ???
+// - Konfiguration: Bild ausblenden ab Viewport xy (Text als Fallback anzeigen im Modus 'nur Bild')
+
+//@if $twt-listing-subcategories-show == 2 {
+//    .twt-listing-subcategories {
+//        .twt-listing-subcategories-section {
+//            max-width: 1400px; // TODO: add variable
+//            width: 100%;
+//            margin-right: auto;
+//            margin-left: auto;
+//        }
+//
+//        // TODO: Containered
+//        //.twt-listing-subcategories-container {
+//        //  background-color: $twt-cms-section-boxed-background-color;
+//        //  border: 1px solid $twt-cms-section-boxed-border-color;
+//        //  padding: 20px;
+//        //}
+//
+//        ul {
+//            margin: 0 -5px;
+//            margin-bottom: -10px;
+//            padding: 0px;
+//            list-style-type: none;
+//        }
+//
+//        li {
+//            padding-left: 5px;
+//            padding-right: 5px;
+//            margin-bottom: 10px;
+//
+//            @if $twt-listing-subcategories-layout == 1 or $twt-listing-subcategories-layout == 3 { // ThemeWare: 'Bild/Text untereinander' oder 'nur Bild'
+//                &.no-image {
+//                    a {
+//                        @include media-breakpoint-up(sm) { // min 576px
+//                            -ms-flex-align: center;
+//                            align-items: center;
+//                        }
+//                        -ms-flex-pack: center;
+//                        justify-content: center;
+//                    }
+//                }
+//            }
+//
+//            @if $twt-listing-subcategories-layout == 2 { // ThemeWare: 'Bild/Text nebeneinander'
+//                &.no-image {
+//                    .twt-subcategory-navigation-name {
+//                        margin-left: 5px;
+//                    }
+//                }
+//            }
+//
+//            @if $twt-listing-subcategories-layout == 3 { // ThemeWare: 'nur Bild'
+//                &.no-image {
+//                    .twt-subcategory-navigation-name {
+//                        display: flex !important; // ThemeWare: Show label in layout "image only" when no image is available
+//                    }
+//                }
+//            }
+//
+//        }
+//
+//        a.twt-subcategory-navigation-link {
+//            font-family: $twt-listing-subcategories-font-family;
+//            font-size: rem($twt-listing-subcategories-font-size);
+//            font-weight: $twt-listing-subcategories-font-weight;
+//
+//            display: -ms-flexbox;
+//            display: -webkit-flex;
+//            display: flex;
+//
+//            height: 100%;
+//            padding: .5rem;
+//
+//            text-decoration: none;
+//            text-transform: $twt-listing-subcategories-text-transform;
+//
+//            color: $twt-listing-subcategories-color;
+//            border: 1px solid $twt-listing-subcategories-border-color;
+//            border-radius: null-pixel-unit($twt-border-radius); // TODO: add variants and configuration
+//            background-color: $twt-listing-subcategories-background-color;
+//
+//            @if $twt-listing-subcategories-layout == 1 { // ThemeWare: 'Bild/Text untereinander'
+//                flex-flow: column;
+//            } @else {
+//                @include media-breakpoint-down(xs) { // max 575.98px
+//                    flex-flow: column;
+//                }
+//            }
+//
+//            &:hover {
+//                color: $twt-listing-subcategories-color-hover;
+//                border-color: $twt-listing-subcategories-border-color-hover;
+//                background-color: $twt-listing-subcategories-background-color-hover;
+//            }
+//        }
+//
+//        // ThemeWare: Category image
+//        .twt-subcategory-navigation-image-wrapper {
+//            overflow: hidden;
+//
+//            display: none;
+//            @include media-breakpoint-up(sm) { // min 576px
+//                display: block;
+//            }
+//            @if $twt-listing-subcategories-layout == 3 { // ThemeWare: 'nur Bild'
+//                display: block;
+//            }
+//
+//            @if $twt-listing-subcategories-layout == 1 { // ThemeWare: 'Bild/Text untereinander'
+//                margin-bottom: .5rem;
+//            } @else if $twt-listing-subcategories-layout == 2 { // ThemeWare: 'Bild/Text nebeneinander'
+//                margin-right: .5rem;
+//            }
+//
+//            @if $twt-listing-subcategories-layout == 2 { // ThemeWare: 'Bild/Text nebeneinander'
+//                min-width: $twt-listing-subcategories-image-size;
+//            }
+//
+//            background-color: $twt-listing-subcategories-image-background-color;
+//
+//            .twt-subcategory-navigation-image {
+//                display: -ms-flexbox;
+//                display: -webkit-flex;
+//                display: flex;
+//
+//                align-items: center;
+//                justify-content: center;
+//
+//                -ms-flex-align: center;
+//                -ms-flex-pack: center;
+//
+//                width: 100%;
+//                @if $twt-listing-subcategories-layout == 2 { // ThemeWare: 'Bild/Text nebeneinander'
+//                    max-width: $twt-listing-subcategories-image-size;
+//                }
+//                height: 100%;
+//                @if $twt-listing-subcategories-layout == 1 { // ThemeWare: 'Bild/Text untereinander'
+//                    max-height: $twt-listing-subcategories-image-size;
+//                }
+//                @if $twt-listing-subcategories-layout == 3 { // ThemeWare: 'nur Bild'
+//                    max-height: $twt-listing-subcategories-image-size;
+//                }
+//            }
+//
+//            img {
+//                display: block;
+//
+//                width: 100%;
+//                @if $twt-listing-subcategories-image-object-fit == none {
+//                    height: auto;
+//                } @else { // ThemeWare: cover/contain
+//                    height: $twt-listing-subcategories-image-size;
+//                }
+//
+//                @if $twt-listing-subcategories-image-object-fit != none {
+//                    -o-object-fit: $twt-listing-subcategories-image-object-fit;
+//                    object-fit: $twt-listing-subcategories-image-object-fit;
+//                }
+//
+//                @if $twt-listing-subcategories-layout == 1 { // ThemeWare: 'Bild/Text untereinander'
+//                    vertical-align: middle;
+//                }
+//
+//            }
+//        }
+//
+//        // ThemeWare: Category name
+//        .twt-subcategory-navigation-name {
+//            @if $twt-listing-subcategories-layout != 3 { // ThemeWare: 'Bild/Text nebeneinander' oder 'Bild/Text untereinander'
+//                display: -ms-flexbox;
+//                display: -webkit-flex;
+//                display: flex;
+//            } @else { // ThemeWare: nur Bild
+//                display: none;
+//            }
+//
+//            overflow: hidden;
+//
+//            @include media-breakpoint-up(sm) { // min 576px
+//                align-self: center;
+//            }
+//
+//            .twt-subcategory-navigation-name-label {
+//                // ThemeWare: Hyphenation
+//                -webkit-hyphens: auto;
+//                -ms-hyphens: auto;
+//                hyphens: auto;
+//
+//                // ThemeWare: Layout-Anpassungen
+//                @if $twt-listing-subcategories-layout == 1 { // ThemeWare: 'Bild/Text untereinander'
+//                    @include media-breakpoint-up(sm) { // min 576px
+//                        text-align: center;
+//                    }
+//                } @else if $twt-listing-subcategories-layout == 2 { // ThemeWare: 'Bild/Text nebeneinander'
+//                    text-align: left;
+//                }
+//            }
+//
+//            .icon {
+//                display: block;
+//                @include media-breakpoint-up(sm) { // min 576px
+//                    display: none;
+//                }
+//
+//                min-width: 16.6px;
+//                margin-left: auto;
+//            }
+//
+//            .icon > svg {
+//                top: -2px;
+//            }
+//
+//        }
+//    }
+//}

@@ -1,0 +1,53 @@
+{
+    "name": "swag/social-shopping",
+    "description": "Social shopping plugin",
+    "version": "3.1.3",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Shopware"
+        }
+    ],
+    "require": {
+        "shopware/core": "~6.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SwagSocialShopping\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Swag\\SocialShopping\\Test\\": "tests/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "SwagSocialShopping\\SwagSocialShopping",
+        "copyright": "(c) by shopware AG",
+        "label": {
+            "de-DE": "Social Shopping",
+            "en-GB": "Social Shopping"
+        },
+        "description": {
+            "de-DE": "Das Plugin ermöglicht eine Integration von verschiedenen Social-Shopping-Kanälen in Ihren Shopware Shop. Die Kunden können Ihre Produkte auf den Social-Media-Plattformen entdecken.",
+            "en-GB": "The plugin enables a simple integration of social shopping channels into your Shopware shop. The customers can discover your products on social media platforms."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/shopware-ag.html",
+            "en-GB": "https://store.shopware.com/en/shopware-ag.html"
+        },
+        "supportLink": {
+            "de-DE": "https://docs.shopware.com/de",
+            "en-GB": "https://docs.shopware.com/en"
+        }
+    },
+    "suggest": {
+        "shopware/storefront": "Require '6.1.*'. Necessary for the Pinterest integration",
+        "shopware/administration": "Require '6.1.*'. Allows you to to set up the plugin easily"
+    },
+    "conflict": {
+        "shopware/storefront": "<6,>=7",
+        "shopware/administration": "<6,>=7"
+    }
+}

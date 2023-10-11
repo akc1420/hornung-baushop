@@ -1,0 +1,22 @@
+{% block swag_cms_extensions_form_editor_settings_field_type_base %}
+    <div class="swag-cms-extensions-form-editor-settings-field-type-textarea">
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_textarea_rows %}
+            <sw-single-select v-model="rows"
+                              :options="rowsOptions"
+                              :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.rowsFieldLabel')"
+                              size="medium">
+            </sw-single-select>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_textarea_scalable %}
+            <sw-switch-field v-model="scalable"
+                             :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.scalableFieldLabel')"
+                             size="medium">
+            </sw-switch-field>
+        {% endblock %}
+
+        {% parent %}
+
+    </div>
+{% endblock %}

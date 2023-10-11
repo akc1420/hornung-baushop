@@ -1,0 +1,56 @@
+{% block clever_reach_dashboard_sync_status %}
+    <sw-card class="cr-sync-status" v-if="syncStatus" :isLoading="syncStatusLoading">
+        <template v-slot:title>
+            {{ $tc('clever-reach.dashboard.syncStatus') }}
+        </template>
+
+        <sw-container class="cr-sync-status-container">
+            <sw-card-section class="cr-payment-card">
+                <div class="cr-sync-total">
+                    <sw-label variant="neutral" class="cr-total-recipients">
+                        {{ $tc('clever-reach.dashboard.totalRecipients') }}
+                    </sw-label>
+                    <sw-label variant="neutral" class="cr-total-number">
+                        {{ totalRecipients }}
+                    </sw-label>
+                </div>
+
+                <sw-label variant="neutral" class="cr-sync-status-label">
+                    {{ $tc('clever-reach.dashboard.lastSync') }} {{ lastSync }}
+                </sw-label>
+            </sw-card-section>
+
+            <sw-card-section class="cr-statistics-card">
+                <sw-description-list class="cr-statistics">
+                    <dd>
+                        {{ $tc('clever-reach.dashboard.last30days') }}
+                    </dd>
+                    <dt>
+                        <div>
+                            {{ $tc('clever-reach.dashboard.newRecipients') }}
+                            <div class="cr-stats">
+                                {{ newRecipients }}
+                            </div>
+                        </div>
+                    </dt>
+                    <dt>
+                        <div>
+                            {{ $tc('clever-reach.dashboard.unsubscribed') }}
+                            <div class="cr-stats">
+                                {{ unsubscribed }}
+                            </div>
+                        </div>
+                    </dt>
+                </sw-description-list>
+            </sw-card-section>
+        </sw-container>
+        <sw-container>
+            <sw-label variant="neutral" class="cr-sync-status-label">
+                {{ $tc('clever-reach.dashboard.currentPlan') }} {{ currentPlan }}
+            </sw-label>
+            <sw-button variant="ghost" class="cr-sync-status-btn" v-on:click="openUrl('/admin/account_plan.php')">
+                {{ $tc('clever-reach.dashboard.upgrade') }}
+            </sw-button>
+        </sw-container>
+    </sw-card>
+{% endblock %}

@@ -1,0 +1,299 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Tab Menu
+    ==============================================
+    Custom skin styling for bootstrap card with included tab navigation.
+    https://getbootstrap.com/docs/4.3/components/card/#navigation
+
+	Origin: Shopware skin
+*/
+
+@include media-breakpoint-down(xs) { // max 575.98px
+    .product-detail-tab-navigation-icon {
+        .icon {
+            width: 16px;
+            height: 16px;
+        }
+    }
+}
+
+// TODO: Prüfen...
+
+// Classic product pages
+/*
+    Standard/classic product detail pages
+    - Fallback product detail pages (not cms pages!)
+*/
+body:not(.twt-is-cms-product-detail) {
+    // Distance of the content from the tabs
+    .card-tabs {
+        .card-body {
+            padding-top: $twt-basegrid-spacing;
+        }
+    }
+
+    // ThemeWare: Style 1 "Buttons/Tabs (integrated)"
+    @if ($twt-product-detail-tabs-layout-type==1) {
+        .card-tabs {
+            .nav-item {
+                margin-right: 1px;
+
+                .nav-link {
+                    background-color: $twt-product-detail-tabs-background-color;
+                    border-bottom: $twt-product-detail-tabs-background-border-bottom $twt-product-detail-tabs-border-bottom-color;
+                    color: $twt-product-detail-tabs-color;
+
+                    @include media-breakpoint-down(xs) { // max 575.98px
+                        padding: 10px 10px 10px 13px;
+                    }
+                    @include media-breakpoint-up(sm) { // min 576px
+                        padding: 13px 20px 11px 20px;
+                    }
+
+                    &.active {
+                        background-color: $twt-product-detail-tabs-background-color-active;
+                        color: $twt-product-detail-tabs-color-active;
+                        border-bottom-color: $twt-product-detail-tabs-border-bottom-color-active;
+
+                        span {
+                            color: $twt-product-detail-tabs-color-active;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $twt-product-detail-tabs-background-color-hover;
+                        color: $twt-product-detail-tabs-color-hover;
+                        border-bottom-color: $twt-product-detail-tabs-border-bottom-color-hover;
+
+                        span {
+                            color: $twt-product-detail-tabs-color-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Style 2 "Tabs"
+    @if ($twt-product-detail-tabs-layout-type==2) {
+        .card-tabs {
+            .nav-item {
+                margin-right: 0;
+
+                .nav-link {
+                    @include media-breakpoint-up(sm) { // min 576px
+                        display: block;
+                    }
+                    background-color: $twt-product-detail-tabs-background-color;
+                    color: $twt-product-detail-tabs-color;
+                    border-bottom: $twt-product-detail-tabs-background-border-bottom $twt-product-detail-tabs-border-bottom-color;
+
+                    @include media-breakpoint-down(xs) { // max 575.98px
+                        padding: 10px 10px 10px 13px;
+                    }
+                    @include media-breakpoint-up(sm) { // min 576px
+                        padding: 13px 20px 11px 20px;
+                    }
+
+                    &.active {
+                        background-color: $twt-product-detail-tabs-background-color-active;
+                        color: $twt-product-detail-tabs-color-active;
+                        border-bottom-color: $twt-product-detail-tabs-border-bottom-color-active;
+
+                        span {
+                            color: $twt-product-detail-tabs-color-active;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $twt-product-detail-tabs-background-color-hover;
+                        color: $twt-product-detail-tabs-color-hover;
+                        border-bottom-color: $twt-product-detail-tabs-border-bottom-color-hover;
+
+                        span {
+                            color: $twt-product-detail-tabs-color-hover;
+                        }
+                    }
+                }
+
+                &:first-of-type {
+                    .nav-link {
+                        border-top-left-radius: null-pixel-unit($twt-border-radius);
+                    }
+                }
+            }
+        }
+    }
+}
+
+// CMS pages
+/*
+    Shopware 6.4 cms product pages
+    - Tab-menu on product pages as CMS element
+*/
+body.twt-is-cms-product-detail {
+    // Fix for Shopware 6.4 BUG
+    // TODO: Re-check
+    //.offcanvas.is-fullwidth {
+    //  padding: $twt-basegrid-spacing;
+    //}
+
+    // Fix tabs
+    // TODO: After debugging (6.4 BUG) by Shopware check layout adjustments
+    // ThemeWare: With sidebar styling
+    .cms-section-sidebar {
+        .card-tabs {
+            @include media-breakpoint-down(xs) { // max 575.98px
+                .nav-tabs {
+                    border-bottom: none;
+
+                    .nav-link,
+                    .nav-link:hover {
+                        margin: 0 0 10px 0;
+                        padding: 10px;
+                        border-radius: $twt-border-radius + px;
+                        background-color: rgba(0, 0, 0, 0.05);
+                    }
+
+                    //.product-detail-tab-navigation-icon {
+                    //  .icon {
+                    //    width: 16px;
+                    //    height: 16px;
+                    //  }
+                    //}
+                }
+            }
+
+            .card-body {
+                padding-top: $twt-basegrid-spacing;
+            }
+        }
+    }
+
+    // ThemeWare: Without sidebar styling
+    div:not(.cms-section-sidebar) {
+        .card-tabs {
+            @include media-breakpoint-down(xs) { // max 575.98px
+                .nav-tabs {
+                    border-bottom: none;
+
+                    //.nav-link,
+                    //.nav-link:hover {
+                    //  //margin: 0 0 5px 0; // TODO: Re-check
+                    //  padding-bottom: 10px;
+                    //}
+
+                    //.product-detail-tab-navigation-icon {
+                    //  .icon {
+                    //    width: 16px;
+                    //    height: 16px;
+                    //  }
+                    //}
+                }
+            }
+
+            .card-body {
+                padding-top: $twt-basegrid-spacing;
+            }
+        }
+    }
+
+    // ThemeWare: Style 1 "Buttons/Tabs (integrated)"
+    @if ($twt-product-detail-tabs-layout-type==1) {
+        .card-tabs {
+            .nav-item {
+                margin-right: 1px;
+
+                .nav-link {
+                    background-color: $twt-product-detail-tabs-background-color;
+                    border-bottom: $twt-product-detail-tabs-background-border-bottom $twt-product-detail-tabs-border-bottom-color;
+                    color: $twt-product-detail-tabs-color;
+
+                    @include media-breakpoint-down(xs) { // max 575.98px
+                        padding: 10px 10px 10px 13px;
+                    }
+                    @include media-breakpoint-up(sm) { // min 576px
+                        padding: 13px 20px 11px 20px;
+                    }
+
+                    &.active {
+                        background-color: $twt-product-detail-tabs-background-color-active;
+                        color: $twt-product-detail-tabs-color-active;
+                        border-bottom-color: $twt-product-detail-tabs-border-bottom-color-active;
+
+                        span {
+                            color: $twt-product-detail-tabs-color-active;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $twt-product-detail-tabs-background-color-hover;
+                        color: $twt-product-detail-tabs-color-hover;
+                        border-bottom-color: $twt-product-detail-tabs-border-bottom-color-hover;
+
+                        span {
+                            color: $twt-product-detail-tabs-color-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Style 2 "Tabs"
+    @if ($twt-product-detail-tabs-layout-type==2) {
+        .card-tabs {
+            .nav-item {
+                margin-right: 0;
+
+                .nav-link {
+                    @include media-breakpoint-up(sm) { // min 576px
+                        display: block;
+                    }
+                    background-color: $twt-product-detail-tabs-background-color;
+                    color: $twt-product-detail-tabs-color;
+                    border-bottom: $twt-product-detail-tabs-background-border-bottom $twt-product-detail-tabs-border-bottom-color;
+
+                    @include media-breakpoint-down(xs) { // max 575.98px
+                        padding: 10px 10px 10px 13px;
+                    }
+                    @include media-breakpoint-up(sm) { // min 576px
+                        padding: 13px 20px 11px 20px;
+                    }
+
+                    &.active {
+                        background-color: $twt-product-detail-tabs-background-color-active;
+                        color: $twt-product-detail-tabs-color-active;
+                        border-bottom-color: $twt-product-detail-tabs-border-bottom-color-active;
+
+                        span {
+                            color: $twt-product-detail-tabs-color-active;
+                        }
+                    }
+
+                    &:hover {
+                        background-color: $twt-product-detail-tabs-background-color-hover;
+                        color: $twt-product-detail-tabs-color-hover;
+                        border-bottom-color: $twt-product-detail-tabs-border-bottom-color-hover;
+
+                        span {
+                            color: $twt-product-detail-tabs-color-hover;
+                        }
+                    }
+                }
+
+                &:first-of-type {
+                    .nav-link {
+                        border-top-left-radius: null-pixel-unit($twt-border-radius);
+                    }
+                }
+            }
+        }
+    }
+}

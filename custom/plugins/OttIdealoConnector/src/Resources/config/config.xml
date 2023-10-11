@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>API Account</title>
+        <input-field>
+            <name>clientId</name>
+            <label>Idealo Directsale API ClientId</label>
+            <label lang="de-DE">Idealo Direktkauf API ClientId</label>
+            <required>true</required>
+            <copyable>true</copyable>
+        </input-field>
+        <input-field>
+            <name>clientSecret</name>
+            <label>Idealo Directsale API ClientSecret</label>
+            <label lang="de-DE">Idealo Direktkauf API ClientSecret</label>
+            <required>true</required>
+            <copyable>true</copyable>
+        </input-field>
+        <input-field type="bool">
+            <name>sandbox</name>
+            <label>Sandbox mode</label>
+            <label lang="de-DE">Sandbox Modus</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+        <component name="ott-idealo-api-test-button">
+            <name>apiTest</name>
+            <label>API Verbindung testen</label>
+        </component>
+    </card>
+    <card>
+        <title>Mapping</title>
+        <title lang="de-DE">Zuweisungen</title>
+        <component name="ott-order-state-select">
+            <name>orderState</name>
+            <entity>state_machine_state</entity>
+            <label>Orderstate for imported orders</label>
+            <label lang="de-DE">Bestellstatus für importierte Bestellungen</label>
+        </component>
+        <component name="ott-order-state-select">
+            <name>orderComplete</name>
+            <entity>state_machine_state</entity>
+            <label>Orderstate for completed orders</label>
+            <label lang="de-DE">Bestellstatus für abgeschlossene Bestellungen</label>
+        </component>
+        <component name="ott-order-state-select">
+            <name>orderCancel</name>
+            <entity>state_machine_state</entity>
+            <label>Orderstate for canceled orders</label>
+            <label lang="de-DE">Bestellstatus für stornierte Bestellungen</label>
+        </component>
+        <component name="ott-order-state-select">
+            <name>orderPartialCancel</name>
+            <entity>state_machine_state</entity>
+            <label>Orderstate for partial canceled orders</label>
+            <label lang="de-DE">Bestellstatus für teilstornierte Bestellungen</label>
+        </component>
+        <component name="ott-payment-state-select">
+            <name>paymentState</name>
+            <entity>state_machine_state</entity>
+            <label>Paymentstate for imported orders</label>
+            <label lang="de-DE">Zahlungsstatus für importierte Bestellungen</label>
+        </component>
+        <component name="ott-delivery-state-select">
+            <name>deliveryState</name>
+            <entity>state_machine_state</entity>
+            <label>Deliverystate for imported orders</label>
+            <label lang="de-DE">Versandstatus für importierte Bestellungen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>paypal</name>
+            <entity>payment_method</entity>
+            <label>Choose paypal payment type</label>
+            <label lang="de-DE">Paypal Zahlart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>instant</name>
+            <entity>payment_method</entity>
+            <label>Choose instant transfer payment type</label>
+            <label lang="de-DE">Sofortüberweisung Zahlart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>creditcard</name>
+            <entity>payment_method</entity>
+            <label>Choose creditcard payment type</label>
+            <label lang="de-DE">Kreditkarte Zahlart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>dispatch</name>
+            <entity>shipping_method</entity>
+            <label>Choose postal dispatch type</label>
+            <label lang="de-DE">Paket Versandart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>dispatchLetter</name>
+            <entity>shipping_method</entity>
+            <label>Choose letter dispatch type</label>
+            <label lang="de-DE">Brief Versandart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>dispatchDownload</name>
+            <entity>shipping_method</entity>
+            <label>Choose download dispatch type</label>
+            <label lang="de-DE">Download Versandart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>dispatchForwarding</name>
+            <entity>shipping_method</entity>
+            <label>Choose forwarding dispatch type</label>
+            <label lang="de-DE">Spedition Versandart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>dispatchForwardingTwoMen</name>
+            <entity>shipping_method</entity>
+            <label>Choose forwarding (two-men-delivery) dispatch type</label>
+            <label lang="de-DE">Spedition (2-Mann-Lieferung) Versandart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>dispatchForwardingPickup</name>
+            <entity>shipping_method</entity>
+            <label>Choose forwarding (pickup service) dispatch type</label>
+            <label lang="de-DE">Spedition (Altgerätemitnahme) Versandart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>dispatchForwardingTwoMenPickup</name>
+            <entity>shipping_method</entity>
+            <label>Choose forwarding (two-men-delivery with pickup service) dispatch type</label>
+            <label lang="de-DE">Spedition (2-Mann-Lieferung mit Altgerätemitnahme) Versandart wählen</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>fallbackLanguage</name>
+            <entity>language</entity>
+            <label>Choose fallback language for headless channels</label>
+            <label lang="de-DE">Fallback Sprache für Headless Channels wählen</label>
+        </component>
+    </card>
+    <card>
+        <title>Customization</title>
+        <title lang="de-DE">Anpassungen</title>
+        <input-field>
+            <name>carrier</name>
+            <label>Default Carrier</label>
+            <label lang="de-DE">Standard Versanddienstleister</label>
+            <required>true</required>
+            <copyable>true</copyable>
+            <defaultValue>DHL</defaultValue>
+        </input-field>
+        <input-field>
+            <name>customCarrier</name>
+            <label>Custom Carrier Rule</label>
+            <label lang="de-DE">Benutzerdefinierte Versanddienstleister-Regel</label>
+            <required>false</required>
+            <copyable>true</copyable>
+        </input-field>
+        <input-field type="single-select">
+            <name>commentSave</name>
+            <label>Comment info</label>
+            <label lang="de-DE">Kommentar Info</label>
+            <options>
+                <option>
+                    <id>0</id>
+                    <name>Internal comment</name>
+                    <name lang="de-DE">Interner Kommentar</name>
+                </option>
+                <option>
+                    <id>1</id>
+                    <name>Internal and customer comment</name>
+                    <name lang="de-DE">Interner und Kunden Kommentar</name>
+                </option>
+            </options>
+            <defaultValue>0</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>sendMail</name>
+            <label>Send confirmation mail</label>
+            <label lang="de-DE">Bestellbestätigungs Mail senden</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>useAddressTwoAsCompany</name>
+            <label>Use field address2 as company</label>
+            <label lang="de-DE">Feld address2 als Firma verwenden</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>useEmptyPhone</name>
+            <label>Dont use placeholder for empty phone number</label>
+            <label lang="de-DE">Kein Placeholder für leere Telefonnummer verwenden</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+        <component name="sw-entity-single-select">
+            <name>defaultSalutation</name>
+            <entity>salutation</entity>
+            <labelProperty>displayName</labelProperty>
+            <label>Default salutation</label>
+            <label lang="de-DE">Standard Anrede</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>defaultCustomerGroup</name>
+            <entity>customer_group</entity>
+            <label>Default customergroup</label>
+            <label lang="de-DE">Standard Kundengruppe</label>
+        </component>
+        <input-field type="bool">
+            <name>deactivateScheduledTask</name>
+            <label>Deactivate scheduled task</label>
+            <label lang="de-DE">Deaktiviere Scheduled Task</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+        <input-field type="text">
+            <name>adjustOrderTime</name>
+            <label>Adjust ordertime by +/- hours</label>
+            <label lang="de-DE">Justiere Bestellzeit um +/- Stunden</label>
+            <defaultValue>0</defaultValue>
+        </input-field>
+    </card>
+</config>

@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnTextTeaserTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnTextTeaserDecoratedTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnButtonTeaserTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnCallToActionTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnHoverBoxTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnClassicTeaserTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnModernTeaserTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnImageBannerTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnTextImageSlideTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+        <service id="TcinnThemeWareModern\Core\Content\Media\Cms\Type\TcinnCallToActionSlideTypeDataResolver"
+                 parent="Shopware\Core\Content\Media\Cms\ImageCmsElementResolver">
+            <tag name="shopware.cms.data_resolver"/>
+        </service>
+        
+    </services>
+</container>

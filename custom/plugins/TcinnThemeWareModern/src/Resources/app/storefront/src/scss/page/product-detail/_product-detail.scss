@@ -1,0 +1,202 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Product detail
+	==================================================
+
+	Origin: Shopware base & skin
+*/
+
+// ThemeWare: Product detail adjustments
+// TODO: Kommentare...
+// TODO: Shopware Vererbung prüfen...
+
+// ThemeWare: Check - Do not use on CMS page
+body:not(.twt-is-cms-product-detail) {
+	// Apply only on the old product detail page
+	.product-detail {
+		// ThemeWare: Detail content
+		.product-detail-content {
+			margin-bottom: $twt-basegrid-spacing;
+			border-radius: null-pixel-unit($twt-border-radius);
+			background-color: $twt-container-main-background-color;
+
+			// ThemeWare: Clean style #TODO
+			// TODO: Add configuration, das "if" ist nicht ausreichend...
+			@if($twt-container-main-background-color != $sw-background-color) {
+				padding: $twt-basegrid-spacing;
+				
+				@if($twt-container-main-background-color != $twt-container-main-border-color) {
+					border: 1px solid $twt-container-main-border-color;
+				}
+			}
+
+			.product-detail-headline {
+				margin-bottom: $twt-basegrid-spacing;
+			}
+
+			.product-detail-media { // .product-detail-main > ..
+				.gallery-slider-thumbnails-item-inner { // TODO: _gallery-slider.scss ?!
+					border-radius: null-pixel-unit($twt-border-radius);
+
+					// TODO: add contain...
+					@if $twt-product-detail-thumbnails-image-object-fit == "cover" {
+						padding: 0;
+						overflow: hidden;
+
+						img {
+							-o-object-fit: $twt-product-detail-thumbnails-image-object-fit;
+							object-fit: $twt-product-detail-thumbnails-image-object-fit;
+							height: 100%;
+							border-radius: null-pixel-unit($twt-border-radius);
+						}
+					}
+				}
+
+				// ThemeWare: Gallery with thumbnails
+				// TODO: add contain
+				.gallery-slider-item { // TODO: _gallery-slider.scss ?!
+					@if $twt-product-detail-slider-image-object-fit == "cover" {
+						.gallery-slider-image {
+							-o-object-fit: $twt-product-detail-slider-image-object-fit;
+							object-fit: $twt-product-detail-slider-image-object-fit;
+							height: 100%;
+							width: 100%;
+							border-radius: null-pixel-unit($twt-border-radius);
+						}
+					}
+				}
+
+				// ThemeWare: Single image without thumbnails
+				// TODO: add contain
+				.gallery-slider-single-image { // TODO: _gallery-slider.scss ?!
+					@if $twt-product-detail-slider-image-object-fit == "cover" {
+						.gallery-slider-image {
+							-o-object-fit: $twt-product-detail-slider-image-object-fit;
+							object-fit: $twt-product-detail-slider-image-object-fit;
+							height: 100%;
+							width: 100%;
+							border-radius: null-pixel-unit($twt-border-radius);
+						}
+					}
+				}
+				
+				// ThemeWare: Thumbnail position
+				@if $twt-product-detail-thumbnails-position == 2 {
+					@include media-breakpoint-up(md) { // min 768px
+						.gallery-slider-row { // TODO: _gallery-slider.scss ?!
+							margin-bottom: 0;
+
+							.gallery-slider-col {
+								width: 100%;
+								order: 1;
+							}
+
+							.gallery-slider-thumbnails-col {
+								width: 100%;
+								order: 2;
+
+								.gallery-slider-thumbnails {
+									margin-top: 10px;
+									
+									.gallery-slider-thumbnails-item {
+										height: auto;
+										max-width: 120px;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/*
+    __             ____________     ____                             __  _
+/ /_  __  __   /_  __/ ____/    /  _/___  ____  ____ _   ______ _/ /_(_)___  ____  _____
+/ __ \/ / / /    / / / /  ______ / // __ \/ __ \/ __ \ | / / __  / __/ / __ \/ __ \/ ___/
+/ /_/ / /_/ /    / / / /__/_____// // / / / / / / /_/ / |/ / /_/ / /_/ / /_/ / / / (__  )
+/_ ___/\__, /    /_/  \____/    /___/_/ /_/_/ /_/\____/|___/\__,_/\__/_/\____/_/ /_/____/
+    /____/
+*/
+
+// ThemeWare: Product detail adjustments (all product detail page)
+// TODO: Shopware Vererbung prüfen...
+// TODO: #custom
+.content-main {
+	>.container {
+		>.container-main {
+			>div.product-detail {
+				margin: $twt-basegrid-spacing 0;
+				padding: 0;
+				border: none;
+				border-radius: 0;
+				background: none;
+			}
+		}
+	}
+}
+
+// ThemeWare: Product detail buy
+@include media-breakpoint-between(md, md) { // min 768px and max 991.98px
+	.product-detail-buy {
+		margin-top: 10px;
+	}
+}
+
+// ThemeWare: Table price
+// Deprecated: 6.4.0 > class "product-block-prices-table" will be removed use "product-block-prices-grid" instead
+table.product-block-prices-table,
+table.product-block-prices-grid {
+	margin-bottom: 3px;
+}
+
+// ThemeWare: Tax
+.product-detail-tax-container {
+	.product-detail-tax-link {
+		@include twt-font-size-rem($font-size-xs);
+	}
+}
+
+// ThemeWare: Delivery information
+.product-detail-delivery-information {
+	// Adjust spacing
+	margin-bottom: 1.25rem; // 1.5rem
+}
+
+.product-delivery-information {
+	p.delivery-information {
+		margin-bottom: 2px;
+	}
+}
+
+// ThemeWare: Sticky "Image gallery and buy box"
+@if $twt-product-detail-sticky-gallery-buybox != 1 {
+	.is-ctl-product:not(.modal-open) {
+		.product-detail-media,
+		.product-detail-buy {
+			> div {
+				position: sticky;
+				top: 20px;
+			}
+		}
+	}
+
+	// ThemeWare: Fix sticky buy box on cms pages
+	.cms-block-gallery-buybox {
+		overflow: inherit;
+	}
+
+	// TODO >>>
+	.cms-block-twt-gallery-buybox-name,
+	.cms-block-twt-gallery-buybox-heading {
+		overflow: inherit;
+	}
+}

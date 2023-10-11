@@ -1,0 +1,21 @@
+.cr-title {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+}
+
+.cr-sync-title {
+  font-size: 20px;
+  padding-left: 0;
+}
+
+.cr-sync-title .sw-label__caption {
+  display: inline !important;
+}
+
+@media (max-width: 680px) {
+  .clever-reach-sync .cr-banner-img {
+    display: none !important;
+  }
+}

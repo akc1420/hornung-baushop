@@ -1,0 +1,30 @@
+{% sw_extends '@Storefront/storefront/utilities/icon.html.twig' %}
+
+{# @TODO #}
+
+{% block utilities_icon %}
+    {% set styles = [ size, color, rotation, flip, class ] %}
+
+    {# Available icons ... #}
+    {% set twtIcons = [ 'avatar', 'bag', 'basket', 'cart', 'envelope', 'heart', 'help', 'home', 'search', 'send', 'stack', 'star', 'x', 'arrow-head-right' ] %}
+
+    {# Available iconsets ... #}
+    {% set twtIconSets = [ 'bx', 'bx-alt', 'bxs', 'bxs-alt', 'fa-free', 'fa-free-alt', 'fa6-free', 'fa6-free-alt', 'feather', 'material', 'sw6', 'twt-light', 'twt-one-outline', 'twt-one-solid', 'twt-one-thin', 'twt-six', 'twt-six-solid' ] %}
+
+    {# Set iconset via theme configuration ... #}
+    {% set twtIconSet = theme_config('twt-iconset') %}
+
+    {# Include icon ... #}
+    {% if twtIconSet is not same as ('default') and twtIconSet in twtIconSets and pack == 'themeware' and name in twtIcons %}
+        {% sw_include '@Storefront/storefront/themeware/twt-iconsets.html.twig' with {
+            styles: styles,
+            set: twtIconSet
+        } %}
+    {% else %}
+        {% if pack is not defined or pack == 'themeware' %}
+            {% set pack = 'default' %}
+        {% endif %}
+
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{# ThemeWare: CMS block "Image banner" #}
+
+{% block block_twt_image_banner %}
+    {% set element = block.slots.getSlot('image') %}
+    {% set columns = 1 %}
+
+    <div class="col-12" data-cms-element-id="{{ element.id }}">
+        {% block block_twt_image_banner_inner %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+        {% endblock %}
+    </div>
+{% endblock %}

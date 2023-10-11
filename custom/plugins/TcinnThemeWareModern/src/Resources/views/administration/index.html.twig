@@ -1,0 +1,15 @@
+{% sw_extends 'administration/index.html.twig' %}
+
+{# ThemeWare: Add styles to administration  #}
+{% block administration_stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('bundles/tcinnthemewaremodern/administration/css/tcinn-theme-ware-modern.css') }}">
+{% endblock %}
+
+{# ThemeWare: Add scripts to administration  #}
+{% block administration_scripts %}
+    {{ parent() }}
+
+    <script type="text/javascript" src="{{ asset('bundles/tcinnthemewaremodern/administration/js/tcinn-theme-ware-modern.js') }}"></script>
+{% endblock %}

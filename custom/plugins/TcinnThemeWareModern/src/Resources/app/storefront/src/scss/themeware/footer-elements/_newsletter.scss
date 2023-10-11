@@ -1,0 +1,326 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Widget "Newsletter" (footer specific styling) (see 'themeware/widgets/_newsletter.scss' for general styling)
+	==================================================
+
+*/
+
+// TODO: Add @if condition
+
+.footer-column-newsletter {
+    form {
+        display: flex;
+        align-content:flex-start;
+        flex-direction:row;
+        flex-wrap:wrap;
+
+        .row {
+            flex-wrap: nowrap;
+        }
+
+        .form-content {
+            width: 100%;
+
+            .form-group {
+                margin-bottom: 0;
+            }
+
+            label.custom-control-label {
+                text-align: left;
+            }
+
+            .twt-footer-column-newsletter-privacy {
+                >div {
+                    &:not([class]) {
+                        display: none;
+                    }
+                }
+            }
+
+            .twt-footer-column-newsletter-input-email {
+                width: calc(100% - 80px);
+                max-width: 320px;
+
+                .form-label {
+                    position: absolute;
+                    overflow: hidden;
+                    clip: rect(1px,1px,1px,1px);
+                    width: 1px;
+                    height: 1px;
+                    border: 0;
+                }
+            }
+
+            input#form-email {
+                text-align: $twt-widget-newsletter-input-text-align;
+                color: $twt-widget-newsletter-input-color;
+                border-color: $twt-widget-newsletter-input-border-color;
+
+                // ThemeWare: Check border-radius style
+                @if($twt-widget-newsletter-input-corner-type == 1) {
+                    border-top-left-radius: null-pixel-unit($twt-border-radius);
+                    border-bottom-left-radius: null-pixel-unit($twt-border-radius);
+                } @else if($twt-widget-newsletter-input-corner-type == 3) {
+                    border-top-left-radius: 50px;
+                    border-bottom-left-radius: 50px;
+                } @else if($twt-widget-newsletter-input-corner-type == 4) {
+                    border-top-left-radius: null-pixel-unit($twt-widget-newsletter-input-border-radius);
+                    border-bottom-left-radius: null-pixel-unit($twt-widget-newsletter-input-border-radius);
+                }
+
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+                background-color: $twt-widget-newsletter-input-background-color;
+            }
+
+            button.btn {
+                min-width: 80px;
+                color: $twt-widget-newsletter-button-color;
+                border-color: $twt-widget-newsletter-button-border-color;
+
+                // ThemeWare: Check border-radius style
+                @if($twt-widget-newsletter-input-corner-type == 1) {
+                    border-top-right-radius: null-pixel-unit($twt-border-radius);
+                    border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+                } @else if($twt-widget-newsletter-input-corner-type == 3) {
+                    border-top-right-radius: 50px;
+                    border-bottom-right-radius: 50px;
+                } @else if($twt-widget-newsletter-input-corner-type == 4) {
+                    border-top-right-radius: null-pixel-unit($twt-widget-newsletter-input-border-radius);
+                    border-bottom-right-radius: null-pixel-unit($twt-widget-newsletter-input-border-radius);
+                }
+
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+                outline: none;
+                background-color: $twt-widget-newsletter-button-background-color;
+
+                .icon {
+                    color: $twt-widget-newsletter-button-color;
+                }
+
+                &:hover {
+                    color: $twt-widget-newsletter-button-color-hover;
+                    border-color: $twt-widget-newsletter-button-border-color-hover;
+                    background-color: $twt-widget-newsletter-button-background-color-hover;
+
+                    .icon {
+                        color: $twt-widget-newsletter-button-color-hover;
+                    }
+                }
+
+                &:focus,
+                &.focus {
+                    box-shadow: none;
+                }
+            }
+
+            .privacy-notice {
+                @include twt-font-size-rem($font-size-sm);
+                line-height: 1.2;
+
+                .custom-control-label {
+                    padding-top: 3px;
+                    padding-bottom: 2px;
+                }
+            }
+
+            .custom-control-input:focus ~ .custom-control-label::before,
+            .custom-control-input ~ .custom-control-label::before {
+                top: 3px;
+                box-shadow: none;
+            }
+
+            .custom-control-input:focus ~ .custom-control-label::after,
+            .custom-control-input ~ .custom-control-label::after {
+                top: 3px;
+            }
+
+        }
+    }
+}
+
+/*
+  _             _______ _____    _____                             _   _
+ | |           |__   __/ ____|  |_   _|                           | | (_)
+ | |__  _   _     | | | |   ______| |  _ __  _ __   _____   ____ _| |_ _  ___  _ __  ___
+ | '_ \| | | |    | | | |  |______| | | '_ \| '_ \ / _ \ \ / / _` | __| |/ _ \| '_ \/ __|
+ | |_) | |_| |    | | | |____    _| |_| | | | | | | (_) \ V / (_| | |_| | (_) | | | \__ \
+ |_ __/ \__, |    |_|  \_____|  |_____|_| |_|_| |_|\___/ \_/ \__,_|\__|_|\___/|_| |_|___/
+         __/ |
+        |___/
+*/
+
+// ThemeWare: mittlerer Bereich (= default) ------------------------------
+
+#footerColumns {
+    .footer-column-newsletter {
+        form {
+            @if $twt-footer-column-text-align == center {
+                justify-content: center;
+
+                .form-content {
+                    .row {
+                        justify-content: center;
+                    }
+                }
+            }
+            @if $twt-footer-column-text-align == right {
+                justify-content: flex-end;
+
+                .form-content {
+                    .row {
+                        justify-content: flex-end;
+                    }
+                }
+            }
+        }
+
+        // ThemeWare: Captcha adjustments
+        .basic-captcha {
+            @if $twt-footer-column-text-align == center {
+                justify-content: center;
+
+            }
+            @if $twt-footer-column-text-align == right {
+                justify-content: flex-end;
+            }
+
+            .form-label {
+                text-align: $twt-footer-column-text-align;
+                color: $twt-footer-column-color;
+            }
+        }
+
+        //.captcha-google-re-captcha-v2 {}
+        //.captcha-google-re-captcha-v3 {}
+    }
+}
+
+// ThemeWare: oberer Bereich ------------------------------
+
+#footerColumnsTop {
+    .footer-column-newsletter {
+        form {
+            @if $twt-footer-column-top-text-align == center {
+                justify-content: center;
+
+                .form-content {
+                    .row {
+                        justify-content: center;
+                    }
+                }
+            }
+            @if $twt-footer-column-top-text-align == right {
+                justify-content: flex-end;
+
+                .form-content {
+                    .row {
+                        justify-content: flex-end;
+                    }
+                }
+            }
+        }
+
+        // ThemeWare: Captcha adjustments
+        .basic-captcha {
+            @if $twt-footer-column-top-text-align == center {
+                justify-content: center;
+
+            }
+            @if $twt-footer-column-top-text-align == right {
+                justify-content: flex-end;
+            }
+
+            .form-label {
+                text-align: $twt-footer-column-top-text-align;
+                color: $twt-footer-column-top-color;
+            }
+        }
+
+        //.captcha-google-re-captcha-v2 {}
+        //.captcha-google-re-captcha-v3 {}
+    }
+}
+
+// ThemeWare: unterer Bereich ------------------------------
+
+#footerColumnsBottom {
+    .footer-column-newsletter {
+        form {
+            @if $twt-footer-column-bottom-text-align == center {
+                justify-content: center;
+
+                .form-content {
+                    .row {
+                        justify-content: center;
+                    }
+                }
+            }
+            @if $twt-footer-column-bottom-text-align == right {
+                justify-content: flex-end;
+
+                .form-content {
+                    .row {
+                        justify-content: flex-end;
+                    }
+                }
+            }
+        }
+
+        // ThemeWare: Captcha adjustments
+        .basic-captcha {
+            @if $twt-footer-column-bottom-text-align == center {
+                justify-content: center;
+
+            }
+            @if $twt-footer-column-bottom-text-align == right {
+                justify-content: flex-end;
+            }
+
+            .form-label {
+                text-align: $twt-footer-column-bottom-text-align;
+                color: $twt-footer-column-bottom-color;
+            }
+        }
+
+        //.captcha-google-re-captcha-v2 {}
+        //.captcha-google-re-captcha-v3 {}
+    }
+}
+
+// ThemeWare: Captcha adjustments ------------------------------
+
+.footer-column-newsletter {
+    .basic-captcha {
+        margin-right: 0;
+        margin-left: 0;
+
+        .form-group.col-md-4 {
+            flex: 0 0 100%;
+            max-width: 400px;
+            padding-right: 0;
+            padding-left: 0;
+        }
+    }
+
+    .captcha-google-re-captcha-v2 {
+        .grecaptcha-v2-container {
+            div {
+                width: auto !important;
+            }
+        }
+    }
+
+    .captcha-google-re-captcha-v3 {
+        .grecaptcha-protection-information {
+            font-size: smaller;
+        }
+    }
+}

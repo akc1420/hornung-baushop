@@ -1,0 +1,19 @@
+includes:
+    - ../../../vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    level: 8
+    tmpDir: var/cache/phpstan
+    inferPrivatePropertyTypeFromConstructor: true
+    treatPhpDocTypesAsCertain: false
+
+    bootstrapFiles:
+        - ../../../src/Core/DevOps/StaticAnalyze/PHPStan/phpstan-bootstrap.php
+    # run `php vendor/shopware/core/DevOps/StaticAnalyze/PHPStan/phpstan-bootstrap.php` to create the container
+    excludePaths:
+        - vendor
+        - var
+        - ecs.php
+    paths:
+        - src
+        - tests

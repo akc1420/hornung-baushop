@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-cart.html.twig' %}
+
+
+          {% block component_offcanvas_cart_actions %}
+
+              {{ parent() }}
+              {% set recommendySlider = page.extensions.Recommendy %}
+
+
+              {% if   recommendySlider.bundleArticles is defined and recommendySlider.bundleArticles|length > 0 %}
+
+                  <div class="row align-items-center h4 offcanvas-cart-header recommendy-cart-header" style="margin-top: 2rem;">
+                      <div class="col">{{ "recommendy.bundleSliderTitle"|trans|sw_sanitize }}</div>
+
+                  </div>
+
+                  <div class="offcanvas-cart-items">
+                  {% for product in recommendySlider.bundleArticles %}
+                      {% sw_include "@Storefront/storefront/recommendy/recommendy_cart-item.html.twig" with {
+                          'product': product
+                      }  %}
+                  {% endfor %}
+                  </div>
+              {% endif %}
+
+
+          {% endblock %}

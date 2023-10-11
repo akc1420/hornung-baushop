@@ -1,0 +1,14 @@
+{# ThemeWare "Custom icons" #}
+{#
+    @Storefront/storefront/themeware/twt-custom-icons.html.twig
+#}
+
+{# TODO: prüfen... #}
+
+{% block twt_custom_icons %}
+    {% apply spaceless %}
+        <span class="twt-custom-icon icon icon-themeware icon-{{ icon }} icon-solid">
+            {% if icon == "checkmark" %}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" class="twt-svg-icon icon-checkmark"><path d="M35.2,5.4L13,27.6l-8.2-8.2c-0.4-0.4-1-0.4-1.4,0L1,21.9c-0.4,0.4-0.4,1,0,1.4l11.3,11.3c0.4,0.4,1,0.4,1.4,0L39,9.2c0.4-0.4,0.4-1,0-1.4l-2.4-2.4C36.2,5,35.6,5,35.2,5.4z"/></svg>{% endif %}
+        </span>
+    {% endapply %}
+{% endblock %}

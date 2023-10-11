@@ -1,0 +1,114 @@
+﻿{% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtIconSet = theme_config('twt-iconset') %}
+{% set twtNavMainArrowsShow = theme_config('twt-nav-main-arrows-show') %}
+{% set twtNavMainHomeLink = theme_config('twt-nav-main-home-link') %}
+{% set twtNavMainHomeLinkCompatibility = theme_config('twt-nav-main-home-link-compatibility') %}
+{% set twtNavMainHomeLinkShow = theme_config('twt-nav-main-home-link-show') %}
+{% set twtNavMainMenuItemsCompatibility = theme_config('twt-nav-main-menu-items-compatibility') %}
+{% set twtNavMainShow = theme_config('twt-nav-main-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# TODO: HC-Architecture... #}
+{# ThemeWare: Adjustments on the main navigation #}
+{% block layout_main_navigation %}
+	{# ThemeWare: Hide main navigation #}
+	{% if twtNavMainShow == 1 or twtNavMainShow == 3 %}
+		{# ThemeWare: Block cleared #}
+	{% else %}
+
+		{# Default block #}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}
+
+
+{# ThemeWare: Adjustments on the home link in main navigation #}
+{# HC-Architecture @Doku #}
+{% block layout_main_navigation_menu_home %}
+	{% if twtNavMainHomeLinkCompatibility == 2 %}
+		{% if twtNavMainHomeLinkShow > 1 %}
+			{# ThemeWare: Add aria-label #}
+			 <a class="nav-link main-navigation-link{% if controllerAction is same as('home') %} active{% endif %} home-link"
+				href="{{ path('frontend.home.page') }}" aria-label="Home" 
+				itemprop="url"
+				title="{{ "general.homeLink"|trans|striptags }}">
+				{% if twtNavMainHomeLink == 1 %}
+					{# ThemeWare: Home-Text link (default) #}
+					<div class="main-navigation-link-text">
+						<span itemprop="name">{{ "general.homeLink"|trans|sw_sanitize }}</span>
+					</div>
+				{% elseif twtNavMainHomeLink == 2 %}
+
+					{# ThemeWare: Home-Icon link #}
+					<div class="main-navigation-icon">
+						<span itemprop="name">
+							{% if twtIconSet is not same as ('default') %}
+								{% sw_icon 'home' style {'pack':'themeware'} %}
+							{% else %}
+								{% sw_icon 'home' %}
+							{% endif %}
+						</span>
+					</div>
+				{% endif %}
+			</a>
+		{% else %}
+
+			{# ThemeWare: no icon or text #}
+		{% endif %}
+	{% else %}
+
+		{# Default block #}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}
+
+
+{# ThemeWare: Adjustments on the menu items in main navigation #}
+{# TODO: HC-Architecture @Doku #}
+{% block layout_main_navigation_menu_item %}
+	{% if twtNavMainMenuItemsCompatibility == 2 %}
+		{% if category.type == 'folder' %}
+			<div class="nav-link main-navigation-link"
+					{% if treeItem.children|length > 0 %}
+						data-flyout-menu-trigger="{{ category.id }}"
+					{% endif %}
+				 title="{{ name }}">
+				<div class="main-navigation-link-text">
+					<span itemprop="name">{{ name }}</span>
+
+					{# ThemeWare: Add navigation arrow #}
+					{% if twtNavMainArrowsShow == 2 and treeItem.children|length > 0 %}
+						{% sw_icon 'arrow-medium-down' style { 'pack': 'solid', 'size': 'xs' } %}
+					{% endif %}
+				</div>
+			</div>
+		{% else %}
+			<a class="nav-link main-navigation-link{% if category.id == page.header.navigation.active.id or category.id in activePath %} active{% endif %}"
+			   href="{{ category_url(category) }}"
+			   itemprop="url"
+			   {% if treeItem.children|length > 0 %}data-flyout-menu-trigger="{{ category.id }}"{% endif %}
+					{% if category_linknewtab(category) %}target="_blank"{% endif %}
+			   title="{{ name }}">
+				<div class="main-navigation-link-text">
+					<span itemprop="name">{{ name }}</span>
+
+					{# ThemeWare: Add navigation arrow #}
+					{% if twtNavMainArrowsShow == 2 and treeItem.children|length > 0 %}
+						{% sw_icon 'arrow-medium-down' style { 'pack': 'solid', 'size': 'xs' } %}
+					{% endif %}
+				</div>
+			</a>
+		{% endif %}
+	{% else %}
+
+		{# Default block #}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{
+    "sw-privileges": {
+        "additional_permissions": {
+            "routes": {
+                "api_proxy_switch-customer": "Im Namen eines Kunden handeln"
+            }
+        }
+    }
+}

@@ -1,0 +1,45 @@
+{% block clever_reach_afterInitial_syncSettings %}
+    <div>
+        <div v-if="errorOccurred">
+            <clever-reach-error :error-title="$tc('clever-reach.initialSync.errorTitle')"
+                                :error-message="$tc('clever-reach.initialSync.errorMessage')"
+                                :error-description="errorDescription"
+                                :button-text="$tc('clever-reach.initialSync.retrySync')">
+            </clever-reach-error>
+        </div>
+
+        <sw-container class="cr-title">
+            <sw-label variant="neutral" class="cr-sync-title">
+                {{ $tc('clever-reach.syncSettings.syncSettings') }}
+            </sw-label>
+        </sw-container>
+        <clever-reach-settings :changes-label="$tc('clever-reach.syncSettings.changes')"
+                               :send-emails="$tc('clever-reach.syncSettings.sendEmails')"
+                               :button-text="$tc('clever-reach.syncSettings.reforce')"
+                               :display-number-of-receivers="false">
+        </clever-reach-settings>
+        <input type="hidden" id="cr-enabled-groups" value="subscribers">
+
+        <sw-card class="cr-order-data">
+            <template v-slot:title>
+                {{ $tc('clever-reach.syncSettings.orderData') }}
+            </template>
+            <sw-label variant="neutral" class="cr-order-import">
+                {{ $tc('clever-reach.syncSettings.orderImport') }}
+            </sw-label>
+            <sw-button variant="default" class="cr-import-order-btn" :isLoading="orderSyncRunning" v-on:click="includeOrders">
+                {{ $tc('clever-reach.syncSettings.importData') }}
+            </sw-button>
+            <div class="cr-order-progress" v-if="taskInProgress">
+                <sw-label variant="neutral" class="cr-order-import">
+                    {{ $tc('clever-reach.syncSettings.importInBackground') }}
+                </sw-label>
+                <sw-progress-bar :value="progressValue" :maxValue="100" class="cr-progress-bar">
+                </sw-progress-bar>
+            </div>
+            <sw-label variant="neutral" class="cr-order-import cr-order-time" v-if="lastSyncTime">
+                {{ $tc('clever-reach.syncSettings.importedOn') }} {{ lastSyncTime }}
+            </sw-label>
+        </sw-card>
+    </div>
+{% endblock %}

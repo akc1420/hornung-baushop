@@ -1,0 +1,101 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/index.html.twig' %}
+
+{% set pickwareDhlConfigurationExtension = page.extensions.pickwareDhlConfiguration ?? null %}
+{% set pickwareDhlCurrentShippingMethod = context.shippingMethod ?? null %}
+
+{% if pickwareDhlCurrentShippingMethod is not null
+    and pickwareDhlConfigurationExtension is not null
+    and pickwareDhlConfigurationExtension.shippingMethodConfigurations[pickwareDhlCurrentShippingMethod.id]
+    and pickwareDhlConfigurationExtension.shippingMethodConfigurations[pickwareDhlCurrentShippingMethod.id].storefrontConfig is not null
+%}
+    {% set pickwareDhlShippingMethodConfig = pickwareDhlConfigurationExtension
+    .shippingMethodConfigurations[pickwareDhlCurrentShippingMethod.id].storefrontConfig
+    %}
+
+    {% set pickwareDhlShowPreferredDay = pickwareDhlShippingMethodConfig.showPreferredDay ?? false %}
+    {% set pickwareDhlShowPreferredLocation = pickwareDhlShippingMethodConfig.showPreferredLocation ?? false %}
+    {% set pickwareDhlShowPreferredNeighbour = pickwareDhlShippingMethodConfig.showPreferredNeighbour ?? false %}
+    {% set pickwareDhlShowNoNeighbourDelivery = pickwareDhlShippingMethodConfig.showNoNeighbourDelivery ?? false %}
+    {% set pickwareDhlShowPreferredDeliveryServices =
+        pickwareDhlShowPreferredDay
+        or pickwareDhlShowPreferredLocation
+        or pickwareDhlShowPreferredNeighbour
+        or pickwareDhlShowNoNeighbourDelivery
+    %}
+{% endif %}
+
+{% set pickwareSalesChannelContext = context.extensions.pickwareSalesChannelContext %}
+{% set pickwareSalesChannelContextPayload = pickwareSalesChannelContext ? pickwareSalesChannelContext.payload : [] %}
+
+{% block page_checkout_confirm_payment_shipping %}
+    {{ parent() }}
+
+    {% if pickwareDhlShowPreferredDeliveryServices %}
+        <div class="pickware-dhl-preferred-delivery">
+            <div class="card">
+                <div class="card-title">{{ "pickware-dhl.preferred-delivery.storefront.title"|trans|sw_sanitize }}</div>
+
+                <div class="pickware-dhl-preferred-delivery-form__subtitle card-subtitle">
+                    {{ "pickware-dhl.preferred-delivery.storefront.subtitle"|trans|sw_sanitize }}
+                </div>
+
+                <div class="card-body pickware-dhl-preferred-delivery__content">
+                    {% set pickwareDhlPreferredDelivery = pickwareSalesChannelContextPayload.dhl_preferred_delivery ?? [] %}
+                    {% set pickwareDhlPreferredDeliveryConfigured =
+                        (pickwareDhlPreferredDelivery.preferred_day ?? '') != ''
+                        or (pickwareDhlPreferredDelivery.preferred_location ?? '') != ''
+                        or (pickwareDhlPreferredDelivery.preferred_neighbour ?? '') != ''
+                        or pickwareDhlPreferredDelivery.no_neighbour_delivery is defined
+                    %}
+
+                    {% if pickwareDhlShowPreferredDay and (pickwareDhlPreferredDelivery.preferred_day ?? '') != '' %}
+                        <div class="pickware-dhl-preferred-day">
+                            {{ "pickware-dhl.preferred-delivery.storefront.preferred-day.label"|trans|sw_sanitize }}: {{ pickwareDhlPreferredDelivery.preferred_day|date('d.m.Y') }}
+                        </div>
+                    {% endif %}
+
+                    {% if pickwareDhlShowPreferredLocation and (pickwareDhlPreferredDelivery.preferred_location ?? '') != '' %}
+                        <div class="pickware-dhl-preferred-location">
+                            {{ "pickware-dhl.preferred-delivery.storefront.preferred-location.label"|trans|sw_sanitize }}: {{ pickwareDhlPreferredDelivery.preferred_location }}
+                        </div>
+                    {% endif %}
+
+                    {% if pickwareDhlShowPreferredNeighbour and (pickwareDhlPreferredDelivery.preferred_neighbour ?? '') != '' %}
+                        <div class="pickware-dhl-preferred-neighbour">
+                            {{ "pickware-dhl.preferred-delivery.storefront.preferred-neighbour.label"|trans|sw_sanitize }}: {{ pickwareDhlPreferredDelivery.preferred_neighbour }}
+                        </div>
+                    {% endif %}
+
+                    {% if pickwareDhlShowNoNeighbourDelivery and pickwareDhlPreferredDelivery.no_neighbour_delivery %}
+                        <div class="pickware-dhl-no-neighbour-delivery">
+                            {{ "pickware-dhl.preferred-delivery.storefront.no-neighbour-delivery.label"|trans|sw_sanitize }}
+                        </div>
+                    {% endif %}
+
+                    {% if not pickwareDhlPreferredDeliveryConfigured %}
+                        <div class="pickware-dhl-preferred-delivery__no-services-configured">
+                            {{ "pickware-dhl.preferred-delivery.storefront.no-services-configured"|trans|sw_sanitize }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="card-actions">
+                    {% set pseudoModalOptions = {
+                        url: path('pickware-dhl.frontend.preferred-delivery.page'),
+                        zipCode: context.shippingLocation.address.zipCode,
+                        csrfToken: sw_csrf("pickware-dhl.frontend.preferred-delivery.page", {"mode": "token"})
+                    } %}
+
+                    <a href="{{ path('pickware-dhl.frontend.preferred-delivery.page', {'zipCode': context.shippingLocation.address.zipCode}) }}"
+                       title="{{ "pickware-dhl.preferred-delivery.storefront.configure"|trans }}"
+                       class="btn btn-outline-primary"
+                       data-pickware-storefront-pseudo-modal
+                       data-pickware-storefront-pseudo-modal-options="{{ pseudoModalOptions|json_encode }}"
+                    >
+                        {{ "pickware-dhl.preferred-delivery.storefront.configure"|trans|sw_sanitize }}
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}

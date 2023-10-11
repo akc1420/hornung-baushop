@@ -1,0 +1,23 @@
+{
+    "name": "mediameets-fb-domain-administration",
+    "private": true,
+    "version": "2.0.0",
+    "description": "The administration of the mediameetsFbDomain extension (plugin).",
+    "author": "media:meets GmbH",
+    "license": "proprietary",
+    "devDependencies": {
+        "@babel/core": "^7.13.15",
+        "@babel/eslint-parser": "^7.13.14",
+        "@babel/plugin-syntax-class-properties": "^7.12.13",
+        "@babel/preset-env": "^7.13.15",
+        "eslint": "^7.24.0",
+        "stylelint": "^13.7.1",
+        "stylelint-config-standard": "^21.0.0"
+    },
+    "scripts": {
+        "lint-js": "$(npm bin)/eslint --config .eslintrc ./src",
+        "lint-fix-js": "$(npm bin)/eslint --fix --config .eslintrc ./src",
+        "lint-css": "$(npm bin)/stylelint --config .stylelintrc ./src",
+        "lint-fix-css": "$(npm bin)/stylelint --fix --config .stylelintrc ./src"
+    }
+}

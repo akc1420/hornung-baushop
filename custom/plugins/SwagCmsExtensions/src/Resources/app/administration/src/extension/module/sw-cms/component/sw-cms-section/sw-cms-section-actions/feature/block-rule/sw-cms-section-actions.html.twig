@@ -1,0 +1,14 @@
+{% block sw_cms_section_action_select %}
+    {% parent %}
+
+    {% block sw_cms_section_action_block_rules_label %}
+        <div v-if="hasRulesOnAllBlocks"
+             class="sw-cms-section__action sw-cms-section__block-rules-label">
+            <sw-icon
+                    v-tooltip="rulesOnAllBlocksTooltip"
+                    name="default-badge-info"
+                    size="20">
+            </sw-icon>
+        </div>
+    {% endblock %}
+{% endblock %}

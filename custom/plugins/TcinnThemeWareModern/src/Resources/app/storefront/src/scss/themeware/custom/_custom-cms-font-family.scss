@@ -1,0 +1,24 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS font-family classes
+	==================================================
+
+*/
+
+// $font-family-base: $sw-font-family-base !default;
+.font-family-base,
+.twt-font-family-base {
+  font-family: $sw-font-family-base;
+}
+
+// $headings-font-family: $sw-font-family-headline !default;
+.headings-font-family,
+.twt-font-family-headline {
+  font-family: $sw-font-family-headline;
+}

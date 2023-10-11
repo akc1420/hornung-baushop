@@ -1,0 +1,26 @@
+{% block swag_cms_extensions_sidebar_section_scroll_behavior_config %}
+    <div class="swag-cms-section-config__scroll-navigation">
+
+        {% block swag_cms_extensions_sidebar_section_scroll_behavior_config_anchor_switch %}
+            <sw-switch-field
+                v-model="swagCmsExtensionsScrollNavigation.active"
+                class="scroll-navigation__anchor-switch"
+                :label="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.anchorSwitch')"
+                :disabled="!acl.can('cms.editor')"
+                @change="scrollNavigationActiveChanged">
+            </sw-switch-field>
+        {% endblock %}
+
+        {% block swag_cms_extensions_sidebar_section_scroll_behavior_config_anchor_title %}
+            <sw-text-field
+                v-model="swagCmsExtensionsScrollNavigation.displayName"
+                class="scroll-navigation__anchor-title"
+                :label="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.anchorTitle')"
+                :helpText="$tc('swag-cms-extensions.sw-cms.detail.scrollNavigation.anchorTitleHelpText')"
+                :error="swagCmsExtensionsScrollNavigationDisplayNameError"
+                :disabled="!acl.can('cms.editor')"
+                @change="scrollNavigationActiveChanged">
+            </sw-text-field>
+        {% endblock %}
+    </div>
+{% endblock %}

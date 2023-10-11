@@ -1,0 +1,33 @@
+{% block clever_reach_abandoned_cart_settings %}
+    <sw-page>
+        <template slot="search-bar">
+            <sw-search-bar>
+            </sw-search-bar>
+        </template>
+        <template slot="smart-bar-header">
+            <div class="cr-ac-details-header">
+                {{ shopName }}
+            </div>
+        </template>
+        <template slot="smart-bar-back">
+            <router-link class="cr-route-link"
+                    :to="{ name: 'clever.reach.official.index', params: { page: 'dashboard', activeTab: 'abandonedCart' } }">
+                <sw-icon class="cr-arrow" name="default-arrow-head-left" small></sw-icon>
+            </router-link>
+        </template>
+        <template slot="smart-bar-actions">
+            <sw-button variant="primary" class="cr-save-timing" @click="saveChanges" :isLoading="isLoading">
+                {{ $tc('clever-reach.syncSettings.save') }}
+            </sw-button>
+        </template>
+        <template #content>
+            <sw-card-view>
+                <clever-reach-abandoned-cart-settings-ac :shopId="id"></clever-reach-abandoned-cart-settings-ac>
+                <clever-reach-abandoned-cart-settings-thea :shopId="id"></clever-reach-abandoned-cart-settings-thea>
+                <clever-reach-abandoned-cart-settings-doi :shopId="id"></clever-reach-abandoned-cart-settings-doi>
+                <clever-reach-abandoned-cart-settings-timing :shopId="id"></clever-reach-abandoned-cart-settings-timing>
+                <clever-reach-abandoned-cart-settings-send></clever-reach-abandoned-cart-settings-send>
+            </sw-card-view>
+        </template>
+    </sw-page>
+{% endblock %}

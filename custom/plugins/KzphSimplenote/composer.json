@@ -1,0 +1,32 @@
+{
+  "name": "kzph/simplenote",
+  "description": "Simple notes for orders, customers and products",
+  "version": "1.0.11",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Konzeptphase Developer Team"
+        }
+    ],
+    "require": {
+        "shopware/core": "~6.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kzph\\Simplenote\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "Kzph\\Simplenote\\KzphSimplenote",
+        "copyright": "(c) by Konzeptphase 2022",
+        "label": {
+            "de-DE": "Simple Notizen an Bestellungen, Kunden und Produkten",
+            "en-GB": "Add simple notes to orders, customers and products"
+        },
+        "description": {
+            "de-DE": "Speichern Sie Notizen an Bestellungen, Kunden und Produkten, die nur durch Mitarbeiter einsehbar sind.",
+            "en-GB": "Save notes to orders, customers and products that can only be viewed by employees."
+        }
+    }
+}

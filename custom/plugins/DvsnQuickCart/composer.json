@@ -1,0 +1,44 @@
+{
+    "name": "dvsn/quick-cart",
+    "description": "Quick cart",
+    "version": "1.1.0",
+    "license": "proprietary",
+    "type": "shopware-platform-plugin",
+    "authors": [
+        {
+            "name": "digitvision",
+            "homepage": "https://www.digitvision.de"
+        }
+    ],
+    "require": {
+        "shopware/core": "^6.4",
+        "shopware/storefront": "^6.4",
+        "shopware/administration": "^6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dvsn\\QuickCart\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "Dvsn\\QuickCart\\DvsnQuickCart",
+        "copyright": "digitvision",
+        "plugin-icon": "src/Resources/plugin.png",
+        "label": {
+            "de-DE": "Artikel und Gutscheine via URL direkt in den Warenkorb legen",
+            "en-GB": "Add articles and vouchers directly to the shopping cart via URL"
+        },
+        "description": {
+            "de-DE": "Legen Sie Artikel (mit Angabe Stückzahl) und Gutscheine über eine URL direkt in den Warenkorb. So können Sie Ihren Kunden Links weitergeben und diese können schnell kaufen.",
+            "en-GB": "Place articles (with indication of quantity) and vouchers directly into the shopping cart via a URL. This way you can pass on links to your customers and they can buy quickly."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.digitvision.de",
+            "en-GB": "https://www.digitvision.de"
+        },
+        "supportLink": {
+            "de-DE": "https://www.digitvision.de",
+            "en-GB": "https://www.digitvision.de"
+        }
+    }
+}

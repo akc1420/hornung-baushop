@@ -1,0 +1,164 @@
+<div v-if="!isDisabled" class="sw-sales-channel-detail-base">
+
+    {% block swag_social_shopping_channel_network_base_before %}{% endblock %}
+    {% block swag_social_shopping_channel_network_base %}
+        <sw-card :isLoading="isLoading || productStreamsChecking" :title="$tc('swag-social-shopping.networks.base.titleGeneralSettings')">
+
+            {% block swag_social_shopping_channel_network_base_inner_before %}{% endblock %}
+
+            <sw-container columns="1fr 200px" gap="0px 30px">
+                {% block swag_social_shopping_channel_network_base_input_name %}
+                    <sw-text-field
+                        v-model="salesChannel.name"
+                        type="text"
+                        validation="required"
+                        required
+                        :error="salesChannelNameError"
+                        :disabled="!acl.can('sales_channel.editor')"
+                        :placeholder="placeholder(salesChannel, 'name', $tc('sw-sales-channel.detail.placeholderName'))"
+                        :label="$tc('sw-sales-channel.detail.labelInputName')">
+                    </sw-text-field>
+                {% endblock %}
+
+                {% block swag_social_shopping_channel_network_base_input_active %}
+                    <sw-switch-field
+                        v-model="salesChannel.active"
+                        bordered
+                        :disabled="!acl.can('sales_channel.editor')"
+                        :label="$tc('sw-sales-channel.detail.labelInputActive')">
+                    </sw-switch-field>
+                {% endblock %}
+            </sw-container>
+
+            {% block swag_social_shopping_channel_network_base_input_favorite %}
+            <sw-field
+                v-if="supportsFavorites()"
+                class="sw-social-shopping-channel-network-base-favorite"
+                type="switch"
+                :disabled="!acl.can('user_config:create') || !acl.can('user_config:update') || salesChannel._isNew"
+                :label="$tc('sw-sales-channel.detail.favouriteLabel')"
+                :value="isFavorite()"
+                @change="(isFavorite) => { salesChannelFavoritesService.update(isFavorite, salesChannel.id) }">
+            </sw-field>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_base_input_storefront %}
+                <sw-entity-single-select
+                    v-model="socialShoppingStorefrontSalesChannelId"
+                    labelProperty="name"
+                    entity="sales_channel"
+                    required
+                    :disabled="!acl.can('sales_channel.editor')"
+                    :criteria="storefrontSalesChannelCriteria"
+                    :label="$tc('swag-social-shopping.networks.base.storefront')"
+                    @change="onStorefrontSelectionChange">
+                </sw-entity-single-select>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_base_input_storefront_domain %}
+                <sw-entity-single-select
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.salesChannelDomainId"
+                    required
+                    labelProperty="url"
+                    entity="sales_channel_domain"
+                    :criteria="storefrontSalesChannelDomainCriteria"
+                    :disabled="(!salesChannel.extensions.socialShoppingSalesChannel.salesChannelDomainId && !socialShoppingStorefrontSalesChannelId) || !acl.can('sales_channel.editor')"
+                    :label="$tc('swag-social-shopping.networks.base.storefrontDomain')"
+                    @change="forceUpdate">
+                </sw-entity-single-select>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_base_input_storefront_domain_currency %}
+                <sw-entity-single-select
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.currencyId"
+                    required
+                    labelProperty="name"
+                    entity="currency"
+                    :criteria="storefrontSalesChannelDomainCurrencyCriteria"
+                    :disabled="(!salesChannel.extensions.socialShoppingSalesChannel.currencyId && !salesChannel.extensions.socialShoppingSalesChannel.salesChannelDomainId) || !acl.can('sales_channel.editor')"
+                    :label="$tc('swag-social-shopping.networks.base.storefrontDomainCurrency')"
+                    @change="forceUpdate">
+                </sw-entity-single-select>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_base_input_product_stream %}
+                <sw-entity-single-select
+                    v-model="salesChannel.extensions.socialShoppingSalesChannel.productStreamId"
+                    v-if="requiresProductStream"
+                    labelProperty="name"
+                    required
+                    entity="product_stream"
+                    :disabled="!acl.can('sales_channel.editor')"
+                    :label="$tc('swag-social-shopping.networks.base.productStream')"
+                    @change="forceUpdate"
+                >
+                </sw-entity-single-select>
+            {% endblock %}
+
+            {% block swag_social_shopping_channel_network_base_inner_after %}{% endblock %}
+        </sw-card>
+    {% endblock %}
+
+    {% block swag_social_shopping_channel_network_base_after %}{% endblock %}
+    {% block swag_social_shopping_channel_network_base_options %}
+        <sw-card v-if="!isNewEntity" :isLoading="isLoading || productStreamsChecking" :title="$tc('swag-social-shopping.networks.base.titleOptions')">
+
+            <sw-button-group>
+                {% block swag_social_shopping_channel_network_base_options_delete %}
+                    <div class="sw-sales-channel-detail-base__button-delete">
+                        <sw-button
+                            variant="danger"
+                            size="small"
+                            :disabled="!acl.can('sales_channel.deleter')"
+                            @click="showDeleteModal = true">
+                            {{ $tc('sw-sales-channel.detail.buttonDelete') }}
+                        </sw-button>
+                    </div>
+
+                    {% block swag_social_shopping_channel_network_base_options_delete_modal %}
+                        <sw-modal
+                                v-if="showDeleteModal"
+                                class="sw-sales-channel-detail-base__delete-modal"
+                                ref="modal"
+                                variant="small"
+                                :title="$tc('sw-sales-channel.detail.deleteModalTitle')"
+                                @modal-close="onCloseDeleteModal">
+
+                                <p class="sw-sales-channel-detail-base__delete-modal-confirm-text">{{ $tc('sw-sales-channel.detail.textConfirmDelete') }}</p>
+                                <p class="sw-sales-channel-detail-base__delete-modal-name">
+                                        <strong>{{ placeholder(salesChannel, 'name') }}</strong>
+                                </p>
+                                <p>{{ $tc('sw-sales-channel.detail.textDeleteInfo') }}</p>
+
+                                    <template slot="modal-footer">
+                                            <sw-button size="small" @click="onCloseDeleteModal">
+                                                    {{ $tc('sw-sales-channel.detail.buttonCloseDeleteModal') }}
+                                            </sw-button>
+
+                                            <sw-button
+                                                    size="small"
+                                                    variant="danger"
+                                                    @click="onConfirmDelete">
+                                                    {{ $tc('sw-sales-channel.detail.buttonConfirmDelete') }}
+                                            </sw-button>
+                                    </template>
+                        </sw-modal>
+                    {% endblock %}
+                {% endblock %}
+            </sw-button-group>
+        </sw-card>
+    {% endblock %}
+</div>
+<div v-else>
+
+    {% block swag_social_shopping_channel_network_base_disabled %}
+        <sw-card :isLoading="isLoading">
+            <sw-alert variant="info" appearance="default" :showIcon="true" :closable="false">
+                {{ $tc('swag-social-shopping.networks.base.noDynamicProductGroupFound') }}
+            </sw-alert>
+            <sw-button :routerLink="{ name: 'sw.product.stream.create' }" variant="primary">
+                {{ $tc('swag-social-shopping.networks.base.createDynamicProductGroup') }}
+            </sw-button>
+        </sw-card>
+    {% endblock %}
+</div>

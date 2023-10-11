@@ -1,0 +1,61 @@
+{
+  "name": "Hornung",
+  "author": "Shopware AG",
+  "views": [
+     "@Storefront",
+     "@Plugins",
+     "@Hornung"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@Storefront",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/storefront/js/hornung.js"
+  ],
+  "asset": [
+    "app/storefront/src/assets"
+  ],
+  "config": {
+    "blocks": {
+      "images": {
+        "label": {
+          "en-GB": "Images",
+          "de-DE": "Bilder"
+        }
+      }
+    },
+    "sections": {
+      "category": {
+        "label": {
+          "en-GB": "Kategorie",
+          "de-DE": "Kategorie"
+        }
+      }
+    },
+    "tabs": {
+      "hornung": {
+        "label": {
+          "en-GB": "Hornung Configuration",
+          "de-DE": "Hornung Konfiguration"
+        }
+      }
+    },
+    "fields": {
+      "category-background-image": {
+        "type": "media",
+        "editable": true,
+        "label": {
+          "en-GB": "Category Background Image",
+          "de-DE": "Hintergrund Bild Kategorieseite"
+        },
+        "section": "category",
+        "block": "images",
+        "tab": "hornung",
+        "value": ""
+      }
+    }
+  }
+}

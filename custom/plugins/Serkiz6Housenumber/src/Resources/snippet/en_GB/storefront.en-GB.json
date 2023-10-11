@@ -1,0 +1,5 @@
+{
+    "plugin_housenumber": {
+            "error": "Please enter a house number!"
+        }
+}

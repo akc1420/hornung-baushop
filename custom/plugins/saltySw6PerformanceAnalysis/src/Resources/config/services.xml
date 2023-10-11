@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="salty\Sw6PerformanceAnalysis\Controller\PerformanceAnalysis" public="true">
+            <argument type="tagged_iterator" tag="salty_performance_analysis.server-config.analyzer"/>
+            <argument type="tagged_iterator" tag="salty_performance_analysis.shopware-config.analyzer"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <!-- Analyzer -->
+        <service id="salty\Sw6PerformanceAnalysis\Analyzer\Server\Cache">
+            <tag name="salty_performance_analysis.server-config.analyzer" priority="20"/>
+        </service>
+
+        <service id="salty\Sw6PerformanceAnalysis\Analyzer\Server\Php">
+            <tag name="salty_performance_analysis.server-config.analyzer" priority="30"/>
+        </service>
+
+        <service id="salty\Sw6PerformanceAnalysis\Analyzer\Server\Protocol">
+            <tag name="salty_performance_analysis.server-config.analyzer" priority="10"/>
+        </service>
+
+        <service id="salty\Sw6PerformanceAnalysis\Analyzer\Shopware\Configuration">
+            <argument>%kernel.environment%</argument>
+            <argument type="service" id="shopware.filesystem.public"/>
+            <argument>%env(bool:default:default_whitespace:SHOPWARE_ES_ENABLED)%</argument>
+            <argument>%env(default:shopware_http_cache_enabled_default:SHOPWARE_HTTP_CACHE_ENABLED)%</argument>
+
+            <tag name="salty_performance_analysis.shopware-config.analyzer" priority="30"/>
+        </service>
+
+        <service id="salty\Sw6PerformanceAnalysis\Analyzer\Shopware\Plugin">
+            <argument type="service" id="plugin.repository"/>
+
+            <tag name="salty_performance_analysis.shopware-config.analyzer"/>
+        </service>
+
+        <service id="salty\Sw6PerformanceAnalysis\Analyzer\Shopware\Queue">
+            <argument type="service" id="scheduled_task.repository"/>
+            <tag name="salty_performance_analysis.shopware-config.analyzer"/>
+        </service>
+
+    </services>
+</container>

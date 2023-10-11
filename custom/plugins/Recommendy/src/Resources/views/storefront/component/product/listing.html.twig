@@ -1,0 +1,6 @@
+{% sw_extends '@Storefront/storefront/component/product/listing.html.twig' %}
+
+{% block element_product_listing_box %}
+    <div class="recommendy-default-listing-col" data-productid="{{ product.id }}"></div>
+    {{ parent() }}
+{% endblock %}

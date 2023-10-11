@@ -1,0 +1,119 @@
+{% block swag_cms_extensions_form_template_create_modal %}
+    <sw-modal class="swag-cms-extensions-form-template-create-modal"
+              :class="{ 'is-success': showSaveSuccess }"
+              :title="modalTitle"
+              variant="small"
+              @modal-close="onModalClose">
+
+        {% block swag_cms_extensions_form_template_create_modal_content %}
+            {% block swag_cms_extensions_form_template_create_modal_content_save_success %}
+                <template v-if="showSaveSuccess">
+
+                    {% block swag_cms_extensions_form_template_create_modal_content_save_success_bubble %}
+                        <span class="sw-first-run-wizard-finish__bubble">
+                            <sw-icon class="sw-first-run-wizard-finish__icon"
+                                     name="small-default-checkmark-line-medium"
+                                     size="42px"
+                                     small>
+                            </sw-icon>
+                        </span>
+                    {% endblock %}
+
+                    {% block swag_cms_extensions_form_template_create_modal_content_save_success_message %}
+                        <p class="message-success">{{ successMessage }}</p>
+                    {% endblock %}
+
+                </template>
+            {% endblock %}
+
+            {% block swag_cms_extensions_form_template_create_modal_content_overwrite_select %}
+                <sw-entity-single-select v-else-if="showOverwriteSelect"
+                                         v-model="overwriteId"
+                                         :label="$tc('swag-cms-extensions.sw-cms.elements.custom-form.createTemplateModal.overwriteSelectLabel')"
+                                         entity="swag_cms_extensions_form"
+                                         labelProperty="technicalName"
+                                         :criteria="templateCriteria"
+                                         @change="onOverwriteSelectChange">
+                </sw-entity-single-select>
+            {% endblock %}
+
+            {% block swag_cms_extensions_form_template_create_modal_content_overwrite_confirmation %}
+                <div v-else-if="showOverwriteConfirmation"
+                     class="swag-cms-extensions-form-template-create-modal__confrimation-text-container">
+                    <p v-html="overwriteConfirmationText"
+                       class="swag-cms-extensions-form-template-create-modal__confrimation-text">
+                    </p>
+                </div>
+            {% endblock %}
+
+            {% block swag_cms_extensions_form_template_create_modal_content_default %}
+                <template v-else>
+
+                    {% block swag_cms_extensions_form_template_create_modal_content_default_template_name %}
+                        <sw-text-field v-model="templateName"
+                                       :label="$tc('swag-cms-extensions.sw-cms.elements.custom-form.createTemplateModal.templateNameLabel')"
+                                       :placeholder="$tc('swag-cms-extensions.sw-cms.elements.custom-form.createTemplateModal.placeholder')"
+                                       @input="onTemplateNameChange">
+                        </sw-text-field>
+                    {% endblock %}
+
+                    {% block swag_cms_extensions_form_template_create_modal_content_default_overwrite_warning %}
+                        <sw-alert v-if="showOverwriteWarning"
+                                  variant="warning">
+                            {{ $tc('swag-cms-extensions.sw-cms.elements.custom-form.createTemplateModal.overwriteWarningText') }}
+                        </sw-alert>
+                    {% endblock %}
+
+                    {% block swag_cms_extensions_form_template_create_modal_content_default_overwrite_select_link %}
+                        <a v-else
+                           class="swag-cms-extensions-form-template-create-modal__link"
+                           @click="openOverwriteContent">
+                            {{ $tc('swag-cms-extensions.sw-cms.elements.custom-form.createTemplateModal.overwriteLinkText') }}
+
+                                <sw-icon name="default-arrow-simple-right"
+                                         :small="true">
+                                </sw-icon>
+
+                        </a>
+                    {% endblock %}
+
+                </template>
+            {% endblock %}
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_template_create_modal_footer %}
+            <template #modal-footer>
+
+                {% block swag_cms_extensions_form_template_create_modal_footer_ghost_button %}
+                    <sw-button v-if="!showSaveSuccess"
+                               size="small"
+                               variant="ghost"
+                               @click="onModalClose">
+
+                        {% block swag_cms_extensions_form_template_create_modal_footer_ghost_button_text %}
+                            {{ $tc('global.default.cancel') }}
+                        {% endblock %}
+
+                    </sw-button>
+                {% endblock %}
+
+
+                {% block swag_cms_extensions_form_template_create_modal_footer_primary_button %}
+                    <sw-button variant="primary"
+                               size="small"
+                               :disabled="!templateName.length"
+                               @click="onPrimaryConfirm">
+
+                        {% block swag_cms_extensions_form_template_create_modal_footer_primary_button_text %}
+                            {{ primaryConfirmLabel }}
+                        {% endblock %}
+
+                    </sw-button>
+                {% endblock %}
+
+            </template>
+        {% endblock %}
+
+    </sw-modal>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Form
+    ==============================================
+    Custom skin styling for bootstrap forms.
+    https://getbootstrap.com/docs/4.3/components/forms/
+
+	Origin: Shopware skin
+*/
+
+.form-label {
+   // ThemeWare: Show/hide label
+   @if $twt-forms-label-show == 2 {
+      // ThemeWare: Hide labels
+      display: none;
+   } @else {
+      // ThemeWare: Show labels
+      margin-bottom: $twt-forms-label-margin-bottom; // Shopware overwrites the bootstrap variable: 3px ($label-margin-bottom)
+      color: $twt-forms-label-color;
+      font-size: $twt-forms-label-font-size;
+   }
+   
+   // ThemeWare: Set font-family
+   @if($twt-forms-label-font-family == 1) {
+      font-family: $sw-font-family-base;
+   } @else {
+      font-family: $sw-font-family-headline;
+   }
+}
+
+// ThemeWare: Set new margin
+.form-group {
+   margin-bottom: $twt-forms-group-margin-bottom; // Shopware overwrites the bootstrap variable: 20px ($form-group-margin-bottom)
+}
+
+.form-control {
+   min-height: 40px;
+   //-webkit-transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+   transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+   
+   // ThemeWare: Set form layout-type
+   @if $twt-forms-layout-type == 2 {
+      border-top-width: 0;
+      border-right-width: 0;
+      border-bottom-width: 2px;
+      border-left-width: 0;
+   }
+   
+    // ThemeWare: Set font-family
+   @if($twt-forms-input-font-family == 1) {
+      font-family: $sw-font-family-base;
+   } @else {
+      font-family: $sw-font-family-headline;
+   }
+   
+   &:hover {
+      color: $twt-forms-input-color-hover;
+      border-color: $twt-forms-input-border-color-hover;
+   }
+
+   // Add placeholder for Firefox, Internet Explorer 10-11, Edge, Chrome
+   &::-moz-placeholder,
+   &::-ms-input-placeholder,
+   &::-webkit-input-placeholder,
+   &::placeholder {
+      opacity: 1; // Override Firefox's unusual default opacity
+      color: $input-placeholder-color;
+   }
+}
+
+// Fix placeholder in Firefox
+input.form-control::-moz-placeholder {
+   opacity: 1; // Override Firefox's unusual default opacity
+   color: $input-placeholder-color;
+}

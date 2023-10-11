@@ -1,0 +1,25 @@
+{
+    "name": "swag/plugin-skeleton",
+    "description": "Change Detail Quantity Input to Select",
+    "type": "shopware-platform-plugin",
+    "version": "v1.0.0",
+    "authors": [{
+        "name": "Ebakery.de",
+        "role": "Manufacturer"
+    }],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DetailCartSelect\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "DetailCartSelect\\DetailCartSelect",
+        "label": {
+            "de-DE": "Change Detail Quantity Input to Select",
+            "en-GB": "Change Detail Quantity Input to Select"
+        },
+        "plugin-icon": "plugin-icon.png",
+        "copyright": "(c) by ebakery.de"
+    }
+}

@@ -1,0 +1,27 @@
+{# ThemeWare: CMS element "Sidebar subcategory navigation" #}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET VARS ---------------- #}
+
+{% set config = element.fieldConfig.elements %}
+
+{# ---------------- END: SET VARS ---------------- #}
+
+<div class="cms-element-{{ element.type }} cms-element-category-navigation"> {# Class 'cms-element-category-navigation' temporary added for styling purposes. #}
+    {% set navigationResult1 = page.header.navigation.tree %}
+    {% set activeResult1 = page.header.navigation.active %}
+
+    {% for item in navigationResult1  %}
+        {% if (item.category.id in activeResult1.id) or (item.category.id in activeResult1.path) %}
+            {% set navigationResult1 = [item] %}
+        {% endif %}
+    {% endfor %}
+
+    <div class="category-navigation-box">
+        {% sw_include '@Storefront/storefront/layout/sidebar/category-navigation.html.twig' with {
+            navigationTree: navigationResult1,
+            activeResult: activeResult1
+        } only %}
+    </div>
+</div>

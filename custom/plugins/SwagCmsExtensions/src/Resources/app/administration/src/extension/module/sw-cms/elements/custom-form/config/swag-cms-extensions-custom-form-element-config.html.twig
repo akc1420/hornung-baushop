@@ -1,0 +1,37 @@
+{% block swag_cms_extensions_form_element_config %}
+    <div class="swag-cms-extensions-form-element-config">
+
+        {% block swag_cms_extensions_form_element_config_form_select %}
+            <sw-entity-single-select
+                v-model="templateId"
+                entity="swag_cms_extensions_form"
+                labelProperty="technicalName"
+                :placeholder="$tc('swag-cms-extensions.sw-cms.elements.custom-form.config.templateSelectPlaceholder')"
+                :label="$tc('swag-cms-extensions.sw-cms.elements.custom-form.config.templateSelectLabel')"
+                :criteria="formTemplateCriteria">
+            </sw-entity-single-select>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_element_config_edit_form_link %}
+            <a class="swag-cms-extensions-form-element-config__link"
+               @click="openFormTemplateModal">
+                {{ $tc('swag-cms-extensions.sw-cms.elements.custom-form.config.editFormTemplateLink') }}
+
+                {% block swag_cms_extensions_form_element_config_edit_form_link_icon %}
+                    <sw-icon name="default-arrow-simple-right"
+                             :small="true">
+                    </sw-icon>
+                {% endblock %}
+
+            </a>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_element_config_edit_form_template_modal %}
+            <swag-cms-extensions-form-template-modal v-if="showFormTemplateModal"
+                                                     @modal-close="closeFormTemplateModal"
+                                                     @template-updated="onTemplateUpdated">
+            </swag-cms-extensions-form-template-modal>
+        {% endblock %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+import './swag-cms-extensions-form-editor-settings-field-type-base';
+import './swag-cms-extensions-form-editor-settings-field-type-header';
+import './swag-cms-extensions-form-editor-settings-field-type-footer';
+import './swag-cms-extensions-form-editor-settings-field-type-text';
+import './swag-cms-extensions-form-editor-settings-field-type-email';
+import './swag-cms-extensions-form-editor-settings-field-type-number';
+import './swag-cms-extensions-form-editor-settings-field-type-checkbox';
+import './swag-cms-extensions-form-editor-settings-field-type-select';
+import './swag-cms-extensions-form-editor-settings-field-type-textarea';

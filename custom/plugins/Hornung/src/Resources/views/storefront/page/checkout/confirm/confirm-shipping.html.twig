@@ -1,0 +1,17 @@
+{% sw_extends '@Storefront/storefront/page/checkout/confirm/confirm-shipping.html.twig' %}
+
+{# @deprecated tag:v6.4.0.0 removed #}
+{% block page_checkout_confirm_shipping_modal_toggle %}
+    <button type="button"
+            class="btn btn-outline-primary btn-outline-color-dark"
+            data-toggle="modal"
+            data-backdrop="static"
+            data-target="#confirmShippingModal">
+
+        {% if shippingMethodInvalid %}
+            {{ "checkout.confirmChooseShipping"|trans|sw_sanitize }}
+        {% else %}
+            {{ "checkout.confirmChangeShipping"|trans|sw_sanitize }}
+        {% endif %}
+    </button>
+{% endblock %}

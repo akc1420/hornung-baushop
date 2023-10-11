@@ -1,0 +1,52 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Widget > Hotline
+	==================================================
+
+*/
+
+// ThemeWare: General widget styling ------------------------------
+// - Footer specifiy styling see layout/_footer.scss
+
+.twt-widget-hotline {
+  a {
+    text-decoration: none;
+  }
+
+  .twt-widget-hotline-content {
+    @include twt-font-size($twt-widget-hotline-font-size);
+
+    padding-bottom: 1rem;
+
+    a {
+      font-weight: 600;
+      display: block;
+      margin: 1rem 0 .5rem;
+    }
+
+    a[href^="tel:"] {
+      @include twt-font-size($twt-widget-hotline-font-size-phone-number);
+    }
+  }
+
+  .twt-widget-hotline-contact-form {
+    @if $twt-widget-hotline-contact-form-show == 2 {
+      @include twt-font-size($twt-widget-hotline-font-size);
+    } @else {
+      display: none;
+    }
+  }
+}
+
+// ThemeWare: Sidebar specific styling ------------------------------
+
+//.cms-section-sidebar-sidebar-content {
+//  .twt-widget-hotline {
+//  }
+//}

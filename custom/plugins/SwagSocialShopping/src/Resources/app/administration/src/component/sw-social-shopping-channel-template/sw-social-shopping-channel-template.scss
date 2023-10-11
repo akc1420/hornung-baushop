@@ -1,0 +1,12 @@
+.sw-social-shopping-template-detail {
+    position: relative;
+
+    .sw-social-shopping-template-detail__button-group {
+        display: grid;
+        grid-template-columns: 4fr 1fr;
+
+        .sw-social-shopping-template-detail__button-preview {
+            margin-left: 5px;
+        }
+    }
+}

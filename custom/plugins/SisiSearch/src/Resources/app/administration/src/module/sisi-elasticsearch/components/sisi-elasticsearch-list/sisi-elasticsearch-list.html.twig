@@ -1,0 +1,46 @@
+{% block sisi_elasticseach_list %}
+    <sw-page class="sisi-elasticseach-search">
+        {% block sisi_fields_list_smart_bar_actions %}{% endblock %}
+        <template slot="content">
+            <sw-card-view>
+                <sw-card>
+                    <sw-sales-channel-switch :label="$tc('sw-settings.system-config.labelSalesChannelSelect')"
+                                             @change-sales-channel-id="onSalesChannelChanged">
+                    </sw-sales-channel-switch>
+                </sw-card>
+
+                {% block sisi_elasticseach_list_content %}
+                    <sw-card :title="$tc('sisi-elasticsearch.cluster.info')">
+                        <p>
+                            <strong>{{ $tc('sisi-elasticsearch.cluster.version')  }}: </strong>
+                            <span>{{ cluster.info.version.number }}</span>
+                        </p>
+                        <p>
+                            <strong>{{ $tc('sisi-elasticsearch.cluster.nodes') }}: </strong>
+                            <span>{{ cluster.health.number_of_nodes }}</span>
+                        </p>
+                        <p>
+                            <strong>{{ $tc('sisi-elasticsearch.cluster.status') }}: </strong>
+                            <span>{{ cluster.health.status }}</span>
+                        </p>
+                    </sw-card>
+
+                    <sw-card>
+                        <sw-data-grid
+                            v-if="indices"
+                            :showSelection="false"
+                            :dataSource="indices"
+                            :columns="columns">
+
+                            <template #actions="{ item }">
+                                <sw-context-menu-item variant="danger" @click="deleteIndex(item)">
+                                    {{ $tc('sisi-elasticsearch.index.delete') }}
+                                </sw-context-menu-item>
+                            </template>
+                        </sw-data-grid>
+                    </sw-card>
+                {% endblock %}
+            </sw-card-view>
+        </template>
+    </sw-page>
+{% endblock %}

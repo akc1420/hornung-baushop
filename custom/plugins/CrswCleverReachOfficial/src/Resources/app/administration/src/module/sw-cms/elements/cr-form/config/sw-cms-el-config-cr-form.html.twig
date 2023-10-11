@@ -1,0 +1,33 @@
+{% block sw_cms_el_cr_form_config %}
+    <div class="sw-cms-el-config-cr-form">
+        {% block sw_cms_element_cr_form_config_product_select %}
+            <sw-entity-single-select
+                :label="$tc('sw-cms.config.label')"
+                :placeholder="$tc('sw-cms.config.form')"
+                entity="cleverreach_entity"
+                :criteria="queueCriteria"
+                :context="queueSelectContext"
+                @change="onQueueChange"
+                v-model="element.config.queue.value">
+                <template #selection-label-property="{ item }">
+                    <sw-product-variant-info>
+                        {{ JSON.parse(item.data).name }}
+                    </sw-product-variant-info>
+                </template>
+                <template #result-item="{ item, index }">
+                    <slot name="result-item" v-bind="{ item, index }">
+                        <li is="sw-select-result" v-bind="{ item, index }">
+                            {% block sw_entity_single_select_base_results_list_result_label %}
+                                <span class="sw-select-result__result-item-text">
+                                        <sw-product-variant-info>
+                                            {{ JSON.parse(item.data).name }}
+                                        </sw-product-variant-info>
+                                     </span>
+                            {% endblock %}
+                        </li>
+                    </slot>
+                </template>
+            </sw-entity-single-select>
+        {% endblock %}
+    </div>
+{% endblock %}

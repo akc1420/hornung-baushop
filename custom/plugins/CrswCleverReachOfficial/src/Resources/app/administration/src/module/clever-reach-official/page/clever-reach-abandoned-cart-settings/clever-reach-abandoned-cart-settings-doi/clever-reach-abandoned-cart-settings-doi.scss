@@ -1,0 +1,48 @@
+.cr-doi {
+  line-height: 56px;
+}
+
+.cr-doi-content {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  line-height: initial;
+}
+
+.cr-doi-card-section {
+  padding: 0;
+}
+
+.cr-doi-right-card-section {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.cr-doi-select-form {
+  padding-bottom: 2%;
+}
+
+.cr-doi-select-form .sw-block-field__block {
+  border-radius: 30px;
+}
+
+.cr-doi-error {
+  background: transparent !important;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 0;
+  height: 25px !important;
+  margin: 0 !important;
+}
+
+.cr-doi-error .sw-label__caption {
+  display: block;
+  white-space: initial;
+  line-height: 18px;
+}
+
+.cr-no-doi-error {
+  display: none;
+  height: 0 !important;
+}

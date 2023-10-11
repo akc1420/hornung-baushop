@@ -1,0 +1,13 @@
+{% block sw_tagged_field_input %}
+    <input type="email"
+           ref="taggedFieldInput"
+           class="sw-tagged-field__input"
+           :class="taggedFieldInputClasses"
+           v-model="newTagName"
+           :disabled="disabled"
+           :placeholder="placeholder"
+           @focus="setFocus(true)"
+           @blur="blurInput"
+           @keydown="performAddTag"
+           @keydown.delete="dismissLastTag">
+{% endblock %}

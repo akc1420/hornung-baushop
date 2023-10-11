@@ -1,0 +1,11 @@
+{% block swag_cms_extensions_form_editor_settings_field_type_base %}
+    {% block swag_cms_extensions_form_editor_settings_field_type_checkbox_default %}
+        <sw-single-select v-model="defaultValue"
+                          :options="values"
+                          :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.defaultValueFieldLabel')"
+                          :highlightSearchTerm="false"
+                          size="medium"
+                          required>
+        </sw-single-select>
+    {% endblock %}
+{% endblock %}

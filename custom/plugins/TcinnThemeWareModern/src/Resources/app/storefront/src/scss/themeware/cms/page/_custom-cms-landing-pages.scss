@@ -1,0 +1,102 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS landing pages
+    ==================================================
+    Theme specific stylings for cms pages.
+
+*/
+
+/* ---------------- START: SET SCSS VARS ---------------- */
+
+$twtCmsLayoutAdjustmentsActiveAll: 0;
+
+// ThemeWare: Check if all adjustments are requested and set theme variables
+@if ($twt-cms-layout-adjustments-product-pages + $twt-cms-layout-adjustments-shop-pages + $twt-cms-layout-adjustments-category-pages + $twt-cms-layout-adjustments-landing-pages) == 8 {
+  $twtCmsLayoutAdjustmentsActiveAll: 2; // Set var: 2 => all active
+} @else {
+  $twtCmsLayoutAdjustmentsActiveAll: 1; // Set var: 1 => not all active
+}
+
+/* ---------------- END: SET SCSS VARS ---------------- */
+
+// ThemeWare: Adjustments CMS landing pages
+
+// Das individuelle styling für CMS-Landingpages wird genutzt, falls ein CMS-Seitentyp per Konfiguration davon ausgenommen wird (siehe $twtCmsLayoutAdjustmentsActiveAll = 1)
+// und die CMS-Landingpages überhaupt gestylt werden sollen.
+
+.twt-is-cms-landingpage {
+
+  @if $twt-cms-layout-adjustments-landing-pages == 2 and $twtCmsLayoutAdjustmentsActiveAll == 1 {
+    // ThemeWare: Containered layout  ------------------------------
+
+    .cms-section-default.boxed {
+      .cms-block:not(.twt-cms-block-reset) {
+        border: 1px solid $twt-cms-section-boxed-border-color;
+        border-radius: null-pixel-unit($twt-border-radius);
+        margin-bottom: $twt-cms-block-margin-bottom;
+
+        &:not(.bg-color) {
+          background-color: $twt-cms-section-boxed-background-color;
+        }
+      }
+    }
+
+    // ThemeWare: Containered layout with sidebar > block-styling  ------------------------------
+
+    .cms-section-sidebar {
+      // A) Set block-styling for content only
+
+      @if $twt-cms-section-boxed-sidebar-combined == 1 {
+        .cms-section-sidebar-main-content {
+          // Ignore block-styling with reset class
+          .cms-block:not(.twt-cms-block-reset) {
+            border: 1px solid $twt-cms-section-boxed-border-color;
+            border-radius: null-pixel-unit($twt-border-radius);
+            margin-bottom: $twt-cms-block-margin-bottom;
+
+            &:not(.bg-color) {
+              background-color: $twt-cms-section-boxed-background-color;
+            }
+          }
+        }
+      }
+
+      // B) Set block-styling for container
+
+      @if $twt-cms-section-boxed-sidebar-combined == 2 {
+        .cms-section-sidebar-sidebar-content {
+          background-color: $twt-cms-section-boxed-background-color;
+          border: 1px solid $twt-cms-section-boxed-border-color;
+          border-radius: null-pixel-unit($twt-border-radius);
+          margin-bottom: $twt-cms-block-margin-bottom;
+
+          @include media-breakpoint-up(lg) { // min 992px
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-right: none;
+          }
+        }
+
+        .cms-section-sidebar-main-content {
+          background-color: $twt-cms-section-boxed-background-color;
+          border: 1px solid $twt-cms-section-boxed-border-color;
+          border-radius: null-pixel-unit($twt-border-radius);
+          margin-bottom: $twt-cms-block-margin-bottom;
+
+          @include media-breakpoint-up(lg) { // min 992px
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            border-left: none;
+          }
+        }
+      }
+    }
+  }
+
+}

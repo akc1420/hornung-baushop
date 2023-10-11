@@ -1,0 +1,41 @@
+{% block swag_cms_extensions_form_editor_settings_field_type_base %}
+    <div class="swag-cms-extensions-form-editor-settings-field-type-number">
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_number_min_max %}
+            <div class="swag-cms-extensions-form-editor-settings-field-type-number__min-max">
+
+                {% block swag_cms_extensions_form_editor_settings_field_type_number_min %}
+                    <sw-number-field v-model="min"
+                                     :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.minFieldLabel')"
+                                     :max="max"
+                                     :step="step"
+                                     size="medium"
+                                     numberType="int"
+                                     allowEmpty>
+                    </sw-number-field>
+                {% endblock %}
+
+                {% block swag_cms_extensions_form_editor_settings_field_type_number_max %}
+                    <sw-number-field v-model="max"
+                                     :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.maxFieldLabel')"
+                                     :min="min"
+                                     :step="step"
+                                     size="medium"
+                                     numberType="int"
+                                     allowEmpty>
+                    </sw-number-field>
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_number_step %}
+            <sw-number-field v-model="step"
+                             :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.stepFieldLabel')"
+                             size="medium"
+                             required>
+            </sw-number-field>
+        {% endblock %}
+
+    </div>
+{% endblock %}

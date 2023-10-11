@@ -1,0 +1,23 @@
+{% block sw_import_export_progress_download_invalid_records%}
+    <template v-if="activityType === 'import' && logEntry.invalidRecordsLog">
+        <sw-button variant="primary"
+                   size="small"
+                   class="sw-import-export-progress__stats-list-failure-download"
+                   @click="openDownload(logEntry.invalidRecordsLog.file.id)">
+            {{  $tc('sw-import-export.progress.downloadFailedLabel')  }}
+        </sw-button>
+    </template>
+{% endblock %}
+
+{% block sw_import_export_progress_stats_download %}
+    <template v-if="activityType === 'export'">
+        <sw-button
+            variant="primary"
+            class="sw-import-export-progress__download-action"
+            size="small"
+            @click="openDownload(logEntry.file.id)"
+        >
+            {{ $tc('sw-import-export.progress.downloadFileLabel') }}
+        </sw-button>
+    </template>
+{% endblock %}

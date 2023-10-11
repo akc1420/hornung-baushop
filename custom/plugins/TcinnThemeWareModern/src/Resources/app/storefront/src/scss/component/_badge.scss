@@ -1,0 +1,67 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Badge
+	==============================================
+	Custom skin styling for bootstrap badge component.
+	https://getbootstrap.com/docs/4.3/components/badge/
+
+	Origin: Shopware skin
+*/
+
+/* ThemeWare/Note:
+ * Shopware resets the background color to a dark tone. This is not working with the Bootstrap color!
+ */
+
+//Shopware:
+//  @mixin sw-skin-alert($color, $background) {
+//      background-color: $color;
+//
+//      .alert-content-container {
+//          background-color: $background;
+//          color: $color;
+//      }
+//
+//      .icon {
+//          color: $white;
+//      }
+//  }
+//
+//Bootstrap:
+//  @mixin alert-variant($background, $border, $color) {
+//    color: $color;
+//    @include gradient-bg($background);
+//    border-color: $border;
+//
+//    ...
+//  }
+
+/* ThemeWare/Note:
+ * Shopware sets the border-radius to 50px instead using the pill class "badge-pill".
+ * Bootstrap uses:
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+ */
+
+//.badge {
+//    border: 0;
+//    border-radius: 50px;
+//    box-sizing: content-box;
+//    height: 20px;
+//    line-height: 20px;
+//    margin: 0 5px;
+//    min-width: 10px;
+//    padding: 0 5px;
+//}

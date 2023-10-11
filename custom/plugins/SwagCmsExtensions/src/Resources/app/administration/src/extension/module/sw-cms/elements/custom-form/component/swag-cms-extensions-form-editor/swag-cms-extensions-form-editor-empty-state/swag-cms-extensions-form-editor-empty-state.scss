@@ -1,0 +1,26 @@
+@import "~scss/variables";
+
+.swag-cms-extensions-form-editor-empty-state {
+    &__container {
+        height: 520px;
+        background: $color-gray-50;
+        border: 1px solid $color-gray-300;
+        border-radius: $border-radius-default;
+        overflow: hidden;
+    }
+
+    &__splash-screen {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    &__text {
+        margin-bottom: 15px;
+    }
+
+    &__icon {
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,13 @@
+{% block block_product_name %}
+    {% set productNameElement = block.slots.getSlot('left') %}
+
+    {% block block_product_name_product_name_element %}
+        <div class="col product-name-name-container" data-cms-element-id="{{ productNameElement.id }}">
+            {% block block_product_name_product_name_inner %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ productNameElement.type ~ ".html.twig" ignore missing with {
+                    element: productNameElement
+                } %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

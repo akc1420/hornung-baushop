@@ -1,0 +1,75 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Offcanvas cart
+	==============================================
+	Extends the basic offcanvas component with additional cart styles.
+
+	Origin: Shopware base & skin
+
+	@deprecated tag:v6.5.0 - Announcement:
+	Bootstrap v5 comes with its own OffCanvas component.
+	This SCSS file will be adjusted to build up upon Bootstraps OffCanvas styling.
+
+	@see https://getbootstrap.com/docs/5.1/components/offcanvas
+*/
+
+// ThemeWare: Offcanvas cart adjustments
+// TODO: Shopware Vererbung prüfen...
+.offcanvas {
+	// ThemeWare: Close
+	.offcanvas-close {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+	}
+	
+	// ThemeWare: Gutschein
+	.js-offcanvas-cart-promotion {
+		.offcanvas-cart-promotion-form {
+			input:first-of-type {
+				border-top-left-radius: null-pixel-unit($twt-border-radius);
+				border-bottom-left-radius: null-pixel-unit($twt-border-radius);
+			}
+		}
+	}
+	
+	// ThemeWare: Versandkosten
+	.offcanvas-shipping-preference:not(.offcanvas-shipping-preference--hidden) {
+		margin: 5px -20px 0 -20px;
+		padding: 20px;
+		border-top: 1px solid rgba(0, 0, 0, 0.07);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+		background-color: rgba(0, 0, 0, 0.05);
+
+		.custom-select.mt-2 {
+			margin-top: 0 !important;
+		}
+	}
+
+	.shipping-cost {
+		line-height: 1.1;
+
+		.js-toggle-shipping-selection {
+			text-decoration: none;
+
+			&:hover {
+				opacity: .7;
+			}
+		}
+	}
+
+	// ThemeWare: ...
+	.offcanvas-cart-items {
+		margin: 15px 0 5px 0;
+	}
+
+	// ThemeWare: ...
+	.offcanvas-summary {
+		margin: 15px 0 5px 0;
+	}
+}

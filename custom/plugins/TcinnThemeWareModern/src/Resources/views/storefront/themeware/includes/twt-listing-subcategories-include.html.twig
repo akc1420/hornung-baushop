@@ -1,0 +1,112 @@
+{# ThemeWare: "Listing subcategories" content #}
+{# Loop and display navigation tree childs #}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{% set twtListingSubcategories = element.config %}
+{% set dev = true %}
+
+{# ThemeWare: Set amount of columns #}
+{% set twtSubcategorieColumnXs = twtListingSubcategories.columnsXs.value %}
+{% set twtSubcategorieColumnSm = twtListingSubcategories.columnsSm.value %}
+{% set twtSubcategorieColumnMd = twtListingSubcategories.columnsMd.value %}
+{% set twtSubcategorieColumnLg = twtListingSubcategories.columnsLg.value %}
+{% set twtSubcategorieColumnXl = twtListingSubcategories.columnsXl.value %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Include listing subcategories #}
+{% block twt_listing_subcategories_content %}
+    {#% set navigationMaxDepth = 3 %#}
+    {% set navigationMaxDepth = context.salesChannel.navigationCategoryDepth %}
+
+    {% if not level %}
+        {% set level = 0 %}
+    {% endif %}
+    {#% set activeId = page.header.navigation.active.id %#}
+
+    {# ThemeWare: Set column classes #}
+    {% set twtSubcategorieColumns = 'col-'~ twtSubcategorieColumnXs ~' col-sm-'~ twtSubcategorieColumnSm ~' col-md-'~ twtSubcategorieColumnMd ~' col-lg-'~ twtSubcategorieColumnLg ~' col-xl-'~ twtSubcategorieColumnXl %}
+
+    {% for treeItem in navigationTree %}
+
+        {% block twt_listing_subcategories %}
+            {% if treeItem.category.id in activeResult.id %}
+                {% for child in treeItem.children %}
+                    {#% set id = treeItem.category.id %#}
+                    {% set name = child.category.translated.name %}
+                    {#% set link = category_url(treeItem.category) %#}
+
+                    {% block twt_listing_subcategories_item %}
+                        <li class="{{ twtSubcategorieColumns }}{% if not child.category.media.url %} no-image{% endif %}">
+
+                            {% block twt_listing_subcategories_item_link %}
+                                {% if element.translated.config.layoutType.value != 'button' %}
+                                    <a class="twt-subcategory-navigation-link"
+                                       href="{% if child.category.externalLink %}{{ child.category.externalLink }}{% else %}{{ seoUrl('frontend.navigation.page', { navigationId: child.category.id }) }}{% endif %}"
+                                       title="{{ name }}">
+                                        {# Image wrapper #}
+                                        {% if child.category.media.url and element.translated.config.layoutType.value != 'textOnly' %}
+                                            <div class="twt-subcategory-navigation-image-wrapper"{% if element.translated.config.layoutType.value == 'sideBySide' %} style="width: {{ element.translated.config.imageSize.value }}; min-width: {{ element.translated.config.imageSize.value }}; max-width: {{ element.translated.config.imageSize.value }};"{% endif %}>
+                                                <div class="twt-subcategory-navigation-image-container is-{{ element.translated.config.displayMode.value }}" style="{% apply spaceless %}
+                                                    {% if element.translated.config.layoutType.value != 'sideBySide' %}
+                                                        {% if element.translated.config.displayMode.value == 'cover' %} width: {{ element.translated.config.width.value }}; height: {{ element.translated.config.maxHeight.value }}; max-height: {{ element.translated.config.maxHeight.value }};
+                                                        {% else %} width: {{ element.translated.config.width.value }}; height: {{ element.translated.config.height.value }};
+                                                        {% endif %}
+                                                    {% endif %} margin-left: auto; margin-right: auto;"{% endapply %}>
+                                                    {% sw_thumbnails 'twt-subcategory-navigation-image-thumbnails' with {
+                                                        media: child.category.media,
+                                                        attributes: {
+                                                            'class': 'twt-subcategory-navigation-image',
+                                                            'alt': (child.category.translated.name ?: ''),
+                                                            'title': (child.category.translated.name ?: '')
+                                                        }
+                                                    } %}
+                                                </div>
+                                            </div>
+                                        {% endif %}
+
+                                        {# Label #}
+                                        <div class="twt-subcategory-navigation-name">
+                                            <span class="twt-subcategory-navigation-name-label">
+                                                {{ name }}
+                                            </span>
+
+                                            {% sw_icon 'arrow-medium-right' style {
+                                                'pack': 'solid', 'size': 'xs'
+                                            } %}
+                                        </div>
+                                    </a>
+                                {% else %}
+                                    {# Button #}
+                                    <a class="btn btn-{% if element.translated.config.buttonOutline.value %}outline-{% endif %}{{ element.translated.config.buttonStyle.value }}" style="width: 100%;"
+                                       href="{% if child.category.externalLink %}{{ child.category.externalLink }}{% else %}{{ seoUrl('frontend.navigation.page', { navigationId: child.category.id }) }}{% endif %}"
+                                       title="{{ name }}">{{ name }}</a>
+
+                                {% endif %}
+                            {% endblock %}
+
+                        </li>
+                    {% endblock %}
+
+                {% endfor %}
+            {% endif %}
+        {% endblock %}
+
+        {# ThemeWare: Loop twig include for subcategories #}
+        {% block twt_listing_subcategories_recoursion %}
+            {% if treeItem.children %}
+                {% sw_include '@Storefront/storefront/themeware/includes/twt-listing-subcategories-include.html.twig' ignore missing with {
+                    navigationTree: treeItem.children,
+                    activeResult: activeResult,
+                    level: level + 1,
+                    page: page,
+                    element: element
+                } only %}
+            {% endif %}
+        {% endblock %}
+
+    {% endfor %}
+{% endblock %}

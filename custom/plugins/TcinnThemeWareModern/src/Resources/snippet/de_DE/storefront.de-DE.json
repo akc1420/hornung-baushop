@@ -1,0 +1,411 @@
+{
+	"twt": {
+		"copyright": "© %date% %shopname% - Alle Rechte vorbehalten.",
+		"tcinn": "<a href=\"%href%\" title=\"%title%\" rel=\"dofollow noopener\" target=\"_blank\">%name%</a>",
+		"header": {
+			"cartText": "Warenkorb",
+			"accountText": "Mein Konto",
+			"searchText": "Suche",
+			"wishlistText": "Wunschzettel",
+			"offcanvasMenuText": "Navigation",
+			"serviceHotline": "Service-Hotline",
+			"serviceHotlineText": "<a href=\"tel:+49180000000\">0180 - 000000</a> Mo-Fr, 09:00 - 17:00 Uhr"
+		},
+		"breadcrumb": {
+			"furtherInformation": "Sie sind hier:"
+		},
+		"custom": {
+			"css": ""
+		},
+		"listing": {
+			"ordernumberLabel": "Produktnummer:",
+			"manufacturerLabel": "Hersteller:"
+		},
+		"detail": {
+			"headlineProperties": "Eigenschaften",
+			"infoProperties": "Angaben gemäß Hersteller. Irrtum und Änderung vorbehalten.",
+			"tabProperties": {
+				"title": "Eigenschaften"
+			},
+			"tabManufacturer": {
+				"title": "Hersteller",
+				"headlineManufacturer": "Hersteller",
+				"moreInformation": "Weiterführende Links des Herstellers",
+				"linkProducts": {
+					"label": "Weitere Produkte von %manufacturer%"
+				},
+				"linkWebsite": {
+					"label": "Hersteller-Webseite"
+				}
+			},
+			"tabVideos": {
+				"title": "Videos",
+				"headlineVideos": "Videos"
+			},
+			"tabCustom": {
+				"title": "Benutzerdefinierter-Tab"
+			},
+			"eanLabel": "EAN:",
+			"manufacturernumberLabel": "Hersteller-Nr.:",
+			"manufacturerLabel": "Hersteller:",
+			"weightLabel": "Gewicht:",
+			"lengthLabel": "Länge:",
+			"widthLabel": "Breite:",
+			"heightLabel": "Höhe:",
+			"availableStockLabel": "Lagerbestand:",
+			"minpurchaseLabel": "Mindestabnahme:",
+			"maxpurchaseLabel": "Maximalabnahme:",
+			"stockLabel": {
+				"noStock": "Derzeit nicht auf Lager.",
+				"lowStock": {
+					"label": "Nur noch %stock% lieferbar.",
+					"prefix": "Nur noch",
+					"suffix": "lieferbar."
+				},
+				"inStock": "Auf Lager.",
+				"availableStock": "auf Lager.",
+				"highStock": {
+					"label": "Über %stock% lieferbar.",
+					"prefix": "Über",
+					"suffix": "lieferbar."
+				}
+			},
+			"shippingFreeLabel": "Versandkostenfrei",
+			"imageSimilarNote": "Abbildung ähnlich",
+			"isCloseoutNote": "Abverkauf",
+			"backordersNote": {
+				"backordersPossible": "Nachbestellungen möglich",
+				"backordersDenied": "Keine Nachbestellungen möglich"
+			},
+			"socialSharingLinks": {
+				"headline": "Dieses Produkt weiterempfehlen:",
+				"facebook": {
+					"label": "Facebook",
+					"title": "Bei Facebook teilen"
+				},
+				"twitter": {
+					"label": "Twitter",
+					"title": "Bei Twitter teilen"
+				},
+				"pinterest": {
+					"label": "Pinterest",
+					"title": "Bei Pinterest teilen"
+				},
+				"whatsapp": {
+					"label": "WhatsApp",
+					"title": "Bei WhatsApp teilen"
+				},
+				"email": {
+					"label": "E-Mail",
+					"title": "Per E-Mail empfehlen",
+					"salutation": "Hallo,",
+					"body": "schau mal was ich entdeckt habe!",
+					"closing": "Viele Grüße"
+				}
+			},
+			"paymentLogos": {
+				"headline": "Unsere Zahlungsarten:"
+			},
+			"customFields": {
+				"customField1": {
+					"label": "Zusatzfeld 1:"
+				},
+				"customField2": {
+					"label": "Zusatzfeld 2:"
+				},
+				"customField3": {
+					"label": "Zusatzfeld 3:"
+				},
+				"productVideos": {
+					"title": "Videos"
+				}
+			},
+			"benefits": {
+				"headline": "Unsere Vorteile",
+				"content": "Kostenloser Versand; Versand innerhalb von 24h; 30 Tage Geld-Zurück-Garantie; Bequemer Kauf auf Rechnung"
+			}
+		},
+		"extension": {
+			"announcementBanner": {
+				"content": "<span class=\"label label-info\">Info</span> <span class=\"text\">Bitte beachten Sie, unsere geänderten Lieferzeiten während wir uns im <strong>Betriebsurlaub</strong> befinden.</span>",
+				"link": "/#"
+			},
+			"customAnnouncement": {
+				"content": "<span>Bitte beachten Sie, dass wir uns in der Zeit vom XX.YY. bis XX.YY. im <strong>Betriebsurlaub</strong> befinden. Die bei unseren Artikeln angegebenen Lieferzeiten verlängern sich daher jeweils um XX Tage. – Wir bedanken uns für Ihr Verständnis.</span>"
+			},
+			"uspBar": {
+				"usp1": {
+					"title": "Kostenloser Versand",
+					"icon": "rocket",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp2": {
+					"title": "Versand innerhalb von 24h",
+					"icon": "clock",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp3": {
+					"title": "30 Tage Geld-Zurück-Garantie",
+					"icon": "thumb-up",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp4": {
+					"title": "Bequemer Kauf auf Rechnung",
+					"icon": "briefcase",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp5": {
+					"title": "Direkt vom Hersteller",
+					"icon": "home",
+					"tooltip": "",
+					"subtitle": ""
+				},
+				"usp6": {
+					"title": "Hotline 0800 123 454 321",
+					"icon": "headset",
+					"tooltip": "",
+					"subtitle": ""
+				}
+			},
+			"stockBadge": {
+				"noStock": "Ausverkauft",
+				"lowStock": {
+					"label": "Nur %stock% auf Lager!",
+					"prefix": "Nur",
+					"suffix": "auf Lager!",
+					"icon": "warning"
+				},
+				"inStock": "Auf Lager.",
+				"availableStock": "auf Lager.",
+				"highStock": {
+					"label": "> %stock% lagernd",
+					"prefix": "> ",
+					"suffix": "lagernd",
+					"icon": "layers"
+				},
+				"icon": "checkmark"
+			},
+			"soldBadge": {
+				"icon": "blocked"
+			},
+			"shippingFreeBadge": {
+				"label": "Versandkostenfrei",
+				"icon": "package-open"
+			},
+			"discountBadge": {
+				"percentageShort": "%discount%%",
+				"percentage": "%discount%% gespart",
+				"discountShort": "%discount% %currency%",
+				"discount": "%discount% %currency% gespart",
+				"suffix": "gespart"
+			},
+			"topsellerBadge": {
+				"label": "Tipp",
+				"icon": "heart"
+			},
+			"newBadge": {
+				"label": "Neu",
+				"icon": "star"
+			},
+			"floatingWidget": {
+				"title": "Floating-Widget",
+				"body": "Das ist das Floating-Widget.",
+				"link": "#"
+			}
+		},
+		"widget": {
+			"about": {
+				"headline": "Über uns",
+				"content": "<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p><p>Gadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>"
+			},
+			"payment": {
+				"headline": "Zahlungsarten",
+				"link": "/#payment",
+				"customImages": {
+					"title1": "Benutzerdefiniertes Bild 1",
+					"title2": "Benutzerdefiniertes Bild 2",
+					"title3": "Benutzerdefiniertes Bild 3"
+				}
+			},
+			"shipping": {
+				"headline": "Versandarten",
+				"link": "/#shipping",
+				"customImages": {
+					"title1": "Benutzerdefiniertes Bild 1",
+					"title2": "Benutzerdefiniertes Bild 2",
+					"title3": "Benutzerdefiniertes Bild 3"
+				}
+			},
+			"paymentshipping": {
+				"headline": "Zahlungs- und Versandarten"
+			},
+			"communities": {
+				"headline": "Unsere Communities",
+				"additionalText": "Über unsere Social Media Plattformen verpassen Sie keine Neuigkeiten mehr.",
+				"facebook": {
+					"name": "Facebook",
+					"link": "/#facebook"
+				},
+				"instagram": {
+					"name": "Instagram",
+					"link": "/#instagram"
+				},
+				"twitter": {
+					"name": "Twitter",
+					"link": "/#twitter"
+				},
+				"youtube": {
+					"name": "YouTube",
+					"link": "/#youtube"
+				},
+				"vimeo": {
+					"name": "Vimeo",
+					"link": "/#vimeo"
+				},
+				"flickr": {
+					"name": "Flickr",
+					"link": "/#flickr"
+				},
+				"pinterest": {
+					"name": "Pinterest",
+					"link": "/#pinterest"
+				},
+				"tiktok": {
+					"name": "TikTok",
+					"link": "/#tiktok"
+				},
+				"blogger": {
+					"name": "Blogger",
+					"link": "/#blogger"
+				},
+				"blog": {
+					"name": "Blog",
+					"link": "/#blog"
+				},
+				"whatsapp": {
+					"name": "WhatsApp",
+					"link": "/#whatsapp"
+				},
+				"linkedin": {
+					"name": "LinkedIn",
+					"link": "/#linkedin"
+				},
+				"website": {
+					"name": "Website",
+					"link": "/#website"
+				},
+				"xing": {
+					"name": "Xing",
+					"link": "/#xing"
+				},
+				"twitch": {
+					"name": "Twitch",
+					"link": "/#twitch"
+				}
+			},
+			"hotline": "Service-Hotline",
+			"benefits": {
+				"headline": "Unsere Vorteile",
+				"content": "Kostenloser Versand; Versand innerhalb von 24h; 30 Tage Geld-Zurück-Garantie; Bequemer Kauf auf Rechnung; Direkt vom Hersteller"
+			},
+			"location": {
+				"headline": "Ladengeschäft",
+				"content": "<p>Demoshop Store im Gewerbepark<br>Muster Straße 10-12<br>12345 Musterhausen</p><p><strong>Öffnungszeiten:</strong><br>Mo - Fr: 09:00 - 20:00 Uhr<br>Sa: 09:00 - 18:00 Uhr</p>",
+				"route": {
+					"name": "Routenplaner starten",
+					"link": "/#google-maps-link"
+				}
+			},
+			"awards": {
+				"headline": "Sicher Einkaufen",
+				"content": "Mehrfach ausgezeichnet und zertifiziert!",
+				"sslSeal": {
+					"url": "/bundles/tcinnthemewaremodern/assets/awards/twt-ssl-siegel.png"
+				},
+				"customImages": {
+					"title1": "Benutzerdefiniertes Bild 1",
+					"title2": "Benutzerdefiniertes Bild 2",
+					"title3": "Benutzerdefiniertes Bild 3",
+					"title4": "Benutzerdefiniertes Bild 4",
+					"title5": "Benutzerdefiniertes Bild 5",
+					"title6": "Benutzerdefiniertes Bild 6"
+				}
+			},
+			"newsletter": {
+				"headline": "Newsletter",
+				"content": "Abonnieren Sie jetzt einfach unseren regelmäßig erscheinenden Newsletter und Sie werden stets unter den Ersten sein, über neue Produkte und Angebote informiert werden.",
+				"formInput": "Ihre E-Mail-Adresse",
+				"formSubmit": "Newsletter abonnieren",
+				"formPrivacy": "Ich habe die <a data-toggle=\"modal\" data-url=\"%url%\" href=\"%url%\" title=\"Datenschutzbestimmungen\">Datenschutzbestimmungen</a> zur Kenntnis genommen."
+			},
+			"text": {
+				"headline": "Individueller Text",
+				"content": "<p>Lorem ipsum dolor sit amet, <b>individueller Text</b> consetetur sadipscing elitr, sed diam nonumy eirmod <u>Footer-Widget</u> tempor invidunt magna erat.</p><p>Gadipscing elitr, <i>Textbaustein</i> sed diam nonumy eirmod tempor dolore aliquyam.</p>"
+			}
+		},
+		"cookie": {
+			"localStorage": {
+				"name": "Local Storage",
+				"description": "Speichert einen Zeitstempel um Elemente auf Wunsch für eine gewisse Zeit ausblenden zu können."
+			}
+		}
+	},
+	"component": {
+		"cms": {
+			"defaultMedia": {
+				"preview_one_large": {
+					"title": "Banane",
+					"alt": "Bananenfrucht auf gelben Hintergrund"
+				},
+				"preview_one_small": {
+					"title": "Banane",
+					"alt": "Bananenfrucht auf gelben Hintergrund"
+				},
+				"preview_two_large": {
+					"title": "Apfel",
+					"alt": "Apfelfrucht auf rotem Hintergrund"
+				},
+				"preview_two_small": {
+					"title": "Apfel",
+					"alt": "Apfelfrucht auf rotem Hintergrund"
+				},
+				"preview_three_large": {
+					"title": "Kirsche",
+					"alt": "Sauerkirschen auf violettem Hintergrund"
+				},
+				"preview_three_small": {
+					"title": "Kirsche",
+					"alt": "Sauerkirschen auf violettem Hintergrund"
+				},
+				"preview_four_large": {
+					"title": "Kiwi",
+					"alt": "Kiwifrucht auf grünem Hintergrund"
+				},
+				"preview_four_small": {
+					"title": "Kiwi",
+					"alt": "Kiwifrucht auf grünem Hintergrund"
+				},
+				"preview_five_large": {
+					"title": "Orange",
+					"alt": "Orange auf orangem Hintergrund"
+				},
+				"preview_five_small": {
+					"title": "Orange",
+					"alt": "Orange auf orangem Hintergrund"
+				},
+				"preview_six_large": {
+					"title": "Blaubeere",
+					"alt": "Blaubeeren auf blauem Hintergrund"
+				},
+				"preview_six_small": {
+					"title": "Blaubeere",
+					"alt": "Blaubeeren auf blauem Hintergrund"
+				}
+			}
+		}
+	}
+}

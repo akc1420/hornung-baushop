@@ -1,0 +1,67 @@
+{% block swag_social_shopping_channel_integration %}
+    <sw-card
+        v-if="!isLoading"
+        class="sw-sales-channel-integration-card"
+        :title="$tc(this.snippetPrefix() + '.cardTitle')"
+        :loading="isLoading">
+
+        {% block swag_social_shopping_channel_integration_container %}
+            <sw-container>
+
+                {% block swag_social_shopping_channel_integration_container_introduction %}
+                    <div class="sw-sales-channel-integration-card-introduction">
+
+                        {% block swag_social_shopping_channel_integration_container_introduction_title %}
+                            <h6 class="sw-sales-channel-integration-card-introduction-title">{{ $tc(this.snippetPrefix() +
+                                '.introduction.title') }}</h6>
+                        {% endblock %}
+
+                        {% block swag_social_shopping_channel_integration_container_introduction_description %}
+                            <p class="sw-sales-channel-integration-card-introduction-description">{{ $tc(this.snippetPrefix() +
+                                '.introduction.description') }}</p>
+                        {% endblock %}
+
+                    </div>
+            {% endblock %}
+
+                {% block swag_social_shopping_channel_integration_container_steps %}
+                    <div class="sw-sales-channel-integration-card-step-by-step">
+                        {% block swag_social_shopping_channel_integration_container_steps_title %}
+                            <h6 class="sw-sales-channel-integration-card-step-by-step-title">
+                                {{ $tc('swag-social-shopping.integration.stepByStepTitle') }}
+                            </h6>
+                        {% endblock %}
+
+                        {% block swag_social_shopping_channel_integration_container_steps_step %}
+                            <sw-social-shopping-channel-integration-step
+                                :steps="$tc(this.snippetPrefix() + '.stepByStep')"></sw-social-shopping-channel-integration-step>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+
+                {% block swag_social_shopping_channel_integration_container_export %}
+                    <sw-field
+                        v-if="salesChannelName !== 'pinterest'"
+                        :value="productComparisonAccessUrl"
+                        :label="$tc('sw-sales-channel.detail.productComparison.accessUrl')"
+                        :disabled="true"
+                        :isLoading="isLoading"
+                        :copyable="true">
+                    </sw-field>
+                {% endblock %}
+
+                {% block swag_social_shopping_channel_integration_container_pinterest_validation_button %}
+                    <sw-button
+                        v-else
+                        variant="ghost"
+                        :disabled="!salesChannel.active || !acl.can('sales_channel.editor')"
+                        :isLoading="isLoading"
+                        @click="openPinterestValidation">
+                        {{ $tc('swag-social-shopping.networks.pinterest.validationButtonTitle') }}
+                    </sw-button>
+                {% endblock %}
+            </sw-container>
+        {% endblock %}
+
+    </sw-card>
+{% endblock %}

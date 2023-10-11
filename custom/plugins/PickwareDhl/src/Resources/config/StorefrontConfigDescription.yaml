@@ -1,0 +1,91 @@
+showConditions:
+  $context.shipmentConfig.product:
+    - V01PAK # DHL Paket
+    - V55PAK # DHL Paket Connect
+    - V62WP # DHL Warenpost
+elements:
+  - type: group
+    label:
+      de-DE: 'Lieferoptionen'
+      en-GB: 'Delivery options'
+    showConditions:
+      $context.shipmentConfig.product: V01PAK # DHL Paket
+    text:
+      de-DE: 'Wähle aus, welche Lieferoptionen deinen Kunden in der Storefront zur Auswahl angezeigt werden sollen:'
+      en-GB: 'Select which delivery options you want your customers to be shown in the storefront:'
+    elements:
+      - name: showPackstation
+        type: boolean
+        label:
+          de-DE: Packstation
+          en-GB: Packstation
+      - name: showPostOffice
+        type: boolean
+        label:
+          de-DE: Postfiliale
+          en-GB: Post office
+      - name: showPaketshop
+        type: boolean
+        label:
+          de-DE: Paketshop
+          en-GB: Paketshop
+  - type: group
+    label:
+      de-DE: 'Wunschpaket'
+      en-GB: 'Preferred delivery'
+    elements:
+      - name: showPreferredDay
+        type: boolean
+        label:
+          de-DE: Wunschtag
+          en-GB: Preferred day
+        showConditions:
+          $context.shipmentConfig.product:
+            - V01PAK # DHL Paket
+            - V55PAK # DHL Paket Connect
+      - name: showPreferredLocation
+        type: boolean
+        label:
+          de-DE: Wunschort
+          en-GB: Preferred location
+        showConditions:
+          $context.shipmentConfig.product:
+            - V01PAK # DHL Paket
+            - V55PAK # DHL Paket Connect
+            - V62WP # DHL Warenpost
+      - name: showPreferredNeighbour
+        type: boolean
+        label:
+          de-DE: Wunschnachbar
+          en-GB: Preferred neighbour
+        showConditions:
+          $context.shipmentConfig.product:
+            - V01PAK # DHL Paket
+            - V55PAK # DHL Paket Connect
+            - V62WP # DHL Warenpost
+      - name: showNoNeighbourDelivery
+        type: boolean
+        label:
+          de-DE: Keine Nachbarschaftszustellung
+          en-GB: No neighbour delivery
+        showConditions:
+          $context.shipmentConfig.product:
+            - V01PAK # DHL Paket
+            - V55PAK # DHL Paket Connect
+      - name: processingTimeInDays
+        type: number
+        min: 0
+        default: 0
+        suffix:
+          de-DE: Tage
+          en-GB: Days
+        helpText:
+          de-DE: 'Die Zeit die mindestens zwischen Eingang und Versand einer Bestellung vergeht.'
+          en-GB: 'The minimum amount of time that passes between creation and shipping of an order.'
+        label:
+          de-DE: Bearbeitungszeit
+          en-GB: Order processing time
+        showConditions:
+          $context.shipmentConfig.product:
+            - V01PAK # DHL Paket
+            - V55PAK # DHL Paket Connect

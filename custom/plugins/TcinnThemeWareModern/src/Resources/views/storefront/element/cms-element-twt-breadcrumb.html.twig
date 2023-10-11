@@ -1,0 +1,27 @@
+{# ThemeWare: CMS element "Breadcrumb navigation" #}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET VARS ---------------- #}
+
+{# ThemeWare: Set variables #}
+{#% set twtBreadcrumb = element.translated.config %#}
+{% set twtBreadcrumb = element.fieldConfig.elements %}
+
+{# Tab: Layout #}
+{% set twtBreadcrumbHorizontalAlign = twtBreadcrumb.horizontalAlign.value %}
+
+{# Tab: Advanced #}
+{% set twtBreadcrumbCssClass = twtBreadcrumb.cssClass.value %}
+
+{# ---------------- END: SET VARS ---------------- #}
+
+{% block element_twt_breadcrumb %}
+	<div class="cms-element-{{ element.type }}{% if twtBreadcrumbHorizontalAlign == "center" %} justify-content-center{% elseif twtBreadcrumbHorizontalAlign == "flex-end" %} justify-content-end{% else %} justify-content-start{% endif %}{% if twtBreadcrumbCssClass is not empty %} {{ twtBreadcrumbCssClass }}{% endif %}">
+		{% set category = page.product.seoCategory ? page.product.seoCategory : page.header.navigation.active %}
+		{% sw_include '@Storefront/storefront/layout/breadcrumb.html.twig' with {
+			context: context,
+			category: category
+		} only %}
+	</div>
+{% endblock %}

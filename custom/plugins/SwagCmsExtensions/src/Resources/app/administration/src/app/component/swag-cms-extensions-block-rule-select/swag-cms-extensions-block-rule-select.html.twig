@@ -1,0 +1,9 @@
+{% block sw_select_rule_create_select_before %}
+    {% parent %}
+
+    {% block swag_cms_extensions_block_rule_select_dismiss_selection %}
+        <div class="sw-select-rule-create__dismiss-rule sw-select-result" @click="dismissSelection">
+            {{ $tc('swag-cms-extensions.sw-cms.detail.blockRule.alwaysVisiblePlaceholder') }}
+        </div>
+    {% endblock %}
+{% endblock %}

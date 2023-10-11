@@ -1,0 +1,104 @@
+{% block swag_cms_extensions_form_template_modal %}
+    <div class="swag-cms-extensions-form-template-modal">
+
+        {% block swag_cms_extensions_form_template_modal_modal %}
+            <sw-modal
+                v-if="displayModal"
+                class="swag-cms-extensions-form-template-modal__modal"
+                :title="$tc('swag-cms-extensions.sw-cms.elements.custom-form.config.editFormTemplateLink')"
+                variant="large"
+                @modal-close="onModalClose">
+
+                {% block swag_cms_extensions_form_template_modal_modal_content %}
+                    <div class="swag-cms-extensions-form-template-modal__content">
+
+                        {% block swag_cms_extensions_form_template_modal_modal_content_search %}
+                            {% block swag_cms_extensions_form_template_modal_modal_content_search_label %}
+                                <sw-label class="swag-cms-extensions-form-template-modal__search-field-label">
+
+                                    {% block swag_cms_extensions_form_template_modal_modal_content_search_field %}
+                                        <sw-simple-search-field
+                                            v-model="searchTerm"
+                                            class="swag-cms-extensions-form-template-modal__search-field"
+                                            size="small"
+                                            variant="form"
+                                            :delay="750">
+                                        </sw-simple-search-field>
+                                    {% endblock %}
+                                </sw-label>
+                            {% endblock %}
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_form_template_modal_modal_content_listing %}
+                            <sw-entity-listing
+                                v-if="total"
+                                ref="templateEntityListing"
+                                class="swag-cms-extensions-form-template-modal__entity-listing"
+                                :items="formTemplates"
+                                :skeletonItemAmount="5"
+                                :steps="[5, 10]"
+                                :columns="columns"
+                                :repository="formTemplateRepository"
+                                :sortBy="sortBy"
+                                :sortDirection="sortDirection"
+                                :isLoading="isLoading"
+                                :showSelection="false"
+                                :showSettings="false"
+                                :allowColumnEdit="false"
+                                :compactMode="false"
+                                :showActions="true"
+                                :plainAppearance="true"
+                                :allowInlineEdit="true"
+                                :fullPage="true"
+                                @inline-edit-save="onInlineEditSave"
+                                @column-sort="onSortColumn"
+                                @page-change="onPageChange"
+                                @delete-item-finish="getList">
+
+                                {% block swag_cms_extensions_form_template_modal_modal_content_listing_more_actions %}
+                                    <template #more-actions="{ item }">
+
+                                        {% block swag_cms_extensions_form_template_modal_modal_content_listing_more_actions_rename %}
+                                            <sw-context-menu-item @click="onRename(item)">
+                                                {{ $tc('swag-cms-extensions.sw-cms.elements.custom-form.templateListing.renameContextAction') }}
+                                            </sw-context-menu-item>
+                                        {% endblock %}
+
+                                    </template>
+                                {% endblock %}
+
+                            </sw-entity-listing>
+                        {% endblock %}
+
+                        {% block swag_cms_extensions_form_template_modal_modal_content_empty_state %}
+                            <div v-else-if="!isLoading"
+                                 class="swag-cms-extensions-form-template-modal__empty-state">
+                                <img class="swag-cms-extensions-form-editor-empty-state__icon"
+                                     :src="'/swagcmsextensions/static/img/shopping-experiences-empty-state.svg' | asset"
+                                >
+
+                                <p>{{ $tc('swag-cms-extensions.sw-cms.elements.custom-form.templateListing.emptyState') }}</p>
+                            </div>
+                        {% endblock %}
+
+                    </div>
+                {% endblock %}
+
+                {% block swag_cms_extensions_form_template_modal_modal_footer %}
+                    <template #modal-footer>
+
+                        {% block swag_cms_extensions_form_template_modal_modal_footer_close_button %}
+                            <sw-button size="small"
+                                       @click="onModalClose">
+                                {{ $tc('global.sw-modal.labelClose') }}
+                            </sw-button>
+                        {% endblock %}
+
+                    </template>
+                {% endblock %}
+
+            </sw-modal>
+        {% endblock %}
+
+    </div>
+{% endblock %}

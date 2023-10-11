@@ -1,0 +1,354 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare "Custom header"
+    ==================================================
+
+*/
+
+$twt-custom-header-zindex: 16;  // TODO: Check regularly (10 product-badges, 15 video privacy backdrops | 1020 sticky, 1040 modals, 1050 offcanvas)
+
+// ThemeWare: Header 10   #customHeader ------------------------------
+
+@if $twt-header-type == 10 {
+    @include media-breakpoint-up(sm) { // min 576px
+        .twt-is-sticky-header {
+            header.header-main {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: $twt-custom-header-zindex;
+                box-shadow: 0 0 20px rgba(0, 0, 0, .07); // TODO: Add configuration + Only apply when header isn't transparent...
+            }
+        }
+
+        // Adjust "Shopping Experiences Header"
+        @if $twt-shopping-experiences-header-position == 2 {
+            header.header-main {
+                position: relative;
+                z-index: $twt-custom-header-zindex;
+            }
+        }
+    }
+
+    // TODO: Check if this is only for flyout search
+    .twt-is-sticky-header {
+        #searchCollapse {
+            position: fixed;
+        }
+    }
+
+    // Adjust flyout search
+    @if $twt-header-search-type == 2 {
+        #searchCollapse {
+            // Check if "Shopping Experiences Header" is configured
+            @if $twt-shopping-experiences-header-position == 2 {
+                position: fixed;
+            } @else {
+                position: relative;
+            }
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: $twt-custom-header-zindex;
+        }
+    }
+
+    header.header-main {
+        // Header breakpoint via configuration
+        @include media-breakpoint(max,strip-unit($twt-custom-header-nav-max-width - 1)) {
+            .twt-sticky-header-menu-button {
+                display: block !important;
+            }
+
+            .header-row {
+                justify-content: space-between;
+            }
+        }
+
+        // TODO:
+        //.header-search-col {
+        //    // Hide Shopware menu button
+        //    .col-sm-auto.d-none.d-sm-block.d-lg-none {
+        //        display: none !important;
+        //    }
+        //}
+
+        // XXS viewport
+        @media (max-width: 420px) { // max 420px
+            .header-row {
+                .header-logo-col {
+                    width: 100%;
+                    padding-right: $twt-basegrid-spacing-sm; // = 10px
+                    padding-bottom: 0;
+                    padding-left: $twt-basegrid-spacing-sm; // = 10px
+                }
+
+                .header-actions-col {
+                    width: 100%;
+                    //padding-right: $twt-basegrid-spacing-sm; // = 10px
+                    //padding-left: $twt-basegrid-spacing-sm; // = 10px
+                }
+            }
+        }
+
+        // Extra small devices (portrait phones, less than 576px)
+        //@include media-breakpoint-up(xs) { ... }
+
+        // Extra small devices (portrait phones, less than 576px)
+        //@include media-breakpoint-only(xs) { ... }
+
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .header-nav-main-toggle-label {
+                display: none !important;
+            }
+        }
+
+        // Small devices (landscape phones, 576px and up)
+        //@include media-breakpoint-up(sm) { ... }
+
+        // Small devices (landscape phones, 576px and up)
+        @include media-breakpoint-only(sm) {
+            .header-row {
+                .header-logo-col {
+                    padding-left: $twt-basegrid-spacing; // = 20px
+                }
+
+                .header-actions-col {
+                    padding-right: 20px;
+                    padding-left: 20px;
+                }
+            }
+        }
+
+        // Tablet viewport adjustments ------------------------------
+
+        @include media-breakpoint-down(md) { // max 991.98px
+            // Search Layout type Input (default)
+            @if $twt-header-search-type == 1 {
+                .header-search-col .collapse:not(.show) {
+                    display: none;
+                }
+
+                .twt-sticky-header-menu-button + .d-sm-none.col-auto {
+                    display: block !important;
+                }
+            }
+
+            .header-row {
+                //.header-logo-col {}
+
+                .header-search-col {
+                    order: 2;
+                    flex: 0 0 100% !important;
+                    max-width: 100% !important;
+                    width: 100% !important;
+
+                    // Search
+                    .col {
+                        padding: 0;
+
+                        #searchCollapse {
+                            .header-search {
+                                margin: 0;
+                                padding: 15px;
+                                max-width: 100%;
+                            }
+                        }
+                    }
+
+                    .row {
+                        background-color: $twt-header-search-flyout-background-color;
+                        margin: 0;
+
+                        @include media-breakpoint-up(sm) { // min 576px
+                            margin-left: 0;
+                            margin-right: 0;
+                            margin-top: $twt-header-padding-top + px;
+                            margin-bottom: -$twt-header-padding-bottom + px;
+                        }
+
+                        @include media-breakpoint-up(md) { // min 768px
+                            margin-left: -$twt-basegrid-spacing;
+                            margin-right: -$twt-basegrid-spacing;
+                            margin-top: $twt-header-padding-top + px;
+                            margin-bottom: -$twt-header-padding-bottom + px;
+                        }
+                    }
+                }
+
+                //.header-actions-col {}
+
+            }
+        }
+
+        // Medium devices (tablets, 768px and up)
+        @include media-breakpoint-up(md) { // min 768px
+            .header-row {
+                padding-right: $twt-basegrid-spacing;
+                padding-left: $twt-basegrid-spacing;
+
+                .header-nav-col {
+                    justify-content: center;
+                }
+            }
+
+            .nav-main  {
+                .main-navigation {
+                    //max-width: 900px; // @deprecated Overflow ermöglichen...
+
+                    * {
+                        scrollbar-width: auto;
+                        scrollbar-color: $sw-color-brand-primary #fff;
+                    }
+
+                    *::-webkit-scrollbar {
+                        width: 10px;
+                    }
+
+                    *::-webkit-scrollbar-track {
+                        background: #fff;
+                    }
+
+                    *::-webkit-scrollbar-thumb {
+                        background-color: $sw-color-brand-primary;
+                        border-radius: 10px;
+                        border: 5px solid #fff;
+                    }
+
+                    .main-navigation-menu {
+                        height: null-pixel-unit($twt-nav-main-height);
+                        flex-wrap: nowrap;
+                        overflow-x: auto;
+                        overflow-y: hidden;
+                        -webkit-overflow-scrolling: touch;
+                        -ms-overflow-style: -ms-autohiding-scrollbar;
+
+                        .main-navigation-link {
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Medium devices (tablets, 768px and up)
+        //@include media-breakpoint-only(md) { ... }
+
+        // Desktop viewport adjustments ------------------------------
+
+        //@include media-breakpoint-down(lg) { ... }
+
+        // Large devices (desktops, 992px and up)
+        @include media-breakpoint-up(lg) { // min 992px
+            .header-row {
+                .header-logo-col {
+                    padding-right: $twt-basegrid-spacing;
+                }
+            }
+        }
+
+        // Large devices (desktops, 992px and up)
+        //@include media-breakpoint-only(lg) { ... }
+
+        // Extra large devices (large desktops, 1200px and up)
+        //@include media-breakpoint-up(xl) { ... }
+
+        // Extra large devices (large desktops, 1200px and up)
+        //@include media-breakpoint-only(xl) { ... }
+
+        // @deprecated tag:v6.5.0 - Bootstrap v5 adds xxl breakpoint
+        //@include media-breakpoint-only(xxl) { ... }
+
+        @include media-breakpoint(min,strip-unit($twt-custom-header-nav-max-width)) { // Info: Add scrollbar width
+            .header-row {
+                // Overflow ermöglichen...
+                .main-navigation {
+                    width: auto;
+                    max-width: 100%;
+                }
+
+                .header-nav-col {
+                    display: flex !important;
+                }
+            }
+
+            // Overflow ermöglichen...
+            .nav-main {
+                overflow: hidden;
+
+                &:after {
+                    position: absolute;
+                    z-index: 1;
+                    top: 0;
+                    right: 0;
+                    display: block;
+                    width: 20px;
+                    height: 100%;
+                    content: "";
+                    background: linear-gradient(to left, $twt-header-background-color-desktop 0%, transparent 100%);
+                }
+            }
+        }
+
+        // Mobile/Tablet viewport adjustments ------------------------------
+
+        @media (min-width: 421px) and (max-width: 575.98px) {
+            .header-row {
+                .header-logo-col {
+                    padding-left: $twt-basegrid-spacing-sm; // = 10px
+                    padding-right: $twt-basegrid-spacing-sm; // = 10px
+                }
+                /*
+                .header-actions-col {
+                    padding-left: $twt-basegrid-spacing-sm; // = 10px
+                    padding-right: $twt-basegrid-spacing-sm; // = 10px
+                }
+                */
+            }
+        }
+
+        @include media-breakpoint-between(sm, sm) { // min 576px and max 767.98px
+            .header-row {
+                .header-logo-col {
+                    width: 100%;
+                    padding-top: 10px;
+                    padding-bottom: 0;
+                }
+
+                .header-actions-col {
+                    width: 100%;
+                }
+            }
+        }
+
+        @include media-breakpoint-between(sm, md) { // min 576px and max 991.98px
+            .header-row {
+                .header-logo-col {
+                    flex: 0 0 auto !important;
+                    width: auto !important;
+                    max-width: 100% !important;
+                    margin: 0;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                }
+
+                .header-actions-col {
+                    flex: 0 0 auto !important;
+                    width: auto !important;
+                    max-width: 100% !important;
+                    order: 1;
+                    padding-top: 5px;
+                    padding-bottom: 5px;
+                }
+            }
+        }
+    }
+
+}

@@ -1,0 +1,22 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Icon mixins
+	==================================================
+
+*/
+
+// ThemeWare: Generate icons with size ------------------------------
+
+@mixin twt-icon($size) {
+  vertical-align: middle;
+
+  svg {
+    display: none;
+  }
+}

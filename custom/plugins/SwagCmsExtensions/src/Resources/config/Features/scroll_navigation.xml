@@ -1,0 +1,42 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Definitions -->
+        <service id="Swag\CmsExtensions\ScrollNavigation\ScrollNavigationDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_scroll_navigation" />
+        </service>
+
+        <service id="Swag\CmsExtensions\ScrollNavigation\Aggregate\ScrollNavigationTranslation\ScrollNavigationTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_scroll_navigation_translation" />
+        </service>
+
+        <service id="Swag\CmsExtensions\ScrollNavigation\Aggregate\ScrollNavigationPageSettings\ScrollNavigationPageSettingsDefinition">
+            <tag name="shopware.entity.definition" entity="swag_cms_extensions_scroll_navigation_page_settings" />
+        </service>
+
+        <!-- Decorators -->
+        <service id="Swag\CmsExtensions\Service\Content\Cms\SalesChannel\SalesChannelCmsPageLoaderScrollNavigationDecorator"
+                 decorates="Shopware\Core\Content\Cms\SalesChannel\SalesChannelCmsPageLoader"
+                 decoration-priority="90">
+            <argument type="service"
+                      id="Swag\CmsExtensions\Service\Content\Cms\SalesChannel\SalesChannelCmsPageLoaderScrollNavigationDecorator.inner" />
+        </service>
+
+        <!-- Extensions -->
+        <service id="Swag\CmsExtensions\Extension\Feature\ScrollNavigation\CmsPageEntityExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+
+        <service id="Swag\CmsExtensions\Extension\Feature\ScrollNavigation\CmsSectionEntityExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+
+        <service id="Swag\CmsExtensions\Extension\Feature\ScrollNavigation\LanguageExtension">
+            <tag name="shopware.entity.extension" />
+        </service>
+    </services>
+</container>

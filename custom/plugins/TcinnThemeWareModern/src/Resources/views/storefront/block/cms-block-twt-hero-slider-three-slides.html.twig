@@ -1,0 +1,55 @@
+{# ThemeWare: CMS block "Hero slider (3 slides)" #}
+
+{# TODO: "twt-" prefix Blocks... #}
+
+{% set elementID = block.id|replace({'a':'','b':'','c':'','d':'','e':'','f':'','g':'','h':'','i':'','j':'','k':'','l':'','m':'','n':'','o':'','p':'','q':'','r':'','s':'','t':'','u':'','v':'','w':'','x':'','y':'','z':''}) %}
+{% set elementID = elementID|slice(0, 3) %}
+{% set columns = 1 %}
+
+{% block block_twt_hero_slider_three_slides %}
+	<div class="col-md-12" data-cms-element-id="{{ block.id }}">
+	
+		{# ThemeWare Bootstrap slider: https://getbootstrap.com/docs/4.1/components/carousel/ #}
+		{# TODO: Auto, Timing, carousel-fade #}
+		<div id="twt-hero-slider-{{ block.position }}{{ elementID }}" class="twt-hero-slider base-slider image-slider carousel slide" data-ride="carousel" data-interval="7000" data-pause="hover">
+
+			<ol class="tns-nav carousel-indicators">
+				<li data-target="#twt-hero-slider-{{ block.position }}{{ elementID }}" data-slide-to="0" class="active"></li>
+				<li data-target="#twt-hero-slider-{{ block.position }}{{ elementID }}" data-slide-to="1"></li>
+				<li data-target="#twt-hero-slider-{{ block.position }}{{ elementID }}" data-slide-to="2"></li>
+			</ol>
+	
+			<div class="carousel-inner image-slider-item-container">
+				<div class="carousel-item image-slider-item is-contain active">
+					{% block block_twt_hero_slider_three_slides_slot_item1 %}
+						{% set element = block.slots.getSlot('item1') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+					{% endblock %}
+				</div>
+				<div class="carousel-item image-slider-item is-contain">
+					{% block block_twt_hero_slider_three_slides_slot_item2 %}
+						{% set element = block.slots.getSlot('item2') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+					{% endblock %}
+				</div>
+				<div class="carousel-item image-slider-item is-contain">
+					{% block block_twt_hero_slider_three_slides_slot_item3 %}
+						{% set element = block.slots.getSlot('item3') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+					{% endblock %}
+				</div>
+			</div>
+	
+			<div class="base-slider-controls">
+				<button class="carousel-control-prev base-slider-controls-prev image-slider-controls-prev is-nav-prev-outside" href="#twt-hero-slider-{{ block.position }}{{ elementID }}" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				</button>
+				<button class="carousel-control-next base-slider-controls-next image-slider-controls-next is-nav-next-outside" href="#twt-hero-slider-{{ block.position }}{{ elementID }}" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				</button>
+			</div>
+	
+		</div>
+	
+	</div>
+{% endblock %}

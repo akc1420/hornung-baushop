@@ -1,0 +1,189 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Bootstrap variables
+	==================================================
+	Contains all overrides of bootstrap default variables.
+
+	https://github.com/twbs/bootstrap/blob/148421be129ed05a01f4f8086ae0c4f7b019226d/scss/_variables.scss
+	https://github.com/shopware/platform/blob/master/src/Storefront/Resources/app/storefront/src/scss/skin/shopware/abstract/variables/_bootstrap.scss
+*/
+
+// default theme-colors:
+// - Primary
+// - Secondary
+// - Success
+// - Danger
+// - Warning
+// - Info
+// - Light
+// - Dark
+
+// ThemeWare: Add more theme-colors to array ----------------------------------------------------------------
+
+//$primary:       $blue !default;
+//$secondary:     $gray-600 !default;
+//$success:       $green !default;
+//$info:          $cyan !default;
+//$warning:       $yellow !default;
+//$danger:        $red !default;
+//$light:         $gray-100 !default;
+//$dark:          $gray-900 !default;
+
+//$theme-colors: (
+//  "primary":    $primary,
+//  "secondary":  $secondary,
+//  "success":    $success,
+//  "info":       $info,
+//  "warning":    $warning,
+//  "danger":     $danger,
+//  "light":      $light,
+//  "dark":       $dark
+//) !default;
+
+$theme-colors: () !default;
+$theme-colors: map-merge((
+	"tc-innovations": #137bc9,
+	"themeware": #0d5a93
+), $theme-colors);
+
+
+// ThemeWare: Add more colors to array ----------------------------------------------------------------
+
+//$blue:    #0d6efd !default;
+//$indigo:  #6610f2 !default;
+//$purple:  #6f42c1 !default;
+//$pink:    #d63384 !default;
+//$red:     #dc3545 !default;
+//$orange:  #fd7e14 !default;
+//$yellow:  #ffc107 !default;
+//$green:   #198754 !default;
+//$teal:    #20c997 !default;
+//$cyan:    #0dcaf0 !default;
+
+//$colors: (
+//  "blue":       $blue,
+//  "indigo":     $indigo,
+//  "purple":     $purple,
+//  "pink":       $pink,
+//  "red":        $red,
+//  "orange":     $orange,
+//  "yellow":     $yellow,
+//  "green":      $green,
+//  "teal":       $teal,
+//  "cyan":       $cyan,
+//  "white":      $white,
+//  "gray":       $gray-600,
+//  "gray-dark":  $gray-800
+//) !default;
+
+$colors: map-merge((
+	"black": #000000,
+	"gold": #ebb35c, // c49c48
+	"silver": #c0c0c0,
+	"bronze": #bf8970
+), $colors);
+
+
+// ThemeWare: Grid breakpoints ----------------------------------------------------------------
+// https://getbootstrap.com/docs/4.0/layout/overview/
+
+// --- min-width -------------------------------------------
+
+// Small devices (landscape phones, 576px and up)
+//@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+//@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+//@media (min-width: 992px) { ... }
+
+// Extra large devices (large desktops, 1200px and up)
+//@media (min-width: 1200px) { ... }
+
+// --- max-width -------------------------------------------
+
+// Extra small devices (portrait phones, less than 576px)
+//@media (max-width: 575.98px) { ... }
+
+// Small devices (landscape phones, less than 768px)
+//@media (max-width: 767.98px) { ... }
+
+// Medium devices (tablets, less than 992px)
+//@media (max-width: 991.98px) { ... }
+
+// Large devices (desktops, less than 1200px)
+//@media (max-width: 1199.98px) { ... }
+
+// Extra large devices (large desktops)
+// No media query since the extra-large breakpoint has no upper bound on its width
+
+$grid-breakpoints: (
+	xxxs: 0,
+	xxs: 320px,
+	xs: 480px,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1440px,
+	xxxl: 1600px,
+	xxxxl: 1920px
+);
+
+
+// ThemeWare: Container max-width ----------------------------------------------------------------
+
+$container-max-widths: (
+	xxxs: 0,
+	xxs: 320px,
+	xs: 480px,
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px,
+	xxl: 1440px,
+	xxxl: 1600px,
+	xxxxl: 1920px
+);
+
+
+// ThemeWare: Labels ----------------------------------------------------------------
+// Define alert colors, border radius, and padding.
+
+// TODO: add values to configuration
+$label-padding-y: .375rem !default;
+$label-padding-x: .75rem !default;
+$label-font-family: null !default;
+$label-font-weight: $font-weight-normal !default;
+$label-font-size: $font-size-base !default;
+$label-line-height: $line-height-base !default;
+
+$label-padding-y-lg: .5rem !default;
+$label-padding-x-lg: 1rem !default;
+$label-font-size-lg: $font-size-base * 1.25 !default; //$font-size-lg !default;
+$label-line-height-lg: 1.5 !default; //$line-height-lg !default;
+
+$label-padding-y-sm: .25rem !default;
+$label-padding-x-sm:  .5rem !default;
+$label-font-size-sm: $font-size-base * .875 !default; //$font-size-sm !default;
+$label-line-height-sm: 1.5 !default; //$line-height-sm !default;
+
+$label-border-width: 1px !default; //$border-width !default;
+$label-border-radius: 3px; //$border-radius; .25rem !default
+$label-border-radius-lg: 3px; //$border-radius-lg; .3rem !default;
+$label-border-radius-sm: 3px; //$border-radius-sm; .2rem !default;
+
+//$label-box-shadow: inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
+//$label-disabled-opacity: .65 !default;
+//$btn-block-spacing-y: .5rem !default;
+
+$label-bg-level: -10 !default;
+$label-border-level: -9 !default;
+$label-color-level: 6 !default;

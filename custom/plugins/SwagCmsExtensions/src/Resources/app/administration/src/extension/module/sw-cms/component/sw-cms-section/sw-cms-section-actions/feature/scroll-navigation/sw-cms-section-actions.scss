@@ -1,0 +1,13 @@
+@import "~scss/variables";
+
+.sw-cms-section.is--active .sw-cms-section__scroll-navigation-label .sw-icon {
+    color: $color-module-purple-900;
+}
+
+
+.sw-cms-section__action.sw-cms-section__scroll-navigation-label {
+    &:hover,
+    .is--active {
+        color: $color-module-purple-900;
+    }
+}

@@ -1,0 +1,98 @@
+{% block swag_social_shopping_channel_error %}
+    <sw-card class="sw-social-shopping-error" :isLoading="isLoading" :title="$tc('swag-social-shopping.validation.titleValidation')">
+        <div>
+
+            {% block swag_social_shopping_channel_error_head %}
+                <sw-container>
+
+                    {% block swag_social_shopping_channel_error_head_validation_button %}
+                        <sw-button
+                                variant="ghost"
+                                size="small"
+                                :disabled="!acl.can('sales_channel.editor')"
+                                :isLoading="isValidating"
+                                @click="onValidate">
+                            {{ $tc('swag-social-shopping.validation.buttonStartValidation') }}
+                        </sw-button>
+                    {% endblock %}
+
+                    {% block swag_social_shopping_channel_error_head_validation_showed_errors_notification %}
+                        <sw-alert
+                            v-if="socialShoppingErrors && socialShoppingErrors.total && salesChannel.extensions.socialShoppingSalesChannel.lastValidation && !salesChannel.extensions.socialShoppingSalesChannel.isValidating"
+                            variant="info"
+                            appearance="notification"
+                            :showIcon="true"
+                            :closable="false">
+                            {{ $tc('swag-social-shopping.validation.validationShowedErrors', 0, { validationDate: lastValidation } ) }}
+                        </sw-alert>
+                    {% endblock %}
+
+                    {% block swag_social_shopping_channel_error_head_validation_validation_running_notification %}
+                        <sw-alert
+                            v-if="salesChannel.extensions.socialShoppingSalesChannel.isValidating"
+                            variant="info"
+                            appearance="notification"
+                            :showIcon="true"
+                            :closable="false">
+                            {{ $tc('swag-social-shopping.validation.validationRunning') }}
+                        </sw-alert>
+                    {% endblock %}
+                </sw-container>
+                <sw-container v-if="(!socialShoppingErrors || !socialShoppingErrors.total) && !isLoading  && !salesChannel.extensions.socialShoppingSalesChannel.isValidating">
+
+                    {% block swag_social_shopping_channel_error_head_validation_no_errors_notification %}
+                        <sw-alert
+                            v-if="salesChannel.extensions.socialShoppingSalesChannel.lastValidation"
+                            variant="success"
+                            appearance="notification"
+                            :showIcon="true"
+                            :closable="false">
+                            {{ $tc('swag-social-shopping.validation.noErrorsFound', 0, { "validationDate": lastValidation } ) }}
+                        </sw-alert>
+                    {% endblock %}
+
+                    {% block swag_social_shopping_channel_error_head_validation_not_validated_notification %}
+                        <sw-alert v-else variant="info" appearance="notification" :showIcon="true" :closable="false">
+                            {{ $tc('swag-social-shopping.validation.notValidatedYet', 0, { validationDate: lastValidation } ) }}
+                        </sw-alert>
+                    {% endblock %}
+                </sw-container>
+            {% endblock %}
+        </div>
+
+        {% block swag_social_shopping_channel_error_list %}
+            <sw-container v-if="socialShoppingErrors && socialShoppingErrors.total && !salesChannel.extensions.socialShoppingSalesChannel.isValidating">
+                <sw-entity-listing  :items="socialShoppingErrors"
+                                    :repository="socialShoppingProductErrorRepository"
+                                    :columns="socialShoppingErrorColumns"
+                                    :isLoading="isLoading"
+                                    :allowInlineEdit="false"
+                                    :allowColumnEdit="false"
+                                    :showSettings="false"
+                                    :showSelection="false"
+                                    :showActions="false"
+                                    :fullPage="false"
+                >
+
+                    {% block swag_social_shopping_channel_error_list_product_column %}
+                        <template slot="column-product" slot-scope="{ item }">
+                            <router-link :to="{ name: 'sw.product.detail', params: { id: item.productId } }">
+                                {{ item.product.name }}
+                            </router-link>
+                        </template>
+                    {% endblock %}
+
+                    {% block swag_social_shopping_channel_error_list_error_column %}
+                        <template slot="column-errors" slot-scope="{ item }">
+                            <ul>
+                                <li v-for="error in item.errors">
+                                    {{ $tc(error.error, 0, error.params) }}
+                                </li>
+                            </ul>
+                        </template>
+                    {% endblock %}
+                </sw-entity-listing>
+            </sw-container>
+        {% endblock %}
+    </sw-card>
+{% endblock %}

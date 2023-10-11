@@ -1,0 +1,372 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS element "Classic teaser"
+	==================================================
+
+*/
+
+// TODO: Add performance configuration to disable styling
+// TODO: Add font styling and sizing
+
+.cms-element-twt-classic-teaser {
+    // Content container
+    .cms-title-container {
+        font-family: $sw-font-family-base;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .cms-title-container {
+        transition: all .25s ease;
+    }
+
+    &.is-hover {
+        .cms-title-container {
+            opacity: 0;
+        }
+
+        &:hover {
+            .cms-title-container {
+                opacity: 1;
+            }
+        }
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #008CBA;
+    }
+
+    // Animations ------------------------------
+
+    // Add hover effects (except on phones)
+    // - Hover effect is only applied when element is linked. (alternatively use .cms-image-container:hover instead of a:hover)
+
+    @include media-breakpoint-up(sm) { // min 576px
+        .overlay {
+            transition: all .25s ease;
+            opacity: .9;
+        }
+    }
+
+    // ThemeWare: Shopware 5 default style ------------------------------
+
+    &.is-default {
+        .text {
+            @include twt-font-size(14);
+            font-weight: $twt-font-weight-bold;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+            overflow: hidden;
+            width: 100%;
+            padding: 10px 15px; // previously: 0.625rem 1.25rem 0.625rem 1.25rem (10px 20px)
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+        }
+    }
+
+    // ThemeWare for Shopware 5 "Hover-Effect 1" ------------------------------
+
+    &.is-default,
+    &.is-effect1,
+    &.is-effect2,
+    &.is-effect3,
+    &.is-effect4,
+    &.is-effect5,
+    &.is-effect7,
+    &.is-effect6 {
+        .text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            display: block;
+        }
+    }
+
+    &.is-effect1,
+    &.is-effect2,
+    &.is-effect3,
+    &.is-effect4,
+    &.is-effect5,
+    &.is-effect7,
+    &.is-effect6 {
+        .text {
+            text-align: center;
+        }
+    }
+
+    &.is-effect1,
+    &.is-effect2 {
+        .text {
+            color: #000000; // previously: #2b323a
+            background: rgba(255, 255, 255, 0.7); // previously: #ffffff
+
+            .icon {
+                color: #000000; // previously: #2b323a
+            }
+        }
+    }
+
+    &.is-effect1,
+    &.is-effect4 {
+        .text {
+            transition: all .2s ease-out;
+        }
+
+        a:hover {
+            .text {
+                height: 75px;
+            }
+        }
+    }
+
+    &.is-effect1,
+    &.is-effect2,
+    &.is-effect4 {
+        .text {
+            line-height: 30px;
+            width: 100%;
+            height: 40px;
+            padding: 5px 25px;
+
+            &.text-left {
+                padding: 5px 25px 5px 15px;
+            }
+
+            .icon {
+                position: absolute;
+                right: 5px;
+                transition: all .5s ease;
+                opacity: 0;
+            }
+        }
+
+        a:hover {
+            .text {
+                .icon {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    &.is-effect1,
+    &.is-effect2,
+    &.is-effect3,
+    &.is-effect4,
+    &.is-effect5,
+    &.is-effect6 {
+        .text {
+            font-size: 18px;
+            font-weight: $twt-font-weight-bold;
+        }
+    }
+
+    &.is-default,
+    &.is-effect1,
+    &.is-effect2,
+    &.is-effect3,
+    &.is-effect4,
+    &.is-effect5,
+    &.is-effect6 {
+        .text {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+    }
+
+    &.is-effect5,
+    &.is-effect6 {
+        .text {
+            line-height: 25px;
+            width: auto;
+            height: 35px;
+            padding: 5px 15px;
+            transition: all .2s ease-out;
+        }
+
+        a:hover {
+            .text {
+                line-height: 30px;
+                height: 50px;
+                padding: 10px 20px;
+            }
+        }
+    }
+
+    // ThemeWare for Shopware 5 "Hover-Effect 1" ------------------------------
+
+    &.is-effect1 {
+        a:hover {
+            .text {
+                background: rgba(255, 255, 255, 0.95);
+            }
+        }
+    }
+
+    // ThemeWare for Shopware 5 "Hover-Effect 2" ------------------------------
+
+    &.is-effect2 {
+        .text {
+            transition: all .4s ease-out;
+        }
+
+        a:hover {
+            .text {
+                background: rgba(255, 255, 255, 1);
+            }
+        }
+    }
+
+    // ThemeWare for Shopware 5 "Hover-Effect 3" (e.g. Clean) ------------------------------
+
+    &.is-effect3 {
+        .text {
+            line-height: 25px;
+            width: calc(100% - 60px);
+            height: 40px;
+            margin: 30px;
+            padding: 5px 25px;
+            transition: all .2s ease-out;
+            color: #000000; // previously: #2b323a
+            border: 2px solid $sw-color-brand-primary;
+            background: rgba(255, 255, 255, 0.3);
+
+            &.text-left {
+                padding: 5px 15px;
+            }
+
+            .icon {
+                position: absolute;
+                right: 5px;
+                opacity: 0;
+                color: #000000; // previously: #2b323a
+            }
+        }
+
+        a:hover {
+            .text {
+                line-height: 76px;
+                height: 100px;
+                background: rgba(255, 255, 255, 0.6);
+
+                .icon {
+                    margin-top: 25px;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    // ThemeWare for Shopware 5 "Hover-Effect 4" (e.g. Bike) ------------------------------
+
+    &.is-effect4 {
+        .text {
+            font-style: italic;
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.5);
+
+            .icon {
+                color: #ffffff;
+            }
+        }
+
+        a:hover {
+            .text {
+                background: rgba(0, 0, 0, 0.7);
+            }
+        }
+    }
+
+    // ThemeWare for Shopware 5 "Hover-Effect 5" (e.g. Strong) ------------------------------
+
+    &.is-effect5 {
+        .text {
+            max-width: calc(100% - 15px);
+            margin: 0 0 15px 0;
+            text-transform: uppercase;
+            color: #ffffff;
+            background: #21262c;
+        }
+
+        a:hover {
+            .text {
+                color: color-yiq($sw-color-brand-primary);
+                background: $sw-color-brand-primary;
+            }
+        }
+    }
+
+    // ThemeWare for Shopware 5 "Hover-Effect 6" (e.g. Ladieswear) ------------------------------
+
+    &.is-effect6 {
+        .text {
+            max-width: 100%;
+            margin: 0 0 15px 15px;
+            color: $sw-color-brand-primary;
+            background: rgba(255, 255, 255, 0.9);
+        }
+
+        a:hover {
+            .text {
+                margin: 0;
+                background: lighten($sw-color-brand-primary, 45%);
+            }
+        }
+    }
+
+    // ThemeWare for Shopware 5 "Hover-Effect 7" (e.g. Global) ------------------------------
+
+    &.is-effect7 {
+        .text {
+            font-size: 16px;
+            font-weight: $twt-font-weight-bold;
+            line-height: 20px;
+            right: 10px;
+            bottom: 10px;
+            left: 10px;
+            width: auto;
+            height: auto;
+            padding: 15px;
+            transition: all .2s ease-out;
+            color: #000000;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        a:hover {
+            .text {
+                //font-size: 19px;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(255,255,255,0.7);
+                //text-shadow: 1px 1px 1px rgb(255 255 255 / 50%);
+            }
+        }
+    }
+
+}

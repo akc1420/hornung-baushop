@@ -1,0 +1,33 @@
+{% block page_content_section_quickview %}
+    {% set quickview = false %}
+
+    {{ sw_icon_cache_disable() }}
+    {% set arrowHeadLeft %}
+        {% sw_icon 'arrow-head-left' style { 'color': 'white' } %}
+    {% endset %}
+    {% set arrowHeadRight %}
+        {% sw_icon 'arrow-head-right' style { 'color': 'white' } %}
+    {% endset %}
+    {{ sw_icon_cache_enable() }}
+
+    {% for block in section.blocks %}
+        {% if block.extensions.swagCmsExtensionsQuickview is not null and block.extensions.swagCmsExtensionsQuickview.active %}
+            {% set quickview = true %}
+        {% endif %}
+    {% endfor %}
+
+    {% set quickviewOptions = {
+        sectionId: section.id,
+        arrowHeadLeft: arrowHeadLeft,
+        arrowHeadRight: arrowHeadRight
+    } %}
+
+    {% block page_content_section_quickview_modal %}
+        {% if quickview %}
+            <div class="d-none"
+                 data-swag-cms-extensions-quickview="true"
+                 data-swag-cms-extensions-quickview-options="{{ quickviewOptions|json_encode }}">
+            </div>
+        {% endif %}
+    {% endblock %}
+{% endblock %}

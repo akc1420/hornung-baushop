@@ -1,0 +1,130 @@
+{# ThemeWare "Awards" widget #}
+{#
+    "Awards" widget and content
+
+	@Storefront/storefront/themeware/widgets/twt-awards-include.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtWidgetAwardsCustomImage1 = theme_config('twt-widget-awards-custom-image-1') %}
+{% set twtWidgetAwardsCustomImage1Url = theme_config('twt-widget-awards-custom-image-1-url') %}
+{% set twtWidgetAwardsCustomImage2 = theme_config('twt-widget-awards-custom-image-2') %}
+{% set twtWidgetAwardsCustomImage2Url = theme_config('twt-widget-awards-custom-image-2-url') %}
+{% set twtWidgetAwardsCustomImage3 = theme_config('twt-widget-awards-custom-image-3') %}
+{% set twtWidgetAwardsCustomImage3Url = theme_config('twt-widget-awards-custom-image-3-url') %}
+{% set twtWidgetAwardsCustomImage4 = theme_config('twt-widget-awards-custom-image-4') %}
+{% set twtWidgetAwardsCustomImage4Url = theme_config('twt-widget-awards-custom-image-4-url') %}
+{% set twtWidgetAwardsCustomImage5 = theme_config('twt-widget-awards-custom-image-5') %}
+{% set twtWidgetAwardsCustomImage5Url = theme_config('twt-widget-awards-custom-image-5-url') %}
+{% set twtWidgetAwardsCustomImage6 = theme_config('twt-widget-awards-custom-image-6') %}
+{% set twtWidgetAwardsCustomImage6Url = theme_config('twt-widget-awards-custom-image-6-url') %}
+{% set twtWidgetAwardsStandardSsl = theme_config('twt-widget-awards-standard-ssl') %}
+{% set twtWidgetAwardsTextShow = theme_config('twt-widget-awards-text-show') %}
+
+{% set twtWidgetAwardsImageMaxWidth = theme_config('twt-widget-awards-image-max-width') %}
+{% set twtWidgetAwardsImageMaxHeight = theme_config('twt-widget-awards-image-max-height') %}
+
+{% if twtWidgetAwardsImageMaxWidth != 'none' and twtWidgetAwardsImageMaxHeight == 'none' %}
+    {% set twtWidgetAwardsImageSize = twtWidgetAwardsImageMaxWidth %}
+{% elseif twtWidgetAwardsImageMaxWidth == 'none' and twtWidgetAwardsImageMaxHeight != 'none' %}
+    {% set twtWidgetAwardsImageSize = twtWidgetAwardsImageMaxHeight %}
+{% else %}
+    {% set twtWidgetAwardsImageSize = 100 %} {# Fallback #}
+{% endif %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_widget_awards %}
+    <div class="twt-widget-awards twt-awards">
+
+        {% block twt_widget_awards_content %}
+            {% if twtWidgetAwardsTextShow == 2 %}
+                <p>{{ "twt.widget.awards.content"|trans|sw_sanitize }}</p>
+            {% endif %}
+
+            <div class="twt-awards-container">
+                {# ThemeWare: SSL seal #}
+                {% if twtWidgetAwardsStandardSsl == 2 %}
+                    {% set isoCode = page.header.activeLanguage.translationCode.code|lower|split('-') %}
+
+                    {% if isoCode[0] == "de" or isoCode[1] == "de" %}
+                        <img src="{{ asset('bundles/tcinnthemewaremodern/assets/awards/twt-ssl-siegel.png', 'asset') }}" alt="SSL" width="{{ twtWidgetAwardsImageSize }}px" height="{{ twtWidgetAwardsImageSize }}px">
+                    {% else %}
+                        <img src="{{ asset('bundles/tcinnthemewaremodern/assets/awards/twt-ssl-seal.png', 'asset') }}" alt="SSL" width="{{ twtWidgetAwardsImageSize }}px" height="{{ twtWidgetAwardsImageSize }}px">
+                    {% endif %}
+                {% endif %}
+
+                {# ThemeWare: Custom image 1 #}
+                {% if twtWidgetAwardsCustomImage1 %}
+                    {% if twtWidgetAwardsCustomImage1Url %}
+                        <a href="{{ twtWidgetAwardsCustomImage1Url }}" target="_blank" rel="noopener" title="{{ "twt.widget.awards.customImages.title1"|trans }}">
+                    {% endif %}
+                    <img src="{{ twtWidgetAwardsCustomImage1|sw_encode_url }}" alt="{{ "twt.widget.awards.customImages.title1"|trans }}" title="{{ "twt.widget.awards.customImages.title1"|trans }}"/>
+                    {% if twtWidgetAwardsCustomImage1Url %}
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                {# ThemeWare: Custom image 2 #}
+                {% if twtWidgetAwardsCustomImage2 %}
+                    {% if twtWidgetAwardsCustomImage2Url %}
+                        <a href="{{ twtWidgetAwardsCustomImage2Url }}" target="_blank" rel="noopener" title="{{ "twt.widget.awards.customImages.title2"|trans }}">
+                    {% endif %}
+                    <img src="{{ twtWidgetAwardsCustomImage2|sw_encode_url }}" alt="{{ "twt.widget.awards.customImages.title2"|trans }}" title="{{ "twt.widget.awards.customImages.title2"|trans }}"/>
+                    {% if twtWidgetAwardsCustomImage2Url %}
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                {# ThemeWare: Custom image 3 #}
+                {% if twtWidgetAwardsCustomImage3 %}
+                    {% if twtWidgetAwardsCustomImage3Url %}
+                        <a href="{{ twtWidgetAwardsCustomImage3Url }}" target="_blank" rel="noopener" title="{{ "twt.widget.awards.customImages.title3"|trans }}">
+                    {% endif %}
+                    <img src="{{ twtWidgetAwardsCustomImage3|sw_encode_url }}" alt="{{ "twt.widget.awards.customImages.title3"|trans }}" title="{{ "twt.widget.awards.customImages.title3"|trans }}"/>
+                    {% if twtWidgetAwardsCustomImage3Url %}
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                {# ThemeWare: Custom image 4 #}
+                {% if twtWidgetAwardsCustomImage4 %}
+                    {% if twtWidgetAwardsCustomImage4Url %}
+                        <a href="{{ twtWidgetAwardsCustomImage4Url }}" target="_blank" rel="noopener" title="{{ "twt.widget.awards.customImages.title4"|trans }}">
+                    {% endif %}
+                    <img src="{{ twtWidgetAwardsCustomImage4|sw_encode_url }}" alt="{{ "twt.widget.awards.customImages.title4"|trans }}" title="{{ "twt.widget.awards.customImages.title4"|trans }}"/>
+                    {% if twtWidgetAwardsCustomImage4Url %}
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                {# ThemeWare: Custom image 5 #}
+                {% if twtWidgetAwardsCustomImage5 %}
+                    {% if twtWidgetAwardsCustomImage5Url %}
+                        <a href="{{ twtWidgetAwardsCustomImage5Url }}" target="_blank" rel="noopener" title="{{ "twt.widget.awards.customImages.title5"|trans }}">
+                    {% endif %}
+                    <img src="{{ twtWidgetAwardsCustomImage5|sw_encode_url }}" alt="{{ "twt.widget.awards.customImages.title5"|trans }}" title="{{ "twt.widget.awards.customImages.title5"|trans }}"/>
+                    {% if twtWidgetAwardsCustomImage5Url %}
+                        </a>
+                    {% endif %}
+                {% endif %}
+
+                {# ThemeWare: Custom image 6 #}
+                {% if twtWidgetAwardsCustomImage6 %}
+                    {% if twtWidgetAwardsCustomImage6Url %}
+                        <a href="{{ twtWidgetAwardsCustomImage6Url }}" target="_blank" rel="noopener" title="{{ "twt.widget.awards.customImages.title6"|trans }}">
+                    {% endif %}
+                    <img src="{{ twtWidgetAwardsCustomImage6|sw_encode_url }}" alt="{{ "twt.widget.awards.customImages.title6"|trans }}" title="{{ "twt.widget.awards.customImages.title6"|trans }}"/>
+                    {% if twtWidgetAwardsCustomImage6Url %}
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

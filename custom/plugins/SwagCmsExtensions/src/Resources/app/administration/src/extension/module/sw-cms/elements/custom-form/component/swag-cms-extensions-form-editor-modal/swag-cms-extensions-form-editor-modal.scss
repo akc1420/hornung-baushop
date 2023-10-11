@@ -1,0 +1,28 @@
+.swag-cms-extensions-form-editor-modal {
+    &__template-action {
+        .sw-card__content{
+            padding: 16px 21px;
+        }
+    }
+
+    &__text {
+        margin-top: 6px;
+    }
+
+    .sw-tabs--small {
+        max-width: unset;
+    }
+
+    .sw-modal__footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .sw-tabs__custom-content{
+        padding: 24px 0 0 0;
+
+        >.sw-field:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

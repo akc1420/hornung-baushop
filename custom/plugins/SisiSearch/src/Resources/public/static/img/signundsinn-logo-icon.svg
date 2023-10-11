@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="colored_dark" data-name="colored dark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 162 140">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #47565e;
+      }
+
+      .cls-2 {
+        fill: #29abe2;
+      }
+    </style>
+  </defs>
+  <g id="Bildmarke">
+    <g>
+      <polygon class="cls-2" points="37.74 19.66 69.64 19.66 41.57 70.17 69.64 120.34 37.74 120.34 8.31 70 37.74 19.66"/>
+      <polygon class="cls-2" points="124.26 120.34 92.36 120.34 120.43 69.83 92.36 19.66 124.26 19.66 153.69 70 124.26 120.34"/>
+      <polygon class="cls-1" points="73.26 114.09 124.65 19.66 90.58 19.66 56.27 83.88 73.26 114.09"/>
+    </g>
+  </g>
+</svg>

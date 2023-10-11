@@ -1,0 +1,58 @@
+<sw-entity-listing
+        v-if="fullyLoaded"
+        identifier="kzph-simplenote.dashboard.grid"
+        :repository="noteRepository"
+        :items="noteData"
+        :columns="noteColumns()"
+        :show-selection="false"
+        :allow-column-edit="false"
+        :disable-data-fetching="true"
+        :full-page="false"
+        @page-change="onPageChange"
+        >
+
+        <template slot="column-entityDestination" slot-scope="{ item }">
+            <router-link
+                v-if="item.entityType == 'customer'"
+                :to="{ name: 'sw.customer.detail', params: { id: item.entityId } }"   
+                class="sw-data-grid__cell-value">
+
+                <span v-if="item.destination">{{ $tc('kzph-simplenote-note.entities.' + item.entityType) }}: {{ item.destination }}</span>
+                <span v-if="!item.destination">{{ $tc('kzph-simplenote-note.entities.' + item.entityType) }}</span>
+            </router-link>
+
+            <router-link
+                v-if="item.entityType == 'product'"
+                :to="{ name: 'sw.product.detail', params: { id: item.entityId } }"
+                class="sw-data-grid__cell-value">
+
+                <span v-if="item.destination">{{ $tc('kzph-simplenote-note.entities.' + item.entityType) }}: {{ item.destination }}</span>
+                <span v-if="!item.destination">{{ $tc('kzph-simplenote-note.entities.' + item.entityType) }}</span>
+            </router-link>
+
+            <router-link
+                v-if="item.entityType == 'order'"
+                :to="{ name: 'sw.order.detail', params: { id: item.entityId } }"
+                class="sw-data-grid__cell-value">
+
+                <span v-if="item.destination">{{ $tc('kzph-simplenote-note.entities.' + item.entityType) }}: {{ item.destination }}</span>
+                <span v-if="!item.destination">{{ $tc('kzph-simplenote-note.entities.' + item.entityType) }}</span>
+            </router-link>
+
+            <router-link
+                v-if="item.entityType == 'category'"
+                :to="{ name: 'sw.category.detail', params: { id: item.entityId } }"
+                class="sw-data-grid__cell-value">
+
+                <span v-if="item.destination">{{ $tc('kzph-simplenote-note.entities.' + item.entityType) }}: {{ item.destination }}</span>
+                <span v-if="!item.destination">{{ $tc('kzph-simplenote-note.entities.' + item.entityType) }}</span>
+            </router-link>
+        </template>
+
+        <template slot="column-createdAt" slot-scope="{ item }">
+            {{ item.createdAt|date }}
+        </template>
+
+</sw-entity-listing>
+
+<sw-loader v-else-if="!fullyLoaded" />

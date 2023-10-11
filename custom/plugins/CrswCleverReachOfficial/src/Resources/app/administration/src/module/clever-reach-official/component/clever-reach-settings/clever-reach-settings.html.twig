@@ -1,0 +1,63 @@
+{% block clever_reach_settings %}
+    <sw-card class="cr-sync-settings">
+        <sw-label variant="neutral" class="cr-gdpr">
+            {{ $tc('clever-reach.syncSettings.gdpr') }}
+        </sw-label>
+        <a :href="url" class="cr-learn-more">
+            {{ $tc('clever-reach.syncSettings.gdprLearnMore') }}
+        </a>
+        <sw-label variant="neutral" class="cr-gdpr">
+            {{ changesLabel }}
+        </sw-label>
+
+        <sw-label variant="neutral" v-if="sendEmails" class="cr-send-emails">
+            {{ sendEmails }}
+        </sw-label>
+        <div class="cr-settings-checkbox-group">
+            <div class="cr-single-checkbox">
+                <sw-checkbox-field id="cr-subscribers" v-model="checkedReceivers.subscribers" class="no-clicks cr-checkbox">
+                </sw-checkbox-field>
+                <div class="cr-settings-checkbox-desc">
+                    <sw-label variant="neutral" class="cr-checkbox-label">
+                        {{ $tc('clever-reach.syncSettings.subscriber') }}
+                        {{ subscribers }}
+                    </sw-label>
+                    <sw-label variant="neutral" class="cr-checkbox-desc">
+                        {{ $tc('clever-reach.syncSettings.subscriberDescription') }}
+                    </sw-label>
+                </div>
+            </div>
+
+            <div class="cr-single-checkbox">
+                <sw-checkbox-field v-model="checkedReceivers.buyers" class="cr-checkbox cr-buyers" @change="buyersOnChange">
+                </sw-checkbox-field>
+                <div class="cr-settings-checkbox-desc">
+                    <sw-label variant="neutral" class="cr-checkbox-label">
+                        {{ $tc('clever-reach.syncSettings.buyer') }}
+                        {{ buyers }}
+                    </sw-label>
+                    <sw-label variant="neutral" class="cr-checkbox-desc">
+                        {{ $tc('clever-reach.syncSettings.buyerDescription') }}
+                    </sw-label>
+                </div>
+            </div>
+
+            <div class="cr-single-checkbox">
+                <sw-checkbox-field v-model="checkedReceivers.contacts" class="cr-checkbox cr-contacts" @change="contactsOnChange">
+                </sw-checkbox-field>
+                <div class="cr-settings-checkbox-desc">
+                    <sw-label variant="neutral" class="cr-checkbox-label">
+                        {{ $tc('clever-reach.syncSettings.contact') }}
+                        {{ contacts }}
+                    </sw-label>
+                    <sw-label variant="neutral" class="cr-checkbox-desc">
+                        {{ $tc('clever-reach.syncSettings.contactDescription') }}
+                    </sw-label>
+                </div>
+            </div>
+        </div>
+        <sw-button variant="default" v-if="buttonText" class="cr-reforce-btn" :isLoading="forceSyncLoading">
+            {{ buttonText }}
+        </sw-button>
+    </sw-card>
+{% endblock %}

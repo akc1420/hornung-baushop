@@ -1,0 +1,47 @@
+{
+    "name": "sisi/search",
+    "description": "Elasticsearch plugin",
+    "type": "shopware-platform-plugin",
+    "version": "v8.1.8",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "Sisi\\Search\\": "src/"
+        }
+    },
+    "require": {
+        "shopware/core": ">=6.4.6.0 <6.5.0.0",
+        "shopware/storefront": ">=6.4.6.0 <6.5.0.0",
+        "shopware/elasticsearch": ">=6.4.6.0 <6.5.0.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "Sisi\\Search\\SisiSearch",
+        "copyright": "(c) signundsinn GmbH",
+        "label": {
+            "de-DE": "Intelligente Suche mit Elasticsearch",
+            "en-GB": "Intelligent search with Elasticsearch"
+        },
+        "description": {
+            "de-DE": "Hebe deine Shopsuche auf ein neues Level.\n\n Mit dem intelligenten Suche-Plugin finden deine suchenden Kunden immer das was sie wollen, wo Du es willst!",
+            "en-GB": "Take your shop search to a new level.\n\n With the intelligent search plugin, your searching customers will always find what they want, where you want it!"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/signundsinn.html",
+            "en-GB": "https://store.shopware.com/en/signundsinn.html"
+        },
+        "supportLink": {
+            "de-DE": "https://signundsinn.de/kontakt/",
+            "en-GB": "https://signundsinn.de/kontakt/"
+        }
+    },
+    "authors": [
+        {
+            "name": "signundsinn GmbH"
+        }
+    ],
+    "require-dev": {
+        "phpmd/phpmd": "^2.13",
+        "squizlabs/php_codesniffer": "^3.7",
+        "phpstan/phpstan": "^1.10"
+    }
+}

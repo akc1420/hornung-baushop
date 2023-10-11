@@ -1,0 +1,21 @@
+{% block sw_import_export_activity_listing_actions %}
+    <template #actions="{ item }">
+        <a class="sw-import-export-activity__download-action"
+           @click="openDownload(item.fileId)">
+            <sw-context-menu-item>
+                {{ $tc('sw-import-export.activity.contextMenu.downloadFile') }}
+            </sw-context-menu-item>
+        </a>
+        <sw-context-menu-item @click="onOpenProfile(item.profileId)">
+            {{ $tc('sw-import-export.activity.contextMenu.showProfile') }}
+        </sw-context-menu-item>
+        <template v-if="item.invalidRecordsLog">
+            <a class="sw-import-export-activity__download-action"
+               @click="openDownload(item.invalidRecordsLog.fileId)">
+                <sw-context-menu-item>
+                    {{ $tc('sw-import-export.activity.contextMenu.downloadInvalidFile') }}
+                </sw-context-menu-item>
+            </a>
+        </template>
+    </template>
+{% endblock %}

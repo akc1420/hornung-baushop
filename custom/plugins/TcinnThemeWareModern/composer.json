@@ -1,0 +1,45 @@
+{
+	"name": "tcinn/themeware-modern",
+	"description": "ThemeWare® Modern Pro | sales increasing and customizable",
+	"keywords": ["tc", "themeware", "theme"],
+	"version": "v1.1.11",
+	"type": "shopware-platform-plugin",
+	"license": "proprietary",
+	"authors": [
+		{
+		  "name": "TC-Innovations GmbH",
+		  "homepage": "https://www.tc-innovations.de"
+		}
+	],
+	"require": {
+		"shopware/core": "^6.4.20",
+		"shopware/storefront": "^6.4.20"
+	},
+	"minimum-stability": "RC",
+	"autoload": {
+		"psr-4": {
+			"TcinnThemeWareModern\\": "src/"
+		}
+	},
+	"extra": {
+		"shopware-plugin-class": "TcinnThemeWareModern\\TcinnThemeWareModern",
+		"plugin-icon": "modern-plugin-icon.png",
+		"copyright": "(c) by TC-Innovations GmbH",
+		"label": {
+			"en-GB": "ThemeWare® Modern Pro | sales increasing and customizable",
+			"de-DE": "ThemeWare® Modern Pro | umsatzsteigernd und anpassbar"
+		},
+		"description": {
+			"en-GB": "ThemeWare® is a revenue-generating, extremely customizable, SEO- and page-speed-optimized theme that also offers you a wide range of additional functions. You also get detailed instructions and video tutorials, a professional shopping world with all the graphics and online courses with specialized knowledge. Open the official product description of ThemeWare® at https://themeware.design to find out more details.",
+			"de-DE": "ThemeWare® ist ein umsatzsteigerndes, extrem anpassbares sowie SEO- und Pagespeed-Optimiertes Theme, welches dir zusätzlich eine große Palette an Funktionen bietet. Darüber hinaus erhältst du detaillierte Anleitungen und Video-Tutorials, eine Profi-Einkaufswelt mit allen Grafiken sowie Online-Kurse mit Spezialwissen. Öffne die offizielle Produktbeschreibung von ThemeWare® unter https://themeware.design, um mehr Details zu erfahren."
+		},
+		"manufacturerLink": {
+			"en-GB": "https://themeware.design?utm_source=plugin-description6&utm_medium=referral&utm_campaign=modern&utm_content=manufacturer-link",
+			"de-DE": "https://themeware.design?utm_source=plugin-description6&utm_medium=referral&utm_campaign=modern&utm_content=manufacturer-link"
+		},
+		"supportLink": {
+			"en-GB": "https://service.themeware.design?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_support",
+			"de-DE": "https://service.themeware.design?utm_source=theme-manager6&utm_medium=referral&utm_campaign=modern&utm_content=footer_support"
+		}
+	}
+}

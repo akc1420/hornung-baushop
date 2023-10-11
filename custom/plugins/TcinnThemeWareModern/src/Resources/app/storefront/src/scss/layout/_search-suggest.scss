@@ -1,0 +1,41 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Search suggest
+	==================================================
+	Contains styles for the search suggest popover in the shop header.
+
+	Origin: Shopware base & skin
+*/
+
+// ThemeWare: Improve .search-suggest-container when mobile header is fixed.
+@if $twt-header-phone-fixed == 2 {
+	@include media-breakpoint-down(xs) { // max 575.98px
+		.search-suggest-container {
+			overflow-x: scroll;
+
+			@if $twt-header-search-type != 4 {
+				height: calc(95vh - 160px);
+			}
+		}
+	}
+}
+
+// ThemeWare: Align .search-suggest-container left above 992px in "Header 1.2".
+@if $twt-header-type == 2 {
+	@include media-breakpoint-up(lg) { // min 992px
+		.search-suggest-container {
+			transform: none !important;
+			left: 0 !important;
+
+			&::after {
+				left: 12px;
+			}
+		}
+	}
+}

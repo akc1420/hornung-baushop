@@ -1,0 +1,11 @@
+@import "~scss/variables";
+
+.sw-cms-sidebar .sw-cms-sidebar__navigator-section {
+    .sw-cms-sidebar__navigator-section-header-wrapper > .sw-cms-sidebar__navigator-section-header {
+        grid-template-columns: 1fr 24px 34px;
+
+        .navigator-section-header__scroll-navigation-anchor {
+            color: $color-module-purple-900;
+        }
+    }
+}

@@ -1,0 +1,109 @@
+{% sw_extends '@Storefront/storefront/component/product/card/badges.html.twig' %}
+{# ThemeWare® HC-Architecture® via configuration #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductBadgesDiscountBadgeShow = theme_config('twt-product-badges-discount-badge-show') %}
+{% set twtProductBadgesDiscountBadgeType = theme_config('twt-product-badges-discount-badge-type') %}
+{% set twtProductBadgesNewBadgeShow = theme_config('twt-product-badges-new-badge-show') %}
+{% set twtProductBadgesShippingFreeBadgeShow = theme_config('twt-product-badges-shipping-free-badge-show') %}
+{% set twtProductBadgesSoldBadgeShow = theme_config('twt-product-badges-sold-badge-show') %}
+{% set twtProductBadgesStockBadgeShow = theme_config('twt-product-badges-stock-badge-show') %}
+{% set twtProductBadgesTopsellerBadgeShow = theme_config('twt-product-badges-topseller-badge-show') %}
+
+{% set twtProductBadgesDiscountBadgeCompatibility = theme_config('twt-product-badges-discount-badge-compatibility') %}
+{% set twtProductBadgesTopsellerBadgeCompatibility = theme_config('twt-product-badges-topseller-badge-compatibility') %}
+{% set twtProductBadgesNewBadgeCompatibility = theme_config('twt-product-badges-new-badge-compatibility') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{#
+    + stock
+    + sold
+    + shippingFree
+    - discount*
+    - topseller*
+    - new*
+#}
+
+{# ThemeWare: Adjustments on the product discount badge #}
+{# HC-Architecture @Doku #}
+{% block component_product_badges_discount %}
+    {# ThemeWare: "Lagerbestand-Badge" ergänzen. #}
+    {% if twtProductBadgesStockBadgeShow == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-stock-include.html.twig' ignore missing with {
+            product: product,
+            type: 'listing'
+        } %}
+    {% endif %}
+
+
+    {# ThemeWare: "Ausverkauft-Badge" ergänzen. #}
+    {% if twtProductBadgesSoldBadgeShow == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-sold-include.html.twig' ignore missing with {
+            product: product,
+            type: 'listing'
+        } %}
+    {% endif %}
+
+
+    {# ThemeWare: "Versandkostenfrei-Badge" ergänzen. #}
+    {% if twtProductBadgesShippingFreeBadgeShow == 2 %}
+        {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-shipping-free-include.html.twig' ignore missing with {
+            product: product,
+            type: 'listing'
+        } %}
+    {% endif %}
+
+
+    {# ThemeWare: "Discount-Badge" ergänzen. #}
+    {% if twtProductBadgesDiscountBadgeCompatibility == 2 %}
+        {% if twtProductBadgesDiscountBadgeShow == 2 %}
+            {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-discount-include.html.twig' ignore missing with {
+                product: product,
+                type: 'listing'
+            } %}
+        {% endif %}
+    {% else %}
+
+        {# Default block #}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+
+{# ThemeWare: Adjustments on the product topseller badge #}
+{# HC-Architecture @Doku #}
+{% block component_product_badges_topseller %}
+    {% if twtProductBadgesTopsellerBadgeCompatibility == 2 %}
+        {% if twtProductBadgesTopsellerBadgeShow == 2 %}
+            {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-topseller-include.html.twig' ignore missing with {
+                product: product,
+                type: 'listing'
+            } %}
+        {% endif %}
+    {% else %}
+
+        {# Default block #}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+
+{# ThemeWare: Adjustments on the product new badge #}
+{# HC-Architecture @Doku #}
+{% block component_product_badges_new %}
+    {% if twtProductBadgesNewBadgeCompatibility == 2 %}
+        {% if twtProductBadgesNewBadgeShow == 2 %}
+            {% sw_include '@Storefront/storefront/themeware/includes/twt-badge-new-include.html.twig' ignore missing with {
+                product: product,
+                type: 'listing'
+            } %}
+        {% endif %}
+    {% else %}
+
+        {# Default block #}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

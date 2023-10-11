@@ -1,0 +1,12 @@
+@import "~scss/variables";
+
+.swag-cms-extensions-form-element-config {
+    &__link {
+        color: $color-shopware-brand-500;
+        font-size: $font-size-small;
+        font-weight: $font-weight-regular;
+        text-decoration: underline;
+        float: right;
+        cursor: pointer;
+    }
+}

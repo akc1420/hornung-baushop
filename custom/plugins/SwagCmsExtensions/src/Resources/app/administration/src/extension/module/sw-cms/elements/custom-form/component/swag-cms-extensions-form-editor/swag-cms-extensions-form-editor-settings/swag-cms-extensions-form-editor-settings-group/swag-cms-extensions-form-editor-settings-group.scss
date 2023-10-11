@@ -1,0 +1,16 @@
+@import "~scss/variables";
+
+.swag-cms-extensions-form-editor-settings-group {
+    padding: 24px;
+
+    &__explanation {
+        color: $color-gray-500;
+        font-size: $font-size-small;
+        letter-spacing: 0.1px;
+        line-height: 22px;
+    }
+
+    .sw-field--medium {
+        margin-bottom: 24px;
+    }
+}

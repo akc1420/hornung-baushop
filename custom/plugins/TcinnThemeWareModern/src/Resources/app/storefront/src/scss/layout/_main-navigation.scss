@@ -1,0 +1,355 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Main navigation
+	==============================================
+	Custom styling for main navigation on larger screens.
+	Based on bootstrap nav:
+	https://getbootstrap.com/docs/4.3/components/navs/
+
+	Origin: Shopware base & skin
+*/
+
+// ThemeWare: Main navigation adjustments
+// TODO: Shopware Vererbung prüfen...
+@include media-breakpoint-up(sm) { // min 576px
+	.nav-main  {
+		padding-bottom: null-pixel-unit($twt-nav-main-padding-bottom);
+		background-color: $twt-nav-main-background-color;
+
+		// ThemeWare: Container-layout boxed
+		@if($twt-container-layout == 3) {
+			@include media-breakpoint-up(lg) { // min 992px
+				.main-navigation {
+					margin-left: null-pixel-unit($twt-nav-main-margin-left);
+					margin-right: null-pixel-unit($twt-nav-main-margin-right);
+				}
+			}
+		}
+
+		.main-navigation-link {
+			@if ($twt-nav-main-font-family == 1) {
+				font-family: $sw-font-family-base;
+			} @else {
+				font-family: $sw-font-family-headline;
+			}
+
+			@include twt-font-size($twt-nav-main-font-size);
+			font-weight: fontWeight($twt-nav-main-font-weight);
+			height: null-pixel-unit($twt-nav-main-height);
+			text-transform: $twt-nav-main-text-transform;
+
+			// ThemeWare: Adjust default layout
+			@if($twt-nav-main-hover-type == 0) {
+				@include media-breakpoint-up(md) { // min 768px
+					display: flex;
+					justify-content: center;
+					align-items: center;
+
+					padding-right: 24px; // default: 32px
+
+					&.active {
+						.main-navigation-link-text {
+							border-bottom-color: $twt-nav-main-border-bottom-color;
+						}
+					}
+				}
+			}
+
+			// ThemeWare: Home link
+			&.home-link {
+				color: $twt-nav-main-home-link-color;
+
+				&.active {
+					color: $twt-nav-main-home-link-color-active;
+
+					.icon {
+						color: $twt-nav-main-home-link-color-active;
+					}
+				}
+
+				&:hover {
+					color: $twt-nav-main-home-link-color-hover;
+
+					.icon {
+						color: $twt-nav-main-home-link-color-hover;
+					}
+				}
+
+				.icon {
+					color: $twt-nav-main-home-link-color;
+				}
+			}
+
+			// ThemeWare: Regular links
+			&:not(.home-link) {
+				color: $twt-nav-main-color;
+
+				&.active {
+					color: $twt-nav-main-color-active;
+
+					.icon {
+						color: $twt-nav-main-icon-color-active;
+					}
+				}
+
+				&:hover {
+					color: $twt-nav-main-color-hover;
+
+					.icon {
+						color: $twt-nav-main-icon-color-hover;
+					}
+				}
+
+				.icon {
+					color: $twt-nav-main-icon-color;
+				}
+			}
+
+			// ThemeWare: Apply to all layouts
+			&.active {
+				font-weight: fontWeight($twt-nav-main-font-weight-active);
+			}
+
+			// ThemeWare: Apply to all layouts
+			//&:hover {}
+
+			// ThemeWare: Apply to all layouts
+			.icon {
+				display: inline-block;
+
+				&> svg {
+					top: 0;
+					margin-bottom: 2px;
+				}
+			}
+		}
+
+		// ThemeWare: Apply depending on hover type
+		@if($twt-nav-main-hover-type == 1) or ($twt-nav-main-hover-type == 6) {
+			// ThemeWare: Hover-Effekt 1 oder 6 > "farbig hinterlegen"
+			.main-navigation-link {
+				line-height: null-pixel-unit($twt-nav-main-height);
+				transition: color .20s ease, background-color .20s ease;
+
+				@if($twt-nav-main-background-color == $twt-nav-main-background-color-active) {
+					// ThemeWare: Check container layout
+					@if($twt-container-layout != 3) {
+						&:first-of-type {
+							margin-left: null-pixel-unit($twt-nav-main-margin-left); // ThemeWare: remove padding if both colors are equal
+						}
+					}
+				} @else {
+					// TODO: unused
+					//@if($twt-nav-main-background-color != $twt-nav-main-border) {
+					//	@if $twt-container-layout != 3 {
+					//		border-left: 1px solid $twt-nav-main-border;
+					//	}
+					//	&:last-of-type {
+					//		border-right: 1px solid $twt-nav-main-border;
+					//	}
+					//}
+				}
+
+				&.home-link {
+					@if $twt-nav-main-hover-type == 6 {
+						// Home link without background (Hover-Effekt 6)
+						padding: 0;
+						padding-right: null-pixel-unit($twt-nav-main-padding);
+					} @else {
+						// Home link with backgroundd (Hover-Effekt 1)
+						padding: 0 null-pixel-unit($twt-nav-main-padding);
+					}
+
+					@if $twt-nav-main-hover-type == 1 {
+						// Home link with backgroundd (Hover-Effekt 1)
+						&.active {
+							background-color: $twt-nav-main-background-color-active;
+						}
+
+						&:hover {
+							background-color: $twt-nav-main-background-color-hover;
+						}
+					}
+				}
+
+				&:not(.home-link) {
+					padding: 0 null-pixel-unit($twt-nav-main-padding);
+
+					&.active {
+						background-color: $twt-nav-main-background-color-active;
+					}
+
+					&:hover {
+						background-color: $twt-nav-main-background-color-hover;
+					}
+				}
+
+				.icon {
+					transition: color .20s ease;
+				}
+
+				.main-navigation-link-text {
+					 border-bottom: 0;
+					 padding-bottom: 0;
+				}
+			}
+
+		} @else if($twt-nav-main-hover-type == 2 or $twt-nav-main-hover-type == 3 or $twt-nav-main-hover-type == 4 or $twt-nav-main-hover-type == 5) {
+			// ThemeWare: Hover Layout 2, 3, 4, 5 > "unterstreichen (...)"
+			.main-navigation-link {
+				line-height: null-pixel-unit($twt-nav-main-height);
+				padding: 0 null-pixel-unit(2 * $twt-nav-main-padding) 0 0;  // Double padding on left instead using a left+right padding
+
+				// ThemeWare: add negative margin if bg-color = bg-color-active and not boxed layout
+				@if($twt-nav-main-background-color == $twt-nav-main-background-color-active and $twt-container-layout != 3) {
+					&:first-of-type {
+						margin-left: $twt-nav-main-margin-left;
+					}
+				}
+
+				@if $twt-iconset == "default" {
+					.icon {
+						//TODO: Width and height > Prüfen
+						width: $twt-nav-main-icon-size;
+						height: $twt-nav-main-icon-size;
+					}
+				}
+
+				.main-navigation-link-text {
+					border-bottom: 0;
+					padding-bottom: 0;
+
+					span:not(.icon) {
+						position: relative;
+
+						&::after {
+							content: '';
+							position: absolute;
+							display: block;
+							height: 1px;
+							bottom: -3px;
+
+							@if($twt-nav-main-hover-type == 2) { // ThemeWare: "underline (center to left and right)"
+								left: 45%;
+								right: 45%;
+								width: 0;
+							} @else if($twt-nav-main-hover-type == 3) { // ThemeWare: "underline (from left to right)"
+								left: 0;
+								right: inherit;
+								width: 0;
+							} @else if($twt-nav-main-hover-type == 4) { // ThemeWare: "underline (from right to left)"
+								left: inherit;
+								right: 0;
+								width: 0;
+							} @else if($twt-nav-main-hover-type == 5) { // ThemeWare: "underline"
+								left: inherit;
+								right: inherit;
+								width: 100%;
+							}
+
+							background-color: $twt-nav-main-background-color;
+							transition: background-color .30s ease, left .30s ease, right .30s ease, width .30s ease;
+						}
+					}
+				}
+
+				// TODO: Add configuration
+				//&.active {
+				//	.main-navigation-link-text {
+				//		span:not(.icon) {
+				//			&::after {
+				//				left: inherit;
+				//				right: inherit;
+				//				width: 100%;
+				//				background-color: $twt-nav-main-border-bottom-color-hover;
+				//			}
+				//		}
+				//	}
+				//}
+
+				&:hover {
+					.main-navigation-link-text {
+						span:not(.icon) {
+							&::after {
+								@if($twt-nav-main-hover-type == 2) { // ThemeWare: "underline (center to left and right)"
+									left: 0;
+									right: 0;
+								} @else if($twt-nav-main-hover-type == 3) { // ThemeWare: "underline (from left to right)"
+									left: 0;
+									right: inherit;
+								} @else if($twt-nav-main-hover-type == 4) { // ThemeWare: "underline (from right to left)"
+									left: inherit;
+									right: 0;
+								} @else if($twt-nav-main-hover-type == 5) { // ThemeWare: "underline"
+									left: inherit;
+									right: inherit;
+								}
+
+								width: 100%;
+								background-color: $twt-nav-main-border-bottom-color-hover;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// ThemeWare: Fix margin for 'Structuring element'
+		// TODO: avoid !important
+		@if($twt-nav-main-background-color == $twt-nav-main-background-color-active) {
+			a + div.main-navigation-link {
+				margin-left: 0 !important;
+			}
+		}
+
+		// ThemeWare: Boxed layout
+		@if $twt-container-layout == 3 {
+			.main-navigation {
+				.container {
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+		}
+	}
+
+	body.is-sticky-nav-main {
+		.nav-main  {
+			.main-navigation-menu {
+				justify-content: $twt-sticky-nav-main-justify-content;
+			}
+		}
+	}
+
+	body:not(.is-sticky-nav-main) {
+		.nav-main  {
+			.main-navigation-menu {
+				justify-content: $twt-nav-main-justify-content;
+			}
+		}
+	}
+}
+
+/*
+  _             _______ ____     _____                             _   _
+ | |           |__   __/ ____|  |_   _|                           | | (_)
+ | | _  _   _     | | | |   ______| |  _ __  _ __   _____   ____ _| |_ _  ___  _ __  ___
+ | '_ \| | | |    | | | |  |______| | | '_ \|  _ \ / _ \ \ / / _  | __| |/ _ \| '_ \/ __|
+ | |_) | |_| |    | | | |____    _| |_| | | | | | | (_) \ V / (_| | |_| | (_) | | | \__ \
+ |_.__/ \__, |    |_|  \_____|  |_____|_| |_|_| |_|\___/ \_/ \__,_|\__|_|\___/|_| |_|___/
+         __/ |
+        |___/
+*/
+
+// ThemeWare: Fix cursor of 'Structuring element'
+.nav-main {
+	div.main-navigation-link {
+		cursor: default;
+	}
+}

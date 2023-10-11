@@ -1,0 +1,9 @@
+{% block sw_condition_value_content %}
+    <sw-single-select name="shipping-address-empty"
+                      id="shipping-address-empty"
+                      size="medium"
+                      :options="selectValues"
+                      v-model="isShippingAddressEmpty"
+                      class="field--main">
+    </sw-single-select>
+{% endblock %}

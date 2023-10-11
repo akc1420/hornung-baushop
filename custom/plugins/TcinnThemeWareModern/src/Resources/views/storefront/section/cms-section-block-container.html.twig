@@ -1,0 +1,49 @@
+{% sw_extends '@Storefront/storefront/section/cms-section-block-container.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailCrossSellingShow = theme_config('twt-product-detail-cross-selling-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# TODO: HC-Architecture..! #}
+{# ThemeWare: Delete blocks if they are empty #}
+{% block section_content_block %}
+    {% set showBlock = true %}
+    
+    {# ThemeWare: Check if 'Cross Selling' block is used #}
+    {% if block.type == 'cross-selling' and twtProductDetailCrossSellingShow == 1 %}
+        {% for element in block.slots %}
+            {# ThemeWare: Check if 'Cross Selling' element is available #}
+            {% if element.type == 'cross-selling' %}
+                {% if element.data.crossSellings is not empty %} {# element.data.crossSellings.elements #}
+                    {# ThemeWare: 'Cross Selling' element available and NOT empty = show block #}
+                    {% set showBlock = true %}
+                {% else %}
+                    {# ThemeWare: 'Cross Selling' element available but empty = hide block #}
+                    {% set showBlock = false %}
+                {% endif %}
+            {% else %}
+                {# ThemeWare: Not a 'Cross Selling' element #}
+                {% set showBlock = true %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    
+    {# ThemeWare: Check if 'listing subcategories' block is used #}
+    {% if block.type == 'twt-listing-subcategories' %}
+        {# ThemeWare: Check if subcategories existing #}
+        {% if page.header.navigation.active.childCount is empty or page.header.navigation.active.childCount == 0 %}
+            {# ThemeWare: No subcategories existing = hide block #}
+            {% set showBlock = false %}
+        {% endif %}
+    {% endif %}
+    
+    {% if showBlock %}
+        {# Default block = show block #}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

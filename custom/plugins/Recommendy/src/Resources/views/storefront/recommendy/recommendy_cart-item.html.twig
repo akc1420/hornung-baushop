@@ -1,0 +1,164 @@
+{% set price = product.price %}
+
+    {% set label = product.translated.name %}
+    {% set id = product.id %}
+    {% set cover = product.cover.media %}
+
+
+    {% block offcanvas_cart_item_container_recommendy %}
+        <div class="cart-item cart-item-product js-cart-item recommendy-item">
+
+            {% sw_include '@Storefront/storefront/recommendy/recommendy_tracking.html.twig' with{
+                product: product,
+                actionId: 11
+            } %}
+
+
+            <div class="row cart-item-row" style="flex-wrap: nowrap;">
+                {% block offcanvas_product_image_recommendy %}
+                    <div class="col-auto">
+                        <div class="cart-item-img">
+                            <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}" class="cart-item-img-link recommendy-product-link"
+                               title="{{ label }}">
+
+                                {% if cover.url %}
+                                    {% sw_thumbnails 'cart-item-img-thumbnails' with {
+                                        media: cover,
+                                        sizes: {
+                                            'default': '100px'
+                                        },
+                                        attributes: {
+                                            'class': 'img-fluid cart-item-img-source',
+                                            'alt': label,
+                                            'title': label
+                                        }
+                                    } %}
+                                {% else %}
+                                    {% sw_icon 'placeholder' style {
+                                        'size': 'fluid'
+                                    } %}
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                {% endblock %}
+
+                {% block offcanvas_product_details_recommendy %}
+                    <div class="cart-item-details" style="padding-top:0px; margin-bottom: 0px;">
+
+                        <div class="cart-item-details-container">
+                            {% block offcanvas_product_label_recommendy %}
+                                <div class="cart-item-details" style="padding-top:0px;">
+
+                                    <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                                       class="cart-item-label recommendy-product-link"
+                                       title="{{ label }}">
+                                        {{ label }}
+                                    </a>
+
+                                </div>
+                            {% endblock %}
+
+
+
+                            {% block offcanvas_product_price_recommendy %}
+                                <div class="cart-item-price" style="margin-left: 0px; text-align: left">
+
+
+                                    {% set cheapest = product.calculatedCheapestPrice %}
+
+                                    {% set real = product.calculatedPrice %}
+                                    {% if product.calculatedPrices.count > 0 %}
+                                        {% set real = product.calculatedPrices.last %}
+                                    {% endif %}
+
+                                    {% set referencePrice = real.referencePrice %}
+
+                                    {% set displayFrom = product.calculatedPrices.count > 1 %}
+
+
+
+
+                                    {% if referencePrice and referencePrice.unitName %}
+                                        <span class="product-unit-label">
+                                    {{ "listing.boxUnitLabel"|trans|sw_sanitize }}
+                                </span>
+                                        <span class="price-unit-content">
+                                    {{ referencePrice.purchaseUnit }} {{ referencePrice.unitName }}
+                                </span>
+                                    {% endif %}
+
+
+
+                                    {% if referencePrice is not null %}
+                                        <span class="price-unit-reference">
+                                    ({{ referencePrice.price|currency }}{{ "general.star"|trans|sw_sanitize }} / {{ referencePrice.referenceUnit }} {{ referencePrice.unitName }})
+                                </span>
+                                    {% endif %}
+
+
+                                    <div>
+                                        {% set price = real %}
+                                        {% set isListPrice = price.listPrice.percentage > 0 %}
+                                        {% set isRegulationPrice = price.regulationPrice != null %}
+
+
+                                        {% if cheapest.unitPrice != real.unitPrice %}
+                                            <div>{{ "listing.cheapestPriceLabel"|trans|sw_sanitize }}<span
+                                                    class="product-cheapest-price-price"> {{ cheapest.unitPrice|currency }}{{ "general.star"|trans|sw_sanitize }}</span>
+                                            </div>
+                                        {% endif %}
+
+
+                                        {% if displayFrom %}
+                                            {{ "listing.listingTextFrom"|trans|sw_sanitize }}
+                                        {% endif %}
+
+                                        <span
+                                            class="{% if isListPrice and not displayFrom %} with-list-price{% endif %}">
+                                    {{ price.unitPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+
+                                            {% if isListPrice and not displayFrom %}
+                                                {% set afterListPriceSnippetExists = "listing.afterListPrice"|trans|length > 0 %}
+                                                {% set beforeListPriceSnippetExists = "listing.beforeListPrice"|trans|length > 0 %}
+                                                {% set hideStrikeTrough = beforeListPriceSnippetExists or
+                                                    afterListPriceSnippetExists %}
+
+                                                <span
+                                                    class="list-price{% if hideStrikeTrough %} list-price-no-line-through{% endif %}">
+                                        {% if beforeListPriceSnippetExists %}{{ "listing.beforeListPrice"|trans|trim|sw_sanitize }}{% endif %}
+
+                                        <span
+                                            class="list-price-price">{{ price.listPrice.price|currency }}{{ "general.star"|trans|sw_sanitize }}</span>
+
+                                        {% if afterListPriceSnippetExists %}{{ "listing.afterListPrice"|trans|trim|sw_sanitize }}{% endif %}
+
+                                        <span
+                                            class="list-price-percentage">{{ "detail.listPricePercentage"|trans({'%price%': price.listPrice.percentage
+                                            })|sw_sanitize }}</span>
+                                    </span>
+                                            {% endif %}
+                                </span>
+                                        {% if isRegulationPrice %}
+                                            <span class="with-regulation-price">
+                                    {% if isListPrice %}<br/>{% endif %}<span
+                                                    class="regulation-price">{{ "general.listPricePreviously"|trans({'%price%':
+                                                        price.regulationPrice.price|currency }) }}{{ "general.star"|trans|sw_sanitize }}</span>
+                                </span>
+                                        {% endif %}
+                                    </div>
+
+
+                                </div>
+                            {% endblock %}
+
+
+                        </div>
+
+                    </div>
+                {% endblock %}
+
+
+            </div>
+        </div>
+    {% endblock %}

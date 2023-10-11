@@ -1,0 +1,95 @@
+{# ThemeWare: Footer-Element "Hotline" container #}
+{#
+	Create footer column and include hotline widget (content)
+
+    @Storefront/storefront/themeware/widgets/twt-hotline.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+{# TODO: Kommentare prüfen, ergänzen..., Blöck mit TW? #}
+{# TODO: footer-elements zusammenfassen (sh. twt-sidebar-widgets) #}
+
+{% block layout_footer_navigation_hotline %}
+	{# ThemeWare: Add column classes #}
+	{% if newcol == "2" %}
+		{% set blockClasses = ['col-md-12'] %}
+	{% elseif newcol == "3" %}
+		{% set blockClasses = ['col-md-6'] %}
+	{% else %}
+		{# ThemeWare: Add column classes for tablet viewports #}
+		{% if columns == columnsTablet %}
+			{% set blockClasses = ['col-md-' ~ columns] %}
+		{% else %}
+			{% set blockClasses = ['col-xl-' ~ columns, 'col-md-' ~ columnsTablet] %}
+		{% endif %}
+	{% endif %}
+
+	{# ThemeWare: Add default classes #}
+	{% set blockClasses = ['footer-column', 'footer-column-hotline']|merge(blockClasses) %}
+
+	{# ThemeWare: Add toggle class #}
+	{% if toggle != "4" %}
+		{% set blockClasses = ['js-footer-column']|merge(blockClasses) %}
+	{% endif %}
+
+	{# ThemeWare: Add element class and element number #}
+	{% set blockClasses = ['twt-element-' ~ elementid, 'twt-element-hotline']|merge(blockClasses) %}
+
+	{# ThemeWare: Permanently expanded #}
+	{% if toggle == "4" %}
+		{% set blockClasses = ['permanent']|merge(blockClasses) %}
+	{% endif %}
+
+	{# ThemeWare: Add class "last" to last element #}
+	{% if last == true %}
+		{% set blockClasses = ['last']|merge(blockClasses) %}
+	{% endif %}
+
+	{# TODO: add block "container" #}
+	<div class="{{ blockClasses|reverse|join(' ') }}">
+
+		{% block layout_footer_navigation_hotline_headline %}
+			<div class="footer-column-headline footer-headline js-footer-column-headline js-collapse-footer-column-trigger{% if toggle == "2" %} show{% endif %}"
+				 id="collapseFooterHotlineTitle"
+				 data-target="#collapseFooterHotline"
+				 aria-expanded="true"
+				 aria-controls="collapseFooterHotline"
+				 role="listitem">
+				{{ 'footer.serviceHotlineHeadline'|trans|sw_sanitize }}
+
+				{% block layout_footer_navigation_hotline_icons %}
+					{% if toggle != "4" %}
+						<div class="footer-column-toggle">
+							<span class="footer-plus-icon">
+							{% sw_icon 'plus' %}
+							</span>
+							<span class="footer-minus-icon">
+								{% sw_icon 'minus' %}
+							</span>
+						</div>
+					{% endif %}
+				{% endblock %}
+
+			</div>
+		{% endblock %}
+
+		{% block layout_footer_navigation_hotline_content %}
+			<div id="collapseFooterHotline"
+				 class="footer-column-content{% if toggle != "4" %} js-footer-column-content collapse{% endif %}{% if toggle == "2" %} show{% endif %}"
+				 aria-labelledby="collapseFooterHotlineTitle">
+				{# TODO: in twt-hotline-include auslagern... #}
+				<div class="footer-column-content-inner">
+					<p class="footer-contact-hotline">
+						{{ 'footer.serviceHotline'|trans|sw_sanitize }}
+					</p>
+				</div>
+				<div class="footer-contact-form">
+					{{ 'footer.serviceContactLink'|trans({
+						'%url%': path('frontend.cms.page', { id: config('core.basicInformation.contactPage') })
+					})|raw }}
+				</div>
+			</div>
+		{% endblock %}
+
+	</div>
+{% endblock %}

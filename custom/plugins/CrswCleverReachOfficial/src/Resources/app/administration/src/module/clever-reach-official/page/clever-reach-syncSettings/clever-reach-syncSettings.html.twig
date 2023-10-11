@@ -1,0 +1,16 @@
+{% block clever_reach_syncSettings %}
+    <div class="clever-reach-sync">
+        <clever-reach-banner :button-text1="buttonText1"
+                             :button-text2="buttonText2"/>
+
+        <clever-reach-container>
+            <sw-container class="cr-title">
+                <sw-label variant="neutral" class="cr-sync-title">
+                    {{ $tc('clever-reach.syncSettings.import') }}
+                </sw-label>
+            </sw-container>
+            <clever-reach-settings>
+            </clever-reach-settings>
+        </clever-reach-container>
+    </div>
+{% endblock %}

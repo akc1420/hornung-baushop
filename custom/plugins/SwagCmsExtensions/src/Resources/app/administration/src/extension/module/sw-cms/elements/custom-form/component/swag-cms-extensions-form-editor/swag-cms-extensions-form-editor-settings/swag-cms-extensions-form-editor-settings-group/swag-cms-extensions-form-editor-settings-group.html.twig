@@ -1,0 +1,30 @@
+{% block swag_cms_extensions_form_editor_settings_group %}
+    <div class="swag-cms-extensions-form-editor-settings-group">
+
+        {% block swag_cms_extensions_form_editor_settings_group_content %}
+            {% block swag_cms_extensions_form_editor_settings_group_content_technical_name %}
+                <sw-text-field v-model="group.technicalName"
+                               :label="$tc('swag-cms-extensions.sw-cms.elements.custom-form.editor.tabs.options.internalNameLabel')"
+                               :helpText="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-group.internalNameHelpText')"
+                               :error="groupTechnicalNameError"
+                               size="medium"
+                               required>
+                </sw-text-field>
+            {% endblock %}
+
+            {% block swag_cms_extensions_form_editor_settings_group_content_title %}
+                <sw-text-field v-model="group.title"
+                               :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-group.titleFieldLabel')"
+                               size="medium">
+                </sw-text-field>
+            {% endblock %}
+
+            {% block swag_cms_extensions_form_editor_settings_group_content_explanation %}
+                <div class="swag-cms-extensions-form-editor-settings-group__explanation">
+                    {{ $tc('swag-cms-extensions.sw-cms.components.form-editor.settings-group.explanation') }}
+                </div>
+            {% endblock %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

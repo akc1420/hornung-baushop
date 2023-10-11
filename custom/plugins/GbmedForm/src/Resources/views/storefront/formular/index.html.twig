@@ -1,0 +1,24 @@
+{% block gbmed_form_formular_container %}
+    <div class="cms-sections">
+        {% block gbmed_form_formular_section_pos_0 %}{% endblock %}
+
+        {% block gbmed_form_formular_section_pos_1 %}
+            <div class="cms-section pos-1 cms-section-default cms-element-form py-3">
+                {% block gbmed_form_formular_section_form %}
+                    <div class="cms-section-default boxed cms-block">
+                        {% block gbmed_form_formular_section_form_description %}
+                            <div class="cms-formular-section-form-description">
+                                {{ page.cmsPage.extensions.category.description|raw }}
+                            </div>
+                        {% endblock %}
+                        {% block gbmed_form_formular_section_form_wrapper %}
+                            <div class="cms-formular-section-form-wrapper py-3">
+                                {% block gbmed_form_formular_section_form_form %}{% endblock %}
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% block sw_cms_sidebar_navigator_element %}
+    <div :class="blockRuleNavigatorClasses">
+        {% parent %}
+    </div>
+{% endblock %}
+
+{% block sw_cms_sidebar_sidebar_navigator_element_duplicate %}
+    {% block sw_cms_sidebar_sidebar_navigator_element_block_rule %}
+        <div v-if="hasBlockRule"
+             v-tooltip="ruleTooltip"
+             class="block-rule-navigator-element__has-rule">
+            <sw-icon name="default-symbol-rule" size="16"></sw-icon>
+        </div>
+    {% endblock %}
+
+    {% block sw_cms_sidebar_sidebar_navigator_element_block_rule_duplicate_button %}
+        <div v-if="block.type !== 'custom-form'">
+            {% parent %}
+        </div>
+    {% endblock %}
+
+    {% block sw_cms_sidebar_sidebar_navigator_element_block_rule_duplicate_dummy %}
+        <div v-else class="sw-cms-sidebar-nav-element__button-dummy" />
+    {% endblock %}
+{% endblock %}

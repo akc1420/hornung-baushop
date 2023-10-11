@@ -1,0 +1,914 @@
+﻿/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Widget > Communities
+	==================================================
+
+*/
+
+// ThemeWare: General widget styling ------------------------------
+
+.twt-widget-communities {
+	// ThemeWare: Communities list
+	ul.twt-communities-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	// ThemeWare: Communities item > link
+	a.twt-communities-link {
+		text-decoration: none !important;
+
+		// ThemeWare: Communities item > link > icon
+		.icon {
+			transition: 0.2s ease-out 0s;
+			vertical-align: middle;
+
+			fill: currentColor;
+
+			svg {
+				top: 0;
+			}
+
+			// Add circle-, rect- and polygon-Element to Shopware SVG-Elements
+			> svg circle,
+			> svg polygon,
+			> svg rect {
+				fill: currentColor;
+			}
+
+			// currentColor overwrites all SVG elements so we need to fix our white elements (.color2)
+			.color2 {
+				color: #ffffff;
+			}
+		}
+	}
+
+	// Vertical alignment in cms element
+	&.is-cms {
+		text-align: center;
+	}
+}
+
+/*
+  _             _____ ____     ___                             _   _
+ | |__  _   _  |_   _/ ___|   |_ _|_ __  _ __   _____   ____ _| |_(_) ___  _ __  ___
+ | '_ \| | | |   | || |   _____| || '_ \| '_ \ / _ \ \ / / _` | __| |/ _ \| '_ \/ __|
+ | |_) | |_| |   | || |__|_____| || | | | | | | (_) \ V / (_| | |_| | (_) | | | \__ \
+ |_.__/ \__, |   |_| \____|   |___|_| |_|_| |_|\___/ \_/ \__,_|\__|_|\___/|_| |_|___/
+		|___/
+*/
+
+// ThemeWare: Footer widget styling ------------------------------
+
+// TODO: twt-widget-communities-label-position
+
+.twt-widget-communities:not(.is-slideout):not(.is-sidebar):not(.is-detail):not(.is-usp-bar) {
+	// ThemeWare: Communities list
+	ul.twt-communities-list {
+		// ThemeWare: Communities list > item
+		li.twt-communities-item {
+			@if $twt-widget-communities-layout-type == 1 or $twt-widget-communities-layout-type == 3 {
+				// ThemeWare: Communities nebeneinander
+				display: inline-block;
+			}
+		}
+	}
+
+	// ThemeWare: Communities item > link
+	a.twt-communities-link {
+		// ThemeWare: Communities nebeneinander oder untereinenader
+		display: flex;
+		align-items: center;
+
+		// ThemeWare: Communities item > link > icon
+		.icon {
+			width: $twt-widget-communities-icon-size + px;
+			height: $twt-widget-communities-icon-size + px;
+
+			// ThemeWare: Grayscale
+			@if $twt-widget-communities-icon-coloration == 3 {
+				@include twt-grayscale(100%);
+			}
+		}
+
+		// ThemeWare: Communities item > link > label
+		span.twt-communities-label {
+			// ThemeWare: Show/hide label
+			@if $twt-widget-communities-label-show == 1 {
+				display: none;
+			} @else {
+				display: inline-block;
+			}
+
+			// ThemeWare: Communities untereinenader
+			@if $twt-widget-communities-layout-type == 2 {
+				vertical-align: middle;
+			}
+		}
+
+		// ThemeWare: Communities item > link:hover
+		&:hover {
+			// ThemeWare: Label unterstreichen
+			text-decoration: underline !important;
+
+			// TODO: Add configuration
+			.icon {
+				@if $twt-widget-communities-icon-coloration == 3 {
+					@include twt-grayscale(0%); // ThemeWare: Grayscale
+				} @else {
+					//-webkit-filter: brightness(85%);
+					filter: brightness(85%);
+				}
+			}
+		}
+
+		// ThemeWare: Color icons
+		// TODO: Include as function?
+
+		&.link-blog {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-blog($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-blog($twt-color-blog);
+			}
+		}
+
+		&.link-blogger {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-blogger($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-blogger($twt-color-blogger);
+			}
+		}
+
+		&.link-facebook {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-facebook($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-facebook($twt-color-facebook);
+			}
+		}
+
+		// is-multicolor
+		&.link-flickr {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-flickr($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-flickr-multicolor($twt-color-flickr);
+			}
+		}
+
+		&.link-instagram {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-instagram($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-instagram($twt-color-instagram);
+			}
+		}
+
+		&.link-linkedin {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-linkedin($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-linkedin($twt-color-linkedin);
+			}
+		}
+
+		&.link-pinterest {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-pinterest($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-pinterest($twt-color-pinterest);
+			}
+		}
+
+		// is-multicolor
+		&.link-tiktok {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-tiktok($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-tiktok-multicolor($twt-color-tiktok);
+			}
+		}
+
+		&.link-twitter {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-twitter($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-twitter($twt-color-twitter);
+			}
+		}
+
+		&.link-twitch {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-twitch($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-twitch($twt-color-twitch);
+			}
+		}
+
+		&.link-vimeo {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-vimeo($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-vimeo($twt-color-vimeo);
+			}
+		}
+
+		&.link-whatsapp {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-whatsapp($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-whatsapp($twt-color-whatsapp);
+			}
+		}
+
+		// is-multicolor
+		&.link-xing {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-xing($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-xing-multicolor($twt-color-xing);
+			}
+		}
+
+		&.link-youtube {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-youtube($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-youtube($twt-color-youtube);
+			}
+		}
+
+		&.link-website {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-website($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-website($twt-color-website);
+			}
+		}
+
+		&.link-email {
+			@if $twt-widget-communities-icon-coloration == 2 {
+				@include twt-icon-color-email($twt-widget-communities-icon-color);
+			}@else{
+				@include twt-icon-color-email($twt-color-email);
+			}
+		}
+	}
+}
+
+// ThemeWare: Sidebar communities ------------------------------
+
+// TODO:
+// - Konfiguration:
+//   - show/don't show...
+//   - color...
+//   - background-color...
+//   - text-transform...
+// - Icon-Varianten prüfen!
+
+// TODO: twt-widget-communities-label-position
+
+@if $twt-sidebar-element-1 == "communities" or $twt-sidebar-element-2 == "communities" or $twt-sidebar-element-3 == "communities" {
+	.twt-widget-communities {
+		&.is-sidebar {
+			// ThemeWare: Communities list
+			ul.twt-communities-list {
+				// ThemeWare: Communities list > item
+				li.twt-communities-item {
+					@if $twt-widget-communities-layout-type == 1 {
+						// ThemeWare: Communities nebeneinander
+						display: inline-block;
+					}
+				}
+			}
+
+			// ThemeWare: Communities item > link
+			a.twt-communities-link {
+				// ThemeWare: Communities nebeneinander oder untereinenader
+				display: flex;
+				align-items: center;
+
+				// ThemeWare: Communities item > link > icon
+				.icon {
+					width: $twt-widget-communities-icon-size + px;
+					height: $twt-widget-communities-icon-size + px;
+
+					// ThemeWare: Grayscale
+					@if $twt-widget-communities-icon-coloration-sidebar == 3 {
+						@include twt-grayscale(100%);
+					}
+				}
+
+				// ThemeWare: Communities item > link > label
+				span.twt-communities-label {
+					// ThemeWare: Show/hide label
+					@if $twt-widget-communities-label-show == 1 {
+						display: none;
+					} @else {
+						display: inline-block;
+					}
+				}
+
+				// ThemeWare: Communities item > link:hover
+				&:hover {
+					// TODO: Add configuration
+					.icon {
+						@if $twt-widget-communities-icon-coloration-sidebar == 3 {
+							@include twt-grayscale(0%); // ThemeWare: Grayscale
+						} @else {
+							//-webkit-filter: brightness(85%);
+							filter: brightness(85%);
+						}
+					}
+                }
+
+				// ThemeWare: Color icons
+				// TODO: Include as function?
+
+				&.link-blog {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-blog($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-blog($twt-color-blog);
+					}
+				}
+
+				&.link-blogger {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-blogger($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-blogger($twt-color-blogger);
+					}
+				}
+
+				&.link-facebook {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-facebook($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-facebook($twt-color-facebook);
+					}
+				}
+
+				// is-multicolor
+				&.link-flickr {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-flickr($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-flickr-multicolor($twt-color-flickr);
+					}
+				}
+
+				&.link-instagram {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-instagram($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-instagram($twt-color-instagram);
+					}
+				}
+
+				&.link-linkedin {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-linkedin($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-linkedin($twt-color-linkedin);
+					}
+				}
+
+				&.link-pinterest {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-pinterest($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-pinterest($twt-color-pinterest);
+					}
+				}
+
+				// is-multicolor
+				&.link-tiktok {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-tiktok($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-tiktok-multicolor($twt-color-tiktok);
+					}
+				}
+
+				&.link-twitter {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-twitter($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-twitter($twt-color-twitter);
+					}
+				}
+
+				&.link-twitch {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-twitch($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-twitch($twt-color-twitch);
+					}
+				}
+
+				&.link-vimeo {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-vimeo($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-vimeo($twt-color-vimeo);
+					}
+				}
+
+				&.link-whatsapp {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-whatsapp($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-whatsapp($twt-color-whatsapp);
+					}
+				}
+
+				// is-multicolor
+				&.link-xing {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-xing($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-xing-multicolor($twt-color-xing);
+					}
+				}
+
+				&.link-youtube {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-youtube($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-youtube($twt-color-youtube);
+					}
+				}
+
+				&.link-website {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-website($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-website($twt-color-website);
+					}
+				}
+
+				&.link-email {
+					@if $twt-widget-communities-icon-coloration-sidebar == 2 {
+						@include twt-icon-color-email($twt-widget-communities-icon-color-sidebar);
+					}@else{
+						@include twt-icon-color-email($twt-color-email);
+					}
+				}
+			}
+		}
+	}
+}
+
+// ThemeWare: Slideout communities ------------------------------
+// see > extensions/_slideout-communities.scss for general styling
+
+// TODO: Add configuration + uncomment in base.scss
+
+// TODO:
+// - color ?
+// - background-color ?
+// - text-transform ...
+// - top ?
+// - slide-out-width ?
+// - spacing (margin) between links ...
+// - Icon-Varianten prüfen!
+
+@if $twt-slideout-communities-show == 2 {
+	.twt-widget-communities {
+		&.is-slideout {
+			// ThemeWare: Communities list
+			ul.twt-communities-list {
+				// ThemeWare: Communities list > item
+				li.twt-communities-item {
+					display: block;
+					overflow: hidden;
+
+					height: $twt-slideout-communities-icon-size + px;
+					margin: 0 0 1px 0; // TODO: Add configuration (1 - 10)
+					padding: 0;
+
+					transition: all 0.25s ease-in-out;
+
+					cursor: pointer;
+
+					// Coloration: Grayscale + Style: Einfarbig
+					@if $twt-slideout-communities-icon-coloration == 3 and $twt-slideout-communities-style == 1 {
+						@include twt-grayscale(100%);
+					}
+
+					// Style: Mehrfarbig
+					@if $twt-slideout-communities-style == 2 {
+						background-color: $twt-slideout-communities-background-color;
+					}
+
+					&:hover {
+						margin-left: -115px; // TODO: Add configuration (width with calc) [see _slideout-communities.scss] ?! -155 bis -5
+					}
+
+					// ThemeWare: Color buttons
+					@if $twt-slideout-communities-icon-coloration == 1 or $twt-slideout-communities-icon-coloration == 3 {
+						// Coloration: Standard oder Graustufen (Anbieter Farben)
+						@if $twt-slideout-communities-style == 1 {
+							// Style: Einfarbig
+							&.item-blog {
+                                background-color: $twt-color-blog;
+                            }
+
+                            &.item-blogger {
+                                background-color: $twt-color-blogger;
+                            }
+
+                            &.item-facebook {
+                                background-color: $twt-color-facebook;
+                            }
+
+                            &.item-flickr {
+                                background-color: $twt-color-flickr;
+                            }
+
+                            &.item-instagram {
+                                background-color: $twt-color-instagram;
+                            }
+
+                            &.item-linkedin {
+                                background-color: $twt-color-linkedin;
+                            }
+
+                            &.item-pinterest {
+                                background-color: $twt-color-pinterest;
+                            }
+
+                            &.item-tiktok {
+                                background-color: $twt-color-tiktok;
+                            }
+
+                            &.item-twitter {
+                                background-color: $twt-color-twitter;
+                            }
+
+                            &.item-twitch {
+                                background-color: $twt-color-twitch;
+                            }
+
+                            &.item-vimeo {
+                                background-color: $twt-color-vimeo;
+                            }
+
+                            &.item-whatsapp {
+                                background-color: $twt-color-whatsapp;
+                            }
+
+                            &.item-xing {
+                                background-color: $twt-color-xing;
+                            }
+
+                            &.item-youtube {
+                                background-color: $twt-color-youtube;
+                            }
+
+                            &.item-website {
+                                background-color: $twt-color-website;
+                            }
+
+                            &.item-email {
+                                background-color: $twt-color-email;
+                            }
+
+						} @else {
+							// Style: Mehrfarbig
+							&.item-blog {
+								.icon {
+									background-color: $twt-color-blog;
+								}
+							}
+
+							&.item-blogger {
+								.icon {
+									background-color: $twt-color-blogger;
+								}
+							}
+
+							&.item-facebook {
+								.icon {
+									background-color: $twt-color-facebook;
+								}
+							}
+
+							&.item-flickr {
+								.icon {
+									background-color: $twt-color-flickr;
+								}
+							}
+
+							&.item-instagram {
+								.icon {
+									background-color: $twt-color-instagram;
+								}
+							}
+
+							&.item-linkedin {
+								.icon {
+									background-color: $twt-color-linkedin;
+								}
+							}
+
+							&.item-pinterest {
+								.icon {
+									background-color: $twt-color-pinterest;
+								}
+							}
+
+							&.item-tiktok {
+								.icon {
+									background-color: $twt-color-tiktok;
+								}
+							}
+
+							&.item-twitter {
+								.icon {
+									background-color: $twt-color-twitter;
+								}
+							}
+
+							&.item-twitch {
+								.icon {
+									background-color: $twt-color-twitch;
+								}
+							}
+
+							&.item-vimeo {
+								.icon {
+									background-color: $twt-color-vimeo;
+								}
+							}
+
+							&.item-whatsapp {
+								.icon {
+									background-color: $twt-color-whatsapp;
+								}
+							}
+
+							&.item-xing {
+								.icon {
+									background-color: $twt-color-xing;
+								}
+							}
+
+							&.item-youtube {
+								.icon {
+									background-color: $twt-color-youtube;
+								}
+							}
+
+							&.item-website {
+								.icon {
+									background-color: $twt-color-website;
+								}
+							}
+
+							&.item-email {
+								.icon {
+									background-color: $twt-color-email;
+								}
+							}
+						}
+
+					} @else {
+						// Coloration: individuelle Farbe
+						@if $twt-slideout-communities-style == 1 {
+							// Style: Einfarbig
+							&.item-blog,
+							&.item-blogger,
+							&.item-facebook,
+							&.item-flickr,
+							&.item-instagram,
+							&.item-linkedin,
+							&.item-pinterest,
+							&.item-tiktok,
+							&.item-twitter,
+							&.item-twitch,
+							&.item-vimeo,
+							&.item-whatsapp,
+							&.item-xing,
+							&.item-youtube,
+							&.item-website,
+							&.item-email {
+								background-color: $twt-slideout-communities-icon-color;
+							}
+
+						} @else {
+							// Style: Mehrfarbig
+							&.item-blog,
+							&.item-blogger,
+							&.item-facebook,
+							&.item-flickr,
+							&.item-instagram,
+							&.item-linkedin,
+							&.item-pinterest,
+							&.item-tiktok,
+							&.item-twitter,
+							&.item-twitch,
+							&.item-vimeo,
+							&.item-whatsapp,
+							&.item-xing,
+							&.item-youtube,
+							&.item-website,
+							&.item-email {
+								.icon {
+									background-color: $twt-slideout-communities-icon-color;
+								}
+							}
+						}
+
+					}
+				}
+			}
+
+			// ThemeWare: Communities item > link
+			a.twt-communities-link {
+				display: flex;
+				align-items: center;
+				margin: auto;
+
+				.icon {
+					width: $twt-slideout-communities-icon-size + px;
+					height: $twt-slideout-communities-icon-size + px;
+					color: transparent;
+
+					// Coloration: Grayscale + Style: Mehrfarbig
+					@if $twt-slideout-communities-icon-coloration == 3 and $twt-slideout-communities-style == 2 {
+						@include twt-grayscale(100%);
+					}
+				}
+
+				// ThemeWare: Communities item > link > label
+				span.twt-communities-label {
+					width: 110px; // 200px
+					margin: 0;
+					padding: 0 0 0 5px;
+					color: $twt-slideout-communities-color; // Textfarbe
+					line-height: $twt-slideout-communities-icon-size + px;
+					text-overflow: ellipsis;
+					text-transform: uppercase; // TODO: Add configuration
+					white-space: nowrap;
+					overflow: hidden;
+				}
+
+				// ThemeWare: Communities item > link:hover
+				//&:hover {}
+
+				// ThemeWare: Color icons
+				// - Icons won't be colored, just the buttons itself get a background color (see above)
+			}
+		}
+	}
+}
+
+// ThemeWare: Sharing links ------------------------------
+// - see extensions/_sharing-links.scss for general styling
+
+@if $twt-product-detail-sharing-links-show == 2 {
+	.twt-widget-communities {
+		&.is-detail {
+			// ThemeWare: Communities list
+			ul.twt-communities-list {
+				// ThemeWare: Communities list > item
+				li.twt-communities-item {
+					display: inline-block;
+				}
+			}
+
+			// ThemeWare: Communities item > link
+			a.twt-communities-link {
+				.icon {
+					width: $twt-product-detail-sharing-links-icon-size + px;
+					height: $twt-product-detail-sharing-links-icon-size + px;
+
+					// ThemeWare: Grayscale
+					@if $twt-product-detail-sharing-links-icon-coloration == 3 {
+						@include twt-grayscale(100%);
+					}
+				}
+
+				// ThemeWare: Communities item > link > label
+				span.twt-communities-label {
+					display: none;
+				}
+
+				// ThemeWare: Color icons
+				// TODO: Include as function?
+
+				&.link-facebook {
+					@if $twt-product-detail-sharing-links-icon-coloration == 2 {
+						@include twt-icon-color-email($twt-product-detail-sharing-links-icon-color);
+					}@else{
+						@include twt-icon-color-email($twt-color-facebook);
+					}
+				}
+
+				&.link-pinterest {
+					@if $twt-product-detail-sharing-links-icon-coloration == 2 {
+						@include twt-icon-color-email($twt-product-detail-sharing-links-icon-color);
+					}@else{
+						@include twt-icon-color-email($twt-color-pinterest);
+					}
+				}
+
+				&.link-twitter {
+					@if $twt-product-detail-sharing-links-icon-coloration == 2 {
+						@include twt-icon-color-email($twt-product-detail-sharing-links-icon-color);
+					}@else{
+						@include twt-icon-color-email($twt-color-twitter);
+					}
+				}
+
+				&.link-whatsapp {
+					@if $twt-product-detail-sharing-links-icon-coloration == 2 {
+						@include twt-icon-color-email($twt-product-detail-sharing-links-icon-color);
+					}@else{
+						@include twt-icon-color-email($twt-color-whatsapp);
+					}
+				}
+
+				&.link-email {
+					@if $twt-product-detail-sharing-links-icon-coloration == 2 {
+						@include twt-icon-color-email($twt-product-detail-sharing-links-icon-color);
+					}@else{
+						@include twt-icon-color-email($twt-color-email);
+					}
+				}
+
+				// ThemeWare: Communities item > link:hover
+				&:hover {
+					text-decoration: none;
+
+					// TODO: Add configuration
+					.icon {
+						@if $twt-product-detail-sharing-links-icon-coloration == 3 {
+							@include twt-grayscale(0%); // ThemeWare: Grayscale
+						} @else {
+							filter: brightness(85%);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// ThemeWare: Sidebar specific styling ------------------------------
+
+//.cms-section-sidebar-sidebar-content {
+//	.twt-widget-communities {
+//	}
+//}
+
+// ThemeWare: Footer bottom specific styling ------------------------------
+
+//.footer-bottom {
+//	.twt-widget-communities {
+//	}
+//}
+
+// ThemeWare: USP bar communities
+
+@if $twt-usp-bar-header-layout == 3 {
+	.twt-widget-communities {
+		&.is-usp-bar {
+			// ThemeWare: Communities list
+			ul.twt-communities-list {
+				// ThemeWare: Communities list > item
+				li.twt-communities-item {
+					float: left;
+					margin: 0 1px;
+				}
+			}
+
+			// ThemeWare: Communities item > link
+			a.twt-communities-link {
+				display: flex; // Fit to its content
+
+				.icon {
+					width: 20px;
+					height: 20px;
+					color: $twt-usp-bar-header-icon-color;
+				}
+
+				// ThemeWare: Communities item > link > label
+				span.twt-communities-label {
+					display: none;
+				}
+			}
+		}
+	}
+}

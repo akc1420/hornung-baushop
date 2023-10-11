@@ -1,0 +1,10 @@
+{% block clever_reach_refresh %}
+    <div>
+        <clever-reach-banner/>
+        <clever-reach-container class="cr-refresh">
+            <clever-reach-error :error-title="errorTitle"
+                                :error-message="errorMessage"/>
+            <clever-reach-iframe :type="type"/>
+        </clever-reach-container>
+    </div>
+{% endblock %}

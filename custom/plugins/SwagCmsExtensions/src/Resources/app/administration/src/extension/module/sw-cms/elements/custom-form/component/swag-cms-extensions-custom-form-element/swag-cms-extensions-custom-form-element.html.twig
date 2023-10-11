@@ -1,0 +1,115 @@
+{% block swag_cms_extensions_form_element %}
+    <div class="swag-cms-extensions-custom-form-element">
+
+        {% block swag_cms_extensions_form_element_preview %}
+            <div v-if="showPreview"
+                 class="swag-cms-extensions-custom-form-element__preview">
+
+                {% block swag_cms_extensions_form_element_preview_title %}
+                    <h3 v-if="element.extensions.swagCmsExtensionsForm.title"
+                        class="swag-cms-extensions-custom-form-element__title" >
+                        {{ element.extensions.swagCmsExtensionsForm.title }}
+                    </h3>
+                {% endblock %}
+
+                {% block swag_cms_extensions_form_element_preview_groups %}
+                    <div v-for="group in groups" class="swag-cms-extensions-custom-form-element__group">
+
+                        {% block swag_cms_extensions_form_element_preview_group %}
+                            {% block swag_cms_extensions_form_element_preview_group_title %}
+                                <h6 v-if="group.title"
+                                    class="swag-cms-extensions-custom-form-element__field-col-12 swag-cms-extensions-custom-form-element__subtitle">
+                                    {{ group.title }}
+                                </h6>
+                            {% endblock %}
+
+                            {% block swag_cms_extensions_form_element_preview_fields %}
+                                <div v-for="field in group.fields"
+                                     :class="getFieldClass(field)">
+
+                                    {% block swag_cms_extensions_form_element_preview_field_content %}
+                                        <component v-if="getFieldComponent(field)"
+                                                   :is="getFieldComponent(field)"
+                                                   :field="field">
+                                        </component>
+                                    {% endblock %}
+
+                                    {% block swag_cms_extensions_form_element_preview_field_dummy %}
+                                        <div v-else>
+                                            <div class="swag-cms-extensions-custom-form-element__dummy-label"></div>
+                                            <div class="swag-cms-extensions-custom-form-element__dummy-input"></div>
+                                        </div>
+                                    {% endblock %}
+
+                                </div>
+                            {% endblock %}
+                        {% endblock %}
+
+                    </div>
+                {% endblock %}
+
+                {% block swag_cms_extensions_form_element_preview_footer %}
+                    <p class="swag-cms-extensions-custom-form-element__note">{{ $tc('sw-cms.elements.form.element.helpText.requiredFields') }}</p>
+
+                    <p class="swag-cms-extensions-custom-form-element__note">{{ $tc('sw-cms.elements.form.element.label.privacy') }}</p>
+
+                    <sw-checkbox-field :label="$tc('sw-cms.elements.form.element.helpText.privacy')" />
+
+                    <div class="swag-cms-extensions-custom-form-element__action">{{ $tc('sw-cms.elements.form.element.label.send') }}</div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_element_dummy %}
+            <div v-else
+                 class="swag-cms-extensions-custom-form-element__dummy">
+                <div class="swag-cms-extensions-custom-form-element__group">
+                    <div class="swag-cms-extensions-custom-form-element__field-col-4">
+                        <div class="swag-cms-extensions-custom-form-element__dummy-label"></div>
+                        <div class="swag-cms-extensions-custom-form-element__dummy-input"></div>
+                    </div>
+                    <div class="swag-cms-extensions-custom-form-element__field-col-4">
+                        <div class="swag-cms-extensions-custom-form-element__dummy-label"></div>
+                        <div class="swag-cms-extensions-custom-form-element__dummy-input"></div>
+                    </div>
+                    <div class="swag-cms-extensions-custom-form-element__field-col-4">
+                        <div class="swag-cms-extensions-custom-form-element__dummy-label"></div>
+                        <div class="swag-cms-extensions-custom-form-element__dummy-input"></div>
+                    </div>
+                </div>
+
+                <div class="swag-cms-extensions-custom-form-element__group">
+                    <div class="swag-cms-extensions-custom-form-element__field-col-6">
+                        <div class="swag-cms-extensions-custom-form-element__dummy-label"></div>
+                        <div class="swag-cms-extensions-custom-form-element__dummy-input"></div>
+                    </div>
+                    <div class="swag-cms-extensions-custom-form-element__field-col-6">
+                        <div class="swag-cms-extensions-custom-form-element__dummy-label"></div>
+                        <div class="swag-cms-extensions-custom-form-element__dummy-input"></div>
+                    </div>
+                </div>
+
+                <div class="swag-cms-extensions-custom-form-element__group">
+                    <div class="swag-cms-extensions-custom-form-element__field-col-12">
+                        <div class="swag-cms-extensions-custom-form-element__dummy-label"></div>
+                        <div class="swag-cms-extensions-custom-form-element__dummy-input"></div>
+                    </div>
+                </div>
+
+                <div class="swag-cms-extensions-custom-form-element__group">
+                    <div class="swag-cms-extensions-custom-form-element__field-col-12">
+                        <div class="swag-cms-extensions-custom-form-element__dummy-label"></div>
+                        <div class="swag-cms-extensions-custom-form-element__dummy-textarea"></div>
+                    </div>
+                </div>
+
+                <div class="swag-cms-extensions-custom-form-element__group">
+                    <div class="swag-cms-extensions-custom-form-element__field-col-12">
+                        <div class="swag-cms-extensions-custom-form-element__dummy-submit"></div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

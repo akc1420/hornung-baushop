@@ -1,0 +1,43 @@
+{# ThemeWare "Announcement banner" content #}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set useDefaultCookieConsent = config('core.basicInformation.useDefaultCookieConsent') %}
+
+{% set twtAnnouncementBannerClosable = theme_config('twt-announcement-banner-closable') %}
+{% set twtAnnouncementBannerLink = theme_config('twt-announcement-banner-link') %}
+{% set twtAnnouncementBannerLinkNewTab = theme_config('twt-announcement-banner-link-newtab') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_announcement_banner_row %}
+    <div class="twt-announcement-banner-row row">
+
+        {% block twt_announcement_banner_content %}
+            {% if twtAnnouncementBannerLink == 2 %}
+                <a class="twt-announcement-banner-content content is-link"
+                   href="{{ "twt.extension.announcementBanner.link"|trans }}"
+                   rel="nofollow noopener"
+                   {% if twtAnnouncementBannerLinkNewTab == 2 %}target="_blank"{% endif %}
+                >
+                    {{ "twt.extension.announcementBanner.content"|trans|raw }}
+                </a>
+            {% else %}
+                <p class="content">
+                    {{ "twt.extension.announcementBanner.content"|trans|raw }}
+                </p>
+            {% endif %}
+        {% endblock %}
+
+        {# Info: Add a close button if the default cookie notification of Shopware is used and the "Announcement banner" is configured "closable" #}
+        {% if useDefaultCookieConsent and twtAnnouncementBannerClosable == 2 %}
+            <div class="close">
+                {% sw_icon 'x' %}
+            </div>
+        {% endif %}
+
+    </div>
+{% endblock %}

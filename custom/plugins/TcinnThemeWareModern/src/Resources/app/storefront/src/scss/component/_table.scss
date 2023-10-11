@@ -1,0 +1,203 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Tables
+	==============================================
+
+	Origin: ..
+*/
+
+// ThemeWare: Bootstrap-Table adjustments
+table,
+.table {
+	border-bottom: 1px solid $twt-table-body-border-bottom-color;
+
+	// ThemeWare: Bordered version
+	&.table-bordered {
+		* {
+			border-color: $twt-table-border-color;
+		}
+	}
+
+	// ThemeWare: Head styles
+	&:not(.table-dark) {
+		thead {
+			th {
+				border-bottom-color: $twt-table-head-border-bottom-color;
+			}
+		}
+	}
+	thead:not(.thead-dark) {
+		th {
+			border-bottom-color: $twt-table-head-border-bottom-color;
+		}
+	}
+
+	&.table-dark {
+		thead {
+			th {
+				border-bottom-color: $twt-table-dark-head-border-bottom-color;
+			}
+		}
+	}
+	thead.thead-dark {
+		th {
+			border-bottom-color: $twt-table-dark-head-border-bottom-color;
+		}
+	}
+
+	&.table-light {
+		thead {
+			th {
+				border-bottom-color: $twt-table-head-border-bottom-color;
+			}
+		}
+	}
+	thead.thead-light {
+		th {
+			border-bottom-color: $twt-table-head-border-bottom-color;
+		}
+	}
+
+
+}
+
+// ThemeWare: Artikel Preis-Tabelle (default)
+@if $twt-product-detail-prices-table-layout == 1 { // Default styling
+	.product-block-prices-grid {
+		thead {
+			background-color: $table-accent-bg;
+		}
+	}
+}
+
+// ThemeWare: Artikel Preis-Tabelle
+// TODO: Shopware Vererbung prüfen...
+
+@if $twt-product-detail-prices-table-layout != 1 { // ThemeWare styling
+	.product-detail-price-container {
+		// Deprecated: 6.4.0 > class "product-block-prices-table" will be removed use "product-block-prices-grid" instead
+		table.product-block-prices-table,
+		table.product-block-prices-grid {
+			border: none;
+			border-radius: null-pixel-unit($twt-border-radius);
+			border-bottom: 1px solid $twt-table-body-border-bottom-color;
+
+			thead {
+				tr {
+					th {
+						border: none;
+						border-bottom: 2px solid $twt-table-head-border-bottom-color;
+						color: $twt-table-head-color;
+						background-color: $twt-table-head-background-color;
+					}
+				}
+			}
+
+			tbody {
+				tr {
+					th,
+					td {
+						border: none;
+						border-top: 1px solid $twt-table-body-border-color;
+						color: $twt-table-body-color;
+						background-color: $twt-table-body-background-color;
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $twt-product-detail-prices-table-style == 2 { // Layout: kompakt
+	.product-detail-price-container {
+		// Deprecated: 6.4.0 > class "product-block-prices-table" will be removed use "product-block-prices-grid" instead
+		table.product-block-prices-table,
+		table.product-block-prices-grid {
+			thead {
+				tr {
+					th {
+						line-height: 1.1;
+						padding: 5px 8px;
+					}
+				}
+			}
+
+			tbody {
+				tr {
+					th,
+					td {
+						line-height: 1.1;
+						padding: 5px 8px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $twt-product-detail-prices-table-width == 2 { // Width: schmal
+	.product-detail-price-container {
+		// Deprecated: 6.4.0 > class "product-block-prices-table" will be removed use "product-block-prices-grid" instead
+		table.product-block-prices-table,
+		table.product-block-prices-grid {
+			@if $twt-product-detail-prices-table-width == 2 {
+				width: auto;
+			}
+		}
+	}
+}
+
+
+// ThemeWare: Artikel Eigenschaften-Tabelle (table-striped)
+// TODO: Shopware Vererbung prüfen...
+
+@if $twt-product-detail-properties-table-layout != 1 { // ThemeWare styling
+	.product-detail-properties-container {
+		table.product-detail-properties-table {
+			border-radius: null-pixel-unit($twt-border-radius);
+
+			tbody {
+				tr {
+					th,
+					td {
+						color: $twt-table-body-color;
+						border-top: 1px solid $twt-table-body-border-color;
+						background-color: $twt-table-body-background-color;
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $twt-product-detail-properties-table-style == 2 { // Layout: kompakt
+	.product-detail-properties-container {
+		table.product-detail-properties-table {
+			tbody {
+				tr {
+					th,
+					td {
+						line-height: 1.1;
+						padding: 5px 20px 5px 0;
+					}
+				}
+			}
+		}
+	}
+}
+
+@if $twt-product-detail-properties-table-width == 2 { // Width: schmal
+	.product-detail-properties-container {
+		table.product-detail-properties-table {
+			@if $twt-product-detail-properties-table-width == 2 {
+				width: auto;
+			}
+		}
+	}
+}

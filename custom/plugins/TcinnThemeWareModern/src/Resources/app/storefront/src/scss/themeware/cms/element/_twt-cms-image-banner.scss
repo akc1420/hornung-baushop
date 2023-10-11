@@ -1,0 +1,53 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS element "Image banner"
+	==================================================
+
+*/
+
+// TODO: Add performance configuration to disable styling
+
+.cms-element-twt-image-banner {
+    //.twt-image-banner-container {}
+
+    .twt-image-banner-image-container {
+        //min-height: 240px;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        &.is-cover {
+            background-size: cover;
+        }
+
+        @include media-breakpoint-up(md) { // min 768px"
+            &.is-fixed {
+                background-attachment: fixed;
+            }
+        }
+
+        &.is-scroll {
+            background-attachment: scroll;
+        }
+
+        // iOS fix
+        @supports (-webkit-overflow-scrolling: touch) {
+            &.is-fixed {
+                background-attachment: scroll !important;
+            }
+        }
+    }
+
+    .twt-image-banner-content {
+        &.is-styled {
+            padding: $twt-basegrid-spacing;
+        }
+
+        //&:not(.is-styled) {}
+    }
+}

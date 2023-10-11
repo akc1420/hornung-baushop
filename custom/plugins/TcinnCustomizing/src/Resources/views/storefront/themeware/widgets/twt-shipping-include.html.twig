@@ -1,0 +1,24 @@
+{# ThemeWare "Shipping" widget #}
+{#
+    Create "Shipping" widget and include logos
+
+	@Storefront/storefront/themeware/widgets/twt-shipping-include.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# TODO: "footer..." entfernen für andere Einsatzbereiche (vgl. communities-include) #}
+
+{# Döhring Digital: Kontaktaufnahme E-Mail und Telefon 100% Zeile #}
+{% block twt_widget_shipping_logos %}
+    <div class="row footer-columns" style="margin-top:50px; padding:4px 0px; border-bottom: 1px solid #999; ">
+        <div class="col-md-6" style="padding-left: 0;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g class="nc-icon-wrapper"><path fill="#333" fill-rule="evenodd" d="M23.4 4.2l-10.253 7.776a2 2 0 0 1-2.294 0L.6 4.2A2.995 2.995 0 0 1 3 3h18c.982 0 1.853.472 2.4 1.2zm.6 2.054V18a3 3 0 0 1-3 3H3a3 3 0 0 1-3-3V6.254l9.706 7.361a4 4 0 0 0 4.588 0L24 6.255z"/></g></svg>
+            <a style="font-weight: bold;" href="mailto:nachrichtanuns@hornung-baushop.de">nachrichtanuns@hornung-baushop.de</a>
+        </div>
+        <div class="col-md-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><g class="nc-icon-wrapper"><path fill="#333" fill-rule="evenodd" d="M23 17.852l-2.044 3.511c-.775 1.33-2.33 1.944-3.769 1.487-3.388-1.078-6.537-3.12-9.448-6.121A30.352 30.352 0 0 1 1.242 6.64c-.68-1.724.123-3.69 1.796-4.392.065-.028.132-.053.199-.076L6.649 1l3.27 5.617-2.18 2.247c.725 1.494 1.813 2.992 3.27 4.494 1.457 1.502 2.91 2.624 4.36 3.37l2.18-2.246L23 17.852z"/></g></svg>
+            <a style="font-weight: bold;" href="tel:+4972447369510">07244 7369510</a><p style="display:inline">&nbsp;&nbsp;&nbsp;Mo-Fr 8:30-16:30 Uhr</p>
+        </div>
+    </div>
+{% endblock %}

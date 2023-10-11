@@ -1,0 +1,191 @@
+{# ThemeWare "Sharing links" content #}
+{# Note: The "Sharing links" are based on our community icons #}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailSharingLinksIconStyle = theme_config('twt-product-detail-sharing-links-icon-style') %}
+{% set twtProductDetailSharingLinksEmailShow = theme_config('twt-product-detail-sharing-links-email-show') %}
+{% set twtProductDetailSharingLinksFacebookShow = theme_config('twt-product-detail-sharing-links-facebook-show') %}
+{% set twtProductDetailSharingLinksHeadlineShow = theme_config('twt-product-detail-sharing-links-headline-show') %}
+{% set twtProductDetailSharingLinksPinterestShow = theme_config('twt-product-detail-sharing-links-pinterest-show') %}
+{% set twtProductDetailSharingLinksTwitterShow = theme_config('twt-product-detail-sharing-links-twitter-show') %}
+{% set twtProductDetailSharingLinksWhatsappShow = theme_config('twt-product-detail-sharing-links-whatsapp-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set icon style #}
+{% if twtProductDetailSharingLinksIconStyle == 1 %}
+    {% set style = 'default' %}
+{% elseif twtProductDetailSharingLinksIconStyle == 2 %}
+    {% set style = 'isolated' %}
+{% elseif twtProductDetailSharingLinksIconStyle == 3 %}
+    {% set style = 'badge' %}
+{% elseif twtProductDetailSharingLinksIconStyle == 4 %}
+    {% set style = 'square' %}
+{% elseif twtProductDetailSharingLinksIconStyle == 5 %}
+    {% set style = 'circle' %}
+{% elseif twtProductDetailSharingLinksIconStyle == 6 %}
+    {% set style = 'default-mono' %}
+{% elseif twtProductDetailSharingLinksIconStyle == 7 %}
+    {% set style = 'isolated-mono' %}
+{% elseif twtProductDetailSharingLinksIconStyle == 8 %}
+    {% set style = 'badge-mono' %}
+{% elseif twtProductDetailSharingLinksIconStyle == 9 %}
+    {% set style = 'square-mono' %}
+{% elseif twtProductDetailSharingLinksIconStyle == 10 %}
+    {% set style = 'circle-mono' %}
+{% endif %}
+
+{% block twt_sharing_links_container %}
+    {# TODO: change class "twt-widget-communities" #}
+    <div class="twt-widget-communities twt-communities is-detail">
+
+        {% block twt_sharing_links_content %}
+            {# ThemeWare: Add sharing headline #}
+            {% if twtProductDetailSharingLinksHeadlineShow == 2 %}
+                <div class="twt-communities-list-headline">{{ "twt.detail.socialSharingLinks.headline"|trans|sw_sanitize }}</div>
+            {% endif %}
+
+            {# ThemeWare: Add sharing link list #}
+            <div class="twt-communities-list-content">
+                <ul class="twt-communities-list">
+
+                    {# ThemeWare: Add Facebook share #}
+                    {% if twtProductDetailSharingLinksFacebookShow == 2 %}
+
+                        {% block twt_sharing_links_facebook %}
+                            <li class="twt-communities-item item-facebook">
+                                <a href="https://www.facebook.com/share.php?u={{ seoUrl('frontend.detail.page', { productId: page.product.id }) }}"
+                                   aria-label="{{ "twt.detail.socialSharingLinks.facebook.title"|trans|sw_sanitize }}"
+                                   title="{{ "twt.detail.socialSharingLinks.facebook.title"|trans|sw_sanitize }}"
+                                   class="twt-communities-link twt-sharing-link link-facebook"
+                                   rel="nofollow noopener"
+                                   target="_blank">
+                                    {% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+                                        icon: 'facebook',
+                                        style: style
+                                    } %}
+                                    <span class="twt-communities-label">
+                                        {{ "twt.detail.socialSharingLinks.facebook.label"|trans|sw_sanitize }}
+                                    </span>
+                                </a>
+                            </li>
+                        {% endblock %}
+
+                    {% endif %}
+
+                    {# ThemeWare: Add Twitter share #}
+                    {% if twtProductDetailSharingLinksTwitterShow == 2 %}
+
+                        {% block twt_sharing_links_twitter %}
+                            <li class="twt-communities-item item-twitter">
+                                <a href="https://twitter.com/intent/tweet?url={{ seoUrl('frontend.detail.page', { productId: page.product.id }) }}&amp;text={{ page.product.translated.name|url_encode }}"
+                                   aria-label="{{ "twt.detail.socialSharingLinks.twitter.title"|trans|sw_sanitize }}"
+                                   title="{{ "twt.detail.socialSharingLinks.twitter.title"|trans|sw_sanitize }}"
+                                   class="twt-communities-link twt-sharing-link link-twitter"
+                                   rel="nofollow noopener"
+                                   target="_blank">
+                                    {% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+                                        icon: 'twitter',
+                                        style: style
+                                    } %}
+                                    <span class="twt-communities-label">
+                                        {{ "twt.detail.socialSharingLinks.twitter.label"|trans|sw_sanitize }}
+                                    </span>
+                                </a>
+                            </li>
+                        {% endblock %}
+
+                    {% endif %}
+
+                    {# ThemeWare: Add Pinterest share #}
+                    {% if twtProductDetailSharingLinksPinterestShow == 2 %}
+
+                        {% block twt_sharing_links_pinterest %}
+                            <li class="twt-communities-item item-pinterest">
+                                <a href="https://pinterest.com/pin/create/button/?url={{ seoUrl('frontend.detail.page', { productId: page.product.id }) }}}&amp;media={{ page.product.cover.media.url }}&amp;description={{ page.product.translated.name|url_encode }}"
+                                   aria-label="{{ "twt.detail.socialSharingLinks.pinterest.title"|trans|sw_sanitize }}"
+                                   title="{{ "twt.detail.socialSharingLinks.pinterest.title"|trans|sw_sanitize }}"
+                                   class="twt-communities-link twt-sharing-link link-pinterest"
+                                   rel="nofollow noopener"
+                                   target="_blank">
+                                    {% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+                                        icon: 'pinterest',
+                                        style: style
+                                    } %}
+                                    <span class="twt-communities-label">
+                                        {{ "twt.detail.socialSharingLinks.pinterest.label"|trans|sw_sanitize }}
+                                    </span>
+                                </a>
+                            </li>
+                        {% endblock %}
+
+                    {% endif %}
+
+                    {# TODO: Add Tumblr share ? #}
+                    {# http://www.tumblr.com/share?v=3&u=Link&t=Text #}
+
+                    {# TODO: Add LinkedIn share ? #}
+                    {# https://www.linkedin.com/shareArticle?mini=true&url=Link&title=Title&summary=Text&source= #}
+
+                    {# TODO: Add Xing share ? #}
+                    {# http://www.xing.com/app/user?op=share;url=Link;title=Title;provider=Link #}
+
+                    {# ThemeWare: Add WhatsApp share (only on smartphone) #}
+                    {% if twtProductDetailSharingLinksWhatsappShow == 2 %}
+
+                        {% block twt_sharing_links_whatsapp %}
+                            <li class="twt-communities-item item-whatsapp {# d-inline-block d-sm-none #}">
+                                <a href="whatsapp://send?text={{ page.product.translated.name|url_encode }}%20-%20{{ seoUrl('frontend.detail.page', { productId: page.product.id }) }}"
+                                   aria-label="{{ "twt.detail.socialSharingLinks.whatsapp.title"|trans|sw_sanitize }}"
+                                   title="{{ "twt.detail.socialSharingLinks.whatsapp.title"|trans|sw_sanitize }}"
+                                   class="twt-communities-link twt-sharing-link link-whatsapp"
+                                   rel="nofollow noopener"
+                                   target="_blank"
+                                   data-action="share/whatsapp/share">
+                                    {% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+                                        icon: 'whatsapp',
+                                        style: style
+                                    } %}
+                                    <span class="twt-communities-label">
+                                        {{ "twt.detail.socialSharingLinks.whatsapp.label"|trans|sw_sanitize }}
+                                    </span>
+                                </a>
+                            </li>
+                        {% endblock %}
+
+                    {% endif %}
+
+                    {# ThemeWare: Add Email share #}
+                    {# TODO: adjust subject #}
+                    {% if twtProductDetailSharingLinksEmailShow == 2 %}
+
+                        {% block twt_sharing_links_email %}
+                            <li class="twt-communities-item item-email"><a href="mailto:?subject={{ page.product.translated.name|url_encode }}&amp;body={{ "twt.detail.socialSharingLinks.email.salutation"|trans|url_encode }}%0A%0A{{ "twt.detail.socialSharingLinks.email.body"|trans|url_encode }}%0A%0A{{ page.product.translated.name|url_encode }}%0A{{ seoUrl('frontend.detail.page', { productId: page.product.id }) }}%0A%0A{{ "twt.detail.socialSharingLinks.email.closing"|trans|url_encode }}"
+                                   aria-label="{{ "twt.detail.socialSharingLinks.email.title"|trans|sw_sanitize }}"
+                                   title="{{ "twt.detail.socialSharingLinks.email.title"|trans|sw_sanitize }}"
+                                   class="twt-communities-link twt-sharing-link link-email"
+                                   rel="nofollow noopener"
+                                   target="_blank">
+                                    {% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+                                        icon: 'email',
+                                        style: style
+                                    } %}
+                                    <span class="twt-communities-label">
+                                        {{ "twt.detail.socialSharingLinks.email.label"|trans|sw_sanitize }}
+                                    </span>
+                                </a>
+                            </li>
+                        {% endblock %}
+
+                    {% endif %}
+
+                </ul>
+            </div>
+        {% endblock %}
+
+    </div>
+{% endblock %}

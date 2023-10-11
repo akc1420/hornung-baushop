@@ -1,0 +1,36 @@
+{% block swag_cms_extensions_form_editor_settings_field_type_base %}
+    <div class="swag-cms-extensions-form-editor-settings-field-type-select">
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_select_mode %}
+            <sw-single-select v-model="mode"
+                              :options="modes"
+                              size="medium"
+                              :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.modeFieldLabel')"
+                              required
+                              @change="onModeChange">
+            </sw-single-select>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_select_entity %}
+            <sw-single-select v-if="mode === 'entity'"
+                              v-model="entity"
+                              :options="availableEntities"
+                              :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.entityFieldLabel')"
+                              size="medium"
+                              required>
+            </sw-single-select>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_editor_settings_field_type_select_options %}
+            <sw-tagged-field v-else
+                             v-model="options"
+                             :label="$tc('swag-cms-extensions.sw-cms.components.form-editor.settings-field.optionsFieldLabel')"
+                             :error="fieldConfigOptionsError"
+                             size="medium"
+                             required
+                             @change="onCustomOptionsChange">
+            </sw-tagged-field>
+        {% endblock %}
+
+    </div>
+{% endblock %}

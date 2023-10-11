@@ -1,0 +1,18 @@
+{
+    "sw-product": {
+        "variations": {
+            "deliveryModal": {
+                "display": "Display Typ",
+                "displayExplanation": "Auswahl des Darstellungstyps der Variantengruppe im Storefront",
+                "dev24PropertyDisplayType": {
+                    "label": "Darstellung der Variantenauswahl im Storefront",
+                    "placeholder": "Choose...",
+                    "value": {
+                        "select": "Select",
+                        "auto": "Auto"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,160 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Product slider
+    ==============================================
+    Styling for product slider component.
+    Displays product-boxes in a reusable slider component.
+    based on "base-slider" component and "tiny-slider" (https://github.com/ganlanyuan/tiny-slider)
+
+	Origin: Shopware base
+*/
+
+/* ---------------- START: SET SCSS VARS ---------------- */
+
+// ThemeWare: Set theme variables
+$twtProductSliderControlsStyle: $twt-base-slider-controls-style;
+$twtProductSliderControlsCornerType: $twt-base-slider-controls-corner-type;
+$twtProductSliderControlsHoverType: $twt-base-slider-controls-hover-type;
+
+$twtProductSliderControlsColor: $twt-base-slider-controls-color;
+$twtProductSliderControlsBorderColor: $twt-base-slider-controls-border-color;
+$twtProductSliderControlsBackgroundColor: $twt-base-slider-controls-background-color;
+
+$twtProductSliderControlsColorHover: $twt-base-slider-controls-color-hover;
+$twtProductSliderControlsBorderColorHover: $twt-base-slider-controls-border-color-hover;
+$twtProductSliderControlsBackgroundColorHover: $twt-base-slider-controls-background-color-hover;
+
+@if $twt-product-slider-controls-individual == 2 {
+	$twtProductSliderControlsStyle: $twt-product-slider-controls-style;
+	$twtProductSliderControlsCornerType: $twt-product-slider-controls-corner-type;
+	$twtProductSliderControlsHoverType: $twt-product-slider-controls-hover-type;
+
+	$twtProductSliderControlsColor: $twt-product-slider-controls-color;
+	$twtProductSliderControlsBorderColor: $twt-product-slider-controls-border-color;
+	$twtProductSliderControlsBackgroundColor: $twt-product-slider-controls-background-color;
+
+	$twtProductSliderControlsColorHover: $twt-product-slider-controls-color-hover;
+	$twtProductSliderControlsBorderColorHover: $twt-product-slider-controls-border-color-hover;
+	$twtProductSliderControlsBackgroundColorHover: $twt-product-slider-controls-background-color-hover;
+}
+
+/* ---------------- END: SET SCSS VARS ---------------- */
+
+// TODO: Add color configuration "Außen"
+
+// ThemeWare: Product slider adjustments
+.product-slider {
+	// ThemeWare: Arrow navigation
+	.product-slider-controls-prev,
+	.product-slider-controls-next {
+		opacity: 1;
+
+		@if $twtProductSliderControlsStyle == 1 { // 1 rectangle [default], 2 square
+			//width: 30px;
+			//height: 65px;
+			//line-height: 65px;
+		} @else {
+			width: 45px;
+			height: 45px;
+			line-height: 45px;
+		}
+
+		// default: 3px 0 0 3px
+		@if $twtProductSliderControlsCornerType == 1 { // 1 not rounded
+			border-radius: 0;
+		} @else if $twtProductSliderControlsCornerType == 2 { // 2 rounded
+			border-radius: null-pixel-unit($twt-border-radius);
+		} @else if $twtProductSliderControlsCornerType == 3 { // 3 round
+			border-radius: 100px;
+		} @else if $twtProductSliderControlsCornerType == 4 { // 4 individual
+		}
+
+		@if $twtProductSliderControlsBorderColor == transparent and $twtProductSliderControlsColorHover == transparent {
+			border: none;
+		} @else {
+			border: 1px solid $twtProductSliderControlsBorderColor;
+		}
+
+		background-color: $twtProductSliderControlsBackgroundColor;
+
+		// TODO: Add configuration
+		//box-shadow: 1px 2px 6px rgb(0 0 0 / 30%);
+
+		.icon {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			//-ms-transform: translate(-50%, -50%);
+			//-webkit-transform: translate(-50%, -50%);
+			transform: translate(-50%, -50%);
+
+			color: $twtProductSliderControlsColor;
+		}
+
+		&:hover {
+			border-color: $twtProductSliderControlsBorderColorHover;
+			background-color: $twtProductSliderControlsBackgroundColorHover;
+
+			.icon {
+				color: $twtProductSliderControlsColorHover;
+			}
+		}
+	}
+}
+
+// ThemeWare: Arrow navigation
+.product-slider-controls-prev {
+	.icon {
+		> svg {
+			top: 0;
+			left: -2px;
+		}
+	}
+}
+
+.product-slider-controls-next {
+	.icon {
+		> svg {
+			top: 0;
+			right: -1px;
+		}
+	}
+}
+
+// ThemeWare: Arrow navigation hover effect
+@if $twtProductSliderControlsHoverType == 2 {
+	.product-slider {
+		.base-slider-controls {
+			@include media-breakpoint-up(lg) { // min 992px
+				opacity: 0;
+				transition: opacity .2s ease-in;
+			}
+		}
+
+		@include media-breakpoint-up(lg) { // min 992px
+			&:hover {
+				.base-slider-controls {
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+
+// TODO: Shopware Vererbung prüfen...
+// product-slider-controls-container > base-slider-controls
+.cms-element-product-slider { // TODO: >> _cms-element.scss ?!
+	.product-slider {
+		&.has-nav {
+			padding-right: 0;
+			padding-left: 0;
+		}
+	}
+}

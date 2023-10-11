@@ -1,0 +1,6 @@
+{% block swag_cms_extensions_form_element_checkbox %}
+    <sw-checkbox-field v-model="value"
+                       :label="field.translated ? field.translated.label : field.label"
+                       :required="field.required">
+    </sw-checkbox-field>
+{% endblock %}

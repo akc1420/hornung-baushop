@@ -1,0 +1,41 @@
+{
+    "name": "recommendy/recommendy",
+    "description": "VisionAI",
+    "version": "1.0.15",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "VisionAI"
+        }
+    ],
+    "require": {
+        "shopware/core": "^6.3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Recommendy\\": "src/"
+        }
+    },
+    "extra": {
+        "shopware-plugin-class": "Recommendy\\Recommendy",
+        "copyright": "(c) 2023 by VisionAI",
+        "label": {
+            "de-DE": "VisionAI - SW6",
+            "en-GB": "VisionAI - SW6"
+        },
+        "description": {
+            "de-DE": "VisionAI",
+            "en-GB": "VisionAI"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.visionai.co",
+            "en-GB": "https://www.visionai.co"
+        },
+        "supportLink": {
+            "de-DE": "https://www.visionai.co",
+            "en-GB": "https://www.visionai.co"
+        }
+
+    }
+}

@@ -1,0 +1,26 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/cross-selling/tabs.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ThemeWare: Cross-selling tab on classic product page #}
+{# INFO: Please note this is also available as "element/cms-element-cross-selling.html.twig" since SW6.4 #}
+
+{# TODO: HC-Architecture... #}
+{# ThemeWare: Adjustments on cross-selling tab #}
+{# TODO:
+	This adjustment is only required because unnecessary containers are handed over by Shopware when cross-selling element is empty.
+	If Shopware has fixed the problem, this adjustment can be removed.
+#}
+{% block page_product_detail_cross_selling_tabs_inner %}
+	{# ThemeWare: Check for crossselling content #}
+	{% set counterCrossSellings = 0 %}
+	{% for i in crossSellings.elements %}
+		{% set counterCrossSellings = ( counterCrossSellings | default(0) ) + 1 %}
+	{% endfor %}
+
+	{# ThemeWare: Add crossselling content #}
+	{% if counterCrossSellings >= 1 %}
+		{# Default block #}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}

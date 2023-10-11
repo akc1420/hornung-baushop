@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{% set quickview = block.extensions.swagCmsExtensionsQuickview %}
+
+{% set productIsActive = product is not null and product.active %}
+{% set quickviewIsActive = (quickview is not null and quickview.active) or config('SwagCmsExtensions.config.enableSearchQuickview') %}
+
+{% set quickviewOptions = {
+    productId: product.id,
+    sectionId: block.sectionId
+} %}
+
+{% block component_product_box %}
+    {% if productIsActive and quickviewIsActive %}
+        <div data-swag-cms-extensions-quickview-box="true"
+             data-swag-cms-extensions-quickview-box-options="{{ quickviewOptions|json_encode }}">
+            {{ parent() }}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

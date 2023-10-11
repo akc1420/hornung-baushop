@@ -1,0 +1,54 @@
+{% block sisi_fields_dashboard %}
+
+
+
+    <sw-page>
+        <template slot="content">
+            <div class="sisi-dashboard-wrapper">
+                <sw-card  large>
+                    <label> {{ $t('sisi-backend-search.channel') }} </label>
+                        <select v-model="shopValue"  v-on:change="changeChannel()">
+                            <option v-for="(option,index) in options" v-bind:value="option.value">
+                                {{ option.text }}
+                            </option>
+                        </select>
+                </sw-card>
+                    <div v-if="values">
+                    <div v-for="value in values">
+                        <div v-if="'aggregations' in value">
+
+                            <div v-if="value['aggregations']['historyProductname']['buckets'].length > 0">
+
+                                <h3>{{ $t('ssisi-fields.dashboard.productname') }}</h3>
+
+                                <sw-data-grid
+                                    :dataSource="hitsProductnameSource(value)"
+                                    :columns="[
+         { property: 'productname', label: 'Productname' },
+         { property: 'count', label: 'Count' }
+    ]">
+                                </sw-data-grid>
+
+
+                                <h3>{{ $t('ssisi-fields.dashboard.term') }} </h3>
+
+                                <sw-data-grid
+                                    :dataSource="hitsTermSource(value)"
+                                    :columns="[
+         { property: 'term', label: 'Term' },
+         { property: 'count', label: 'Count' }
+    ]">
+                                </sw-data-grid>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-else>
+                    No data
+                </div>
+            </div>
+        </template>
+    </sw-page>
+
+{% endblock %}

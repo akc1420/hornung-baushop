@@ -1,0 +1,51 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Account menu
+	==================================================
+	Contains custom styles for the account menu which opens via click/touch on the avatar icon in the header section.
+	The menu opens on smaller viewports inside an offcanvas and on larger viewports inside a bootstrap dropdown.
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Account menu (user) adjustments
+// TODO: Shopware Vererbung prüfen...
+.account-menu {
+	.dropdown {
+		.dropdown-menu {
+			&.account-menu-dropdown {
+				.account-menu-header {
+					color: $twt-header-dropdown-color;
+					border-bottom: 1px solid $twt-header-dropdown-border-color;
+				}
+
+				.account-menu-login {
+					padding: 10px 0;
+					border-bottom: 1px solid $twt-header-dropdown-border-color;
+				}
+
+				.account-aside-list-group {
+					padding: 10px 0;
+
+					.list-group-item {
+						background: none !important;
+					}
+
+					.account-aside-item {
+						 padding: 3px 0;
+					}
+				}
+
+				.account-aside-footer {
+					border-top: 1px solid $twt-header-dropdown-border-color;
+				}
+			}
+		}
+	}
+}

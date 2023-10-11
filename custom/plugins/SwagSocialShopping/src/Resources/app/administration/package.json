@@ -1,0 +1,25 @@
+{
+  "name": "swag-social-shopping",
+  "version": "2.4.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "unit": "jest --config jest.config.js --ci",
+    "unit-watch": "jest --config jest.config.js --watch"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "@shopware-ag/jest-preset-sw6-admin": "^2.0.1",
+    "@vue/test-utils": "1.1.0",
+    "jest": "^26.4.2",
+    "vue": "2.6.10",
+    "vuex": "^3.6.2"
+  },
+  "dependencies": {
+    "core-js": "^3.21.1",
+    "vue-template-compiler": "2.6.10"
+  }
+}

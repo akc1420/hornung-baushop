@@ -1,0 +1,74 @@
+<div
+    class="recommendy-bundle recommendy-bundle{% if config('Recommendy.config.bundleLayout')  == 0 %}--default{% elseif config('Recommendy.config.bundleLayout')  == 1 %}--scroll{% elseif config('Recommendy.config.bundleLayout')  == 2 %}--grid{% endif %} ">
+
+    {% if config('Recommendy.config.sliderLayout')  == false %}
+        <div class="recommendy-bundle__title content-title">
+            {{ "recommendy.bundleSliderTitle"|trans|sw_sanitize }}
+        </div>
+    {% endif %}
+
+    <div class="recommendy-bundle__wrapper">
+        <div class="recommendy-bundle__visual">
+            <div>
+                {% sw_include '@Storefront/storefront/component/product/card/badges.html.twig' %}
+
+
+                {# fallback if display mode is not set #}
+                {% set displayMode = displayMode ?: 'standard' %}
+
+                {% set name = product.translated.name %}
+                {% set id = product.id %}
+                {% set cover = product.cover.media %}
+                {% set variation = product.variation %}
+                {# set display mode 'cover' for box-image with standard display mode #}
+                {% if layout == 'image' and displayMode == 'standard' %}
+                    {% set displayMode = 'cover' %}
+                {% endif %}
+
+
+                <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                   title="{{ name }}"
+                   class="product-image-link is-{{ displayMode }}">
+                    {% if cover.url %}
+                        {% set attributes = {
+                            'class': 'product-image is-'~displayMode,
+                            'alt': (cover.translated.alt ?: name),
+                            'title': (cover.translated.title ?: name)
+                        } %}
+
+                        {% if displayMode == 'cover' or displayMode == 'contain' %}
+                            {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
+                        {% endif %}
+
+                        {% sw_thumbnails 'product-image-thumbnails' with {
+                            media: cover,
+                            sizes: sizes
+                        } %}
+                    {% else %}
+                        <div class="product-image-placeholder">
+                            {% sw_icon 'placeholder' style {
+                                'size': 'fluid'
+                            } %}
+                        </div>
+                    {% endif %}
+                </a>
+                <div
+                    class="recommendy-bundle__poweredby {% if config('Recommendy.config.recommendyDisplayLogo') == false %} recommendy-hidden {% endif %}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="64px" height="14px" fill="none" viewBox="0 0 1344 222"><path fill="#000" d="m131.141 6.291-41 154.496L49.14 6.291H.266l61.947 213.026h55.856L180.016 6.291h-48.875Zm145.69-7.724h-46.943v40.258h46.943V-1.433Zm-107.999 220.75h164.152v-39.366H275.94V57.542h-96.412V96.91h51.103v83.042h-61.799v39.366Zm287.773-110.524 41.149-12.924c-12.924-27.334-45.012-41.446-83.19-41.446-43.526 0-77.545 17.826-77.545 53.628 0 40.406 43.526 44.566 78.585 47.834 22.58 2.08 41.149 3.862 41.149 15.301 0 10.696-16.192 15.45-32.533 15.45-19.015 0-38.03-6.388-47.24-21.541l-41.298 13.073c14.855 29.711 50.954 43.526 87.944 43.526 45.309 0 78.287-20.649 78.287-55.41 0-39.813-42.783-43.378-77.247-46.2-23.026-1.932-42.635-3.566-42.635-16.044 0-10.548 13.518-14.559 30.008-14.559 20.648 0 37.584 6.24 44.566 19.312ZM614.392-1.433h-46.943v40.258h46.943V-1.433Zm-108.004 220.75h164.158v-39.366h-57.045V57.542h-96.417V96.91h51.102v83.042h-61.798v39.366ZM756.136 54.571c-51.399 0-83.932 32.98-83.932 83.636 0 50.508 32.533 83.487 83.932 83.487 51.4 0 83.933-32.979 83.933-83.487 0-50.657-32.533-83.636-83.933-83.636Zm-38.772 83.636c0-27.779 13.073-46.349 38.772-46.349 25.7 0 38.773 18.57 38.773 46.349 0 27.631-13.073 46.2-38.773 46.2-25.699 0-38.772-18.569-38.772-46.2Zm134.019-80.665v161.775h45.16v-91.954c0-20.055 13.073-33.425 32.385-33.425 17.975 0 25.848 11.736 25.848 29.414v95.965h45.161V109.982c0-35.207-19.312-55.41-53.925-55.41-22.283 0-39.664 8.615-49.469 27.927V57.542h-45.16Zm152.437 161.775h48.28l11-43.526h61.2l10.99 43.526h48.28L1126.08 6.291h-64.77l-57.49 213.026Zm69.23-87.052 20.65-83.19 20.65 83.19h-41.3ZM1343.14 6.291h-161.33v43.675h57.35v125.677h-57.35v43.674h161.33v-43.674h-57.34V49.966h57.34V6.291Z"></path></svg>
+                </div>
+            </div>
+        </div>
+        <div class="recommendy-bundle__content">
+            {% for product in products %}
+                {% sw_include "@Storefront/storefront/recommendy/bundle/recommendy_bundle_item.html.twig" with {
+                    'product': product
+                } %}
+            {% endfor %}
+
+        </div>
+    </div>
+    <div
+        class="recommendy-bundle__poweredby {% if config('Recommendy.config.recommendyDisplayLogo') == false %} recommendy-hidden {% endif %}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="64px" height="14px" fill="none" viewBox="0 0 1344 222"><path fill="#000" d="m131.141 6.291-41 154.496L49.14 6.291H.266l61.947 213.026h55.856L180.016 6.291h-48.875Zm145.69-7.724h-46.943v40.258h46.943V-1.433Zm-107.999 220.75h164.152v-39.366H275.94V57.542h-96.412V96.91h51.103v83.042h-61.799v39.366Zm287.773-110.524 41.149-12.924c-12.924-27.334-45.012-41.446-83.19-41.446-43.526 0-77.545 17.826-77.545 53.628 0 40.406 43.526 44.566 78.585 47.834 22.58 2.08 41.149 3.862 41.149 15.301 0 10.696-16.192 15.45-32.533 15.45-19.015 0-38.03-6.388-47.24-21.541l-41.298 13.073c14.855 29.711 50.954 43.526 87.944 43.526 45.309 0 78.287-20.649 78.287-55.41 0-39.813-42.783-43.378-77.247-46.2-23.026-1.932-42.635-3.566-42.635-16.044 0-10.548 13.518-14.559 30.008-14.559 20.648 0 37.584 6.24 44.566 19.312ZM614.392-1.433h-46.943v40.258h46.943V-1.433Zm-108.004 220.75h164.158v-39.366h-57.045V57.542h-96.417V96.91h51.102v83.042h-61.798v39.366ZM756.136 54.571c-51.399 0-83.932 32.98-83.932 83.636 0 50.508 32.533 83.487 83.932 83.487 51.4 0 83.933-32.979 83.933-83.487 0-50.657-32.533-83.636-83.933-83.636Zm-38.772 83.636c0-27.779 13.073-46.349 38.772-46.349 25.7 0 38.773 18.57 38.773 46.349 0 27.631-13.073 46.2-38.773 46.2-25.699 0-38.772-18.569-38.772-46.2Zm134.019-80.665v161.775h45.16v-91.954c0-20.055 13.073-33.425 32.385-33.425 17.975 0 25.848 11.736 25.848 29.414v95.965h45.161V109.982c0-35.207-19.312-55.41-53.925-55.41-22.283 0-39.664 8.615-49.469 27.927V57.542h-45.16Zm152.437 161.775h48.28l11-43.526h61.2l10.99 43.526h48.28L1126.08 6.291h-64.77l-57.49 213.026Zm69.23-87.052 20.65-83.19 20.65 83.19h-41.3ZM1343.14 6.291h-161.33v43.675h57.35v125.677h-57.35v43.674h161.33v-43.674h-57.34V49.966h57.34V6.291Z"></path></svg>
+    </div>
+</div>

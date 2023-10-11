@@ -1,0 +1,111 @@
+﻿{% sw_extends '@Storefront/storefront/layout/header/top-bar.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtHeaderTopBarCurrenciesMenuShow = theme_config('twt-header-top-bar-currencies-menu-show') %}
+{% set twtHeaderTopBarHotlineShow = theme_config('twt-header-top-bar-hotline-show') %}
+{% set twtHeaderTopBarLanguagesMenuShow = theme_config('twt-header-top-bar-languages-menu-show') %}
+{% set twtHeaderTopBarServiceMenuShow = theme_config('twt-header-top-bar-service-menu-show') %}
+{% set twtUspBarHeaderLayout = theme_config('twt-usp-bar-header-layout') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the "Top bar" #}
+
+{# TODO: HC-Architecture... #}
+{# ThemeWare: Show hotline in top bar #}
+{% block layout_header_top_bar %}
+	{% if twtHeaderTopBarHotlineShow == 2 and twtUspBarHeaderLayout != 2 %}
+		<div class="top-bar d-none d-lg-block">
+			<nav class="top-bar-nav">
+				<div class="row align-items-center twt-top-bar">
+					<div class="col-auto">
+						<div class="row twt-top-bar-hotline">
+							<div class="col-auto top-bar-hotline">
+								{% block layout_header_top_bar_hotline %}
+									<span class="twt-top-bar-hotline-label">{{ 'twt.header.serviceHotline'|trans|sw_sanitize }}</span>
+									{{ 'twt.header.serviceHotlineText'|trans|sw_sanitize }}
+								{% endblock %}
+							</div>
+						</div>
+					</div>
+
+					<div class="col-auto">
+						<div class="row twt-top-bar-dropdowns">
+							{% apply spaceless %}
+								<div class="col-auto top-bar-currency">
+									{{ block('layout_header_top_bar_currency') }}
+								</div>
+								<div class="col-auto top-bar-language">
+									{{ block('layout_header_top_bar_language') }}
+								</div>
+								<div class="col-auto top-bar-service">
+									{{ block('layout_header_top_bar_service') }}
+								</div>
+							{% endapply %}
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	{% else %}
+		{# Default block #}
+		{{ parent() }}
+
+	{% endif %}
+{% endblock %}
+
+
+{# TODO: HC-Architecture... #}
+{# Language menu #}
+{% block layout_header_top_bar_language %}
+	{# ThemeWare: Remove "Language menu" if it is deactivated (twt-header-top-bar-languages-menu-show 1) #}
+	{% if twtHeaderTopBarLanguagesMenuShow == 1 %}
+		{# ThemeWare: Remove "Language menu" #}
+
+	{% else %}
+		{# Default block #}
+		{{ parent() }}
+
+	{% endif %}
+{% endblock %}
+
+
+{# TODO: HC-Architecture... #}
+{# Currency menu #}
+{% block layout_header_top_bar_currency %}
+	{# ThemeWare: Remove "Currency menu" if it is deactivated (twt-header-top-bar-currencies-menu-show 1) #}
+	{% if twtHeaderTopBarCurrenciesMenuShow == 1 %}
+		{# ThemeWare: Remove "Currency menu" #}
+
+	{% else %}
+		{# Default block #}
+		{{ parent() }}
+
+	{% endif %}
+{% endblock %}
+
+
+{# TODO: HC-Architecture... #}
+{# Service menu #}
+{# ThemeWare: Show "Service menu" as dropdown or list #}
+{% block layout_header_top_bar_service %}
+	{% if twtHeaderTopBarServiceMenuShow == 1 %}
+		{# ThemeWare: Remove "Service menu" #}
+
+	{% elseif twtHeaderTopBarServiceMenuShow == 2 %}
+		{# ThemeWare: Show "Service menu" as dropdown (default) #}
+		{% sw_include '@Storefront/storefront/layout/header/actions/service-menu-widget.html.twig' %}
+
+		{# TODO: Check with Shopware v6.5 #}
+		{# % sw_include '@Storefront/storefront/themeware/twt-service-menu-widget.html.twig' % #}
+
+	{% elseif twtHeaderTopBarServiceMenuShow == 3 %}
+		{# ThemeWare: Show "Service menu" as list #}
+		{% sw_include '@Storefront/storefront/themeware/twt-service-menu-list-widget.html.twig' ignore missing %}
+
+	{% endif %}
+{% endblock %}

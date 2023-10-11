@@ -1,0 +1,33 @@
+{
+    "sisi": {
+        "categorie": "<h3>Kategorien</h3>",
+        "categorieFilter": "<h3>Kategorien Filter</h3>",
+        "manufacture": "<h3>Hersteller</h3>",
+        "content": "<h3>Text</h3>",
+        "Filter": " <b>Filter zurücksetzen</b>",
+        "properties": "<h3>Eigenschaften</h3>",
+        "produktname": "Produkt",
+        "categoriename": "Kategorie",
+        "propertiesname": "Eigenschaft",
+        "product_ean": "Produkt Ean",
+        "productmetatitle": "Meta Titel",
+        "product_description": " Treffer in der Produkt Beschreibung",
+        "product_productNumber": "Produktnumber",
+        "manufacturerNumber": "Herstellernumber",
+        "manufacturer_name": "Hersteller",
+        "product_snippet": "Textbaustein",
+        "reset": "Alle zurücksetzen",
+         "search_keyword": "Schlagwort",
+        "suggest": " <h3> Suchvorschläge</h3>",
+        "produktnumber": "ProduktNr:",
+        "ratingMin":"min",
+        "ratingEnd":"Sterne",
+        "pricefrom": "Preis ab",
+        "priceto": "Preis bis",
+        "sendPrice": "Abschicken",
+        "history": "<h3> History </h3>",
+        "description": "Beschreibung",
+        "filterBtnDropdown": "Auswahl"
+
+    }
+}

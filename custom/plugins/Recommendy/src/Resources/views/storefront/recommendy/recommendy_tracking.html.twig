@@ -1,0 +1,11 @@
+{% set real = product.calculatedPrice %}
+                            {% if product.calculatedPrices.count > 0 %}
+                                {% set real = product.calculatedPrices.last %}
+                            {% endif %}
+
+<div class="recommendy recommendyContainer recommendyTC">
+    <input type="hidden" name="recommendyTrackingActionId" value="{{ actionId }}"/>
+    <input type="hidden" name="recommendyTrackingPrice" value="{{ real.unitPrice }}"/>
+    <input type="hidden" name="recommendyTracking" value="{{ product.id }}"
+           data-recommendy-track-ajaxUrl="{{ path('frontend.Recommendy.recommendyTrack', { 'productId': product.id }) }}"/>
+</div>

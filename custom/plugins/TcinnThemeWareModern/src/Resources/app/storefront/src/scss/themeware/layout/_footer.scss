@@ -1,0 +1,198 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: _footer.scss
+    ==================================================
+
+*/
+
+// ThemeWare: Footer
+
+.footer-main {
+  //.container {
+  //  .footer-columns {
+  //    &#footerColumnsTop {}
+  //    &#footerColumnsBottom {}
+  //  }
+  //}
+
+  @if $twt-footer-element-1 != "none" {
+    .twt-element-1 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-1-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-1-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-2 != "none" {
+    .twt-element-2 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-2-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-2-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-3 != "none" {
+    .twt-element-3 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-3-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-3-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-4 != "none" {
+    .twt-element-4 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-4-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-4-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-5 != "none" {
+    .twt-element-5 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-5-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-5-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-6 != "none" {
+    .twt-element-6 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-6-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-6-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-7 != "none" {
+    .twt-element-7 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-7-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-7-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-8 != "none" {
+    .twt-element-8 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-8-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-8-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-9 != "none" {
+    .twt-element-9 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-9-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-9-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-10 != "none" {
+    .twt-element-10 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-10-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-10-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+  @if $twt-footer-element-11 != "none" {
+    .twt-element-11 {
+      // ThemeWare: Set element order nr
+      order: $twt-footer-element-11-order;
+
+      // ThemeWare: Check display mobile
+      @if $twt-footer-element-11-toggle == 1 {
+        @include media-breakpoint-down(sm) { // max 767.98px
+          display: none;
+        }
+      }
+    }
+  }
+
+}
+
+
+// ThemeWare: Fix spacing in footer navigation ------------------------------
+
+.footer-link-item {
+  padding: 0.25rem 0;
+}
+
+
+// ThemeWare: Footer bottom specific styling ------------------------------
+
+@if $twt-footer-bottom-element-1 != "none" {
+  .footer-bottom {
+    .twt-footer-bottom-element-1 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 1rem;
+    }
+  }
+}

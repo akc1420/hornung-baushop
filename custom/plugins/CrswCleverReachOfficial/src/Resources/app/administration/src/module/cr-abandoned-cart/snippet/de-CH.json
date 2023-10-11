@@ -1,0 +1,43 @@
+{
+  "cr-abandoned-cart": {
+    "abandonedCart": {
+      "title": "Warenkorbabbrecher",
+      "scheduledTime": "Geplante Zeit",
+      "emptyTitle": "Die Liste der Warenkorbabbrüche ist leer",
+      "emptyDescription": "Es gibt keine gespeicherten Warenkorbabbruch-Einträge",
+      "sentTime": "Versandzeit",
+      "amount": "Betrag",
+      "customerEmail": "Kunden E-Mail",
+      "salesChannel": "Vertriebskanal",
+      "recoveryEmailStatus": "Status Wiederherstellungs-E-Mail",
+      "recoveryStatus": "Wiederherstellungs-Status",
+      "message": "Nachricht",
+      "modal": {
+        "deleteMessage": "Möchten Sie den Warenkorbabbruch-Eintrag wirklich löschen?"
+      },
+      "notification": {
+        "deleteSuccess": "Warenkorbabbruch-Eintrag erfolgreich entfernt",
+        "deleteError": "Warenkorbabbruch-Eintrag entfernen fehlgeschlagen",
+        "triggerSuccess": "Automations-Eintrag erfolgreich in der Warteschlange für den Versand",
+        "triggerError": "Start der Automation fehlgeschlagen"
+      },
+      "searchBar": {
+        "placeholder": "Alle Warenkorbabbrüche durchsuchen..."
+      },
+      "filter": {
+        "emailStatusPlaceholder": "Bitte wählen Sie den Status der Wiederherstellungs-E-Mail",
+        "statusPlaceholder": "Bitte wählen Sie den Status der Wiederherstellungs-E-Mail",
+        "salesChannelPlaceholder": "Bitten wählen Sie einen Vertriebskanal"
+      },
+      "sendNow" : "Wiederherstellungs-E-Mail jetzt senden",
+      "status": {
+        "sent": "Versendet",
+        "pending": "Ausstehend",
+        "not_sent": "Nicht gesendet",
+        "sending": "Wird versendet",
+        "recovered": "Wiederhergestellt",
+        "not_recovered": "Nicht wiederhergestellt"
+      }
+    }
+  }
+}

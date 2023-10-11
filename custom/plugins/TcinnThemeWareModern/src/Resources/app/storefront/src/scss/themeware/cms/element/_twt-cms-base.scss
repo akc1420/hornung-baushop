@@ -1,0 +1,210 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS elements basic styling
+	==================================================
+
+*/
+
+// Hover effects:
+// - Text teaser*              > linked + unlinked
+// - Text teaser (decorated)*  > linked + unlinked
+// - Button teaser*            > linked + unlinked
+// - Call to action*           > linked + unlinked
+// - Hover box*                > linked + unlinked
+// - Classic teaser            > linked only
+// - Modern teaser             > linked only
+
+// Hover effects are always applied because this elements have a explicit hover configuration.
+// - Otherwise, hover effects are only applied if the element is linked.
+
+// TODO: Add performance configuration to disable styling
+
+div[class^="cms-element-twt-text-teaser"],
+div.cms-element-twt-button-teaser,
+div.cms-element-twt-call-to-action,
+div.cms-element-twt-hover-box,
+div.cms-element-twt-classic-teaser,
+div.cms-element-twt-modern-teaser,
+div.cms-element-twt-image-banner {
+    position: relative;
+    display: flex;
+    overflow: hidden; // Fix: Hover animations
+    height: 100%;
+
+    // Link
+    .cms-image-link {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    // Image container
+    .cms-image-container {
+        position: relative;
+        display: block;
+        overflow: hidden;
+        width: 100%;
+        max-width: 100%;
+
+        &.is-cover {
+            // @deprecated tag:v6.5.0 - Bootstrap v5 will discontinue IE11 support. font-family polyfill will be removed.
+            font-family: "object-fit: contain;"; // IE polyfill
+            height: 100%;
+            object-fit: contain;
+
+            .cms-image {
+                // @deprecated tag:v6.5.0 - Bootstrap v5 will discontinue IE11 support. font-family polyfill will be removed.
+                font-family: "object-fit: cover;"; // IE polyfill
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &.is-cover,
+        &.is-stretch {
+            .cms-image {
+                width: 100%;
+            }
+        }
+    }
+
+    .cms-image {
+        display: block;
+        max-width: 100%;
+    }
+
+    // Content container
+    .cms-content-container {
+        font-family: $sw-font-family-base; // TODO: check if necessary
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+}
+
+div[class^="cms-element-twt-text-teaser"],
+div.cms-element-twt-button-teaser,
+div.cms-element-twt-call-to-action,
+div.cms-element-twt-image-banner {
+    // Content container
+    .cms-content-container {
+        padding: 15px;
+    }
+
+    .cms-title-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+
+    .content {
+        position: relative;
+    }
+
+    // Color overlay
+    .color-overlay {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    // Hover effects ------------------------------
+
+    // Add hover effects (except on phones)
+    // - Hover effects are always applied because this elements have a explicit hover configuration. (alternatively use a:hover instead of .cms-image-container:hover)
+
+    @include media-breakpoint-up(sm) { // min 576px
+        &.is-hover {
+            .content:not(.fade-out),
+            .overlay:not(.fade-out) {
+                opacity: 0;
+            }
+
+            .content,
+            .overlay {
+                &.fade-out {
+                    opacity: 1;
+                }
+            }
+
+            .overlay {
+                transition: all .3s ease-in-out .1s;
+                animation-duration: .3s;
+                animation-timing-function: ease-in-out;
+
+                // fade in opacity
+                animation-delay: .25s;
+                animation-fill-mode: both;
+            }
+
+            .content {
+                transition: all .25s ease-in-out;
+                animation-duration: .25s;
+
+                // fade in opacity
+                animation-timing-function: ease-in-out;
+                animation-fill-mode: both;
+            }
+
+            .cms-image-container:hover {
+                .cms-content-container {
+                    .content:not(.fade-out),
+                    .overlay:not(.fade-out) {
+                        opacity: 1;
+
+                        &.fade-in-up {
+                            animation-name: cmsOverlaySlideInUp;
+                        }
+
+                        &.fade-in-right {
+                            animation-name: cmsOverlaySlideInRight;
+                        }
+
+                        &.fade-in-down {
+                            animation-name: cmsOverlaySlideInDown;
+                        }
+
+                        &.fade-in-left {
+                            animation-name: cmsOverlaySlideInLeft;
+                        }
+
+                        &.zoom-in {
+                            animation-name: cmsOverlayZoomIn;
+                        }
+                    }
+
+                    .content,
+                    .overlay {
+                        &.fade-out {
+                            opacity: 0;
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}

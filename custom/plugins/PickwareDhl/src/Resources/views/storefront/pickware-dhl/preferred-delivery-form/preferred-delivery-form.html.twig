@@ -1,0 +1,176 @@
+{% set pickwareSalesChannelContext = context.extensions.pickwareSalesChannelContext.payload %}
+
+{% set preferredDayAvailable = availableServices.preferredDay is defined and availableServices.preferredDay.available %}
+{% if availableServices.preferredDay is defined %}
+    {% set preferredDayValidDays = availableServices.preferredDay.validDays %}
+{% endif %}
+
+{% set preferredLocationAvailable = availableServices.preferredLocation is defined and availableServices.preferredLocation.available %}
+{% set preferredNeighbourAvailable = availableServices.preferredNeighbour is defined and availableServices.preferredNeighbour.available %}
+{% set preferredNoNeighbourDeliveryAvailable = availableServices.noNeighbourDelivery is defined and availableServices.noNeighbourDelivery.available %}
+
+{% if availableServices and availableServices|length > 0 %}
+<div
+    class="pickware-dhl-preferred-delivery-form"
+    data-pickware-dhl-preferred-delivery
+>
+    <div class="card">
+        <div class="pickware-dhl-preferred-delivery-form__title card-title">
+            {{ "pickware-dhl.preferred-delivery.storefront.title"|trans|sw_sanitize }}
+        </div>
+
+        <div class="card-body">
+            <form action="{{ path('frontend.checkout.configure') }}"
+                  method="POST"
+                  id="pickware-dhl-preferred-delivery-form"
+                  data-form-csrf-handler="true"
+                  novalidate>
+
+                {{ sw_csrf('frontend.checkout.configure') }}
+
+                <input type="hidden" name="redirectTo" value="{{ 'frontend.checkout.confirm.page' }}">
+
+                {% set pickwareDhlPreferredDelivery = pickwareSalesChannelContext.dhl_preferred_delivery ?? [] %}
+
+                <!--
+                    This element has an explicit style to hide it on loading the page. This is equivalent to hiding the
+                    element with jQueries 'hide' function, and is undone by the 'show' function when validation fails
+                    and this alert should be shown. Hiding the alert when the preferred-delivery-plugin is initialized
+                    would cause it to shortly be visible when the page is loaded, which is uneasy on the eyes,
+                    so it is explicitly hidden here.
+                -->
+                <div class="pickware-dhl-preferred-delivery__location-neighbour-alert" style="display: none">
+                    {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                        type: "danger",
+                        content: "pickware-dhl.preferred-delivery.storefront.neighbour-and-location-warning"|trans|sw_sanitize
+                    } %}
+                </div>
+
+                {% if showPreferredDay and preferredDayAvailable and preferredDayValidDays|length > 0 %}
+                    <div class="pickware-dhl-preferred-delivery-selection">
+                        <div class="form-label">
+                            {{ "pickware-dhl.preferred-delivery.storefront.preferred-day.extended-label"|trans|sw_sanitize }}
+
+                            <a data-toggle="tooltip"
+                               data-placement="right"
+                               title="{{ "pickware-dhl.preferred-delivery.storefront.preferred-day.tooltip"|trans|sw_sanitize }}">
+                                {% sw_icon 'help' style {
+                                    'color': 'primary',
+                                    'size': 'xs'
+                                } %}
+                            </a>
+                        </div>
+
+                        <input
+                            type="hidden"
+                            value="{{ pickwareDhlPreferredDelivery.preferred_day ?? '' }}"
+                            id="pickware-dhl-preferred-day-input"
+                            name="pickware__dhl_preferred_delivery__preferred_day"
+                        >
+
+                        {% for validDay in preferredDayValidDays %}
+                            <div
+                                class="btn btn-outline-primary pickware-dhl-preferred-day-selection__button"
+                                data-value="{{ validDay.start|date('Y-m-d') }}"
+                            >
+                                {{ validDay.start|date('d.m.Y') }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if showPreferredLocation and preferredLocationAvailable %}
+                    <label
+                        class="form-label"
+                        for="pickware-dhl-preferred-location-input"
+                    >
+                        {{ "pickware-dhl.preferred-delivery.storefront.preferred-location.extended-label"|trans|sw_sanitize }}
+
+                        <a data-toggle="tooltip"
+                           data-placement="right"
+                           title="{{ "pickware-dhl.preferred-delivery.storefront.preferred-location.tooltip"|trans|sw_sanitize }}">
+                            {% sw_icon 'help' style {
+                                'color': 'primary',
+                                'size': 'xs'
+                            } %}
+                        </a>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="{{ "pickware-dhl.preferred-delivery.storefront.preferred-location.placeholder"|trans|sw_sanitize }}"
+                        value="{{ pickwareDhlPreferredDelivery.preferred_location ?? '' }}"
+                        id="pickware-dhl-preferred-location-input"
+                        name="pickware__dhl_preferred_delivery__preferred_location"
+                        class="form-control pickware-dhl-preferred-delivery-input"
+                    >
+                {% endif %}
+                {% if showPreferredNeighbour and preferredNeighbourAvailable %}
+                    <label
+                        class="form-label"
+                        for="pickware-dhl-preferred-neighbour-input"
+                    >
+                        {{ "pickware-dhl.preferred-delivery.storefront.preferred-neighbour.extended-label"|trans|sw_sanitize }}
+
+                        <a data-toggle="tooltip"
+                           data-placement="right"
+                           title="{{ "pickware-dhl.preferred-delivery.storefront.preferred-neighbour.tooltip"|trans|sw_sanitize }}">
+                            {% sw_icon 'help' style {
+                                'color': 'primary',
+                                'size': 'xs'
+                            } %}
+                        </a>
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="{{ "pickware-dhl.preferred-delivery.storefront.preferred-neighbour.placeholder"|trans|sw_sanitize }}"
+                        value="{{ pickwareDhlPreferredDelivery.preferred_neighbour ?? '' }}"
+                        id="pickware-dhl-preferred-neighbour-input"
+                        name="pickware__dhl_preferred_delivery__preferred_neighbour"
+                        class="form-control pickware-dhl-preferred-delivery-input"
+                    >
+                {% endif %}
+                {% if showNoNeighbourDelivery and preferredNoNeighbourDeliveryAvailable %}
+                    <div class="pickware-dhl-no-neighbour-delivery custom-control custom-checkbox">
+                        <input
+                            type="checkbox"
+                            value="true"
+                            id="pickware-dhl-no-neighbour-delivery-input"
+                            class="pickware-dhl-no-neighbour-delivery__checkbox custom-control-input pickware-dhl-preferred-delivery-input"
+                            name="pickware__dhl_preferred_delivery__no_neighbour_delivery"
+                            {% if pickwareDhlPreferredDelivery.no_neighbour_delivery == true %}
+                                checked
+                            {% endif %}
+                        >
+                        <label
+                            class="pickware-dhl-no-neighbour-delivery__label custom-control-label"
+                            for="pickware-dhl-no-neighbour-delivery-input"
+                        >
+                            {{ "pickware-dhl.preferred-delivery.storefront.no-neighbour-delivery.label"|trans|sw_sanitize }}
+                        </label>
+                    </div>
+                {% endif %}
+
+                <div class="pickware-dhl-preferred-delivery-form__actions">
+                    <button type="submit"
+                            class="pickware-dhl-preferred-delivery-form__submit btn btn-primary"
+                            title="{{ "pickware-dhl.preferred-delivery.storefront.save-configuration"|trans|sw_sanitize }}">
+                        {{ "pickware-dhl.preferred-delivery.storefront.save-configuration"|trans|sw_sanitize }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% else %}
+<div>
+    <div class="pickware-dhl-preferred-delivery-form__title card-title">
+        {{ "pickware-dhl.preferred-delivery.storefront.title"|trans|sw_sanitize }}
+    </div>
+
+    <div class="pickware-dhl-preferred-delivery__alert">
+        {% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+            type: "danger",
+            content: "pickware-dhl.preferred-delivery.storefront.no-services-available"|trans|sw_sanitize
+        } %}
+    </div>
+</div>
+{% endif %}

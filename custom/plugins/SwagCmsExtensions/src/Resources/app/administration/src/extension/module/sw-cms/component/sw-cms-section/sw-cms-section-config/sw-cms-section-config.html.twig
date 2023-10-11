@@ -1,0 +1,11 @@
+{% block sw_cms_section_config__quickactions %}
+    {% block swag_cms_extensions_section_config_block_rule_warning %}
+        <sw-alert
+                v-if="hasRulesOnAllBlocks"
+                variant="info">
+            {{ $tc('swag-cms-extensions.sw-cms.sidebar.rulesOnAllBlocks') }}
+        </sw-alert>
+    {% endblock %}
+
+    {% parent %}
+{% endblock %}

@@ -1,0 +1,139 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{# ThemeWare: "Manufacturer tab" on prodcut pages #}
+{#
+    Create container and add manufacturer information
+
+    @Storefront/storefront/themeware/product-detail/twt-product-detail-tab-manufacturer.html.twig
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailTabManufacturerLinkProductsShow = theme_config('twt-product-detail-tab-manufacturer-link-products-show') %}
+{% set twtProductDetailTabManufacturerLinkWebsiteShow = theme_config('twt-product-detail-tab-manufacturer-link-website-show') %}
+{% set twtProductDetailTabManufacturerLogoShow = theme_config('twt-product-detail-tab-manufacturer-logo-show') %}
+{% set twtProductDetailTabManufacturerRelatedLinksSubheadlineShow = theme_config('twt-product-detail-tab-manufacturer-related-links-subheadline-show') %}
+{% set twtProductDetailTabManufacturerTitleShow = theme_config('twt-product-detail-tab-manufacturer-title-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on offcanvas tab-content #}
+{% block utilities_offcanvas_content %}
+
+    {# ThemeWare: Show manufacturer information #}
+    {% block twt_product_detail_tab_manufacturer %}
+
+        {% block twt_product_detail_tab_manufacturer_container %}
+            <div class="twt-product-detail-manufacturer tab-pane-container">
+                <div class="row">
+
+                    {# ThemeWare: Manufacturer content column #}
+                    {% block twt_product_detail_tab_manufacturer_content %}
+                        <div class="col twt-product-detail-manufacturer-content-container">
+
+                            {# ThemeWare: Manufacturer headline #}
+                            {% block twt_product_detail_tab_manufacturer_title %}
+                                {% if twtProductDetailTabManufacturerTitleShow != 1 %}
+                                    <div class="h3 twt-product-detail-manufacturer-title">
+                                        {% if twtProductDetailTabManufacturerTitleShow == 2 %}
+                                            {# ThemeWare: Show snippet + manufacturer name #}
+                                            {{ "twt.detail.tabManufacturer.headlineManufacturer"|trans|sw_sanitize }} "{{ page.product.manufacturer.translated.name }}"
+
+                                        {% elseif twtProductDetailTabManufacturerTitleShow == 3 %}
+                                            {# ThemeWare: Show manufacturer name only #}
+                                            <div class="h3 product-detail-description-title">
+                                                {{ page.product.manufacturer.translated.name }}
+                                            </div>
+
+                                        {% elseif twtProductDetailTabManufacturerTitleShow == 4 %}
+                                            {# ThemeWare: Show snippet only #}
+                                            <div class="h3 product-detail-description-title">
+                                                {{ "twt.detail.tabManufacturer.headlineManufacturer"|trans|sw_sanitize }}
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+
+                            {# ThemeWare: Manufacturer content #}
+                            {% block twt_product_detail_tab_manufacturer_content_text %}
+                                {# ThemeWare: Add manufacturer description #}
+                                <div class="twt-product-detail-manufacturer-text">
+                                    {{ page.product.manufacturer.translated.description|raw }}
+                                </div>
+                            {% endblock %}
+
+                            {# ThemeWare: Manufacturer links #}
+                            {% block twt_product_detail_tab_manufacturer_content_more_information %}
+
+                                {# ThemeWare: Add manufacturer links headline #}
+                                {% block twt_product_detail_tab_manufacturer_content_more_information_title %}
+                                    {% if twtProductDetailTabManufacturerRelatedLinksSubheadlineShow == 2 %}
+                                        <div class="h5 twt-product-manufacturer-more-information-title">
+                                            {{ 'twt.detail.tabManufacturer.moreInformation'|trans }}
+                                        </div>
+                                    {% endif %}
+                                {% endblock %}
+
+                                {# ThemeWare: Manufacturer links list #}
+                                {% block twt_product_detail_tab_manufacturer_content_more_information_links %}
+                                    <ul class="twt-product-detail-manufacturer-more-information">
+
+                                        {# ThemeWare: Add manufacturer link products #}
+                                        {% block twt_product_detail_tab_manufacturer_content_more_information_link %}
+                                            {% if twtProductDetailTabManufacturerLinkProductsShow == 2 %}
+                                                <li class="twt-product-detail-manufacturer-more-information-item">
+                                                    {% sw_icon 'arrow-medium-right' style { 'pack':'solid', 'size': 'sm' } %}
+                                                    <a href="{{ path('frontend.search.page') }}?manufacturer={{ page.product.manufacturer.id }}&search={{ page.product.manufacturer.translated.name }}"
+                                                       rel="noopener"
+                                                       title="{{ 'twt.detail.tabManufacturer.linkProducts.label'|trans({'%manufacturer%': page.product.manufacturer.translated.name }) }}"
+                                                       class="twt-product-detail-manufacturer-more-information-link">
+                                                        {{ 'twt.detail.tabManufacturer.linkProducts.label'|trans({'%manufacturer%': page.product.manufacturer.translated.name }) }}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endblock %}
+
+                                        {# ThemeWare: Manufacturer link website #}
+                                        {% block twt_product_detail_tab_manufacturer_content_more_information_link_website %}
+                                            {% if twtProductDetailTabManufacturerLinkWebsiteShow == 2 %}
+                                                <li class="twt-product-detail-manufacturer-more-information-item">
+                                                    {% sw_icon 'arrow-medium-right' style { 'pack':'solid', 'size': 'sm' } %}
+                                                    <a href="{{ page.product.manufacturer.link }}"
+                                                       target="_blank"
+                                                       rel="noopener"
+                                                       title="{{ page.product.manufacturer.translated.name }}"
+                                                       class="twt-product-detail-manufacturer-more-information-link">
+                                                    {{ 'twt.detail.tabManufacturer.linkWebsite.label'|trans }}
+                                                    </a>
+                                                </li>
+                                            {% endif %}
+                                        {% endblock %}
+
+                                    </ul>
+                                {% endblock %}
+
+                            {% endblock %}
+
+                        </div>
+                    {% endblock %}
+
+                    {# ThemeWare: Manufacturer logo column #}
+                    {% block twt_product_detail_tab_manufacturer_logo_container %}
+                        {% if page.product.manufacturer.media|sw_encode_media_url and twtProductDetailTabManufacturerLogoShow == 2 %}
+                            <div class="col-md-auto twt-product-detail-manufacturer-logo-container">
+                                <img src="{{ page.product.manufacturer.media|sw_encode_media_url }}"
+                                     class="twt-product-detail-manufacturer-logo"
+                                     alt="{{ page.product.manufacturer.translated.name }}"/>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                </div>
+            </div>
+        {% endblock %}
+
+    {% endblock %}
+
+{% endblock %}

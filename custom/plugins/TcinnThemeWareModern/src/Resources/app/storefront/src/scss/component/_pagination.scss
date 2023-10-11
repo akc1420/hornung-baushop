@@ -1,0 +1,217 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Pagination
+    ==============================================
+    Custom styling for bootstrap pagination component.
+    https://getbootstrap.com/docs/4.3/components/pagination/
+
+	Origin: Shopware base & skin
+*/
+
+.pagination {
+  flex-wrap: wrap; // Umbruch ermöglichen, falls die Navigation zu breit wird
+
+  @if $twt-pagination-style == 2 { // 2 = Buttons
+    margin: 0 -3px;
+  }
+
+  .page-item {
+    &.disabled {
+      .page-link {
+        background: $twt-pagination-disabled-background-color; // $gray-200
+        color: $twt-pagination-disabled-color; // $gray-300
+      }
+
+      a {
+        color: $twt-pagination-disabled-color; // $gray-300
+      }
+    }
+
+    &.active {
+      a {
+        color: $twt-pagination-active-color; // $white
+      }
+    }
+  }
+
+  // ThemeWare: Fix for the icon which Shopware uses...
+  .page-item:not(.disabled):not(.active) {
+    .icon {
+      color: $twt-pagination-color;
+    }
+
+    &.disabled {
+      .icon {
+        color: $twt-pagination-disabled-color;
+      }
+    }
+
+    &.active {
+      .icon {
+        color: $twt-pagination-active-color;
+      }
+    }
+  }
+
+  // ThemeWare: Layout type "Navigation"
+  @if $twt-pagination-style == 1 and $twt-pagination-corner-type != 2 { // corner-type-2 = default
+    .page-item {
+      //&.active {
+      //  .page-link {
+      //  }
+      //}
+
+      //&.disabled {
+      //  .page-link {
+      //  }
+      //}
+
+      &:first-child,
+      &.page-first {
+        .page-link {
+          @if $twt-pagination-corner-type == 1 { // 1 = not rounded
+            @include border-left-radius(0);
+          }
+          // 2 = rounded corners (default)
+          @if $twt-pagination-corner-type == 3 { // 3 = round corners
+            @include border-left-radius(50px);
+          }
+        }
+      }
+
+      //&.page-prev {
+      //  .page-link {
+      //  }
+      //}
+
+      //&.page-next {
+      //  .page-link {
+      //  }
+      //}
+
+      &:last-child,
+      &.page-last {
+        .page-link {
+          @if $twt-pagination-corner-type == 1 { // 1 = not rounded
+            @include border-right-radius(0);
+          }
+          // 2 = rounded corners (default)
+          @if $twt-pagination-corner-type == 3 { // 3 = round corners
+            @include border-right-radius(50px);
+          }
+        }
+      }
+    }
+  }
+
+  .page-link {
+    // Umbruch der Navigation verschönern
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  // ThemeWare: Layout type "Buttons"
+  @if $twt-pagination-style == 2 { // 2 = Buttons
+    .page-item {
+      &.active {
+        .page-link {
+          @if $twt-pagination-buttons-corner-type == 5 { // pill Buttons
+            width: 6.5rem;
+          }
+        }
+      }
+
+      //&.disabled {
+      //  .page-link {
+      //  }
+      //}
+
+      .page-link {
+        text-align: center;
+        //margin-left: 7px; // Von left: 7px geändert falls die Navigation umbricht
+        margin-left: 3px;
+        margin-right: 3px;
+
+        @if $twt-pagination-buttons-corner-type == 1 { // 1 = not rounded
+          width: 2.5rem;
+          height: 2.5rem;
+          @include border-radius(0);
+        }
+        @if $twt-pagination-buttons-corner-type == 2 { // 2 = rounded corners
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: null-pixel-unit($twt-border-radius);
+        }
+        @if $twt-pagination-buttons-corner-type == 3 { // 3 = round Buttons
+          width: 2.5rem;
+          height: 2.5rem;
+          @include border-radius(50px);
+        }
+        // 4 = individual radius
+        @if $twt-pagination-buttons-corner-type == 5 { // 5 = pill Buttons
+          width: 3.5rem;
+          height: 2.5rem;
+          @include border-radius(50px);
+          transition: width 0.25s ease;
+        }
+      }
+
+      &:first-child,
+      &.page-first {
+        .page-link {
+          @if $twt-pagination-buttons-corner-type == 1 { // 1 = not rounded
+            @include border-left-radius(0);
+          }
+          //@if $twt-pagination-buttons-corner-type == 2 { // 2 = rounded corners (default)
+          //}
+          @if $twt-pagination-buttons-corner-type == 3 { // 3 = round Buttons
+            @include border-left-radius(50px);
+          }
+          // 4 = individual radius
+          @if $twt-pagination-buttons-corner-type == 5 { // 5 = pill Buttons
+            @include border-left-radius(50px);
+          }
+        }
+      }
+
+      //&.page-prev {
+      //  .page-link {
+      //  }
+      //}
+
+      //&.page-next {
+      //  .page-link {
+      //  }
+      //}
+
+      &:last-child,
+      &.page-last {
+        .page-link {
+          @if $twt-pagination-buttons-corner-type == 1 { // 1 = not rounded
+            @include border-right-radius(0);
+          }
+          //@if $twt-pagination-buttons-corner-type == 2 { // 2 = rounded corners (default)
+          //}
+          @if $twt-pagination-buttons-corner-type == 3 { // 3 = round Buttons
+            @include border-right-radius(50px);
+          }
+          // 4 = individual
+          @if $twt-pagination-buttons-corner-type == 5 { // 5 = pill Buttons
+            @include border-right-radius(50px);
+          }
+        }
+
+        .icon > svg {
+          top: 0;
+        }
+      }
+    }
+
+  }
+}

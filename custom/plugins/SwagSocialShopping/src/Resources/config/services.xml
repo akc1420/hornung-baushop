@@ -1,0 +1,161 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="swag_social_shopping.validation.read_buffer_size">100</parameter>
+    </parameters>
+
+    <services>
+        <service id="SwagSocialShopping\Component\Validation\NetworkProductValidator">
+            <argument type="tagged" tag="swag_social_shopping.network_product_validator"/>
+            <argument type="service" id="swag_social_shopping_product_error.repository"/>
+        </service>
+
+        <service id="SwagSocialShopping\ProductExport\Service\ProductExportRenderer" decorates="Shopware\Core\Content\ProductExport\Service\ProductExportRenderer">
+            <argument type="service" id="SwagSocialShopping\ProductExport\Service\ProductExportRenderer.inner"/>
+            <argument type="service" id="SwagSocialShopping\Component\Validation\NetworkProductValidator"/>
+            <argument type="service" id="swag_social_shopping_sales_channel.repository"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\SalesChannelTypeRepositoryDecorator" decorates="sales_channel_type.repository">
+            <argument type="service" id="SwagSocialShopping\DataAbstractionLayer\SalesChannelTypeRepositoryDecorator.inner"/>
+            <argument type="service" id="SwagSocialShopping\Component\Network\NetworkRegistry"/>
+            <argument type="service" id="sales_channel.repository"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\SalesChannelRepositoryDecorator" decorates="sales_channel.repository">
+            <argument type="service" id="SwagSocialShopping\DataAbstractionLayer\SalesChannelRepositoryDecorator.inner"/>
+        </service>
+
+        <service id="SwagSocialShopping\Component\Network\NetworkRegistry">
+            <argument type="tagged" tag="swag_social_shopping.network"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Entity\SocialShoppingSalesChannelDefinition">
+            <tag name="shopware.entity.definition" entity="swag_social_shopping_sales_channel"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Entity\SocialShoppingProductErrorDefinition">
+            <tag name="shopware.entity.definition" entity="swag_social_shopping_product_error"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Entity\SocialShoppingCustomerDefinition">
+            <tag name="shopware.entity.definition" entity="swag_social_shopping_customer"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Entity\SocialShoppingOrderDefinition">
+            <tag name="shopware.entity.definition" entity="swag_social_shopping_order"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Extension\SalesChannelExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Extension\CustomerExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Extension\OrderExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Extension\SalesChannelDomainExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Extension\ProductExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Extension\ProductStreamExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="SwagSocialShopping\DataAbstractionLayer\Extension\CurrencyExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="SwagSocialShopping\Component\Network\Facebook" public="true">
+            <tag name="swag_social_shopping.network"/>
+        </service>
+
+        <service id="SwagSocialShopping\Component\Network\Instagram" public="true">
+            <tag name="swag_social_shopping.network"/>
+        </service>
+
+        <service id="SwagSocialShopping\Component\Network\GoogleShopping" public="true">
+            <tag name="swag_social_shopping.network"/>
+        </service>
+
+        <service id="SwagSocialShopping\Component\Network\Pinterest" public="true">
+            <tag name="swag_social_shopping.network"/>
+        </service>
+
+        <service id="SwagSocialShopping\EventListener\ProductStreamEventListener">
+            <argument type="service" id="swag_social_shopping_sales_channel.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="SwagSocialShopping\Api\SocialShoppingController" public="true">
+            <argument type="service" id="SwagSocialShopping\Component\Network\NetworkRegistry"/>
+            <argument type="service" id="messenger.bus.shopware"/>
+            <argument type="service" id="swag_social_shopping_sales_channel.repository"/>
+            <argument type="service" id="SwagSocialShopping\Component\Validation\NetworkProductValidator"/>
+            <argument type="service" id="SwagSocialShopping\Component\DataFeed\DataFeedHandler"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="SwagSocialShopping\Component\MessageQueue\SocialShoppingValidationHandler">
+            <argument type="service" id="swag_social_shopping_sales_channel.repository"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextService"/>
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Translation\Translator"/>
+            <argument type="service" id="Shopware\Core\Content\ProductStream\Service\ProductStreamBuilder"/>
+            <argument type="service" id="sales_channel.product.repository"/>
+            <argument type="service" id="SwagSocialShopping\Component\Validation\NetworkProductValidator"/>
+            <argument type="service" id="messenger.bus.shopware"/>
+            <argument type="service" id="swag_social_shopping.logger"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextPersister"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="string">%swag_social_shopping.validation.read_buffer_size%</argument>
+            <tag name="messenger.message_handler"/>
+        </service>
+
+        <service id="swag_social_shopping.logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating"/>
+            <argument type="string">swag_social_shopping</argument>
+        </service>
+
+        <service id="SwagSocialShopping\Component\Validation\Validator\ProductImageValidator">
+            <tag name="swag_social_shopping.network_product_validator"/>
+        </service>
+
+        <service id="SwagSocialShopping\Component\DataFeed\DataFeedHandler">
+            <argument type="service" id="product_export.repository"/>
+            <argument type="service" id="sales_channel_domain.repository"/>
+            <argument type="service" id="swag_social_shopping_sales_channel.repository"/>
+            <argument type="service" id="SwagSocialShopping\Component\Network\NetworkRegistry"/>
+        </service>
+
+        <service id="SwagSocialShopping\EventListener\DataFeedEventListener">
+            <argument type="service" id="SwagSocialShopping\Component\DataFeed\DataFeedHandler"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="SwagSocialShopping\EventListener\ProductPageEventListener">
+            <argument type="service" id="swag_social_shopping_sales_channel.repository"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="SwagSocialShopping\EventListener\ReferralCodeHandler">
+            <argument type="service" id="Shopware\Core\Framework\DataAbstractionLayer\DefinitionInstanceRegistry"/>
+            <argument type="service" id="request_stack"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>

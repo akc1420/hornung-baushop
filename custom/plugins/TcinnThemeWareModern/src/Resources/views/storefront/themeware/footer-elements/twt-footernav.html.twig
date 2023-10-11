@@ -1,0 +1,131 @@
+{# ThemeWare: Footer-Element "Footer-Navigation" container #}
+{#
+	Create footer column and add shopware footer navigation
+
+    @Storefront/storefront/themeware/widgets/twt-footernav.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+{# TODO: Kommentare prüfen, ergänzen..., Blöck mit TW? #}
+{# TODO: footer-elements zusammenfassen (sh. twt-sidebar-widgets) #}
+
+{% block layout_footer_navigation_columns %}
+	{% for root in page.footer.navigation.tree %}
+
+		{% block layout_footer_navigation_column %}
+			{# ThemeWare: Add column classes #}
+			{% if newcol == "2" %}
+				{% set blockClasses = ['col-md-12'] %}
+			{% elseif newcol == "3" %}
+				{% set blockClasses = ['col-md-6'] %}
+			{% else %}
+				{# ThemeWare: Add column classes for tablet viewports #}
+				{% if columns == columnsTablet %}
+					{% set blockClasses = ['col-md-' ~ columns] %}
+				{% else %}
+					{% set blockClasses = ['col-xl-' ~ columns, 'col-md-' ~ columnsTablet] %}
+				{% endif %}
+			{% endif %}
+
+			{# ThemeWare: Add default classes #}
+			{% set blockClasses = ['footer-column', 'footer-column-footernav']|merge(blockClasses) %}
+
+			{# ThemeWare: Add toggle class #}
+			{% if toggle != "4" %}
+				{% set blockClasses = ['js-footer-column']|merge(blockClasses) %}
+			{% endif %}
+
+			{# ThemeWare: Add element class and element number #}
+			{% set blockClasses = ['twt-element-' ~ elementid, 'twt-element-footernav']|merge(blockClasses) %}
+
+			{# ThemeWare: Permanently expanded #}
+			{% if toggle == "4" %}
+				{% set blockClasses = ['permanent']|merge(blockClasses) %}
+			{% endif %}
+
+			{# ThemeWare: Add class "last" to last element #}
+			{% if last == true %}
+				{% set blockClasses = ['last']|merge(blockClasses) %}
+			{% endif %}
+
+			{# TODO: add block "container" #}
+			<div class="{{ blockClasses|reverse|join(' ') }}">
+
+				{% block layout_footer_navigation_information_headline %}
+					<div class="footer-column-headline footer-headline js-collapse-footer-column-trigger{% if toggle == "2" %} show{% endif %}"
+						 data-target="#collapseFooterTitle{{ loop.index }}"
+						 aria-expanded="true"
+						 aria-controls="collapseFooter{{ loop.index }}"
+						 role="listitem">
+						{% if root.category.type == 'folder' %}
+							{{ root.category.translated.name }}
+						{% else %}
+							<a href="{{ category_url(root.category) }}"
+							   {% if category_linknewtab(root.category) %}target="_blank"{% endif %}
+							   title="{{ root.category.translated.name }}">
+								{{ root.category.translated.name }}
+							</a>
+						{% endif %}
+
+						{% block layout_footer_navigation_information_icons %}
+							{% if toggle != "4" %}
+								 <div class="footer-column-toggle">
+									  <span class="footer-plus-icon">
+											{% sw_icon 'plus' %}
+									  </span>
+									  <span class="footer-minus-icon">
+											{% sw_icon 'minus' %}
+									  </span>
+								 </div>
+							 {% endif %}
+						{% endblock %}
+
+					</div>
+				{% endblock %}
+
+				{% block layout_footer_navigation_information_content %}
+					<div id="collapseFooter{{ loop.index }}"
+						 class="footer-column-content{% if toggle != "4" %} js-footer-column-content collapse{% endif %}{% if toggle == "2" %} show{% endif %}"
+						 aria-labelledby="collapseFooterTitle{{ loop.index }}">
+						<div class="footer-column-content-inner">
+
+							{% block layout_footer_navigation_information_links %}
+								<ul class="list-unstyled">
+									{% for treeItem in root.children %}
+										{% set category = treeItem.category %}
+										{% set name = category.translated.name %}
+
+										{# @deprecated tag:v6.5.0 - Use "category.translated.externalLink" directly or category_url function instead. #}
+										{% set externalLink = category.translated.externalLink %}
+
+										{% block layout_footer_navigation_information_link_item %}
+											<li class="footer-link-item">
+												{% block layout_footer_navigation_information_link %}
+													{% if category.type == 'folder' %}
+														<div>{{ name }}</div>
+													{% else %}
+														<a class="footer-link"
+														   href="{{ category_url(category) }}"
+														   {% if category_linknewtab(category) %}target="_blank"{% endif %}
+														   title="{{ name }}">
+															{{ name }}
+														</a>
+													{% endif %}
+												{% endblock %}
+
+											</li>
+										{% endblock %}
+
+									{% endfor %}
+								</ul>
+							{% endblock %}
+
+						</div>
+					</div>
+				{% endblock %}
+
+			</div>
+		{% endblock %}
+
+	{% endfor %}
+{% endblock %}

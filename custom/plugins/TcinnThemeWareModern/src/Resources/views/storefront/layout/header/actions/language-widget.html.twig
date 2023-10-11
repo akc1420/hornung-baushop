@@ -1,0 +1,52 @@
+{% sw_extends '@Storefront/storefront/layout/header/actions/language-widget.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtHeaderType = theme_config('twt-header-type') %}
+{% set twtHeaderTopBarJustifyContent = theme_config('twt-header-top-bar-justify-content') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# TODO: HC-Architecture... #}
+{# ThemeWare: Changes on the language-menu-dropdown #}
+{# TODO:
+	- Default-Konfiguration ergänzen...
+	- Check if this can be solved with scss...
+#}
+{% block layout_header_actions_languages_widget_form_items %}
+    {% if twtHeaderType == 4 or twtHeaderTopBarJustifyContent == 'flex-start' %}
+        <div class="top-bar-list dropdown-menu dropdown-menu-left"
+             aria-labelledby="languagesDropdown-{{ position }}">
+            {% for language in  page.header.languages %}
+                <div class="top-bar-list-item dropdown-item{% if language.id is same as(page.header.activeLanguage.id) %} item-checked{% endif %}"
+                     title="{{ language.translated.name }}">
+
+                    {% block layout_header_actions_languages_widget_form_items_flag %}
+                        {% set isoCode = language.translationCode.code|lower|split('-') %}
+                        {% set flagCountry = isoCode[0] %}
+                        {% set flagLanguage = isoCode[1] %}
+
+                        <label class="top-bar-list-label"
+                               for="{{ position }}-{{ language.id }}">
+                            <input id="{{ position }}-{{ language.id }}"
+                                   class="top-bar-list-radio"
+                                   value="{{ language.id }}"
+                                   name="languageId"
+                                   type="radio"
+                                    {% if language.id is same as(page.header.activeLanguage.id) %} checked{% endif %}>
+                            <div class="top-bar-list-icon language-flag country-{{ flagCountry }} language-{{ flagLanguage }}"></div>
+                            {{ language.name }}
+                        </label>
+                    {% endblock %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+
+        {# Default block #}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

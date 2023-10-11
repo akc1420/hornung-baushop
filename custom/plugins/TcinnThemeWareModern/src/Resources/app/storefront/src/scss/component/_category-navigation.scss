@@ -1,0 +1,91 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Sidebar category navigation
+	==============================================
+	Styling for category navigation component.
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Category navigation adjustments
+.category-navigation {
+	//&.level-0 > {
+	//	.category-navigation-entry {
+	//	}
+	//}
+
+	//&.level-0 {}
+
+	&.level-1 {
+		padding-bottom: 0;
+	}
+
+	//&.level-2 {}
+}
+
+.category-navigation-link {
+	color: $twt-category-navigation-link-color; // $sw-text-color;
+	background-color: $twt-category-navigation-link-background-color;
+
+	&:hover {
+		color: $twt-category-navigation-link-color-hover;
+		background-color: $twt-category-navigation-link-background-color-hover;
+	}
+
+	&.is-active {
+		color: $twt-category-navigation-link-color-active; // $sw-color-brand-primary;
+		background-color: $twt-category-navigation-link-background-color-active;
+	}
+
+	//&.in-path {}
+}
+
+// ThemeWare: Category navigation in cms element
+// TODO: #custom
+.cms-element-category-navigation {
+	.category-navigation-box {
+		border: 1px solid $twt-category-navigation-border-color;
+
+		> .category-navigation.level-0 {
+			> .category-navigation-entry {
+				// ThemeWare: Level 0
+				> .category-navigation-link {
+					padding: 7px 13px;
+				}
+
+				// ThemeWare: Level 1
+				> .category-navigation.level-1 {
+					padding-left: 0;
+
+					> .category-navigation-entry {
+						> .category-navigation-link {
+							padding: 7px 13px 7px 25px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+// ThemeWare: Category navigation in navigation box
+// TODO: #custom
+.category-navigation-box {
+	border: 1px solid $twt-cms-section-boxed-border-color;
+	border-radius: null-pixel-unit($twt-border-radius);
+	background-color: $twt-cms-section-boxed-background-color;
+
+	.category-navigation.level-0 {
+		>.category-navigation-entry {
+			&:last-of-type {
+				border-bottom: none;
+			}
+		}
+	}
+}

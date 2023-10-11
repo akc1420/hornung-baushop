@@ -1,0 +1,23 @@
+{% block sw_cms_page_form_section_name_wrapper %}
+    {% parent %}
+
+    {% block sw_cms_page_form_block_rules %}
+        <div v-if="sectionHasRulesOnAllBlocks(section)"
+             class="sw-cms-page-form__section-action sw-cms-page-form__section-anchor">
+
+            {% block sw_cms_page_form_block_rules_icon %}
+                <sw-icon class="sw-cms-page-form__section-action-icon sw-cms-page-form__block-rules-icon"
+                         name="default-badge-info"
+                         size="20">
+                </sw-icon>
+            {% endblock %}
+
+            {% block sw_cms_page_form_block_rules_text %}
+                <span class="sw-cms-page-form__section-action-label sw-cms-page-form__block-rules-label">
+                    {{ $tc('swag-cms-extensions.sw-cms.sidebar.rulesOnAllBlocks') }}
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endblock %}
+{% endblock %}

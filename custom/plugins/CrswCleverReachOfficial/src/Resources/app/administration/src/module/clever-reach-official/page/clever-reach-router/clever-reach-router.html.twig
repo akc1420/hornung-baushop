@@ -1,0 +1,13 @@
+{% block clever_reach_index %}
+    <div>
+        <sw-loader v-if="isLoading"/>
+        <clever-reach-autoConfig v-else-if="this.$route.params.page==='autoConfig'"/>
+        <clever-reach-autoConfig-error v-else-if="this.$route.params.page==='autoConfigError'"/>
+        <clever-reach-welcome v-else-if="this.$route.params.page==='welcome'"/>
+        <clever-reach-initialSync v-else-if="this.$route.params.page==='initialSync'"/>
+        <clever-reach-refresh v-else-if="this.$route.params.page==='refresh'"/>
+        <clever-reach-dashboard v-else-if="this.$route.params.page==='dashboard'"/>
+        <clever-reach-syncSettings v-else-if="this.$route.params.page==='syncSettings'"/>
+        <clever-reach-abandoned-cart-settings v-else-if="this.$route.params.page==='acSettings'"/>
+    </div>
+{% endblock %}

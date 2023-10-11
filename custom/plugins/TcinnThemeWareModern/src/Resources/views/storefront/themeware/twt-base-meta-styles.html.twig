@@ -1,0 +1,111 @@
+{# ThemeWare styles and stylesheets #}
+{#
+    @Storefront/storefront/themeware/twt-base-meta-styles.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtAdditionalCssFile = theme_config('twt-additional-css-file') %}
+{% set twtAdditionalCssFileLoad = theme_config('twt-additional-css-file-load') %}
+{% set twtBackgroundImage = theme_config('twt-background-image') %}
+{% set twtBackgroundImageShow = theme_config('twt-background-image-show') %}
+{% set twtCustomCss = theme_config('twt-custom-css') %}
+{% set twtCustomCssCode = theme_config('twt-custom-css-code') %}
+{% set twtExpertMode = theme_config('twt-expert-mode') %}
+{% set twtFooterBackgroundImage = theme_config('twt-footer-background-image') %}
+{% set twtFooterBackgroundImageShow = theme_config('twt-footer-background-image-show') %}
+{% set twtFooterBottomBackgroundImage = theme_config('twt-footer-bottom-background-image') %}
+{% set twtFooterBottomBackgroundImageShow = theme_config('twt-footer-bottom-background-image-show') %}
+{% set twtFooterLowerSectionBackgroundImage = theme_config('twt-footer-lower-section-background-image') %}
+{% set twtFooterLowerSectionBackgroundImageShow = theme_config('twt-footer-lower-section-background-image-show') %}
+{% set twtFooterMainSectionBackgroundImage = theme_config('twt-footer-main-section-background-image') %}
+{% set twtFooterMainSectionBackgroundImageShow = theme_config('twt-footer-main-section-background-image-show') %}
+{% set twtFooterUpperSectionBackgroundImage = theme_config('twt-footer-upper-section-background-image') %}
+{% set twtFooterUpperSectionBackgroundImageShow = theme_config('twt-footer-upper-section-background-image-show') %}
+{% set twtHeaderBackgroundImage = theme_config('twt-header-background-image') %}
+{% set twtHeaderBackgroundImageShow = theme_config('twt-header-background-image-show') %}
+
+{# Debug mode: Overwrite expert mode #}
+{% if config('TcinnThemeWareModern.config.debugMode') is not empty and config('TcinnThemeWareModern.config.debugMode') == 'true' %}
+    {% set twtExpertMode = 1 %}
+{% endif %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Add styles and stylesheets to <head> #}
+{% block twt_layout_head_style %}
+    {# ThemeWare: CSS-Datei egänzen. #}
+    {% if twtAdditionalCssFile and twtAdditionalCssFileLoad == 2 and twtExpertMode == 2 %}
+        <!-- Custom css file -->
+        <link rel="stylesheet" href="{{ twtAdditionalCssFile }}" crossorigin="anonymous">
+    {% endif %}
+
+    {# ThemeWare: Hintergrundbilder ergänzen. #}
+    {# Todo: Add if to avoid an empty tag #}
+    {% if twtBackgroundImageShow == 2 or
+        twtHeaderBackgroundImageShow == 2 or
+        twtFooterBackgroundImageShow == 2 or
+        twtFooterUpperSectionBackgroundImageShow == 2 or
+        twtFooterMainSectionBackgroundImageShow == 2 or
+        twtFooterLowerSectionBackgroundImageShow == 2 or
+        twtFooterBottomBackgroundImageShow == 2 %}
+    <!-- Theme styles -->
+    <style>{% apply spaceless %}
+        {# ThemeWare: Add background image #}
+        {% if twtBackgroundImageShow == 2 and twtBackgroundImage != "" and twtBackgroundImage != "none" %}
+            body{background-image:url({{ twtBackgroundImage|sw_encode_url }});}
+        {% endif %}
+
+        {# ThemeWare: Add header background image #}
+        {% if twtHeaderBackgroundImageShow == 2 and twtHeaderBackgroundImage != "" and twtHeaderBackgroundImage != "none" %}
+            header.header-main{background-image:url({{ twtHeaderBackgroundImage|sw_encode_url }});}
+        {% endif %}
+
+        {# ThemeWare: Add footer background image #}
+        {% if twtFooterBackgroundImageShow == 2 and twtFooterBackgroundImage != "" and twtFooterBackgroundImage != "none" %}
+            footer.footer-main{background-image:url({{ twtFooterBackgroundImage|sw_encode_url }});}
+        {% endif %}
+
+        {# ThemeWare: Add background image to footer upper section #}
+        {% if twtFooterUpperSectionBackgroundImageShow == 2 and twtFooterUpperSectionBackgroundImage != "" and twtFooterUpperSectionBackgroundImage != "none" %}
+            #footerColumnsTop{background-image:url({{ twtFooterUpperSectionBackgroundImage|sw_encode_url }});}
+        {% endif %}
+
+        {# ThemeWare: Add background image to footer main section #}
+        {% if twtFooterMainSectionBackgroundImageShow == 2 and twtFooterMainSectionBackgroundImage != "" and twtFooterMainSectionBackgroundImage != "none" %}
+            #footerColumns{background-image:url({{ twtFooterMainSectionBackgroundImage|sw_encode_url }});}
+        {% endif %}
+
+        {# ThemeWare: Add background image to footer lower section #}
+        {% if twtFooterLowerSectionBackgroundImageShow == 2 and twtFooterLowerSectionBackgroundImage != "" and twtFooterLowerSectionBackgroundImage != "none" %}
+            #footerColumnsBottom{background-image:url({{ twtFooterLowerSectionBackgroundImage|sw_encode_url }});}
+        {% endif %}
+
+        {# ThemeWare: Add background image to footer bottom #}
+        {% if twtFooterBottomBackgroundImageShow == 2 and twtFooterBottomBackgroundImage != "" and twtFooterBottomBackgroundImage != "none" %}
+            footer.footer-main .footer-bottom{background-image:url({{ twtFooterBottomBackgroundImage|sw_encode_url }});}
+        {% endif %}
+    {% endapply %}</style>
+    {% endif %}
+
+    {# ThemeWare: CSS-Code per Textbaustein ergänzen. (v1)   @deprecated #}
+    {% set twtSnippetCssCode = "twt.custom.css"|trans|raw %}
+
+    {% if twtCustomCss == 2 and twtSnippetCssCode is not empty and twtExpertMode == 2 %}
+    <!-- Custom css code (old) -->
+    <style>{% apply spaceless %}
+        {{ twtSnippetCssCode }}
+    {% endapply %}</style>
+    {% endif %}
+
+    {# ThemeWare: CSS-Code per Theme-Konfiguration ergänzen. (v2) #}
+    {% if twtCustomCssCode and twtCustomCssCode is not empty and twtExpertMode == 2 %}
+    <!-- Custom css code -->
+    <style>{% apply spaceless %}
+        {{ twtCustomCssCode|raw }}
+    {% endapply %}</style>
+    {% endif %}
+{% endblock %}

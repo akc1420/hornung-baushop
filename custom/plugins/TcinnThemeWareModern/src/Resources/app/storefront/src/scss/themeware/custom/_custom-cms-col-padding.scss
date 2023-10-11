@@ -1,0 +1,388 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS column padding classes
+	==================================================
+*/
+
+// Info:
+// - ThemeWare CSS-Klassen mit welchen die Spaltenabstände in CMS-Elementen modifiziert werden können.
+
+// UNDER CONSTRUCTION
+// TODO: Use short spelling and remove long class names... #v1.0.0
+
+// ThemeWare: Adds CSS column padding classes for manual use in Shopping Experiences. (apply to a cms block to modify its columns)
+@if $twt-custom-cms-column-padding-classes == 2 {
+
+    // ThemeWare: Custom column padding (0 Pixel left/right)
+    .twt-custom-cms-col-padding-0, // @deprecated
+    .twt-cms-col-padding-0 {
+        .row {
+            margin-right: 0;
+            margin-left: 0;
+        }
+
+        div[class*="col-"] {
+            padding-right: 0;
+            padding-left: 0;
+
+            .left, .left-top {
+                margin-bottom: 0;
+            }
+
+            .right-top {
+                margin-bottom: 0;
+            }
+        }
+
+        // Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .left-bottom {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        // ThemeWare Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            &[class*="twt-grid-"] {
+                .left.column {
+                    margin-bottom: 0;
+                    padding-right: 0;
+                }
+
+                .right.column {
+                    margin-bottom: 0;
+                    padding-left: 0;
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Custom column padding (5 Pixel left/right)
+    .twt-custom-cms-col-padding-5, // @deprecated
+    .twt-cms-col-padding-5 {
+        .row {
+            margin-right: -5px;
+            margin-left: -5px;
+        }
+
+        div[class*="col-"] {
+            padding-right: 5px;
+            padding-left: 5px;
+
+            .left, .left-top {
+                margin-bottom: 10px;
+            }
+
+            .right-top {
+                margin-bottom: 10px;
+            }
+        }
+
+        // Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .left-bottom {
+                margin-bottom: 10px !important;
+            }
+        }
+
+        // ThemeWare Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            &[class*="twt-grid-"] {
+                .left.column {
+                    margin-bottom: 10px;
+                    padding-right: 5px;
+                }
+
+                .right.column {
+                    margin-bottom: 10px;
+                    padding-left: 5px;
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Custom column padding (10 Pixel left/right)
+    .twt-custom-cms-col-padding-10, // @deprecated
+    .twt-cms-col-padding-10 {
+        .row {
+            margin-right: -10px;
+            margin-left: -10px;
+        }
+
+        div[class*="col-"] {
+            padding-right: 10px;
+            padding-left: 10px;
+
+            .left, .left-top {
+                margin-bottom: 20px;
+            }
+
+            .right-top {
+                margin-bottom: 20px;
+            }
+        }
+
+        // Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .left-bottom {
+                margin-bottom: 20px !important;
+            }
+        }
+
+        // ThemeWare Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            &[class*="twt-grid-"] {
+                .left.column {
+                    margin-bottom: 20px;
+                    padding-right: 10px;
+                }
+
+                .right.column {
+                    margin-bottom: 20px;
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Custom column padding (15 Pixel left/right)
+    .twt-custom-cms-col-padding-15, // @deprecated
+    .twt-cms-col-padding-15 {
+        .row {
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        div[class*="col-"] {
+            padding-right: 15px;
+            padding-left: 15px;
+
+            .left, .left-top {
+                margin-bottom: 30px;
+            }
+
+            .right-top {
+                margin-bottom: 30px;
+            }
+        }
+
+        // Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .left-bottom {
+                margin-bottom: 30px !important;
+            }
+        }
+
+        // ThemeWare Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            &[class*="twt-grid-"] {
+                .left.column {
+                    margin-bottom: 30px;
+                    padding-right: 15px;
+                }
+
+                .right.column {
+                    margin-bottom: 30px;
+                    padding-left: 15px;
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Default padding (20 Pixel left/right)
+
+    // ThemeWare: Custom column padding (25 Pixel left/right)
+    .twt-custom-cms-col-padding-25, // @deprecated
+    .twt-cms-col-padding-25 {
+        .row {
+            margin-right: -25px;
+            margin-left: -25px;
+        }
+
+        div[class*="col-"] {
+            padding-right: 25px;
+            padding-left: 25px;
+
+            .left, .left-top {
+                margin-bottom: 50px;
+            }
+
+            .right-top {
+                margin-bottom: 50px;
+            }
+        }
+
+        // Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .left-bottom {
+                margin-bottom: 50px !important;
+            }
+        }
+
+        // ThemeWare Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            &[class*="twt-grid-"] {
+                .left.column {
+                    margin-bottom: 50px;
+                    padding-right: 25px;
+                }
+
+                .right.column {
+                    margin-bottom: 50px;
+                    padding-left: 25px;
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Custom column padding (30 Pixel left/right)
+    .twt-custom-cms-col-padding-30, // @deprecated
+    .twt-cms-col-padding-30 {
+        .row {
+            margin-right: -30px;
+            margin-left: -30px;
+        }
+
+        div[class*="col-"] {
+            padding-right: 30px;
+            padding-left: 30px;
+
+            .left, .left-top {
+                margin-bottom: 60px;
+            }
+
+            .right-top {
+                margin-bottom: 60px;
+            }
+        }
+
+        // Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .left-bottom {
+                margin-bottom: 60px !important;
+            }
+        }
+
+        // ThemeWare Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            &[class*="twt-grid-"] {
+                .left.column {
+                    margin-bottom: 60px;
+                    padding-right: 30px;
+                }
+
+                .right.column {
+                    margin-bottom: 60px;
+                    padding-left: 30px;
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Custom column padding (35 Pixel left/right)
+    .twt-cms-col-padding-35 {
+        .row {
+            margin-right: -35px;
+            margin-left: -35px;
+        }
+
+        div[class*="col-"] {
+            padding-right: 35px;
+            padding-left: 35px;
+
+            .left, .left-top {
+                margin-bottom: 70px;
+            }
+
+            .right-top {
+                margin-bottom: 70px;
+            }
+        }
+
+        // Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .left-bottom {
+                margin-bottom: 70px !important;
+            }
+        }
+
+        // ThemeWare Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            &[class*="twt-grid-"] {
+                .left.column {
+                    margin-bottom: 70px;
+                    padding-right: 35px;
+                }
+
+                .right.column {
+                    margin-bottom: 70px;
+                    padding-left: 35px;
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Custom column padding (40 Pixel left/right)
+    .twt-cms-col-padding-40 {
+        .row {
+            margin-right: -40px;
+            margin-left: -40px;
+        }
+
+        div[class*="col-"] {
+            padding-right: 40px;
+            padding-left: 40px;
+
+            .left, .left-top {
+                margin-bottom: 80px;
+            }
+
+            .right-top {
+                margin-bottom: 80px;
+            }
+        }
+
+        // Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            .left-bottom {
+                margin-bottom: 80px !important;
+            }
+        }
+
+        // ThemeWare Grid adjustments
+        @include media-breakpoint-down(sm) { // max 767.98px
+            &[class*="twt-grid-"] {
+                .left-top.left {
+                    margin-bottom: 80px;
+                    padding-right: 40px;
+                }
+
+                .left-top.right {
+                    margin-bottom: 80px;
+                    padding-left: 40px;
+                }
+            }
+        }
+    }
+
+    // ThemeWare Grid adjustments
+    div[class*="twt-grid"] {
+        &[class*="cms-col-padding"] {
+            .left-top.row {
+                margin-bottom: 0 !important;
+            }
+
+            .right-top.row {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+
+}
+

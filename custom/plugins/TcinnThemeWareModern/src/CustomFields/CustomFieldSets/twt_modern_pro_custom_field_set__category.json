@@ -1,0 +1,76 @@
+{
+  "name": "twt_modern_pro_custom_field_set__category",
+  "config": {
+    "label": {
+      "en-GB": "Categories (ThemeWare® Modern Pro)",
+      "de-DE": "Kategorien (ThemeWare® Modern Pro)"
+    }
+  },
+  "relations": [
+    {
+      "entityName": "category"
+    }
+  ],
+  "customFields": [
+    {
+      "name": "twt_modern_pro_custom_field__category__body_class",
+      "type": "text",
+      "config": {
+        "componentName": "sw-field",
+        "customFieldPosition": 10,
+        "customFieldType": "text",
+        "label": {
+          "en-GB": "Body class",
+          "de-DE": "Body-Klasse"
+        },
+        "helpText": {
+          "en-GB": "Adds one or more CSS classes to the HTML body of this category. Separate multiple classes with spaces. <br><br><b>Example</b>: category",
+          "de-DE": "Fügt dem HTML-Body dieser Kategorie eine oder mehrere CSS-Klassen hinzu. Trenne mehrere Klassen durch Leerzeichen. <br><br><b>Beispiel</b>: kategorie"
+        },
+        "placeholder": {
+          "en-GB": "Enter CSS class...",
+          "de-DE": "Gib eine CSS-Klasse ein ..."
+        }
+      }
+    },
+
+    {
+      "name": "twt_modern_pro_custom_field__category__shopping_experiences_header",
+      "type": "CustomFieldTypes::SELECT",
+      "config": {
+        "componentName": "sw-single-select",
+        "customFieldPosition": 30,
+        "customFieldType": "select",
+        "label": {
+          "en-GB": "Shopping Experiences Header",
+          "de-DE": "Erlebniswelt-Header"
+        },
+        "helpText": {
+          "en-GB": "The header can overlay the Shopping Experience in listings. This \"Shopping Experiences Header\" is especially suitable for overlaying images, videos or sliders. <br><br>You can enable/disable the \"Shopping Experiences Header\" in the theme configuration.",
+          "de-DE": "Der Header kann auf Kategorieseiten über der Erlebniswelt dargestellt werden. Dieser \"Erlebniswelt-Header\" eignet sich besonders zum Überlagern von Bildern, Videos oder Slidern. <br><br>Du kannst den \"Erlebniswelt-Header\" in der Theme-Konfiguration aktivieren/deaktivieren."
+        },
+        "options": [
+          {
+            "value": "0",
+            "label": {
+              "en-GB": "no",
+              "de-DE": "nein"
+            }
+          },
+          {
+            "value": "1",
+            "label": {
+              "en-GB": "yes",
+              "de-DE": "ja"
+            }
+          }
+        ],
+        "placeholder": {
+          "en-GB": "no",
+          "de-DE": "nein"
+        }
+      }
+    }
+
+  ]
+}

@@ -1,0 +1,40 @@
+{
+    "kzph-simplenote-note": {
+        "general": {
+            "tabtitle": "Notes",
+            "title": "Notes",
+            "enter_your_notice": "Enter your note....",
+            "file": "File *optional",
+            "save": "save",
+            "saved": "saved",
+            "deleted": "this note has been deleted",
+            "no_data_available": "No data available.",
+            "show_on_dashboard": "Show note on dashboard",
+            "replicate_in_order": "Attach this note to each new order",
+            "done": "Note closed",
+            "show_message_on_new_order": "Show message on order",
+            "delete_note": "delete note",
+            "delete_note_confirm": "Really?",
+            "delete_note_yes": "Yes",
+            "delete_note_no": "No",
+            "filter": {
+                "has_notes": "with notes",
+                "without_notes": "without notes",
+                "placeholder": "Show orders ..."
+            }
+        },
+        "dashboard" : {
+            "type": "Note",
+            "username": "User",
+            "date": "Created at",
+            "destination": "Object",
+            "note": "Note"
+        },
+        "entities": {
+            "customer": "Customer",
+            "product": "Product",
+            "order": "Order",
+            "category": "Category"
+        }
+    }
+}

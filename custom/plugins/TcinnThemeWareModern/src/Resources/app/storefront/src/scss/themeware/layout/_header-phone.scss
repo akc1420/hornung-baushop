@@ -1,0 +1,303 @@
+// VARS
+$twt-header-phone-z-index: 1020;
+
+// Phone max 575.98px
+@include media-breakpoint-down(xs) {
+
+  // Phone actions
+  .header-actions-col {
+      padding-right: 10px;
+      padding-bottom: 10px;
+      padding-left: 10px;
+  }
+
+  // ThemeWare: When phone layout type "Sales Promoting Navigation"
+  @if $twt-header-phone-type == 2 {
+
+    .header-actions-col {
+      z-index: $twt-header-phone-z-index;
+      position: fixed;
+      bottom: 0;
+      background-color: $twt-header-phone-nav-background-color;
+      box-shadow: $twt-header-phone-nav-box-shadow $twt-header-phone-nav-box-shadow-color; 
+      padding-top: 5px;
+
+      // ThemeWare "Sales Promoting Navigation" layout types
+      @if $twt-header-phone-nav-type == 1 or $twt-header-phone-nav-type == 3 {
+        // ThemeWare: Layout type Standard
+        // ThemeWare: Layout type Center
+        height: $twt-header-phone-nav-height * 1px;
+      } @else if $twt-header-phone-nav-type == 2 {
+        // ThemeWare: Layout type Clean
+        height: $twt-header-phone-nav-height/2 * 1px;
+        padding-bottom: $twt-header-phone-nav-height/2 * 1px;
+      }
+
+      // ThemeWare: actions button order
+      .twt-home-col {
+        order: $twt-header-phone-btn-home-order;
+      }
+      .twt-navigation-col {
+        order: $twt-header-phone-btn-navigation-order;
+      }
+      .twt-search-col {
+        order: $twt-header-phone-btn-search-order;
+      }
+      .twt-wishlist-col {
+        order: $twt-header-phone-btn-wishlist-order;
+      }
+      .twt-account-col {
+        order: $twt-header-phone-btn-account-order;
+      }
+      .twt-cart-col {
+        order: $twt-header-phone-btn-cart-order;
+      }
+
+      // ThemeWare: If phone cart button highlighting is selected
+      @if $twt-header-phone-cart-btn-highlighting == 2 {
+        // Set new cart btn size
+        .twt-cart-col {
+          .header-cart-btn {
+            margin: -5px;
+            width: 58px;
+            height: 58px;
+            line-height: 51px;
+
+            .header-cart-badge {
+              position: absolute;
+              right: -13px;
+              top: -8px;
+            }
+          }
+        }
+      }      
+
+      // ThemeWare "Sales Promoting Navigation" align content
+      .row {
+        position: relative;
+        
+        // ThemeWare "Sales Promoting Navigation" layout types
+        @if $twt-header-phone-nav-type == 1 {
+          // ThemeWare: Layout type Standard
+          top: 50%;
+          transform: translateY(-50%);
+          justify-content: space-around;
+
+        } @else if $twt-header-phone-nav-type == 2 {
+          // ThemeWare: Layout type Clean
+          top: 60%;
+          transform: translateY(-60%);
+          justify-content: space-around;
+
+        } @else if $twt-header-phone-nav-type == 3 {
+          // ThemeWare: Layout type Center
+          top: 50%;
+          transform: translateY(-50%);
+          justify-content: center;
+          .header-actions-btn {
+            margin-left: 4px;
+            margin-right: 4px;
+          }
+        }
+
+      }
+
+      // Action buttons corner type
+      @if ($twt-header-phone-btn-corner-type == 1) {
+        // ThemeWare: Layout 1 (Standard)
+
+      } @else if $twt-header-phone-btn-corner-type == 2 {
+        // Layout 2 "rounded corners" (ThemeWare)
+        .header-actions-btn {
+          border-radius: null-pixel-unit($twt-border-radius);
+        }
+
+      } @else {
+        // ThemeWare: Layout 3 "round corners" (ThemeWare)
+        .header-actions-btn {
+          border-radius: 10rem;
+        }
+      }
+
+      // Action buttons height
+      .header-actions-btn {
+        height: 48px;
+        line-height: 43px;
+      }
+
+    }
+    
+    // phone search flyout position
+    @if ($twt-header-phone-search-flyout-position == 2) {
+
+      // Heder id 1, 2
+      @if $twt-header-type == 1 or $twt-header-type == 2 {
+        .header-search-col {
+          position: fixed;
+          z-index: $twt-header-phone-z-index;
+
+          // ThemeWare "Sales Promoting Navigation"
+          @if $twt-header-phone-nav-type == 1 or $twt-header-phone-nav-type == 3 {
+            // ThemeWare: Layout type Standard + Center
+            bottom: $twt-header-phone-nav-height * 1px;
+          
+          } @else if $twt-header-phone-nav-type == 2 {
+            // ThemeWare: Layout type Clean
+            bottom: $twt-header-phone-nav-height/2 * 1px;
+            .collapse {
+              &.show, 
+              &.collapsing {
+                padding-bottom: $twt-header-phone-nav-height/2 * 1px;
+              }
+            }
+          } 
+        }
+      }
+
+      // Header id 4, 10
+      @if $twt-header-type == 4 or $twt-header-type == 10 {
+        .search-container {
+          width: 100%;
+          position: fixed;
+          z-index: $twt-header-phone-z-index - 1;
+
+          // ThemeWare "Sales Promoting Navigation"
+          @if $twt-header-phone-nav-type == 1 or $twt-header-phone-nav-type == 3 {
+            // ThemeWare: Layout type Standard + Center
+            bottom: $twt-header-phone-nav-height * 1px;
+          
+          } @else if $twt-header-phone-nav-type == 2 {
+            // ThemeWare: Layout type Clean
+            bottom: $twt-header-phone-nav-height/2 * 1px;
+            .collapse {
+              &.show, 
+              &.collapsing {
+                padding-bottom: $twt-header-phone-nav-height/2 * 1px;
+              }
+            }
+            
+          }
+        }
+      }
+      @if $twt-header-type == 10 {
+        .twt-is-sticky-header #searchCollapse {
+          position: relative;
+          top: 0 !important;
+        }
+      }
+      /* search suggest position */ 
+      // Set suggest max-height
+      @if $twt-header-phone-fixed == 2 {
+        $twtHeaderPhoneSuggestMaxHeight: $twt-header-phone-nav-height+$twt-header-height-mobile+91 + px;
+      } @else {
+        $twtHeaderPhoneSuggestMaxHeight: $twt-header-phone-nav-height+91 + px;
+      }
+      .search-suggest-container {
+        position: fixed;
+        bottom: $twt-header-phone-nav-height+71 * 1px; // header-search-col height 71px
+        top: auto;
+        box-shadow: $twt-header-phone-nav-box-shadow $twt-header-phone-nav-box-shadow-color; 
+        margin-bottom: -16px;
+        left: 15px;
+        right: 15px;
+        width: calc(100% - 30px);
+        height: auto;
+        max-height:unquote("calc( 100% - #{$twtHeaderPhoneSuggestMaxHeight} )");
+
+        .search-suggest-product-link {
+          padding: 4px 0;
+        }
+
+        &::after {
+          display: none;
+        }
+        
+      }
+
+
+    } @else {
+
+      // ThemeWare: Search
+      @if $twt-header-phone-fixed == 1 {
+        .header-search-col {
+          position: fixed;
+          z-index: $twt-sticky-nav-main-z-index;
+          top: 0;
+          box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+        }
+      }
+
+      .search-suggest-container {
+        z-index: $twt-header-phone-z-index+2;
+        top: 39px;
+        &::after {
+          display: none;
+        }
+      }
+    }
+    
+    // Set page for the phone nav height bottom 
+    body {
+      padding-bottom: $twt-header-phone-nav-height * 1px;
+    }
+
+    // Set cookie message for the phone nav height bottom 
+    .cookie-permission-container {
+      bottom: $twt-header-phone-nav-height * 1px;
+    }
+
+    // Set scroll up btn for the phone nav height bottom 
+    .scroll-up-container {
+      .scroll-up-button {
+        margin-bottom: $twt-header-phone-nav-height * 1px;
+      }
+    }
+
+    // Logo 
+    .header-logo-col {
+      height: $twt-header-height-mobile * 1px;
+      display: flex;
+      align-items: center;
+      @if $twt-header-phone-logo-position == "center" {
+        justify-content: center;
+      } @else if $twt-header-phone-logo-position == "left" {
+        justify-content: left;
+      } @else if $twt-header-phone-logo-position == "right" {
+        justify-content: right;
+      }
+    }
+    .header-logo-main-link {
+      img {
+          @include media-breakpoint-down(xs) { // max 575.98px
+              width: 100%;
+              max-width: auto-pixel-unit($twt-header-logo-max-width-mobile);
+          }
+      }
+    }
+
+  }
+}
+
+
+/*
+.navigation-flyout
+{
+  display: none;
+  position: absolute;
+}
+.navigation-flyout-col
+{
+  display: none;
+  position: absolute;
+  transform: translateX(100%);
+  right: 0;
+  top: 0;
+}
+.navigation-flyout-link
+{
+  text-transform:capitalize;
+  margin: 0 2px;
+  cursor: pointer;
+  width: 150px;
+}
+*/

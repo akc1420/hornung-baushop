@@ -1,0 +1,42 @@
+{% block swag_cms_extensions_form_component_select %}
+    <div class="form-group col-md-{{ field.width }}">
+
+        {% block swag_cms_extensions_form_component_select_content_label %}
+            <label class="form-label" for="form-{{ form.technicalName }}-{{ field.technicalName }}">
+                {{- field.translated.label -}}{% if field.required %} {{- "general.required"|trans -}}{% endif %}
+            </label>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_component_select_content_select %}
+            <select name="{{ field.technicalName }}"
+                    id="form-{{ form.technicalName }}-{{ field.technicalName }}"
+                    class="custom-select contact-select{% if formViolations.getViolations('/' ~ field.technicalName) %} is-invalid{% endif %}"
+                    {% if field.required %}required="required"{% endif %}
+                    {% if field.translated.errorMessage %}data-form-validation-error-message="{{ field.translated.errorMessage }}"{% endif %}>
+                <option {% if field.required %}disabled="disabled"{% endif %}
+                        selected="selected"
+                        value="">
+                    {{ field.translated.placeholder }}
+                </option>
+
+                {% for key, option in field.translated.config.options %}
+                    {% set valueAttribute = '' %}
+                    {% if field.config.entity is not null or field.translated.config.entity is not null %}
+                        {% set valueAttribute = ' value=' ~ key|default(option) %}
+                    {% endif %}
+
+                    <option{{ valueAttribute }}>
+                        {{ option }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            {% if formViolations.getViolations('/' ~ field.technicalName) is not empty %}
+                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig'
+                    with { violationPath: '/' ~ field.technicalName}
+                %}
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

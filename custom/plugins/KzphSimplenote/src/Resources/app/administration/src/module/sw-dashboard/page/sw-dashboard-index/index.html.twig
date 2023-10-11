@@ -1,0 +1,13 @@
+{% block sw_dashboard_index_content_info_grid %}
+    {% parent %}
+
+    <div class="sw-dashboard-index__card-headline">
+        <h1>{{ $tc('kzph-simplenote-note.general.title') }}</h1>
+    </div>
+
+    <sw-card position-identifier="kzph-simplenote-dashboard">
+        <template slot="grid">
+            <kzph-simplenote-dashboard/>
+        </template>
+    </sw-card>
+{% endblock %}

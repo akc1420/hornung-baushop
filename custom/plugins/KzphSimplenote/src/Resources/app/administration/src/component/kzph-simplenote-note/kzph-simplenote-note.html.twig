@@ -1,0 +1,44 @@
+{% block kzph_simplenote_note_card %}
+<sw-card :title="$tc('kzph-simplenote-note.general.title')">
+    <sw-textarea-field type="textarea" v-model="note" :label="$tc('kzph-simplenote-note.general.tabtitle')" :placeholder="$tc('kzph-simplenote-note.general.enter_your_notice')"></sw-textarea-field>
+
+    <sw-button :disabled="false" :square="false" :block="false" :isLoading="false" @click="onNoteSaveClick">
+        {{ $tc('kzph-simplenote-note.general.save') }}
+    </sw-button>
+
+    <template>
+        <div class="kzphSimplenoteSpacer" v-if="items && items.length > 0">
+            <span></span>
+        </div>
+
+        <div v-for="(value, name, index) in getItems">
+            <div class="kzphSimplenoteElement">
+                <div class="kzphSimplenoteElementHeadline">
+                    <div class="kzphSimplenoteElementHeadlineAuthorName">
+                        {{ value.username }}
+                    </div>
+                    <div class="kzphSimplenoteElementHeadlineDoneBox">
+                        {{ $tc('kzph-simplenote-note.general.done') }} <input type="checkbox" v-model="checkedDoneItems" :value="value.id" @change="onDoneChange" />
+                    </div>
+                    <div class="kzphSimplenoteClear"></div>
+                </div>
+
+                <div class="kzphSimplenoteElementAuthor">{{ value.createdAt|date('d.m.y') }}</div>
+                <div class="kzphSimplenoteElementDashboard">{{ $tc('kzph-simplenote-note.general.show_on_dashboard') }} <input type="checkbox" v-model="checkedDesktopItems" :value="value.id" @change="onNoteShowOnDesktopChange" /></div>
+                <div class="kzphSimplenoteElementReplicateInOrder" v-if="showButtonForReplicateInOrder">{{ $tc('kzph-simplenote-note.general.replicate_in_order') }} <input type="checkbox" v-model="checkedReplicateItems" :value="value.id" @change="onNotReplicateInOrderChange" /></div>
+                <div class="kzphSimplenoteElementInform" v-if="showButtonForShowMessage">{{ $tc('kzph-simplenote-note.general.show_message_on_new_order') }} <input type="checkbox" v-model="checkedItems" :value="value.id" @change="onNoteShowMessageChange" /></div>
+                
+
+                <div class="kzphSimplenoteElementText"><pre>{{ value.note }}</pre></div>
+            </div>
+
+            <div class="kzphSimplenoteElementDeleteNote kzphSimplenoteElementDeleteNoteShowConfirmation"><div class="kzphSimplenoteElementDeleteNoteBtn" @click="onShowConfirmation">{{ $tc('kzph-simplenote-note.general.delete_note') }}</div></div>
+            <div class="kzphSimplenoteElementDeleteConfirm">
+                <div class="kzphSimplenoteElementDeleteNote">{{ $tc('kzph-simplenote-note.general.delete_note_confirm') }} <div class="kzphSimplenoteElementDeleteNoteBtn" :data-id="value.id" @click="onDeleteThisNote">{{ $tc('kzph-simplenote-note.general.delete_note_yes') }}</div> || <div class="kzphSimplenoteElementDeleteNoteBtn" @click="onRestoreConfirmation">{{ $tc('kzph-simplenote-note.general.delete_note_no') }}</div></div>
+            </div>
+        </div>
+
+    </template>
+
+</sw-card>
+{% endblock %}

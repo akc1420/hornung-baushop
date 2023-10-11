@@ -1,0 +1,17 @@
+{% block clever_reach_error %}
+    <sw-alert variant="error" class="cr-error-div" v-if="!isClosed">
+        <div class="cr-error">
+            <sw-label variant="neutral" class="cr-error-title">
+                {{ errorTitle }}
+            </sw-label>
+            <sw-label variant="neutral" v-html="errorMessage" class="cr-error-title">
+            </sw-label>
+            <sw-label variant="neutral" class="cr-error-title" v-if="errorDescription !== ''">
+                {{ errorDescription }}
+            </sw-label>
+            <sw-button variant="ghost" class="cr-error-btn" v-if="buttonText !== ''">
+                {{ buttonText }}
+            </sw-button>
+        </div>
+    </sw-alert>
+{% endblock %}

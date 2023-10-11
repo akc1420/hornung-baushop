@@ -1,0 +1,41 @@
+{
+  "name": "serkiz/serkiz6-housenumber",
+  "description": "Housenumber validation",
+  "version": "v1.2.6",
+  "type": "shopware-platform-plugin",
+  "license": "proprietary",
+  "authors": [
+      {
+          "name": "Serkiz UG",
+          "homepage": "https://serkiz.de",
+          "role": "Manufacturer"
+      }
+  ],
+  "require": {
+    "shopware/core": "6.2.* || ~6.3.0 || ~6.4.0 || ~6.5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Serkiz6Housenumber\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "Serkiz6Housenumber\\Serkiz6Housenumber",
+    "label": {
+      "de-DE": "Housenumber validation",
+      "en-GB": "Housenumber validation"
+    },
+    "description": {
+      "de-DE": "Prüft die Eingabe einer Hausnummer",
+      "en-GB": "Check if housenumber is entered"
+    },
+    "manufacturerLink": {
+      "de-DE": "https://serkiz.de",
+      "en-GB": "https://serkiz.de"
+  },
+  "supportLink": {
+      "de-DE": "https://serkiz.de",
+      "en-GB": "https://serkiz.de"
+  }
+  }
+}

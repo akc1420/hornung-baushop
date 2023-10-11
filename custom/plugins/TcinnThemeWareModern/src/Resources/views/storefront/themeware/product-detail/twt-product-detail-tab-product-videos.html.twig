@@ -1,0 +1,51 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{# ThemeWare: "Product videos tab" on prodcut pages #}
+{#
+    Create container and add product videos
+
+    @Storefront/storefront/themeware/product-detail/twt-product-detail-tab-product-videos.html.twig
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailTabProductVideosHeadlineShow = theme_config('twt-product-detail-tab-product-videos-headline-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on offcanvas tab-content #}
+{% block utilities_offcanvas_content %}
+
+    {# ThemeWare: Show product videos information #}
+    {% block twt_product_detail_tab_product_videos %}
+
+        {% block twt_product_detail_tab_product_videos_container %}
+            <div class="twt-product-detail-product-videos tab-pane-container">
+
+                {% block twt_product_detail_tab_product_videos_content %}
+
+                    {# ThemeWare: Add product videos headline #}
+                    {% block twt_product_detail_tab_product_videos_title %}
+                        {% if twtProductDetailTabProductVideosHeadlineShow == 2 %}
+                                <div class="h3 twt-product-detail-product-videos-description-title">
+                                    {{ 'twt.detail.tabVideos.headlineVideos'|trans }}
+                                </div>
+                        {% endif %}
+                    {% endblock %}
+
+                    {# ThemeWare: Add product videos content #}
+                    {% block twt_product_detail_tab_product_videos_include %}
+                        {% sw_include '@Storefront/storefront/themeware/product-detail/twt-product-videos.html.twig' ignore missing with {
+                            position: 'tab'
+                        } %}
+                    {% endblock %}
+
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+
+    {% endblock %}
+
+{% endblock %}

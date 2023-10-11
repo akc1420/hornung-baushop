@@ -1,0 +1,587 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Footer
+	==================================================
+	Contains custom styles for the footer located at the bottom of the page.
+
+	Origin: Shopware base & skin
+*/
+
+/* ThemeWare refactoring:
+ * TODO: Add footer-type "default" with minor scss-adjustments
+ * TODO: Add "$twt-footer-type-compatibility"-if to exclude all twig-/scss-adjustments
+ */
+
+// ThemeWare: Default footer adjustments
+/* TODO: Adjust default footer if possible...
+/*
+.footer-logo-image {
+	//display: inline-block;
+	//max-width: inherit;
+	height: 35px;
+	//max-height: 35px;
+	border: 1px solid $twt-widget-payment-logo-border-color;
+
+	@if $twt-widget-payment-logo-corner-type == 2 {
+		border-radius: $twt-border-radius-light;
+	} @else if $twt-widget-payment-logo-corner-type == 3 {
+		border-radius: $twt-border-radius-bold;
+	}
+}
+*/
+
+// ThemeWare: Footer adjustments
+/* TODO:
+	- Shopware Vererbung prüfen...
+	- eigene Klassen in "/themeware" verschieben...
+	- Check adjustments with default footer...
+	- alles in "@include media-breakpoint-up(md) { // min 768px" packen...
+*/
+
+.footer-main {
+	@include twt-font-size($twt-footer-column-font-size);
+	@if $twt-usp-bar-footer == 1 {
+		margin-top: null-pixel-unit($twt-footer-margin-top);
+	}
+	padding: null-pixel-unit($twt-footer-padding-top) null-pixel-unit($twt-footer-padding) null-pixel-unit($twt-footer-padding-bottom) null-pixel-unit($twt-footer-padding);
+	color: $twt-footer-column-color;
+	border-top: none;
+	background-color: $twt-footer-background-color;
+
+	// ThemeWare: Check if background-image is set
+	@if $twt-footer-background-image-show == 2 and $twt-footer-background-image != "" and $twt-footer-background-image != "none" {
+		//-webkit-background-size: $twt-footer-background-image-size;
+		background-size: $twt-footer-background-image-size;
+		background-position: $twt-footer-background-image-position;
+		background-repeat: $twt-footer-background-image-repeat;
+		background-attachment: $twt-footer-background-image-attachment;
+	}
+
+	// ThemeWare: Styling of links
+	.footer-column-content {
+		a {
+			color: $twt-footer-column-link-color;
+
+			&:hover {
+				color: $twt-footer-column-link-color-hover;
+			}
+
+			&[href^="tel:"] {
+				color: $twt-footer-column-color;
+
+				&:hover {
+					//cursor: default; // @deprecated: Can be removed
+					color: $twt-footer-column-color;
+				}
+			}
+		}
+	}
+
+	// ThemeWare: Footer container
+	.container {
+		max-width: inherit;
+		margin: 0;
+		padding: 0;
+
+		.footer-columns {
+			width: 100%;
+			margin-right: auto;
+			margin-left: auto;
+			padding-bottom: 0;
+			border-bottom: none;
+
+
+			/* Shopware default footer adjustments */
+
+			@include media-breakpoint-up(md) { // min 768px
+				.footer-column {
+					padding-bottom: 20px;
+
+					.footer-column-headline {
+						@if($twt-footer-column-font-family == 1) {
+							font-family: $sw-font-family-base;
+						} @else {
+							font-family: $sw-font-family-headline;
+						}
+						@include twt-font-size($twt-footer-column-headline-font-size);
+						font-weight: fontWeight($twt-footer-column-headline-font-weight);
+						text-transform: $twt-footer-column-headline-text-transform;
+						color: $twt-footer-column-headline-color;
+
+						@if ($twt-footer-background-color != $twt-footer-column-headline-border-color) and ($twt-footer-column-headline-border-color != transparent) {
+							display: inline-block;
+							border-bottom: 2px solid $twt-footer-column-headline-border-color;
+							padding: 20px 0 0 0;
+							margin: 0 0 20px 0;
+						} @else {
+							display: inline-block;
+							padding: 20px 0 10px 0;
+							margin: 0;
+						}
+
+						a {
+							color: $twt-footer-column-headline-color;
+
+							&:hover {
+								color: $twt-footer-column-headline-color;
+							}
+						}
+					}
+				}
+			}
+
+
+			/* ThemeWare: mittlerer Bereich (= default) */
+
+			&#footerColumns {
+				justify-content: $twt-footer-justify-content;
+				text-align: $twt-footer-column-text-align;
+
+				// ThemeWare: Check if background-image is set
+				@if $twt-footer-main-section-background-image-show == 2 and $twt-footer-main-section-background-image != "" and $twt-footer-main-section-background-image != "none" {
+					//-webkit-background-size: $twt-footer-main-section-background-image-size;
+					background-size: $twt-footer-main-section-background-image-size;
+					background-position: $twt-footer-main-section-background-image-position;
+					background-repeat: $twt-footer-main-section-background-image-repeat;
+					background-attachment: $twt-footer-main-section-background-image-attachment;
+				}
+
+				@include media-breakpoint-up(md) { // min 768px
+					padding: null-pixel-unit($twt-footer-columns-padding-top) null-pixel-unit($twt-footer-columns-padding-right) null-pixel-unit($twt-footer-columns-padding-bottom) null-pixel-unit($twt-footer-columns-padding-left);
+				}
+
+				@if $twt-footer-background-color != $twt-footer-columns-background-color {
+					background-color: $twt-footer-columns-background-color;
+				}
+
+				@if $twt-footer-width == 1 {
+					max-width: null-pixel-unit($twt-container-max-width);
+				}
+
+				.footer-column-content-inner {
+					@if $twt-footer-column-text-align == center {
+						justify-content: center;
+					}
+
+					.footer-logo {
+						@if $twt-footer-column-text-align == left {
+							margin: 0 10px 10px 0;
+						} @else if $twt-footer-column-text-align == center {
+							margin: 0 5px 10px 5px;
+						} @else if $twt-footer-column-text-align == right {
+							margin: 0 0 10px 10px;
+						}
+					}
+				}
+
+				// ThemeWare: Justify awards widget
+				.twt-awards-container {
+					@if $twt-footer-column-text-align == left {
+						justify-content: flex-start;
+					} @else if $twt-footer-column-text-align == center {
+						justify-content: center;
+					} @else if $twt-footer-column-text-align == right {
+						justify-content: flex-end;
+					}
+
+					img {
+						@if $twt-footer-column-text-align == left {
+							margin: 0 20px 20px 0;
+						} @else if $twt-footer-column-text-align == center {
+							margin: 0 10px 20px 10px;
+						} @else if $twt-footer-column-text-align == right {
+							margin: 0 0 20px 20px;
+						}
+					}
+				}
+			}
+
+			/*
+              _             _______ _____    _____                             _
+             | |           |__   __/ ____|  |_   _|                           | | (_)
+             | |__      _     | | | |   ______| |  _ __  _ __   _____   ____ _| |_ _  ___  _ __  ___
+             | '_ \| | | |    | | | |  |______| | | '_ \| '_ \ / _ \ \ / / _` | __| |/ _ \| '_ \/ __|
+             | |_) | |_| |    | | | |____    _| |_| | | | | | | (_) \ V / (_| | |_| | (_) | | | \__ \
+             |_.__/ \__, |    |_|  \_____|  |_____|_| |_|_| |_|\___/ \_/ \__ _|\__|_|\___/|_| |_|___/
+                     __/ |
+                    |___/
+            */
+
+
+			/* ThemeWare: oberer Bereich */
+
+			&#footerColumnsTop {
+				justify-content: $twt-footer-columns-top-justify-content;
+				text-align: $twt-footer-column-top-text-align;
+				color: $twt-footer-column-top-color;
+				
+				// ThemeWare: Check if background-image is set
+				@if $twt-footer-upper-section-background-image-show == 2 and $twt-footer-upper-section-background-image != "" and $twt-footer-upper-section-background-image != "none" {
+					//-webkit-background-size: $twt-footer-upper-section-background-image-size;
+					background-size: $twt-footer-upper-section-background-image-size;
+					background-position: $twt-footer-upper-section-background-image-position;
+					background-repeat: $twt-footer-upper-section-background-image-repeat;
+					background-attachment: $twt-footer-upper-section-background-image-attachment;
+				}
+
+				@if($twt-footer-width-columns-top == 1) {
+					border-radius: null-pixel-unit($twt-border-radius);
+				}
+
+				a {
+					color: $twt-footer-column-top-link-color;
+
+					&:hover {
+						color: $twt-footer-column-top-link-color-hover;
+					}
+				}
+
+				@include media-breakpoint-up(md) { // min 768px
+					padding: null-pixel-unit($twt-footer-columns-top-padding-top) null-pixel-unit($twt-footer-columns-top-padding-right) null-pixel-unit($twt-footer-columns-top-padding-bottom) null-pixel-unit($twt-footer-columns-top-padding-left);
+
+					.footer-column-headline {
+						color: $twt-footer-column-top-headline-color;
+
+						@if ($twt-footer-columns-top-background-color != $twt-footer-column-top-headline-border-color) and ($twt-footer-column-top-headline-border-color != transparent) {
+							display: inline-block;
+							border-bottom: 2px solid $twt-footer-column-top-headline-border-color;
+							padding: 20px 0 0 0;
+							margin: 0 0 20px 0;
+						} @else {
+							padding: 20px 0 10px 0;
+							margin: 0;
+							border-bottom: none;
+						}
+
+						a {
+							color: $twt-footer-column-top-headline-color;
+
+							&:hover {
+								color: $twt-footer-column-top-headline-color;
+							}
+						}
+					}
+				}
+
+				@if $twt-footer-background-color != $twt-footer-columns-top-background-color {
+					background-color: $twt-footer-columns-top-background-color;
+				}
+
+				@if $twt-footer-width-columns-top == 1 {
+					max-width: null-pixel-unit($twt-container-max-width);
+					margin-bottom: 20px; // TODO: Add configuration
+				} @else if $twt-footer-width-columns-top == 2 {
+					margin-right: 0;
+					margin-left: 0;
+				}
+
+				.footer-column-content-inner {
+					@if $twt-footer-column-top-text-align == center {
+						justify-content: center;
+					}
+
+					.footer-logo {
+						@if $twt-footer-column-top-text-align == left {
+							margin: 0 10px 10px 0;
+						} @else if $twt-footer-column-top-text-align == center {
+							margin: 0 5px 10px 5px;
+						} @else if $twt-footer-column-top-text-align == right {
+							margin: 0 0 10px 10px;
+						}
+					}
+				}
+
+				// ThemeWare: Justify awards widget
+				.twt-awards-container {
+					@if $twt-footer-column-top-text-align == left {
+						justify-content: flex-start;
+					} @else if $twt-footer-column-top-text-align == center {
+						justify-content: center;
+					} @else if $twt-footer-column-top-text-align == right {
+						justify-content: flex-end;
+					}
+
+					img {
+						@if $twt-footer-column-top-text-align == left {
+							margin: 0 20px 20px 0;
+						} @else if $twt-footer-column-top-text-align == center {
+							margin: 0 10px 20px 10px;
+						} @else if $twt-footer-column-top-text-align == right {
+							margin: 0 0 20px 20px;
+						}
+					}
+				}
+			}
+
+
+			/* ThemeWare: unterer Bereich */
+
+			&#footerColumnsBottom {
+				justify-content: $twt-footer-columns-bottom-justify-content;
+				text-align: $twt-footer-column-bottom-text-align;
+				color: $twt-footer-column-bottom-color;
+
+				// TODO: Check if this can be done via configuration
+				// >>>>>>>>>>>>>>>>>>>>
+				@if($twt-footer-width-columns-bottom == 1) and ($twt-container-layout != 3) {
+					@include media-breakpoint-up(md) { // min 768px
+						border-radius: null-pixel-unit($twt-border-radius);
+						margin-bottom: $twt-basegrid-spacing; // TODO: Add configuration
+					}
+				}
+
+				@if $twt-footer-width-columns-bottom == 1 {
+					@include media-breakpoint-up(md) { // min 768px
+						margin-top: 20px; // TODO: Add configuration
+					}
+				}
+				// <<<<<<<<<<<<<<<<<<<<
+
+				@include media-breakpoint-up(md) { // min 768px
+					padding: null-pixel-unit($twt-footer-columns-bottom-padding-top) null-pixel-unit($twt-footer-columns-bottom-padding-right) null-pixel-unit($twt-footer-columns-bottom-padding-bottom) null-pixel-unit($twt-footer-columns-bottom-padding-left);
+				}
+
+				// ThemeWare: Check if background-image is set
+				@if $twt-footer-lower-section-background-image-show == 2 and $twt-footer-lower-section-background-image != "" and $twt-footer-lower-section-background-image != "none" {
+					-webkit-background-size: $twt-footer-lower-section-background-image-size;
+					background-size: $twt-footer-lower-section-background-image-size;
+					background-position: $twt-footer-lower-section-background-image-position;
+					background-repeat: $twt-footer-lower-section-background-image-repeat;
+					background-attachment: $twt-footer-lower-section-background-image-attachment;
+				}
+
+				@if $twt-footer-background-color != $twt-footer-columns-bottom-background-color {
+					background-color: $twt-footer-columns-bottom-background-color;
+				}
+
+				@if $twt-footer-width-columns-bottom == 1 {
+					max-width: null-pixel-unit($twt-container-max-width);
+				} @else if $twt-footer-width-columns-bottom == 2 {
+					margin-right: 0;
+					margin-left: 0;
+				}
+
+				a {
+					color: $twt-footer-column-bottom-link-color;
+
+					@if $twt-footer-column-bottom-link-color == $twt-footer-column-bottom-color {
+						text-decoration: underline;
+					}
+
+					&:hover {
+						color: $twt-footer-column-bottom-link-color-hover;
+
+						@if $twt-footer-column-bottom-link-color == $twt-footer-column-bottom-color {
+							text-decoration: none;
+						}
+					}
+				}
+
+				@include media-breakpoint-up(md) { // min 768px
+					.footer-column-headline {
+						color: $twt-footer-column-bottom-headline-color;
+
+						@if ($twt-footer-columns-bottom-background-color != $twt-footer-column-bottom-headline-border-color) and ($twt-footer-column-bottom-headline-border-color != transparent) {
+							display: inline-block;
+							border-bottom: 2px solid $twt-footer-column-bottom-headline-border-color;
+							padding: 20px 0 0 0;
+							margin: 0 0 20px 0;
+						} @else {
+							padding: 20px 0 10px 0;
+							margin: 0;
+							border-bottom: none;
+						}
+
+						a {
+							color: $twt-footer-column-bottom-headline-color;
+
+							&:hover {
+								color: $twt-footer-column-bottom-headline-color;
+							}
+						}
+					}
+				}
+
+				.footer-column-content-inner {
+					@if $twt-footer-column-bottom-text-align == center {
+						justify-content: center;
+					}
+
+					.footer-logo {
+						@if $twt-footer-column-bottom-text-align == left {
+							margin: 0 10px 10px 0;
+						} @else if $twt-footer-column-bottom-text-align == center {
+							margin: 0 5px 10px 5px;
+						} @else if $twt-footer-column-bottom-text-align == right {
+							margin: 0 0 10px 10px;
+						}
+					}
+				}
+
+				// ThemeWare: Justify awards widget
+				.twt-awards-container {
+					@if $twt-footer-column-bottom-text-align == left {
+						justify-content: flex-start;
+					} @else if $twt-footer-column-bottom-text-align == center {
+						justify-content: center;
+					} @else if $twt-footer-column-bottom-text-align == right {
+						justify-content: flex-end;
+					}
+
+					img {
+						@if $twt-footer-column-bottom-text-align == left {
+							margin: 0 20px 20px 0;
+						} @else if $twt-footer-column-bottom-text-align == center {
+							margin: 0 10px 20px 10px;
+						} @else if $twt-footer-column-bottom-text-align == right {
+							margin: 0 0 20px 20px;
+						}
+					}
+				}
+			}
+
+			/*
+              _             _______ _____    _____                             _   _
+             | |           |__   __/ ____|  |_   _|                           | | (_)
+             | |__  _   _     | | | |   ______| |  _ __  _ __   _____   ____ _| |_ _  ___  _ __  ___
+             |  _ \| | | |    | | | |  |______| | | '_ \| '_ \ /   \ \ / / _` | __| |/ _ \| '_ \/ __|
+             | |_) | |_| |    | | | |____    _| |_| | | | | | | (_) \ V / (_| | |_| | (_) | | | \__ \
+             |_.__/ \__, |    |_|  \_____|  |_____|_| |_|_| |_|\___/ \_/ \__,_|\__|_|\___/| | |_|___/
+                     __/ |
+                    |___/
+            */
+
+			// ThemeWare: Footer logos
+			// TODO: Widgets ggf. auslagern...
+			.footer-logos-column {
+				.footer-column-content-inner {
+					display: flex;
+					align-content:flex-start;
+					flex-direction:row;
+					flex-wrap:wrap;
+					padding-bottom: 0;
+
+					// Inline logos @deprecated
+					//.footer-logo {
+					//	display: block;
+					//	float: left;
+					//}
+
+					// Clearfix @deprecated
+					//&::after {
+					//	display: table;
+					//	clear: both;
+					//	content: '';
+					//}
+				}
+			}
+		}
+	}
+
+	.footer-bottom {
+		padding: 40px; // TODO: Add configuration
+		@include twt-font-size($twt-footer-bottom-font-size);
+		color: $twt-footer-bottom-color;
+		background-color: $twt-footer-bottom-background-color;
+
+		// ThemeWare: Check if background-image is set
+		@if $twt-footer-bottom-background-image-show == 2 and $twt-footer-bottom-background-image != "" and $twt-footer-bottom-background-image != "none" {
+			-webkit-background-size: $twt-footer-bottom-background-image-size;
+			background-size: $twt-footer-bottom-background-image-size;
+			background-position: $twt-footer-bottom-background-image-position;
+			background-repeat: $twt-footer-bottom-background-image-repeat;
+			background-attachment: $twt-footer-bottom-background-image-attachment;
+		}
+
+		a {
+			color: $twt-footer-bottom-link-color;
+
+			&:hover {
+				color: $twt-footer-bottom-link-color-hover;
+			}
+		}
+		.footer-service-menu {
+			text-align: center;
+
+			// ThemeWare: Check service menu show/hide
+			@if $twt-footer-service-menu-show == 4 {
+				@include media-breakpoint-up(sm) {display: none; } // min 576px
+			} @else if $twt-footer-service-menu-show == 5 {
+				@include media-breakpoint-up(md) {display: none; } // min 768px
+			} @else if $twt-footer-service-menu-show == 6 {
+				@include media-breakpoint-up(lg) {display: none; } // min 992px
+			} @else if $twt-footer-service-menu-show == 7 {
+				@include media-breakpoint-up(xl) {display: none; } // min 1200px
+			} @else if $twt-footer-service-menu-show == 8 {
+				@include media-breakpoint(min,$twt-container-max-width) {display: none; }
+			} @else if $twt-footer-service-menu-show == 1 {
+				display: none;
+			}
+		}
+
+		.footer-vat p {
+			margin-bottom: 0;
+		}
+	}
+}
+
+/*
+  _             _______ _____    _____                             _   _
+ | |           |__   __/ ____|  |_   _|                           | | (_)
+ | |__  _   _     | | | |   ______| |  _ __  _ __   _____   ____ _| |_ _  ___  _ __  ___
+ | '_ \| | | |    | | | |  |______| | | '_ \| '_ \ / _ \ \ / / _` | __| |/ _ \| '_ \/ __|
+ | |_) | |_| |    | | | |____    _| |_| | | | | | | (_) \ V / (_| | |_| | (_) | | | \__ \
+ |_ __/ \__, |    |_|  \_____|  |_____|_| |_|_| |_|\___/ \_/ \__,_|\__|_|\___/|_| |_|___/
+         __/ |
+        |___/
+*/
+
+.footer-service-menu-link {
+	padding: 0; // ThemeWare: Padding removed
+}
+
+/* ThemeWare: Logos footer */
+
+@if $twt-footer-logos-show != "none" and $twt-footer-logos-compatibility != 1 {
+	.footer-logos {
+		.container {
+			@include media-breakpoint-up(md) { // min 768px
+				display: flex;
+			}
+
+			justify-content: center;
+		}
+	}
+
+	.footer-logo {
+		display: inline-block;
+	}
+
+	.twt-footer-logos-payment-methods,
+	.twt-footer-logos-shipping-methods {
+		margin: 0 5px;
+	}
+
+	.twt-footer-logos-headline {
+		@include twt-font-size(14);
+		text-align: center;
+		@include media-breakpoint-up(md) { // min 768px
+			text-align: left;
+		}
+		margin-bottom: 5px;
+	}
+
+	.twt-widget-payment,
+	.twt-widget-shipping {
+		text-align: center;
+		@include media-breakpoint-up(md) { // min 768px
+			text-align: left;
+		}
+	}
+}

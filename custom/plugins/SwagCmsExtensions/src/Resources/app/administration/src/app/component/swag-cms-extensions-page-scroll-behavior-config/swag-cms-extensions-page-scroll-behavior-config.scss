@@ -1,0 +1,27 @@
+@import "~scss/variables";
+
+.swag-cms-page-config__scroll-navigation-page-settings {
+    margin: 0 24px;
+
+    .scroll-navigation__smooth-scrolling-bouncy {
+        margin-top: 4px;
+    }
+
+    .info-text {
+        color: $color-darkgray-200;
+    }
+
+    .sw-collapse {
+        .sw-sidebar-collapse__header {
+            border-top: none;
+        }
+
+        .sw-sidebar-collapse__button {
+            margin: 0;
+        }
+    }
+
+    .sw-sidebar-collapse__title {
+        margin: 0;
+    }
+}

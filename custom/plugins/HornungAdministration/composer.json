@@ -1,0 +1,19 @@
+{
+  "name": "netzreich/administration-plugin",
+  "description": "Hornung Administration Plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "HornungAdministration\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "HornungAdministration\\HornungAdministration",
+    "label": {
+      "de-DE": "Hornung Administration Plugin",
+      "en-GB": "Hornung Administration Plugin"
+    }
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,35 @@
+{
+    "pickware-dhl": {
+        "preferred-delivery": {
+            "storefront": {
+                "title": "DHL Wunschpaket",
+                "subtitle": "Mit den Services von DHL Wunschpaket entscheiden Sie, wann und wo Sie Ihre Pakete empfangen. Wählen Sie Ihre bevorzugte Lieferoption aus.",
+                "configure": "DHL Wunschpaket konfigurieren",
+                "save-configuration": "Konfiguration speichern",
+                "no-services-configured": "Bisher wurden keine Lieferoptionen ausgewählt.",
+                "no-services-available": "Für die ausgewählte Postleitzahl stehen keinen Services zu verfügung.",
+                "neighbour-and-location-warning": "Es kann nicht gleichzeitig ein Wert für Wunschnachbar und ein Wert für Wunschort angegeben werden.",
+                "preferred-day": {
+                    "label": "Wunschtag",
+                    "extended-label": "Wunschtag: Lieferung zum gewünschten Tag",
+                    "tooltip": "Sie haben die Möglichkeit einen der angezeigten Tage als Wunschtag für die Lieferung Ihrer Waren auszuwählen. Andere Tage sind aufgrund der Lieferprozesse aktuell nicht möglich."
+                },
+                "preferred-location": {
+                    "label": "Wunschort",
+                    "extended-label": "Wunschort: Lieferung an den gewünschten Ablageort",
+                    "placeholder": "z.B. Garage, Terasse",
+                    "tooltip": "Bestimmen Sie einen wettergeschützten und nicht einsehbaren Platz auf Ihrem Grundstück, an dem wir das Paket hinterlegen dürfen."
+                },
+                "preferred-neighbour": {
+                    "label": "Wunschnachbar",
+                    "extended-label": "Wunschnachbar: Lieferung an den Nachbarn ihrer Wahl",
+                    "placeholder": "Nachname, Vorname, Adresse",
+                    "tooltip": "Bestimmen Sie eine Person in Ihrer unmittelbaren Nachbarschaft, bei der wir Ihr Paket während Ihrer Abwesenheit abgeben dürfen. Diese sollte im gleichen Haus, direkt gegenüber oder nebenan wohnen."
+                },
+                "no-neighbour-delivery": {
+                    "label": "Keine Nachbarschaftszustellung"
+                }
+            }
+        }
+    }
+}

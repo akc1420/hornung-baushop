@@ -1,0 +1,60 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-form.html.twig' %}
+{# ThemeWare® HC-Architecture® via configuration #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailBtnBuyLayout = theme_config('twt-product-detail-btn-buy-layout') %}
+{% set twtProductDetailBtnBuyIconPosition = theme_config('twt-product-detail-btn-buy-icon-position') %}
+{% set twtIconCart = theme_config('twt-icon-cart') %}
+{% set twtIconSet = theme_config('twt-iconset') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# @TODO:
+	- Configure breakpoints
+	- Configure icon (arrow-right, cart*, header-actions-button)
+		- Add new cart icon (*)
+	- Add HC-Architecture information to documentation
+#}
+
+{% block page_product_detail_buy_button %}
+	{% if twtProductDetailBtnBuyLayout != '1' %}
+		{# @deprecated tag:v6.5.0 - Bootstrap v5 removes `btn-block` class, use `d-grid` wrapper instead #}
+		<button class="btn btn-block btn-buy"
+				title="{{ "detail.addProduct"|trans|striptags }}"
+				aria-label="{{ "detail.addProduct"|trans|striptags }}">
+			{# ThemeWare: Set icon #}
+			{% set icon %}
+				{% if twtIconSet is not same as ('default') %}
+					{% if twtIconCart == 'bag' %}
+						{% sw_icon 'bag' style { 'pack': 'themeware', 'size': 'sm'} %}
+					{% elseif twtIconCart == 'basket' %}
+						{% sw_icon 'basket' style { 'pack': 'themeware', 'size': 'sm' } %}
+					{% else %}
+						{% sw_icon 'cart' style { 'pack': 'themeware', 'size': 'sm' } %}
+					{% endif %}
+				{% else %}
+					{% sw_icon 'bag' style { 'size': 'sm' } %}
+				{% endif %}
+			{% endset %}
+
+			{# ThemeWare: Add icon #}
+			{% if twtProductDetailBtnBuyIconPosition == '1' %}
+				{{ icon }} <span class="text">{{ "detail.addProduct"|trans|sw_sanitize }}</span>
+			{% else %}
+				<span class="text">{{ "detail.addProduct"|trans|sw_sanitize }}</span> {{ icon }}
+			{% endif %}
+
+			{#
+			<span>{{ "detail.addProduct"|trans|sw_sanitize }}</span> {% sw_icon 'cart' style {'pack':'themeware'} %}
+			<span>Add to</span> {% sw_icon 'cart' style {'pack':'themeware'} %}
+			{% sw_icon 'cart' style {'pack':'themeware'} %}
+			#}
+		</button>
+	{% else %}
+
+		{# Default block #}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}

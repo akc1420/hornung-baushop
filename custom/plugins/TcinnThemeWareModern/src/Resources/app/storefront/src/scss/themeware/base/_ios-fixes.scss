@@ -1,0 +1,42 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: iOS fixes
+    ==================================================
+    Contains specific browser fixes which are only applied in iOS.
+*/
+
+// TODO: Safari fixes
+// header.header-main .nav-main:after { display: none; }
+
+html.is-ios {
+    /* Set form inputs to have a font-size of 1rem (16px) or larger
+     * to prevent iOS Safari from automatically zooming in when tapped.
+     */
+    .form-control:not(.form-control-sm):not(.form-control-lg) {
+        font-size: 16px; // 1rem
+    }
+
+    .form-control {
+        &.form-control-sm {
+            font-size: 16px * .875; // .875rem
+        }
+
+        &.form-control-lg {
+            font-size: 16px * 1.25; // 1.25rem
+        }
+    }
+
+    .custom-select {
+        font-size: 16px; // 1rem
+    }
+}
+
+/*html.is-iphone {}*/
+
+/*html.is-ipad {}*/

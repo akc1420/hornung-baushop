@@ -1,0 +1,71 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Product labels
+	==================================================
+
+*/
+
+// TODO: Fix empty element
+.twt-product-detail-delivery-information-labels {
+  &:empty {
+    display: none;
+  }
+
+  &:not(:empty) {
+    display: block;
+
+    margin-right: -3px;
+    @if $twt-product-detail-labels-arrangement == 1 {
+      margin-bottom: calc(1rem - 8px); // Subtracht 'margin-bottom' of the p-elements inside
+    } @else {
+      margin-bottom: 1rem;
+    }
+    margin-left: -3px;
+
+    //&.is-top { ... }
+
+    &.is-bottom {
+      margin-top: 1.5rem;
+    }
+  }
+
+  //&.is-top { ... }
+
+  //&.is-bottom { ... }
+
+  p.label {
+    font-size: 85%;
+    margin: 0;
+
+    @if $twt-product-detail-labels-arrangement == 1 {
+      // Nebeneinander
+      display: inline-block;
+      margin-right: 3px;
+      margin-bottom: 8px;
+      margin-left: 3px;
+    } @else {
+      // Untereinander
+      display: table;
+    }
+
+    @if $twt-product-detail-labels-style == 2 {
+      // Badge pills
+      border-radius: 10rem;
+    }
+
+    @if $twt-product-detail-labels-arrangement == 2 {
+      // Untereinander
+      margin-bottom: .5rem;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

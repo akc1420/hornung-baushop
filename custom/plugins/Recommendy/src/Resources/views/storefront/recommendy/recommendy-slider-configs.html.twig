@@ -1,0 +1,40 @@
+{% block recommendy_slider_configs %}
+    {% set config = {
+        'rotate': {
+            'value': false
+        },
+        'products': {
+            'value': sliderElements
+        },
+        'boxLayout': {
+            'value': 'standard'
+        },
+        'elMinWidth': {
+            'value': '300px'
+        },
+        'navigation': {
+            'value': true
+        },
+        'displayMode': {
+            'value': 'standard'
+        },
+        'verticalAlign': {
+            'value': 'top'
+        },
+        'title': {
+            'value': title
+        },
+    } %}
+
+    {% sw_include "@Storefront/storefront/element/cms-element-recommendy-product-slider.html.twig" with {
+        sliderConfig: config,
+        element: {
+            'data': {
+                'products': {
+                    elements: sliderElements
+                }
+            },
+            type: 'product-slider'
+        }
+    } %}
+{% endblock %}

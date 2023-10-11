@@ -1,0 +1,67 @@
+{% block sisi_scheduled_detail %}
+    <sw-page class="sisi-scheduled-detail">
+
+        <template slot="smart-bar-actions">
+            <sw-button :routerLink="{ name: 'sisi.scheduled.list' }">
+                {{ $t('sisi-scheduled.detail.list') }}
+            </sw-button>
+
+            <sw-button-process
+                :isLoading="isLoading"
+                :processSuccess="processSuccess"
+                variant="primary"
+                @process-finish="saveFinish"
+                @click="onClickSave">
+                {{ $t('sisi-scheduled.detail.save') }}
+            </sw-button-process>
+        </template>
+
+        <template slot="content">
+            <sw-card-view>
+                <sw-card v-if="fields" :isLoading="isLoading">
+                    <sw-field :label="$t('sisi-scheduled.detail.title')" v-model="fields.title" v-bind:style="{background: colorTitle}"></sw-field>
+                    <sw-select-field :label="$t('sisi-scheduled.detail.shop')" v-model="fields.shop">
+                        <option v-for="item in options" v-if="item.value == fields.shop" >
+                            {{ item.text }}
+                        </option>
+                        <option value=""> no select</option>
+                        <option v-for="option in options" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </sw-select-field>
+                    <sw-select-field :label="$t('sisi-scheduled.detail.language')" size="medium" v-model="fields.language">
+                        <option v-for="item in optionsLanguage" v-if="item.value == fields.language" >
+                            {{ item.text }}
+                        </option>
+                        <option value=""> no select</option>
+                        <option v-for="option in optionsLanguage" v-bind:value="option.value">
+                            {{ option.text }}
+                        </option>
+                    </sw-select-field>
+                    <sw-select-field :label="$t('sisi-scheduled.detail.kind')" size="medium" v-model="fields.kind" v-on:change="displayKind()">
+                        <option value="index">{{$t('sisi-scheduled.detail.indexkind')}}</option>
+                        <option value="delete">{{ $t('sisi-scheduled.detail.deletekind')}}</option>
+                        <option value="update">{{ $t('sisi-scheduled.detail.update')}}</option>
+                        <option value="updateG">{{ $t('sisi-scheduled.detail.updateG')}}</option>
+                    </sw-select-field>
+
+                    <sw-number-field :label="$t('ssisi-fields.detail.days')"  v-model="fields.days"  v-bind:style="{display:strdays}"> </sw-number-field>
+
+                    <sw-select-field :label="$t('sisi-scheduled.detail.aktive')" size="medium"
+                                     v-model="fields.aktive">
+                        <option value="yes">yes</option>
+                        <option value="no">no</option>
+                    </sw-select-field>
+
+                    <sw-number-field :label="$t('sisi-scheduled.detail.limit')" v-model="fields.limit"></sw-number-field>
+                    <sw-number-field :label="$t('sisi-scheduled.detail.all')" v-model="fields.all" v-bind:style="{display:displayall}" value="1"></sw-number-field>
+                    <sw-number-field :label="$t('sisi-scheduled.detail.time')" v-model="fields.time" v-bind:style="{background:colorTime}"></sw-number-field>
+
+                     <sw-datepicker  :label="$t('sisi-scheduled.detail.lastExecution')" placeholder="text" v-model="fields.lastExecutionTime" disabled="1"/>
+
+                     <sw-datepicker  :label="$t('sisi-scheduled.detail.nextExecutionTime')" placeholder="text" v-model="fields.nextExecutionTime" v-bind:style="{background:colornextExecutionTime}"/>
+                </sw-card>
+            </sw-card-view>
+        </template>
+    </sw-page>
+{% endblock %}

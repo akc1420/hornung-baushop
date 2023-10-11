@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+    <card>
+        <title>Settings</title>
+        <title lang="de-DE">Einstellungen</title>
+        <input-field>
+            <name>code</name>
+            <label>Verification Code</label>
+            <label lang="de-DE">Verifizierungs-Code</label>
+            <required>true</required>
+            <helpText>Insert the verification code from Facebook.</helpText>
+            <helpText lang="de-DE">Hier den Verifizierungs-Code von Facebook einfügen.</helpText>
+            <copyable>true</copyable>
+        </input-field>
+        <component name="mediameets-config-example">
+            <name>help</name>
+            <label>Help</label>
+            <label lang="de-DE">Hilfe</label>
+            <text>How to find the verification code on Facebook:&lt;/br&gt;&lt;/br&gt;&lt;strong&gt;DNS verification&lt;/strong&gt;: facebook-domain-verification=abcdefghijklmnopqrst0123456789&lt;/br&gt;&lt;/br&gt;&lt;strong&gt;HTML-File-Upload&lt;/strong&gt;: http://example.com/abcdefghijklmnopqrst0123456789.html&lt;/br&gt;&lt;/br&gt;&lt;strong&gt;Metatag verification&lt;/strong&gt;: &lt; meta name="facebook-domain-verification" content="abcdefghijklmnopqrst0123456789" / &gt;</text>
+            <text lang="de-DE">So finden Sie den Verifizierungs-Code bei Facebook:&lt;/br&gt;&lt;/br&gt;&lt;strong&gt;DNS-Verifizierung&lt;/strong&gt;: facebook-domain-verification=abcdefghijklmnopqrst0123456789&lt;/br&gt;&lt;/br&gt;&lt;strong&gt;HTML-Datei-Upload&lt;/strong&gt;: http://beispiel.de/abcdefghijklmnopqrst0123456789.html&lt;/br&gt;&lt;/br&gt;&lt;strong&gt;Metatag-Verifizierung&lt;/strong&gt;: &lt; meta name="facebook-domain-verification" content="abcdefghijklmnopqrst0123456789" / &gt;</text>
+            <highlight>abcdefghijklmnopqrst0123456789</highlight>
+        </component>
+    </card>
+</config>

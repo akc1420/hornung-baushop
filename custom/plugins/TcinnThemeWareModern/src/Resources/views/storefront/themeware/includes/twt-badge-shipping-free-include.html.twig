@@ -1,0 +1,27 @@
+{# ThemeWare "Free shipping badge" content #}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductBadgesShippingFreeBadgeColoration = theme_config('twt-product-badges-shipping-free-badge-coloration') %}
+{% set twtProductBadgesShippingFreeBadgeIconShow = theme_config('twt-product-badges-shipping-free-badge-icon-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_product_badges_shipping_free_badge %}
+    {% if product.shippingFree %}
+        <div>
+            <span class="badge badge-info{% if twtProductBadgesShippingFreeBadgeColoration == 3 %}-lighten{% endif %} badge-shipping-free twt-badge-shipping-free">
+                {% if twtProductBadgesShippingFreeBadgeIconShow == 2 %}
+                    {# warning #}
+                    {% sw_include '@Storefront/storefront/themeware/twt-icons.html.twig' ignore missing with {
+                        icon: "twt.extension.shippingFreeBadge.icon"|trans
+                    } %}
+                {% endif %}
+                {{ "general.deliveryShippingFree"|trans|sw_sanitize }}
+            </span>
+        </div>
+    {% endif %}
+{% endblock %}

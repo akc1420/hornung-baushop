@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_body_script %}
+    {% block base_body_script_gbmed_form %}
+        {% sw_include '@Storefront/storefront/component/gbmed-forms-options.html.twig' %}
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}

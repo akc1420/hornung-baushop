@@ -1,0 +1,281 @@
+{# ThemeWare "Product specifications" on product pages #}
+{#
+    Create container and add product specifications
+    type: buy-box
+
+    @Storefront/storefront/themeware/product-detail/twt-product-specifications.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductDetailAvailablestockShow = theme_config('twt-product-detail-availablestock-show') %}
+{% set twtProductDetailEanShow = theme_config('twt-product-detail-ean-show') %}
+{% set twtProductDetailHeightShow = theme_config('twt-product-detail-height-show') %}
+{% set twtProductDetailLengthShow = theme_config('twt-product-detail-length-show') %}
+{% set twtProductDetailManufacturerShow = theme_config('twt-product-detail-manufacturer-show') %}
+{% set twtProductDetailManufacturernumberShow = theme_config('twt-product-detail-manufacturernumber-show') %}
+{% set twtProductDetailMaxpurchaseShow = theme_config('twt-product-detail-maxpurchase-show') %}
+{% set twtProductDetailMinpurchaseShow = theme_config('twt-product-detail-minpurchase-show') %}
+{% set twtProductDetailWeightShow = theme_config('twt-product-detail-weight-show') %}
+{% set twtProductDetailWidthShow = theme_config('twt-product-detail-width-show') %}
+
+{% set twtProductDetailCustomField1Show = theme_config('twt-product-detail-custom-field-1-show') %}
+{% set twtProductDetailCustomField2Show = theme_config('twt-product-detail-custom-field-2-show') %}
+{% set twtProductDetailCustomField3Show = theme_config('twt-product-detail-custom-field-3-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Product specifications in buy-box #}
+{% block twt_buy_widget_product_specifications %}
+    {# ThemeWare: Add manufacturer (itemprop "brand") #}
+    {% if page.product.manufacturer and twtProductDetailManufacturerShow == 2 %}
+        <div class="twt-product-detail-manufacturer-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_manufacturer_label %}
+                <span class="twt-product-detail-manufacturer-label twt-product-specifications-label">
+                        {{ "twt.detail.manufacturerLabel"|trans|sw_sanitize }}
+                    </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_manufacturer %}
+                <span class="twt-product-detail-manufacturer">
+                        {{ page.product.manufacturer.translated.name }}
+                    </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add manufacturerNumber (itemprop "mpn") #}
+    {% if page.product.manufacturerNumber and twtProductDetailManufacturernumberShow == 2 %}
+        <div class="twt-product-detail-manufacturernumber-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_manufacturernumber_label %}
+                <span class="twt-product-detail-manufacturernumber-label twt-product-specifications-label">
+                    {{ "twt.detail.manufacturernumberLabel"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_manufacturernumber %}
+                <span class="twt-product-detail-manufacturernumber">
+                    {{ page.product.manufacturerNumber }}
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add ean (itemprop "gtin13") #}
+    {% if page.product.ean and twtProductDetailEanShow == 2 %}
+        <div class="twt-product-detail-ean-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_ean_label %}
+                <span class="twt-product-detail-ean-label twt-product-specifications-label">
+                    {{ "twt.detail.eanLabel"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_ean %}
+                <span class="twt-product-detail-ean">
+                    {{ page.product.ean }}
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Zusatzfeld 1 (ehemals Freitextfeld 1) #}
+    {% if twtCustomFields.product.twt_modern_pro_custom_field__product__custom_field_1 is not empty and twtProductDetailCustomField1Show == 2 %}
+        <div class="twt-product-detail-custom-field-1-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_custom_field_1_label %}
+                <span class="twt-product-detail-custom-field-1-label twt-product-specifications-label">
+                    {{ "twt.detail.customFields.customField1.label"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_custom_field_1 %}
+                <span class="twt-product-detail-custom-field-1">
+                    {{ twtCustomFields.product.twt_modern_pro_custom_field__product__custom_field_1 }}
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add weight (itemprop "weight") #}
+    {% if page.product.weight and twtProductDetailWeightShow == 2 %}
+        <div class="twt-product-detail-weight-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_weight_label %}
+                <span class="twt-product-detail-weight-label twt-product-specifications-label">
+                    {{ "twt.detail.weightLabel"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_weight %}
+                <span class="twt-product-detail-weight">
+                    {{ page.product.weight }} kg
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add length (itemprop "depth") #}
+    {% if page.product.length and twtProductDetailLengthShow == 2 %}
+        <div class="twt-product-detail-length-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_length_label %}
+                <span class="twt-product-detail-length-label twt-product-specifications-label">
+                    {{ "twt.detail.lengthLabel"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_length %}
+                <span class="twt-product-detail-length">
+                    {{ page.product.length }} mm
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add width (itemprop "width") #}
+    {% if page.product.width and twtProductDetailWidthShow == 2 %}
+        <div class="twt-product-detail-width-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_width_label %}
+                <span class="twt-product-detail-width-label twt-product-specifications-label">
+                    {{ "twt.detail.widthLabel"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_width %}
+                <span class="twt-product-detail-width">
+                    {{ page.product.width }} mm
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add height (itemprop "height") #}
+    {% if page.product.height and twtProductDetailHeightShow == 2 %}
+        <div class="twt-product-detail-height-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_height_label %}
+                <span class="twt-product-detail-height-label twt-product-specifications-label">
+                    {{ "twt.detail.heightLabel"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_height %}
+                <span class="twt-product-detail-height">
+                    {{ page.product.height }} mm
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Zusatzfeld 2 (ehemals Freitextfeld 2) #}
+    {# TODO: Add position 'below 1', 'default' or 'above 3'... #}
+    {% if twtCustomFields.product.twt_modern_pro_custom_field__product__custom_field_2 is not empty and twtProductDetailCustomField2Show == 2 %}
+        <div class="twt-product-detail-custom-field-2-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_custom_field_2_label %}
+                <span class="twt-product-detail-custom-field-2-label twt-product-specifications-label">
+                    {{ "twt.detail.customFields.customField2.label"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_custom_field_2 %}
+                <span class="twt-product-detail-custom-field-2">
+                    {{ twtCustomFields.product.twt_modern_pro_custom_field__product__custom_field_2 }}
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add availableStock (itemprop "..") #}
+    {# TODO: handle isCloseout?! #}
+    {% if page.product.availableStock > 0 and twtProductDetailAvailablestockShow == 2 %}
+        <div class="twt-product-detail-availablestock-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_availablestock_label %}
+                <span class="twt-product-detail-availablestock-label twt-product-specifications-label">
+                    {{ "twt.detail.availableStockLabel"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_availablestock %}
+                <span class="twt-product-detail-availablestock">
+                    {{ page.product.availableStock }}
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add minPurchase (itemprop "..") #}
+    {% if page.product.minPurchase and twtProductDetailMinpurchaseShow == 2 %}
+        <div class="twt-product-detail-minpurchase-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_minpurchase_label %}
+                <span class="twt-product-detail-minpurchase-label twt-product-specifications-label">
+                    {{ "twt.detail.minpurchaseLabel"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_minpurchase %}
+                <span class="twt-product-detail-minpurchase">
+                    {{ page.product.minPurchase }}
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Add maxPurchase (itemprop "..") #}
+    {% if page.product.maxPurchase and twtProductDetailMaxpurchaseShow == 2 %}
+        <div class="twt-product-detail-maxpurchase-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_maxpurchase_label %}
+                <span class="twt-product-detail-maxpurchase-label twt-product-specifications-label">
+                    {{ "twt.detail.maxpurchaseLabel"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_maxpurchase %}
+                <span class="twt-product-detail-maxpurchase">
+                    {{ page.product.maxPurchase }}
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+
+    {# ThemeWare: Zusatzfeld 3 #}
+    {% if twtCustomFields.product.twt_modern_pro_custom_field__product__custom_field_3 is not empty and twtProductDetailCustomField3Show == 2 %}
+        <div class="twt-product-detail-custom-field-3-container twt-product-specifications-container">
+
+            {% block twt_page_product_detail_custom_field_3_label %}
+                <span class="twt-product-detail-custom-field-3-label twt-product-specifications-label">
+                    {{ "twt.detail.customFields.customField3.label"|trans|sw_sanitize }}
+                </span>
+            {% endblock %}
+
+            {% block twt_page_product_detail_custom_field_3 %}
+                <span class="twt-product-detail-custom-field-3">
+                    {{ twtCustomFields.product.twt_modern_pro_custom_field__product__custom_field_3 }}
+                </span>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+{% endblock %}

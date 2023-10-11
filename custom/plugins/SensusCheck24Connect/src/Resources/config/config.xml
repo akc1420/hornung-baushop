@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Base settings</title>
+        <title lang="de-DE">Basis Einstellungen</title>
+        <input-field type="bool">
+            <name>active</name>
+            <label>Aktiv?</label>
+        </input-field>
+        <input-field type="text">
+            <name>FTPHost</name>
+            <label>FTP Host</label>
+        </input-field>
+        <input-field type="text">
+            <name>FTPUsername</name>
+            <label>FTP Username</label>
+        </input-field>
+        <input-field type="text">
+            <name>FTPPassword</name>
+            <label>FTP Password</label>
+        </input-field>
+        <input-field type="int">
+            <name>FTPPort</name>
+            <label>FTP Port</label>
+        </input-field>
+        <input-field type="bool">
+            <name>FTPUnsecure</name>
+            <label>FTP-Verbindung unverschlüsselt herstellen?</label>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>orderState</name>
+            <label>Order State</label>
+            <label lang="de-DE">Bestellstatus</label>
+            <options>
+                <option>
+                    <id>open</id>
+                    <name>Open</name>
+                    <name lang="de-DE">Offen</name>
+                </option>
+                <option>
+                    <id>process</id>
+                    <name>In Progress</name>
+                    <name lang="de-DE">In Bearbeitung</name>
+                </option>
+                <option>
+                    <id>cancel</id>
+                    <name>Cancelled</name>
+                    <name lang="de-DE">Abgebrochen</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>orderTransactionState</name>
+            <label>Payment State</label>
+            <label lang="de-DE">Zahlungsstatus</label>
+            <options>
+                <option>
+                    <id>open</id>
+                    <name>Open</name>
+                    <name lang="de-DE">Offen</name>
+                </option>
+                <option>
+                    <id>paid</id>
+                    <name>Paid</name>
+                    <name lang="de-DE">Bezahlt</name>
+                </option>
+                <option>
+                    <id>paid_partially</id>
+                    <name>Paid (partially)</name>
+                    <name lang="de-DE">Bezahlt (teilweise)</name>
+                </option>
+            </options>
+        </input-field>
+
+        <component name="sw-entity-single-select">
+            <name>paymentMethod</name>
+            <entity>payment_method</entity>
+            <label>Zahlungsart</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>shippingMethod</name>
+            <entity>shipping_method</entity>
+            <label>Versandart</label>
+        </component>
+        <component name="sw-entity-single-select">
+            <name>customerGroup</name>
+            <entity>customer_group</entity>
+            <label>Kundengruppe</label>
+        </component>
+    </card>
+</config>

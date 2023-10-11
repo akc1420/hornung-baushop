@@ -1,0 +1,35 @@
+{
+    "pickware-dhl": {
+        "preferred-delivery": {
+            "storefront": {
+                "title": "DHL preferred delivery",
+                "subtitle": "Thanks to the flexible recipient services of DHL Preferred Delivery, you decide when and where you want to receive your parcels. Please choose your preferred delivery option.",
+                "configure": "Configure DHL preferred delivery",
+                "save-configuration": "Save configuration",
+                "no-services-configured": "No delivery options were selected yet.",
+                "no-services-available": "There are no services available for the selected zip code.",
+                "neighbour-and-location-warning": "You cannot configure preferred location and preferred neighbour at the same time.",
+                "preferred-day": {
+                    "label": "Preferred day",
+                    "extended-label": "Preferred day: Delivery on the preferred day",
+                    "tooltip": "Choose one of the displayed days as your preferred day for your parcel delivery. Other days are not possible due to delivery processes."
+                },
+                "preferred-location": {
+                    "label": "Preferred location",
+                    "extended-label": "Preferred location: Delivery to the preferred deposit location",
+                    "placeholder": "i.e. garage, terrace",
+                    "tooltip": "Choose a weather-protected and non-visible place on your property, where we can deposit the parcel."
+                },
+                "preferred-neighbour": {
+                    "label": "Preferred neighbour",
+                    "extended-label": "Preferred neighbour: Delivery to a neighbour of your choice",
+                    "placeholder": "last name, first name, address",
+                    "tooltip": "Determine a person in your immediate neighbourhood whom we can hand out your parcel in your absence. This person should live in the same building, directly opposite or next door."
+                },
+                "no-neighbour-delivery": {
+                    "label": "No neighbour delivery"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,57 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Widget > Location
+	==================================================
+
+*/
+
+// TODO: sh. layout/_footer.scss
+
+// ThemeWare: General widget styling ------------------------------
+
+.twt-widget-location {
+  a.btn-route {
+    // TODO: @include button-variant(..., ...);
+    color: $twt-widget-location-route-button-color;
+    border: 1px solid $twt-widget-location-route-button-border-color;
+    background-color: $twt-widget-location-route-button-background-color;
+
+    .icon {
+      width: 16px;
+      height: 16px;
+      margin-right: 5px;
+
+      &> svg {
+        top: 3px;
+        transition: color .15s ease-in-out;
+        color: $twt-widget-location-route-button-color;
+      }
+    }
+
+    &:hover {
+      color: $twt-widget-location-route-button-color-hover;
+      border: 1px solid $twt-widget-location-route-button-border-color-hover;
+      background-color: $twt-widget-location-route-button-background-color-hover;
+
+      .icon {
+        &> svg {
+          color: $twt-widget-location-route-button-color-hover;
+        }
+      }
+    }
+  }
+
+}
+
+// ThemeWare: Sidebar specific styling ------------------------------
+
+//.cms-section-sidebar-sidebar-content {
+//  .twt-widget-location {
+//  }
+//}

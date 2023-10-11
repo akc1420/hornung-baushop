@@ -1,0 +1,44 @@
+{
+    "name": "gbmed/form",
+    "description": "GbmedForm",
+    "version": "1.1.21",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "gb media",
+            "homepage": "https://www.gb-media.biz",
+            "email": "shopware@gb-media.biz"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Gbmed\\Form\\": "src/"
+        }
+    },
+    "require": {
+        "shopware/core": "6.4.*",
+        "shopware/administration": "6.4.*",
+        "shopware/storefront": "6.4.*"
+    },
+    "extra": {
+        "shopware-plugin-class": "Gbmed\\Form\\GbmedForm",
+        "copyright": "(c) gb media",
+        "label": {
+            "de-DE": "Formulare mit Google reCAPTCHA",
+            "en-GB": "Formulars with Google reCAPTCHA"
+        },
+        "description": {
+            "de-DE": "In den Formularen Kontakt, Register, Anmelden und Passwort vergessen ist das Google reCAPTCHA V3 eingebunden, das sie vor Spams effektiv schützt.",
+            "en-GB": "The Google reCAPTCHA V3 is integrated into the forms contact, register, login and password forgotten, which effectively protects you from spam."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.gb-media.biz",
+            "en-GB": "https://www.gb-media.biz"
+        },
+        "supportLink": {
+            "de-DE": "https://account.shopware.com/shops/support",
+            "en-GB": "https://account.shopware.com/shops/support"
+        }
+    }
+}

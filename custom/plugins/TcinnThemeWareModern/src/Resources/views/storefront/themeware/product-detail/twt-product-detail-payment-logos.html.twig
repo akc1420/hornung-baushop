@@ -1,0 +1,32 @@
+{# ThemeWare "Payment logos" on prodcut pages (Container) #}
+{#
+    Create container and include the payment logos
+    type: buy-box - position: top/bottom
+
+    @Storefront/storefront/themeware/product-detail/twt-product-detail-payment-logos.html.twig
+#}
+
+{# ThemeWare: Add payment logos to buy-box #}
+{% block twt_product_detail_payment_logos %}
+    <div class="twt-product-detail-payment-logos twt-payment-logos {{ position }}" id="twt-detail-payment-logos">
+
+        {% block twt_product_detail_payment_logos_inner %}
+
+            {% block twt_product_detail_payment_logos_headline %}
+                <div class="twt-product-detail-payment-logos-headline">
+                    {{ "twt.detail.paymentLogos.headline"|trans|sw_sanitize }}
+                </div>
+            {% endblock %}
+
+            {% block twt_product_detail_payment_logos_content %}
+                <div class="twt-product-detail-payment-logos-content">
+                    <div class="twt-widget-payment is-detail">
+                        {% sw_include '@Storefront/storefront/themeware/includes/twt-payment-logos-include.html.twig' ignore missing %}
+                    </div>
+                </div>
+            {% endblock %}
+
+        {% endblock %}
+
+    </div>
+{% endblock %}

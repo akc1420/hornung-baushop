@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/page/checkout/cart/index.html.twig' %}
+
+{% block page_checkout %}
+    {{ parent() }}
+
+    {% block page_checkout_recommendy_bundle %}
+        {% set recommendySlider = page.extensions.Recommendy %}
+
+        {# Recommendy bundle #}
+        {% if recommendySlider.bundleArticles is defined and recommendySlider.bundleArticles|length > 0 %}
+            {% sw_include '@Recommendy/storefront/recommendy/recommendy_bundle.html.twig' %}
+        {% endif %}
+    {% endblock %}
+{% endblock %}

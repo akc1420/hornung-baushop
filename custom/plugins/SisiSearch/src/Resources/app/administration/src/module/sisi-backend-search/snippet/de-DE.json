@@ -1,0 +1,20 @@
+{
+    "sisi-backend-search": {
+        "result": "Suchergebnisse",
+        "channel": "Channelauswahl",
+        "backendlabel": "Backendsuche mit Elasticsearch",
+        "title": "Sisi Backendsuche",
+        "noitem": "Keine Treffer",
+        "hits": "Treffer",
+        "productname": "Produktname",
+        "productid": "Produkt ID",
+        "productdescription": "Produktbeschreibung",
+        "productnumber": "Produktnummer",
+        "productean": "Produkt EAN",
+        "productmetatitle": "Produkt Meta Titel",
+        "placeholder": "Produktname, Produktnummer, EAN oder ein beliebiger Begriff",
+        "initialSearchType": "Elasticsearch Produktsuche",
+        "alert": "Bitte einen Channel auswählen",
+        "channel": "Channelauswahl"
+    }
+}

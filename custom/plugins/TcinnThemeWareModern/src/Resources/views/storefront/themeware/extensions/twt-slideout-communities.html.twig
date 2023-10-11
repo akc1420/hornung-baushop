@@ -1,0 +1,17 @@
+{# ThemeWare "Slideout communities" (Extension container) #}
+{#
+    Create container and include the communities
+
+    @Storefront/storefront/themeware/extensions/twt-slideout-communities.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{% block twt_slideout_communities %}
+    {# ThemeWare: Slideout communities left or right #}
+    <div class="twt-slideout-communities" id="twt-slideout-communities">
+        {% sw_include '@Storefront/storefront/themeware/widgets/twt-communities-include.html.twig' ignore missing with {
+            type: 'slideout'
+        } %}
+    </div>
+{% endblock %}

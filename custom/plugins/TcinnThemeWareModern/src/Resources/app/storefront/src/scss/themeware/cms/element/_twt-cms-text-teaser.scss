@@ -1,0 +1,36 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS element "Text teaser"
+	==================================================
+
+*/
+
+// TODO: Add performance configuration to disable styling
+// TODO: Add font styling and sizing
+
+.cms-element-twt-text-teaser {
+    .twt-text-teaser-content {
+        p {
+            @include twt-font-size(20);
+            margin-bottom: 0;
+
+            &.twt-shadow-sm {
+                text-shadow: 0 1px 2px rgb(0 0 0 / 20%), 0 2px 2px rgb(0 0 0 / 60%);
+            }
+            &.twt-shadow {
+                text-shadow: 0 1px 2px rgb(0 0 0 / 40%), 0 2px 4px rgb(0 0 0 / 80%);
+            }
+            &.twt-shadow-lg {
+                text-shadow: 0 1px 4px rgb(0 0 0 / 80%), 0 4px 8px #000000;
+            }
+
+            // XL: text-shadow: 0 1px 6px rgb(0 0 0 / 80%), 0 12px 8px #000000;
+        }
+    }
+}

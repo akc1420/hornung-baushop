@@ -1,0 +1,23 @@
+﻿{% sw_extends '@Storefront/storefront/layout/cookie/cookie-permission.html.twig' %}
+{# ThemeWare® HC-Architecture® via configuration #}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtCookiePermissionShow = theme_config('twt-cookie-permission-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the cookie premission #}
+{# HC-Architecture @Doku #}
+{% block layout_cookie_permission_inner %}
+	{% if twtCookiePermissionShow == 1 %}
+		{# ThemeWare: "Cookie-Hinweis" entfernen. #}
+	{% else %}
+
+		{# Default block #}
+		{{ parent() }}
+	{% endif %}
+{% endblock %}

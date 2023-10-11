@@ -1,0 +1,55 @@
+{% block clever_reach_dashboard %}
+    <div class="cr-dashboard">
+        <clever-reach-banner :buttonText2="bannerButton">
+        </clever-reach-banner>
+        <clever-reach-container>
+            <sw-container class="cr-tabs">
+                <sw-tabs class="cr-tabs-left">
+                    <sw-tabs-item name="dashboard" :active="activeTab === 'dashboard'"
+                                  @click="setActiveTab('dashboard')">
+                        {{ $tc('clever-reach.dashboard.dashboard') }}
+                    </sw-tabs-item>
+                    <sw-tabs-item name="forms" :active="activeTab === 'forms'" @click="setActiveTab('forms')">
+                        {{ $tc('clever-reach.forms.tabName') }}
+                    </sw-tabs-item>
+                    <sw-tabs-item name="abandonedCart" :active="activeTab === 'abandonedCart'"
+                                @click="setActiveTab('abandonedCart')">
+                        {{ $tc('clever-reach.abandonedCart.tabName') }}
+                    </sw-tabs-item>
+                    <sw-tabs-item name="settings" :active="activeTab === 'settings'"
+                                  @click="setActiveTab('settings')">
+                        {{ $tc('clever-reach.syncSettings.tabName') }}
+                    </sw-tabs-item>
+                </sw-tabs>
+
+                <div v-if="activeTab ==='dashboard'">
+                    <clever-reach-dashboard-initialSync>
+                    </clever-reach-dashboard-initialSync>
+                    <clever-reach-dashboard-syncStatistics>
+                    </clever-reach-dashboard-syncStatistics>
+                    <clever-reach-dashboard-options>
+                    </clever-reach-dashboard-options>
+                    <clever-reach-dashboard-account>
+                    </clever-reach-dashboard-account>
+                    <clever-reach-dashboard-syncStatus>
+                    </clever-reach-dashboard-syncStatus>
+                </div>
+
+                <div v-if="activeTab === 'settings'">
+                    <clever-reach-afterInitial-syncSettings>
+                    </clever-reach-afterInitial-syncSettings>
+                </div>
+
+                <div v-if="activeTab === 'forms'">
+                    <clever-reach-forms>
+                    </clever-reach-forms>
+                </div>
+
+                <div v-if="activeTab === 'abandonedCart'">
+                    <clever-reach-abandoned-cart>
+                    </clever-reach-abandoned-cart>
+                </div>
+            </sw-container>
+        </clever-reach-container>
+    </div>
+{% endblock %}

@@ -1,0 +1,199 @@
+{
+    "sw-settings-security": {
+        "notification": {
+            "title": "Security Plugin",
+            "message": "Please update the security plugin to the latest version"
+        },
+        "general": {
+            "cardTitle": "Available fixes",
+            "textHeadline": "Security Plugin",
+            "mainMenuItemGeneral": "Security Plugin",
+            "description": "Fixes known issues in older Shopware versions",
+            "buttonSave": "Save",
+            "noFixes": "Your system is protected against all known vulnerabilities.",
+            "alert": "Caution, these are important security fixes for your shop! Deactivating one or more of these will make your shop vulnerable to these security gaps. Be sure what you are doing when deactivating any of the options and consider doing so only temporarily."
+        },
+        "fixes": {
+            "NEXT-9241": {
+                "label": "NEXT-9241 - Secure session cookie",
+                "tooltip": ""
+            },
+            "NEXT-9240": {
+                "label": "NEXT-9240, NEXT-9176 - Authenticated stored XSS",
+                "tooltip": ""
+            },
+            "NEXT-9175": {
+                "label": "NEXT-9175 - Authenticated Server Side Request Forgery",
+                "tooltip": ""
+            },
+            "NEXT-9242": {
+                "label": "NEXT-9242 - Administration authentication improved",
+                "tooltip": ""
+            },
+            "NEXT-9243": {
+                "label": "NEXT-9243 - Additional security headers",
+                "tooltip": ""
+            },
+            "NEXT-9569": {
+                "label": "NEXT-9569 - Session hijacking vulnerability of customer accounts in the storefront",
+                "tooltip": ""
+            },
+            "NEXT-9689": {
+                "label": "NEXT-9689 - Authenticated Server Side Request Forgery",
+                "tooltip": ""
+            },
+            "NEXT-10624": {
+                "label": "NEXT-10624 - Escape html in storefront search to prevent XSS",
+                "tooltip": ""
+            },
+            "NEXT-10909": {
+                "label": "NEXT-10909 - Prevent invalid state in http cache",
+                "tooltip": ""
+            },
+            "NEXT-10905": {
+                "label": "NEXT-10905 - Prevent loading of external entities while parsing xml",
+                "tooltip": ""
+            },
+            "NEXT-12230": {
+                "label": "NEXT-12230 - Prevent changing passwords of other administration users",
+                "tooltip": ""
+            },
+            "NEXT-12359": {
+                "label": "NEXT-12359 - Require authentication for documents and order with deeplink",
+                "tooltip": ""
+            },
+            "NEXT-13371": {
+                "label": "NEXT-13371 - Certain fields are no longer displayed in the store API",
+                "tooltip": ""
+            },
+            "NEXT-13247": {
+                "label": "NEXT-13247 - Reduce impact of store context token leak through reduced token validity",
+                "tooltip": ""
+            },
+            "NEXT-12824": {
+                "label": "NEXT-12824 - Require authentication for documents in administration",
+                "tooltip": ""
+            },
+            "NEXT-13664": {
+                "label": "NEXT-13664 - Invalidate php session on every logout",
+                "tooltip": ""
+            },
+            "NEXT-13896": {
+                "label": "NEXT-13896 - Authentificated remote code execution",
+                "tooltip": ""
+            },
+            "NEXT-14533": {
+                "label": "NEXT-14533 - Order data manipulation",
+                "tooltip": ""
+            },
+            "NEXT-14482": {
+                "label": "NEXT-14482 - Leak of information via Store-API",
+                "tooltip": ""
+            },
+            "NEXT-14188": {
+                "label": "NEXT-14188 - Information Leakage",
+                "tooltip": ""
+            },
+            "NEXT-15183": {
+                "label": "NEXT-15183 - Prevent cancelling of orders not related to the logged-in user",
+                "tooltip": ""
+            },
+            "NEXT-14744": {
+                "label": "NEXT-14744 - CLI command to fix visibility setting of objects in S3 storage",
+                "tooltip": ""
+            },
+            "NEXT-14871": {
+                "label": "NEXT-14871 - Fix encoding of associations in admin-api",
+                "tooltip": ""
+            },
+            "NEXT-14883": {
+                "label": "NEXT-14883 - Prevent non-admin users from creating integrations with administrator role",
+                "tooltip": ""
+            },
+            "NEXT-15669": {
+                "label": "NEXT-15669 - Fix command injection in mail agent",
+                "tooltip": ""
+            },
+            "NEXT-15673": {
+                "label": "NEXT-15673 - Prevent URL file uploads from local IPv6 addresses",
+                "tooltip": ""
+            },
+            "NEXT-15681": {
+                "label": "NEXT-15681 - Improve product review validation",
+                "tooltip": ""
+            },
+            "NEXT-16429": {
+                "label": "NEXT-16429 - Filter hidden reviews from product store-api endpoint",
+                "tooltip": ""
+            },
+            "NEXT-15675": {
+                "label": "NEXT-15675 - Improve import export download",
+                "tooltip": ""
+            },
+            "NEXT-17527": {
+                "label": "NEXT-17527 - Prevent Webcache Poisoning",
+                "tooltip": ""
+            },
+            "NEXT-19276": {
+                "label": "NEXT-19276 - Remove HTML code from promotion / product not found flashes",
+                "tooltip": ""
+            },
+            "NEXT-19820": {
+                "label": "NEXT-19820 - Automatically invalidate sessions upon password change",
+                "tooltip": ""
+            },
+            "NEXT-20309": {
+                "label": "NEXT-20309 - Fix cache control header for systems without cache proxy",
+                "tooltip": ""
+            },
+            "NEXT-20348": {
+                "label": "NEXT-20348 - Fix session cookie gets cached",
+                "tooltip": ""
+            },
+            "NEXT-20305": {
+                "label": "NEXT-20305 - Restrict Admin API proxy route for switching customer",
+                "tooltip": ""
+            },
+            "NEXT-21078": {
+                "label": "NEXT-21078 - Prevent blind SSRF",
+                "tooltip": ""
+            },
+            "NEXT-21034": {
+                "label": "NEXT-21034 - Prevent Cart ACL bypass via Admin-API prepared context",
+                "tooltip": ""
+            },
+            "NEXT-23325": {
+                "label": "NEXT-23325 - Prevent duplicate product line items circumventing stock limitation",
+                "tooltip": ""
+            },
+            "NEXT-23464": {
+                "label": "NEXT-23464 - Fix security issue in the twig template engine",
+                "tooltip": ""
+            },
+            "NEXT-22891": {
+                "label": "NEXT-22891 - Fix double opt-in option on Newsletter Subscribe Route",
+                "tooltip": ""
+            },
+            "NEXT-24667": {
+                "label": "NEXT-24667 - Fix remote code execution in twig template engine",
+                "tooltip": ""
+            },
+            "NEXT-23562": {
+                "label": "NEXT-23562 - Fix twig template engine security issue",
+                "tooltip": ""
+            },
+            "NEXT-24679": {
+                "label": "NEXT-24679 - Remove critical logs in mail",
+                "tooltip": ""
+            },
+            "NEXT-26140": {
+                "label": "NEXT-24679 - Improve twig template engine security issue",
+                "tooltip": ""
+            },
+            "PPI-737": {
+                "label": "PPI-737 - Prevent PayPal payment data manipulation",
+                "tooltip": "This fix will only be activated, if you have the Shopware PayPal plugin <5.4.4 installed."
+            }
+        }
+    }
+}

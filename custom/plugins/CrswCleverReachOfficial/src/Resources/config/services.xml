@@ -1,0 +1,905 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!--        REPOSITORIES        -->
+        <service id="Crsw\CleverReachOfficial\Entity\Base\Definition\BaseEntityDefinition">
+            <tag name="shopware.entity.definition" entity="cleverreach_entity"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Automation\Definition\AutomationEntityDefinition">
+            <tag name="shopware.entity.definition" entity="cleverreach_automation_entity"/>
+        </service>
+
+        <!-- <service id="Crsw\CleverReachOfficial\Tests\TestComponents\Components\TestEntityDefinition">
+            <tag name="shopware.entity.definition" entity="test_entity"/>
+        </service> -->
+
+        <service id="Crsw\CleverReachOfficial\Entity\Base\Repositories\BaseRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Base\Repositories\BaseRepository">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\CustomerGroup\Repositories\CustomerGroupRepository"
+                 class="Crsw\CleverReachOfficial\Entity\CustomerGroup\Repositories\CustomerGroupRepository">
+            <argument type="service" id="customer_group.repository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\SalesChannel\Repositories\SalesChannelRepository"
+                 class="Crsw\CleverReachOfficial\Entity\SalesChannel\Repositories\SalesChannelRepository">
+            <argument type="service" id="sales_channel.repository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Cart\Repositories\CartRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Cart\Repositories\CartRepository">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Tag\Repositories\TagRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Tag\Repositories\TagRepository">
+            <argument type="service" id="tag.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Schedule\Repositories\ScheduleRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Schedule\Repositories\ScheduleRepository">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Currency\Repositories\CurrencyRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Currency\Repositories\CurrencyRepository">
+            <argument type="service" id="currency.repository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Language\Repositories\LanguageRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Language\Repositories\LanguageRepository">
+            <argument type="service" id="language.repository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Product\Repositories\ProductRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Product\Repositories\ProductRepository">
+            <argument type="service" id="product.repository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\ProductTranslation\Repositories\ProductTranslationRepository"
+                 class="Crsw\CleverReachOfficial\Entity\ProductTranslation\Repositories\ProductTranslationRepository">
+            <argument type="service" id="product_translation.repository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\CustomerRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Customer\Repositories\CustomerRepository">
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="parameter_bag"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\CustomerRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Customer\Repositories\CustomerRepository">
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="parameter_bag"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\BuyerRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Customer\Repositories\BuyerRepository">
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="parameter_bag"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\ContactRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Customer\Repositories\ContactRepository">
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="parameter_bag"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\SubscriberRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Customer\Repositories\SubscriberRepository">
+            <argument type="service" id="newsletter_recipient.repository"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Language\Repositories\LanguageRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\SalesChannel\Repositories\SalesChannelRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\SalutationTranslation\Repositories\SalutationTranslationRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\CustomerRepository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\SalutationTranslation\Repositories\SalutationTranslationRepository"
+                 class="Crsw\CleverReachOfficial\Entity\SalutationTranslation\Repositories\SalutationTranslationRepository">
+            <argument type="service" id="salutation_translation.repository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Orders\Repositories\OrderItemsRepositoryInterface"
+                 class="Crsw\CleverReachOfficial\Entity\Orders\Repositories\OrderItemsRepository">
+            <argument type="service" id="order_line_item.repository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Product\Repositories\ProductRepository"/>
+            <argument type="service" id="order.repository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Migration\Repository\V2Repository"
+                 class="Crsw\CleverReachOfficial\Migration\Repository\V2Repository">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\Media\Repositories\MediaRepository"
+                 class="Crsw\CleverReachOfficial\Entity\Media\Repositories\MediaRepository">
+            <argument type="service" id="media.repository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Entity\SeoUrls\Repositories\SeoUrlRepository"
+                 class="Crsw\CleverReachOfficial\Entity\SeoUrls\Repositories\SeoUrlRepository">
+            <argument type="service" id="seo_url.repository"/>
+        </service>
+
+        <!--        SERVICES        -->
+        <service id="Crsw\CleverReachOfficial\Core\Infrastructure\Logger\Interfaces\ShopLoggerAdapter"
+                 class="Crsw\CleverReachOfficial\Service\Infrastructure\LoggerService"
+                 public="true">
+            <argument type="service" id="kernel"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Components\Utility\Initializer"
+                 class="Crsw\CleverReachOfficial\Components\Utility\Initializer">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="cleverreach_entity.repository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\Infrastructure\Logger\Interfaces\ShopLoggerAdapter"/>
+            <argument type="service" id="Symfony\Component\Routing\Generator\UrlGeneratorInterface"/>
+            <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack"/>
+            <argument type="service" id="user.repository"/>
+            <argument type="service" id="locale.repository"/>
+            <argument type="service" id="Symfony\Contracts\Translation\TranslatorInterface"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Tag\TagService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Search\ProductSearchService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Language\LanguageService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Order\Contracts\OrderService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\SubscriberService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\BuyerService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\ContactService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Uninstall\UninstallService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\CustomerRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Currency\Repositories\CurrencyRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Product\Repositories\ProductRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\SalesChannel\Repositories\SalesChannelRepository"/>
+            <argument type="service" id="cleverreach_automation_entity.repository"/>
+            <argument type="service" id="parameter_bag"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Translation\TranslationService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Translation\TranslationService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Registration\RegistrationService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Registration\RegistrationService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\Infrastructure\Http\HttpClient"
+                 class="Crsw\CleverReachOfficial\Core\Infrastructure\Http\CurlHttpClient">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Authorization\Http\AuthProxy"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Authorization\Http\AuthProxy">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\Infrastructure\Http\HttpClient"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Group\Contracts\GroupService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Group\GroupService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Field\Contracts\FieldService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\ReceiverFields\ReceiverFieldService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Tag\TagService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Tag\TagService">
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Tag\Repositories\TagRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\SalesChannel\Repositories\SalesChannelRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\CustomerGroup\Repositories\CustomerGroupRepository"/>
+            <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Segment\Contracts\SegmentService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Segments\SegmentsService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\DynamicContent\DynamicContentService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\DynamicContent\DynamicContentService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Language\LanguageService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Language\LanguageService">
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Language\Repositories\LanguageRepository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Search\ProductSearchService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Search\ProductSearchService">
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Product\Repositories\ProductRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\ProductTranslation\Repositories\ProductTranslationRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Currency\Repositories\CurrencyRepository"/>
+            <argument type="service" id="Symfony\Component\Routing\Generator\UrlGeneratorInterface"/>
+            <argument type="service" id="Shopware\Core\Content\Media\Thumbnail\ThumbnailService"/>
+            <argument type="service" id="media_thumbnail_size.repository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Media\Repositories\MediaRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\SeoUrls\Repositories\SeoUrlRepository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Components\DynamicContent\DynamicContentHandler"
+                 class="Crsw\CleverReachOfficial\Components\DynamicContent\DynamicContentHandler">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Order\Contracts\OrderService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Orders\OrderService">
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\Orders\Repositories\OrderItemsRepositoryInterface"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\SubscriberService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\SubscriberService">
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\SubscriberRepository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\BuyerService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\BuyerService">
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\BuyerRepository"/>
+            <argument type="service" id="parameter_bag"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\ContactService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\ContactService">
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\ContactRepository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\SyncSettings\Contracts\SyncSettingsService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\SyncSettings\SyncSettingsService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\EventHandlers\RecipientHandler"
+                 class="Crsw\CleverReachOfficial\EventHandlers\RecipientHandler">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\EventHandlers\TagHandler"
+                 class="Crsw\CleverReachOfficial\EventHandlers\TagHandler">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Receiver\WebHooks\Handler"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Receiver\WebHooks\Handler">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\WebHooks\Handler"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\WebHooks\Handler">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Receiver\ReceiverEventsService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Events\ReceiverEventsService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\FormEventsService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Events\FormEventsService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\WebHookEvent\Http\Proxy"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\WebHookEvent\Http\Proxy">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\Infrastructure\Http\HttpClient"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\DynamicContent\Http\Proxy"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\DynamicContent\Http\Proxy">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\Infrastructure\Http\HttpClient"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Authorization\Http\TokenProxy"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Authorization\Http\TokenProxy">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\Infrastructure\Http\HttpClient"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Components\Utility\DatabaseHandler"
+                 class="Crsw\CleverReachOfficial\Components\Utility\DatabaseHandler">
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Uninstall\UninstallService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Uninstall\UninstallService">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Group\Contracts\GroupService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\FormEventsService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Receiver\ReceiverEventsService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\WebHookEvent\Http\Proxy"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\BusinessLogic\DynamicContent\DynamicContentService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\DynamicContent\Http\Proxy"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Authorization\Http\TokenProxy"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\DatabaseHandler"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Support\SupportService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Support\SupportService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Dashboard\Contracts\DashboardService"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Dashboard\DashboardService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\Contracts\FormService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Form\FormService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\PaymentPlan\Contracts\PaymentPlanService"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\PaymentPlan\PaymentPlanService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Stats\Contracts\SnapshotService"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Stats\SnapshotService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Stats\Http\Proxy"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Stats\Http\Proxy">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\Infrastructure\Http\HttpClient"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\StateTransition\StateTransitionRecordService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\StateTransition\StateTransitionRecordService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Components\TaskStatusProvider\TaskStatusProvider"
+                 class="Crsw\CleverReachOfficial\Components\TaskStatusProvider\TaskStatusProvider">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Components\EventHandlers\TagHandler"
+                 class="Crsw\CleverReachOfficial\Components\EventHandlers\TagHandler">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Components\EventHandlers\RecipientHandler"
+                 class="Crsw\CleverReachOfficial\Components\EventHandlers\RecipientHandler">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Components\EventHandlers\OrderHandler"
+                 class="Crsw\CleverReachOfficial\Components\EventHandlers\OrderHandler">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\Contracts\FormCacheService"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\FormCacheService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\MigratedUser\MigratedUserService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\MigratedUser\MigratedUserService">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationService">
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\CartAutomationService"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\SalesChannel\Repositories\SalesChannelRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\AutomationRecordService"/>
+        </service>
+
+        <service
+                id="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\AutomationRecordService"
+                class="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\AutomationRecordService">
+        </service>
+
+        <service
+                id="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\CartAutomationService"
+                class="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\CartAutomationService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Automation\AbandonedCart\Webhooks\Handler"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Automation\AbandonedCart\Webhooks\Handler">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationWebhooksService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationWebhooksService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\RecoveryRecordService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\RecoveryRecordService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Core\BusinessLogic\Authorization\Http\UserProxy"
+                 class="Crsw\CleverReachOfficial\Core\BusinessLogic\Authorization\Http\UserProxy">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\Infrastructure\Http\HttpClient"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\DoubleOptIn\DoubleOptInRecordService"
+                 class="Crsw\CleverReachOfficial\Service\BusinessLogic\DoubleOptIn\DoubleOptInRecordService">
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Components\EventHandlers\DoubleOptInHandler"
+                 class="Crsw\CleverReachOfficial\Components\EventHandlers\DoubleOptInHandler">
+        </service>
+
+        <!--        HOOKS       -->
+        <service id="Crsw\CleverReachOfficial\Subscriber\CustomerGroups\CustomerGroupSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\EventHandlers\TagHandler"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\CustomerGroup\Repositories\CustomerGroupRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\Customers\CustomerSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\EventHandlers\RecipientHandler"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\CustomerRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\CustomerGroup\Repositories\CustomerGroupRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\SubscriberRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\EventHandlers\TagHandler"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Tag\Repositories\TagRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\SalesChannel\Repositories\SalesChannelRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\SalesChannel\SalesChannelContextService"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\NewsletterRecipients\NewsletterRecipientSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\EventHandlers\RecipientHandler"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\SubscriberRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\EventHandlers\TagHandler"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Tag\Repositories\TagRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\SalesChannel\SalesChannelContextService"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\SalesChannels\SalesChannelSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\EventHandlers\TagHandler"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\SalesChannel\Repositories\SalesChannelRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\Orders\OrderSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="session"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\EventHandlers\OrderHandler"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\Orders\Repositories\OrderItemsRepositoryInterface"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\Products\ProductSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="session"/>
+            <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\Maintenance\StorefrontSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack"/>
+            <argument type="service" id="parameter_bag"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\Automation\SalesChannelSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationService"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Entity\SalesChannel\Repositories\SalesChannelRepository"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\Automation\AutomationSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Group\Contracts\GroupService"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\AutomationRecordService"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\RecoveryRecordService"/>
+            <argument type="service" id="parameter_bag"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\SalesChannel\SalesChannelContextService"/>
+            <argument type="service" id="session"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\Automation\CartRecoverySubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\RecoveryRecordService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Product\Repositories\ProductRepository"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\LineItemFactoryRegistry"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="session"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\SalesChannel\SalesChannelContextService"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\AutomationRecordService"
+            />
+
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\Extensions\RegisterExtension">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationService"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Subscriber\Automation\NewsletterSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Customer\Repositories\SubscriberRepository"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\DoubleOptIn\DoubleOptInRecordService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\EventHandlers\DoubleOptInHandler"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\EventHandlers\RecipientHandler"/>
+        </service>
+
+        <!--        CONTROLLERS     -->
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\RouterController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\RouterController" public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"/>
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Storefront\AuthController"
+                 class="Crsw\CleverReachOfficial\Controller\Storefront\AuthController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Authorization\Http\AuthProxy"/>
+            <argument type="service" id="router"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Stats\Contracts\SnapshotService"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\MigratedUser\MigratedUserService"/>
+            <argument type="service" id="parameter_bag"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\CheckConnectionStatusController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\CheckConnectionStatusController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\IframeController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\IframeController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"/>
+            <argument type="service" id="user.repository"/>
+            <argument type="service" id="locale.repository"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Storefront\AsyncProcessController"
+                 class="Crsw\CleverReachOfficial\Controller\Storefront\AsyncProcessController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Storefront\ProductSearchController"
+                 class="Crsw\CleverReachOfficial\Controller\Storefront\ProductSearchController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\DynamicContent\DynamicContentHandler"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\AutoConfigController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\AutoConfigController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\SyncSettingsController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\SyncSettingsController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\BusinessLogic\SyncSettings\Contracts\SyncSettingsService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\SubscriberService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\BuyerService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Customer\ContactService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Storefront\ReceiverWebhookController"
+                 class="Crsw\CleverReachOfficial\Controller\Storefront\ReceiverWebhookController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Receiver\WebHooks\Handler"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Receiver\ReceiverEventsService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Storefront\FormsWebhookController"
+                 class="Crsw\CleverReachOfficial\Controller\Storefront\FormsWebhookController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\WebHooks\Handler"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\FormEventsService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\DisconnectController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\DisconnectController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Uninstall\UninstallService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\SupportController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\SupportController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Support\SupportService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\DashboardController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\DashboardController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\BusinessLogic\Dashboard\Contracts\DashboardService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Group\Contracts\GroupService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Segment\Contracts\SegmentService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\Contracts\FormService"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\Authorization\AuthorizationService"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\BusinessLogic\PaymentPlan\Contracts\PaymentPlanService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Stats\Contracts\SnapshotService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Stats\Http\Proxy"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\SingleSignOnController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\SingleSignOnController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\InitialSyncController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\InitialSyncController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\TaskStatusProvider\TaskStatusProvider"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\RetrySyncController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\RetrySyncController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\OrderSyncController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\OrderSyncController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\TaskExecution\QueueService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Order\Contracts\OrderService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\FormsController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\FormsController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Group\Contracts\GroupService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\Contracts\FormCacheService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Symfony\Component\Routing\Generator\UrlGeneratorInterface"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Storefront\CrFormsController"
+                 class="Crsw\CleverReachOfficial\Controller\Storefront\CrFormsController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Storefront\WebhookController"
+                 class="Crsw\CleverReachOfficial\Controller\Storefront\WebhookController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartStatusController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartStatusController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartTheaStatusController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartTheaStatusController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\Contracts\FormService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Group\Contracts\GroupService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartTimeController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartTimeController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Service\BusinessLogic\Automation\AutomationService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\DoubleOptInController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\DoubleOptInController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Form\Contracts\FormService"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Service\BusinessLogic\DoubleOptIn\DoubleOptInRecordService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Group\Contracts\GroupService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Authorization\Http\UserProxy"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Storefront\AutomationWebhookController"
+                 class="Crsw\CleverReachOfficial\Controller\Storefront\AutomationWebhookController"
+                 public="true">
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service"
+                      id="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\CartAutomationService"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Service\BusinessLogic\SalesChannel\SalesChannelContextService">
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextService"/>
+            <argument type="service" id="parameter_bag"/>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartRecordsController"
+                 class="Crsw\CleverReachOfficial\Controller\Admin\AbandonedCartRecordsController"
+                 public="true"
+        >
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\Utility\Initializer"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Components\AbandonedCart\AbandonedCartRecordsHandler"/>
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+        </service>
+
+        <service id="Crsw\CleverReachOfficial\Components\AbandonedCart\AbandonedCartRecordsHandler">
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\AutomationRecordService"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Cart\Repositories\CartRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Entity\Language\Repositories\LanguageRepository"/>
+            <argument type="service" id="Crsw\CleverReachOfficial\Core\BusinessLogic\Multistore\AbandonedCart\Services\CartAutomationService"/>
+        </service>
+    </services>
+</container>

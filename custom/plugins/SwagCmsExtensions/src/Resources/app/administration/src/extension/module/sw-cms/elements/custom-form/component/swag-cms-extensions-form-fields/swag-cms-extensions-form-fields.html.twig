@@ -1,0 +1,24 @@
+{% block swag_cms_extensions_form_fields %}
+    <div class="swag-cms-extensions-form-fields">
+
+        {% block swag_cms_extensions_form_fields_label %}
+            <div class="swag-cms-extensions-form-fields__label">
+                <label>{{ $tc('swag-cms-extensions.sw-cms.components.form-editor.title') }}</label>
+            </div>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_fields_editor %}
+            <swag-cms-extensions-form-editor v-if="formHasGroups && activeItem"
+                                             :groups="groups"
+                                             @add-group="onGroupAdd">
+            </swag-cms-extensions-form-editor>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_fields_editor_empty_state %}
+            <swag-cms-extensions-form-editor-empty-state v-else
+                                                         @start-editor="onStartEditor">
+            </swag-cms-extensions-form-editor-empty-state>
+        {% endblock %}
+
+    </div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{# ThemeWare: CMS block "Image gallery and buy box (with product name)" #}
+
+{% block block_twt_gallery_buybox_name %}
+    {% block block_twt_gallery_buybox_name_column_left %}
+        {% set element = block.slots.getSlot('left') %}
+        {% set config = element.fieldConfig.elements %}
+
+        <div class="col-lg-7 product-detail-media" data-cms-element-id="{{ element.id }}">
+            {% block block_twt_gallery_buybox_name_column_left_inner %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing
+                    with {
+                    'isProduct': config.sliderItems.value == 'product.media' and config.sliderItems.source == 'mapped',
+                    'startIndexThumbnails': 1,
+                    'startIndexSlider': 1
+                } %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+
+    {% block block_twt_gallery_buybox_name_column_right %}
+    <div class="col-lg-5 product-detail-buy" data-cms-element-id="{{ element.id }}">
+        {% set productNameElement = block.slots.getSlot('right-top') %}
+
+        <div class="twt-product-detail-buy-inner"> {# Fix sticky feature by merging the both divs #}
+            <div class="row product-detail-headline mb-3">
+                {% block block_product_heading_product_name_element %}
+                    <div class="col product-heading-name-container" data-cms-element-id="{{ productNameElement.id }}">
+                        {% block block_product_heading_product_name_inner %}
+                            {% sw_include "@Storefront/storefront/element/cms-element-" ~ productNameElement.type ~ ".html.twig" ignore missing with {
+                                element: productNameElement
+                            } %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+
+            {% set element = block.slots.getSlot('right-bottom') %}
+
+            {% block block_twt_gallery_buybox_name_column_right_inner %}
+                {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+            {% endblock %}
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

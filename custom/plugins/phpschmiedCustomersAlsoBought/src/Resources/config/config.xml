@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>General</title>
+        <title lang="de-DE">Allgemein</title>
+
+        <input-field>
+            <name>limit</name>
+            <label>Set the product limit</label>
+            <label lang="de-DE">Setzt ein Limit der angezeigten Produkte</label>
+            <helpText>This value sets the product limit in the slider. Maximum six products!</helpText>
+            <helpText lang="de-DE">Dieser Wert setzt das Produktlimit im Slider. Maximal 6 Produkte!</helpText>
+            <defaultValue>6</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>abverkauf</name>
+            <label>Show only Products with stock</label>
+            <label lang="de-DE">Nur Produkte mit Bestand anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>inactive</name>
+            <label>Show only active Products</label>
+            <label lang="de-DE">Nur aktive Produkte anzeigen</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <component name="sw-entity-multi-id-select">
+            <name>categories</name>
+            <label>Specify here which categories should be taken into account (Empty for all)</label>
+            <label lang="de-DE">Legen Sie hier fest welche Kategorien berücksichtigt werden sollen (Leer lassen für alle)</label>
+            <entity>category</entity>
+            <title>Choose categories for the plugin configuration</title>
+            <title lang="de-DE">Wählen Sie Kategorien für die Plugin-Konfiguration</title>
+            <helpText>With this setting you can explicitly set which categories are released for display. If you want to use all of them, just leave the field blank.</helpText>
+            <helpText lang="de-DE">Mit dieser Einstellung können Sie explizit einstellen, welche Kategorien für die Anzeige freigegeben sind. Sollen alle genutzt werden, lassen Sie das Feld einfach frei.</helpText>
+        </component>
+
+        <component name="sw-entity-multi-id-select">
+            <name>disabledCategories</name>
+            <label>Specify here which categories should not be taken into account (Empty for nothing)</label>
+            <label lang="de-DE">Legen Sie hier fest welche Kategorien nicht berücksichtigt werden sollen (Leer lassen für keine)</label>
+            <entity>category</entity>
+            <title>Choose categories for the plugin configuration</title>
+            <title lang="de-DE">Wählen Sie Kategorien für die Plugin-Konfiguration</title>
+            <helpText>With this setting you can explicitly set which categories are not released for display. If you want to use nothing of them, just leave the field blank.</helpText>
+            <helpText lang="de-DE">Mit dieser Einstellung können Sie explizit einstellen, welche Kategorien für die Anzeige nicht freigegeben sind. Sollen keine genutzt werden, lassen Sie das Feld einfach frei.</helpText>
+        </component>
+    </card>
+</config>

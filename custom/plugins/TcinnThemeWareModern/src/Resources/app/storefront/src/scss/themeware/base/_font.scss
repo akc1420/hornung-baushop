@@ -1,0 +1,395 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare® fonts
+    ==================================================
+    Adds 10 fonts used by ThemeWare®
+
+    Charset: latin
+    Formats: ttf
+    Weights: 300, 400, 500, 600, 700 (if available)
+*/
+
+@if $twt-google-font-import == 1 {
+
+    /* Englebert (v17) #804 */
+
+    @if (str-index(#{$sw-font-family-base}, "Englebert") != null) or (str-index(#{$sw-font-family-headline}, "Englebert") != null) {
+        @font-face {
+            font-family: 'Englebert';
+            src: url('#{$app-css-relative-asset-path}/font/Englebert/Englebert-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+    }
+
+    /* Exo 2 (v20) #69 */
+
+    @if (str-index(#{$sw-font-family-base}, "Exo 2") != null) or (str-index(#{$sw-font-family-headline}, "Exo 2") != null) {
+        @font-face {
+            font-family: 'Exo 2';
+            src: url('#{$app-css-relative-asset-path}/font/Exo2/Exo2-Light.ttf');
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Exo 2';
+            src: url('#{$app-css-relative-asset-path}/font/Exo2/Exo2-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Exo 2';
+            src: url('#{$app-css-relative-asset-path}/font/Exo2/Exo2-Medium.ttf');
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Exo 2';
+            src: url('#{$app-css-relative-asset-path}/font/Exo2/Exo2-SemiBold.ttf');
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Exo 2';
+            src: url('#{$app-css-relative-asset-path}/font/Exo2/Exo2-Bold.ttf');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+    }
+
+    /* Montserrat (v25) #4 */
+
+    @if (str-index(#{$sw-font-family-base}, "Montserrat") != null) or (str-index(#{$sw-font-family-headline}, "Montserrat") != null) {
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('#{$app-css-relative-asset-path}/font/Montserrat/Montserrat-Light.ttf');
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('#{$app-css-relative-asset-path}/font/Montserrat/Montserrat-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('#{$app-css-relative-asset-path}/font/Montserrat/Montserrat-Medium.ttf');
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('#{$app-css-relative-asset-path}/font/Montserrat/Montserrat-SemiBold.ttf');
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Montserrat';
+            src: url('#{$app-css-relative-asset-path}/font/Montserrat/Montserrat-Bold.ttf');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+    }
+
+    /* Open Sans (v25) #2 */
+
+    @if (str-index(#{$sw-font-family-base}, "Open Sans") != null) or (str-index(#{$sw-font-family-headline}, "Open Sans") != null) {
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('#{$app-css-relative-asset-path}/font/OpenSans/OpenSans-Light.ttf');
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('#{$app-css-relative-asset-path}/font/OpenSans/OpenSans-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('#{$app-css-relative-asset-path}/font/OpenSans/OpenSans-Medium.ttf');
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('#{$app-css-relative-asset-path}/font/OpenSans/OpenSans-SemiBold.ttf');
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Open Sans';
+            src: url('#{$app-css-relative-asset-path}/font/OpenSans/OpenSans-Bold.ttf');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+    }
+
+    /* Oswald (v49) #9 */
+
+    @if (str-index(#{$sw-font-family-base}, "Oswald") != null) or (str-index(#{$sw-font-family-headline}, "Oswald") != null) {
+        @font-face {
+            font-family: 'Oswald';
+            src: url('#{$app-css-relative-asset-path}/font/Oswald/Oswald-Light.ttf');
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Oswald';
+            src: url('#{$app-css-relative-asset-path}/font/Oswald/Oswald-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Oswald';
+            src: url('#{$app-css-relative-asset-path}/font/Oswald/Oswald-Medium.ttf');
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Oswald';
+            src: url('#{$app-css-relative-asset-path}/font/Oswald/Oswald-SemiBold.ttf');
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Oswald';
+            src: url('#{$app-css-relative-asset-path}/font/Oswald/Oswald-Bold.ttf');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+    }
+
+    /* Roboto (v30) #1 */
+
+    @if (str-index(#{$sw-font-family-base}, "Roboto") != null) or (str-index(#{$sw-font-family-headline}, "Roboto") != null) {
+        @font-face {
+            font-family: 'Roboto';
+            src: url('#{$app-css-relative-asset-path}/font/Roboto/Roboto-Light.ttf');
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            src: url('#{$app-css-relative-asset-path}/font/Roboto/Roboto-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            src: url('#{$app-css-relative-asset-path}/font/Roboto/Roboto-Medium.ttf');
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Roboto';
+            src: url('#{$app-css-relative-asset-path}/font/Roboto/Roboto-Bold.ttf');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+    }
+
+    /* Roboto Slab (v24) #15 */
+
+    @if (str-index(#{$sw-font-family-base}, "Roboto Slab") != null) or (str-index(#{$sw-font-family-headline}, "Roboto Slab") != null) {
+        @font-face {
+            font-family: 'Roboto Slab';
+            src: url('#{$app-css-relative-asset-path}/font/RobotoSlab/RobotoSlab-Light.ttf');
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Roboto Slab';
+            src: url('#{$app-css-relative-asset-path}/font/RobotoSlab/RobotoSlab-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Roboto Slab';
+            src: url('#{$app-css-relative-asset-path}/font/RobotoSlab/RobotoSlab-Medium.ttf');
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Roboto Slab';
+            src: url('#{$app-css-relative-asset-path}/font/RobotoSlab/RobotoSlab-SemiBold.ttf');
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Roboto Slab';
+            src: url('#{$app-css-relative-asset-path}/font/RobotoSlab/RobotoSlab-Bold.ttf');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+    }
+
+    /* Source Sans Pro (v21) #7 */
+
+    @if (str-index(#{$sw-font-family-base}, "Source Sans Pro") != null) or (str-index(#{$sw-font-family-headline}, "Source Sans Pro") != null) {
+        @font-face {
+            font-family: 'Source Sans Pro';
+            src: url('#{$app-css-relative-asset-path}/font/SourceSansPro/SourceSansPro-Light.ttf');
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Source Sans Pro';
+            src: url('#{$app-css-relative-asset-path}/font/SourceSansPro/SourceSansPro-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Source Sans Pro';
+            src: url('#{$app-css-relative-asset-path}/font/SourceSansPro/SourceSansPro-SemiBold.ttf');
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Source Sans Pro';
+            src: url('#{$app-css-relative-asset-path}/font/SourceSansPro/SourceSansPro-Bold.ttf');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+    }
+
+    /* Titillium Web (v15) #35 */
+
+    @if (str-index(#{$sw-font-family-base}, "Titillium Web") != null) or (str-index(#{$sw-font-family-headline}, "Titillium Web") != null) {
+        @font-face {
+            font-family: 'Titillium Web';
+            src: url('#{$app-css-relative-asset-path}/font/TitilliumWeb/TitilliumWeb-Light.ttf');
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Titillium Web';
+            src: url('#{$app-css-relative-asset-path}/font/TitilliumWeb/TitilliumWeb-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Titillium Web';
+            src: url('#{$app-css-relative-asset-path}/font/TitilliumWeb/TitilliumWeb-SemiBold.ttf');
+            font-style: normal;
+            font-weight: 600;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Titillium Web';
+            src: url('#{$app-css-relative-asset-path}/font/TitilliumWeb/TitilliumWeb-Bold.ttf');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+    }
+
+    /* Ubuntu (v20) #14 */
+
+    @if (str-index(#{$sw-font-family-base}, "Ubuntu") != null) or (str-index(#{$sw-font-family-headline}, "Ubuntu") != null) {
+        @font-face {
+            font-family: 'Ubuntu';
+            src: url('#{$app-css-relative-asset-path}/font/Ubuntu/Ubuntu-Light.ttf');
+            font-style: normal;
+            font-weight: 300;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ubuntu';
+            src: url('#{$app-css-relative-asset-path}/font/Ubuntu/Ubuntu-Regular.ttf');
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ubuntu';
+            src: url('#{$app-css-relative-asset-path}/font/Ubuntu/Ubuntu-Medium.ttf');
+            font-style: normal;
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'Ubuntu';
+            src: url('#{$app-css-relative-asset-path}/font/Ubuntu/Ubuntu-Bold.ttf');
+            font-style: normal;
+            font-weight: 700;
+            font-display: swap;
+        }
+    }
+}

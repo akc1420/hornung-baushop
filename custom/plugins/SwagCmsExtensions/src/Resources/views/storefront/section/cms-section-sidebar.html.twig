@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/section/cms-section-sidebar.html.twig' %}
+
+{% block page_content_section_sidebar %}
+    {% sw_include '@SwagCmsExtensions/storefront/section/quickview/component.html.twig' %}
+
+    {{ parent() }}
+{% endblock %}

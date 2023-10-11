@@ -1,0 +1,74 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Modal
+    ==============================================
+    Custom styling for bootstrap modal component.
+    https://getbootstrap.com/docs/4.3/components/modal/
+
+	Origin: Shopware base & skin
+*/
+
+// ThemeWare: Modal adjustments
+// TODO: Shopware Vererbung prüfen...
+.modal-dialog {
+  max-width: $twt-modal-dialog-max-width; // ThemeWare: non-public
+}
+
+// ThemeWare: modal mobile padding
+@include media-breakpoint-down(sm) { // max 767.98px
+  .js-pseudo-modal {
+    .modal-body {
+      padding: null-pixel-unit($twt-container-main-padding-phone-xs);
+
+      .boxed {
+        padding-right: null-pixel-unit($twt-container-main-padding-phone-xs);
+        padding-left: null-pixel-unit($twt-container-main-padding-phone-xs);
+      }
+    }
+  }
+}
+
+
+/* ThemeWare: Reset cms adjustments */
+.modal {
+  .cms-section-default {
+    padding: 0 !important; // ThemeWare: Remove unnecessary spacing
+  }
+
+  // ThemeWare: Avoid cms styling in modals
+  .cms-block {
+    border: none !important;
+    border-radius: inherit !important;
+    margin-bottom: 0 !important;
+
+    &:not(.bg-color) {
+      background-color: inherit !important;
+    }
+  }
+
+  .cms-block-container {
+    padding: 0 10px !important; // ThemeWare: Reduce spacing
+  }
+
+  // ThemeWare: Avoid CSS animations in modals
+  .twt-cms-animation.cms-block {
+    opacity: 1 !important;
+    transition: none !important;
+
+    h1:not(.twt-cms-animation),
+    h2:not(.twt-cms-animation),
+    h3:not(.twt-cms-animation),
+    h4:not(.twt-cms-animation),
+    h5:not(.twt-cms-animation),
+    h6:not(.twt-cms-animation) {
+      opacity: 1 !important;
+      transition: none !important;
+    }
+  }
+}

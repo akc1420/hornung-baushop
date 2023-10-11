@@ -1,0 +1,46 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Forms
+    ==============================================
+    Custom styling for bootstrap forms.
+    https://getbootstrap.com/docs/4.3/components/forms/
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Custom control adjustments
+.custom-control-input {
+	&:focus {
+		~ {
+			.custom-control-label {
+				&::before {
+					box-shadow: none;
+					cursor: pointer;
+				}
+
+				&::after {
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	~ {
+		.custom-control-label {
+			&::before {
+				box-shadow: none;
+				cursor: pointer;
+			}
+
+			&::after {
+				cursor: pointer;
+			}
+		}
+	}
+}

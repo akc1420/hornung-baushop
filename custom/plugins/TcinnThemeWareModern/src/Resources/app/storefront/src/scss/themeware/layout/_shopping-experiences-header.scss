@@ -1,0 +1,169 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare "Shopping Experiences Header
+    ==================================================
+
+*/
+
+// ThemeWare: Shopping Experiences Header ------------------------------
+
+@if $twt-shopping-experiences-header-position == 2 and $twt-header-type != 10 { // #customHeader
+    header.header-main {
+        // Logo adjustments
+        .header-logo-col {
+            .header-logo-shopping-experiences-link {
+                display: none;
+                margin-top: null-pixel-unit($twt-header-logo-margin-top);
+
+                img {
+                    width: auto-pixel-unit($twt-header-logo-width);
+                    height: auto-pixel-unit($twt-header-logo-height);
+
+                    @if $twt-header-logo-hover-type > 1 {
+                        &:hover {
+                            opacity: 0.7;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ThemeWare: Boxed layout
+    @if $twt-container-layout == 3 {
+        .body-container {
+            position: relative;
+
+            .top-bar {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+        }
+    }
+
+    // ThemeWare: Other layouts
+    body.twt-shopping-experiences-header {
+        & {
+            header.header-main {
+                @include media-breakpoint-up(sm) { // min 576px
+                    position: absolute;
+
+                    @if ($twt-usp-bar-header == 1) {
+                        top: 0;
+                    } @else {
+                        top: null-pixel-unit($twt-usp-bar-height-small-icons);
+                    }
+
+                    width: 100%;
+                    z-index: $twt-fixed-overlay-z-index;
+                }
+
+                @include media-breakpoint-up(sm) { // min 576px
+                    .header-logo-main-link {
+                        display: none;
+                    }
+
+                    .header-logo-shopping-experiences-link {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        // Class 'is-sticky-nav-main' is set via JS (desktop viewports)
+        &:not(.is-sticky-nav-main) {
+            header.header-main {
+                @include media-breakpoint-up(sm) { // min 576px
+                    position: absolute;
+                    z-index: $twt-fixed-overlay-z-index;
+                    width: 100%;
+
+                    // Calc 'top' for '.header-main' > FALLBACK (top will be set with JS)
+                    $twt-header-offset-top: 0;
+                    @if ($twt-announcement-banner-show != 1) {
+                        $twt-header-offset-top: 40; // Approximate default height
+                    }
+                    @if ($twt-usp-bar-header != 1) {
+                        $twt-header-offset-top: $twt-header-offset-top + strip-unit($twt-usp-bar-height-small-icons);
+                    }
+                    top: null-pixel-unit($twt-header-offset-top); // FALLBACK (top will be set with JS)
+
+
+                    & + .nav-main {
+                        position: absolute;
+                        z-index: strip-unit($twt-fixed-overlay-z-index) - 1;
+                        width: 100%;
+
+                        // Calc 'top' for '.nav-main' > FALLBACK (top will be set with JS)
+                        $twt-header-offset-top: 0;
+                        @if ($twt-announcement-banner-show != 1) {
+                            $twt-header-offset-top: 40; // Approximate default height
+                        }
+                        @if ($twt-usp-bar-header-layout == 1) {
+                            // Layout "small icons"
+                            top: $twt-header-offset-top + strip-unit($twt-usp-bar-height-small-icons) + strip-unit($twt-header-margin-top) + px;
+                        } @else if ($twt-usp-bar-header-layout == 2 or $twt-usp-bar-header-layout == 3) {
+                            // Layout "USP bar + Top bar"   #customHeader
+                            top: $twt-header-offset-top + strip-unit($twt-usp-bar-height-small-icons) + strip-unit($twt-header-margin-top) + px;
+                        } @else {
+                            // Not active
+                            top: $twt-header-offset-top + strip-unit($twt-usp-bar-height-large-icons) + strip-unit($twt-header-padding-top) + strip-unit($twt-header-padding-bottom) + px;
+                        }
+
+                        & + .search-container {
+                            position: absolute;
+                            z-index: strip-unit($twt-fixed-overlay-z-index) - 1;
+                            width: 100%;
+
+                            // Calc 'top' for '.search-container' > FALLBACK (top will be set with JS)
+                            $twt-header-offset-top: 0;
+                            @if ($twt-announcement-banner-show != 1) {
+                                $twt-header-offset-top: 40; // Approximate default height
+                            }
+                            @if ($twt-usp-bar-header-layout == 1) {
+                                // Layout "small icons"
+                                top: $twt-header-offset-top + strip-unit($twt-usp-bar-height-small-icons) + strip-unit($twt-header-margin-top) + px;
+                            } @else if ($twt-usp-bar-header-layout == 2 or $twt-usp-bar-header-layout == 3) {
+                                // Layout "USP bar & Top bar"   #customHeader
+                                top: $twt-header-offset-top + strip-unit($twt-usp-bar-height-small-icons) + strip-unit($twt-header-margin-top) + px;
+                            } @else {
+                                // Not active
+                                top: $twt-header-offset-top + strip-unit($twt-usp-bar-height-large-icons) + strip-unit($twt-header-padding-top) + strip-unit($twt-header-padding-bottom) + px;
+                            }
+                        }
+                    }
+
+                }
+            }
+
+            // Delay navigation
+            .nav-main {
+                opacity: 0;
+
+                &[style^="top"] {
+                    opacity: 1;
+                    animation-name: navFyloutFadeInOpacity;
+                    animation-iteration-count: 1;
+                    animation-timing-function: ease-in;
+                    animation-duration: .3s;
+                }
+            }
+        }
+
+    }
+}
+
+// Hide breadcrumb if "Shopping Experience Header" is used
+@if $twt-shopping-experiences-header-position == 2 {
+    body.twt-shopping-experiences-header {
+        .breadcrumb {
+            display: none !important;
+        }
+    }
+}

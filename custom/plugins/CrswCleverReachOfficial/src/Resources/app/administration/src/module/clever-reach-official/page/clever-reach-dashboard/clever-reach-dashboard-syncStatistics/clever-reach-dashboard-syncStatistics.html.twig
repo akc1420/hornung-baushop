@@ -1,0 +1,19 @@
+{% block clever_reach_sync_statistics %}
+    <sw-alert variant="success" appearence="default" :title="$tc('clever-reach.dashboard.importSuccessful')"
+              :showIcon="true" :closable="true" class="cr-alert" v-if="displayStatistics">
+        <div class="cr-sync-div">
+            <sw-label variant="neutral" class="cr-sync-label">
+                {{ $tc('clever-reach.dashboard.syncedRecipients') }} {{ syncedRecipients }}
+            </sw-label>
+            <sw-label variant="neutral" class="cr-sync-label">
+                {{ $tc('clever-reach.dashboard.createdRecipientList') }} {{ createdList }}
+            </sw-label>
+            <sw-label variant="neutral" class="cr-sync-label cr-segments">
+                {{ $tc('clever-reach.dashboard.createdSegments') }} {{ segments }}
+            </sw-label>
+            <sw-label variant="neutral" class="cr-sync-label">
+                {{ $tc('clever-reach.dashboard.signupForm') }} {{ form }}
+            </sw-label>
+        </div>
+    </sw-alert>
+{% endblock %}

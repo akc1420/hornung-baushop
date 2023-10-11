@@ -1,0 +1,35 @@
+{
+    "name": "Quickview Fixtures",
+    "type": "product_list",
+    "locked": false,
+    "sections": [
+        {
+            "name": "Section 1",
+            "type": "default",
+            "position": 0,
+            "blocks": [{
+                "type": "product-listing",
+                "position": 0,
+                "section_position": "main",
+                "locked": 1,
+                "slots": [{
+                    "type": "product-listing",
+                    "slot": "content",
+                    "config": {
+                        "content": {
+                            "value": "<h2>Lorem Ipsum dolor sit amet</h2>",
+                            "source": "static"
+                        },
+                        "verticalAlign": {
+                            "value": null,
+                            "source": "static"
+                        }
+                    }
+                }],
+                "swagCmsExtensionsQuickview": {
+                    "active": true
+                }
+            }]
+        }
+    ]
+}

@@ -1,0 +1,17 @@
+{% block swag_cms_extensions_custom_form_element_preview %}
+    <div class="swag-cms-extensions-custom-form-element-preview">
+        <h4 class="swag-cms-extensions-custom-form-element-preview__headline">{{ $tc('swag-cms-extensions.sw-cms.elements.custom-form.label') }}</h4>
+        <div class="swag-cms-extensions-custom-form-element-preview__static_inputs">
+            <div class="swag-cms-extensions-custom-form-element-preview__input"></div>
+            <div class="swag-cms-extensions-custom-form-element-preview__input"></div>
+        </div>
+        <div class="swag-cms-extensions-custom-form-element-preview__flexible_inputs">
+            <div class="swag-cms-extensions-custom-form-element-preview__input"></div>
+            <div class="swag-cms-extensions-custom-form-element-preview__input"></div>
+            <div class="swag-cms-extensions-custom-form-element-preview__input swag-cms-extensions-custom-form-element-preview__input-new">
+                <sw-icon name="default-basic-plus-line"></sw-icon>
+            </div>
+        </div>
+        <div class="swag-cms-extensions-custom-form-element-preview__action">{{ $tc('sw-cms.elements.form.preview.label.send') }}</div>
+    </div>
+{% endblock %}

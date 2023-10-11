@@ -1,0 +1,21 @@
+@import "~scss/variables";
+
+.sw-cms-sidebar-nav-element {
+    &__button-dummy {
+        display: block;
+        width: 16px;
+    }
+}
+
+.has--rule > .sw-cms-sidebar__navigator-element {
+    grid-template-columns: 1fr 28px 28px 28px;
+
+    .block-rule-navigator-element__has-rule {
+        line-height: 12px;
+        cursor: pointer;
+
+        &:hover {
+            color: $color-shopware-brand-500;
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "ott-idealo-api-test-button": {
+        "title": "API Test",
+        "success": "Connection was successfully tested",
+        "error": "Connection could not be established. Please check your access data"
+    }
+}

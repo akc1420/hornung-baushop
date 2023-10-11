@@ -1,0 +1,35 @@
+{
+    "pickware-dhl": {
+        "location-finder": {
+            "storefront": {
+                "packstation": "DHL Packstation",
+                "postoffice": "Deutsche Post post office",
+                "paketshop": "DHL Paketshop",
+                "search": "Search",
+                "select-on-map": "Select on map",
+                "map": {
+                    "pan-to-location": "Pan to current location",
+                    "errors": {
+                        "geolocation-failed": "The geolocation service failed!",
+                        "no-browser-geolocation": "This browser does not support the geolocation service!"
+                    }
+                },
+                "select": "Select",
+                "selected": "Selected",
+                "select-location": "Select location",
+                "title": "Location finder",
+                "opening-hours": {
+                    "monday": "Monday",
+                    "tuesday": "Tuesday",
+                    "wednesday": "Wednesday",
+                    "thursday": "Thursday",
+                    "friday": "Friday",
+                    "saturday": "Saturday",
+                    "sunday": "Sunday",
+                    "title": "Opening hours",
+                    "closed": "Closed"
+                }
+            }
+        }
+    }
+}

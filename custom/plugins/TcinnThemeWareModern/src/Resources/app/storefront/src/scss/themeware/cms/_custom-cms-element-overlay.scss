@@ -1,0 +1,198 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS element overlay
+	==================================================
+	see https://service.tc-innovations.de/themeware/sw6/article/2129-themeware-css-klassen-bibliothek-fuer-cms-erlebniswelten
+*/
+
+// Info:
+// - ThemeWare CSS-Klassen mit welchen ein Overlay in standard CMS-Elementen ergänzt werden kann.
+
+// Deprecated: Add ThemeWare CMS element instead
+// TODO: Add configuration
+// TODO: Add @if condition
+
+div[class*="twt-custom-cms-element-overlay-"] {
+  .cms-section-default {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: block;
+      content: '';
+      opacity: .85;
+    }
+
+    .cms-element-text {
+      font-weight: $font-weight-bold;
+      line-height: 1.2;
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.25);
+    }
+  }
+}
+
+div[class*="twt-custom-cms-element-overlay-"] + div {
+  position: relative;
+}
+
+// TODO: Check spelling...
+.twt-custom-cms-element-overlay-primary {
+  .cms-section-default {
+    &::before {
+      background: $sw-color-brand-primary;
+    }
+
+    .cms-element-text *, .cms-element-text {
+      color: color-yiq($sw-color-brand-primary);
+    }
+  }
+}
+
+// TODO: Check spelling...
+.twt-custom-cms-element-overlay-secondary {
+  .cms-section-default {
+    &::before {
+      background: $sw-color-brand-secondary;
+    }
+
+    .cms-element-text *, .cms-element-text {
+      color: color-yiq($sw-color-brand-secondary);
+    }
+  }
+}
+
+// TODO: Check spelling...
+.twt-custom-cms-element-overlay-success {
+  .cms-section-default {
+    &::before {
+      background: $sw-color-success;
+    }
+
+    .cms-element-text *, .cms-element-text {
+      color: color-yiq($sw-color-success);
+    }
+  }
+}
+
+// TODO: Check spelling...
+.twt-custom-cms-element-overlay-info {
+  .cms-section-default {
+    &::before {
+      background: $sw-color-info;
+    }
+
+    .cms-element-text *, .cms-element-text {
+      color: color-yiq($sw-color-info);
+    }
+  }
+}
+
+// TODO: Check spelling...
+.twt-custom-cms-element-overlay-warning {
+  .cms-section-default {
+    &::before {
+      background: $sw-color-warning;
+    }
+
+    .cms-element-text *, .cms-element-text {
+      color: color-yiq($sw-color-warning);
+    }
+  }
+}
+
+/*
+  _           _____ ___   ___                        _   _
+ | |__ _  _  |_   _/ __|_|_ _|_ _  _ _  _____ ____ _| |_(_)___ _ _  ___
+ | '_ \ || |   | || (_|___| || ' \| ' \/ _ \ V / _` |  _| / _ \ ' \(_-<
+ |_.__/\_, |   |_| \___| |___|_||_|_||_\___/\_/\__,_|\__|_\___/_||_/__/
+       |__/
+*/
+
+// TODO: Check spelling...
+.twt-custom-cms-element-overlay-danger {
+  .cms-section-default {
+    &::before {
+      background: $sw-color-danger;
+    }
+
+    .cms-element-text *, .cms-element-text {
+      color: color-yiq($sw-color-danger);
+    }
+  }
+}
+
+// TODO: Check spelling...
+.twt-custom-cms-element-overlay-light {
+  .cms-section-default {
+    &::before {
+      background: $light;
+    }
+
+    .cms-element-text *, .cms-element-text {
+      color: color-yiq($light);
+    }
+  }
+}
+
+// TODO: Check spelling...
+.twt-custom-cms-element-overlay-dark {
+  .cms-section-default {
+    &::before {
+      background: $dark;
+    }
+
+    .cms-element-text *, .cms-element-text {
+      color: color-yiq($dark);
+    }
+  }
+}
+
+// TODO: Check spelling...
+//.twt-custom-cms-element-overlay-muted {
+//  .cms-section-default {
+//    &::before {
+//      background: #ffffff;
+//    }
+//
+//    .cms-element-text *, .cms-element-text {
+//      color: $text-muted;
+//    }
+//  }
+//}
+
+// TODO: Check spelling...
+.twt-custom-cms-element-overlay-white {
+  .cms-section-default {
+    &::before {
+      background: #ffffff;
+    }
+
+    .cms-element-text *, .cms-element-text {
+      color: color-yiq(#fff);
+    }
+  }
+}
+
+// TODO: Add configuration...
+// TODO: Check spelling...
+//.twt-custom-cms-element-overlay-custom {
+//  .cms-section-default {
+//    &::before {
+//      //background: $dark;
+//    }
+//  }
+//
+//  .cms-element-text *, .cms-element-text {
+//      color: color-yiq($dark);
+//  }
+//}

@@ -1,0 +1,24 @@
+{% block clever_reach_abandoned_cart_settings_ac %}
+    <sw-card class="cr-ac-settings" :isLoading="isLoading">
+        <template v-slot:title>
+            {{ $tc('clever-reach.abandonedCart.title') }}
+        </template>
+        <sw-container>
+            <sw-label variant="neutral" class="cr-ac-settings-desc">
+                {{ this.$tc('clever-reach.abandonedCart.send') }}
+            </sw-label>
+
+            <sw-label v-if="status" variant="neutral" class="cr-ac-settings-desc" v-html="$tc('clever-reach.abandonedCart.recordsLink')">
+            </sw-label>
+
+            <sw-label v-if="storeIdLabel !== ''" variant="neutral" class="cr-ac-settings-desc">
+                {{ storeIdLabel }}
+            </sw-label>
+            <sw-switch-field v-model="status"
+                             :label="activateLabel"
+                             class="cr-ac-settings-activate-automation"
+                             @change="abandonedCartStatusChange">
+            </sw-switch-field>
+        </sw-container>
+    </sw-card>
+{% endblock %}

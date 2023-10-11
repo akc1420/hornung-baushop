@@ -1,0 +1,23 @@
+{% block swag_cms_extensions_form_component_select %}
+    <div class="form-group col-md-{{ field.width }}">
+        <div class="custom-control custom-checkbox">
+
+            {% block swag_cms_extensions_form_component_checkbox_label_input %}
+                <input name="{{ field.technicalName }}"
+                       type="checkbox"
+                       id="form-{{ form.technicalName }}-{{ field.technicalName }}"
+                       class="custom-control-input"
+                       {% if field.required %}required="required"{% endif %}
+                       {% if field.translated.config.default %}checked="checked"{% endif %}
+                       {% if field.translated.errorMessage %}data-form-validation-error-message="{{ field.translated.errorMessage }}"{% endif %}>
+            {% endblock %}
+
+            {% block swag_cms_extensions_form_component_checkbox_label %}
+                <label for="form-{{ form.technicalName }}-{{ field.technicalName }}" class="custom-control-label">
+                    {{- field.translated.label -}}{% if field.required %} {{- "general.required"|trans -}}{% endif %}
+                </label>
+            {% endblock %}
+
+        </div>
+    </div>
+{% endblock %}

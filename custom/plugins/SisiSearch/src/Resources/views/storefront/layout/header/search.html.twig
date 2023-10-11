@@ -1,0 +1,98 @@
+{% block layout_header_search %}
+    <div class="collapse"
+         id="searchCollapse">
+        <div class="header-search">
+            <form
+                {% if searchcontroller == '1' %}
+                    {%  if filterscrolling == 'get' %}
+                        action="{{ path('frontend.search.onorder') }}"
+                    {% else %}
+                        action="{{ path('frontend.search.onsearch') }}"
+                    {% endif %}
+                {% else %}
+                    action="{{ path('frontend.search.page') }}"
+                {% endif %}
+                method="get"
+                    {% if  disabableAjax != 'yes' %}
+                data-search-form="true"
+                {%  endif  %}
+                {% if ajaxcontroller == '1' %}
+                    data-url="{{ path('frontend.search.onsuggest') }}?search="
+                {% else %}
+                    data-url="{{ path('frontend.search.suggest') }}?search="
+                {% endif %}
+                data-scrolling="{{ filterscrollingPopup }}"
+                data-language="{{ sisilanguageId }}"
+                class="header-search-form {% if sisiquerylog == '1' %} sisilogaktive {% endif %}" data-tracking="{{ seoUrl('frontend.track.ontrack') }}">
+                {% block layout_header_search_input_group %}
+                    <div class="input-group">
+                        {% block layout_header_search_input %}
+                            <input type="search"
+                                   name="search"
+                                   class="form-control header-search-input"
+                                   autocomplete="off"
+                                   {% if  disabableAjax  != 'yes' %}
+                                   autocapitalize="off"
+                                   {%  endif  %}
+                                   placeholder="{{ "header.searchPlaceholder"|trans|striptags }}"
+                                   aria-label="{{ "header.searchPlaceholder"|trans|striptags }}"
+                                    maxlength="{{ form }}"
+                                   value="{{ page.searchTerm }}"
+                            >
+                        {% endblock %}
+                        {% block layout_header_search_button %}
+                            {% if sisiPhotoSearch %}
+                                <div class="input-group-append voice-search-icon">
+                                    <button type="submit"
+                                            class="btn header-search-btn img-upload-button"> {# data-url="{{ path('frontend.sisiDownloadAudio') }}" #}
+                                        <span class="header-search-icon ">
+                                                 {% sw_icon 'photocamera' %}
+                                         </span>
+                                    </button>
+                                </div>
+                                <form method="post" enctype="multipart/form-data"
+                                      action="{{ path('frontend.sisiPhotoSearchProducts') }}">
+                                    <div id="sisi-upload-image-modal" class="sisi-modal"
+                                         data-url="{{ path('frontend.sisiPhotoSearchProducts') }}">
+                                        <div class="sisi-modal-content">
+                                            <div class="sisi-modal-header">
+                                                <span class="sisi-modal-close">&times;</span>
+                                            </div>
+                                            <div class="sisi-photo-container">
+                                                <p>Find products by uploaded photo</p>
+                                                <input type='file' id="sisi-upload-image"/>
+                                                <img class="sisi-uploaded-image" id="sisi-uploaded-image-vision" src="#"
+                                                     alt="something is wrong">
+                                                <div id="sisi-modal-content-product-list"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            {% else %}
+                                {%  if sisiVoiceSearchSupport  %}
+                                <input type="hidden" id="sisiVoiceSearchSupport" value="{{sisiVoiceSearchSupport}}">
+                                <div class="input-group-append voice-search-icon" style="display: none;">
+                                    <button class="btn header-search-btn vs-header-mic-btn"  data-url="{{ path('frontend.sisiDownloadAudio') }}">
+                                        <span class="header-search-icon ">
+                                            {% sw_icon 'micophone' %}
+                                        </span>
+                                    </button>
+                                </div>
+                                {% endif %}
+                                <div class="input-group-append">
+                                    <button type="submit"
+                                            class="btn header-search-btn"
+                                            aria-label="{{ "header.searchButton"|trans|striptags }}">
+                                    <span class="header-search-icon">
+                                        {% sw_icon 'search' %}
+                                    </span>
+                                    </button>
+                                </div>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

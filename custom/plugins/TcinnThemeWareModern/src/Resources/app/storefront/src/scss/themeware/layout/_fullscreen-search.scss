@@ -1,0 +1,157 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare "Fullscreen search"
+    ==================================================
+
+*/
+
+// ThemeWare: Fullscreen search ------------------------------
+
+// TODO: Add configuration...
+
+@if $twt-header-search-type == 4 {
+    .search-container {
+        z-index: $twt-sticky-nav-main-z-index+1 !important; // Fix z-index
+
+        #searchCollapse {
+            position: fixed;
+            z-index: $search-suggest-zindex;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: none;
+            align-items: center;
+            height: 100% !important;
+            padding: 0 10vw 50vh;
+            transition: inherit;
+            opacity: 0;
+            background-color: $twt-header-search-fullscreen-background-color;
+
+            &.collapsing,
+            &.show {
+                position: fixed;
+                display: flex;
+                overflow: visible;
+                height: 100% !important;
+                transition: inherit;
+            }
+
+            &.show {
+                transition: opacity .3s ease-in-out;
+                opacity: 1;
+            }
+
+            .header-search {
+                max-width: none;
+                transition: opacity .3s ease-in-out;
+                opacity: 1;
+
+                .header-search-form {
+                    box-shadow: 0 0 40px rgba(0, 0, 0, .15);
+
+                    .header-search-input {
+                        font-size: 2rem;
+                        text-align: center;
+                        color: #ffffff;
+                        border: none;
+                        border-bottom: 3px solid #ffffff;
+                        border-radius: 0;
+                        background: transparent;
+
+                        @include media-breakpoint-up(sm) { // min 576px
+                            padding: 30px;
+                        }
+
+                        &::placeholder {
+                            opacity: 1;
+                            color: #cccccc;
+                        }
+                    }
+
+                    .input-group-append {
+                        margin-left: 0;
+
+                        .btn {
+                            @include media-breakpoint-down(xs) { // max 575.98px
+                                padding: 0 10px;
+                            }
+
+                            @include media-breakpoint-up(sm) { // min 576px
+                                padding: 0 24px;
+                            }
+
+                            border: none;
+                            border-bottom: 3px solid #ffffff;
+                            border-radius: 0;
+                            background: transparent;
+
+                            .icon {
+                                @include media-breakpoint-up(sm) { // min 576px
+                                    width: 28px;
+                                    height: 28px;
+                                }
+
+                                svg {
+                                    color: #ffffff;
+                                }
+                            }
+
+                            &:hover {
+                                opacity: 0.7;
+                            }
+                        }
+
+                        .loader {
+                            color: #fff !important;
+                        }
+                    }
+
+                    @include media-breakpoint-up(md) { // min 768px
+                        width: 600px;
+                    }
+                }
+
+                @include media-breakpoint-down(sm) { // max 767.98px
+                    width: 100%;
+                }
+            }
+
+            &.collapsing .header-search {
+                opacity: 0;
+            }
+
+            // Close Button
+            .search-toggle-btn {
+                position: fixed;
+                z-index: $search-suggest-zindex+1;
+                top: 5%;
+                right: 5%;
+                display: block !important;
+                opacity: 0.7;
+
+                .icon {
+                    width: 42px;
+                    height: 42px;
+
+                    svg {
+                        color: #ffffff;
+                    }
+                }
+
+                &:hover {
+                    transition: opacity .1s ease-in-out;
+                    opacity: 1;
+                }
+
+            }
+
+        }
+    }
+}

@@ -1,0 +1,47 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Extension > Slideout communities
+    ==================================================
+    The configuration is seperated from the widget as this element
+    doesn't have any other purpose than showing the communities.
+*/
+
+/* ---------------- START: SET SCSS VARS ---------------- */
+
+// ThemeWare: Calc right position
+$twt-slideout-communities-right: calc((200px - #{$twt-slideout-communities-icon-size + px}) * -1);
+
+/* ---------------- END: SET SCSS VARS ---------------- */
+
+@if $twt-slideout-communities-show == 2 {
+  .twt-slideout-communities {
+    position: fixed;
+    z-index: $zindex-modal-backdrop - 1; // 1040 - 1
+    top: 50%;
+    right: $twt-slideout-communities-right;
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+      display: none;
+    }
+    @include media-breakpoint-up(md) { // min 768px
+      display: block;
+    }
+
+    width: 200px; // TODO: Add configuration (width with calc) [see _communities.scss] ?!
+    margin: 0;
+    padding: 0;
+    transform: translateY(-50%);
+  
+    // Wird per JavaScript gesetzt falls nicht mehr genug Abstand über dem Element verbleibt.
+    &.is-sticky {
+      top: 1px;
+      transform: none;
+   }
+  }
+}

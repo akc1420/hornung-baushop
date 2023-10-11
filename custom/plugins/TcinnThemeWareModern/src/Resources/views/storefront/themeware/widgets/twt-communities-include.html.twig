@@ -1,0 +1,463 @@
+{# ThemeWare "Communities" widget #}
+{#
+	Create "Communities" widget and add content
+
+	@Storefront/storefront/themeware/widgets/twt-communities-include.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# TODO:
+	- Add floating option...
+	- Add usp-bar option...
+#}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtWidgetCommunitiesAdditionalTextShow = theme_config('twt-widget-communities-additional-text-show') %}
+{% set twtWidgetCommunitiesBlog = theme_config('twt-widget-communities-blog') %}
+{% set twtWidgetCommunitiesBlogger = theme_config('twt-widget-communities-blogger') %}
+{% set twtWidgetCommunitiesFacebook = theme_config('twt-widget-communities-facebook') %}
+{% set twtWidgetCommunitiesFlickr = theme_config('twt-widget-communities-flickr') %}
+{% set twtWidgetCommunitiesIconStyle = theme_config('twt-widget-communities-icon-style') %}
+{% set twtWidgetCommunitiesInstagram = theme_config('twt-widget-communities-instagram') %}
+{% set twtWidgetCommunitiesLinkedin = theme_config('twt-widget-communities-linkedin') %}
+{% set twtWidgetCommunitiesPinterest = theme_config('twt-widget-communities-pinterest') %}
+{% set twtWidgetCommunitiesTiktok = theme_config('twt-widget-communities-tiktok') %}
+{% set twtWidgetCommunitiesTwitch = theme_config('twt-widget-communities-twitch') %}
+{% set twtWidgetCommunitiesTwitter = theme_config('twt-widget-communities-twitter') %}
+{% set twtWidgetCommunitiesVimeo = theme_config('twt-widget-communities-vimeo') %}
+{% set twtWidgetCommunitiesWebsite = theme_config('twt-widget-communities-website') %}
+{% set twtWidgetCommunitiesWhatsapp = theme_config('twt-widget-communities-whatsapp') %}
+{% set twtWidgetCommunitiesXing = theme_config('twt-widget-communities-xing') %}
+{% set twtWidgetCommunitiesYoutube = theme_config('twt-widget-communities-youtube') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% if twtWidgetCommunitiesIconStyle == 1 %}
+	{% set style = 'default' %}
+{% elseif twtWidgetCommunitiesIconStyle == 2 %}
+	{% set style = 'isolated' %}
+{% elseif twtWidgetCommunitiesIconStyle == 3 %}
+	{% set style = 'badge' %}
+{% elseif twtWidgetCommunitiesIconStyle == 4 %}
+	{% set style = 'square' %}
+{% elseif twtWidgetCommunitiesIconStyle == 5 %}
+	{% set style = 'circle' %}
+{% elseif twtWidgetCommunitiesIconStyle == 6 %}
+	{% set style = 'default-mono' %}
+{% elseif twtWidgetCommunitiesIconStyle == 7 %}
+	{% set style = 'isolated-mono' %}
+{% elseif twtWidgetCommunitiesIconStyle == 8 %}
+	{% set style = 'badge-mono' %}
+{% elseif twtWidgetCommunitiesIconStyle == 9 %}
+	{% set style = 'square-mono' %}
+{% elseif twtWidgetCommunitiesIconStyle == 10 %}
+	{% set style = 'circle-mono' %}
+{% endif %}
+
+{# ThemeWare: Overwrite icon style when its slideout #}
+{% if type == 'slideout' %}
+    {% set style = 'square' %}
+{% endif %}
+
+{# ThemeWare: Overwrite icon style when its in USP bar #}
+{% if type == 'usp-bar' %}
+	{% set style = 'default-mono' %}
+{% endif %}
+
+{# ThemeWare: Social icons #}
+{% block twt_widget_communities %}
+	<div class="twt-widget-communities twt-communities{% if type == 'slideout' %} is-slideout{% endif %}{% if type == 'sidebar' %} is-sidebar{% endif %}{% if type == 'cms' %} is-cms{% endif %}{% if type == 'usp-bar' %} is-usp-bar{% endif %}">
+
+		{% block twt_widget_communities_content %}
+			{% if twtWidgetCommunitiesAdditionalTextShow == 2 %}
+				<div class="twt-communities-additional-text">
+					<p>{{ "twt.widget.communities.additionalText"|trans|sw_sanitize }}</p>
+				</div>
+			{% endif %}
+
+			<ul class="twt-communities-list">
+				{# ThemeWare: Facebook logo #}
+				{% if twtWidgetCommunitiesFacebook == 2 %}
+
+					{% block twt_widget_communities_facebook %}
+						{% set icon = 'facebook' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.facebook.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.facebook.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.facebook.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-facebook"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.facebook.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Instagram #}
+				{% if twtWidgetCommunitiesInstagram == 2 %}
+
+					{% block twt_widget_communities_instagram %}
+						{% set icon = 'instagram' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.instagram.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.instagram.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.instagram.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-instagram"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.instagram.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Twitter #}
+				{% if twtWidgetCommunitiesTwitter == 2 %}
+
+					{% block twt_widget_communities_twitter %}
+						{% set icon = 'twitter' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.twitter.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.twitter.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.twitter.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-twitter"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.twitter.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Youtbe #}
+				{% if twtWidgetCommunitiesYoutube == 2 %}
+
+					{% block twt_widget_communities_youtube %}
+						{% set icon = 'youtube' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.youtube.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.youtube.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.youtube.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-youtube"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.youtube.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Vimeo #}
+				{% if twtWidgetCommunitiesVimeo == 2 %}
+
+					{% block twt_widget_communities_vimeo %}
+						{% set icon = 'vimeo' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.vimeo.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.vimeo.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.vimeo.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-vimeo"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.vimeo.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Twitch #}
+				{% if twtWidgetCommunitiesTwitch == 2 %}
+
+					{% block twt_widget_communities_twitch %}
+						{% set icon = 'twitch' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.twitch.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.twitch.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.twitch.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-twitch"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									Twitch{#{ "twt.widget.communities.twitch.name"|trans|sw_sanitize }#}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Flickr #}
+				{% if twtWidgetCommunitiesFlickr == 2 %}
+
+					{% block twt_widget_communities_flickr %}
+						{% set icon = 'flickr' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.flickr.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.flickr.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.flickr.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-flickr"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.flickr.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Pinterest #}
+				{% if twtWidgetCommunitiesPinterest == 2 %}
+
+					{% block twt_widget_communities_pinterest %}
+						{% set icon = 'pinterest' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.pinterest.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.pinterest.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.pinterest.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-pinterest"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.pinterest.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: TikTok #}
+				{% if twtWidgetCommunitiesTiktok == 2 %}
+
+					{% block twt_widget_communities_tiktok %}
+						{% set icon = 'tiktok' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.tiktok.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.tiktok.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.tiktok.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-tiktok"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.tiktok.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Blogger #}
+				{% if twtWidgetCommunitiesBlogger == 2 %}
+
+					{% block twt_widget_communities_blogger %}
+						{% set icon = 'blogger' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.blogger.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.blogger.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.blogger.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-blogger"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.blogger.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Blog (WordPress) #}
+				{% if twtWidgetCommunitiesBlog == 2 %}
+
+					{% block twt_widget_communities_blog %}
+						{% set icon = 'wordpress' %}
+						<li class="twt-communities-item item-blog">
+							<a href="{{ "twt.widget.communities.blog.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.blog.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.blog.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-blog"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.blog.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: WhatsApp #}
+				{% if twtWidgetCommunitiesWhatsapp == 2 %}
+
+					{% block twt_widget_communities_whatsapp %}
+						{% set icon = 'whatsapp' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.whatsapp.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.whatsapp.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.whatsapp.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-whatsapp"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.whatsapp.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: LinkedIn #}
+				{% if twtWidgetCommunitiesLinkedin == 2 %}
+
+					{% block twt_widget_communities_linkedin %}
+						{% set icon = 'linkedin' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.linkedin.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.linkedin.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.linkedin.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-linkedin"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.linkedin.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: Xing #}
+				{% if twtWidgetCommunitiesXing == 2 %}
+
+					{% block twt_widget_communities_xing %}
+						{% set icon = 'xing' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.xing.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.xing.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.xing.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-xing"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.xing.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+				{# ThemeWare: eMail #}
+
+				{# ThemeWare: Website #}
+				{% if twtWidgetCommunitiesWebsite == 2 %}
+
+					{% block twt_widget_communities_website %}
+						{% set icon = 'website' %}
+						<li class="twt-communities-item item-{{ icon }}">
+							<a href="{{ "twt.widget.communities.website.link"|trans|sw_sanitize }}"
+							   aria-label="{{ "twt.widget.communities.website.name"|trans|sw_sanitize }}"
+							   title="{{ "twt.widget.communities.website.name"|trans|sw_sanitize }}"
+							   class="twt-communities-link link-website"
+							   rel="noopener"
+							   target="_blank">
+								{% sw_include '@Storefront/storefront/themeware/twt-social-icons.html.twig' ignore missing with {
+									icon: icon,
+									style: style
+								} %}
+								<span class="twt-communities-label">
+									{{ "twt.widget.communities.website.name"|trans|sw_sanitize }}
+								</span>
+							</a>
+						</li>
+					{% endblock %}
+
+				{% endif %}
+
+			</ul>
+		{% endblock %}
+		
+	</div>
+{% endblock %}

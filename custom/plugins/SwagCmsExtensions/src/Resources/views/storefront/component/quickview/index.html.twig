@@ -1,0 +1,54 @@
+{% block swag_cms_extensions_component_quickview %}
+
+    {% set mediaItems = page.product.media.media %}
+
+    {% block swag_cms_extensions_component_quickview_close_button %}
+        <div class="swag-cms-extensions-quickview-close-button">
+            <button type="button" class="close" aria-label="Close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endblock %}
+
+    {% block swag_cms_extensions_component_quickview_container %}
+        <div class="swag-cms-extensions-quickview-container container">
+
+            {% block swag_cms_extensions_component_quickview_content_wrapper %}
+                {% block swag_cms_extensions_component_quickview_header %}
+                    <div class="swag-cms-extensions-quickview-header row">
+                        {% sw_include '@SwagCmsExtensions/storefront/component/quickview/headline.html.twig' %}
+                    </div>
+                {% endblock %}
+
+                {% block swag_cms_extensions_component_quickview_content %}
+                    <div class="swag-cms-extensions-quickview-content row">
+
+                        <div class="swag-cms-extensions-quickview-content-left col-lg-7">
+                            {% if page.product.media %}
+                                {% sw_include '@Storefront/storefront/element/cms-element-image-gallery.html.twig' with {
+                                    'mediaItems': mediaItems,
+                                    'displayMode': 'contain',
+                                    'minHeight': '400px',
+                                    'navigationArrows': 'inside',
+                                    'navigationDots': 'inside',
+                                    'galleryPosition': 'left',
+                                    'isProduct': true,
+                                    'zoom': true,
+                                    'gutter': 1,
+                                    'zoomImageContainerSelector': "[data-swag-cms-extensions-quickview-carousel-product-id=\"#{page.listingProductId}\"] .js-magnifier-zoom-image-container",
+                                    'zoomModal': false,
+                                    'startIndexThumbnails': page.product.cover.position + 1,
+                                    'startIndexSlider': page.product.cover.position + 1
+                                } %}
+                            {% endif %}
+                        </div>
+
+                        <div class="product-detail-buy swag-cms-extensions-quickview-content-right col-lg-5">
+                            {% sw_include '@SwagCmsExtensions/storefront/component/quickview/buy-widget.html.twig' %}
+                        </div>
+                    </div>
+                {% endblock %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

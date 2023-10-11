@@ -1,0 +1,10 @@
+{% block gbmed_form_options %}
+    {% set gbmedForm = page.extensions.gbmedForm %}
+    <div id="gRecaptcha" data-gbmed-recaptcha="true"></div>
+    <script>
+        {# add form elements #}
+        {% for route in gbmedForm.formRoutes %}
+            window.gbmedFormsOptions.forms.push(document.querySelectorAll("form[action='{{ path(route) }}']"));
+        {% endfor %}
+    </script>
+{% endblock %}

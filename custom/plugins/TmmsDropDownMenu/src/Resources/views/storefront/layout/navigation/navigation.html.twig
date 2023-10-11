@@ -1,0 +1,104 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+
+{% block layout_main_navigation %}
+    {% block layout_main_navigation_dropdownmenu_before %}{% endblock %}
+
+    {% if config('TmmsDropDownMenu.config.dropdownMenuStickyEffectIsActive') %}
+        {% set activeViewportsDropdownMenuStickyEffectIsActiveString = "" %}
+
+        {% for activeViewportDropdownMenuStickyEffectIsActive in config('TmmsDropDownMenu.config.activeViewportsDropdownMenuStickyEffectIsActive') %}
+            {% set activeViewportsDropdownMenuStickyEffectIsActiveString = activeViewportsDropdownMenuStickyEffectIsActiveString ~ activeViewportDropdownMenuStickyEffectIsActive %}
+        {% endfor %}
+
+        {% if activeViewportsDropdownMenuStickyEffectIsActiveString == "lgxlxxl" or activeViewportsDropdownMenuStickyEffectIsActiveString == "lgxxlxl" or activeViewportsDropdownMenuStickyEffectIsActiveString == "xxllgxl" or activeViewportsDropdownMenuStickyEffectIsActiveString == "xllgxxl" or activeViewportsDropdownMenuStickyEffectIsActiveString == "xxlxllg" or activeViewportsDropdownMenuStickyEffectIsActiveString == "xlxxllg" %}
+            {% set notActiveViewportsDropdownMenuStickyEffectIsActiveString = "'XS', 'SM', 'MD'" %}
+        {% elseif activeViewportsDropdownMenuStickyEffectIsActiveString == "xxlxl" or activeViewportsDropdownMenuStickyEffectIsActiveString == "xlxxl" %}
+            {% set notActiveViewportsDropdownMenuStickyEffectIsActiveString = "'XS', 'SM', 'MD', 'LG'" %}
+        {% elseif activeViewportsDropdownMenuStickyEffectIsActiveString == "lgxxl" or activeViewportsDropdownMenuStickyEffectIsActiveString == "xxllg" %}
+            {% set notActiveViewportsDropdownMenuStickyEffectIsActiveString = "'XS', 'SM', 'MD', 'XL'" %}
+        {% elseif activeViewportsDropdownMenuStickyEffectIsActiveString == "lgxl" or activeViewportsDropdownMenuStickyEffectIsActiveString == "xllg" %}
+            {% set notActiveViewportsDropdownMenuStickyEffectIsActiveString = "'XS', 'SM', 'MD', 'XXL'" %}
+        {% elseif activeViewportsDropdownMenuStickyEffectIsActiveString == "lg" %}
+            {% set notActiveViewportsDropdownMenuStickyEffectIsActiveString = "'XS', 'SM', 'MD', 'XL', 'XXL'" %}
+        {% elseif activeViewportsDropdownMenuStickyEffectIsActiveString == "xl" %}
+            {% set notActiveViewportsDropdownMenuStickyEffectIsActiveString = "'XS', 'SM', 'MD', 'LG', 'XXL'" %}
+        {% elseif activeViewportsDropdownMenuStickyEffectIsActiveString == "xxl" %}
+            {% set notActiveViewportsDropdownMenuStickyEffectIsActiveString = "'XS', 'SM', 'MD', 'LG', 'XL'" %}
+        {% elseif activeViewportsDropdownMenuStickyEffectIsActiveString == "" %}
+            {% set notActiveViewportsDropdownMenuStickyEffectIsActiveString = "'XS', 'SM', 'MD', 'LG', 'XL', 'XXL'" %}
+        {% endif %}
+
+        <div class="main-navigation-wrapper main-navigation-wrapper-dropdown{% if config('TmmsDropDownMenu.config.dropdownMenuIsActive') %} has-dropdownmenu{% endif %}{% if config('TmmsDropDownMenu.config.dropdownMenuMultiLineOpenLastChildToLeft') %}{% if not(config('TmmsDropDownMenu.config.dropdownMenuAlwaysOpenToLeft')) %} dropdownmenu-open-last-childrens-to-left{% endif %}{% endif %}{% if config('TmmsDropDownMenu.config.dropdownMenuRightAligned') %} dropdownmenu-is-right-aligned{% endif %}"
+             data-tmms-dropdown-menu-sticky-effect="true"
+             data-tmms-dropdown-menu-sticky-effect-plugin-options='{
+                "positionDropdownMenuStickyEffectIsActive": "{{ config('TmmsDropDownMenu.config.positionDropdownMenuStickyEffectIsActive') }}",
+                "notActiveViewportsDropdownMenuStickyEffectIsActiveString": "{{ notActiveViewportsDropdownMenuStickyEffectIsActiveString }}",
+                "dropdownMenuMultiLineOpenLastChildToLeft": "{{ config('TmmsDropDownMenu.config.dropdownMenuMultiLineOpenLastChildToLeft') }}",
+                "dropdownMenuNumberMainNavigationMenuItemsOpenToLeft": "{{ config('TmmsDropDownMenu.config.dropdownMenuNumberMainNavigationMenuItemsOpenToLeft') }}",
+                "dropdownMenuMinimumNumberMainNavigationMenuItemsOpenToLeft": "{{ config('TmmsDropDownMenu.config.dropdownMenuMinimumNumberMainNavigationMenuItemsOpenToLeft') }}"
+             }'>
+            {{ parent() }}
+        </div>
+    {% else %}
+        {% if config('TmmsDropDownMenu.config.dropdownMenuIsActive') %}
+            <div class="main-navigation-wrapper main-navigation-wrapper-dropdown{% if config('TmmsDropDownMenu.config.dropdownMenuIsActive') %} has-dropdownmenu{% endif %}{% if config('TmmsDropDownMenu.config.dropdownMenuMultiLineOpenLastChildToLeft') %}{% if not(config('TmmsDropDownMenu.config.dropdownMenuAlwaysOpenToLeft')) %} dropdownmenu-open-last-childrens-to-left{% endif %}{% endif %}{% if config('TmmsDropDownMenu.config.dropdownMenuRightAligned') %} dropdownmenu-is-right-aligned{% endif %}"
+                 data-tmms-dropdown-menu-right="true"
+                 data-tmms-dropdown-menu-right-plugin-options='{
+                    "dropdownMenuMultiLineOpenLastChildToLeft": "{{ config('TmmsDropDownMenu.config.dropdownMenuMultiLineOpenLastChildToLeft') }}",
+                    "dropdownMenuNumberMainNavigationMenuItemsOpenToLeft": "{{ config('TmmsDropDownMenu.config.dropdownMenuNumberMainNavigationMenuItemsOpenToLeft') }}",
+                    "dropdownMenuMinimumNumberMainNavigationMenuItemsOpenToLeft": "{{ config('TmmsDropDownMenu.config.dropdownMenuMinimumNumberMainNavigationMenuItemsOpenToLeft') }}"
+                 }'>
+                {{ parent() }}
+            </div>
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% endif %}
+
+    {% block layout_main_navigation_dropdownmenu_after %}{% endblock %}
+{% endblock %}
+
+{% block layout_main_navigation_menu_home %}
+    {% block layout_main_navigation_menu_home_dropdownmenu_before %}{% endblock %}
+
+    {% if config('TmmsDropDownMenu.config.showNavigationMenuItemHome') %}
+        {% if config('TmmsDropDownMenu.config.replaceNavigationMenuItemHomeWithIcon') %}
+            <a class="nav-link main-navigation-link{% if controllerAction is same as('home') %} active{% endif %} home-link"
+               href="{{ path('frontend.home.page') }}"
+               itemprop="url"
+               title="{{ homeLabel|striptags }}">
+                <div class="main-navigation-link-text">
+                    <span class="icon-home-container">{% sw_icon 'home' %}</span>
+                </div>
+            </a>
+        {% else %}
+            {{ parent() }}
+        {% endif %}
+    {% else %}
+    {% endif %}
+
+    {% block layout_main_navigation_menu_home_dropdownmenu_after %}{% endblock %}
+{% endblock %}
+
+{% block layout_main_navigation_menu_items %}
+    {% block layout_main_navigation_menu_items_dropdownmenu_before %}{% endblock %}
+
+    {% if config('TmmsDropDownMenu.config.dropdownMenuIsActive') %}
+        {% sw_include '@TmmsDropDownMenu/storefront/layout/navigation/navigation-menuitems.html.twig' with {navigationTreeItem: page.header.navigation.tree, level: 0, pageHeaderNavigationActive: page.header.navigation.active} only %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+    {% block layout_main_navigation_menu_items_dropdownmenu_after %}{% endblock %}
+{% endblock %}
+
+ {% block layout_main_navigation_menu_flyout_wrapper %}
+    {% block layout_main_navigation_menu_flyout_wrapper_dropdownmenu_before %}{% endblock %}
+
+    {% if config('TmmsDropDownMenu.config.dropdownMenuIsActive') %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+    {% block layout_main_navigation_menu_flyout_wrapper_dropdownmenu_after %}{% endblock %}
+ {% endblock %}

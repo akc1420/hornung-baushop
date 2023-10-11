@@ -1,0 +1,79 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Base
+	==================================================
+	Contains global base styles for all pages.
+*/
+
+html {
+	// ThemeWare: Background image (if configured)
+	@if $twt-background-image-show == 2 and $twt-background-image != "" and $twt-background-image != "none" {
+		body {
+			background-size: $twt-background-image-size;
+			background-position: $twt-background-image-position;
+			background-repeat: $twt-background-image-repeat;
+			background-attachment: $twt-background-image-attachment;
+		}
+	}
+ 
+	// ThemeWare: Set HTML base font size
+	@include media-breakpoint-up(xl) { // min 1200px
+	  font-size: $twt-html-font-size-xl;
+	}
+	@include media-breakpoint-down(lg) { // max 1199.98px
+	  font-size: $twt-html-font-size-lg;
+	}
+	@include media-breakpoint-down(xs) { // max 575.98px
+	  font-size: $twt-html-font-size-xs;
+	}
+
+}
+
+
+// ThemeWare: Import google fonts ----------------------------------------------------------------
+
+@if $twt-google-font-import == 2 {
+	// ThemeWare: str-replace $family-base for google-urls
+	$twt-font-family-base-string-1: str-replace(#{$sw-font-family-base}, 'sans-serif', '');
+	$twt-font-family-base-string-2: str-replace(#{$twt-font-family-base-string-1}, 'serif', '');
+	$twt-font-family-base-string-3: str-replace(#{$twt-font-family-base-string-2}, 'cursive', '');
+	$twt-font-family-base-string-4: str-replace(#{$twt-font-family-base-string-3}, ', ', '');
+	$twt-font-family-base-string-5: str-replace(#{$twt-font-family-base-string-4}, "'", '');
+	$twt-font-family-base-string: str-replace(#{$twt-font-family-base-string-5}, ' ', '+');
+
+	$twt-font-weight-base-string: str-replace(#{$twt-font-family-base-font-weight}, ' ', ''); // Remove blanks
+
+	// ThemeWare: Check if $sw-font-family-base and $sw-font-family-headline are equal
+	@if $sw-font-family-base == $sw-font-family-headline and $twt-font-family-base-font-weight == $twt-font-family-headline-font-weight {
+		// ThemeWare: Include just $family-base as $sw-font-family-base and $sw-font-family-headline as the fonts are equal
+		@include twt-google-font("#{$twt-font-family-base-string}", "#{$twt-font-weight-base-string}");
+
+	} @else {
+		// ThemeWare: str-replace $family-headline for google-urls
+		$twt-font-family-headline-string-1: str-replace(#{$sw-font-family-headline}, 'sans-serif', '');
+		$twt-font-family-headline-string-2: str-replace(#{$twt-font-family-headline-string-1}, 'serif', '');
+		$twt-font-family-headline-string-3: str-replace(#{$twt-font-family-headline-string-2}, 'cursive', '');
+		$twt-font-family-headline-string-4: str-replace(#{$twt-font-family-headline-string-3}, ', ', '');
+		$twt-font-family-headline-string-5: str-replace(#{$twt-font-family-headline-string-4}, "'", '');
+		$twt-font-family-headline-string: str-replace(#{$twt-font-family-headline-string-5}, ' ', '+');
+
+		$twt-font-weight-headline-string: str-replace(#{$twt-font-family-headline-font-weight}, ' ', ''); // Remove blanks
+
+		// ThemeWare: Include $family-base and $family-headline as the fonts are unequal
+		@include twt-google-font("#{$twt-font-family-base-string}", "#{$twt-font-weight-base-string}");
+		@include twt-google-font("#{$twt-font-family-headline-string}", "#{$twt-font-weight-headline-string}");
+	}
+}
+
+
+// ThemeWare: Custom classes ----------------------------------------------------------------
+// TODO: Wird diese noch benötigt?
+.mt-n2p {
+	margin-top: -20px;
+}

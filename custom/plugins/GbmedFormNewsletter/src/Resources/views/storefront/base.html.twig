@@ -1,0 +1,12 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_body_script %}
+    {{ parent() }}
+
+    <script>
+        {# add form elements #}
+        window.gbmedFormsOptions.forms.push(
+            document.querySelectorAll("form[action='{{ path('frontend.form.newsletter.register.handle') }}']")
+        );
+    </script>
+{% endblock %}

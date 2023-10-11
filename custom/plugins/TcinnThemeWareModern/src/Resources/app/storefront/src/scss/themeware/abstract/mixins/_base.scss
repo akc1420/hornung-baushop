@@ -1,0 +1,390 @@
+﻿/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: SCSS-Mixins
+	==================================================
+
+*/
+
+// ThemeWare: Media-breakpoint without pixels ------------------------------
+// - Example: "@include media-breakpoint(min,800) { ... }"
+// - Example: "@include media-breakpoint(max,1400) { ... }"
+// - Example: "@include media-breakpoint(800,1400) { ... }" // min and max
+
+// ThemeWare: Min-width für Elemente im Body ------------------------------
+// TODO: Check elements like tooltips or modals...
+//body > div,
+//body > section,
+//body > header,
+//body > main,
+//body > footer {
+//	min-width: 320px; // 20em
+//}
+
+// TODO: twt-media-breakpoint ??
+@mixin media-breakpoint($value1, $value2) {
+	@if $value1 != null and $value2 != null {
+		@if $value1 == min {
+			@media (min-width: $value2 + px) {
+				@content;
+			}
+		} @else if $value1 == max {
+			@media (max-width: $value2 + px) {
+				@content;
+			}
+		} @else {
+			@media (min-width: $value1 + px) and (max-width: $value2 + px) {
+				@content;
+			}
+		}
+	} @else {
+		@content;
+	}
+}
+
+// ThemeWare: Import Google Fonts ------------------------------
+// - Example: @include twt-google-font("Lato", "400,700");
+// - @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Open+Sans:wght@300;400&display=swap');
+// - <link href='https://fonts.googleapis.com/css?family=Markazi+Text|Roboto:400,400i,700,700i' rel='stylesheet' type='text/css'>
+@mixin twt-google-font($family, $weight) {
+	@if $family != null {
+		@if $weight != null {
+			//@import url("https://fonts.googleapis.com/css2?family=#{$family}:wght@#{$weight}&display=swap");
+			@import url("https://fonts.googleapis.com/css?family=#{$family}:#{$weight}&display=swap");
+
+		} @else {
+			//@import url("https://fonts.googleapis.com/css2?family=#{$family}&display=swap");
+			@import url("https://fonts.googleapis.com/css?family=#{$family}&display=swap");
+		}
+	} @else {
+		@content;
+	}
+}
+
+// ThemeWare: Set font-size (px) in px and rem ------------------------------
+// - Convert px values to rem as. px values are used in the theme configuration (Theme Manager).
+// - Example: @include twt-font-size(32);
+@mixin twt-font-size($size) {
+	font-size: strip-unit($size) + px; // Fallback in px
+	font-size: rem($size);
+}
+
+// ThemeWare: Set font-size (rem) in px and rem ------------------------------
+// - Convert rem values to px. rem values are used in bootstrap (default theme)
+// - Example: @include twt-font-size-rem(1.25);
+@mixin twt-font-size-rem($size) {
+	font-size: strip-unit($size) * 16 + px; // Fallback in px
+	font-size: $size;
+}
+
+// ThemeWare: Grayscale element ------------------------------
+// - Example: @include twt-opacity(.4);
+@mixin twt-opacity($value) {
+	-webkit-filter: #{"opacity(#{$value})"};
+	-moz-filter: #{"opacity(#{$value})"};
+	filter: #{"opacity(#{$value})"};
+}
+
+// ThemeWare: Grayscale element ------------------------------
+// - Example: @include twt-grayscale(100%);
+@mixin twt-grayscale($value) {
+	-webkit-filter: #{"grayscale(#{$value})"};
+	-moz-filter: #{"grayscale(#{$value})"};
+	filter: #{"grayscale(#{$value})"};
+}
+
+// ThemeWare: Grayscale element ------------------------------
+// - Example: @include twt-grayscale-opacity(95%, .4);
+@mixin twt-grayscale-opacity($value1, $value2) {
+	-webkit-filter: #{"grayscale(#{$value1})"} #{"opacity(#{$value2})"};
+	-moz-filter: #{"grayscale(#{$value1})"} #{"opacity(#{$value2})"};
+	filter: #{"grayscale(#{$value1})"} #{"opacity(#{$value2})"};
+}
+
+// ThemeWare: Blur element ------------------------------
+// - Example: @include twt-blur(5px);
+@mixin twt-blur($value) {
+	-webkit-filter: #{"blur(#{$value})"};
+	-moz-filter: #{"blur(#{$value})"};
+	filter: #{"blur(#{$value})"};
+}
+
+// ThemeWare: Box-shadows ------------------------------
+// - Example: @include twt-box-shadow(1);
+@mixin twt-box-shadow($value) {
+	@if $value != null {
+		@if $value == 1 {
+			//box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+			box-shadow: 0 1px 3px rgba(0, 0, 0, .10), 0 1px 2px rgba(0, 0, 0, .10);
+		} @else if $value == 2 {
+			//box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+			box-shadow: 0 3px 6px rgba(0, 0, 0, .10), 0 3px 6px rgba(0, 0, 0, .10);
+		} @else if $value == 3 {
+			//box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
+			box-shadow: 0 10px 20px rgba(0, 0, 0, .10), 0 6px 6px rgba(0, 0, 0, .10);
+		} @else if $value == 4 {
+			//box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+			box-shadow: 0 14px 28px rgba(0, 0, 0, .10), 0 10px 10px rgba(0, 0, 0, .10);
+		} @else {
+			//box-shadow: 0 19px 38px rgba(0, 0, 0, .30), 0 15px 12px rgba(0, 0, 0, .22);
+			box-shadow: 0 19px 38px rgba(0, 0, 0, .10), 0 15px 12px rgba(0, 0, 0, .10);
+		}
+	} @else {
+		@content;
+	}
+}
+
+// Material shadow 1
+// - box-shadow: 0 1px 3px rgba(0, 0, 0, .12), 0 1px 2px rgba(0, 0, 0, .24);
+// - transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+
+// :hover
+// - box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+
+// Material shadow 2
+// - box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(0, 0, 0, .23);
+
+// Material shadow 3
+// - box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
+
+// Material shadow 4
+// - box-shadow: 0 14px 28px rgba(0, 0, 0, .25), 0 10px 10px rgba(0, 0, 0, .22);
+
+// Material shadow 5
+// - box-shadow: 0 19px 38px rgba(0, 0, 0, .30), 0 15px 12px rgba(0, 0, 0, .22);
+
+
+// ThemeWare: Material design shadows
+// - Example: @include twt-material-shadow(1);
+
+//@mixin twt-material-shadow ($dp) {
+//	@if $dp==0 {
+//		box-shadow: none
+//	}
+//	@else if $dp==1 {
+//		box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .14), 0 2px 1px -1px rgba(0, 0, 0, .12), 0 1px 3px 0 rgba(0, 0, 0, .20)
+//	}
+//	@else if $dp==2 {
+//		box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .12), 0 1px 5px 0 rgba(0, 0, 0, .20)
+//	}
+//	@else if $dp==3 {
+//		box-shadow: 0 3px 4px 0 rgba(0, 0, 0, .14), 0 3px 3px -2px rgba(0, 0, 0, .12), 0 1px 8px 0 rgba(0, 0, 0, .20)
+//	}
+//	@else if $dp==4 {
+//		box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .20)
+//	}
+//	@else if $dp==6 {
+//		box-shadow: 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12), 0 3px 5px -1px rgba(0, 0, 0, .20)
+//	}
+//	@else if $dp==8 {
+//		box-shadow: 0 8px 10px 1px rgba(0, 0, 0, .14), 0 3px 14px 2px rgba(0, 0, 0, .12), 0 5px 5px -3px rgba(0, 0, 0, .20)
+//	}
+//	@else if $dp==9 {
+//		box-shadow: 0 9px 12px 1px rgba(0, 0, 0, .14), 0 3px 16px 2px rgba(0, 0, 0, .12), 0 5px 6px -3px rgba(0, 0, 0, .20)
+//	}
+//	@else if $dp==12 {
+//		box-shadow: 0 12px 17px 2px rgba(0, 0, 0, .14), 0 5px 22px 4px rgba(0, 0, 0, .12), 0 7px 8px -4px rgba(0, 0, 0, .20)
+//	}
+//	@else if $dp==16 {
+//		box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .20)
+//	}
+//	@else if $dp==24 {
+//		box-shadow: 0 24px 38px 3px rgba(0, 0, 0, .14), 0 9px 46px 8px rgba(0, 0, 0, .12), 0 11px 15px -7px rgba(0, 0, 0, .20)
+//	}
+//}
+
+// ThemeWare: Community icons ------------------------------
+// - Example: @include twt-icon-color-blog($color);
+@mixin twt-icon-color-blog($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-blogger($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-facebook($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-flickr($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+
+		// Multicolor adjustments
+		.color3 {
+			color: $color;
+		}
+	}
+}
+	@mixin twt-icon-color-flickr-multicolor($color) {
+		color: $color !important;
+
+		.icon {
+			color: $color;
+
+			// Multicolor adjustments
+			.color3 {
+				color: $twt-color-flickr3;
+			}
+		}
+	}
+
+@mixin twt-icon-color-instagram($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-linkedin($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-pinterest($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-tiktok($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+
+		// Multicolor adjustments
+		.color3 {
+			color: $color;
+		}
+
+		// Multicolor adjustments
+		.color4 {
+			color: $color;
+		}
+	}
+}
+	@mixin twt-icon-color-tiktok-multicolor($color) {
+		color: $color !important;
+
+		.icon {
+			color: $color;
+
+			// Multicolor adjustments
+			.color3 {
+				color: $twt-color-tiktok3;
+			}
+
+			// Multicolor adjustments
+			.color4 {
+				color: $twt-color-tiktok4;
+			}
+		}
+	}
+
+@mixin twt-icon-color-twitter($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-twitch($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-vimeo($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-whatsapp($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-xing($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+
+		// Multicolor adjustments
+		.color3 {
+			color: $color;
+		}
+	}
+}
+	@mixin twt-icon-color-xing-multicolor($color) {
+		color: $color !important;
+
+		.icon {
+			color: $color;
+
+			// Multicolor adjustments
+			.color3 {
+				color: $twt-color-xing3;
+			}
+		}
+	}
+
+@mixin twt-icon-color-youtube($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-website($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}
+
+@mixin twt-icon-color-email($color) {
+	color: $color !important;
+
+	.icon {
+		color: $color;
+	}
+}

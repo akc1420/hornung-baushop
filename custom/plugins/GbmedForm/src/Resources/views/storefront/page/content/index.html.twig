@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
+
+{% block page_content_blocks %}
+    {% set formular =  page.cmsPage.extensions.gbmedForm.type %}
+
+    {% if formular %}
+        {% block page_content_blocks_gbmed_form %}
+            {% sw_include "@Storefront/storefront/formular/" ~ formular ~ ".html.twig" with {
+                element: page.cmsPage.extensions.gbmedForm
+            } %}
+        {% endblock %}
+    {% else %}
+        {% sw_include "@Storefront/storefront/page/content/detail.html.twig" with {'cmsPage': page.cmsPage} %}
+    {% endif %}
+{% endblock %}

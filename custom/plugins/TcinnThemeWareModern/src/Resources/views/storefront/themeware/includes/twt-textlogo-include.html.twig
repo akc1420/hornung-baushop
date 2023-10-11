@@ -1,0 +1,43 @@
+{# ThemeWare "Textlogo" content #}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{# TODO: Use variables for theme_config #}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set font family #}
+{% if theme_config('twt-textlogo-font-family') == "text" %}
+	{% set twtTextlogoFontFamily = theme_config('sw-font-family-base') %}
+{% else %}
+	{% set twtTextlogoFontFamily = theme_config('sw-font-family-headline') %}
+{% endif %}
+
+{# ThemeWare: Set height for auto #}
+{% if theme_config('twt-header-logo-height') == "auto" %}
+	{% set twtTextlogoHeight = "32" %}
+{% else %}
+	{% set twtTextlogoHeight = theme_config('twt-header-logo-height') %}
+{% endif %}
+
+{# ThemeWare: Add textlogo as SVG #}
+{% block twt_textlogo %}
+    {# ThemeWare: Sticky scaling factor #}
+    {# TODO: Prüfen auf Bereitstellung im Theme-Manager #}
+    {% set twtTextlogoScalingFactor = "1.5" %}
+
+    {# ThemeWare: Check if header is sticky #}
+    {% if sticky %}
+        <svg width="{{ theme_config('twt-header-logo-width')/twtTextlogoScalingFactor }}" height="{{ twtTextlogoHeight/twtTextlogoScalingFactor }}" class="twt-textlogo twt-textlogo-sticky">
+            <text font-family="{{ twtTextlogoFontFamily }}" font-weight="{{ theme_config('twt-textlogo-font-weight') }}" font-size="{{ theme_config('twt-textlogo-font-size')/twtTextlogoScalingFactor }}" fill="{{ theme_config('twt-textlogo-fill') }}" text-anchor="middle" x="50%" y="50%" dy=".35em" style="user-select:none">{{ theme_config('twt-textlogo-content') }}</text>
+        </svg>
+    {% else %}
+        <svg width="{{ theme_config('twt-header-logo-width') }}" height="{{ twtTextlogoHeight }}" class="twt-textlogo">
+            <text font-family="{{ twtTextlogoFontFamily }}" font-weight="{{ theme_config('twt-textlogo-font-weight') }}" font-size="{{ theme_config('twt-textlogo-font-size') }}" fill="{{ theme_config('twt-textlogo-fill') }}" text-anchor="middle" x="50%" y="50%" dy=".35em" style="user-select:none">{{ theme_config('twt-textlogo-content') }}</text>
+        </svg>
+    {% endif %}
+
+{% endblock %}

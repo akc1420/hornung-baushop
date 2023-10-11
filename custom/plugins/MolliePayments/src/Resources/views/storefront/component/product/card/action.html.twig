@@ -1,0 +1,45 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+
+{% block component_product_box_action_buy %}
+
+    {{ parent() }}
+
+    {% block component_product_box_action_buy_apple_direct %}
+
+        {% set productPrice = 0 %}
+
+        {% if product.calculatedPrices|length == 1 %}
+            {% set productPrice = product.calculatedPrices.first.unitPrice %}
+        {% else %}
+            {% set productPrice = product.calculatedPrice.unitPrice %}
+            {% if listPrice.percentage > 0 %}
+                {% set productPrice = listPrice.price %}
+            {% endif %}
+        {% endif %}
+
+        {% if mollie_applepaydirect_enabled and ('plp' not in mollie_applepaydirect_restrictions) and productPrice > 0 %}
+            {% block component_product_box_action_buy_apple_direct_component %}
+                <div class="mt-2 d-none only-support-apple-pay js-apple-pay-container mollie-apple-pay-direct-listing">
+                    {% include '@MolliePayments/mollie/component/apple-pay-direct-button.twig' %}
+                </div>
+            {% endblock %}
+        {% endif %}
+
+    {% endblock %}
+
+{% endblock %}
+
+
+
+{% block page_product_detail_product_buy_button %}
+
+    {% if mollie_subscriptions_enabled and product.customFields.mollie_payments_product_subscription_enabled %}
+        <button class="btn btn-block btn-buy" title="{{ "molliePayments.subscriptions.product.addToCartText"|trans|sw_sanitize }}">
+            {{ "molliePayments.subscriptions.product.addToCartText"|trans|sw_sanitize }}
+        </button>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+{% endblock %}

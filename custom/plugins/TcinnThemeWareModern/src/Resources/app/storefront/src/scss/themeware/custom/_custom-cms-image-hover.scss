@@ -1,0 +1,529 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS image hover effects
+	==================================================
+	see https://service.tc-innovations.de/themeware/sw6/article/2129
+*/
+
+// Info:
+// - ThemeWare CSS-Klassen mit welchen Hover-Effekte für Bilder in Standard-CMS-Elementen ergänzt werden können.
+
+// UNDER CONSTRUCTION
+// TODO: Add configuration
+// TODO: Add styles for different amounts of columns
+// TODO: Use short spelling and remove long class names... #v1.0.0
+
+// Adds CSS image hover classes for manual use in Shopping Experiences. (apply to a cms block to modify its images)
+@if $twt-custom-cms-image-hover-classes == 2 {
+
+  // ThemeWare: CMS image hover effect 1 "Opacity" ------------------------------
+
+  .twt-custom-cms-image-hover-1, // @deprecated
+  .twt-cms-image-hover-1,
+  .twt-cms-image-hover-opacity {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        img {
+          transition: all .4s ease-in-out;
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+
+    div.product-image-wrapper {
+      a {
+        img {
+          transition: all .4s ease-in-out;
+        }
+
+        &:hover {
+          img {
+            opacity: 0.7;
+          }
+        }
+      }
+    }
+
+  }
+
+  // ThemeWare: CMS image hover effect 2 "Zoom In" ------------------------------
+
+  .twt-custom-cms-image-hover-2, // @deprecated
+  .twt-cms-image-hover-2,
+  .twt-cms-image-hover-zoom,
+  .twt-cms-image-hover-zoom-in {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        overflow: hidden;
+
+        img {
+          transition: transform .25s ease-in-out; // .4s
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            transform: perspective(1px) scale(1.06); // 1.2
+            box-shadow: 0 0 20px rgba(0, 0, 0, .1), 0 0 1px rgba(0, 0, 0, .15);
+          }
+        }
+      }
+    }
+
+    div.product-image-wrapper {
+      a {
+        img {
+          transition: transform .25s ease-in-out; // .4s
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+        }
+
+        &:hover {
+          img {
+            transform: perspective(1px) scale(1.06); // 1.2
+            box-shadow: 0 0 20px rgba(0, 0, 0, .1), 0 0 1px rgba(0, 0, 0, .15);
+          }
+        }
+      }
+    }
+
+  }
+
+  // ThemeWare: CMS image hover effect 3 "Zoom Out" ------------------------------
+
+  .twt-cms-image-hover-3,
+  .twt-cms-image-hover-zoom-out {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        overflow: hidden;
+
+        img {
+          transition: transform .25s ease-in-out; // .4s
+          transform: perspective(1px) scale(1.06); // 1.2
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            transform: perspective(1px) scale(1.0);
+            box-shadow: 0 0 20px rgba(0, 0, 0, .1), 0 0 1px rgba(0, 0, 0, .15);
+          }
+        }
+      }
+    }
+
+    div.product-image-wrapper {
+      a {
+        img {
+          transition: transform .25s ease-in-out; // .4s
+          transform: perspective(1px) scale(1.06); // 1.2
+          box-shadow: 0 0 20px rgba(0, 0, 0, 0);
+        }
+
+        &:hover {
+          img {
+            transform: perspective(1px) scale(1.0);
+            box-shadow: 0 0 20px rgba(0, 0, 0, .1), 0 0 1px rgba(0, 0, 0, .15);
+          }
+        }
+      }
+    }
+
+  }
+
+  // ThemeWare: CMS image hover effect 4 "Grayscale Out" ------------------------------
+
+  .twt-cms-image-hover-gray-scale, // @deprecated
+  .twt-cms-image-hover-4,
+  .twt-cms-image-hover-grayscale-out {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        overflow: hidden;
+
+        img {
+          transition: all .4s ease-in-out;
+          filter: grayscale(100%);
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            filter: grayscale(0);
+          }
+        }
+      }
+    }
+
+    div.product-image-wrapper {
+      a {
+        img {
+          transition: all .4s ease-in-out;
+          filter: grayscale(100%);
+        }
+
+        &:hover {
+          img {
+            filter: grayscale(0);
+          }
+        }
+      }
+    }
+
+  }
+
+  // ThemeWare: CMS image hover effect 5 "Grayscale In" ------------------------------
+
+  .twt-cms-image-hover-gray-scale-invers, // @deprecated
+  .twt-cms-image-hover-5,
+  .twt-cms-image-hover-gray,
+  .twt-cms-image-hover-grayscale,
+  .twt-cms-image-hover-grayscale-in {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        overflow: hidden;
+
+        img {
+          transition: all .4s ease-in-out;
+          filter: grayscale(0);
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            filter: grayscale(100%);
+          }
+        }
+      }
+    }
+
+    div.product-image-wrapper {
+      a {
+        img {
+          transition: all .4s ease-in-out;
+          filter: grayscale(0);
+        }
+
+        &:hover {
+          img {
+            filter: grayscale(100%);
+          }
+        }
+      }
+    }
+
+  }
+
+  // ThemeWare: CMS image hover effect 6 "Shine" (not for product images) ------------------------------
+
+  .twt-cms-image-hover-6,
+  .twt-cms-image-hover-shine {
+    a {
+      div.image-slider-item, // TODO: not working with sliders
+      div.cms-image-container {
+        overflow: hidden;
+      }
+
+      div.image-slider-item::before, // TODO: not working with sliders
+      div.cms-image-container::before {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: -75%;
+        display: block;
+        width: 50%;
+        height: 100%;
+        content: '';
+        transform: skewX(-25deg);
+        background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .3) 100%);
+      }
+
+      &:hover {
+        div.image-slider-item, // TODO: not working with sliders
+        div.cms-image-container::before {
+          animation: shine .75s;
+        }
+      }
+    }
+
+  }
+
+  @-webkit-keyframes shine {
+    100% {
+      left: 125%;
+    }
+  }
+  @keyframes shine {
+    100% {
+      left: 125%;
+    }
+  }
+
+  // ThemeWare: CMS image hover effect 7 "Flashing" ------------------------------
+
+  .twt-cms-image-hover-7,
+  .twt-cms-image-hover-flash {
+    a {
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container,
+        div.product-image-wrapper {
+          img {
+            opacity: 1;
+            animation: flash .75s;
+          }
+        }
+      }
+    }
+
+    div.product-image-wrapper {
+      a {
+        &:hover {
+          img {
+            opacity: 1;
+            animation: flash .75s;
+          }
+        }
+      }
+    }
+
+  }
+
+  @-webkit-keyframes flash {
+    0% {
+      opacity: .4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes flash {
+    0% {
+      opacity: .4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  // ThemeWare: CMS image hover effect 8 "Rotate In (left)" ------------------------------
+
+  .twt-cms-image-hover-rotate, // @deprecated
+  .twt-cms-image-hover-8,
+  .twt-cms-image-hover-rotate-left,
+  .twt-cms-image-hover-rotate-in-left {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        overflow: hidden;
+
+        img {
+          transform: rotate(12deg) scale(1.35);
+          transition: all .4s ease-in-out;
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            transform: rotate(0) scale(1);
+          }
+        }
+      }
+    }
+
+    div.product-image-wrapper {
+      a {
+        img {
+          transform: rotate(12deg) scale(1.35);
+          transition: all .4s ease-in-out;
+        }
+
+        &:hover {
+          img {
+            transform: rotate(0) scale(1);
+          }
+        }
+      }
+    }
+
+  }
+
+  // ThemeWare: CMS image hover effect 9 "Rotate In (right)" ------------------------------
+
+  .twt-cms-image-hover-9,
+  .twt-cms-image-hover-rotate-right,
+  .twt-cms-image-hover-rotate-in-right {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        overflow: hidden;
+
+        img {
+          transform: rotate(-12deg) scale(1.4);
+          transition: all .4s ease-in-out;
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            transform: rotate(0) scale(1);
+          }
+        }
+      }
+    }
+
+    div.product-image-wrapper {
+      a {
+        img {
+          transform: rotate(-12deg) scale(1.4);
+          transition: all .4s ease-in-out;
+        }
+
+        &:hover {
+          img {
+            transform: rotate(0) scale(1);
+          }
+        }
+      }
+    }
+  }
+
+  // ThemeWare: CMS image hover effect 10 "Rotate Out" ------------------------------
+
+  .twt-cms-image-hover-10,
+  .twt-cms-image-hover-rotate,
+  .twt-cms-image-hover-rotate-out {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        overflow: hidden;
+
+        img {
+          transition: all .4s ease-in-out;
+          transform: rotate(0) scale(1);
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            transform: rotate(8deg) scale(1.35);
+          }
+        }
+      }
+    }
+
+    div.product-image-wrapper {
+      a {
+        img {
+          transition: all .4s ease-in-out;
+          transform: rotate(0) scale(1);
+        }
+
+        &:hover {
+          img {
+            transform: rotate(8deg) scale(1.35);
+          }
+        }
+      }
+    }
+  }
+
+  // ThemeWare: CMS image hover effect 11 "Blur in" (not for product images) ------------------------------
+
+  .twt-cms-image-hover-11,
+  .twt-cms-image-hover-blur,
+  .twt-cms-image-hover-blur-in {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        overflow: hidden;
+
+        img {
+          transition: all .4s ease-in-out;
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            //-webkit-filter: blur(5px);
+            //-moz-filter: blur(5px);
+            //-o-filter: blur(5px);
+            //-ms-filter: blur(5px);
+            filter: blur(5px);
+          }
+        }
+      }
+    }
+  }
+
+  // ThemeWare: CMS image hover effect 12 "Blur out" (not for product images) ------------------------------
+
+  .twt-cms-image-hover-12,
+  .twt-cms-image-hover-blur-out {
+    a {
+      div.image-slider-item,
+      div.cms-image-container {
+        overflow: hidden;
+
+        img {
+          transition: all .4s ease-in-out;
+          //-webkit-filter: blur(5px);
+          //-moz-filter: blur(5px);
+          //-o-filter: blur(5px);
+          //-ms-filter: blur(5px);
+          filter: blur(5px);
+        }
+      }
+
+      &:hover {
+        div.image-slider-item,
+        div.cms-image-container {
+          img {
+            //-webkit-filter: blur(0px);
+            //-moz-filter: blur(0px);
+            //-o-filter: blur(0px);
+            //-ms-filter: blur(0px);
+            filter: blur(0px);
+          }
+        }
+      }
+    }
+  }
+
+
+}

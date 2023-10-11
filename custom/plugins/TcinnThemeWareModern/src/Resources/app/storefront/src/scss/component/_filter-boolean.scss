@@ -1,0 +1,31 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Filter boolean
+	==============================================
+	Styling for boolean filter item.
+	This filter item should only be used inside a filter panel.
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Filter adjustments
+// TODO: Shopware Vererbung prüfen...
+.filter-boolean {
+	&.filter-panel-item { // TODO: >> _filter-panel.scss (.filter-panel-item.filter-boolean) ?!
+		color: $twt-filter-panel-item-color;
+		border-color: $twt-filter-panel-item-border-color;
+		border-radius: null-pixel-unit($twt-border-radius);
+		background-color: $twt-filter-panel-item-background-color;
+		box-shadow: none;
+
+		&:hover {
+			opacity: .9;
+		}
+	}
+}

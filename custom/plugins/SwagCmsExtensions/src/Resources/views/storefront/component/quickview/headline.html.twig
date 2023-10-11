@@ -1,0 +1,37 @@
+{% block swag_cms_extensions_component_quickview_header_content %}
+    {% block swag_cms_extensions_component_quickview_header_product %}
+        <div class="col-md-7">
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="swag-cms-extensions-quickview-header-headline" itemprop="name">
+                        {{ page.product.translated.name }}
+                    </h1>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+    {% block swag_cms_extensions_component_quickview_header_manufacturer %}
+        <div class="swag-cms-extensions-quickview-header-manufacturer col-md-5">
+            <div class="swag-cms-extensions-quickview-manufacturer-logo">
+                <a href="{{ page.product.manufacturer.link }}"
+                   class="product-detail-manufacturer-link"
+                   title="{{ page.product.manufacturer.translated.name }}">
+                    {% if page.product.manufacturer.media %}
+                        <img src="{{ page.product.manufacturer.media|sw_encode_media_url }}"
+                             class="product-detail-manufacturer-logo img-fluid float-right"
+                             alt="{{ page.product.manufacturer.translated.name }}"/>
+                    {% else %}
+                        {{ page.product.manufacturer.translated.name }}
+                    {% endif %}
+                </a>
+            </div>
+            <div class="swag-cms-extensions-quickview-manufacturer-name">
+                <a href="{{ page.product.manufacturer.link }}"
+                   class="product-detail-manufacturer-link"
+                   title="{{ page.product.manufacturer.translated.name }}">
+                    {{ page.product.manufacturer.translated.name }}
+                </a>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

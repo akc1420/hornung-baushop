@@ -1,0 +1,6 @@
+{% block swag_cms_extensions_form_element_number %}
+    <sw-number-field :label="field.translated ? field.translated.label : field.label"
+                     :required="field.required"
+                     :value="value">
+    </sw-number-field>
+{% endblock %}

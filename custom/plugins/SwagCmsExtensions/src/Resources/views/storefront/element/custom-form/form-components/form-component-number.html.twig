@@ -1,0 +1,31 @@
+{% block swag_cms_extensions_form_component_number %}
+    <div class="form-group col-md-{{ field.width }}">
+
+        {% block swag_cms_extensions_form_component_number_label %}
+            <label class="form-label" for="form-{{ form.technicalName }}-{{ field.technicalName }}">
+                {{- field.translated.label -}}{% if field.required %} {{- "general.required"|trans -}}{% endif %}
+            </label>
+        {% endblock %}
+
+        {% block swag_cms_extensions_form_component_number_input %}
+            <input name="{{ field.technicalName }}"
+                   type="number"
+                   id="form-{{ form.technicalName }}-{{ field.technicalName }}"
+                   class="form-control{% if formViolations.getViolations( '/' ~ field.technicalName ) %} is-invalid{% endif %}"
+                   value="{{ data.get( field.technicalName ) }}"
+                   placeholder="{{ field.translated.placeholder }}"
+                   {% if field.required %}required="required"{% endif %}
+                   {% if field.translated.config.min %}min="{{ field.translated.config.min }}"{% endif %}
+                   {% if field.translated.config.max %}max="{{ field.translated.config.max }}"{% endif %}
+                   {% if field.translated.config.step %}step="{{ field.translated.config.step }}"{% endif %}
+                   {% if field.translated.errorMessage %}data-form-validation-error-message="{{ field.translated.errorMessage }}"{% endif %}/>
+
+            {% if formViolations.getViolations( '/' ~ field.technicalName ) is not empty %}
+                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' with {
+                    violationPath: ('/' ~ field.technicalName)
+                } %}
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

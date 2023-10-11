@@ -1,0 +1,27 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Bootstrap style '.badge' added (currently overwritten by Showpare)
+	==================================================
+
+*/
+
+// Exampe: .twt-badge { }
+
+// ThemeWare: Badge colors ------------------------------
+// - Helle Varianten der Badges generieren
+
+@each $color, $value in $theme-colors {
+  //.badge-#{$color} {
+  //  @include badge-variant($value, $value, $value);
+  //}
+
+  .badge-#{$color}-lighten {
+    @include badge-variant-lighten(theme-color-level($color, $label-bg-level), theme-color-level($color, $label-border-level), theme-color-level($color, $label-color-level));
+  }
+}

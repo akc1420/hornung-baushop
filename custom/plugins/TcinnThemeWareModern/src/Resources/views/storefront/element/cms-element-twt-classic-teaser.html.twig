@@ -1,0 +1,164 @@
+{# ThemeWare: CMS element "Classic teaser" #}
+
+{# TODO: prüfen... #}
+
+{# Available effects:
+    Effect 1 "slide up"
+    Effect 2 "fade in"
+    Effect 3 "button" (e.g. Clean)
+    Effect 4 "slide up" (e.g. Bike)
+    Effect 5 "button" (e.g. Strong)
+    Effect 6 "button" (e.g. Ladieswear)
+    Effect 7 "overlay" (e.g. Global)
+#}
+
+{# ---------------- START: SET VARS ---------------- #}
+
+{# ThemeWare: Set variables #}
+{#% set twtClassicTeaser = element.translated.config %#}
+{% set twtClassicTeaser = element.fieldConfig.elements %}
+
+{# Tab: Layout #}
+{% set twtClassicTeaserStyle = twtClassicTeaser.style.value %}
+{% set twtClassicTeaserCustomStyling = twtClassicTeaser.customStyling.value %}
+{% set twtClassicTeaserFontFamily = twtClassicTeaser.fontFamily.value %}
+
+{% set twtClassicTeaserTextAlignment = twtClassicTeaser.textAlignment.value %}
+{% set twtClassicTeaserTextColor = twtClassicTeaser.textColor.value %}
+{% set twtClassicTeaserBorderColor = twtClassicTeaser.borderColor.value %}
+{% set twtClassicTeaserBgColor = twtClassicTeaser.bgColor.value %}
+{% set twtClassicTeaserBgColorHover = twtClassicTeaser.bgColorHover.value %}
+{# TODO... #}
+
+{# Tab: Advanced #}
+{% set twtClassicTeaserCssClass = twtClassicTeaser.cssClass.value %}
+
+{# ---------------- END: SET VARS ---------------- #}
+
+{# ---------------- START: SET CLASSES ---------------- #}
+
+{# Text alignment #}
+{% if twtClassicTeaserCustomStyling %}
+    {% if twtClassicTeaserStyle != "default" and twtClassicTeaserStyle != "effect5" and twtClassicTeaserStyle != "effect6" and twtClassicTeaserStyle != "effect7" %}
+        {% set textAlignment = "text-" ~ twtClassicTeaserTextAlignment %}
+    {% endif %}
+{% endif %}
+
+{# ---------------- END: SET CLASSES ---------------- #}
+
+{% block element_twt_classic_teaser %}
+    {% set config = element.fieldConfig.elements %}
+
+    {# TODO: finalize #}
+
+    <div class="cms-element-{{ element.type }}{% if config.verticalAlign.value %} has-vertical-alignment{% endif %}{% if config.style.value %} is-{{ config.style.value }}{% endif %}{% if config.hover.value %} is-hover{% endif %}{% if twtClassicTeaserCustomStyling %} is-custom{% endif %}{% if twtClassicTeaserCssClass is not empty %} {{ twtClassicTeaserCssClass }}{% endif %}">
+
+        {% block element_twt_classic_teaser_content %}
+            {% if config.verticalAlign.value %}
+                <div class="cms-element-alignment{% if config.verticalAlign.value == "center" %} align-self-center{% elseif config.verticalAlign.value == "flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+            {% endif %}
+
+            {% block element_twt_classic_teaser_image_inner %}
+                {# ThemeWare: Set 'Classic teaser' element #}
+                {% set classicTeaser %}
+                    <div class="twt-classic-teaser-container cms-title-container twt-font-family-base">
+                        {% if config.overlay.value and config.style.value != 'standard' %}
+                            <div class="overlay"></div>
+                        {% endif %}
+
+                        {% if config.style.value == 'default' %} {# Shopware 5 default style #}
+                            <div class="twt-classic-teaser-text text{% if textAlignment %} {{ textAlignment }}{% endif %}{% if twtClassicTeaserFontFamily !='base' %} twt-font-family-{{ twtClassicTeaserFontFamily }}{% endif %}">
+                                {{ element.translated.config.title.value }}
+                            </div>
+
+                        {% else %}
+                            <div class="twt-classic-teaser-text text{% if textAlignment %} {{ textAlignment }}{% endif %}{% if twtClassicTeaserFontFamily !='base' %} twt-font-family-{{ twtClassicTeaserFontFamily }}{% endif %}">
+                                <span>{{ element.translated.config.title.value }}</span>
+                                {% if config.style.value == 'effect1' or config.style.value == 'effect2' or config.style.value == 'effect3' %}
+                                    {% sw_icon 'arrow-medium-right' style { 'size': 'sm', 'pack': 'solid', 'color': 'dark'} %}
+                                {% elseif config.style.value == 'effect4' %}
+                                    {% sw_icon 'arrow-medium-right' style { 'size': 'sm', 'pack': 'solid', 'color': 'light'} %}
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endset %}
+
+                {# ThemeWare: Add custom styling #}
+                {% if twtClassicTeaserCustomStyling %}
+                    <style>
+                        div[data-cms-element-id="{{ element.id }}"] .text {
+                            color: {{ twtClassicTeaserTextColor }} !important;
+                            background-color: {{ twtClassicTeaserBgColor }} !important;
+
+                            {% if config.style.value == 'effect3' %}
+                                border-color: {{ twtClassicTeaserBorderColor }} !important;
+                            {% endif %}
+                        }
+
+                        div[data-cms-element-id="{{ element.id }}"] .icon {
+                            color: {{ twtClassicTeaserTextColor }} !important;
+                        }
+
+                        {% if config.style.value != 'default' %}
+                            div[data-cms-element-id="{{ element.id }}"] a:hover .text {
+                                background-color: {{ twtClassicTeaserBgColorHover }} !important;
+                            }
+                        {% endif %}
+                    </style>
+                {% endif %}
+
+                {# ThemeWare: Set image element #}
+                {% set imageElement %}
+
+                    {% block element_twt_classic_teaser_image_container %}
+                        {% if element.data.media.url %}
+                            <div class="twt-classic-teaser-image-container cms-image-container is-{{ element.translated.config.displayMode.value }}" {% if element.translated.config.minHeight.value and element.translated.config.displayMode.value == "cover" %} style="min-height: {{ element.translated.config.minHeight.value }};"{% endif %}>
+
+                                {% block element_twt_classic_teaser_image_media %}
+                                    {% set attributes = {
+                                        'class': 'cms-image',
+                                        'alt': (element.data.media.translated.alt ?: ''),
+                                        'title': (element.data.media.translated.title ?: '')
+                                    } %}
+
+                                    {% if element.translated.config.displayMode.value == 'cover' or element.translated.config.displayMode.value == 'contain' %}
+                                        {% set attributes = attributes|merge({ 'data-object-fit': element.translated.config.displayMode.value }) %}
+                                    {% endif %}
+
+                                    {% sw_thumbnails 'cms-image-thumbnails' with {
+                                        media: element.data.media
+                                    } %}
+                                {% endblock %}
+
+                                {# ThemeWare: Load 'Classic teaser' element #}
+                                {{ classicTeaser }}
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+
+                {% endset %}
+
+                {# ThemeWare: Load elements #}
+                {% if element.translated.config.url.value %}
+                    {# Info: Title tag = Title text (as the text is mandatory) #}
+                    <a href="{{ element.translated.config.url.value }}"
+                       title="{{ element.translated.config.title.value }}"
+                       class="cms-image-link"
+                       {% if element.translated.config.newTab.value %}target="_blank" rel="noopener"{% endif %}>
+                        {# ThemeWare: Load image element #}
+                        {{ imageElement }}
+                    </a>
+                {% else %}
+                    {# ThemeWare: Load image element #}
+                    {{ imageElement }}
+                {% endif %}
+            {% endblock %}
+
+            {% if config.verticalAlign.value %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

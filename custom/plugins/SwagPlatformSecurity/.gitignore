@@ -1,0 +1,7 @@
+src/Resources/app/administration/node_modules/
+src/Resources/public/administration
+.phpunit.result.cache
+vendor
+.php_cs.cache
+/.idea/
+/composer.lock

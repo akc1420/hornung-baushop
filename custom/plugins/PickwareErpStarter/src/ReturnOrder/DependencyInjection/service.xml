@@ -1,0 +1,31 @@
+<?xml version="1.0" ?>
+<container
+    xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd"
+>
+    <services>
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\ReturnOrderService">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\PickwareErpStarter\StockApi\StockMovementService" type="service" />
+            <argument id="Pickware\PickwareErpStarter\ReturnOrder\ReturnOrderRefundService" type="service" />
+            <argument id="Pickware\ShopwareExtensionsBundle\StateTransitioning\StateTransitionService" type="service" />
+            <argument
+                type="service"
+                id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"
+            />
+            <argument id="Pickware\PickwareErpStarter\ReturnOrder\ReturnOrderPriceCalculationService" type="service" />
+            <argument id="Shopware\Core\System\StateMachine\StateMachineRegistry" type="service" />
+            <argument id="pickware_erp_starter.stocking.default_stocking_strategy" type="service" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\ReturnOrderRefundService">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Shopware\Core\System\StateMachine\StateMachineRegistry" type="service" />
+        </service>
+        <service id="Pickware\PickwareErpStarter\ReturnOrder\ReturnOrderPriceCalculationService">
+            <argument id="Pickware\DalBundle\EntityManager" type="service" />
+            <argument id="Pickware\PickwareErpStarter\PriceCalculation\PriceCalculator" type="service" />
+            <argument id="Pickware\PickwareErpStarter\PriceCalculation\CartPriceCalculator" type="service" />
+        </service>
+    </services>
+</container>

@@ -1,0 +1,20 @@
+{% block sw_product_modal_delivery_sidebar_tabs_items %}
+    {% parent %}
+    <sw-tabs-item :active="activeTab == 'display'" @click="activeTab = 'display'">{{ $tc('sw-product.variations.deliveryModal.display') }}</sw-tabs-item>
+{% endblock %}
+
+{% block sw_product_modal_delivery_sidebar_descriptions %}
+    {% parent %}
+    <p v-if="activeTab == 'display'">
+        {{ $tc('sw-product.variations.deliveryModal.displayExplanation') }}
+    </p>
+{% endblock %}
+
+{% block sw_product_modal_delivery_media %}
+    {% parent %}
+    <sw-product-variants-delivery-display
+        v-if="activeTab == 'display'"
+        :product="product"
+        :selectedGroups="selectedGroups">
+    </sw-product-variants-delivery-display>
+{% endblock %}

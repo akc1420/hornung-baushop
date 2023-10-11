@@ -1,4 +1,4 @@
-custom/*
+
 !custom/plugins/.gitkeep
 !custom/static-plugins/
 
@@ -60,7 +60,7 @@ custom/*
 .env.local
 .env.local.php
 .env.*.local
-custom/*
+custom/plugins.tar.gz
 !custom/plugins/.gitkeep
 !custom/static-plugins/
 /public/fonts/*

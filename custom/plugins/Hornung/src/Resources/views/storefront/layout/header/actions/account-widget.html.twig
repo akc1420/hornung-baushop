@@ -1,0 +1,28 @@
+{% sw_extends '@Storefront/storefront/layout/header/actions/account-widget.html.twig' %}
+
+{% block layout_header_actions_account_widget %}
+    <div class="top-bar-menu-item">
+        <div class="top-bar-menu-icon">
+            <svg class="bi bi-person-fill" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+            </svg>
+        </div>
+        <button class="btn top-bar-menu-text top-bar-menu-btn"
+            type="button"
+            id="accountWidget"
+            data-offcanvas-account-menu="true"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            aria-label="{{ "account.myAccount"|trans|striptags }}">
+                Mein Konto
+        </button>
+
+        {% block layout_header_actions_account_widget_dropdown_menu %}
+            <div class="dropdown-menu dropdown-menu-right account-menu-dropdown js-account-menu-dropdown"
+                aria-labelledby="accountWidget">
+                {% sw_include '@Storefront/storefront/layout/header/account-menu.html.twig' %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

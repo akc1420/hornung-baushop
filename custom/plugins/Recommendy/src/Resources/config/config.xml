@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Settings</title>
+        <title lang="de-DE">Einstellungen</title>
+
+        <input-field type="int">
+            <name>recommendyRecommendationAmount</name>
+            <required>true</required>
+            <label>Number of Live-Recommendations</label>
+            <label lang="de-DE">Anzahl Live-Recommendations</label>
+            <defaultValue>3</defaultValue>
+            <helpText>Defines the number of live recommendations in the 'Like' function</helpText>
+            <helpText lang="de-DE">Legt die Anzahl der Live-Recommendations in der 'Like'-Funktion fest</helpText>
+        </input-field>
+
+        <input-field type="int">
+            <name>recommendySimilarProductAmount</name>
+            <required>true</required>
+            <label>Number of similar items on the detail page</label>
+            <label lang="de-DE">Anzahl ähnlicher Artikel in der Detailseite</label>
+            <defaultValue>6</defaultValue>
+            <helpText>Sets the number of similar items in the detail page</helpText>
+            <helpText lang="de-DE">Legt die Anzahl der ähnlichen Artikel in der Detailseite eines Artikels fest</helpText>
+        </input-field>
+
+        <input-field type="int">
+            <name>recommendyBasketRecommendationAmountMax</name>
+            <required>true</required>
+            <label>Max number of items on checkout page</label>
+            <label lang="de-DE">Maximale Anzahl von Artikeln auf der Checkout-Seite</label>
+            <defaultValue>8</defaultValue>
+            <helpText>Maximum number of items on checkout page</helpText>
+            <helpText lang="de-DE">Maximale Anzahl von Artikeln auf der Checkout-Seite</helpText>
+        </input-field>
+
+        <input-field type="int">
+            <name>recommendyDetailRecommendationAmountMax</name>
+            <required>true</required>
+            <label>Max bundle items on the detail page</label>
+            <label lang="de-DE">Maximale Bundle-Artikel auf der Artikeldetailseite</label>
+            <defaultValue>5</defaultValue>
+            <helpText>Maximum bundle items on item detail page</helpText>
+            <helpText lang="de-DE">Maximale Bundle-Artikel auf der Artikeldetailseite</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>recommendyConsiderInstock</name>
+            <label>Consider article stock</label>
+            <label lang="de-DE">Artikelbestand berücksichtigen</label>
+            <helpText>If the option is active, items with a stock less than 1 will not be considered further.</helpText>
+            <helpText lang="de-DE">Bei aktiver Option, werden Artikel mit einem Bestand kleiner als 1 nicht weiter berücksichtigt</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>recommendyActiveBasketSlider</name>
+            <label>Cross-selling slider on checkout page</label>
+            <label lang="de-DE">Cross-Selling Slider auf der Checkout-Seite</label>
+            <helpText>Switches the cross-selling slider on checkout page on or off</helpText>
+            <helpText lang="de-DE">Schaltet den Cross-Selling-Schieberegler auf der Checkout-Seite ein oder aus</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>recommendyEnableSessionTracking</name>
+            <label>Enable session tracking</label>
+            <label lang="de-DE">Session Tracking aktivieren</label>
+            <helpText>Activate the recording of the user</helpText>
+            <helpText lang="de-DE">Schaltet die Aufzeichnung des Nutzer allg. ein</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>recommendyEnableLike</name>
+            <label>Enable Like button</label>
+            <label lang="de-DE">Like Button aktivieren</label>
+            <helpText>Activate the Like button in the listing</helpText>
+            <helpText lang="de-DE">Schaltet Like Button im Listing ein</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>recommendyDisplayLogo</name>
+            <label>Display Logo</label>
+            <label lang="de-DE">Logo einblenden</label>
+            <helpText>Display Logo on Detailpage for Cross-Selling</helpText>
+            <helpText lang="de-DE">Logo auf der Artikeldetailseite für Cross-Selling Artikel einblenden</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+        <input-field type="bool">
+            <name>recommendyActiveOffcanvasBasket</name>
+            <label>Enable recommendation in Offcanvas-Basket</label>
+            <label lang="de-DE">Empfehlungen im Warenkorb</label>
+            <helpText>Activate the recommendations in the Offcanvas-Basket</helpText>
+            <helpText lang="de-DE">Schaltet  die Empfehlungen im Offcanvas Warenkorb ein</helpText>
+            <defaultValue>true</defaultValue>
+        </input-field>
+
+
+        <input-field type="bool">
+            <name>recommendyActiveAccordion</name>
+            <label>Enable accordion for configurator in Cross-Selling</label>
+            <label lang="de-DE">Akkordion für Konfiguratoren im Cross-Selling aktivieren</label>
+            <helpText>Enable accordion for configurator in Cross-Selling ADP</helpText>
+            <helpText lang="de-DE">SAkkordion für Konfiguratoren im Cross-Selling aktivieren</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="int">
+            <name>recommendyActiveAccordionMin</name>
+            <required>true</required>
+            <label>Accordion configurator amount</label>
+            <label lang="de-DE">Anzahl der Optionen für das Akkordion</label>
+            <defaultValue>3</defaultValue>
+            <helpText>Accordion configurator amount</helpText>
+            <helpText lang="de-DE">Anzahl der Optionen, ab wann das Akkordion ausgespielt werden soll. Akkordion muss hierfür eingeschaltet sein</helpText>
+        </input-field>
+
+        <input-field type="bool">
+            <name>sliderLayout</name>
+            <label>Enable Tabs for Bundle and Similarity</label>
+            <label lang="de-DE">Tab Ansicht für Ähnliche Artikel und Bundles aktivieren</label>
+            <helpText>Enable Tabs for Bundle and Similarity on ADP</helpText>
+            <helpText lang="de-DE">Tab Ansicht für Ähnliche Artikel und Bundles auf der Artikel Detail Seite aktivieren</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>bundleLayout</name>
+            <defaultValue>1</defaultValue>
+            <options>
+                <option>
+                    <id>0</id>
+                    <name>Container</name>
+                    <name lang="de-DE">Container</name>
+                </option>
+                <option>
+                    <id>1</id>
+                    <name>Scroll-Container</name>
+                    <name lang="de-DE">Scroll-Container</name>
+                </option>
+                <option>
+                    <id>2</id>
+                    <name>Grid</name>
+                    <name lang="de-DE">Grid</name>
+                </option>
+                <option>
+                    <id>3</id>
+                    <name>Slider</name>
+                    <name lang="de-DE">Slider</name>
+                </option>
+            </options>
+        </input-field>
+
+    </card>
+
+</config>

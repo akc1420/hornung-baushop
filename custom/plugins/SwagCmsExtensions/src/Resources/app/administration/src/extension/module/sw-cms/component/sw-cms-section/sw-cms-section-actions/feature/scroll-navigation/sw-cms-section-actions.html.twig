@@ -1,0 +1,14 @@
+{% block sw_cms_section_action_select %}
+    {% parent %}
+
+    {% block sw_cms_section_action_scroll_navigation_label %}
+        <div v-if="scrollNavigation && scrollNavigation.active"
+             class="sw-cms-section__action sw-cms-section__scroll-navigation-label">
+            <sw-icon
+                    v-tooltip="scrollNavigationPointTooltip"
+                    name="default-action-tags"
+                    size="20">
+            </sw-icon>
+        </div>
+    {% endblock %}
+{% endblock %}

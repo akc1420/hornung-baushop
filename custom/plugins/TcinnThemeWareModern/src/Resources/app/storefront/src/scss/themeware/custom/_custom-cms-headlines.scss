@@ -1,0 +1,277 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS headline classes
+	==================================================
+
+*/
+
+// Info:
+// - ThemeWare CSS-Klassen mit welchen Überschriften in Standard-CMS-Elementen modifiziert werden können.
+
+// UNDER CONSTRUCTION
+// TODO: Add configuration
+// TODO: Use short spelling and remove long class names... #v1.0.0
+
+// ThemeWare: Adds CSS headline classes for manual use in Shopping Experiences. (apply to a cms block to modify its h-tags)
+@if $twt-custom-cms-headline-classes == 2 {
+
+  // Bath Shopping Experience Headline ------------------------------
+
+  .twt-custom-cms-headline-bath, // @deprecated
+  .twt-cms-headline-bath {
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: $font-weight-normal;
+      font-style: normal;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: $gray-600;
+
+      &::before {
+        position: relative;
+        right: 70px;
+        bottom: -5px;
+        display: inline-block;
+        width: 50%;
+        height: 1px;
+        margin-left: -50%;
+        content: "";
+        vertical-align: middle;
+        border-top: 1px solid $gray-600;
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      &::after {
+        position: relative;
+        bottom: -5px;
+        left: 70px;
+        display: inline-block;
+        width: 50%;
+        height: 1px;
+        margin-right: -50%;
+        content: "";
+        vertical-align: middle;
+        border-top: 1px solid $gray-600;
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+
+    p {
+      font-family: $sw-font-family-headline;
+      font-weight: $font-weight-normal;
+      font-style: normal;
+      line-height: 1;
+      margin-top: 4px;
+      text-align: center;
+      text-transform: uppercase;
+      color: $sw-text-color;
+    }
+  }
+
+  // Clean Shopping Experience Headline ------------------------------
+
+  .twt-custom-cms-headline-clean, // @deprecated
+  .twt-cms-headline-clean {
+    h1, h2, h3, h4, h5, h6 {
+      font-style: normal;
+      display: block;
+      text-align: center;
+      letter-spacing: 0.1em;
+      text-transform: none;
+      color: $sw-text-color;
+      text-shadow: 0.07em 0.07em 0 rgba(0, 0, 0, .1);
+
+      &::before {
+        display: inline-block;
+        margin: 0 .6em;
+        content: "\00a0\00a0\00a0\00a0\00a0\00a0";
+        text-decoration: line-through !important;
+        opacity: 0.7;
+      }
+
+      &::after {
+        display: inline-block;
+        margin: 0 .6em;
+        content: "\00a0\00a0\00a0\00a0\00a0\00a0";
+        text-decoration: line-through !important;
+        opacity: 0.7;
+      }
+    }
+
+    p {
+      font-style: italic;
+      line-height: 1.5;
+      text-align: center;
+      text-transform: uppercase;
+      color: $gray-600;
+    }
+  }
+
+  // Flower Shopping Experience Headline ------------------------------
+
+  .twt-custom-cms-headline-flower, // @deprecated
+  .twt-cms-headline-flower {
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: normal;
+      font-style: normal;
+      overflow: hidden;
+      text-align: center;
+      letter-spacing: 1px;
+      color: $sw-color-brand-primary;
+
+      &::before {
+        position: relative;
+        right: 0.5em;
+        display: inline-block;
+        width: 50%;
+        height: 1px;
+        margin-left: -50%;
+        content: "";
+        vertical-align: middle;
+        border-top: 1px dotted $sw-color-brand-primary;
+      }
+
+      &::after {
+        position: relative;
+        left: 0.5em;
+        display: inline-block;
+        width: 50%;
+        height: 1px;
+        margin-right: -50%;
+        content: "";
+        vertical-align: middle;
+        border-top: 1px dotted $sw-color-brand-primary;
+      }
+    }
+  }
+
+  // Kids Shopping Experience Headline ------------------------------
+
+  .twt-custom-cms-headline-kids, // @deprecated
+  .twt-cms-headline-kids {
+    h1, h2, h3, h4, h5, h6,
+    .cms-element-title-paragraph {
+      overflow: hidden;
+      text-align: center;
+
+      &::before {
+        position: relative;
+        right: 0.5em;
+        display: inline-block;
+        width: 50%;
+        height: 2px;
+        margin-left: -50%;
+        content: "";
+        vertical-align: middle;
+        border-top: 2px dashed $sw-headline-color;
+      }
+
+      &::after {
+        position: relative;
+        left: 0.5em;
+        display: inline-block;
+        width: 50%;
+        height: 2px;
+        margin-right: -50%;
+        content: "";
+        vertical-align: middle;
+        border-top: 2px dashed $sw-headline-color;
+      }
+    }
+  }
+
+  // Ladieswear Shopping Experience Headline ------------------------------
+
+  .twt-custom-cms-headline-ladieswear, // @deprecated
+  .twt-cms-headline-ladieswear {
+    h1, h2, h3, h4, h5, h6 {
+      font-style: normal;
+      display: block;
+      text-align: center;
+      color: $sw-color-brand-primary;
+      text-shadow: 0.07em 0.07em 0 rgba(0, 0, 0, .1);
+
+      &::before {
+        display: inline-block;
+        margin: 0 20px;
+        content: "- - - - -";
+        opacity: 0.7;
+      }
+
+      &::after {
+        display: inline-block;
+        margin: 0 20px;
+        content: "- - - - -";
+        opacity: 0.7;
+      }
+    }
+
+    p {
+      font-style: italic;
+      line-height: 1.5;
+      text-align: center;
+      text-transform: uppercase;
+      color: $sw-color-brand-primary;
+    }
+  }
+
+  // Plants Shopping Experience Headline ------------------------------
+
+  .twt-custom-cms-headline-plants, // @deprecated
+  .twt-cms-headline-plants {
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 600;
+      font-style: normal;
+      overflow: hidden;
+      max-width: 1400px;
+      text-align: center;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #000;
+
+      &::before {
+        position: relative;
+        right: 0.5em;
+        display: inline-block;
+        width: 50%;
+        height: 1px;
+        margin-left: -50%;
+        content: "";
+        vertical-align: middle;
+        border-top: 3px double $sw-color-brand-primary;
+      }
+
+      &::after {
+        position: relative;
+        left: 0.5em;
+        display: inline-block;
+        width: 50%;
+        height: 1px;
+        margin-right: -50%;
+        content: "";
+        vertical-align: middle;
+        border-top: 3px double $sw-color-brand-primary;
+      }
+    }
+  }
+
+  // Classic Shopping Experience Headline ------------------------------
+
+  .twt-custom-cms-headline-classic, // @deprecated
+  .twt-cms-headline-classic {
+    h1, h2, h3, h4, h5, h6 {
+      padding: 0 0 .625rem 0;
+      border-bottom: 1px solid $gray-300;
+    }
+  }
+
+}

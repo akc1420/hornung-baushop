@@ -1,0 +1,34 @@
+{# ThemeWare "Custom announcement" (Extension container) #}
+{#
+    Create container and include the custom announcement
+
+    @Storefront/storefront/themeware/extensions/twt-custom-announcement.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtCustomAnnouncementEndDate = theme_config('twt-custom-announcement-end-date') %}
+{% set twtCustomAnnouncementStartDate = theme_config('twt-custom-announcement-start-date') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_custom_announcement %}
+    {# ThemeWare: Custom announcement detail/checkout #}
+    {% if (twtCustomAnnouncementStartDate is null and twtCustomAnnouncementEndDate is null) or
+        ((twtCustomAnnouncementStartDate is null or twtCustomAnnouncementStartDate|date("Y-m-d H:i:s", false) <= "now"|date("Y-m-d H:i:s", false)) and
+        (twtCustomAnnouncementEndDate is null or twtCustomAnnouncementEndDate|date("Y-m-d H:i:s", false) >= "now"|date("Y-m-d H:i:s", false)))
+    %}
+        <div class="twt-custom-announcement is-{% if type %}{{ type }}{% endif %}" id="twt-custom-announcement">
+
+            {% block twt_custom_announcement_container %}
+                <div class="twt-custom-announcement-container container">
+                    {% sw_include '@Storefront/storefront/themeware/includes/twt-custom-announcement-include.html.twig' ignore missing %}
+                </div>
+            {% endblock %}
+
+        </div>
+    {% endif %}
+{% endblock %}

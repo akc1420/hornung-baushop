@@ -1,0 +1,33 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/finish-details.html.twig' %}
+
+{% block page_checkout_finish_details_inner %}
+  {{ parent() }}
+  <script>
+    var value = {{ page.order.positionPrice }}{% for item in page.order.lineItems.elements %}-{{ item.price.calculatedTaxes.amount|number_format(2) }}{% endfor %};
+    soluteConversionTracking({
+      VALUE: value,
+      ORDER_ID: "{{ page.order.orderNumber }}",
+      FACTOR: "1",
+      CT: "Shopware6",
+    });
+    function soluteConversionTracking(data) {
+      var ttl = 1000*60*60*24*30;
+      var a = localStorage.getItem("soluteclid");
+      if (!a) return;
+      var b = a.split(" ", 2);
+      if (parseInt(b[0])+ttl > (new Date()).getTime()) {
+        var url = "https://cmodul.solutenetwork.com/conversion";
+        url += "?val=" + encodeURIComponent(data.VALUE);
+        url += "&oid=" + window.btoa(encodeURIComponent(data.ORDER_ID));
+        url += "&factor=" + encodeURIComponent(data.FACTOR);
+        url += "&url=" + encodeURIComponent(b[1]);
+        url += "&ctsystem=" + encodeURIComponent(data.CT);
+        var req = new XMLHttpRequest();
+        req.open("GET", url);
+        req.send();
+      } else {
+        localStorage.removeItem("soluteclid");
+      }
+    }
+  </script>
+{% endblock %}

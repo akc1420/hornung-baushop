@@ -1,0 +1,20 @@
+/*
+    _____ _                __      __
+   |_   _| |_  ___ _ __  __\ \    / /_ _ _ _ ___  (R)
+     | | | ' \/ -_) '  \/ -_) \/\/ / _` | '_/ -_)
+     |_| |_||_\___|_|_|_\___|\_/\_/\__,_|_| \___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: Magnifier
+    ==============================================
+    Styling for magnifier component.
+    Displays a lens over a single image or gallery slider and shows the magnified version of the image.
+
+	Origin: Shopware base
+*/
+
+// ThemeWare: Add max height to zoom image
+.magnifier-zoom-image {
+  max-height: 480px;
+}

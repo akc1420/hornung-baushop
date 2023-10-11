@@ -1,0 +1,60 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+    ThemeWare: _container.scss
+    ==================================================
+
+*/
+
+// ThemeWare: Full-width layout ------------------------------
+
+@if $twt-container-layout == 1 {
+  body.twt-full-width {
+    .container,
+    .cms-section,
+    .boxed {
+      max-width: 100%;
+    }
+  }
+}
+
+// ThemeWare: Boxed layout ------------------------------
+
+@if $twt-container-layout == 3 {
+  body.twt-boxed {
+    .body-container {
+      box-shadow: $twt-container-layout-box-shadow $twt-container-layout-box-shadow-color;
+      padding: inherit;
+      background-color: #ffffff;
+      border-radius: $twt-border-radius+5 + px;
+
+      @include media-breakpoint(min, $twt-container-max-width+$twt-container-layout-margin-top-bottom*2) {
+        margin-top: null-pixel-unit($twt-container-layout-margin-top-bottom);
+        margin-bottom: null-pixel-unit($twt-container-layout-margin-top-bottom);
+      }
+
+      // ThemeWare: Fix flyouts in boxed layout
+      .navigation-flyouts {
+        position: relative;
+      }
+
+      // ThemeWare: Set border-radius for boxed layout
+      @if $twt-border-radius > 1 {
+        .twt-usp-bar.is-header.top {
+          border-top-left-radius: null-pixel-unit($twt-border-radius);
+          border-top-right-radius: null-pixel-unit($twt-border-radius);
+        }
+
+        .footer-main {
+          border-bottom-left-radius: null-pixel-unit($twt-border-radius);
+          border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+        }
+      }
+    }
+  }
+}

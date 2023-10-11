@@ -1,0 +1,40 @@
+{
+    "kzph-simplenote-note": {
+        "general": {
+            "tabtitle": "Notizen",
+            "title": "Notizen",
+            "enter_your_notice": "Deine Notiz....",
+            "file": "Datei *optional",
+            "save": "Notiz speichern",
+            "saved": "Diese Notiz wurde angelegt",
+            "deleted": "Diese Notiz wurde gelöscht",
+            "no_data_available": "Es stehen bisher noch keine Daten zur Verfügung.",
+            "show_on_dashboard": "Notiz im Dashboard zeigen",
+            "replicate_in_order": "Diese Notiz an jede neue Bestellung anhängen",
+            "done": "Notiz erledigt",
+            "show_message_on_new_order": "Meldung bei Bestellung anzeigen",
+            "delete_note": "Notiz löschen",
+            "delete_note_confirm": "Wirklich löschen?",
+            "delete_note_yes": "Ja",
+            "delete_note_no": "Nein",
+            "filter": {
+                "has_notes": "mit Notizen",
+                "without_notes": "ohne Notizen",
+                "placeholder": "Bestellungen anzeigen ..."
+            }
+        },
+        "dashboard" : {
+            "type": "Notiz",
+            "username": "Benutzer",
+            "date": "Erstellt am",
+            "destination": "Objekt",
+            "note": "Notiz"
+        },
+        "entities": {
+            "customer": "Kunde",
+            "product": "Produkt",
+            "order": "Bestellung",
+            "category": "Kategorie"
+        }
+    }
+}

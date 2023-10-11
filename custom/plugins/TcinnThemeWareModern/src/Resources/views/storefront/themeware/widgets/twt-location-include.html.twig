@@ -1,0 +1,33 @@
+{# ThemeWare "Location" widget #}
+{#
+    Create "Location" widget and add content
+
+	@Storefront/storefront/themeware/widgets/twt-location-include.html.twig
+#}
+
+{# TODO: Blöcke prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtWidgetLocationRouteButtonShow = theme_config('twt-widget-location-route-button-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{% block twt_widget_location %}
+    <div class="twt-widget-location twt-location">
+
+        {% block twt_widget_location_content %}
+            {{ "twt.widget.location.content"|trans|raw }}
+        {% endblock %}
+
+        {% block twt_widget_location_route %}
+            {% if twtWidgetLocationRouteButtonShow == 2 %}
+                <a class="btn btn-route" href="{{ "twt.widget.location.route.link"|trans|sw_sanitize }}" target="_blank" rel="noopener">
+                    {% sw_icon 'map' %} {{ "twt.widget.location.route.name"|trans|sw_sanitize }}
+                </a>
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

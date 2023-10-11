@@ -1,0 +1,27 @@
+{% block sw_cms_page_form_section_name_wrapper %}
+    {% parent %}
+
+    {% block sw_cms_page_form_section_anchor %}
+        <div v-if="getScrollNavigationBySection(section) && getScrollNavigationBySection(section).active"
+             class="sw-cms-page-form__section-action sw-cms-page-form__section-anchor">
+
+            {% block sw_cms_page_form_section_anchor_icon %}
+                <sw-icon class="sw-cms-page-form__section-action-icon sw-cms-page-form__section-anchor-icon"
+                         name="default-action-tags"
+                         size="20">
+                </sw-icon>
+            {% endblock %}
+
+            {# @deprecated tag:v3.0.0 Use `sw_cms_page_form_section_anchor_text` instead #}
+            {% block sw_cms_page_form__section_anchor %}
+                {% block sw_cms_page_form_section_anchor_text %}
+                    <span class="sw-cms-page-form__section-action-label sw-cms-page-form__section-anchor-label">
+                        {{ getScrollNavigationLabel(section) }}
+                    </span>
+                {% endblock %}
+            {% endblock %}
+
+        </div>
+
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,199 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Set theme variables #}
+{% set twtProductBoxImageHoverType = theme_config('twt-product-box-image-hover-type') %}
+{% set twtProductBoxManufacturerShow = theme_config('twt-product-box-manufacturer-show') %}
+{% set twtProductBoxOrdernumberShow = theme_config('twt-product-box-ordernumber-show') %}
+{% set twtProductBoxProductReviewRatingShow = theme_config('twt-product-box-product-review-rating-show') %}
+{% set twtProductBoxShortDescriptionShow = theme_config('twt-product-box-short-description-show') %}
+
+{# ---------------- END: SET TEMPLATE VARS ---------------- #}
+
+{# ThemeWare: Adjustments on the product box #}
+{% block component_product_box_content %}
+    {# Default block #}
+    {{ parent() }}
+{% endblock %}
+
+
+{# ThemeWare: Adjustments on the product box name #}
+{% block component_product_box_name %}
+    {# Default block #}
+    {{ parent() }}
+
+    {# ThemeWare: Hersteller ergänzen. #}
+    {# TODO... see below #}
+{% endblock %}
+
+
+{# ThemeWare: Adjustments on the product-rating #}
+{# HC-Architecture @Doku #}
+{% block component_product_box_rating %}
+    {% if twtProductBoxProductReviewRatingShow == 2 %}
+        {# Default block #}
+        {{ parent() }}
+
+    {% elseif twtProductBoxProductReviewRatingShow == 3 %}
+        {# ThemeWare: Rating immer anzeigen falls konfiguriert. #}
+        {% if config('core.listing.showReview') %}
+            <div class="product-rating">
+                {#% if product.ratingAverage %#}
+                    {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
+                        points: product.ratingAverage,
+                        style: 'text-primary'
+                    } %}
+                {#% endif %#}
+                {# TODO: "Dieses Produkt wurde noch nicht bewertet" #}
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}
+
+
+{# ThemeWare: Adjustments on the product box description #}
+{% block component_product_box_description %}
+    {# ThemeWare: Zusatzfeld "Kurzbeschreibung" #}
+    {% if twtProductBoxShortDescriptionShow == 2 and product.translated.customFields.twt_modern_pro_custom_field__product__short_description is not empty %}
+        <div class="product-description">
+            {{ product.translated.customFields.twt_modern_pro_custom_field__product__short_description|raw }}
+        </div>
+    {% else %}
+        {# Default block #}
+        {{ parent() }}
+
+    {% endif %}
+
+    {# ThemeWare: Produktnummer ergänzen. #}
+    {% if product.productNumber and twtProductBoxOrdernumberShow == 2 %}
+        {% block twt_product_box_ordernumber %}
+            <div class="product-ordernumber twt-product-ordernumber">
+                <span class="product-ordernumber-label">
+                    {{ "twt.listing.ordernumberLabel"|trans|sw_sanitize }}
+                </span>
+                <span class="product-ordernumber">
+                    {{ product.productNumber }}
+                </span>
+            </div>
+        {% endblock %}
+    {% endif %}
+
+    {# ThemeWare: Hersteller ergänzen. #}
+    {% if product.manufacturer and twtProductBoxManufacturerShow == 2 %}
+        {% block twt_product_box_manufacturer %}
+            <div class="product-manufacturer twt-product-manufacturer">
+                <span class="product-manufacturer-label">
+                    {{ "twt.listing.manufacturerLabel"|trans|sw_sanitize }}
+                </span>
+                <span class="product-manufacturer">
+                    {{ product.manufacturer.translated.name }}
+                </span>
+            </div>
+        {% endblock %}
+    {% endif %}
+{% endblock %}
+
+
+{# TODO: HC-Architecture... #}
+{# ThemeWare: Adjustments on the product image #}
+{% block component_product_box_image %}
+    {# ThemeWare: Add hover image for crossfading the cover image #}
+    {# Check if cross-fade hover-type is configured - otherwise use default block #}
+    {# @TODO: Add configuration "custom field", "2nd image" and "custom field + 2nd image" #}
+    {% if twtProductBoxImageHoverType == 10 %}
+        {# Check whether the custom field #}
+        {% set customMedia = false %}
+        {% set crossfade = false %}
+
+        {# Custom field product media #}
+        {% if product.translated.customFields.twt_modern_pro_custom_field__product__hover_image is not empty and mediaCollection is not empty %}
+            {% set customMedia = true %}
+            {% set crossfade = true %}
+        {% endif %}
+
+        {# Get hoverMedia via custom field >>> #}
+        {# Simplify ID access #}
+        {% set hoverMediaId = product.translated.customFields.twt_modern_pro_custom_field__product__hover_image %}
+
+        {# Get access to media of product #}
+        {% set hoverMedia = mediaCollection.get(hoverMediaId) %}
+        {# <<< Get hoverMedia via custom field #}
+
+
+        <div class="product-image-wrapper{% if crossfade == true %} twt-is-crossfade{% endif %}"> {# <<< ThemeWare: Add css class if possible @TODO: remove if possible #}
+            {# fallback if display mode is not set #}
+            {% set displayMode = displayMode ?: 'standard' %}
+
+            {# set display mode 'cover' for box-image with standard display mode #}
+            {% if layout == 'image' and displayMode == 'standard' %}
+                {% set displayMode = 'cover' %}
+            {% endif %}
+
+            <a href="{{ seoUrl('frontend.detail.page', { 'productId': id }) }}"
+               title="{{ name }}"
+               class="product-image-link is-{{ displayMode }}">
+                {% if cover.url %}
+                    {% set attributes = {
+                        'class': 'product-image is-'~displayMode,
+                        'alt': (cover.translated.alt ?: name),
+                        'title': (cover.translated.title ?: name)
+                    } %}
+
+                    {% if displayMode == 'cover' or displayMode == 'contain' %}
+                        {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
+                    {% endif %}
+
+
+                    {# ThemeWare: Add hoverMedia for crossfading the cover image >>> #}
+                    {% if crossfade == true %}
+                        {# Check if custom field is set and apply it if available... #}
+                        {% if customMedia == true %}
+                            {# Check hover type... #}
+                            {% sw_thumbnails 'product-image-thumbnails' with {
+                                media: hoverMedia,
+                                sizes: sizes,
+                                attributes: {
+                                    'class': 'product-image is-'~displayMode~' twt-crossfade-image is-custom'
+                                }
+                            } %}
+                        {% endif %}
+                    {% endif %}
+                    {# <<< Add hoverMedia for crossfading the cover image #}
+
+
+                    {% block component_product_box_image_thumbnail %}
+                        {% sw_thumbnails 'product-image-thumbnails' with {
+                            media: cover,
+                            sizes: sizes
+                        } %}
+                    {% endblock %}
+                {% else %}
+
+                    {% block component_product_box_image_placeholder %}
+                        <div class="product-image-placeholder">
+                            {% sw_icon 'placeholder' style {
+                                'size': 'fluid'
+                            } %}
+                        </div>
+                    {% endblock %}
+                {% endif %}
+            </a>
+
+            {% if config('core.cart.wishlistEnabled') %}
+                {% block component_product_box_wishlist_action %}
+                    {% sw_include '@Storefront/storefront/component/product/card/wishlist.html.twig' with {
+                        appearance: 'circle',
+                        productId: id
+                    } %}
+                {% endblock %}
+            {% endif %}
+        </div>
+    {% else %}
+
+        {# Default block #}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

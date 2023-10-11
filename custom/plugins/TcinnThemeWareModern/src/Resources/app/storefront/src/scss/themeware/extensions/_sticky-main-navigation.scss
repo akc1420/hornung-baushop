@@ -1,0 +1,442 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___  (R)
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __|
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: Extension > Sticky main navigation
+	==================================================
+
+*/
+
+// TODO:
+// - Shopware Vererbung prüfen...
+// - eigene Klassen in "/themeware" verschieben...
+
+@if $twt-sticky-nav-main-show > 1 {
+	.nav-main  {
+		box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+		transition: box-shadow .30s ease;
+
+		&.ready {
+			&:not(.show) {
+				#searchCollapse.sticky,
+				div.header-cart.sticky[data-offcanvas-cart]{
+					display: none;
+				}
+			}
+		}
+
+		@if $twt-container-layout == 3 {
+			.container {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+	}
+
+	body.is-sticky-nav-main {
+		.nav-main  {
+			position: fixed;
+			z-index: $twt-sticky-nav-main-z-index;
+			top: 0 !important; // ThemeWare: "Top" comes from the function "Calc header" in themeware.js
+			//left: 0; // TODO: body-padding
+			padding-bottom: 0;
+			background-color: $twt-sticky-nav-main-background-color;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+
+			// ThemeWare: Boxed layout
+			@if $twt-container-layout == 3 {
+				max-width: null-pixel-unit($twt-container-max-width);
+			}
+
+			width: 100%;
+
+			&.ready {
+				animation-duration: 0.3s;
+				animation-fill-mode: both;
+				animation-name: stickynavFyloutFadeInDown;
+
+				// TODO: Glas-Effekt (Browser-Kompatibilität zu niedrig derzeit) developer.mozilla.org/de/docs/Web/CSS/backdrop-filter
+				//-webkit-backdrop-filter: saturate(180%) blur(20px);
+				//backdrop-filter: saturate(180%) blur(20px);
+				//background-color: rgba(255, 255, 255, 0.72);
+			}
+
+			.main-navigation-link {
+				height: null-pixel-unit($twt-sticky-nav-main-height);
+				padding: 0 null-pixel-unit(round($twt-nav-main-padding / 2)); // Apply just a half padding
+
+				// ThemeWare: Apply to all layouts except the Stadnard layout
+				@if($twt-nav-main-hover-type != 0) {
+					line-height: null-pixel-unit($twt-sticky-nav-main-height);
+				}
+			}
+		}
+
+		@if $twt-sticky-nav-main-toggle == 2 {
+			#mainNavigation {
+				display: none;
+			}
+		}
+
+		#sticky-logo {
+			float: left;
+			display: block !important;
+			line-height: null-pixel-unit($twt-sticky-nav-main-height);
+			margin-right: null-pixel-unit($twt-sticky-nav-main-logo-margin-right);
+			
+			// ThemeWare: Boxed-Layout
+			@if $twt-container-layout == 3 {
+				margin-left: $twt-basegrid-spacing;
+			}
+
+			a {
+				display: inline-block;
+
+				img {
+					display: inline-block;
+					width: auto;
+					max-width: auto-pixel-unit($twt-sticky-nav-main-logo-width);
+					height: auto-pixel-unit($twt-sticky-nav-main-logo-height);
+					max-height: null-pixel-unit($twt-sticky-nav-main-height);
+				}
+			}
+		}
+
+		#sticky-nav-main-toggle {
+			float: left;
+			display: block !important;
+
+			.btn {
+				@include twt-font-size($twt-header-actions-btn-font-size);
+				margin-right: 20px;
+				background-color: $twt-sticky-nav-main-background-color;
+				color: $twt-nav-main-color;
+				padding: 0 null-pixel-unit($twt-nav-main-padding);
+				line-height: null-pixel-unit($twt-sticky-nav-main-height);
+				border-radius: 0;
+				border: none;
+
+				.icon {
+					color: $twt-nav-main-icon-color;
+					width: $twt-nav-main-icon-size;
+					height: $twt-nav-main-icon-size;
+					display: inline-block;
+					transition: color .20s ease;
+
+					&> svg {
+						top: 0;
+						margin-bottom: 2px;
+					}
+				}
+
+				&:hover {
+					background-color: $twt-nav-main-background-color-hover;
+					color: $twt-nav-main-color-hover;
+
+					.icon {
+						color: $twt-nav-main-icon-color-hover;
+					}
+				}
+			}
+		}
+
+		/*
+
+        ,--.               ,--------. ,-----.       ,--.                                         ,--.  ,--.
+        |  |-.,--. ,--.    '--.  .--''  .--./,-----.|  |,--,--, ,--,--,  ,---.,--.  ,--.,--,--.,-'  '-.`--' ,---. ,--,--,  ,---.
+        | .-. '\  '  /        |  |   |  |    '-----'|  ||      \|      \| .-. |\  `'  /' ,-.  |'-.  .-',--.| .-. ||      \(  .-'
+        | `-' | \   '         |  |   '  '--'\       |  ||  ||  ||  ||  |' '-' ' \    / \ '-'  |  |  |  |  |' '-' '|  ||  |.-'  `)
+         `---'.-'  /          `--'    `-----'       `--'`--''--'`--''--' `---'   `--'   `--`--'  `--'  `--' `---' `--''--'`----'
+              `---'
+        */
+
+		div.header-cart.sticky[data-offcanvas-cart] {
+			float: right;
+			display: block !important;
+			height: null-pixel-unit($twt-sticky-nav-main-height);
+			overflow: hidden;
+
+			.btn {
+				position: relative;
+				@include twt-font-size($twt-header-actions-btn-font-size);
+				
+				@if $twt-header-actions-cart-btn-font-weight != $twt-header-actions-btn-font-weight {
+					font-weight: fontWeight($twt-header-actions-cart-btn-font-weight);
+				} @else {
+					font-weight: fontWeight($twt-header-actions-btn-font-weight);
+				}
+				
+				margin-left: 20px;
+				background-color: $twt-sticky-nav-main-background-color;
+				color: $twt-nav-main-color;
+				padding: 0 null-pixel-unit($twt-nav-main-padding);
+				line-height: null-pixel-unit($twt-sticky-nav-main-height);
+				border-radius: 0;
+				border: none;
+				//-webkit-transition: opacity .20s ease;
+				transition: opacity .20s ease;
+
+				.header-cart-total {
+					@include twt-font-size($twt-header-actions-btn-font-size);
+					line-height: 1;
+					//-webkit-transition: color .20s ease;
+					transition: color .20s ease;
+					color: $twt-nav-main-color;
+				}
+
+				.icon {
+					color: $twt-nav-main-icon-color;
+					display: inline-block;
+					//-webkit-transition: color .20s ease;
+					transition: color .20s ease;
+
+					&> svg {
+						top: 0;
+						margin-bottom: 2px;
+					}
+				}
+				
+				.badge {
+					top: 3px;
+				}
+
+				&:hover {
+					opacity: 0.8;
+				}
+			}
+			
+			// ThemeWare: Check cart total show/hide
+			@if $twt-header-actions-cart-btn-total-show == 3 {
+				.header-cart-total { display: inline-block; }
+			} @else if $twt-header-actions-cart-btn-total-show == 4 {
+				@include media-breakpoint-up(sm) { // min 576px
+					.header-cart-total { display: inline-block; }
+				}
+				@include media-breakpoint-down(xs) { // max 575.98px
+					.header-cart-total { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-total-show == 5 {
+				@include media-breakpoint-up(md) { // min 768px
+					.header-cart-total { display: inline-block; }
+				}
+				@include media-breakpoint-down(sm) { // max 767.98px
+					.header-cart-total { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-total-show == 6 {
+				@include media-breakpoint-up(lg) { // min 992px
+					.header-cart-total { display: inline-block; }
+				}
+				@include media-breakpoint-down(md) { // max 991.98px
+					.header-cart-total { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-total-show == 7 {
+				@include media-breakpoint-up(xl) { // min 1200px
+					.header-cart-total { display: inline-block; }
+				}
+				@include media-breakpoint-down(lg) { // max 1199.98px
+					.header-cart-total { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-total-show == 8 {
+				@include media-breakpoint(min,$twt-container-max-width) {
+					.header-cart-total { display: inline-block; }
+				}
+				@include media-breakpoint(max,$twt-container-max-width -1) {
+					.header-cart-total { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-total-show == 1 {
+				.header-cart-total { display: none; }
+			}
+			
+			// ThemeWare: Check cart badge show/hide
+			@if $twt-header-actions-cart-btn-badge-show == 3 {
+				.header-cart-badge { display: block; }
+			} @else if $twt-header-actions-cart-btn-badge-show == 4 {
+				@include media-breakpoint-up(sm) { // min 576px
+					.header-cart-badge { display: block; }
+				}
+				@include media-breakpoint-down(xs) { // max 575.98px
+					.header-cart-badge { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-badge-show == 5 {
+				@include media-breakpoint-up(md) { // min 768px
+					.header-cart-badge { display: block; }
+				}
+				@include media-breakpoint-down(sm) { // max 767.98px
+					.header-cart-badge { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-badge-show == 6 {
+				@include media-breakpoint-up(lg) { // min 992px
+					.header-cart-badge { display: block; }
+				}
+				@include media-breakpoint-down(md) { // max 991.98px
+					.header-cart-badge { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-badge-show == 7 {
+				@include media-breakpoint-up(xl) { // min 1200px
+					.header-cart-badge { display: block; }
+				}
+				@include media-breakpoint-down(lg) { // max 1199.98px
+					.header-cart-badge { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-badge-show == 8 {
+				@include media-breakpoint(min,$twt-container-max-width) {
+					.header-cart-badge { display: block; }
+				}
+				@include media-breakpoint(max,$twt-container-max-width -1) {
+					.header-cart-badge { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-badge-show == 1 {
+				.header-cart-badge { display: none; }
+			}
+		
+		
+			// ThemeWare: Cart Button Name show/hide
+			@if $twt-header-actions-cart-btn-text-show == 3 {
+				.header-cart-name { display: inline-block; }
+			} @else if $twt-header-actions-cart-btn-text-show == 4 {
+				@include media-breakpoint-up(sm) { // min 576px
+					.header-cart-name { display: inline-block; }
+				}
+				@include media-breakpoint-down(xs) { // max 575.98px
+					.header-cart-name { display: none; }}
+			} @else if $twt-header-actions-cart-btn-text-show == 5 {
+				@include media-breakpoint-up(md) { // min 768px
+					.header-cart-name { display: inline-block; }
+				}
+				@include media-breakpoint-down(sm) { // max 767.98px
+					.header-cart-name { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-text-show == 6 {
+				@include media-breakpoint-up(lg) { // min 992px
+					.header-cart-name { display: inline-block; }
+				}
+				@include media-breakpoint-down(md) { // max 991.98px
+					.header-cart-name { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-text-show == 7 {
+				@include media-breakpoint-up(xl) { // min 1200px
+					.header-cart-name { display: inline-block; }
+				}
+				@include media-breakpoint-down(lg) { // max 1199.98px
+					.header-cart-name { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-text-show == 8 {
+				@include media-breakpoint(min,$twt-container-max-width) {
+					.header-cart-name { display: inline-block; }
+				}
+				@include media-breakpoint(max,$twt-container-max-width -1) {
+					.header-cart-name { display: none; }
+				}
+			} @else if $twt-header-actions-cart-btn-text-show == 1 {
+				.header-cart-name { display: none; }
+			}
+		}
+
+		// ThemeWare: Header search
+		@if $twt-header-search-show == 1 {
+			// ThemeWare: hide search
+			#searchCollapse.sticky {
+				display: none;
+			}
+		} @else {
+			// ThemeWare: show search
+			#searchCollapse.sticky {
+				float: right;
+				display: block !important;
+
+				&:not(.show) {
+					display: block;
+					max-width: auto-pixel-unit($twt-header-search-max-width);
+					line-height: strip-unit($twt-sticky-nav-main-height)-1 + px;
+
+					.header-search {
+						display: inline-block;
+					}
+				}
+
+				.header-search-btn {
+					@include twt-font-size($twt-header-actions-btn-font-size);
+					background-color: $twt-header-search-input-background-color;
+					border: 1px solid $twt-header-search-input-border-color;
+					border-top-right-radius: null-pixel-unit($twt-border-radius);
+					border-bottom-right-radius: null-pixel-unit($twt-border-radius);
+					-webkit-transition: opacity .20s ease;
+					transition: opacity .20s ease;
+					
+					@if $twt-header-search-btn-border-color == $twt-header-search-input-border-color {
+						border-left: none;
+					}
+
+					.loader {
+						color: $twt-header-search-btn-background-color !important;
+					}
+
+					&:hover {
+						opacity: .75;
+					}
+
+					height: 40px;
+				}
+
+				input.header-search-input {
+					@include twt-font-size($twt-header-actions-btn-font-size);
+					border: 1px solid $twt-header-search-input-border-color;
+					color: $twt-header-search-input-color;
+					background-color: $twt-header-search-input-background-color;
+					height: 40px;
+					text-align: $twt-header-search-text-align;
+
+					&:focus {
+						border-color: $twt-header-search-input-border-color;
+						box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+					}
+
+					&:focus ~ .input-group-append .header-search-btn {
+						border-color: $twt-header-search-input-border-color;
+					}
+				}
+			}
+		}
+
+		.nav-main > .container {
+			@if $twt-nav-main-background-color != $twt-nav-main-background-color-hover and $twt-nav-main-background-color != $twt-nav-main-background-color-active {
+				#sticky-nav-main-toggle {
+					margin-right: 0;
+				}
+
+				#sticky-logo {
+					padding-left: null-pixel-unit($twt-nav-main-padding);
+					padding-right: null-pixel-unit($twt-nav-main-padding);
+
+					img {
+						@if $twt-header-logo-hover-type > 1 {
+							&:hover {
+								opacity: 0.7;
+							}
+						}
+					}
+
+					&+#sticky-nav-main-toggle {
+						border-left: none;
+
+						.btn {
+							margin-right: 0;
+						}
+					}
+				}
+
+				div.header-cart.sticky[data-offcanvas-cart] {
+					margin-left: null-pixel-unit($twt-nav-main-padding);
+
+					.btn {
+						margin-left: 0;
+					}
+				}
+			}
+		}
+	}
+}

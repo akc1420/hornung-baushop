@@ -1,0 +1,22 @@
+{% block clever_reach_banner %}
+    <sw-page>
+        <template slot="search-bar">
+            <sw-search-bar>
+            </sw-search-bar>
+        </template>
+        <template slot="smart-bar-header">
+            <div>
+                <img class="cr-banner-img" src="https://cloud-files.crsend.com/images/cleverreach-logo.png">
+            </div>
+        </template>
+
+        <template slot="smart-bar-actions">
+            <sw-button v-if="buttonText1" class="cr-first-button">
+                {{ buttonText1 }}
+            </sw-button>
+            <sw-button variant="primary" v-bind:class="getClass()" :isLoading="secondBtnLoading">
+                {{ buttonText2 }}
+            </sw-button>
+        </template>
+    </sw-page>
+{% endblock %}

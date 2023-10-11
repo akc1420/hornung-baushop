@@ -1,0 +1,323 @@
+/*
+   _____ _  _ ___ __  __ _____      ___   ___ ___
+  |_   _| || | __|  \/  | __\ \    / /_\ | _ \ __| (R)
+    | | | __ | _|| |\/| | _| \ \/\/ / _ \|   / _|
+    |_| |_||_|___|_|  |_|___| \_/\_/_/ \_\_|_\___|
+
+    Copyright (c) TC-Innovations GmbH
+
+	ThemeWare: CMS block "Grid .."
+	==================================================
+    General styling for cms grid blocks
+*/
+
+// TODO: twt-col-padding classes prüfen...
+
+@if $twt-cms-block-grid-classes == 2 { // #performance
+    // --- Grid "ONE" ---------------------------------------------------
+
+    // Image gird "One"
+    .cms-block-twt-grid-one {
+        .left-top {
+            margin-bottom: $grid-gutter-width;
+        }
+
+        .right {
+            height: 100%;
+        }
+    }
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+        .cms-block-twt-grid-one {
+            .left-top {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .left-bottom {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .right {
+                height: auto;
+            }
+        }
+    }
+
+    // Image gird "One (swapped)"
+    .cms-block-twt-grid-one-swapped {
+        .left {
+            height: 100%;
+        }
+
+        .right-top {
+            margin-bottom: $grid-gutter-width;
+        }
+    }
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+        .cms-block-twt-grid-one-swapped {
+            .left {
+                height: auto;
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .right-top {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+        }
+    }
+
+    // --- Grid "TWO" ---------------------------------------------------
+
+    // Image gird "Two"
+    .cms-block-twt-grid-two {
+        .left-top {
+            margin-bottom: $grid-gutter-width;
+        }
+
+        .right {
+            height: 100%;
+        }
+    }
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+        .cms-block-twt-grid-two {
+            .left-top {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .left-bottom {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .right {
+                height: auto;
+            }
+        }
+    }
+
+    // Image gird "Two (swapped)"
+    .cms-block-twt-grid-two-swapped {
+        .left {
+            height: 100%;
+        }
+
+        .right-top {
+            margin-bottom: $grid-gutter-width;
+        }
+    }
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+        .cms-block-twt-grid-two-swapped {
+            .left {
+                height: auto;
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .right-top {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+        }
+    }
+
+    // --- Grid "THREE" ---------------------------------------------------
+
+    // Image gird "Three"
+    .cms-block-twt-grid-three {
+        .left-top {
+            margin-bottom: $grid-gutter-width;
+        }
+
+        .right {
+            height: 100%;
+        }
+    }
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+        .cms-block-twt-grid-three {
+            .left-top {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .left-bottom {
+                &.left {
+                    margin-bottom: $twt-basegrid-spacing;
+                }
+
+                &.right {
+                    margin-bottom: $twt-basegrid-spacing;
+                }
+            }
+
+            .right {
+                height: auto;
+            }
+        }
+    }
+
+    // Image gird "Three (swapped)"
+    .cms-block-twt-grid-three-swapped {
+        .left {
+            height: 100%;
+        }
+
+        .right-top {
+            margin-bottom: $grid-gutter-width;
+        }
+    }
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+        .cms-block-twt-grid-three-swapped {
+            .left {
+                height: auto;
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .right-top {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .right-bottom {
+                &.left {
+                    margin-bottom: $twt-basegrid-spacing;
+                }
+            }
+        }
+    }
+
+    // --- Grid "FOUR" ---------------------------------------------------
+
+    // Image gird "Four"
+    .cms-block-twt-grid-four {
+        .left-top {
+            margin-bottom: $grid-gutter-width;
+        }
+
+        .right {
+            height: 100%;
+        }
+    }
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+        .cms-block-twt-grid-four {
+            .left-top {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .left-bottom {
+                &.left {
+                    margin-bottom: $twt-basegrid-spacing;
+                }
+
+                &.right {
+                    margin-bottom: $twt-basegrid-spacing;
+                }
+            }
+
+            .right {
+                height: auto;
+            }
+        }
+    }
+
+    // Image gird "Four (swapped)"
+    .cms-block-twt-grid-four-swapped {
+        .left {
+            height: 100%;
+        }
+
+        .right-top {
+            margin-bottom: $grid-gutter-width;
+        }
+    }
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+        .cms-block-twt-grid-four-swapped {
+            .left {
+                height: auto;
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .right-top {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .right-bottom {
+                &.left {
+                    margin-bottom: $twt-basegrid-spacing;
+                }
+            }
+        }
+    }
+
+    // --- Grid "MODERN" ---------------------------------------------------
+
+    // Image gird "Modern"
+    .cms-block-twt-grid-modern {
+        .left-top {
+            &.row {
+                margin-bottom: $grid-gutter-width;
+            }
+        }
+
+        .right-top {
+            margin-bottom: $grid-gutter-width;
+        }
+    }
+
+    @include media-breakpoint-down(sm) { // max 767.98px
+        .cms-block-twt-grid-modern {
+            .left-top {
+                &.row {
+                    margin-bottom: 0;
+                }
+
+                &.left {
+                    margin-bottom: $twt-basegrid-spacing;
+                    padding-right: $twt-basegrid-spacing / 2;
+                }
+
+                &.right {
+                    margin-bottom: $twt-basegrid-spacing;
+                    padding-left: $twt-basegrid-spacing / 2;
+                }
+            }
+
+            .left-bottom {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+
+            .right-top {
+                margin-bottom: $twt-basegrid-spacing;
+            }
+        }
+    }
+
+
+    @include media-breakpoint-down(xs) { // max 575.98px
+        .cms-block-twt-grid-modern {
+            .left-top {
+                &.left {
+                    margin-bottom: $twt-basegrid-spacing;
+                    padding-right: $twt-basegrid-spacing;
+                }
+
+                &.right {
+                    margin-bottom: $twt-basegrid-spacing;
+                    padding-left: $twt-basegrid-spacing;
+                }
+            }
+        }
+    }
+
+    @include media-breakpoint-between(sm, sm) { // min 576px and max 767.98px
+        .cms-block-twt-grid-modern {
+            .left-top {
+                &.right {
+                    margin-bottom: $twt-basegrid-spacing;
+                }
+            }
+        }
+    }
+
+}

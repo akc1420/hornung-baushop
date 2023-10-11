@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="Sensus\Check24Connect\ScheduledTask\Import">
+            <tag name="shopware.scheduled.task" />
+        </service>
+
+        <service id="Sensus\Check24Connect\ScheduledTask\ImportTaskHandler">
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="Sensus\Check24Connect\Service\FTPService"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="Sensus\Check24Connect\Util\Logger"/>
+            <argument type="service" id="Sensus\Check24Connect\Service\OrderService"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <tag name="messenger.message_handler" />
+        </service>
+
+        <service id="Sensus\Check24Connect\Storefront\Controller\SensusCheck24ConnectController" public="true">
+
+            <call method="setContainer">
+                <argument type="service" id="service_container"/>
+            </call>
+            <argument type="service" id="Sensus\Check24Connect\Service\FTPService"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="Sensus\Check24Connect\Util\Logger"/>
+            <argument type="service" id="Sensus\Check24Connect\Service\OrderService"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+        </service>
+
+        <service id="Sensus\Check24Connect\Service\FTPService">
+            <argument id="Shopware\Core\System\SystemConfig\SystemConfigService" type="service"/>
+            <argument type="service" id="Sensus\Check24Connect\Util\Logger"/>
+        </service>
+
+        <service id="Sensus\Check24Connect\Util\Logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating"/>
+            <argument type="string">sensus_check24connect</argument>
+        </service>
+
+        <service id="Sensus\Check24Connect\Service\CustomerService">
+            <argument id="Shopware\Core\System\SystemConfig\SystemConfigService" type="service"/>
+            <argument id="Sensus\Check24Connect\Util\Logger" type="service"/>
+            <argument id="customer.repository" type="service"/>
+            <argument id="event_dispatcher" type="service"/>
+            <argument id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface" type="service"/>
+            <argument id="salutation.repository" type="service"/>
+            <argument id="country.repository" type="service"/>
+        </service>
+
+        <service id="Sensus\Check24Connect\Service\OrderService">
+            <argument id="Shopware\Core\System\SystemConfig\SystemConfigService" type="service"/>
+            <argument id="Sensus\Check24Connect\Util\Logger" type="service"/>
+            <argument id="Sensus\Check24Connect\Service\CustomerService" type="service"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <argument type="service" id="Shopware\Core\Checkout\Order\Api\OrderActionController"/>
+        </service>
+
+
+
+    </services>
+</container>

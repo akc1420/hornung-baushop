@@ -1,0 +1,167 @@
+{# ThemeWare: CMS element "Text slide" #}
+
+{# TODO: prüfen... #}
+
+{# ---------------- START: SET VARS ---------------- #}
+
+{# ThemeWare: Set variables #}
+{#% set twtHeroSlideItem = element.translated.config %#}
+{% set twtHeroSlideItem = element.fieldConfig.elements %}
+
+{% set twtHeroSlideItemBtnText = twtHeroSlideItem.btnText.value %}
+{% set twtHeroSlideItemTeaser = twtHeroSlideItem.teaser.value %}
+{% set twtHeroSlideItemContent = twtHeroSlideItem.content.value %}
+{% set twtHeroSlideItemTitle = twtHeroSlideItem.title.value %}
+{% set twtHeroSlideItemUrl = twtHeroSlideItem.url.value %}
+
+{% set twtHeroSlideItemHtmlTag = twtHeroSlideItem.htmlTag.value %}
+{% if twtHeroSlideItemHtmlTag is empty %}
+    {% set twtHeroSlideItemHtmlTag = 'p' %}
+{% endif %}
+
+{# Tab: Layout #}
+{% set twtHeroSlideItemBgOverlay = twtHeroSlideItem.bgOverlay.value %}
+{% set twtHeroSlideItemBreakpoint = twtHeroSlideItem.breakpoint.value %}
+{% if twtHeroSlideItemBreakpoint is empty %}
+    {% set twtHeroSlideItemBreakpoint = 'sm' %}
+{% endif %}
+{% set twtHeroSlideItemNewTab = twtHeroSlideItem.newTab.value %}
+{% set twtHeroCtaSlideItemFontFamily = twtHeroSlideItem.fontFamily.value %}
+{% set twtHeroCtaSlideItemFontFamilyHeadline = twtHeroSlideItem.fontFamilyTitle.value %}
+{% set twtHeroCtaSlideItemFontFamilyTeaser = twtHeroSlideItem.fontFamilyTeaser.value %}
+{% set twtHeroSlideItemHorizontalAlignment = twtHeroSlideItem.horizontalAlignment.value %}
+{% set twtHeroSlideItemMaxWidth = twtHeroSlideItem.maxWidth.value %}
+{% set twtHeroSlideItemOverlay = twtHeroSlideItem.overlay.value %}
+{% set twtHeroSlideItemOverlayAnimation = twtHeroSlideItem.overlayAnimation.value %}
+{% set twtHeroSlideItemOverlaySizing = twtHeroSlideItem.overlaySizing.value %}
+{% set twtHeroSlideItemRounded = twtHeroSlideItem.rounded.value %}
+{% set twtHeroSlideItemShadow = twtHeroSlideItem.shadow.value %}
+{% set twtHeroSlideItemTextColor = twtHeroSlideItem.textColor.value %}
+{% set twtHeroSlideItemTextColorTeaser = twtHeroSlideItem.textColorTeaser.value %}
+{% set twtHeroSlideItemTextColorTitle = twtHeroSlideItem.textColorTitle.value %}
+{% set twtHeroSlideItemVerticalAlignment = twtHeroSlideItem.verticalAlignment.value %}
+{% set twtHeroSlideItemWidth = twtHeroSlideItem.width.value %}
+
+{# Tab: Advanced #}
+{% set twtHeroSlideItemCssClass = twtHeroSlideItem.cssClass.value %}
+{% set twtHeroSlideItemCssClassTeaser = twtHeroSlideItem.cssClassTeaser.value %}
+{% set twtHeroSlideItemCssClassTitle = twtHeroSlideItem.cssClassTitle.value %}
+{% set twtHeroSlideItemCssClassText = twtHeroSlideItem.cssClassText.value %}
+
+{# ---------------- END: SET VARS ---------------- #}
+
+{# ThemeWare: Set classes #}
+{% set blockClasses = ['content'] %}
+
+{# ThemeWare: Add styling classes #}
+{% if twtHeroSlideItemOverlay %}
+    {% set blockClasses = ['is-styled']|merge(blockClasses) %}
+
+    {% if twtHeroSlideItemShadow == "small" %}
+        {% set blockClasses = ['shadow-sm']|merge(blockClasses) %}
+    {% elseif twtHeroSlideItemShadow == "regular" %}
+        {% set blockClasses = ['shadow']|merge(blockClasses) %}
+    {% elseif twtHeroSlideItemShadow == "large" %}
+        {% set blockClasses = ['shadow-lg']|merge(blockClasses) %}
+    {% endif %}
+
+    {% if twtHeroSlideItemRounded == "rounded" %}
+        {% set blockClasses = ['rounded']|merge(blockClasses) %}
+    {% endif %}
+{% endif %}
+
+{# ThemeWare: Add animation classes #}
+{% if twtHeroSlideItemOverlayAnimation != "none" %}
+    {% set blockClasses = ['twt-animate']|merge(blockClasses) %}
+
+    {% if twtHeroSlideItemOverlayAnimation == "fadeIn" %}
+        {% set blockClasses = ['twt-fade-in']|merge(blockClasses) %}
+    {% elseif twtHeroSlideItemOverlayAnimation == "fadeInDown" %}
+        {% set blockClasses = ['twt-fade-in-down']|merge(blockClasses) %}
+    {% elseif twtHeroSlideItemOverlayAnimation == "fadeInLeft" %}
+        {% set blockClasses = ['twt-fade-in-left']|merge(blockClasses) %}
+    {% elseif twtHeroSlideItemOverlayAnimation == "fadeInRight" %}
+        {% set blockClasses = ['twt-fade-in-right']|merge(blockClasses) %}
+    {% elseif twtHeroSlideItemOverlayAnimation == "fadeInUp" %}
+        {% set blockClasses = ['twt-fade-in-up']|merge(blockClasses) %}
+    {% endif %}
+{% endif %}
+
+{% block element_twt_text_image_slide %}
+    {# ThemeWare: Set image element #}
+    {% set imageElement %}
+
+        {% block element_twt_text_image_slide_image_media %}
+            {% set attributes = {
+                'class': 'w-100',
+                'alt': (element.data.media.translated.alt ?: ''),
+                'title': (element.data.media.translated.title ?: '')
+            } %}
+
+            {% if element.translated.config.displayMode.value == 'cover' or element.translated.config.displayMode.value == 'contain' %}
+                {% set attributes = attributes|merge({ 'data-object-fit': element.translated.config.displayMode.value }) %}
+            {% endif %}
+
+            {% sw_thumbnails 'cms-image-slider-thumbnails' with {
+                media: element.data.media
+            } %}
+        {% endblock %}
+
+    {% endset %}
+
+    {# ThemeWare: Set text element #}
+    {% set textElement %}
+
+        {% block element_twt_text_image_slide_text %}
+            <div class="twt-hero-slider-item-container twt-text-image-slide{% if twtHeroSlideItemOverlaySizing == "boxed" %} is-{{ twtHeroSlideItemOverlaySizing }}{% endif %} twt-break-{{ twtHeroSlideItemBreakpoint }}">
+                <div class="twt-hero-slider-item-inside justify-content-{{ twtHeroSlideItemHorizontalAlignment }} align-items-{{ twtHeroSlideItemVerticalAlignment }}">
+                    <div class="twt-hero-slider-item-content {{ blockClasses|sort|join(' ') }}" style="width: {{ twtHeroSlideItemWidth }}; max-width: {{ twtHeroSlideItemMaxWidth }};{% if twtHeroSlideItemOverlay %} background-color: {{ twtHeroSlideItemBgOverlay }};{% endif %}">
+                        {# Teaser #}
+                        {% if twtHeroSlideItemTeaser %}
+                            <p class="twt-hero-slider-item-teaser teaser{% if twtHeroCtaSlideItemFontFamilyTeaser != 'base' %} twt-font-family-{{ twtHeroCtaSlideItemFontFamilyTeaser }}{% endif %}{% if twtHeroSlideItemCssClassTeaser is not empty %} {{ twtHeroSlideItemCssClassTeaser }}{% endif %}" style="color: {{ twtHeroSlideItemTextColorTeaser }};">{{ twtHeroSlideItemTeaser }}</p>
+                        {% endif %}
+
+                        {# Headline #}
+                        {% if twtHeroSlideItemTitle %}
+                            <{{ twtHeroSlideItemHtmlTag }} class="twt-hero-slider-item-headline headline h3{% if twtHeroCtaSlideItemFontFamilyHeadline != 'base' %} twt-font-family-{{ twtHeroCtaSlideItemFontFamilyHeadline }}{% endif %}{% if twtHeroSlideItemCssClassTitle is not empty %} {{ twtHeroSlideItemCssClassTitle }}{% endif %}" style="color: {{ twtHeroSlideItemTextColorTitle }};">
+                                {{ twtHeroSlideItemTitle }}
+                            </{{ twtHeroSlideItemHtmlTag }}>
+                        {% endif %}
+
+                        {# Text (mandatory) #}
+                        <div class="twt-hero-slider-item-text text{% if twtHeroCtaSlideItemFontFamily != 'base' %} twt-font-family-{{ twtHeroCtaSlideItemFontFamily }}{% endif %}{% if twtHeroSlideItemCssClassText is not empty %} {{ twtHeroSlideItemCssClassText }}{% endif %}" style="color: {{ twtHeroSlideItemTextColor }};">{{ twtHeroSlideItemContent|raw }}</div>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+
+    {% endset %}
+
+    {# ThemeWare: Set element #}
+    <div class="cms-element-{{ element.type }}{% if twtHeroSlideItemCssClass is not empty %} {{ twtHeroSlideItemCssClass }}{% endif %}">
+
+        {# ThemeWare: Set content #}
+        {% block element_twt_text_image_slide_content %}
+            {% if element.translated.config.url.value %}
+                {# Info: Title tag = Title text (not mandatory) OR shortened text (mandatory) #}
+                <a href="{{ element.translated.config.url.value }}"
+                   title="{% if twtHeroSlideItemTitle %}{{ twtHeroSlideItemTitle }}{% else %}{{ twtHeroSlideItemContent|striptags|raw|length > 50 ? twtHeroSlideItemContent|striptags|raw|slice(0, 50) ~ '...' : twtHeroSlideItemContent|striptags|raw }}{% endif %}"
+                   class="cms-image-link"
+                   {% if element.translated.config.newTab.value %}target="_blank" rel="noopener"{% endif %}>
+                    {# ThemeWare: Load image element #}
+                    {{ imageElement }}
+
+                    {# ThemeWare: Load text element #}
+                    {{ textElement }}
+                </a>
+            {% else %}
+                {# ThemeWare: Load image element #}
+                {{ imageElement }}
+
+                {# ThemeWare: Load text element #}
+                {{ textElement }}
+            {% endif %}
+        {% endblock %}
+
+    </div>
+{% endblock %}

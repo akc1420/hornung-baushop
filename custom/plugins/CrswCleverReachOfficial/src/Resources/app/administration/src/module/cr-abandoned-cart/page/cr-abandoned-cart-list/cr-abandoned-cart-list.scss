@@ -1,0 +1,14 @@
+@import "~scss/variables";
+
+
+.cr-abandoned-cart-list {
+  .cr-abandoned-cart-list__content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+
+  .cr-abandoned-cart-list__sidebar .sw-sidebar-item__scrollable-container {
+    padding: 0 25px;
+  }
+}

@@ -1,0 +1,49 @@
+{% block sisi_fields_page %}
+
+    <sw-page>
+        <template slot="smart-bar-actions">
+        </template>
+        <template slot="content">
+            <sw-card :title="$t('ssisi-fields.page.header')" large>
+                <sw-container columns="1fr 1fr 1fr">
+                    <sw-card-section divider="right">
+                        <sw-button variant="primary" :routerLink="{ name: 'sisi.fields.list' }"
+                                   class="sw-button dynamic-renderer">
+                          {{ $t('ssisi-fields.list.records') }}
+                        </sw-button>
+                    </sw-card-section>
+                    <sw-card-section divider="right">
+                        <sw-button variant="primary" :routerLink="{ name: 'sisi.fields.index' }"
+                                   class="sw-button dynamic-renderer">
+                            {{ $t('ssisi-fields.list.index') }}
+                        </sw-button>
+                     </sw-card-section>
+                    <sw-card-section>
+                        <sw-button variant="primary" :routerLink="{ name: 'sisi.scheduled.list' }"
+                                   class="sw-button dynamic-renderer">
+                            {{ $t('ssisi-fields.list.scheduled') }}
+                        </sw-button>
+                    </sw-card-section>
+                    <sw-card-section>
+                        <sw-button variant="primary" :routerLink="{ name: 'sisi.fields.dashboard' }"
+                                   class="sw-button dynamic-renderer">
+                            {{ $t('ssisi-fields.list.dashboard') }}
+                        </sw-button>
+                    </sw-card-section>
+                    <sw-card-section>
+                        <sw-button variant="primary" :routerLink="{ name: 'sisi.backend.search.list' }"
+                                   class="sw-button dynamic-renderer">
+                            {{ $t('ssisi-fields.list.backendsearch') }}
+                        </sw-button>
+                    </sw-card-section>
+                    <sw-card-section>
+                        <sw-button variant="primary" :routerLink="{ name: 'sisi.elasticsearch.list' }"
+                                   class="sw-button dynamic-renderer">
+                                     {{ $t('ssisi-fields.list.elasticsearch') }}
+                        </sw-button>
+                    </sw-card-section>
+                </sw-container>
+            </sw-card>
+        </template>
+    </sw-page>
+{% endblock %}

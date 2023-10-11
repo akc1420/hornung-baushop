@@ -1,0 +1,75 @@
+{% block element_cr_form %}
+    {% set config = element.fieldConfig.elements %}
+
+
+    <div class="cms-element-{{ element.type }}">
+        {% block sw_cms_element_cr_form %}
+            <sw-text-editor id="cr-form-editor">
+            </sw-text-editor>
+            <input type="hidden" value="{{ path('api.cleverreach.crForms.new') }}" id="cr-form-url-new"/>
+            <input type="hidden" value="{{ path('api.cleverreach.crForms', {'version': 2}) }}" id="cr-form-url"/>
+            <input type="hidden" value="{{ config.queue.value }}" id="cr-form-id"/>
+            <script>
+                (() => {
+                    let id = document.getElementById('cr-form-id').value,
+                        url1 = document.getElementById('cr-form-url-new').value,
+                        url2 = document.getElementById('cr-form-url').value,
+                        element = document.getElementById('cr-form-editor');
+                    url1 += '?formId=' + id;
+                    url2 += '?formId=' + id;
+
+                    let httpParams = {
+                        method: 'GET',
+                        headers: {
+                            Accept: 'application/json',
+                        }
+                    };
+                    fetch(url1, httpParams).then((response) => {
+                        responseHandler(response);
+                    });
+
+                    function responseHandler(response) {
+                        if (response.status === 404) {
+                            fetch(url2, httpParams).then((response) => {
+                                responseHandler(response);
+                            });
+                            return;
+                        }
+
+                        if (response.ok) {
+                            response.json().then(json => {
+                                setInnerHtml(element, json.content);
+                            });
+                        }
+                    }
+
+                    function setInnerHtml(elm, html) {
+                        let body = html.substr(html.indexOf("<body>") + 6),
+                            form = document.createElement('div');
+                        body = body.substr(0, body.indexOf("</body>"));
+
+                        form.innerHTML = body;
+                        elm.appendChild(form);
+
+                        let scripts = elm.querySelectorAll("script"),
+                            i;
+
+                        for (i = 0; i < scripts.length; i++) {
+                            let newScript = document.createElement("script"),
+                                attributes = scripts[i].attributes,
+                                j;
+
+                            for (j = 0; j < attributes.length; j++) {
+                                newScript.setAttribute(attributes[j].name, attributes[j].value);
+                            }
+
+                            newScript.appendChild(document.createTextNode(scripts[i].innerHTML));
+                            scripts[i].parentNode.replaceChild(newScript, scripts[i]);
+                        }
+                    }
+                })
+                ();
+            </script>
+        {% endblock %}
+    </div>
+{% endblock %}

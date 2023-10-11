@@ -1,0 +1,32 @@
+{% block sisi_fields_list %}
+    <sw-page class="sisi-fields-list">
+
+        {% block sisi_fields_list_smart_bar_actions %}
+            <template slot="smart-bar-actions">
+                <sw-button variant="primary" :routerLink="{ name: 'sisi.fields.index' }">
+                    {{ $t('ssisi-fields.list.indexPage') }}
+                </sw-button>
+                <sw-button variant="primary" :routerLink="{ name: 'sisi.fields.create' }">
+                    {{ $t('ssisi-fields.list.new') }}
+                </sw-button>
+            </template>
+        {% endblock %}
+
+
+        <template slot="content">
+            {% block sisi_fields_list_content %}
+                <sw-entity-listing
+                    v-if="fields"
+                    :items="fields"
+                    :repository="repository"
+                    :showSelection="false"
+                    :columns="teaserColumns"
+                    detailRoute="sisi.fields.detail"
+                >
+                </sw-entity-listing>
+            {% endblock %}
+        </template>
+
+
+    </sw-page>
+{% endblock %}
