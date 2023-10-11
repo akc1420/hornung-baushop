@@ -1,0 +1,13 @@
+<VirtualHost *:80>
+    ServerName hornung-baushop.de
+    ServerAlias www.hornung-baushop.de
+    DocumentRoot /var/www/dev.hornung-baushop.de/public
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+ <Directory /var/www/dev.hornung-baushop.de/public >
+  Options Indexes FollowSymLinks MultiViews
+  AllowOverride All
+  Order allow,deny
+  allow from all
+ </Directory>
+</VirtualHost>
